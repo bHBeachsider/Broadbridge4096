@@ -1,3 +1,4 @@
 # CPU-only schema validation and tests. No model weights or GPU packages.
 jsonschema==4.26.0
 pytest==9.0.3
+python-docx==1.2.0

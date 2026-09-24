@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://broadbridge.invalid/form/eval_question.json",
+  "title": "Interview Guide Part C question",
+  "description": "Explicit unknown values are retained; null and empty arrays denote blank boxes pending review.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "family_id",
+    "question_id",
+    "question",
+    "reference_answer",
+    "tolerance",
+    "type",
+    "evidence_ids",
+    "hard_fail_criteria",
+    "split"
+  ],
+  "properties": {
+    "case_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "family_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "question_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "question": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reference_answer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tolerance": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "type": {
+      "enum": [
+        "brief",
+        "missing_data",
+        "calculation",
+        "grounded_explanation",
+        "abstention",
+        "unknown",
+        null
+      ]
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hard_fail_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "split": {
+      "enum": [
+        "train",
+        "dev",
+        "locked_test",
+        "unknown",
+        null
+      ]
+    }
+  }
+}

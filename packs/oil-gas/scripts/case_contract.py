@@ -53,6 +53,9 @@ def disposition(case):
 
 
 def validate_case(case, *, training=False):
+    if isinstance(case, dict) and case.get("schema") == "broadbridge.case_form/1":
+        from form_contract import validate_form_case
+        return validate_form_case(case, training=training)
     _validate(case, "case")
     if training:
         state, reason = disposition(case)

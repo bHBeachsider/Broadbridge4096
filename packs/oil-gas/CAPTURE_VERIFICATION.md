@@ -86,8 +86,9 @@ packs/oil-gas/
 
 The pack README and canonical infrastructure brief (Markdown and Word) were
 updated. All 11 Word pages were rendered and visually inspected. The Interview
-Guide is unchanged. scripts/case_from_form.py was never created and is explicitly
-cancelled in the plan. Gate 0 remains open for production acceptance.
+Guide was unchanged at this checkpoint. DOCX parsing was then cancelled; the
+subsequent form-intake request reinstated it (see FORM_CAPTURE_VERIFICATION.md).
+Gate 0 remains open for production acceptance.
 
 The seed's evidence array is empty. Its populated-item field names come from
 the user contract; available_at_decision_time currently accepts string or

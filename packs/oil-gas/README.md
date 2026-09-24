@@ -11,19 +11,77 @@ From the Foundry root, use python -m src.train --pack /absolute/domain/pack
 the same --pack directory or pack.yaml path. Relative asset/config paths resolve
 from the pack root; output_dir defaults to outputs/<name> under that pack.
 
-This pack includes synthetic Case Capture fixtures and offline intake tools.
+This pack includes synthetic DOCX and Case Capture JSON fixtures and offline intake tools.
 It has no approved production corpus, benchmark or reviewer appointment.
 Gate 0 remains open. See the canonical brief under output/foundry-infrastructure
 for the v0 sequence and Post-v0 roadmap.
 
+## Interview Guide DOCX intake
+
+The current form workflow is Meet/Otter transcript, then Brad fills the
+Interview Guide, then Bill reviews and signs off the written case. The latest
+request reinstates DOCX parsing. It runs entirely inside Broadbridge4096;
+there is no PermitHub PIFR/A22 or NeonDB integration. Only the sequence of
+fixed questions, schema, pending review and sign-off is mirrored.
+
+`schemas/case_record.json` and `schemas/eval_question.json` are Draft 2020-12
+schemas for `broadbridge.case_form/1`. They map every identity-grid answer and
+B1-B14: B1-B6 are in decision_time; B7-B13 are in hindsight; b14_evidence is a
+separate array. B4 observation and B7 hypothesis rows are arrays. Part C uses
+evidence_ids and hard_fail_criteria arrays. Enter one hard-fail criterion per
+Word paragraph; evidence IDs may be separated by commas or line breaks.
+
+Use one case per DOCX, with the supplied labels and answer tables intact.
+The parser follows labels rather than fixed table numbers. Duplicated sections,
+changed columns, unmapped tables and unknown choices are refused. It reads
+typed table text; handwritten/image signatures require manual verification and
+will not be invented by OCR. It never reads the transcript automatically.
+
+An explicitly entered `unknown` is legal for every captured scalar, including
+enumerated answers; containers remain objects/arrays. Empty boxes become null
+or empty arrays and appear in form_review.json. Entirely blank spare rows or
+question blocks are listed separately as unused. Unknown is not a retrospective
+fact, so its shared occurrence does not trigger the form prompt leak guard.
+
+From the repository root:
+
+```powershell
+python packs/oil-gas/scripts/case_from_form.py filled-guide.docx tmp/form-review --family-id FAMILY-001
+# After Bill approves the written case, use a new output folder:
+python packs/oil-gas/scripts/case_from_form.py filled-guide.docx tmp/form-approved --family-id FAMILY-001 --case-signed-off
+python packs/oil-gas/run_brief.py tmp/form-approved/case_record.json --dry-run
+```
+
+The guide contains no family-ID box, so supply a reviewed --family-id; the parser
+does not guess family membership from the case ID. Parsing defaults to
+pending_review. Part D records recording/review consent, not explicit case
+acceptance. --case-signed-off records the operator's attestation that Bill
+approved this written case; it requires no unanswered boxes and known case ID,
+family, reviewer signature and permitted use. It does not authenticate a typed
+signature or establish source rights. The unsigned original is never changed.
+
+Outputs are case_record.json, eval_questions.json and form_review.json. The
+record also contains the same Part C questions so the direct brief runner can
+guard reference answers without loading another file. Part A and consent are
+retained in the review report. No workflow, consent, B14, hindsight or question
+content is included in a brief prompt. The guide's introductory sentence
+confuses Parts A/B with decision-time/hindsight; the harness follows the
+explicit B1-B6 and B7-B13 item labels.
+
+The existing JSON-page format remains separate and unchanged: it uses
+broadbridge.case_record/1 with string hard_fail_criteria. Do not silently cast
+between formats or feed form records into import_cases.py. The validator and
+brief runner accept either case version. Form outputs are review/scoring
+records, not automatic training admission. Holdout families and permissions
+must remain enforced when approved records are later materialized.
+
 ## Case Capture JSON intake
 
-Bill Hurt enters cases directly in the database-backed Broadbridge Case Capture
-page. Brad exports **All records as JSON**. The live page contract is
+The existing database-backed Broadbridge Case Capture page can also produce
+**All records as JSON**. The live page contract is
 `broadbridge.case_record/1`; Part A is `workflow/main`, exported as
-`workflow {schema, answers {A1..A10}, updated_at}`. The Interview Guide DOCX is
-only a pre-read and call script. The DOCX parser task is cancelled; do not build
-or run `scripts/case_from_form.py`.
+`workflow {schema, answers {A1..A10}, updated_at}`. That page contract is retained
+for compatibility alongside the newly reinstated form intake described above.
 
 The two Draft 2020-12 schemas preserve the live field names, enums and string
 types, including `evidence_ids`, `tolerance` and `hard_fail_criteria`. Empty Part A

@@ -44,7 +44,10 @@ def assert_no_leak(case, messages):
         raise AssertionError("Prompt leak: malformed prompt envelope") from exc
     # Check raw field strings too, so JSON escaping cannot hide a quoted/newline answer.
     haystacks = [m["content"] for m in messages] + list(_strings(decision_payload(case)))
-    forbidden = list(_strings(case["hindsight"])) + [q["reference_answer"] for q in case["questions"] if q["reference_answer"].strip()]
+    forbidden = list(_strings(case["hindsight"])) + [value for q in case["questions"] for value in _strings(q["reference_answer"])]
+    if case["schema"] == "broadbridge.case_form/1":
+        # An explicit unknown marker carries no retrospective knowledge.
+        forbidden = [value for value in forbidden if value.strip().casefold() != "unknown"]
     if any(value in text for value in forbidden for text in haystacks):
         raise AssertionError("Prompt leak: a hindsight string or reference answer appears in decision-time input; review the case")
 
@@ -56,8 +59,8 @@ def run_case(case, *, dry_run=False, chat_fn=None, foundry=None):
     if dry_run:
         return messages
     if chat_fn is None:
-        if case["identity"]["permitted_use"] == "undecided":
-            raise ValueError("Inference refused: permitted_use=undecided")
+        if case["identity"]["permitted_use"] in (None, "unknown", "undecided"):
+            raise ValueError("Inference refused: permitted_use is unknown or undecided")
         if not foundry:
             raise ValueError("Supply --foundry /absolute/slm-foundry for inference, or use --dry-run")
         root = Path(foundry).resolve()
