@@ -16,7 +16,7 @@ infra/status.ps1 and docs/SLM_SERVING_BRIEF.md at Foundry commit f8f5827 identif
 
 The serving box still needs ~/slm through infra/bootstrap.sh and the scoped slm-foundry-ec2 instance profile before B03/B07. No training venv or S3 access is implied by working inference. Keep public IP discovery dynamic; never expose Ollama port 11434. Windows port 11434 is not the remote endpoint.
 
-Gate 0 remains OPEN, owned by Brad/Broadbridge: approved rights and storage URI, named reviewer, approximately 30 engineering questions/reference answers and accepted output schema. No source processing after C01 proceeds without it. Generic offline engine changes and a draft domain scaffold do not close this gate.
+Gate 0 remains OPEN, owned by Brad/Broadbridge: approved rights and storage URI, named reviewer, approximately 30 engineering questions/reference answers and accepted output schema. The separately authorized Case Capture intake tools gather that evidence; they do not approve production training or close the gate. Bill Hurt enters cases in the database-backed page. Its JSON export is the intake contract; the DOCX parser task is cancelled and the Interview Guide remains a pre-read and call script. See [the pack runbook](packs/oil-gas/README.md) for schema validation, dispositions, family holdouts and the decision-time prompt guard.
 
 ## Critical path
 

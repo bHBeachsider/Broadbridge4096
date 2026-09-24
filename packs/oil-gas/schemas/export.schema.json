@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://broadbridge.invalid/schemas/export.schema.json",
+  "title": "Broadbridge Case Capture all-records export",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "exported_at",
+    "workflow",
+    "cases"
+  ],
+  "properties": {
+    "exported_at": {
+      "type": "string"
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "answers",
+        "updated_at"
+      ],
+      "properties": {
+        "schema": {
+          "const": "broadbridge.workflow/1"
+        },
+        "answers": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "A1": {
+              "type": "string"
+            },
+            "A2": {
+              "type": "string"
+            },
+            "A3": {
+              "type": "string"
+            },
+            "A4": {
+              "type": "string"
+            },
+            "A5": {
+              "type": "string"
+            },
+            "A6": {
+              "type": "string"
+            },
+            "A7": {
+              "type": "string"
+            },
+            "A8": {
+              "type": "string"
+            },
+            "A9": {
+              "type": "string"
+            },
+            "A10": {
+              "type": "string"
+            }
+          }
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "$ref": "case_record.schema.json"
+      }
+    }
+  }
+}

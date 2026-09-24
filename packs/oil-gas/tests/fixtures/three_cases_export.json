@@ -1,0 +1,229 @@
+{
+  "exported_at": "2026-09-24T15:09:02.278170Z",
+  "workflow": {
+    "schema": "broadbridge.workflow/1",
+    "answers": {},
+    "updated_at": ""
+  },
+  "cases": [
+    {
+      "case_id": "SYN-001",
+      "created_at": "2026-09-24T00:00:00Z",
+      "decision_time": {
+        "b1_trigger": "Operations reported wash-section \u0394P rising over two weeks with no throughput change. Decision: keep running to the turnaround or cut feed?",
+        "b2_operating_context": "Steady feed rate, same crude blend for three months, no recent instrument work.",
+        "b3_initial_info_and_requests": "Had: DCS trend of \u0394P, feed rate. Asked for: wash oil rate and wash-bed temperature trend, overhead vacuum, recent lab on HVGO metals.",
+        "b5_initial_hypotheses": "Coking of the wash bed from low wash-oil rate; instrument drift; foaming from a feed change.",
+        "b6_distrusted_or_missing": "Wash-oil flow meter had no recent calibration record.",
+        "observations": [
+          {
+            "quality": "Impulse lines not verified",
+            "source": "PDT-101",
+            "time": "T-14d",
+            "value_units_basis": "10 kPa (differential, DCS)",
+            "variable_location": "\u0394P wash bed"
+          },
+          {
+            "quality": "Same",
+            "source": "PDT-101",
+            "time": "T-0",
+            "value_units_basis": "18 kPa (differential, DCS)",
+            "variable_location": "\u0394P wash bed"
+          }
+        ]
+      },
+      "evidence": [],
+      "family_id": "SYN-001",
+      "hindsight": {
+        "b10_actions_taken": "Wash oil increased to design rate under unit approval; \u0394P stabilised but did not recover.",
+        "b11_confidence": "Inferred; consistent with metals trend and known mechanism. Not confirmed until bed inspection at turnaround.",
+        "b12_dangerous_wrong_answer": "Recommending a vacuum increase or feed cut as a fix; asserting the bed was clean without inspection.",
+        "b13_lesson_and_limits": "Check wetting rate first on any wash-bed \u0394P rise. Does not apply to columns with grid instead of structured packing in the wash zone.",
+        "b8_turning_point": "Wash-oil rate trend showed it had dropped below design minimum wetting rate six weeks earlier.",
+        "b9_calculations": "Wetting rate = wash oil flow / bed cross-section; compared to vendor minimum. Estimated inputs marked.",
+        "hypotheses": [
+          {
+            "discriminator": "Wash-oil rate vs design minimum; metals trend",
+            "evidence_against": "none",
+            "evidence_for": "Wash oil rate had drifted down; HVGO metals rising",
+            "hypothesis": "Wash-bed coking"
+          }
+        ]
+      },
+      "identity": {
+        "confidentiality": "Synthetic example. Delete once real cases exist.",
+        "period": "illustrative",
+        "permitted_use": "reference_only",
+        "record_type": "hypothetical",
+        "title": "SYNTHETIC EXAMPLE \u2014 vacuum column \u0394P rise",
+        "unit_service": "Vacuum distillation column, wash section"
+      },
+      "questions": [
+        {
+          "evidence_ids": "B1, B2, observations",
+          "hard_fail_criteria": "proposes a corrective action before requesting wash-oil rate",
+          "question": "Wash-section \u0394P rose from 10 to 18 kPa over two weeks at constant feed. What would you request before diagnosing?",
+          "question_id": "SYN-001-Q1",
+          "reference_answer": "Wash-oil rate trend, wash-bed temperatures, overhead vacuum, HVGO metals lab, PDT calibration record.",
+          "split": "dev",
+          "tolerance": "",
+          "type": "missing_data"
+        }
+      ],
+      "reviewer_signoff": {
+        "date": "",
+        "name": "",
+        "signed": false
+      },
+      "schema": "broadbridge.case_record/1",
+      "status": "draft",
+      "updated_at": "2026-09-24T00:00:00Z"
+    },
+    {
+      "case_id": "SYN-TRAIN-001",
+      "created_at": "2026-09-24T00:00:00Z",
+      "decision_time": {
+        "b1_trigger": "Operations reported wash-section \u0394P rising over two weeks with no throughput change. Decision: keep running to the turnaround or cut feed?",
+        "b2_operating_context": "Steady feed rate, same crude blend for three months, no recent instrument work.",
+        "b3_initial_info_and_requests": "Had: DCS trend of \u0394P, feed rate. Asked for: wash oil rate and wash-bed temperature trend, overhead vacuum, recent lab on HVGO metals.",
+        "b5_initial_hypotheses": "Coking of the wash bed from low wash-oil rate; instrument drift; foaming from a feed change.",
+        "b6_distrusted_or_missing": "Wash-oil flow meter had no recent calibration record.",
+        "observations": [
+          {
+            "quality": "Impulse lines not verified",
+            "source": "PDT-101",
+            "time": "T-14d",
+            "value_units_basis": "10 kPa (differential, DCS)",
+            "variable_location": "\u0394P wash bed"
+          },
+          {
+            "quality": "Same",
+            "source": "PDT-101",
+            "time": "T-0",
+            "value_units_basis": "18 kPa (differential, DCS)",
+            "variable_location": "\u0394P wash bed"
+          }
+        ]
+      },
+      "evidence": [],
+      "family_id": "SYN-TRAIN-001",
+      "hindsight": {
+        "b10_actions_taken": "Wash oil increased to design rate under unit approval; \u0394P stabilised but did not recover.",
+        "b11_confidence": "Inferred; consistent with metals trend and known mechanism. Not confirmed until bed inspection at turnaround.",
+        "b12_dangerous_wrong_answer": "Recommending a vacuum increase or feed cut as a fix; asserting the bed was clean without inspection.",
+        "b13_lesson_and_limits": "Check wetting rate first on any wash-bed \u0394P rise. Does not apply to columns with grid instead of structured packing in the wash zone.",
+        "b8_turning_point": "Wash-oil rate trend showed it had dropped below design minimum wetting rate six weeks earlier.",
+        "b9_calculations": "Wetting rate = wash oil flow / bed cross-section; compared to vendor minimum. Estimated inputs marked.",
+        "hypotheses": [
+          {
+            "discriminator": "Wash-oil rate vs design minimum; metals trend",
+            "evidence_against": "none",
+            "evidence_for": "Wash oil rate had drifted down; HVGO metals rising",
+            "hypothesis": "Wash-bed coking"
+          }
+        ]
+      },
+      "identity": {
+        "confidentiality": "Synthetic example. Delete once real cases exist.",
+        "period": "illustrative",
+        "permitted_use": "training",
+        "record_type": "hypothetical",
+        "title": "Synthetic automated test: SYN-TRAIN-001",
+        "unit_service": "Vacuum distillation column, wash section"
+      },
+      "questions": [
+        {
+          "evidence_ids": "B1, B2, observations",
+          "hard_fail_criteria": "proposes a corrective action before requesting wash-oil rate",
+          "question": "Wash-section \u0394P rose from 10 to 18 kPa over two weeks at constant feed. What would you request before diagnosing?",
+          "question_id": "SYN-TRAIN-001-Q1",
+          "reference_answer": "Wash-oil rate trend, wash-bed temperatures, overhead vacuum, HVGO metals lab, PDT calibration record.",
+          "split": "train",
+          "tolerance": "",
+          "type": "missing_data"
+        }
+      ],
+      "reviewer_signoff": {
+        "signed": true,
+        "name": "SYNTHETIC TEST REVIEWER",
+        "date": "2026-09-24"
+      },
+      "schema": "broadbridge.case_record/1",
+      "status": "signed",
+      "updated_at": "2026-09-24T00:00:00Z"
+    },
+    {
+      "case_id": "SYN-TRAIN-002",
+      "created_at": "2026-09-24T00:00:00Z",
+      "decision_time": {
+        "b1_trigger": "Operations reported wash-section \u0394P rising over two weeks with no throughput change. Decision: keep running to the turnaround or cut feed?",
+        "b2_operating_context": "Steady feed rate, same crude blend for three months, no recent instrument work.",
+        "b3_initial_info_and_requests": "Had: DCS trend of \u0394P, feed rate. Asked for: wash oil rate and wash-bed temperature trend, overhead vacuum, recent lab on HVGO metals.",
+        "b5_initial_hypotheses": "Coking of the wash bed from low wash-oil rate; instrument drift; foaming from a feed change.",
+        "b6_distrusted_or_missing": "Wash-oil flow meter had no recent calibration record.",
+        "observations": [
+          {
+            "quality": "Impulse lines not verified",
+            "source": "PDT-101",
+            "time": "T-14d",
+            "value_units_basis": "10 kPa (differential, DCS)",
+            "variable_location": "\u0394P wash bed"
+          },
+          {
+            "quality": "Same",
+            "source": "PDT-101",
+            "time": "T-0",
+            "value_units_basis": "18 kPa (differential, DCS)",
+            "variable_location": "\u0394P wash bed"
+          }
+        ]
+      },
+      "evidence": [],
+      "family_id": "SYN-TRAIN-002",
+      "hindsight": {
+        "b10_actions_taken": "Wash oil increased to design rate under unit approval; \u0394P stabilised but did not recover.",
+        "b11_confidence": "Inferred; consistent with metals trend and known mechanism. Not confirmed until bed inspection at turnaround.",
+        "b12_dangerous_wrong_answer": "Recommending a vacuum increase or feed cut as a fix; asserting the bed was clean without inspection.",
+        "b13_lesson_and_limits": "Check wetting rate first on any wash-bed \u0394P rise. Does not apply to columns with grid instead of structured packing in the wash zone.",
+        "b8_turning_point": "Wash-oil rate trend showed it had dropped below design minimum wetting rate six weeks earlier.",
+        "b9_calculations": "Wetting rate = wash oil flow / bed cross-section; compared to vendor minimum. Estimated inputs marked.",
+        "hypotheses": [
+          {
+            "discriminator": "Wash-oil rate vs design minimum; metals trend",
+            "evidence_against": "none",
+            "evidence_for": "Wash oil rate had drifted down; HVGO metals rising",
+            "hypothesis": "Wash-bed coking"
+          }
+        ]
+      },
+      "identity": {
+        "confidentiality": "Synthetic example. Delete once real cases exist.",
+        "period": "illustrative",
+        "permitted_use": "training",
+        "record_type": "hypothetical",
+        "title": "Synthetic automated test: SYN-TRAIN-002",
+        "unit_service": "Vacuum distillation column, wash section"
+      },
+      "questions": [
+        {
+          "evidence_ids": "B1, B2, observations",
+          "hard_fail_criteria": "proposes a corrective action before requesting wash-oil rate",
+          "question": "Wash-section \u0394P rose from 10 to 18 kPa over two weeks at constant feed. What would you request before diagnosing?",
+          "question_id": "SYN-TRAIN-002-Q1",
+          "reference_answer": "Wash-oil rate trend, wash-bed temperatures, overhead vacuum, HVGO metals lab, PDT calibration record.",
+          "split": "train",
+          "tolerance": "",
+          "type": "missing_data"
+        }
+      ],
+      "reviewer_signoff": {
+        "signed": true,
+        "name": "SYNTHETIC TEST REVIEWER",
+        "date": "2026-09-24"
+      },
+      "schema": "broadbridge.case_record/1",
+      "status": "signed",
+      "updated_at": "2026-09-24T00:00:00Z"
+    }
+  ]
+}

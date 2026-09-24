@@ -1,0 +1,312 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://broadbridge.invalid/schemas/case_record.schema.json",
+  "title": "Broadbridge Case Capture record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "case_id",
+    "family_id",
+    "status",
+    "identity",
+    "decision_time",
+    "hindsight",
+    "evidence",
+    "questions",
+    "reviewer_signoff",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "broadbridge.case_record/1"
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "family_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "complete",
+        "signed"
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "unit_service",
+        "period",
+        "confidentiality",
+        "record_type",
+        "permitted_use"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "unit_service": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "confidentiality": {
+          "type": "string"
+        },
+        "record_type": {
+          "enum": [
+            "real_event",
+            "reconstructed",
+            "hypothetical"
+          ]
+        },
+        "permitted_use": {
+          "enum": [
+            "training",
+            "testing_only",
+            "reference_only",
+            "undecided"
+          ]
+        }
+      }
+    },
+    "decision_time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "b1_trigger",
+        "b2_operating_context",
+        "b3_initial_info_and_requests",
+        "b5_initial_hypotheses",
+        "b6_distrusted_or_missing",
+        "observations"
+      ],
+      "properties": {
+        "b1_trigger": {
+          "type": "string"
+        },
+        "b2_operating_context": {
+          "type": "string"
+        },
+        "b3_initial_info_and_requests": {
+          "type": "string"
+        },
+        "b5_initial_hypotheses": {
+          "type": "string"
+        },
+        "b6_distrusted_or_missing": {
+          "type": "string"
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "time",
+              "variable_location",
+              "value_units_basis",
+              "source",
+              "quality"
+            ],
+            "properties": {
+              "time": {
+                "type": "string"
+              },
+              "variable_location": {
+                "type": "string"
+              },
+              "value_units_basis": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "quality": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "hindsight": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "b8_turning_point",
+        "b9_calculations",
+        "b10_actions_taken",
+        "b11_confidence",
+        "b12_dangerous_wrong_answer",
+        "b13_lesson_and_limits",
+        "hypotheses"
+      ],
+      "properties": {
+        "b8_turning_point": {
+          "type": "string"
+        },
+        "b9_calculations": {
+          "type": "string"
+        },
+        "b10_actions_taken": {
+          "type": "string"
+        },
+        "b11_confidence": {
+          "type": "string"
+        },
+        "b12_dangerous_wrong_answer": {
+          "type": "string"
+        },
+        "b13_lesson_and_limits": {
+          "type": "string"
+        },
+        "hypotheses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "hypothesis",
+              "evidence_for",
+              "evidence_against",
+              "discriminator"
+            ],
+            "properties": {
+              "hypothesis": {
+                "type": "string"
+              },
+              "evidence_for": {
+                "type": "string"
+              },
+              "evidence_against": {
+                "type": "string"
+              },
+              "discriminator": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item",
+          "format",
+          "restriction",
+          "available_at_decision_time"
+        ],
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "restriction": {
+            "type": "string"
+          },
+          "available_at_decision_time": {
+            "type": [
+              "string",
+              "boolean"
+            ],
+            "description": "The seeded live record has an empty evidence array. Accept text or checkbox values until a populated live export confirms the widget type."
+          }
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "question_id",
+          "question",
+          "evidence_ids",
+          "reference_answer",
+          "tolerance",
+          "hard_fail_criteria",
+          "type",
+          "split"
+        ],
+        "properties": {
+          "question_id": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "evidence_ids": {
+            "type": "string"
+          },
+          "reference_answer": {
+            "type": "string"
+          },
+          "tolerance": {
+            "type": "string"
+          },
+          "hard_fail_criteria": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "brief",
+              "missing_data",
+              "calculation",
+              "grounded_explanation",
+              "abstention"
+            ]
+          },
+          "split": {
+            "enum": [
+              "train",
+              "dev",
+              "locked_test"
+            ]
+          }
+        }
+      }
+    },
+    "reviewer_signoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "signed",
+        "name",
+        "date"
+      ],
+      "properties": {
+        "signed": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

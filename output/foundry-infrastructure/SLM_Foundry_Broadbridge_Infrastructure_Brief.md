@@ -34,7 +34,7 @@ Critical path: Gate 0 Broadbridge scope → Gate 1 Foundry readiness → Gate 2 
 
 Gate 0 is OPEN and owned by Brad/Broadbridge. It requires no GPU and no code. Record the approved rights and exact storage location, a named technical reviewer, approximately 30 target engineering questions with reference answers, and the output schema. Each question needs source_ids, applicable numeric tolerances/units, missing-evidence expectations and critical-error criteria. The reviewer name and these assets are decisions to be supplied, not invented here.
 
-C01 may register source leads and unresolved permissions. Nothing after C01, including proprietary extraction, dataset production or baseline processing, proceeds until Gate 0 is accepted. The generic offline Gate 1a–1e work explicitly requested in this review proceeds independently using synthetic fixtures; it does not close Gate 0 or authorize any source use.
+C01 may register source leads and unresolved permissions. Production extraction, training-dataset approval and baseline processing require Gate 0 acceptance. The specifically authorized Case Capture intake and synthetic tests collect that evidence without closing Gate 0. The generic offline Gate 1a–1e work proceeds independently using synthetic fixtures; it does not authorize additional source use.
 
 Gate 1 runs without a GPU. The oil-gas scaffold was copied from slm-foundry/packs/_template into Broadbridge4096/packs/oil-gas. Its draft schema, prompt, rubric and configuration need Gate 0 acceptance. Remove template personas and unrelated hand/image-generation fields. Do not build a parallel pack format from scratch. Domain values are populated only after Gate 0.
 
@@ -118,7 +118,9 @@ Begin with approximately 20 approved documents. Preserve originals and SHA256 in
 
 ## 6 The smallest ingestion and retrieval path
 
-For v0, extract text on the existing box or approved workstation. Use a pinned PDF/text parser and review every selected table and engineering value. Manually transcribe important diagrams or illegible passages with a reviewer rather than building a vision pipeline. Preserve page/section references, source units, unknown values and corrections. Mail requires sender/customer permissions and removal of irrelevant personal data.
+Cases originate as JSON in the database-backed Broadbridge Case Capture page. Bill Hurt enters records; Brad exports All records as JSON. The pack schemas and importer preserve this live contract. The Interview Guide DOCX remains a pre-read and call script; the case_from_form.py parser task is cancelled. Appendix B describes the intake and prompt boundary.
+
+For supplementary source documents, extract text on the existing box or approved workstation. Use a pinned PDF/text parser and review every selected table and engineering value. Manually transcribe important diagrams or illegible passages with a reviewer. Preserve page/section references, source units, unknown values and corrections. Mail requires sender/customer permissions and removal of irrelevant personal data.
 
 Write reviewed evidence as UTF-8 JSONL with source_id, evidence_id, text, page/section, units, family and source hash. Freeze a JSON manifest identifying parser version, files and hashes. Source permissions must separately allow retrieval and training.
 
@@ -138,7 +140,7 @@ python -m src.prepare --pack $pack --group-key case_family_id
 python -m src.train --pack $pack --dry-run --tokenizer-dir C:\local\qwen-tokenizer
 ```
 
-These are post-Gate-0 commands; the scaffold contains no data. For synthetic plumbing only, --fixture-splits 16 8 8 allocates exact family counts and bypasses the legacy 50/50 minimum. Review the dry-run's rendered batch, labels, assistant mask, min/p50/p95/max lengths and overlength count. Prompt/padding labels are -100; overlength input is rejected without truncation. A CPU audit does not prove GPU fit.
+These are post-Gate-0 commands for approved training records. The pack has synthetic capture fixtures only. Capture-derived rows use family_id; keep their frozen train/dev/locked_test assignments and map dev to val and locked_test to test during reviewed materialization. Do not repartition the benchmark. For synthetic plumbing only, --fixture-splits 16 8 8 allocates exact family counts and bypasses the legacy 50/50 minimum. Review the dry-run's batch, assistant mask, length distribution and overlength count. Prompt/padding labels are -100; overlength input is rejected without truncation. A CPU audit does not prove GPU fit.
 
 ## 8 Training and engineering evaluation
 
@@ -251,3 +253,22 @@ The following capabilities are retained as the long-term plan. They are outside 
 Long-term disk planning retains an encrypted 500 GB gp3 working-volume estimate, recalculated from actual model and data files. Keep latest two plus best development checkpoints as an initial retention proposal, subject to the approved records policy and legal holds. Do not auto-terminate the existing box.
 
 Shared parent services and the approved subsidiary organisation remain the governance model at every stage. Infrastructure growth creates no automatic hiring commitment or expert appointment. Keep expert content rights, software/adapter ownership, base-model licensing and customer-data permissions as distinct records.
+
+
+<!-- page -->
+
+## Appendix B Case Capture intake and decision time briefs
+
+Bill Hurt records cases directly in the Broadbridge Case Capture page. Brad exports All records as JSON. Each case follows broadbridge.case_record/1; the wrapper preserves exported_at and the workflow/main answers A1 through A10. The Interview Guide is a pre-read and call script only. No Word parsing step is required.
+
+The domain pack owns schemas/case_record.schema.json and schemas/export.schema.json, the validator, scripts/import_cases.py, run_brief.py and synthetic fixtures. Field names and enums follow the live page. evidence_ids, tolerance and hard_fail_criteria remain strings. The seed has no evidence items; confirm the available_at_decision_time widget type with a populated live export.
+
+Run the importer as scripts/import_cases.py <export.json> <out_dir> from the pack, using a fresh output directory for each complete export. It publishes data/cases/<case_id>.json, eval/questions.jsonl, data/train_candidates.jsonl, workflow.json and import_report.json. Every case receives an imported, eval-only or rejected disposition with its reason. Invalid schema or duplicate identifiers reject the whole export before publication; undecided permission and inconsistent signatures receive explicit case rejections.
+
+SYN-001 is a draft, reference-only synthetic case. The latest capture instruction permits it as eval-only and excludes it from training. Two additional synthetic signed/training fixtures exercise the positive path. Evaluation material remains provisional until the appointed reviewer accepts it; inclusion is not a source license or permission for external transmission.
+
+Family split priority is locked_test, then dev, then train. The strictest question split in the complete export applies to the whole family, including questions belonging to rejected cases. Only signed/training cases in train families produce training candidates. Candidates require review before promotion; free-text tolerances and hard-fail criteria need explicit engineering interpretation. During reviewed materialization, preserve family_id and map dev to Foundry val and locked_test to test. Do not randomly repartition the frozen benchmark.
+
+Case archives include hindsight and reference answers. Never index the full archive for retrieval or provide it directly to a model. run_brief.py selects only identity.unit_service and decision_time. Before inference it checks the exact prompt structure and rejects any nonempty hindsight string or reference answer appearing in that prompt, including raw values hidden by JSON escaping. Exact overlaps fail closed for human review; the guard does not recognize paraphrases.
+
+The --dry-run option prints the guarded messages locally without loading a model or contacting EC2. Future authorized inference uses the Foundry shared client, think:false and an explicitly configured loopback OLLAMA_URL. The script never starts an instance or opens a tunnel. Full commands, dispositions and tests are in packs/oil-gas/README.md. Intake tools and synthetic checks do not close Gate 0.
