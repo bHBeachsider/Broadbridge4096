@@ -118,15 +118,34 @@ def test_nontraining_cases_are_eval_only(tmp_path, signed_cases, status, permiss
     assert rows(output / "data/train_candidates.jsonl") == []
 
 
-def test_undecided_permission_is_reported_and_not_written(tmp_path, signed_cases):
+def test_removed_permission_rejects_whole_export_without_defaulting(tmp_path, signed_cases):
     importer = importlib.import_module("import_cases")
     signed_cases[0]["identity"]["permitted_use"] = "undecided"
     output = tmp_path / "output"
-    report = importer.import_export(write_export(tmp_path, signed_cases), output)
-    assert report["cases"][0]["disposition"] == "rejected"
-    assert "undecided" in report["cases"][0]["reason"]
-    assert not (output / "data/cases/SYN-TRAIN-001.json").exists()
-    assert len(rows(output / "eval/questions.jsonl")) == 1
+    with pytest.raises(ValueError, match="permitted_use.*undecided"):
+        importer.import_export(write_export(tmp_path, signed_cases), output)
+    assert not output.exists()
+
+
+def test_missing_permission_is_not_filled_from_page_default(tmp_path, signed_cases):
+    importer = importlib.import_module("import_cases")
+    del signed_cases[0]["identity"]["permitted_use"]
+    output = tmp_path / "output"
+    with pytest.raises(ValueError, match="permitted_use"):
+        importer.import_export(write_export(tmp_path, signed_cases), output)
+    assert not output.exists()
+
+
+def test_new_draft_with_page_training_default_never_becomes_candidate(tmp_path, seed):
+    importer = importlib.import_module("import_cases")
+    seed["identity"]["permitted_use"] = "training"
+    seed["questions"][0]["split"] = "train"
+    output = tmp_path / "output"
+    report = importer.import_export(write_export(tmp_path, [seed]), output)
+    assert report["cases"][0]["disposition"] == "eval-only"
+    assert report["cases"][0]["effective_split"] == "train"
+    assert rows(output / "data/train_candidates.jsonl") == []
+    assert rows(output / "eval/questions.jsonl")[0]["permitted_use"] == "training"
 
 
 @pytest.mark.parametrize("field,value", [("signed", False), ("name", " "), ("date", "")])
@@ -141,11 +160,12 @@ def test_signed_status_requires_signoff_for_training(tmp_path, signed_cases, fie
 
 def test_rejected_family_member_still_protects_locked_test(tmp_path, seed, signed_cases):
     importer = importlib.import_module("import_cases")
-    seed["identity"]["permitted_use"] = "undecided"
+    seed["status"] = "signed"  # Incomplete signoff rejects this structurally valid case.
     seed["family_id"] = signed_cases[0]["family_id"]
     seed["questions"][0]["split"] = "locked_test"
     output = tmp_path / "output"
-    importer.import_export(write_export(tmp_path, [seed, signed_cases[0]]), output)
+    report = importer.import_export(write_export(tmp_path, [seed, signed_cases[0]]), output)
+    assert report["cases"][0]["disposition"] == "rejected"
     assert rows(output / "eval/questions.jsonl")[0]["split"] == "locked_test"
     assert rows(output / "data/train_candidates.jsonl") == []
 

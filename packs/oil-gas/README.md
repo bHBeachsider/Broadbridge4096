@@ -91,6 +91,13 @@ for compatibility alongside the newly reinstated form intake described above.
 The two Draft 2020-12 schemas preserve the live field names, enums and string
 types, including `evidence_ids`, `tolerance` and `hard_fail_criteria`. Empty Part A
 answers and draft signoff strings validate structurally. Unknown fields fail.
+The page's permitted-use enum is `training | testing_only | reference_only`;
+new cases default to `training`. That page default does not approve a case:
+training candidates still require signed status, complete reviewer signoff,
+training permission and a train-family split. The schema default is an annotation;
+the importer never fills a missing permission. Legacy `undecided` values now
+fail schema validation and reject the whole export before any output is written.
+Resolve those values on the page and re-export; do not silently convert them.
 The seeded record has no evidence items; `available_at_decision_time` currently
 accepts text or a Boolean so either page widget representation is preserved.
 Verify that one type against a populated live export before tightening it.
@@ -129,7 +136,7 @@ CLI exits 2 when any case was rejected. Exit 0 means no rejections.
 | --- | --- |
 | imported | Signed, permitted_use=training, complete reviewer signoff, family split=train. |
 | eval-only | Draft/complete records or testing_only/reference_only; also signed training records held out by their family split. |
-| rejected | permitted_use=undecided, or signed status with a false/blank reviewer signoff. |
+| rejected | Signed status with a false/blank reviewer signoff in an otherwise schema-valid case. |
 
 This follows the latest capture instruction: **SYN-001 is eval-only**, despite
 being draft/reference_only. It must never enter training candidates. Eval-only

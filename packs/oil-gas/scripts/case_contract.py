@@ -51,10 +51,8 @@ def _validate(value, name):
 
 
 def disposition(case):
-    """Latest user policy: draft/reference records may be evaluation material."""
+    """Classify schema-valid page records; family holdouts are applied by the importer."""
     permission = case["identity"]["permitted_use"]
-    if permission == "undecided":
-        return "rejected", "permitted_use=undecided; no dataset permission"
     signoff = case["reviewer_signoff"]
     if case["status"] == "signed" and (not signoff["signed"] or not signoff["name"].strip() or not signoff["date"].strip()):
         return "rejected", "status=signed conflicts with incomplete reviewer_signoff"

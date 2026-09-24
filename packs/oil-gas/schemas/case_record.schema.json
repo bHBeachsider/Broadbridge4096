@@ -72,9 +72,10 @@
           "enum": [
             "training",
             "testing_only",
-            "reference_only",
-            "undecided"
-          ]
+            "reference_only"
+          ],
+          "default": "training",
+          "description": "The capture page defaults new cases to training. Imports still require an explicit value; this annotation does not fill missing permissions or grant signed status."
         }
       }
     },

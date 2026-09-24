@@ -66,7 +66,9 @@ def test_first_live_run_refuses_unreviewed_case_before_foundry_access(case, dama
     if damage == "empty_name": case["reviewer_signoff"]["name"] = " "
     if damage == "undecided": case["identity"]["permitted_use"] = "undecided"
     if damage == "no_questions": case["questions"] = []
-    with pytest.raises(ValueError, match="First-case preflight"):
+    # Removed permission values now fail schema validation before signoff preflight.
+    expected = "permitted_use" if damage == "undecided" else "First-case preflight"
+    with pytest.raises(ValueError, match=expected):
         runner.create_run(case, foundry="does-not-exist")
 
 
