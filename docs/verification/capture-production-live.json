@@ -1,0 +1,16 @@
+{
+  "verified_on": "2026-09-24",
+  "deployment_id": "dpl_7mCdh6xC6pjngbXi6haJJBZet5Fv",
+  "deployment_url": "https://broadbridge-capture-4x5zw0uhs-bhbeachsiders-projects.vercel.app",
+  "state": "READY",
+  "build_seconds": 6,
+  "checks": {
+    "origin": "https://broadbridge-capture.vercel.app",
+    "http_status": 200,
+    "anonymous_signin_page_available": true,
+    "configuration_unavailable_notice": false,
+    "callback_url": "https://broadbridge-capture.vercel.app/api/auth/callback/resend",
+    "actual_email_sent": false
+  },
+  "email_delivery_and_login": "Awaiting approved reviewer sign-in; no email was sent during this check"
+}

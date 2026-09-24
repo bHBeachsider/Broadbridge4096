@@ -37,9 +37,18 @@
     "0004_capture_actions.sql": "11d49d75c9e46e5a99f1a4ab12cad6006e452fdc415cb288a9f67b80aa7ccfa4"
   },
   "remaining_human_steps": [
-    "Configure RESEND_API_KEY and CAPTURE_EMAIL_FROM in Vercel; verify actual email delivery/login",
+    "Sign in with an approved email address to verify actual production mail delivery and login; production environment configuration is set",
     "Identify the five real registered source IDs or file",
     "Export/import canonical real Claude records and verify cutover before retiring old page"
   ],
-  "ec2_started": false
+  "ec2_started": false,
+  "production": {
+    "url": "https://broadbridge-capture.vercel.app",
+    "deployment_id": "dpl_7mCdh6xC6pjngbXi6haJJBZet5Fv",
+    "state": "READY",
+    "build": "passed",
+    "signin_form_and_callback": "verified",
+    "email_delivery_and_login": "pending approved reviewer check",
+    "evidence": "capture-production-live.json"
+  }
 }

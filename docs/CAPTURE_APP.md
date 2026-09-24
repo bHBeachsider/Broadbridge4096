@@ -18,6 +18,7 @@ The original [`case-capture.html`](../output/expert-capture/case-capture.html) i
 | Requested development branch | `dev` — `br-billowing-morning-audiqy3e` |
 | Development endpoint | `ep-restless-bread-au1nwu5h` |
 | Preserved earlier rehearsal | `capture-dev` — `br-royal-moon-auq044a1` |
+| Production URL | [Broadbridge Case Capture](https://broadbridge-capture.vercel.app) — READY, 24 September 2026 |
 | Preview URL | [Verified preview](https://broadbridge-capture-7m79rrfj3-bhbeachsiders-projects.vercel.app) — READY, 24 September 2026 |
 
 The earlier `capture-dev` branch is preserved for its audit rehearsal. It is not the currently selected `dev` target. Production is named `production`, not `main`.
@@ -91,10 +92,10 @@ Existing local dotenv files already contain configuration variables; maintain th
 | `RESEND_API_KEY` | Private Resend key for the account allowed to send from the configured domain. |
 | `CAPTURE_ALLOWED_EMAILS` | Exact reviewer addresses, separated by commas or newlines. Addresses are trimmed and lowercased; malformed configuration fails closed. |
 | `CAPTURE_EMAIL_FROM` | A mailbox on a verified Resend sender/domain, optionally `Broadbridge <mailbox@verified-domain>`. |
-| `AUTH_URL` | Explicit local origin, for example `http://127.0.0.1:3100`. An intentional production override must be the exact approved HTTPS origin. |
+| `AUTH_URL` | Production is pinned to `https://broadbridge-capture.vercel.app` so emailed callbacks and the origin guard agree across deployments. Local example: `http://127.0.0.1:3100`. |
 | `VERCEL_URL` | Vercel supplies the deployment hostname. With `VERCEL=1`, the app derives its trusted HTTPS origin automatically; avoid pinning all previews to a different deployment's URL. |
 
-**Live email activation remains incomplete:** `bupham@ilyrium.io` and `whurt@antiochrenewables.com` are configured in the Preview and Production allowlists. Each environment also has its separate database URL and Auth.js secret. `RESEND_API_KEY` and a verified `CAPTURE_EMAIL_FROM` still need to be configured. The application fails closed while required authentication configuration is unavailable. A rendered sign-in page or successful build does not prove that mail was sent or a reviewer logged in.
+**Production email configuration is present:** `bupham@ilyrium.io` and `whurt@antiochrenewables.com` are allowlisted. Production has the Resend key and sender configuration, its separate database URL/Auth.js secret, and `AUTH_URL=https://broadbridge-capture.vercel.app`. The public sign-in page and stable callback URL are verified. Actual mail delivery and reviewer login still need a human check. Preview retains its separate dev database and currently has no Resend configuration; its sign-in remains disabled.
 
 To activate email, configure those values in the intended environment, redeploy so that the running application sees the changes, and complete a real sign-in with an approved reviewer address. Confirm arrival from the verified sender, successful same-origin login, and rejection of a replayed link. Record the result rather than assuming provider configuration implies delivery.
 
@@ -147,7 +148,7 @@ vercel link --repo --yes --scope bhbeachsiders-projects
 vercel deploy --yes --target preview --scope bhbeachsiders-projects
 ```
 
-Record the URL actually returned by the deployment and its build result. Inspect the deployed sign-in route, then perform the real approved-email smoke once activation inputs exist. A preview that intentionally reports authentication unavailable is not a successful live-login smoke. The final URL and measured results are recorded below; live email delivery remains unverified.
+If a dashboard redeploy reports that `apps/capture` is missing, it is reusing an incomplete earlier source snapshot. Deploy the verified checkout from the repository root instead of repeating that failed snapshot. Record the URL actually returned by the deployment and its build result. Inspect the deployed sign-in route, then perform the real approved-email smoke once activation inputs exist. A preview that intentionally reports authentication unavailable is not a successful live-login smoke. The final URL and measured results are recorded below; live email delivery remains unverified.
 
 Run deployment uploads from the repository root with the existing `.vercel/repo.json` link; the project's build root remains `apps/capture`. The root `.vercelignore` admits the app, shared schemas and synthetic test fixtures. It excludes dotenv files, documents, intake data, local dependencies and test output. Its directory rules are tested against the CLI file walker; trailing-slash parent exceptions can otherwise produce an empty upload.
 
@@ -203,9 +204,9 @@ Measured results from 24 September 2026 are retained in [capture-final.json](ver
 | Final Python/database suite and row counts | **329 passed**, 74.42 seconds, fresh offline PostgreSQL 17 container. [Dev fixture import](verification/capture-dev-fixture-import.json): sources 5, cases 3, questions 3, workflow 1, training candidates 2; sources are synthetic. |
 | Matching migration-only unpooled selection | Passed; applied `0001`–`0004` to dev and [empty production](verification/capture-production-schema.json). |
 | Final app tests and typecheck | **75 passed**, including six SQL tests on Neon dev; TypeScript passed. |
-| Production build | Passed locally and on Vercel; final remote build completed in 8 seconds. |
+| Production build | [Production](https://broadbridge-capture.vercel.app) **READY**; final remote build completed in 6 seconds. [Runtime checks](verification/capture-production-live.json) confirm anonymous access to the sign-in form and the stable callback URL. |
 | Local real-token Playwright rehearsal against verified `dev` | **1 passed**, 23.1 seconds; [sanitized result](verification/capture-browser-smoke.json). Real Auth.js test link, signed testing-only case, SQL rows, export, replay rejection, sign-out. No email sent. |
 | Vercel preview URL / build result | [Preview](https://broadbridge-capture-7m79rrfj3-bhbeachsiders-projects.vercel.app), **READY**. Sign-in route verified; missing mail configuration fails closed. |
-| Live approved-email preview login | Allowlist configured. Pending Resend key, verified sender, and measured delivery/login smoke. |
+| Live approved-email login | Production configuration and form enabled; actual delivery/login check awaits an approved reviewer. No email was sent by the automated production check. Preview mail configuration remains absent. |
 | Real five-source import | Pending identification of the exact registered sources. |
 | Claude intake retirement | Pending verified live login and canonical migration comparison. |

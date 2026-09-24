@@ -17,10 +17,10 @@ Goal: make the dedicated Broadbridge Neon project the system of record and repla
 
 ## Remaining activation and data steps
 
-- [ ] Configure RESEND_API_KEY and verified CAPTURE_EMAIL_FROM in Vercel Preview and Production, redeploy, then verify actual approved-email delivery/login. No real email was sent by the test.
+- [ ] Production Resend configuration is set and the public sign-in form/callback URL pass checks. Verify actual approved-email delivery/login next. Preview has no live email configuration. No real email was sent by the automated checks.
 - [ ] Identify the exact five registered source IDs/file. The 32-entry research register is not assumed to be that selection; DB-TEST fixtures are synthetic.
 - [ ] Archive and import actual Claude exports, compare canonical records and workflow, verify reviewer access, then freeze/retire the old writable page. Do not retire it before cutover verification.
-- [ ] Publish the production application after those activation checks. Production schema/configuration is prepared; only a Preview app was published.
+- [x] Production application published at https://broadbridge-capture.vercel.app. AUTH_URL is pinned to that stable origin; build and anonymous sign-in page checks pass. Actual reviewer login remains the final activation check.
 
 ## Resource and evidence record
 
