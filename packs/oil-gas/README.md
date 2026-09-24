@@ -1,5 +1,10 @@
 # Broadbridge Oil and Gas domain pack
 
+For the first signed case from the capture page, follow
+[FIRST_CASE_RUNBOOK.md](../../docs/FIRST_CASE_RUNBOOK.md). It covers export,
+import, stock Qwen through the tunnel, a schema-validated brief and a reviewer
+scorecard. The offline SYN-001 rehearsal uses a mocked response and no EC2.
+
 Scaffolded by copying slm-foundry/packs/_template, then replacing its example
 identity and adding proposed configs/train.yaml, schemas/answer.schema.json,
 prompts/system.txt and rubrics/engineering-v0.md. Gate 0 remains open in pack.yaml.
@@ -162,8 +167,12 @@ Empty strings are ignored because they match every prompt. Exact overlaps,
 even legitimate short strings, fail closed and need human case review; the
 guard cannot detect paraphrased retrospective knowledge.
 
-Future authorized inference uses `--foundry /absolute/slm-foundry` (or
+Authorized inference uses `--foundry /absolute/slm-foundry` (or
 SLM_FOUNDRY_PATH), its shared requests client and explicitly configured loopback
-OLLAMA_URL. It passes think=False. The script never starts EC2, opens a tunnel,
-or changes the security group. This task only exercises local dry runs and
-mocked model boundaries.
+OLLAMA_URL. The CLI now requires a signed case for live inference, passes
+think=False and the `--schema brief` JSON Schema to the client, and validates
+the returned JSON. `--output <new-file>` saves a brief_run.json audit envelope.
+`--mock-response <brief.json>` replays a local response through the same guards
+and labels the result MOCK. `scripts/score_brief.py <case> <brief_run> <eval-dir>`
+generates an unscored reviewer sheet and refuses to overwrite one. The script
+never starts EC2, opens a tunnel, or changes the security group.

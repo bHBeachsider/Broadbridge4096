@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Broadbridge first-case decision brief v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "observations": {"type": "array", "items": {"type": "string"}},
+    "hypotheses": {"type": "array", "items": {"type": "string"}},
+    "missing_information": {"type": "array", "items": {"type": "string"}},
+    "source_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "numeric": {
+      "type": ["object", "null"],
+      "properties": {"value": {"type": "number"}, "unit": {"type": "string"}},
+      "required": ["value", "unit"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["observations", "hypotheses", "missing_information", "source_ids", "limitations"]
+}

@@ -1,0 +1,8 @@
+{
+  "observations": ["Reported wash-section differential pressure increased from 10 to 18 kPa over two weeks while feed rate was unchanged."],
+  "hypotheses": ["The decision-time record lists inadequate wash-oil wetting, measurement drift and foaming as possibilities; these remain unconfirmed."],
+  "missing_information": ["Request wash-oil rate history and calibration, wash-bed temperatures, overhead vacuum, HVGO metals results and verification of the differential-pressure measurement."],
+  "source_ids": ["B1", "B2", "observations"],
+  "limitations": ["Synthetic mocked response for testing the workflow only. No diagnosis or operating change is established by this example."],
+  "numeric": null
+}

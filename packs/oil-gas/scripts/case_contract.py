@@ -1,5 +1,6 @@
 """Offline validation and admission policy for the live Case Capture contract."""
 import json
+import math
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
@@ -9,7 +10,7 @@ PACK = Path(__file__).resolve().parents[1]
 SCHEMAS = PACK / "schemas"
 
 
-def read_json(path):
+def parse_json(text):
     def unique_object(pairs):
         result = {}
         for key, value in pairs:
@@ -19,8 +20,18 @@ def read_json(path):
         return result
     def invalid_constant(value):
         raise ValueError(f"Non-JSON numeric constant: {value}")
-    return json.loads(Path(path).read_text(encoding="utf-8-sig"),
-                      object_pairs_hook=unique_object, parse_constant=invalid_constant)
+    def finite_float(value):
+        result = float(value)
+        if not math.isfinite(result):
+            raise ValueError(f"JSON number exceeds finite float range: {value}")
+        return result
+    return json.loads(text,
+                      object_pairs_hook=unique_object, parse_constant=invalid_constant,
+                      parse_float=finite_float)
+
+
+def read_json(path):
+    return parse_json(Path(path).read_text(encoding="utf-8-sig"))
 
 
 def validator(name):
