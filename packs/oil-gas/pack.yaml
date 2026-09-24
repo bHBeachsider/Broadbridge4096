@@ -1,0 +1,21 @@
+name: broadbridge-oil-gas
+shapes: [A]
+governance: GOVERNANCE.md
+artifacts_s3: null  # Set an approved artifact prefix in the domain repository.
+confidential: true
+brain:
+  train_config: configs/train.yaml
+  base: unsloth/Qwen3-8B
+  chat_template: qwen-2.5
+  output_schema: schemas/answer.schema.json
+  data: {source: data/source.jsonl, train: data/train.jsonl, val: data/val.jsonl, test: data/test.jsonl}
+  eval_gate: beat_s0_without_new_critical_errors
+  rubric: rubrics/engineering-v0.md
+gate0:
+  status: open
+  owner: Brad / Broadbridge
+  technical_reviewer: null
+  storage_location: null
+  rights_approved: false
+  question_set: null
+  output_schema_approved: false

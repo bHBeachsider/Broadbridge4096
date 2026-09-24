@@ -1,0 +1,15 @@
+/Energy Trading/
+/tmp/
+venv/
+.venv/
+__pycache__/
+node_modules/
+*.pyc
+.pytest_cache/
+.env
+~$*
+output/**/*.zip
+packs/**/data/
+packs/**/outputs/
+*.safetensors
+*.gguf

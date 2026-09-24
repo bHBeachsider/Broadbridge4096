@@ -1,0 +1,20 @@
+# Proposed v0 settings. Gate 0 and the retrieval baseline must precede training.
+name: broadbridge-oil-gas
+model:
+  base: unsloth/Qwen3-8B
+  chat_template: qwen-2.5
+  max_seq_length: 2048
+  load_in_4bit: true
+lora: {r: 16, alpha: 16, dropout: 0.0}
+train:
+  epochs: 1
+  per_device_batch_size: 1
+  grad_accum: 8
+  learning_rate: 0.0002
+  warmup_steps: 5
+  lr_scheduler: cosine
+  weight_decay: 0.01
+  seed: 3407
+  eval_steps: 10
+data: {}  # Resolved from pack.yaml by the Foundry.
+output_dir: outputs/broadbridge-oil-gas

@@ -1,0 +1,297 @@
+# Broadbridge Oil & Gas domain specific SLM development plan
+23 September 2026
+
+## 1 Recommended program
+
+Build a Broadbridge-owned domain adapter on a commercially usable open-weight small language model, supported by licensed retrieval and deterministic engineering tools. Launch within Downstream and Petrochemicals, beginning with distillation and vacuum-system troubleshooting and case-based training. Use the working product name Broadbridge Process SLM. Broadbridge Oil & Gas remains a subsidiary of Broadbridge4096.
+
+Fine-tuning aims to teach the model to assemble evidence, ask useful diagnostic questions, use tools, cite retrieved material and escalate uncertainty. Current plant facts, customer records and licensed reference passages belong in permission-controlled retrieval. A trained model is one component of the customer product, not a substitute for the engineering review workflow.
+
+| Planning decision | Recommended starting point |
+|---|---|
+| Model size | Compare a roughly 4B candidate with an 8B-class candidate; select on Broadbridge evaluation and measured operating cost. |
+| Training method | Supervised fine-tuning using LoRA or QLoRA adapters. Optional preference training follows only if it fixes measured weaknesses. |
+| Deployment | Private cloud first, with a later on-premises option. This is a provisional assumption pending customer requirements. |
+| Schedule | 24 weeks to a restricted paid pilot, conditional on data rights, staffing and customer access. A first internal adapter is targeted by week 12. |
+| Initial funding decision | Approve only the first eight weeks and its deliverables, then decide whether the evidence supports the next stage. |
+
+### Approaches considered
+
+| Approach | Tradeoff and decision |
+|---|---|
+| Retrieval with an untuned model | Fast baseline and a viable product if tuning adds little. Keep it as a control and fallback. |
+| Fine-tuned SLM plus retrieval and tools | Recommended. Adds a repeatable domain workflow while keeping facts and permissions outside the weights. |
+| Domain pretraining or training from scratch | Defer. Requires a different data and compute case; first determine whether supervised adaptation addresses the observed gaps. |
+
+The existing assessment remains the commercial starting point. The Energy Trading materials are organizational references only. Norman Lieberman is an illustrative expert candidate, not an appointed contributor. This plan authorizes neither data use nor model deployment; those steps follow the subsidiary decision rights.
+
+## 2 Product behavior and architecture
+
+The first user is a process engineer preparing a diagnostic brief for expert review. Start with text, structured operating snapshots and approved historical cases. Validate digitized tables and units before use. Automated interpretation of process drawings, live plant control, drilling and subsurface reasoning are outside the first release.
+
+### Runtime sequence
+
+Authenticated user → scope and tenant check → retrieval of authorized sources → SLM with selected context → approved calculation tools → claim and schema checks → diagnostic brief → engineer or expert review.
+
+| Component | Responsibility and interface |
+|---|---|
+| Knowledge service | Search versioned passages with source IDs, page references, dates and permissions. Filter by customer and user authorization before retrieval and reranking. |
+| Broadbridge domain adapter | Apply the reviewed diagnostic method. Return hypotheses, evidence gaps, tool requests, citations and escalation status in a defined output schema. |
+| Engineering tools | Accept typed inputs and units, validate ranges and applicability, and return calculations plus assumptions. The application allows only named tools; no unrestricted code execution. |
+| Application checks | Verify that cited IDs exist in the retrieved set, units are present and required fields are valid. Semantic support still requires evaluation and technical review. |
+| Review and audit | Capture model/adapter version, permitted sources, tool results, review decisions and corrections under a defined retention policy. |
+
+### Diagnostic brief output
+
+Require the problem statement; equipment and operating context; known facts and their sources; competing hypotheses; supporting and conflicting evidence; missing measurements; checked calculations; assumptions; limitations; and escalation or review requirements. The response is a reviewable assessment, not an instruction to change plant limits or equipment settings.
+
+When evidence is missing, the model asks a focused question or states that it cannot support a diagnosis. It must not invent a source, measured value or confident numerical probability. Training should use concise expert explanations with visible evidence and calculations; hidden model reasoning is not an audit record.
+
+Retrieval gives access to external evidence; fine-tuning changes model behavior. The research basis supports combining them, but does not establish performance for refinery operations. Structured output support can enforce form, not engineering correctness. [8](https://arxiv.org/abs/2005.11401) [9](https://docs.vllm.ai/en/latest/features/structured_outputs/)
+
+## 3 Foundation model selection
+
+Begin with Qwen3-8B as the reference training candidate and Qwen3.5-4B as the efficiency challenger. Include Ministral 3 8B as an alternative if customer policy or measured results favor it. These are test candidates, not a vendor award. Public benchmarks do not measure the proposed Broadbridge workflow.
+
+| Candidate | Verified model facts | Selection issue |
+|---|---|---|
+| Qwen3-8B | 8.2B parameters; Apache 2.0 model card. | Reference for the text workflow. Test tool calls, citation grounding, domain errors and inference cost. |
+| Qwen3.5-4B | 4B language model with vision encoder; Apache 2.0 model card. | Efficiency challenger. Verify hybrid-architecture training and serving support; vision is not in launch scope. |
+| Ministral 3 8B Instruct 2512 | 8.4B language model plus 0.4B vision encoder; Apache 2.0. Published instruct weights use FP8. | Check training-compatible precision and adapter support. Do not assume FP8 inference weights can directly use the reference QLoRA recipe. |
+
+The sizes, license labels and format details above come from the publishers. The recommendation to test them is Broadbridge program design, not a claim that one is best in oil and gas. Confirm the exact revision, full license and required notices before adoption. [1](https://huggingface.co/Qwen/Qwen3-8B) [2](https://huggingface.co/Qwen/Qwen3.5-4B) [3](https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512)
+
+### Selection experiment
+
+Run all candidates on the same development questions, retrieved evidence, tool definitions and output requirements. Allow model-specific chat templates and a documented equal tuning allowance. Measure task acceptance, missing-data handling, calculation/tool success, latency, memory and total cost. Use a current larger model as a quality comparator only in an environment authorized for the data.
+
+Select on the development set before opening the locked acceptance set. Prefer the smallest model that meets the technical requirements and materially improves total delivery economics. A larger model may remain a comparator; external fallback must be explicitly enabled for a customer, never a hidden data route.
+
+### Compatibility gate before training
+
+Pin the model and tokenizer revision, training framework, quantization library, GPU software and inference engine. Prove a small adapter can train, save, reload and serve without changing chat behavior. Verify the output schema and tool parser end to end. If the challenger needs unsupported kernels or experimental conversion, retain the reference candidate and record the constraint.
+
+Use English for the first release. Additional languages, longer context, new hardware and additional practices each require evaluation. Published maximum context windows are not the initial application setting; begin with a bounded evidence budget and measure what the task needs.
+
+## 4 Expert capture and data rights
+
+The durable asset is a permitted, reviewed set of diagnostic cases with outcomes and limitations. Published books and articles alone are insufficient: extract the questions an experienced engineer asks, the observations that distinguish causes, the calculations that matter, and the conditions that require a different specialist.
+
+Recruit a lead process expert and a separate reviewer, supported by the Knowledge Engineer and Process Applications Engineer. Norman Lieberman is an illustrative candidate based on his published practice and teaching background; availability, endorsement and rights are unconfirmed. Recruit complementary contributors rather than making the program depend on one individual. [10](https://www.lieberman-eng.com/personnel.htm)
+
+### Capture workflow
+
+For each incident, record the initial evidence, competing explanations, discriminating checks, assumptions, outcome and circumstances where the approach would fail. Ask the expert to contrast a similar-looking incident with a different cause. Preserve disagreements for adjudication rather than forcing a single unsupported answer. Obtain permission before recording or transcribing interviews.
+
+| Material | Permitted role in the program |
+|---|---|
+| Expert interviews and commissioned cases | Use after an executed agreement specifies recording, derivative cases, training, evaluation, distribution, attribution and continuity rights. |
+| Books, articles and standards | License the intended uses from the actual rights holders. Public access or author participation does not establish publisher permission. |
+| Customer incident histories and records | Use for that customer only under its agreement. Shared model training or cross-customer examples require a separate explicit grant. |
+| Public technical material | Verify license and provenance; review applicability and quality. Use as a supplement, not an automatic source of training rights. |
+| Synthetic examples | Generate only from cleared sources or expert-defined scenarios. Label provenance and expert approval; never treat a paraphrase as a new independent incident. |
+
+### Separate ownership and permissions
+
+Broadbridge Oil & Gas should own commissioned adapters, training code and new datasets to the extent established by its agreements. The foundation model remains subject to its original license. Expert background works retain their ownership unless assigned. A customer-data grant must separately address retrieval, training, evaluation, publication and retention.
+
+Maintain a rights ledger with source ID, rights holder, contract, allowed uses, customer boundary, expiry, withdrawal terms and derivative lineage. Train shared adapters only on material cleared for that purpose. Prefer retrieval for revocable or customer-specific information: deleting a source from a library does not reliably remove information already learned by an adapter.
+
+## 5 Dataset and benchmark construction
+
+Planning target by week 16: 300 distinct incident or scenario families, split before examples are generated. This is a collection target, not an inventory already available or a universal minimum for successful fine-tuning. If rights or case diversity fall short, narrow the claim and extend collection rather than manufacture volume.
+
+| Partition | Target | Use and restriction |
+|---|---|---|
+| Training | 180 families | Create the supervised training examples. Related incidents, source chapters, derivatives and paraphrases stay together. |
+| Development | 60 families | Select models, prompts, retrieval settings and training parameters. Never describe this tuned-against set as an independent final test. |
+| Locked acceptance | 60 families | Reviewer-controlled until candidate selection is frozen. Two tasks per family produce 120 diagnostic prompts. |
+| Additional challenge suite | 180 prompts | Separately authored tests of missing data, unit errors, unsupported scope, tool misuse, prompt injection and data boundaries. Track scenario families and correlation. |
+
+The acceptance suite contains 300 prompts, not 300 independent field incidents. Group results by incident/scenario family. Exclude held-out resolutions and answer keys from training, retrieval and tool outputs; supply only evidence available at question time. Add an unseen-site or later-time slice where feasible. Report public teaching cases separately because their absence from foundation-model pretraining cannot be guaranteed.
+
+### First full supervised dataset
+
+| Behavior | Examples in a 2000 record target |
+|---|---|
+| Evidence-based diagnostic briefs | 900 |
+| Missing-data questions and differential diagnosis | 400 |
+| Tool use, units and calculation interpretation | 300 |
+| Source-grounded explanation and training feedback | 200 |
+| Abstention, escalation and unsupported scope | 200 |
+
+Begin learning-curve experiments with 500 approved records, then 1000 and 2000; expand toward 4000 only when additional diversity improves validation. All records receive technical review. Generation can accelerate drafting but cannot replace review. Multiple records from one family increase practice examples, not independent evidence.
+
+Each record includes record ID, parent family ID, source and rights IDs, practice, equipment, input evidence, units, intended task, permitted context, tool inputs/results, approved response, limitations, author, reviewer, dates and split. Block unlicensed records, duplicate families across splits, missing units and unresolved reviewer findings. Separate ingestion mistakes from model errors.
+
+## 6 Fine tuning and experiment program
+
+Use supervised fine-tuning first: train the model against expert-approved responses and tool-use sequences. LoRA updates a relatively small set of adapter parameters; QLoRA combines adapter training with a quantized foundation model to reduce memory needs. Neither technique establishes factual accuracy or confidentiality by itself. [4](https://arxiv.org/abs/2305.14314)
+
+### Reference starting configuration
+
+| Setting | Proposed experiment value |
+|---|---|
+| Reference foundation | Pinned Qwen3-8B instruction/post-trained checkpoint; preserve its native chat template. |
+| Adapter and precision | QLoRA with 4-bit NF4 frozen weights and BF16 computation where supported; compare with BF16 LoRA on a small run. |
+| Adapter capacity | Start rank 16, alpha 32, dropout 0.05; compare rank 32 only if validation supports more capacity. |
+| Optimization | Start learning rate 1e-4, effective batch 32 and one epoch; test at most three epochs with validation-based stopping. |
+| Sequence length | Start at 4096 tokens; test 8192 where evidence is truncated. Profile memory and throughput before enlarging. |
+| Targets and loss | Select supported language projection layers after architecture inspection. Train on approved assistant/tool-call targets and mask prompt/context loss; verify masking and packing boundaries. |
+| Reproducibility | Keep dataset hashes, split manifests, seed, configuration, dependencies and run metrics. Repeat the selected configuration across three seeds. |
+
+These values are starting hypotheses, not an optimized recipe or a promise of hardware fit. Hugging Face documents the quantized-adapter and supervised-training mechanisms; architecture-specific compatibility must be tested. [5](https://huggingface.co/docs/peft/developer_guides/quantization) [6](https://huggingface.co/docs/trl/sft_trainer)
+
+### Experiments that isolate the contribution
+
+Compare A: untuned SLM with retrieval and tools; B: tuned SLM without retrieval as a diagnostic ablation; C: tuned SLM with the same retrieval and tools; and D: a larger approved model with the same evidence and tools. A versus C measures tuning benefit. B is not a deployment candidate. Compare on unchanged evaluation inputs and separately report retrieval failures.
+
+Use preference optimization only if supervised training leaves consistent, reviewable weaknesses. Collect at least 300 adjudicated preferred/rejected response pairs as an experiment target, then compare against supervised training alone. Do not use synthetic self-preference as proof of quality. [7](https://huggingface.co/docs/trl/dpo_trainer)
+
+Defer continued domain pretraining until learning curves reveal a gap that retrieval and supervised training cannot address and a licensed corpus and separate budget exist. Defer training from scratch. Treat deployment quantization as a separate export decision from QLoRA training. Repeat acceptance checks on the exact exported model, adapter and serving configuration.
+
+## 7 Evaluation and release criteria
+
+The Technical Director owns technical acceptance. A reviewer who did not author the evaluated material controls the locked test and assesses blinded outputs. Use at least two independent ratings for material diagnostic cases, with disagreement adjudication. Test the complete product and the selected quantized artifact, not just the training checkpoint.
+
+| Measure | Proposed acceptance rule |
+|---|---|
+| Useful diagnostic output | At least 85% of applicable held-out diagnostic tasks accepted without a material technical correction, using a rubric agreed before test access. |
+| Benefit from fine-tuning | Target at least a 10 percentage-point improvement over A, the untuned model with identical retrieval/tools. Report paired confidence intervals clustered by family; inconclusive results require more evidence. |
+| Grounding | At least 95% of sampled material factual claims supported by supplied sources or verified tool results; zero fabricated citation IDs. Record denominator and reviewer sampling method. |
+| Calculations and tools | At least 98% correct on the predefined numeric/tool tasks within expert-set tolerances. Any critical error still blocks release. |
+| Uncertainty and scope | At least 95% appropriate abstention or escalation on unanswerable/out-of-scope tasks. Report false refusals separately so indiscriminate refusal cannot pass. |
+| Critical failures | Zero unresolved critical unsafe recommendations, cross-customer disclosures or successful unauthorized tool actions in the acceptance suite. |
+| Runtime | Provisional p95 complete-brief latency of 30 seconds at five concurrent users, for an 8000-token input and up to 800 output tokens. Confirm feasibility with the customer. |
+| Customer value | Target 25% less time to an expert-accepted brief than the agreed current workflow, without worse quality. Measure expert minutes and cost per accepted brief. |
+
+These are proposed program gates, not achieved scores or industry standards. A critical failure overrides an average pass rate. A finite suite cannot prove operational safety or absence of data leakage. Report scenario coverage, uncertainty and the effect of correlated examples; never treat 300 prompts as 300 independent trials.
+
+Use the locked set once for the release decision after development is frozen. If failures drive development changes, retire exposed cases from independence claims and commission a fresh holdout. Technical Director accepts domain behavior; parent IT security accepts security; Head of Product & AI authorizes release only after both acceptances.
+
+If tuning does not add a measurable benefit, retain the retrieval-based product and continue expert capture. If a smaller model meets quality but cannot meet latency, adjust hardware or scope and retest. Do not weaken technical thresholds merely to label the outcome a fine-tuned product.
+
+## 8 Delivery schedule and gates
+
+Allow 24 weeks from funded staffing and executed data access. Expert capture, engineering and customer procurement overlap. Delayed rights or insufficient unseen cases move the schedule. The following are deliverables with evidence requirements, not automatic calendar approvals.
+
+| Period | Accountable lead | Deliverable and gate |
+|---|---|---|
+| Weeks 1 to 4 | Managing Director | Paid pilot problem and sponsor; contributor terms; rights inventory; scope and output schema; named reviewers. Freeze split policy and reserve unseen sources before generating examples. Parent approves stage funding. |
+| Weeks 5 to 8 | Head of Product & AI | Candidate benchmark, retrieval/tool baseline, roughly 50–60 cleared training families plus a separate development sample; first 500 reviewed training records where available. Parent decides the next funding tranche. |
+| Weeks 9 to 12 | Head of Product & AI | First supervised domain adapter; 500/1000-record learning curves; reproducible save/reload; comparison with untuned baseline. Continue expert collection. |
+| Weeks 13 to 16 | Technical Director | Target corpus of 300 families and 2000 reviewed training records; independent acceptance set sealed. Select training configuration on development data and document limitations. |
+| Weeks 17 to 20 | Head of Product & AI | Freeze candidate and serving package; execute independent technical tests, security tests, load tests and rollback rehearsal. Technical and security owners provide separate acceptance. |
+| Weeks 21 to 24 | Technical Director | Limited paid pilot with 5–10 engineers at 1–2 sites; baseline comparison, human review, incident monitoring and cost recording. Managing Director decides the commercial rollout recommendation. |
+
+### Required artifacts at the pilot gate
+
+Deliver the foundation revision and license record; trained adapter and checksums; inference package; permitted corpus snapshot and rights ledger; training/development/test manifests; evaluation report with limitations; model card; source-citation and tool schemas; security acceptance; user instructions; rollback runbook; and the signed pilot scope. Keep restricted customer data in its approved storage rather than bundling it into a general release.
+
+### Engineering work packages
+
+Organize implementation into independently reviewable packages: data ingestion and rights enforcement; retrieval and source provenance; diagnostic output and engineering tools; supervised training; evaluation; and deployment/monitoring. Each package must expose versioned inputs and outputs. Keep the locked benchmark access separate from the training pipeline.
+
+Before commissioning the full code build, the product lead translates this program into repository tasks using the selected model and deployment environment. Acceptance must include revoked-source exclusion, split isolation, incorrect-unit rejection, adapter reload equivalence and recovery to the previous approved release.
+
+## 9 Team allocation and planning budget
+
+Use the approved seven-person launch organization. The allocations below are program capacity assumptions across 24 weeks, not additional hires. Parent shared services and contracted experts are separate. Technical staff need protected time; simultaneous customer work reduces available capacity and extends the schedule.
+
+| Launch role | Program FTE | Hours over 24 weeks |
+|---|---|---|
+| Managing Director | 0.25 | 240 |
+| Commercial Director | 0.25 | 240 |
+| Technical Director | 0.5 | 480 |
+| Process Applications Engineer | 0.75 | 720 |
+| Head of Product & AI | 0.5 | 480 |
+| Applied AI Engineer | 1.0 | 960 |
+| Knowledge Engineer | 1.0 | 960 |
+| Total allocated capacity | 4.25 | 4080 |
+
+The Applied AI Engineer leads training and deployment; the Knowledge Engineer leads corpus production; the Process Applications Engineer checks engineering content and tools. The Technical Director manages experts and acceptance. The Commercial Director recruits the pilot; the Managing Director owns funding and contracts. Reserve 600–900 contracted expert/reviewer hours across capture, annotation, review and evaluation.
+
+| Cost category | Illustrative basis | Range USD |
+|---|---|---|
+| Allocated employee cost | 4080 hours × $100–$150 loaded/hour | $408,000–$612,000 |
+| Experts and independent review | 600–900 hours × $250–$350/hour | $150,000–$315,000 |
+| Compute and supporting cloud | Training, evaluation, pilot serving, storage and monitoring allowance | $10,000–$25,000 |
+| Legal and security support | Incremental external work or parent service allocation; count once | $25,000–$50,000 |
+| Content licensing | Provisional allowance for negotiated rights, not a publisher quote | $20,000–$60,000 |
+| Subtotal | Before contingency | $613,000–$1,062,000 |
+| Contingency | 15% of subtotal | $91,950–$159,300 |
+| Total program economic cost | Allocated labor plus other costs | $704,950–$1,221,300 |
+
+These are planning assumptions, not market quotes, an approved budget or a valuation. If employee payroll is already funded, the nonemployee categories plus 15% contingency are approximately $236,000–$518,000, subject to which parent services are already covered. Do not add allocated payroll twice. The balance of seven-person payroll and other subsidiary costs sits outside this program allocation.
+
+First eight-week tranche: approximately $210,000–$360,000 including allocated staff, or $54,000–$124,000 beyond funded staff under the stated assumptions. It is part of the 24-week total, not an additional budget. Obtain quotes and a monthly cash plan before approval; scarce content rights can exceed the allowance.
+
+## 10 Infrastructure and operating controls
+
+Start with rented GPU capacity in a customer-approved private environment. Plan experiments around one 48–80 GB GPU and test a 24–48 GB inference GPU for the restricted workload. These are sizing allowances, not verified fit. Memory depends on architecture, sequence length, adapter, precision, batch size and concurrent requests.
+
+For orientation, 200–800 training/evaluation GPU-hours at an assumed $4–$8 per hour cost $800–$6,400. Pilot serving, storage, networking and monitoring are additional. Small-model training can be affordable while the complete expert-reviewed program remains labor-intensive. Obtain current regional GPU quotes and verify availability; the provider page is a procurement reference, not the source of these assumed rates. [11](https://lambda.ai/instances)
+
+### Deployment controls
+
+Use a private model registry, encrypted storage, named identities and least-privilege service accounts. Keep customer retrieval indexes and permissions isolated. Turn off external telemetry or content logging unless approved, and test outbound-network restrictions. A private network label alone does not prove confidentiality.
+
+Version the model, adapter, corpus, prompt, tools and schema together. Monitor unsupported claims, expert corrections, retrieval misses, stale sources, refusal behavior, latency and cost. Corrections enter a reviewed dataset queue; customer feedback must not trigger automatic online training. Retest before each release and retain the prior approved package for rollback.
+
+Treat retrieved documents as evidence rather than instructions. Test prompt injection, invented sources, expired licenses, cross-customer requests and malicious tool arguments. Access enforcement lives in application code and storage policies, not the model prompt. Human review remains required for technical advice in the initial pilot.
+
+### Main risks and responses
+
+| Risk | Program response |
+|---|---|
+| Expert bottleneck or unavailable candidate | Contract multiple contributors, preserve capture methods and schedule review time before committing the pilot date. |
+| Small or repetitive training corpus | Measure unique families and learning curves; narrow scope when diversity is insufficient. |
+| No improvement after fine-tuning | Keep the untuned retrieval baseline deployable and redirect effort to data, retrieval or the workflow. |
+| Rights withdrawal or customer leakage | Keep restricted information out of shared weights; trace affected artifacts and rebuild an adapter if required. |
+| On-premises requirement emerges | Reprice hardware, support and installation; benchmark the exact offline package before promising parity. |
+
+The next parent decision is the eight-week discovery and baseline tranche. Before training, confirm the expert/rights package, paid customer problem, cloud versus on-premises constraint, permitted foundation models, evaluation rules and actual staff availability. Expand later to gas processing or upstream only through separately staffed, funded and evaluated domain modules.
+
+## 11 Research references and program records
+
+Public technical sources reviewed on 23 September 2026. Model cards and library documentation can change; preserve the exact versions and license files selected during implementation. These sources support the technical methods and model facts, not Broadbridge-specific performance or cost projections.
+
+1. [Qwen3 8B official model card](https://huggingface.co/Qwen/Qwen3-8B)
+
+2. [Qwen3.5 4B official model card](https://huggingface.co/Qwen/Qwen3.5-4B)
+
+3. [Ministral 3 8B Instruct 2512 official model card](https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512)
+
+4. [QLoRA research paper](https://arxiv.org/abs/2305.14314)
+
+5. [Hugging Face PEFT quantization guide](https://huggingface.co/docs/peft/developer_guides/quantization)
+
+6. [Hugging Face TRL supervised fine tuning](https://huggingface.co/docs/trl/sft_trainer)
+
+7. [Hugging Face TRL preference optimization](https://huggingface.co/docs/trl/dpo_trainer)
+
+8. [Retrieval augmented generation research paper](https://arxiv.org/abs/2005.11401)
+
+9. [vLLM structured outputs documentation](https://docs.vllm.ai/en/latest/features/structured_outputs/)
+
+10. [Process Improvement Engineering personnel](https://www.lieberman-eng.com/personnel.htm)
+
+11. [Lambda on demand GPU instances](https://lambda.ai/instances)
+
+### Broadbridge records
+
+The approved subsidiary organization supplies the seven roles, parent reserved decisions, technical acceptance authority and phased practices. The existing business assessment supplies the refining-first commercial hypothesis and the distinction between model training and expert-reviewed product value.
+
+[Business and operating structure](C:/Users/bradu/Documents/Broadbridge4096/output/docx/Broadbridge_Oil_and_Gas_Business_and_Operating_Structure.docx)
+
+[Subsidiary organizational chart](C:/Users/bradu/Documents/Broadbridge4096/output/docx/Broadbridge_Oil_and_Gas_Organizational_Chart.docx)
+
+[Business assessment](C:/Users/bradu/Documents/Broadbridge4096/Oil-and-Gas-Expert-Knowledge-Business-Assessment.md)
+
+### Program assumptions requiring confirmation
+
+Private-cloud-first deployment; English-only launch; distillation/vacuum focus; availability of cleared incidents; 4.25 FTE allocated from the seven-person team; contracted reviewers; indicative labor and licensing rates; a 24-week funded schedule; and a paid pilot at 1–2 sites. None is a claim of an existing contract, trained model, accepted score or committed customer.
+
+The first eight-week estimate assumes 1360 employee hours at $100–$150/hour; 80–150 expert hours at $250–$350/hour; $15,000–$25,000 legal/security; $10,000–$25,000 content rights; and $2,000–$5,000 cloud. Applying 15% contingency yields $210,450–$358,225 including labor, or $54,050–$123,625 excluding funded labor. These rounded tranche ranges are included in the full program estimate.
+
+This plan creates the development roadmap. Broadbridge4096 remains accountable for capital approval; the subsidiary remains accountable for product execution and customer delivery. No content rights, infrastructure purchases or trained-model results are assumed to exist.
