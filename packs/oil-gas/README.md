@@ -93,6 +93,10 @@ S0-cases is runnable per signed, permissioned case with no documents or index. T
 
 scripts/score_brief.py <case> <brief_run> <eval-dir> generates an unscored scorecard_<case_id>.md, refusing overwrite. Bill fills 0/1/2 scores and critical-error flags against exact hard-fail criteria. The [SYN-001 example](../../eval/scorecard_SYN-001.md) is MOCK/UNREVIEWED.
 
+The repository's [scripts/first_case.ps1](../../scripts/first_case.ps1) accepts `-CaseId 'CASE-001,CASE-002'` or `-CaseId 'all-signed'`. It imports/preflights once, then uses one live EC2/tunnel session for the selected briefs and scorecards with teardown in `finally`. `-MockResponse <brief.json>` runs entirely offline and permits explicit draft fixtures. `scripts/batch_cases.py` owns selection, immutable run snapshots and per-case results; `batch_summary.md` records status, schema validity and elapsed time. Follow the [runbook](../../docs/FIRST_CASE_RUNBOOK.md) for exact commands and the three-case rehearsal.
+
+[scripts/aggregate_scores.py](../../scripts/aggregate_scores.py) creates a refreshable `scores_summary.md` from reviewer-completed sheets under a run root or a parent of batch roots. It reports per-type means, separate critical-error counts and reviewed/unreviewed cases; incomplete reviews do not contribute averages. Live and MOCK results stay separate. Preserve the generated sheet's metadata/headings and fill the existing labeled fields. Duplicate case runs must be resolved explicitly; missing selected sheets count as unreviewed.
+
 S0-retrieval follows after about 20 documents are admitted and indexed on the existing box. It must use the same case-derived questions and scorecard, and improve over S0-cases without new critical errors before training is considered. The retrieval runner and its added evidence/prompt provenance are V04R work; the delivered case-only runner is not a retrieval implementation. Later base-versus-adapter comparisons must also match templates and settings.
 
 ## Offline validation
@@ -101,4 +105,4 @@ S0-retrieval follows after about 20 documents are admitted and indexed on the ex
 python -m pytest packs/oil-gas/tests -q -p no:cacheprovider --basetemp <fresh-temporary-directory>
 ```
 
-Tests cover canonical page/fallback validation, family holdouts, signoff, missing boxes, enum errors, prompt leakage and mock first-case scoring. Tools neither start EC2 nor configure its tunnel. No PermitHub PIFR/A22 or NeonDB integration is included.
+Tests cover canonical page/fallback validation, family holdouts, signoff, missing boxes, enum errors, prompt leakage, batch execution, teardown failure paths and reviewer aggregation. Tests and mock rehearsals use no EC2 or model connection. Only an explicitly invoked live `first_case.ps1` session manages the existing inference box; it performs no training bootstrap, IAM change, download or retrieval work. Gate 3 and S0-retrieval remain deferred pending the first scored briefs. No PermitHub PIFR/A22 or NeonDB integration is included.

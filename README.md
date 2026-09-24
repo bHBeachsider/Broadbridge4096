@@ -8,6 +8,8 @@ Bill Hurt enters cases directly in the Broadbridge Case Capture page, without a 
 
 Run **S0-cases** per signed case with decision-time information only; no documents or index are needed. After about 20 documents are admitted, **S0-retrieval** uses the same scoring sheet and must improve on S0-cases before training is considered. Existing Qwen3-8B on EC2 is the starting point. The generic engine belongs in [slm-foundry](https://github.com/bHBeachsider/slm-foundry); this repository owns domain schemas, prompts, plans and synthetic fixtures.
 
+The [first-case runbook](docs/FIRST_CASE_RUNBOOK.md) supports single cases or batches through [first_case.ps1](scripts/first_case.ps1), plus offline [reviewer score aggregation](scripts/aggregate_scores.py). Gate 3 host work and S0-retrieval remain deferred until the first scored briefs reveal the failures to address.
+
 ## Planning documents and earlier implementation references
 
 [Current foundry implementation update](Broadbridge-Foundry-Implementation-Update.md)
