@@ -1,0 +1,32 @@
+{
+  "status": "FIELD GUIDE ONLY; not an approved_training_config.json",
+  "required_fields": [
+    "base_dir",
+    "train_jsonl",
+    "dev_jsonl",
+    "asset_root",
+    "output_dir",
+    "target_modules",
+    "rights_approved",
+    "dataset_audit_passed",
+    "token_preflight_passed",
+    "mask_test_passed",
+    "smoke_reload_passed"
+  ],
+  "provenance_to_record": [
+    "base_full_commit_sha",
+    "base_file_hashes",
+    "processor_revision",
+    "dependency_lock_sha256",
+    "dataset_manifest_sha256",
+    "review_approval_ids",
+    "GPU_driver_CUDA",
+    "image_pixel_budget",
+    "maximum_processed_tokens",
+    "effective_batch_size",
+    "seed",
+    "run_id",
+    "spend_limit"
+  ],
+  "notes": "Boolean gates refer to saved review evidence, not user-toggled permissions. No real grants or hardware checks are supplied by this kit."
+}

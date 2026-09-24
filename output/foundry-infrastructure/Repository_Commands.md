@@ -1,99 +1,51 @@
-# Repository handoff and proposed publication commands
+# Repository publication and audit
 
-24 September 2026. Local work is authorized; repository creation and pushes
-require Brad's confirmation and are not executed by this task.
+24 September 2026. Brad explicitly authorized publication after the v3 corrections. The canonical brief and domain tooling belong in Broadbridge4096; the generic engine belongs in slm-foundry. These commands use ordinary pushes, not force pushes. Final remote commit IDs are reported in the task after push verification.
 
-## slm-foundry local mainline and line endings
+## Audit before publication
 
-Run from C:\Users\bradu\Documents\slm-foundry after committing the reviewed
-changes using explicit file paths. These operations are local and preserve
-untracked Broderick/stripe work. Verify tracked changes are committed first.
+| Repository or artifact | Result |
+| --- | --- |
+| Broadbridge4096 main tracked tree and history | No blob over 5,000,000 bytes. Existing origin is bHBeachsider/Broadbridge4096 (public). |
+| slm-foundry master, feat/nast-pack-phase0-1, codex/broadbridge-gate1-data-training and reachable history | No tracked file or historical blob over 5,000,000 bytes; no size-triggered model/dataset blocker. |
+| Existing tracked Broderick brain pairs | 198,676 bytes; retained as instructed. |
+| Existing tracked Broderick operators | 71,242 bytes; retained as instructed. |
+| Untracked AWS workbook inspection log | 5,874,311 bytes; generated QA, ignored via output/**/*.inspect.ndjson. |
+| Untracked multimodal workbook inspection log | 5,819,403 bytes; generated QA, ignored via output/**/*.inspect.ndjson. |
 
-```powershell
-git status --short
-git merge-base --is-ancestor master feat/nast-pack-phase0-1
-git switch master
-git merge --ff-only feat/nast-pack-phase0-1
-git switch codex/broadbridge-gate1-data-training
-git rebase master
-git diff --check
-git ls-files --eol
-```
+Foundry git check-ignore --no-index verified all nine probes: data/, outputs/, packs/oil-gas/data/, packs/broderick/brain/data/, .env, venv/, .venv/, *.gguf and *.safetensors. Ignore rules do not untrack existing files or erase history. No tracked-data removal or history rewrite is part of this publication.
 
-Both repositories add `* text=auto eol=lf` with binary document/image overrides.
-Normalize tracked text with `git add --renormalize -- .` only after reviewing
-uncommitted changes; never use `git add -A` here. In Broadbridge4096, exclude
-the pre-existing README edit with `git add --renormalize -- . ':!README.md'`.
-The task stages exact new/changed paths and separately records normalization.
+Both repositories already carry * text=auto eol=lf with binary overrides. Stage explicit files, verify git diff --cached --check, and inspect the staged inventory. Do not use git add -A. Preserve Foundry's unrelated untracked Broderick/stripe work.
 
-The Foundry ignore rules cover data/, outputs/, packs/**/data/, .env, .venv/,
-venv/, Python caches and model binaries. Ignore rules do not erase Git history.
-Brad explicitly chose to leave these already tracked files in place for now:
+## Broadbridge4096
 
-- packs/broderick/brain/data/broderick_brain_pairs.jsonl
-- packs/broderick/brain/data/broderick_operators.jsonl
-
-Review those files and their history before publishing. No untracking, history
-rewrite or deletion is authorized by the present choice.
-
-## slm-foundry publication only after confirmation
-
-There is currently no remote. Confirm the tracked-data review and repository
-visibility before these commands. `gh repo create` below intentionally omits
---push so creation and publication remain separate reviewable operations.
-
-```powershell
-Set-Location C:\Users\bradu\Documents\slm-foundry
-gh repo view bHBeachsider/slm-foundry
-# If confirmed absent, and Brad approves creation:
-gh repo create bHBeachsider/slm-foundry --private --source . --remote origin
-git remote -v
-git push -u origin master
-git push -u origin feat/nast-pack-phase0-1
-git push -u origin codex/broadbridge-gate1-data-training
-```
-
-If the repository already exists, inspect its owner, visibility and history
-before adding a remote. Do not overwrite it or force-push.
-
-## Broadbridge4096 local commit
-
-Its existing origin is https://github.com/bHBeachsider/Broadbridge4096.git;
-the local branch is main. The requested commit scope is eight planning files,
-scripts, the two requested output directories, ignore/attribute rules and the
-new domain pack. The pre-existing README edit and other output directories are
-preserved outside this commit.
+Commit the corrected plan and canonical fallback changes, README and remaining planning documents/reference artifacts. Keep Energy Trading/, tmp/, venv/, __pycache__/, Office lock files, output ZIP archives, inspection logs and real pack data/outputs ignored. The Energy Trading junction and original source files remain intact. README links to unpacked reference examples rather than ignored ZIPs.
 
 ```powershell
 Set-Location C:\Users\bradu\Documents\Broadbridge4096
-Get-ChildItem output -Recurse -File | Where-Object Length -gt 5242880 |
-    Select-Object FullName,Length
-git add -- .gitignore .gitattributes `
-  Broadbridge-Foundry-Implementation-Update.md `
-  Broadbridge-Multimodal-SLM-CTO-Plan.md `
-  Broadbridge-Oil-and-Gas-Expert-Knowledge-Capture.md `
-  Broadbridge-Oil-and-Gas-SLM-Development-Plan.md `
-  Broadbridge-Oil-and-Gas-Training-Source-Synthesis.md `
-  Broadbridge-Training-Information-and-Internal-Use.md `
-  Norm-Lieberman-Online-Source-Review.md `
-  Oil-and-Gas-Expert-Knowledge-Business-Assessment.md `
-  scripts output/docx output/foundry-infrastructure packs/oil-gas
-git add --renormalize -- . ':!README.md'
 git diff --cached --check
 git diff --cached --stat
-git commit -m "docs: establish domain pack and core SLM v0 handoff"
-# Only after Brad confirms publishing this reviewed commit:
+git commit -m "docs: publish canonical case intake and staged baselines"
 git push origin main
+git fetch origin main
+git log origin/main -1 --oneline
 ```
 
-The pre-commit size inventory found two files above 5 MiB, both outside the
-requested output directories and excluded from this commit:
+## slm-foundry
 
-| File under output/multimodal-implementation | Bytes |
-| --- | ---: |
-| Broadbridge_AWS_Implementation_Gantt.xlsx.inspect.ndjson | 5874311 |
-| Broadbridge_Multimodal_Implementation_Gantt.xlsx.inspect.ndjson | 5819403 |
+The preflight found no local remote and no existing bHBeachsider/slm-foundry repository. Ignore-only commit 56aa5bc brings master and feat/nast-pack-phase0-1 into line with the reviewed Gate 1 ignore rules. Merge 850df0b incorporates that ancestry into codex/broadbridge-gate1-data-training; its final tree is unchanged from reviewed commit cd9fc19. All three branches now have identical ignore rules. The earlier mainline work is retained; no history was rewritten.
 
-Energy Trading/ and tmp/ remain ignored. venv/, __pycache__/, Office lock files
-and output/**/*.zip are also ignored. The Energy Trading junction and source
-documents are preserved. No cloud instance is started by any command here.
+```powershell
+Set-Location C:\Users\bradu\Documents\slm-foundry
+gh repo create bHBeachsider/slm-foundry --private --source . --remote origin
+gh repo view bHBeachsider/slm-foundry --json nameWithOwner,url,visibility
+git push -u origin master
+git push -u origin feat/nast-pack-phase0-1
+git push -u origin codex/broadbridge-gate1-data-training
+git fetch origin
+git log origin/master -1 --oneline
+git log origin/feat/nast-pack-phase0-1 -1 --oneline
+git log origin/codex/broadbridge-gate1-data-training -1 --oneline
+```
+
+If creation reports an existing repository, inspect its owner, private visibility and remote history before continuing. Never overwrite another remote or force-push. No EC2 start, model call, training or deployment is part of publication.

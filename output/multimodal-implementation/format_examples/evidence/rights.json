@@ -1,0 +1,13 @@
+{
+  "G-DEMO": {
+    "owner": "Broadbridge format demonstration",
+    "scope": "original synthetic fixture only",
+    "uses": [
+      "retrieval",
+      "sft",
+      "evaluation"
+    ],
+    "production_approval": false,
+    "note": "No Norm Lieberman, customer or publisher material is present."
+  }
+}

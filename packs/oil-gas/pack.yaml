@@ -14,8 +14,15 @@ brain:
 gate0:
   status: open
   owner: Brad / Broadbridge
-  technical_reviewer: null
-  storage_location: null
+  technical_reviewer: Bill Hurt
+  storage_location:
+    case_records: Claude artifact store (pilot), cases collection and workflow/main
+    artifact_identifier: null  # Record the exact pilot artifact in the rights/storage record.
+    originals_and_documents: one approved private S3 bucket
+    s3_bucket_uri: null  # Record the approved bucket and prefixes; do not infer an existing bucket.
   rights_approved: false
   question_set: null
+  question_source: signed case_record/1 questions arrays (Section C)
+  minimum_signed_questions: 30
+  required_question_types: [brief, missing_data, calculation, grounded_explanation, abstention]
   output_schema_approved: false

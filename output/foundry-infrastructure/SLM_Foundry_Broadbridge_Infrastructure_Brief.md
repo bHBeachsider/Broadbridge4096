@@ -1,12 +1,12 @@
 # SLM Foundry infrastructure implementation brief
 
-Broadbridge Oil and Gas | Broadbridge4096 | 24 September 2026 revised for core SLM v0
+Broadbridge Oil and Gas | Broadbridge4096 | 24 September 2026 revised after the v3 review
 
 ## 1 Verified starting point and delivery status
 
-Use the existing Foundry Qwen3-8B platform for Broadbridge Oil & Gas, a subsidiary of Broadbridge4096. This revision corrects the earlier Broadbridge update and replaces the six-week infrastructure-first sequence with Gates 0 through 3. Scope decisions and a retrieval baseline precede domain training. This task performs offline Foundry fixes and document revision only; EC2 remains unstarted by this work.
+Use the existing Foundry Qwen3-8B platform for Broadbridge Oil & Gas, a subsidiary of Broadbridge4096. Gates 0 through 3 replace the infrastructure-first sequence. Capture signed expert cases first, establish S0-cases, then test whether document retrieval improves it before considering domain training. This revision publishes plans and offline tooling; it makes no live model, GPU training or deployment claim.
 
-The role titles in the approved Oil-and-Gas-Expert-Knowledge-Business-Assessment.md remain the target organisation. Until positions are filled, Brad holds all roles; Technical Director acceptance is exercised by a Broadbridge-appointed reviewer named at Gate 0.
+The role titles in the approved Oil-and-Gas-Expert-Knowledge-Business-Assessment.md remain the target organisation. Until positions are filled, Brad holds all roles; Technical Director acceptance is exercised by a Broadbridge-appointed reviewer named at Gate 0. Bill Hurt is that named reviewer; this Gate 0 decision is complete.
 
 The initial scope is refining and process operations: evidence review, missing-information questions, checked calculations and engineer-reviewed diagnostic briefs. Norm Lieberman remains an illustrative expert candidate, with no appointment or source permissions assumed.
 
@@ -17,7 +17,7 @@ The initial scope is refining and process operations: evidence review, missing-i
 | B05 | COMPLETE for end-to-end inference through localhost:11435 and closed external port 11434, per the same serving brief. Do not reopen this as a new work package. |
 | Shared inference client | src/llm_client.py, mocked tests and .env.example are committed in 3fe688f after tests passed. It now supports schema= and JSON mode with think:false by default; callers still validate the returned answer. |
 | Gate 1a and 1b | Implemented and CPU-tested on codex/broadbridge-gate1-data-training. Family splits, explicit fixture counts, assistant-only labels and local-tokenizer dry-run are covered in tests/. GPU integration remains Gate 3. |
-| Gate 0 and remaining validation | Gate 0 remains OPEN. Gates 1c to 1e have offline implementations and tests; live runtime, conversion and model performance are unverified. See the Foundry engineering log for exact test counts. |
+| Gate 0 and remaining validation | Gate 0 remains OPEN for rights/storage and signed-case question coverage; Bill Hurt is named. Gates 1c to 1e are committed. Brad verified 116 passing tests across test_evaluate.py, test_deploy_pack.py and test_confidential_llm.py. Live conversion and model performance remain unverified. |
 | Training host blockers | No ~/slm training venv and no slm-foundry-ec2 instance profile are reported in the serving brief. Both must be resolved before B03/B07. Serving completion does not resolve them. |
 
 Evidence was verified from local files and commit history, not by starting or connecting to AWS. The old instance ARN also remains in infra/iam-ec2-selfmanage-policy.json; replace that obsolete policy during the later infrastructure work. The slm SSH alias used by status diagnostics can become stale after a restart. Preserve unrelated Nast, Broderick and stripe work.
@@ -30,13 +30,13 @@ Core SLM v0 is a broadbridge-oil-gas adapter that beats the S0 retrieval baselin
 
 ## 2 Gate 0 scope and Gate 1 offline Foundry fixes
 
-Critical path: Gate 0 Broadbridge scope → Gate 1 Foundry readiness → Gate 2 retrieval and baseline → Gate 3 training prerequisites and experiments. No prior calendar estimate overrides a failed gate.
+Critical path: signed case capture and Gate 0 evidence → Gate 1 Foundry readiness → S0-cases → S0-retrieval improvement → Gate 3 prerequisites and experiments. Document admission runs alongside case capture and does not block the first case-only brief. No prior calendar estimate overrides a failed gate.
 
-Gate 0 is OPEN and owned by Brad/Broadbridge. It requires no GPU and no code. Record the approved rights and exact storage location, a named technical reviewer, approximately 30 target engineering questions with reference answers, and the output schema. Each question needs source_ids, applicable numeric tolerances/units, missing-evidence expectations and critical-error criteria. The reviewer name and these assets are decisions to be supplied, not invented here.
+Gate 0 is OPEN and owned by Brad/Broadbridge. It closes when (a) rights and storage are recorded: case records live in the Claude artifact store for the pilot, while originals and any supporting documents live in the one approved S3 bucket; (b) the technical reviewer is named: Bill Hurt, complete; and (c) signed cases supply at least 30 Section C questions with reference answers, covering all five types: brief, missing_data, calculation, grounded_explanation and abstention. Questions are derived from the cases, never supplied as a separate question set. Record the exact artifact identifier and S3 bucket/prefix with the rights record.
 
-C01 may register source leads and unresolved permissions. Production extraction, training-dataset approval and baseline processing require Gate 0 acceptance. The specifically authorized Case Capture intake and synthetic tests collect that evidence without closing Gate 0. The generic offline Gate 1a–1e work proceeds independently using synthetic fixtures; it does not authorize additional source use.
+C01 and the capture page gather Gate 0 evidence. Bill enters as many cases as he chooses directly, without a prerequisite call. Once a case has recorded rights/storage and reviewer signoff, S0-cases can run for that signed case while question coverage accumulates. Formal paired-baseline acceptance and training approval require Gate 0 closure. Agree the brief schema, evidence IDs, numeric tolerances/units and hard-fail criteria before scoring. Generic offline Gate 1 work uses synthetic fixtures and grants no source rights.
 
-Gate 1 runs without a GPU. The oil-gas scaffold was copied from slm-foundry/packs/_template into Broadbridge4096/packs/oil-gas. Its draft schema, prompt, rubric and configuration need Gate 0 acceptance. Remove template personas and unrelated hand/image-generation fields. Do not build a parallel pack format from scratch. Domain values are populated only after Gate 0.
+Gate 1 runs without a GPU. The oil-gas scaffold was copied from slm-foundry/packs/_template into Broadbridge4096/packs/oil-gas. Its draft schema, prompt, rubric and configuration need Gate 0 acceptance. Remove template personas and unrelated hand/image-generation fields. Do not build a parallel pack format from scratch. Training datasets are released only after Gate 0.
 
 | Work package | Required behavior and tests |
 | --- | --- |
@@ -50,25 +50,24 @@ Gate 1 exit requires all five work packages and the regression suite. A confiden
 
 <!-- page -->
 
-## 3 Gate 2 retrieval baseline and fair comparisons
+## 3 Gate 2 case and retrieval baselines
 
-After Gates 0 and 1, process the first approximately 20 approved documents and the approximately 30 reviewer-approved questions. Build permission-filtered retrieval and run the existing stock qwen3:8b before training. A later authorized inference session may start the box; this document revision does not. The existing serving setup is reused, not reprovisioned.
+S0-cases comes first. Follow docs/FIRST_CASE_RUNBOOK.md for each signed case: page export, import_cases.py, run_brief.py and reviewer scorecard. Stock qwen3:8b receives only identity.unit_service and decision_time, with think:false and schema=brief. No documents or index are required. Section C questions and hindsight are withheld from the prompt and used only for review. Early per-case runs gather evidence; freeze the formal comparison set once Gate 0 closes.
 
-Freeze document versions, source_ids, question IDs, reference answers, schema, retrieval/index versions and inference settings. Treat this small set as development evidence; exclude its case families from training and retain a separate acceptance set for eventual release claims. Thirty questions do not establish broad engineering reliability.
+S0-retrieval follows when approximately 20 documents are admitted. Add permission-filtered, reviewed evidence from an on-box index to the same cases and model. Derive queries from decision-time information, never hindsight or reference answers. Freeze cases/questions, references, schema, model/template, inference settings, document versions, source_ids and index settings. Keep comparison families out of training and retain a separate eventual release set. Thirty questions do not establish broad reliability.
 
-Stock qwen3:8b uses Ollama's Qwen3 template and normally enables thinking. The Foundry's fine-tuned route uses pinned ChatML. Comparing those defaults would confound template, thinking, quantization and training effects. Use the following explicitly labeled tracks.
+Score both stages with the same per-question 0/1/2 scorecard and exact Section C hard-fail criteria; critical-error flags remain separate. S0-retrieval must beat S0-cases on the paired set without new critical errors before training is considered. Predeclare the improvement criterion with Bill. If retrieval ties or degrades the case baseline, resolve the evidence/retrieval failure before proposing training.
 
 | Track | Required method |
 | --- | --- |
-| S0 Product baseline before training | Stock qwen3:8b with its native Ollama template, think:false, stream:false, frozen schema/system prompt and retrieval. Record its digest/template and settings. This is the practical benchmark the proposed tuned system must improve. |
-| S1 Template control before training | Create a separately named base serving artifact from the same stock GGUF with the proposed pinned ChatML template and stop tokens. Use think:false and identical evidence, context/output limits and sampling settings. Compare S1 against S0 to expose template effects. |
-| B versus A Training effect at Gate 3 | Use the exact pinned Hugging Face base without an adapter (B) and with the candidate adapter (A). Render identical prompts with the same tokenizer/template and thinking policy. For serving comparisons, export both through the same pinned merge/conversion/quantization process. Do not assume the stock GGUF is identical to this base. |
+| S0-cases | Stock qwen3:8b, native Ollama template, decision-time case input only; no index. Record case/prompt hashes, digest/template, settings and reviewer scorecard. Runnable per signed case. |
+| S0-retrieval | Same stock model, cases, schema and scoring; add only admitted evidence from the on-box index. Save retrieved passages/source_ids and prompt provenance. Must improve on S0-cases before training. |
+| S1 Template control | Same stock GGUF with pinned ChatML and stop tokens. Match S0-retrieval evidence/settings to expose template effects. Ollama's native Qwen3 template and pinned ChatML are not interchangeable. |
+| B versus A at Gate 3 | Exact pinned Hugging Face base without adapter B and with adapter A; identical tokenizer, ChatML, thinking policy and generation settings. Match conversion/quantization for serving. Do not assume stock GGUF equals this base. |
 
-Set think:false on every Ollama comparison; use temperature 0 and identical context/output limits for the controlled benchmark. On Hugging Face use the same saved ChatML template and generation settings for B and A. A custom template may ignore thinking controls: inspect rendered prompts and score unexpected reasoning/schema leakage consistently. If an explicit nonthinking prefix is needed, apply and validate it identically in training and both matched evaluation paths. Never silently change only the baseline template.
+Use think:false and temperature 0.2 to match the first-case runner; keep context/output limits and trial counts identical across paired baselines. If settings change, rerun both sides. Custom templates may ignore thinking controls: inspect rendered prompts and apply any nonthinking prefix identically in training and matched evaluations. Record accuracy, grounding, critical errors, latency and reviewer dispositions; distinguish cold and warm latency.
 
-For each track record engineering accuracy, grounding/citation validity, critical errors and per-question latency; distinguish cold-start from warm latency. Preserve predictions, source IDs, retrieval results, settings and reviewer dispositions. Predeclare scoring tolerances and required improvement at Gate 0.
-
-Gate 2 exit is a reviewed baseline report and a specific failure analysis. Authorize only bounded training experiments aimed at those gaps. Retain a tuned release only if it improves the agreed S0 benchmark and the matched B comparison without new critical errors or worse grounding. If retrieval already meets the objective or tuning fails to improve it, do not scale training.
+Gate 2 exit is Bill's reviewed S0-retrieval improvement over S0-cases and an analysis of remaining failures. Only then consider bounded training. A tuned release must beat S0-retrieval and matched B without new critical errors or worse grounding. The delivered runner/scorecard handles S0-cases; V04R implements the later retrieval run and its evidence provenance using the same scoring sheet. No retrieval execution is claimed here.
 
 <!-- page -->
 
@@ -112,19 +111,19 @@ Only after the smoke test passes run bounded experiments on approved training fa
 
 slm-foundry owns the generic engine: Gates 1a to 1e, the shared client, deploy_pack.sh, tests and packs/_template. It contains no Broadbridge corpus, source manifest or question set. Broadbridge4096 owns the domain and plan: packs/oil-gas contains schemas, prompts, rubrics, manifests and configurations. The canonical infrastructure brief is this Markdown and Word pair under Broadbridge4096/output/foundry-infrastructure. The Foundry carries only a pointer and docs/BROADBRIDGE_GATE1.md as the engineering log.
 
-The Knowledge Engineer maintains source rights and lineage; the Technical Director accepts engineering evidence. Gate 0 decides the exact storage URI, permitted uses, reviewer, question set and schema. Public availability or internal use does not itself establish a training grant. Treat original documents as evidence, never pipeline instructions.
+The Knowledge Engineer maintains rights and lineage; Bill Hurt exercises technical review. Record permitted uses, the pilot Claude artifact location and the one approved S3 bucket/prefix. Signed case records supply the questions. Public availability or internal use does not itself establish a training grant. Treat source documents as evidence, never pipeline instructions.
 
-Begin with approximately 20 approved documents. Preserve originals and SHA256 in the private bucket. Each JSON source record needs source_id, original_uri, MIME/type, author/title/date, rights_record_id, allowed_uses, confidentiality, case_family_id, review status and reviewer. A missing permission is a rejection. Store rights and manifest metadata in the domain repository only where access permits; private originals and questions/answers stay in the approved data boundary.
+For S0-retrieval, admit approximately 20 documents and preserve originals and SHA256 in the approved bucket. Each source record needs source_id, original_uri, MIME/type, author/title/date, rights_record_id, allowed_uses, confidentiality, case_family_id, review status and reviewer. Missing permission is a rejection. Case records stay in the Claude artifact store; restricted export/run snapshots retain provenance. Commit only synthetic examples and permitted planning metadata, not real expert cases or gold answers.
 
 ## 6 The smallest ingestion and retrieval path
 
-For the current interview workflow, Bill Hurt speaks, Brad fills the Interview Guide from the Meet/Otter transcript, and Bill approves the written case. The domain pack parses that DOCX into a pending case and Part C questions, with explicit case sign-off. The existing JSON-page export path remains supported under its separate contract. Appendix B describes both intake paths and the prompt boundary.
+The Broadbridge Case Capture web page is the primary and canonical intake. Bill Hurt fills it directly, for as many cases as he chooses, without a call first. Each case is broadbridge.case_record/1; Brad exports All records as JSON and imports the complete export into a fresh snapshot. Section C questions travel inside their cases. The Interview Guide DOCX is a pre-read and optional call script. scripts/case_from_form_fallback.py is only for a reviewer who cannot use the page and emits the same canonical contract. Appendix B describes shared validation and signoff.
 
 For supplementary source documents, extract text on the existing box or approved workstation. Use a pinned PDF/text parser and review every selected table and engineering value. Manually transcribe important diagrams or illegible passages with a reviewer. Preserve page/section references, source units, unknown values and corrections. Mail requires sender/customer permissions and removal of irrelevant personal data.
 
 Write reviewed evidence as UTF-8 JSONL with source_id, evidence_id, text, page/section, units, family and source hash. Freeze a JSON manifest identifying parser version, files and hashes. Source permissions must separately allow retrieval and training.
 
-Build on-box retrieval over these reviewed records: begin with SQLite FTS or a small local lexical index; add a pinned embedding index only if measured retrieval failures justify it. Return evidence text and source_ids with each question. Freeze the top-k, chunking and index version. Gold answers never enter the index. Save the retrieved evidence with each S0 prediction so every later run uses the same evidence.
+Build on-box retrieval for S0-retrieval over reviewed evidence, beginning with SQLite FTS or a small lexical index. Add pinned embeddings only if measured failures justify them. Freeze top-k, chunking and index version; gold answers and hindsight never enter the index. Save evidence and source_ids with each prediction. S0-cases remains available independently of this document/index work.
 
 <!-- page -->
 
@@ -144,7 +143,7 @@ These are post-Gate-0 commands for approved training records. The pack has synth
 
 ## 8 Training and engineering evaluation
 
-First complete S0 retrieval evaluation and the failure analysis in section 3. Only then authorize a bounded QLoRA experiment on approved training families. Start with rank 16, alpha 16, dropout 0, sequence length 2048, microbatch 1 and accumulation 8 as compatibility settings. Measure memory and time before scaling. The first GPU smoke must prove train, save, reload, generate and resume; max_steps and checkpoint-resume support remain additional Gate 3 work.
+First demonstrate S0-retrieval improvement over S0-cases and complete the failure analysis in section 3. Only then authorize a bounded QLoRA experiment on approved training families. Start with rank 16, alpha 16, dropout 0, sequence length 2048, microbatch 1 and accumulation 8 as compatibility settings. Measure memory and time before scaling. The first GPU smoke must prove train, save, reload, generate and resume; max_steps and checkpoint-resume support remain additional Gate 3 work.
 
 The generic evaluator accepts --split train, val or test and an optional trusted judge plugin. Deterministic metrics cover declared numeric fields/tolerances, compatible units, missing-information handling and source_ids membership. Declared critical-error rules are reported per question. Citation membership alone is not semantic grounding: the appointed reviewer must check whether the cited passage supports the claim and assess errors not captured by rules.
 
@@ -156,7 +155,7 @@ Freeze the S0 report, base comparison, predictions, latency and reviewer disposi
 
 Reuse i-0e5e1cbc7b1367566 and its L4, private Ollama service and tunnel. Do not create another GPU host for v0. Run one GPU job at a time and unload serving weights before training. Measure the existing 200 GB volume and available space before downloading weights; expand encrypted disk only if measured need requires it. Keep all connection addresses discovered at runtime.
 
-Use one Broadbridge-approved private S3 bucket with block-public-access, encryption at rest and versioning. Separate prefixes for originals, reviewed evidence, datasets, models and evaluation; JSON manifests provide the catalog. Scope the instance role to its required prefixes. Acceptance answers are available only to the evaluator/operator, not training jobs. Document and test permitted and denied access with synthetic objects. Bucket selection remains Gate 0; do not silently reuse an unrelated account's bucket.
+Case records live in the Claude artifact store for the pilot. Originals and any documents live in one Broadbridge-approved private S3 bucket with block-public-access, encryption and versioning. Use prefixes for originals, reviewed evidence, datasets, models and evaluation; JSON manifests provide the catalog. Scope the role to required prefixes. Acceptance answers remain unavailable to training jobs. Record the exact artifact location, bucket and prefixes at Gate 0 and test permitted/denied S3 access with synthetic objects before retrieval or training uses S3. Do not silently reuse an unrelated bucket.
 
 Use S3-managed encryption for the minimum pilot unless the approved data contract requires customer-managed keys. Multi-bucket isolation and dedicated KMS keys remain Post-v0. A single bucket is a cost/scope decision, not permission for every process to read every prefix.
 
@@ -174,28 +173,29 @@ Deploy through the generic parameterized Foundry wrapper with local base and ada
 
 ## 11 Core v0 delivery tasks and owners
 
-Until appointments, apply the interim ownership rule in section 1. A recorded technical acceptance is still required. Gate 0 is the immediate dependency; completed offline engine work does not bypass it.
+Until appointments, apply section 1; Bill Hurt is the named technical reviewer. V04 is independent of V03. Per-case S0-cases can begin as signed, permissioned cases arrive; the complete formal comparison requires Gate 0 closure.
 
 | Task and accountable role | Inputs and action | Exit evidence |
 | --- | --- | --- |
-| V01 Managing Director | Close Gate 0 rights, storage, reviewer, questions and schema. | Signed scope record and source admission list. |
+| V01 Managing Director | Record rights/storage; Bill is named. Close Gate 0 with at least 30 referenced questions from signed cases across all five types. | Rights/storage record, case-derived coverage and accepted scoring schema. |
 | V02 Head of Product & AI | Pin both repo commits; install CPU dependencies; validate external --pack and confidentiality tests. | Test log and environment record. |
-| V03 Knowledge Engineer | Review and register about 20 documents; extract approved text and tables. | Hashes, rights and reviewed evidence JSONL. |
-| V04 Applied AI Engineer | Build on-box retrieval; run S0/S1 on the 30 frozen questions. | Accuracy, grounding, critical errors, latency and failure report. |
-| V05 Technical Director | Accept the baseline and a bounded experiment targeting its failures. | Reviewer decision to train or stop. |
+| V03 Knowledge Engineer | In parallel with V04, admit about 20 documents and review extracted text/tables. | Hashes, rights and reviewed evidence JSONL. |
+| V04 Applied AI Engineer | S0-cases via FIRST_CASE_RUNBOOK.md. Depends on V02 plus per-case rights/storage and signoff; NOT on V03, documents or an index. | Per-case 0/1/2 scorecards, critical flags, grounding and latency. |
+| V04R Applied AI Engineer | After V03, V04 and Gate 0, build retrieval; compare S0-retrieval against S0-cases on the same questions. | Same scorecards; improved scores without new critical errors; evidence/prompt provenance. |
+| V05 Technical Director | Bill accepts retrieval improvement over S0-cases before considering bounded training on remaining failures. | Written train/stop decision and predeclared criteria. |
 | V06 Applied AI Engineer | Bootstrap ~/slm, attach scoped profile, pin base/runtime; prove QLoRA smoke. | Allowed/denied access and train/save/reload/resume evidence. |
 | V07 Knowledge Engineer | Release disjoint reviewed training and development families. | Dataset manifest, source_ids and CPU mask audit. |
 | V08 Applied AI Engineer | Run bounded experiments and identical-template B/A comparison. | Reproducible run and comparison reports. |
-| V09 Technical Director | Adjudicate improvement over S0 and absence of new critical errors. | Signed acceptance or rejection. |
+| V09 Technical Director | Adjudicate improvement over S0-retrieval without new critical errors. | Signed acceptance or rejection. |
 | V10 Head of Product & AI | Package, serve privately, verify rollback and second-operator reproduction. | Versioned release and completed handoff. |
 
 ## 12 Completion and handoff
 
-v0 is complete only when the accepted broadbridge-oil-gas adapter beats S0 on the frozen Gate 0 question set without new critical errors, runs on the existing box, and a second operator reproduces the result from the two repository commits and permitted artifacts. Engine unit tests alone do not close v0.
+v0 is complete only when the accepted broadbridge-oil-gas adapter beats S0-retrieval on the frozen case-derived Gate 0 question set without new critical errors, runs on the existing box, and a second operator reproduces the result from the two repository commits and permitted artifacts. Engine unit tests alone do not close v0.
 
-The handoff records source/dataset/index hashes, both repository commits, base revision, tokenizer/template hashes, adapter and GGUF hashes, dependency versions, hardware, seed, configuration, question IDs, scores, reviewer dispositions and rollback tag. The operator demonstrates setup, retrieval, evaluation, adapter reload, private serving and restore. Record passed, failed and not-run checks separately.
+The handoff records source/dataset/index hashes, both repo commits, base revision, tokenizer/template and adapter/GGUF hashes, dependencies, hardware, seed, config, question IDs, scores, reviewer decisions and rollback tag. The operator demonstrates setup, retrieval, evaluation, reload, private serving and restore. Distinguish passed, failed and unrun checks.
 
-Brad approves a measured per-experiment GPU-hour and runtime cap after the baseline, with storage cost included. Checkpoint before stopping; verify artifact upload. Keep budget alerts and a manual stop checklist for the pilot; an idle-stop watchdog and broader recovery objectives are Post-v0. No new cloud resource or model-performance claim is made by this revision.
+Brad approves each experiment's GPU-hour/runtime cap and storage cost after the baseline. Checkpoint before stopping and verify artifact upload. Use budget alerts and a manual stop checklist; watchdog automation and broader recovery objectives remain Post-v0.
 
 <!-- page -->
 
@@ -231,7 +231,7 @@ Broadbridge background: Broadbridge-Foundry-Implementation-Update.md; Broadbridg
 
 Precedence for this infrastructure work: current user constraints and Foundry serving brief establish the operational baseline; this brief supplies the new infrastructure scope and acceptance evidence. Earlier new-instance/Qwen3.5 proposals and old instance IDs are not the starting procedure. Existing corporate governance remains in force. Gates 0–3 replace the prior six-week infrastructure-first estimate. Rebaseline dates after Gate 0 and the retrieval benchmark; previous 24- or 31-week whole-program estimates are not renewed commitments.
 
-Immediate handoff: Brad resolves Gate 0. Review the engine changes and run their CPU tests, then process the approved batch and establish S0. Only a later authorized session fixes host prerequisites and runs B03/B07. B01/B02/B04/B05 remain complete per docs/SLM_SERVING_BRIEF.md at f8f5827. The canonical brief and oil-gas pack belong to Broadbridge4096; the engine log belongs to slm-foundry.
+Immediate handoff: Bill contributes cases directly through the page; Brad records rights/storage and tracks signed-case question coverage. Run S0-cases per signed case, then S0-retrieval after document admission. Only after measured retrieval improvement and remaining-failure review consider training and resolve B03/B07 prerequisites. B01/B02/B04/B05 remain complete per the serving brief. Broadbridge4096 owns the canonical brief and pack; slm-foundry owns the engine log.
 
 <!-- page -->
 
@@ -257,18 +257,18 @@ Shared parent services and the approved subsidiary organisation remain the gover
 
 <!-- page -->
 
-## Appendix B Form intake and decision time briefs
+## Appendix B Canonical case capture and fallback
 
-Bill Hurt completes the interview verbally; Brad fills the Interview Guide from the Meet/Otter transcript and sends the written case to Bill for approval. The current request reinstates DOCX parsing. Original forms and transcripts remain in Broadbridge4096. There is no PermitHub PIFR/A22 or NeonDB integration; only the fixed-question, schema, pending-review and sign-off pattern is mirrored.
+Bill Hurt uses the Broadbridge Case Capture web page directly, contributing as many cases as he chooses without a call first. This is the primary and canonical intake. Pilot case records live in the Claude artifact store: collection cases contains broadbridge.case_record/1 records, while workflow/main holds Part A. Brad exports All records as JSON. Originals and any supporting documents belong in the one approved S3 bucket, with rights and locators recorded.
 
-The form contract is broadbridge.case_form/1. schemas/case_record.json maps the identity grid and every B1-B14 item: B1-B6 belong to decision_time, B7-B13 to hindsight, and B14 to a separate evidence array. Observations and competing hypotheses are arrays of rows. schemas/eval_question.json covers Part C, with hard_fail_criteria as an array. The earlier JSON-page contract remains broadbridge.case_record/1 with its original string fields; no silent conversion changes either version.
+There is one external contract: schemas/case_record.schema.json plus schemas/export.schema.json, both Draft 2020-12. The wrapper contains exported_at, workflow and cases. Case status is draft, complete or signed; permitted_use is training, testing_only or reference_only, with training as the page default. A page default does not sign a case or grant training admission. Record types are real_event, reconstructed or hypothetical. hard_fail_criteria and evidence_ids are strings. Decision-time observations and hindsight hypotheses are arrays; canonical names and enums are shared by every intake route.
 
-Run scripts/case_from_form.py <filled.docx> <new_out_dir> --family-id <reviewed-family> from the pack. The parser follows labels, retains typed answers, and emits case_record.json, eval_questions.json and form_review.json. Blank boxes are null or empty arrays and are flagged; an explicitly entered unknown remains unknown. Spare unused rows and question blocks are listed separately. The parser does not invent values, infer family membership, interpret transcripts, or authenticate signatures.
+Run scripts/import_cases.py <complete_export.json> <fresh_out_dir>. It validates both schemas, archives each canonical case, derives eval/questions.jsonl from questions and writes training candidates only from signed/training cases with complete signoff and a train-family split. Every case has a printed disposition. Missing/invalid permissions reject schema validation; no default is invented. Family precedence is locked_test, then dev, then train. Exports must include related cases so holdouts cannot leak into training.
 
-Imports begin as pending_review. Part D is recording/review consent, not explicit acceptance of a case. After Bill approves the written case, Brad reruns with --case-signed-off into a new output directory. The flag records that attestation; unanswered boxes or unknown identity, family, reviewer or permission prevent sign-off. The original guide is preserved. One case per DOCX is supported; repeated cases or changed form structure are refused clearly.
+The Interview Guide DOCX is a pre-read and optional call script. A reviewer who cannot use the page may use scripts/case_from_form_fallback.py. This fallback reads the labelled form and emits the same broadbridge.case_record/1 record and export wrapper, not an alternative schema. Its review report holds source-document provenance, consent and blank-field flags outside the canonical case. Blank narrative fields are flagged; missing or unknown enum choices require explicit correction. The parser does not infer facts, family membership, source rights or signature authenticity.
 
-run_brief.py accepts the emitted case_record.json directly. Its model input contains only identity.unit_service and decision_time. Hindsight, evidence inventory, Part A workflow, consent and test answers remain outside the prompt. The runtime guard checks the full projection and blocks nonempty hindsight strings or reference answers, including JSON-escaped values. The explicit unknown marker is exempt for form records; it contains no retrospective fact. Paraphrased hindsight still requires human review.
+Supply reviewed case/family IDs. Default output is draft; only an explicit operator attestation after reviewer approval can produce signed status with a reviewer name and date. Merge through the complete page export, or explicitly attest a standalone family when no related records exist. Never combine independently split datasets. Full fallback commands and the accepted signature/date format are in packs/oil-gas/README.md. Keep originals unchanged and preserve the form's review report alongside them in approved storage.
 
-Use --dry-run to inspect messages locally without a model or EC2. Future authorized inference uses the Foundry shared client, think:false and an explicitly configured loopback OLLAMA_URL. The script never starts an instance or opens a tunnel. Synthetic DOCX tests cover extraction, blanks, unknowns, pending review, explicit approval and prompt leakage. The source form's introductory Part A/B wording is inconsistent; the harness follows its explicit B1-B6 versus B7-B13 labels.
+All downstream tools accept only broadbridge.case_record/1. run_brief.py passes identity.unit_service and decision_time only. Hindsight, questions, workflow, consent and evidence inventory never enter its prompt. The runtime guard checks the projection and rejects retrospective/reference-answer leakage; paraphrased hindsight still needs human review. Use --dry-run for local inspection or the first-case runbook for stock qwen3:8b through the tunnel, think:false and schema=brief. The same reviewer scorecard assesses the later S0-retrieval stage, with its additional evidence provenance recorded separately.
 
-The JSON-page importer remains available for complete exports and keeps the strictest family split: locked_test, then dev, then train. Form outputs also retain family and split metadata; reviewed materialization must enforce the same family holdouts and map dev to Foundry val and locked_test to test. Parsing or sign-off does not itself admit records to training. Full commands and validation evidence are in packs/oil-gas/README.md. Gate 0 remains open for production acceptance.
+Gate 0 questions come from signed cases: at least 30 Section C questions, references present, and coverage of brief, missing_data, calculation, grounded_explanation and abstention. Bill is the named reviewer. Capture, parsing and signoff do not close rights/storage or coverage requirements automatically. No PermitHub PIFR/A22 or NeonDB integration is introduced.

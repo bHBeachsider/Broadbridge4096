@@ -56,7 +56,7 @@ def test_mock_run_never_opens_network_and_records_mock_status(case, mock_brief, 
     assert record["brief"]["missing_information"]
 
 
-@pytest.mark.parametrize("damage", ["draft", "unsigned", "empty_name", "undecided", "no_questions"])
+@pytest.mark.parametrize("damage", ["draft", "unsigned", "empty_name", "unknown_name", "unknown_date", "undecided", "no_questions"])
 def test_first_live_run_refuses_unreviewed_case_before_foundry_access(case, damage):
     runner = importlib.import_module("run_brief")
     case["status"] = "signed"
@@ -64,6 +64,8 @@ def test_first_live_run_refuses_unreviewed_case_before_foundry_access(case, dama
     if damage == "draft": case["status"] = "draft"
     if damage == "unsigned": case["reviewer_signoff"]["signed"] = False
     if damage == "empty_name": case["reviewer_signoff"]["name"] = " "
+    if damage == "unknown_name": case["reviewer_signoff"]["name"] = "unknown"
+    if damage == "unknown_date": case["reviewer_signoff"]["date"] = "unknown"
     if damage == "undecided": case["identity"]["permitted_use"] = "undecided"
     if damage == "no_questions": case["questions"] = []
     # Removed permission values now fail schema validation before signoff preflight.
@@ -160,10 +162,11 @@ def test_existing_brief_output_is_preserved_before_inference(tmp_path, case, mon
     assert output.read_text(encoding="utf-8") == "previous run"
 
 
-def test_signed_form_keeps_its_existing_signoff_contract():
+def test_signed_fallback_uses_the_same_complete_signoff_as_the_page():
     runner = importlib.import_module("run_brief")
-    forms = importlib.import_module("case_from_form")
+    forms = importlib.import_module("case_from_form_fallback")
     case, _, _ = forms.parse_form(PACK / "tests/fixtures/Synthetic_Filled_Interview_Guide.docx",
-                                  family_id="FORM-FAMILY-001", case_signed_off=True)
+                                  case_id="FORM-SYN-001", family_id="FORM-FAMILY-001", case_signed_off=True)
+    assert case["reviewer_signoff"] == {"signed": True, "name": "SYNTHETIC REVIEWER ONLY", "date": "2026-09-24"}
     runner.require_signed_case(case)
     assert runner.run_case(case, dry_run=True)[1]["role"] == "user"

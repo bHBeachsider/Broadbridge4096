@@ -16,19 +16,21 @@ infra/status.ps1 and docs/SLM_SERVING_BRIEF.md at Foundry commit f8f5827 identif
 
 The serving box still needs ~/slm through infra/bootstrap.sh and the scoped slm-foundry-ec2 instance profile before B03/B07. No training venv or S3 access is implied by working inference. Keep public IP discovery dynamic; never expose Ollama port 11434. Windows port 11434 is not the remote endpoint.
 
-Gate 0 remains OPEN, owned by Brad/Broadbridge: approved rights and storage URI, named reviewer, approximately 30 engineering questions/reference answers and accepted output schema. The authorized intake tools gather that evidence; they do not approve production training or close the gate. In the current form workflow, Bill completes the interview verbally, Brad fills the guide from the Meet/Otter transcript, and Bill approves the written case. DOCX parsing has been reinstated in the domain pack, with a separate form schema and pending-review/sign-off states. The earlier JSON-page export contract remains supported. See [the pack runbook](packs/oil-gas/README.md) for both paths, blank/unknown handling, family holdouts and the decision-time prompt guard. No PermitHub or NeonDB integration is included.
+Bill Hurt is the named reviewer and enters as many cases as he chooses directly in the Broadbridge Case Capture page, without a call first. The page's broadbridge.case_record/1 export is primary and canonical. The Interview Guide is a pre-read/call script; case_from_form_fallback.py is only for a reviewer who cannot use the page and emits that same contract.
+
+Gate 0 remains OPEN until rights/storage are recorded and signed cases supply at least 30 Section C questions with reference answers spanning brief, missing_data, calculation, grounded_explanation and abstention. The reviewer requirement is complete. Pilot case records live in the Claude artifact store; originals and any documents live in the one approved S3 bucket. Record its exact URI/prefix and the artifact identifier. Questions are derived from cases, not supplied separately. See [the pack runbook](packs/oil-gas/README.md) for intake, family holdouts and the prompt guard.
 
 ## Critical path
 
 | Gate | Work and evidence |
 | --- | --- |
-| 0 | Record scope, rights, reviewer, questions and schema. No GPU or source processing. |
+| 0 | Record rights/storage; Bill Hurt named (done); collect at least 30 referenced Section C questions across all five types from signed cases. |
 | 1 | CPU-tested family/fixture splits, assistant-only masks/dry-run, engineering evaluation, generic fresh deployment builds and confidential-call guards. Live runtime remains unverified. |
-| 2 | Process about 20 approved documents; build on-box retrieval; record S0/S1 accuracy, grounding, critical errors and latency before training. |
+| 2 | Run S0-cases per signed case without documents/index. After about 20 documents are admitted, S0-retrieval must beat S0-cases using the same scorecards before training is considered. |
 | 3 | Fix both host blockers; pin trainable base/runtime; prove QLoRA train/save/reload/resume; run bounded experiments only against baseline failures. |
 | v0 acceptance | Appointed reviewer accepts improvement over S0 without new critical errors; second operator reproduces private serving and rollback. |
 
-S0 uses stock Ollama qwen3:8b with its native template and think:false. S1 uses the same stock GGUF with pinned ChatML to expose template effects. At Gate 3 compare exact pinned base B with adapter A under identical tokenizer, ChatML, thinking policy, retrieval, limits and decoding. Match conversion/quantization for serving comparisons. Inspect actual rendered prompts; a custom template may ignore a think flag. The adapter must beat S0 as well as the matched base, not just a weaker template control.
+S0-cases and S0-retrieval use stock Ollama qwen3:8b with its native template and think:false; compare the same case-derived questions, schema, settings and 0/1/2 scorecards. The first-case runbook implements S0-cases; retrieval is the later document/index stage. S1 uses the same stock GGUF with pinned ChatML to expose template effects. At Gate 3 compare exact pinned base B with adapter A under identical tokenizer, ChatML, thinking policy, retrieval, limits and decoding. Match conversion/quantization for serving comparisons. Inspect actual rendered prompts; a custom template may ignore a think flag. The adapter must beat S0 as well as the matched base, not just a weaker template control.
 
 ## Minimum infrastructure and execution
 
@@ -38,4 +40,4 @@ The current Qwen3-8B model receives text messages JSONL, including reviewed text
 
 All three Foundry entry points accept an absolute external pack path. Relative assets/configs resolve from the pack root; outputs remain in the domain boundary. The shared client now supports schema= (Ollama format), think:false and JSON mode. Callers still validate the answer schema and engineering evidence.
 
-The approved local repository operations, pre-commit size inventory and confirmation-gated publication commands are in [Repository Commands](output/foundry-infrastructure/Repository_Commands.md). No remote repository was created and no push, EC2 start, live inference, GPU training or deployment was performed. Existing Broderick datasets remain tracked by Brad's explicit decision pending review before publishing.
+Publication is authorized for Broadbridge4096 main and the three requested slm-foundry branches after the tracked-file size check. [Repository Commands](output/foundry-infrastructure/Repository_Commands.md) records the publication procedure and audit. Engine commits for Gates 1c–1e are present; Brad verified 116 passing tests in test_evaluate.py, test_deploy_pack.py and test_confidential_llm.py. This update does not start EC2, run live inference, train or deploy a model.

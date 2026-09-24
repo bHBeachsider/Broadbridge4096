@@ -1,0 +1,13 @@
+{
+  "task_id": "EVAL-TEMPLATE-01",
+  "family_id": "TO_BE_ASSIGNED_FROM_SEPARATE_TEST_FAMILY",
+  "split": "test",
+  "prompt_asset_ids": [],
+  "question": "Template only. Author a new question from an independent test family.",
+  "gold_stored_elsewhere": true,
+  "rubric": {
+    "critical_error": false,
+    "accepted_without_material_correction": false
+  },
+  "production_approval": false
+}

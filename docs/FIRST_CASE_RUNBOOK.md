@@ -1,12 +1,14 @@
 # First signed case: export, brief and reviewer scorecard
 
-Owner: Brad / Broadbridge Oil & Gas. Technical acceptance: the Broadbridge-appointed reviewer named for this exercise. Updated 24 September 2026.
+Owner: Brad / Broadbridge Oil & Gas. Technical acceptance: Bill Hurt, the named Broadbridge reviewer. Updated 24 September 2026.
 
-Bill enters and signs off the case in the Broadbridge Case Capture page. Brad exports **All records as JSON**. This runbook uses that export directly, without DOCX parsing. The Interview Guide remains available as a pre-read/call script. Domain records and results stay in Broadbridge4096; the shared client stays in slm-foundry.
+Bill enters as many cases as he chooses directly in the Broadbridge Case Capture page, without a call first, and signs off the written records. Brad exports **All records as JSON**. The page and its `broadbridge.case_record/1` export are the primary, canonical intake. The Interview Guide is a pre-read/call script; `case_from_form_fallback.py` is available for a reviewer who cannot use the page and emits the same contract. Pilot case records live in the Claude artifact store; originals and any supporting documents live in the one approved S3 bucket. Domain tooling and restricted working snapshots belong to Broadbridge4096; the shared client stays in slm-foundry.
 
 The result is one structured stock-model brief and an **unscored** `eval/scorecard_<case_id>.md` for a human reviewer. The model receives only `identity.unit_service` and `decision_time`, with a fixed system instruction and the brief output schema. Questions, reference answers, hindsight, workflow and evidence attachments are not sent to it.
 
-This is a first-case exercise, not the complete S0 retrieval benchmark. It does not train a model, close Gate 0, or establish adapter superiority. Use the stock Ollama Qwen3 template with `think:false`; later base-versus-adapter comparisons still require matched templates and settings.
+This is **S0-cases**, the first baseline stage, runnable per signed case with no documents or index. **S0-retrieval** follows after approximately 20 documents are admitted; it must beat S0-cases on the same case-derived questions and scorecard without new critical errors before training is considered. Use the stock Ollama Qwen3 template with `think:false` and matching inference settings for both. Later base-versus-adapter comparisons still require matched templates and settings.
+
+Gate 0 closes when rights/storage are recorded, Bill Hurt is named as reviewer (done), and signed cases supply at least 30 Section C questions with reference answers covering all five types. Questions come from cases. Per-case runs can proceed after their rights/storage and signoff are recorded while coverage accumulates; a single run does not close Gate 0.
 
 ## 1. Before the signed case arrives (no GPU)
 

@@ -148,7 +148,8 @@ def test_new_draft_with_page_training_default_never_becomes_candidate(tmp_path, 
     assert rows(output / "eval/questions.jsonl")[0]["permitted_use"] == "training"
 
 
-@pytest.mark.parametrize("field,value", [("signed", False), ("name", " "), ("date", "")])
+@pytest.mark.parametrize("field,value", [("signed", False), ("name", " "), ("date", ""),
+                                         ("name", "unknown"), ("date", " unknown ")])
 def test_signed_status_requires_signoff_for_training(tmp_path, signed_cases, field, value):
     importer = importlib.import_module("import_cases")
     signed_cases[0]["reviewer_signoff"][field] = value

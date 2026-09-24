@@ -11,7 +11,7 @@ import time
 
 from jsonschema import Draft202012Validator
 
-from case_contract import parse_json, read_json, validate_case
+from case_contract import complete_reviewer_signoff, parse_json, read_json, validate_case
 
 SYSTEM = "Prepare an engineering decision brief from the supplied operating information. Identify uncertainty, missing measurements and discriminating checks. Do not invent facts or prescribe unverified operating changes."
 
@@ -50,9 +50,8 @@ def assert_no_leak(case, messages):
     # Check raw field strings too, so JSON escaping cannot hide a quoted/newline answer.
     haystacks = [m["content"] for m in messages] + list(_strings(decision_payload(case)))
     forbidden = list(_strings(case["hindsight"])) + [value for q in case["questions"] for value in _strings(q["reference_answer"])]
-    if case["schema"] == "broadbridge.case_form/1":
-        # An explicit unknown marker carries no retrospective knowledge.
-        forbidden = [value for value in forbidden if value.strip().casefold() != "unknown"]
+    # An explicit unknown marker carries no retrospective knowledge, regardless of intake.
+    forbidden = [value for value in forbidden if value.strip().casefold() != "unknown"]
     if any(value in text for value in forbidden for text in haystacks):
         raise AssertionError("Prompt leak: a hindsight string or reference answer appears in decision-time input; review the case")
 
@@ -78,12 +77,7 @@ def validate_brief(value, schema=None):
 def require_signed_case(case):
     validate_case(case)
     signoff = case["reviewer_signoff"]
-    # Signed form records have already passed their attested-signature contract;
-    # page records use separate name/date fields. Preserve both intake versions.
-    page_signoff_complete = (case["schema"] != "broadbridge.case_record/1"
-                             or (signoff["name"].strip() and signoff["date"].strip()))
-    if (case["status"] != "signed" or signoff["signed"] is not True
-            or not page_signoff_complete
+    if (case["status"] != "signed" or not complete_reviewer_signoff(signoff)
             or case["identity"]["permitted_use"] not in ("training", "testing_only", "reference_only")
             or not case["questions"]):
         raise ValueError("First-case preflight: a signed case, complete reviewer signoff, decided permitted_use and questions are required")

@@ -97,10 +97,16 @@ def table(lines):
 text = SOURCE.read_text(encoding='utf-8')
 lines = text.splitlines()
 i = 0
+page_break_pending = False
 while i < len(lines):
     line = lines[i]
     if not line.strip(): i += 1; continue
-    if line == '<!-- page -->': doc.add_page_break(); i += 1; continue
+    if line == '<!-- page -->':
+        # Put the break on the next heading; a separate break paragraph can
+        # itself spill and create an empty page after a nearly full section.
+        page_break_pending = True
+        i += 1
+        continue
     if line.startswith('```'):
         i += 1
         code = []
@@ -116,7 +122,11 @@ while i < len(lines):
         while i < len(lines) and lines[i].startswith('|'): data.append(lines[i]); i += 1
         table(data); continue
     if line.startswith('# '): doc.add_paragraph(line[2:], style='Title')
-    elif line.startswith('## '): doc.add_paragraph(line[3:], style='Heading 1')
+    elif line.startswith('## '):
+        heading = doc.add_paragraph(line[3:], style='Heading 1')
+        if page_break_pending:
+            heading.paragraph_format.page_break_before = True
+            page_break_pending = False
     elif line.startswith('- '): inline(doc.add_paragraph(style='List Bullet'), line[2:])
     else: inline(doc.add_paragraph(), line)
     i += 1

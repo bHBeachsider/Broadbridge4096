@@ -1,4 +1,4 @@
-"""Offline validation and admission policy for the live Case Capture contract."""
+"""Offline validation and admission policy for the canonical Case Capture contract."""
 import json
 import math
 from pathlib import Path
@@ -50,11 +50,19 @@ def _validate(value, name):
         raise ValueError(details)
 
 
+def complete_reviewer_signoff(signoff):
+    """An unknown marker is captured text, not a reviewer's identity or date."""
+    return signoff["signed"] is True and all(
+        signoff[key].strip().casefold() not in ("", "unknown", "undecided") for key in ("name", "date"))
+
+
 def disposition(case):
     """Classify schema-valid page records; family holdouts are applied by the importer."""
     permission = case["identity"]["permitted_use"]
     signoff = case["reviewer_signoff"]
-    if case["status"] == "signed" and (not signoff["signed"] or not signoff["name"].strip() or not signoff["date"].strip()):
+    if any(case[key].strip().casefold() in ("", "unknown", "undecided") for key in ("case_id", "family_id")):
+        return "rejected", "reviewed case_id and family_id are required"
+    if case["status"] == "signed" and not complete_reviewer_signoff(signoff):
         return "rejected", "status=signed conflicts with incomplete reviewer_signoff"
     if case["status"] != "signed" or permission != "training":
         return "eval-only", f"status={case['status']}; permitted_use={permission}; excluded from training"
@@ -62,9 +70,6 @@ def disposition(case):
 
 
 def validate_case(case, *, training=False):
-    if isinstance(case, dict) and case.get("schema") == "broadbridge.case_form/1":
-        from form_contract import validate_form_case
-        return validate_form_case(case, training=training)
     _validate(case, "case")
     if training:
         state, reason = disposition(case)

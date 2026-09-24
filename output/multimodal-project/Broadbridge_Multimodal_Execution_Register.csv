@@ -1,0 +1,13 @@
+﻿package_id,work_package,accountable_owner,weeks,dependencies,deliverable,acceptance
+WP01,Scope and workflow,Head of Product & AI,1–2,None,Charter and baseline workflow metric,Three supported user journeys; exclusions and acceptance rubrics signed
+WP02,Source rights,Managing Director,1–8,WP01,Source schedule and internal-use grants,Every admitted asset has allowed-use and access records; disputed sources remain quarantined
+WP03,Case and visual curation,Knowledge Engineer,2–16,WP01; WP02 per asset,2000 reviewed examples and 300-family lineage,1500 text plus500 visual if G2 passes; independent review; split manifest excludes related incidents across partitions
+WP04,Environment and security,Parent security lead,1–20,WP01,Controlled environment and threat model,"Identity, egress, secret, dependency, image-injection and cross-project negative tests pass"
+WP05,Ingestion and retrieval,Applied AI Engineer,3–10,WP02; WP04,Evidence store and search/citation API,Revoked and unauthorized sources excluded before ranking and from caches; page/region links resolve
+WP06,Engineering tools,Process Applications Engineer,3–10,WP01; WP04,Typed calculation tools and reference results,Independent tolerance tests; unit/range errors rejected; no control-write interface
+WP07,Baseline and serving,Applied AI Engineer,3–8,WP04; WP05; WP06,Text/vision candidates and profiled serving,"Adapter smoke test; exact reload/export; measured memory, latency and within-model image ablation"
+WP08,Training experiments,Head of Product & AI,9–16,G2; WP03 subset; WP07,Run registry and candidate decision,Versioned training snapshots; bounded search; three-seed finalist; unchanged development benchmark
+WP09,Independent evaluation,Technical Director,2–20,WP01; WP03; WP07; G3 for final test,Locked 120 case tasks plus180 challenges,Two ratings on material cases; family-aware intervals; exact release passes section9 criteria
+WP10,Review interface,Head of Product & AI,5–18,WP05; WP06; WP07,Evidence viewer and diagnostic review workflow,"Engineer can correct extraction, inspect cited region and accept/reject; corrections retained separately from training"
+WP11,Release and operations,Head of Product & AI,17–20,WP04; WP08; WP09; WP10,Signed release and recovery runbooks,Technical/security acceptance; rollback and backup restore rehearsed; monitoring includes quality and cost
+WP12,Internal pilot,Technical Director,21–24,G4; WP11,Reviewed briefs and pilot quality report,Every brief reviewed; target10 internal users/100 briefs; no automatic learning; effort and residual errors recorded
