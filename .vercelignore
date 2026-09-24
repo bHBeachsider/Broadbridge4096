@@ -1,0 +1,22 @@
+# The capture deployment needs its application and the shared canonical schemas.
+# Documents, intake exports, model inputs and other workspace files stay local.
+**
+!apps
+!apps/capture
+!apps/capture/**
+!packs
+!packs/oil-gas
+!packs/oil-gas/schemas
+!packs/oil-gas/schemas/**
+!packs/oil-gas/tests
+!packs/oil-gas/tests/fixtures
+!packs/oil-gas/tests/fixtures/**
+apps/capture/node_modules
+apps/capture/.next
+apps/capture/.vercel
+apps/capture/test-results
+apps/capture/playwright-report
+apps/capture/AGENTS.md
+apps/capture/CLAUDE.md
+apps/capture/.env*
+apps/capture/*.tsbuildinfo

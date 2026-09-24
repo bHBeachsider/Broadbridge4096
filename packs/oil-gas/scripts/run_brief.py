@@ -7,11 +7,13 @@ import json
 import os
 from pathlib import Path
 import sys
+import tempfile
 import time
 
 from jsonschema import Draft202012Validator
 
 from case_contract import complete_reviewer_signoff, parse_json, read_json, validate_case
+from db_publication import publish_staged
 
 SYSTEM = "Prepare an engineering decision brief from the supplied operating information. Identify uncertainty, missing measurements and discriminating checks. Do not invent facts or prescribe unverified operating changes."
 
@@ -143,8 +145,12 @@ def main(argv=None):
     parser.add_argument("--require-signed", action="store_true", help="Also enforce first-case signoff during --dry-run (live runs always enforce it)")
     parser.add_argument("--mock-response", help="Offline rehearsal: replay a JSON brief; never import the client or call a model")
     parser.add_argument("--output", help="Write a new brief_run.json audit envelope; refuse to overwrite")
+    parser.add_argument("--db", action="store_true", help="Persist the run for a case already imported into Broadbridge")
+    parser.add_argument("--actor", help="Email of the operator responsible for this run")
     args = parser.parse_args(argv)
     try:
+        if args.db and (not args.actor or not args.output or args.dry_run):
+            raise ValueError("--db requires --actor EMAIL and --output; it cannot be combined with --dry-run")
         if args.dry_run and (args.output or args.mock_response):
             raise ValueError("--dry-run prints the prompt only; use --mock-response without --dry-run to rehearse the whole flow")
         case = read_json(args.case)
@@ -163,8 +169,15 @@ def main(argv=None):
         if args.output:
             output = Path(args.output)
             output.parent.mkdir(parents=True, exist_ok=True)
-            with output.open("x", encoding="utf-8", newline="\n") as handle:
-                handle.write(json.dumps(record, ensure_ascii=False, indent=2) + "\n")
+            with tempfile.TemporaryDirectory(prefix=".brief-run-", dir=output.parent) as stage_dir:
+                staged = Path(stage_dir) / "brief_run.json"
+                staged.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+                def db_write(conn):
+                    import db
+                    # The snapshot is historical input, never a replacement for a
+                    # possibly newer case saved by the capture application.
+                    db.upsert_run(conn, record, args.actor)
+                publish_staged(staged, output, db_write=db_write if args.db else None)
             print(f"{record['mode'].upper()} brief saved: {output}")
         else:
             print(json.dumps(record, ensure_ascii=True, indent=2))
