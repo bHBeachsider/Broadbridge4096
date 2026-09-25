@@ -48,12 +48,49 @@
   "focused_test_command": "$env:FOUNDRY_INGESTION_PATH='<absolute pinned local checkout>'; $env:BROADBRIDGE_INGESTION_TEST_DATABASE_URL='<owned loopback broadbridge_test_ingestion_* DSN>'; python -m pytest packs/oil-gas/db/tests/test_ingestion.py -o addopts='' -q -ra -s",
   "focused_test_result": "6 passed, 1 existing RequestsDependencyWarning in 1.25s",
   "migration_runner_command": "same owned loopback database variables; python -m pytest packs/oil-gas/db/tests/test_db.py -k migrations_idempotent_vector_and_checksum -o addopts='' -q -ra -s",
-  "migration_runner_result": "1 passed, 49 deselected in 0.59s",
+  "migration_runner_result": "1 passed, 49 deselected in 0.68s",
   "generic_release_candidate": {
     "candidate_content_hash": "77ce8f20396b2f24b550be833397899551ac92e6be667694be56c9f430168d4f",
     "example_splits": ["test"],
     "artifact_rows": {"train": 0, "val": 0, "test": 1},
     "disposition": "admitted"
+  },
+  "release_bridge_verification": {
+    "database": "broadbridge_test_ingestion_release",
+    "candidate_artifact_binding_columns": [
+      "example_id", "candidate_hash", "source_id", "revision_id", "content_sha256",
+      "job_id", "artifact_key", "artifact_sha256", "artifact_size_bytes",
+      "normalized_document_hash", "created_at", "created_by"
+    ],
+    "foreign_keys": [
+      "candidate binding -> candidate_records(example_id,candidate_hash)",
+      "candidate binding -> source_revisions(source_id,revision_id,content_sha256)",
+      "candidate binding -> ingestion_jobs(job_id)"
+    ],
+    "positive_counts": {
+      "ingestion_jobs": 1,
+      "source_revisions": 1,
+      "source_rights_reviews": 1,
+      "candidate_records": 1,
+      "candidate_artifact_bindings": 1,
+      "candidate_reviews": 1,
+      "dataset_releases": 1
+    },
+    "release_id": "3e34cb7e68215599c869e0a2d17477d3f4e0bdd966c4b41bcccda2bc7286871d",
+    "candidate_content_hash": "3e34cb7e68215599c869e0a2d17477d3f4e0bdd966c4b41bcccda2bc7286871d",
+    "bound_candidate_hash": "db8f63dcc1f7efa8b6e46bf4ce861d35d7361bc46dfb1aeb76bc8366c1125d20",
+    "normalized_document_hash": "697ed63afba657aea628b869dfa9acb1a13efa16cd177148250374f7e0d4e40c",
+    "approved_by": "release@example.com",
+    "focused_test_command": "$env:FOUNDRY_INGESTION_PATH='<absolute pinned local checkout>'; $env:BROADBRIDGE_INGESTION_TEST_DATABASE_URL='<owned loopback broadbridge_test_ingestion_* DSN>'; python -m pytest packs/oil-gas/db/tests/test_ingestion_release.py -q --basetemp='<owned scratch>' -p no:cacheprovider",
+    "focused_test_result": "6 passed, 1 existing RequestsDependencyWarning in 3.67s",
+    "combined_original_and_bridge_result": "15 passed, 1 existing RequestsDependencyWarning in 3.33s",
+    "revocation_after_prepare_rejected": true,
+    "changed_candidate_after_review_rejected": true,
+    "artifact_tamper_rejected": true,
+    "ui_pending_source_and_candidate_overlays_released": true,
+    "excluded_holdout_forced_strict_family_split": true,
+    "container_label": "codex.owner=broadbridge-ingestion-T6",
+    "container_removed": true
   },
   "cloud_scope": "No R2, Neon, EC2, Vercel, or model call was made.",
   "container_removed": true

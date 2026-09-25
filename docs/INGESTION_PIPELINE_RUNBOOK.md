@@ -9,20 +9,24 @@ does not establish live R2, Neon, worker, model, or production acceptance.
 The private originals store is the Cloudflare R2 bucket `broadbridge` at
 `https://af7446fd472b9a8d087250687882a487.r2.cloudflarestorage.com`. The bucket
 and endpoint were supplied separately; access and contents remain unverified.
-Only `incoming/broadbridge-oil-gas/` produces intake events. Derived prefixes in
-`ingestion.yaml` must never feed the intake trigger.
+Only `incoming/broadbridge-oil-gas/` produces intake events. The generic runner
+uses `originals/broadbridge-oil-gas/`, `artifacts/broadbridge-oil-gas/`,
+`registry/broadbridge-oil-gas/`, and `recipes/broadbridge-oil-gas/`. Those four
+prefixes must never feed the intake trigger.
 
-The worker selects the `broadbridge` database binding through
-`INGESTION_DB_ENV`. That binding names `BROADBRIDGE_DATABASE_URL` and schema
-`broadbridge`. Runtime code receives the pooled URL explicitly and never falls
-back to `DATABASE_URL`, PermitHub, a root `.env`, or a generic hardcoded DSN.
+The generic worker receives the environment-variable name
+`INGESTION_DB_ENV=BROADBRIDGE_DATABASE_URL` and the dedicated schema
+`INGESTION_DB_SCHEMA=broadbridge`. There is no `broadbridge` alias translation.
+Runtime code receives the pooled URL explicitly and never falls back to
+`DATABASE_URL`, PermitHub, a root `.env`, or a generic hardcoded DSN.
 Only the existing `scripts/db.py migrate` path reads
 `DATABASE_URL_UNPOOLED`; it verifies that the direct migration identity matches
 the dedicated Broadbridge runtime identity. Constructors do not run DDL.
 
 Required environment names for a live operator are:
 
-- `INGESTION_DB_ENV=broadbridge`
+- `INGESTION_DB_ENV=BROADBRIDGE_DATABASE_URL`
+- `INGESTION_DB_SCHEMA=broadbridge`
 - `BROADBRIDGE_DATABASE_URL` for runtime database access
 - `DATABASE_URL_UNPOOLED` only while applying migrations
 - the generic worker's R2 endpoint, bucket, access-key and secret-key variables
@@ -92,6 +96,93 @@ rule. It cannot grant source rights. Dataset release additionally requires the
 explicit named approval in the generic manifest to bind
 `candidate_content_hash` to `release_id`.
 
+## Candidate registration and release bridge
+
+The release bridge consumes no model endpoint. It accepts one pending
+`foundry.training_example/1`, a JSON list of pending examples, or the capture UI
+shape `{ "examples": [...] }`. Each example must already contain its messages,
+task type, family, requested split, and block-level source references. The
+command resolves those references through a successful durable job and its
+exact `result.normalized` receipt. It verifies the stored bytes, receipt,
+normalized-document hash, and immutable source revision before generic curation
+derives document/block quality flags and strict family splits. Only then does it
+record the exact candidate hash for technical review.
+
+Submit every member of an affected family in the same registration batch,
+including intended exclusions and holdouts. If a later candidate introduces a
+stricter family split, source-quality flag, or near-duplicate flag, re-register
+the complete affected family and review the returned hashes. Preparation
+re-runs global curation across all current candidates and refuses any silent
+post-review change.
+
+Use an explicit local object root for offline operation:
+
+```powershell
+$env:BROADBRIDGE_DATABASE_URL = 'postgresql://...dedicated pooled URL...'
+python packs/oil-gas/scripts/ingestion_release.py `
+  --foundry C:\absolute\path\to\slm-foundry `
+  --pack C:\absolute\path\to\Broadbridge4096\packs\oil-gas `
+  --local-object-root C:\absolute\private\objects `
+  register-candidates --input C:\private\pending-candidates.json `
+  --actor builder@example.com --output C:\private\registered.json
+```
+
+The JSON output contains IDs, hashes, quality flags, and artifact receipt
+metadata. It does not echo messages or document content. Review the returned
+`candidate_hash` through `broadbridge.review_candidate`; the pending candidate
+record itself remains immutable.
+
+Prepare the exact generic candidate after source-rights and technical reviews:
+
+```powershell
+python packs/oil-gas/scripts/ingestion_release.py `
+  --foundry C:\absolute\path\to\slm-foundry `
+  --pack C:\absolute\path\to\Broadbridge4096\packs\oil-gas `
+  --local-object-root C:\absolute\private\objects `
+  prepare-release --output C:\private\prepared-release.json
+```
+
+An optional `--exclusions` file uses the generic acknowledged-exclusion
+contract. Excluded examples remain in curation so their families still affect
+strictest split closure. The prepared output contains dispositions and
+`candidate_content_hash`, but no training message content. The release approver
+must name that exact hash in a generic approval JSON object:
+
+```json
+{
+  "status": "approved",
+  "reviewer": "release@example.com",
+  "reviewed_at": "2026-09-25T15:00:00Z",
+  "candidate_content_hash": "<exact prepared hash>"
+}
+```
+
+Build and record it with the same caller actor as the named reviewer:
+
+```powershell
+python packs/oil-gas/scripts/ingestion_release.py `
+  --foundry C:\absolute\path\to\slm-foundry `
+  --pack C:\absolute\path\to\Broadbridge4096\packs\oil-gas `
+  --local-object-root C:\absolute\private\objects `
+  build-release --approval C:\private\approval.json `
+  --release-root C:\private\releases --actor release@example.com `
+  --output C:\private\release-manifest.json
+```
+
+For R2, omit `--local-object-root` and supply all four explicit variables:
+`R2_ENDPOINT_URL`, `R2_BUCKET`, `R2_ACCESS_KEY_ID`, and
+`R2_SECRET_ACCESS_KEY`. The bridge does not load `.env` files or AWS profiles.
+
+Preparation uses a repeatable-read database snapshot. Build takes shared locks
+on source/job/right/candidate identity and review tables, re-reads current
+rights and technical decisions, and re-verifies every bound artifact before it
+writes the immutable release. It then records the release with
+`broadbridge.record_dataset_release` in the same database transaction. The
+object store and PostgreSQL do not provide a distributed transaction: if the
+database record fails after publication, the verified immutable release may be
+an unreferenced object for operator reconciliation. Never delete or overwrite
+it as an automatic retry.
+
 ## Canonical case and source adaptation
 
 Run the adapter only with explicit absolute paths. It imports the generic engine
@@ -119,9 +210,10 @@ report.
 
 ## Releases, model runs, and recovery
 
-Record an approved immutable release with
-`broadbridge.record_dataset_release(manifest, actor)`. The actor must match the
-manifest reviewer and the approval hash must equal the release ID. Model state
+The bridge records an approved immutable release with
+`broadbridge.record_dataset_release(manifest, actor)` after its final locked
+recheck. The actor must match the manifest reviewer and the approval hash must
+equal the release ID. Model state
 uses append-only revisions through
 `broadbridge.record_model_run(record, expected_revision, actor)`; read the latest
 state through `broadbridge.current_model_runs`. A retry may add a new state only

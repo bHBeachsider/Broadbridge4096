@@ -65,6 +65,7 @@ CREATE INDEX source_rights_identity ON broadbridge.source_rights_reviews
     (source_id, revision_id, content_sha256, review_id DESC);
 
 CREATE TABLE broadbridge.candidate_records (
+    candidate_sequence bigint GENERATED ALWAYS AS IDENTITY UNIQUE,
     example_id text NOT NULL,
     candidate_hash text NOT NULL CHECK (candidate_hash ~ '^[0-9a-f]{64}$'),
     family_id text NOT NULL,
@@ -100,6 +101,32 @@ CREATE TABLE broadbridge.candidate_reviews (
 );
 CREATE INDEX candidate_reviews_identity ON broadbridge.candidate_reviews
     (example_id, candidate_hash, review_id DESC);
+
+CREATE TABLE broadbridge.candidate_artifact_bindings (
+    example_id text NOT NULL,
+    candidate_hash text NOT NULL,
+    source_id text NOT NULL,
+    revision_id text NOT NULL,
+    content_sha256 text NOT NULL CHECK (content_sha256 ~ '^[0-9a-f]{64}$'),
+    job_id text NOT NULL REFERENCES broadbridge.ingestion_jobs(job_id),
+    artifact_key text NOT NULL,
+    artifact_sha256 text NOT NULL CHECK (artifact_sha256 ~ '^[0-9a-f]{64}$'),
+    artifact_size_bytes bigint NOT NULL CHECK (artifact_size_bytes >= 0),
+    normalized_document_hash text NOT NULL CHECK (normalized_document_hash ~ '^[0-9a-f]{64}$'),
+    created_at timestamptz NOT NULL DEFAULT clock_timestamp(),
+    created_by text NOT NULL CHECK (broadbridge.valid_id(created_by)),
+    PRIMARY KEY (example_id, candidate_hash, source_id, revision_id, content_sha256),
+    FOREIGN KEY (example_id, candidate_hash)
+        REFERENCES broadbridge.candidate_records(example_id, candidate_hash),
+    FOREIGN KEY (source_id, revision_id, content_sha256)
+        REFERENCES broadbridge.source_revisions(source_id, revision_id, content_sha256),
+    CONSTRAINT candidate_artifact_key CHECK (
+        artifact_key = broadbridge.trim_text(artifact_key) AND artifact_key <> ''
+        AND octet_length(artifact_key) <= 1024 AND artifact_key !~ '[\\:?#%@]'
+        AND artifact_key !~ '(^|/)\.\.?(/|$)' AND artifact_key !~ '//'
+        AND artifact_key !~ '[\\[:cntrl:]]'
+    )
+);
 
 CREATE TABLE broadbridge.dataset_releases (
     release_id text PRIMARY KEY CHECK (release_id ~ '^[0-9a-f]{64}$'),
@@ -205,6 +232,25 @@ SELECT DISTINCT ON (candidate.example_id, candidate.candidate_hash)
 FROM broadbridge.candidate_records candidate
 LEFT JOIN broadbridge.candidate_reviews review USING (example_id, candidate_hash)
 ORDER BY candidate.example_id, candidate.candidate_hash, review.review_id DESC NULLS LAST;
+
+CREATE VIEW broadbridge.current_candidate_versions AS
+SELECT DISTINCT ON (candidate.example_id)
+    candidate.candidate_sequence,
+    candidate.example_id,
+    candidate.candidate_hash,
+    candidate.family_id,
+    candidate.requested_split,
+    candidate.candidate_record,
+    candidate.created_at,
+    candidate.created_by,
+    review.status,
+    review.review_id,
+    review.reason,
+    review.reviewed_by,
+    review.reviewed_at
+FROM broadbridge.candidate_records candidate
+JOIN broadbridge.current_candidate_reviews review USING (example_id, candidate_hash)
+ORDER BY candidate.example_id, candidate.candidate_sequence DESC;
 
 CREATE FUNCTION broadbridge.valid_ingestion_actor(value text) RETURNS text
 LANGUAGE plpgsql IMMUTABLE AS $$
@@ -316,7 +362,7 @@ BEGIN
     IF p_candidate_hash !~ '^[0-9a-f]{64}$' OR NOT broadbridge.valid_id(v_example_id) THEN
         RAISE EXCEPTION 'Invalid candidate identity' USING ERRCODE = '23514';
     END IF;
-    PERFORM pg_advisory_xact_lock(hashtextextended(v_example_id || ':' || p_candidate_hash, 1947014096));
+    PERFORM pg_advisory_xact_lock(hashtextextended(v_example_id, 1947014096));
     SELECT * INTO v_existing FROM broadbridge.candidate_records
       WHERE example_id=v_example_id AND candidate_hash=p_candidate_hash;
     IF FOUND THEN
@@ -329,7 +375,10 @@ BEGIN
         VALUES (v_example_id,p_candidate_hash,p_candidate->>'family_id',p_candidate->>'split',p_candidate,v_actor)
         RETURNING * INTO v_existing;
     END IF;
-    RETURN jsonb_build_object('example_id',v_existing.example_id,'candidate_hash',v_existing.candidate_hash);
+    RETURN jsonb_build_object(
+        'example_id',v_existing.example_id,'candidate_hash',v_existing.candidate_hash,
+        'candidate_sequence',v_existing.candidate_sequence
+    );
 END $$;
 
 CREATE FUNCTION broadbridge.review_candidate(
@@ -442,6 +491,9 @@ CREATE TRIGGER source_rights_reviews_append_only BEFORE UPDATE OR DELETE OR TRUN
     EXECUTE FUNCTION broadbridge.reject_ingestion_history_change();
 CREATE TRIGGER candidate_records_immutable BEFORE UPDATE OR DELETE OR TRUNCATE
     ON broadbridge.candidate_records FOR EACH STATEMENT
+    EXECUTE FUNCTION broadbridge.reject_ingestion_history_change();
+CREATE TRIGGER candidate_artifact_bindings_immutable BEFORE UPDATE OR DELETE OR TRUNCATE
+    ON broadbridge.candidate_artifact_bindings FOR EACH STATEMENT
     EXECUTE FUNCTION broadbridge.reject_ingestion_history_change();
 CREATE TRIGGER candidate_reviews_append_only BEFORE UPDATE OR DELETE OR TRUNCATE
     ON broadbridge.candidate_reviews FOR EACH STATEMENT

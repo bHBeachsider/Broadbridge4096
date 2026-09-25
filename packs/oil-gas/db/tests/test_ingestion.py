@@ -143,6 +143,16 @@ def test_external_pack_policy_loads_single_taxonomy_source():
     assert policy["taxonomy"]["practice"]["downstream"]
     assert policy["admission_policy"]["classification_grants_rights"] is False
     assert policy["review"]["rights_role"] != policy["review"]["technical_role"]
+    assert policy["database"] == {
+        "url_env": "BROADBRIDGE_DATABASE_URL",
+        "schema": "broadbridge",
+        "generic_environment": {
+            "INGESTION_DB_ENV": "BROADBRIDGE_DATABASE_URL",
+            "INGESTION_DB_SCHEMA": "broadbridge",
+        },
+        "migration_url_env": "DATABASE_URL_UNPOOLED",
+        "constructors_run_ddl": False,
+    }
 
 
 @pytest.fixture(scope="session")
@@ -219,7 +229,7 @@ def test_migration_has_exact_generic_job_columns_and_additive_tables(conn):
     }
     assert {
         "source_revisions", "source_rights_reviews", "candidate_records",
-        "candidate_reviews", "dataset_releases", "model_runs",
+        "candidate_reviews", "candidate_artifact_bindings", "dataset_releases", "model_runs",
     } <= tables
 
 

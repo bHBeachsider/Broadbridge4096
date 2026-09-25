@@ -3,11 +3,11 @@ project_id: broadbridge-oil-gas
 recipe_version: oil-gas-v1
 
 database:
-  environment_selector: INGESTION_DB_ENV
-  environments:
-    broadbridge:
-      url_env: BROADBRIDGE_DATABASE_URL
-      schema: broadbridge
+  url_env: BROADBRIDGE_DATABASE_URL
+  schema: broadbridge
+  generic_environment:
+    INGESTION_DB_ENV: BROADBRIDGE_DATABASE_URL
+    INGESTION_DB_SCHEMA: broadbridge
   migration_url_env: DATABASE_URL_UNPOOLED
   constructors_run_ddl: false
 
@@ -16,14 +16,10 @@ storage:
   bucket: broadbridge
   endpoint: https://af7446fd472b9a8d087250687882a487.r2.cloudflarestorage.com
   event_prefix: incoming/broadbridge-oil-gas/
-  raw_prefix: raw/broadbridge-oil-gas/
-  derived_prefixes:
-    - extracted/
-    - normalized/
-    - candidates/
-    - datasets/
-    - models/
-    - evaluations/
+  originals_prefix: originals/broadbridge-oil-gas/
+  artifacts_prefix: artifacts/broadbridge-oil-gas/
+  registry_prefix: registry/broadbridge-oil-gas/
+  recipes_prefix: recipes/broadbridge-oil-gas/
   credentials_verified: false
 
 taxonomy:
