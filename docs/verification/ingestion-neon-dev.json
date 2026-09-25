@@ -1,0 +1,304 @@
+{
+  "project": "crimson-block-71962201",
+  "branch": "dev",
+  "endpoint_id": "ep-restless-bread-au1nwu5h",
+  "production_changed": false,
+  "migration_command": "db.py migrate implementation (explicit verified direct connection)",
+  "before": {
+    "version": "0004_capture_actions.sql",
+    "migrations": [
+      "0001_init.sql",
+      "0002_constraints.sql",
+      "0003_capture_auth.sql",
+      "0004_capture_actions.sql"
+    ],
+    "counts": {
+      "sources": 5,
+      "evidence": 0,
+      "cases": 4,
+      "questions": 4,
+      "workflow": 1,
+      "runs": 0,
+      "scorecards": 0,
+      "review_log": 20
+    }
+  },
+  "after": {
+    "version": "0005_ingestion.sql",
+    "migrations": [
+      "0001_init.sql",
+      "0002_constraints.sql",
+      "0003_capture_auth.sql",
+      "0004_capture_actions.sql",
+      "0005_ingestion.sql"
+    ],
+    "counts": {
+      "sources": 5,
+      "evidence": 0,
+      "cases": 4,
+      "questions": 4,
+      "workflow": 1,
+      "runs": 0,
+      "scorecards": 0,
+      "review_log": 20
+    }
+  },
+  "capture_counts_unchanged": true,
+  "new_columns": [
+    [
+      "candidate_artifact_bindings",
+      "example_id",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "candidate_hash",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "source_id",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "revision_id",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "content_sha256",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "job_id",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "artifact_key",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "artifact_sha256",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "artifact_size_bytes",
+      "bigint"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "normalized_document_hash",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "created_at",
+      "timestamp with time zone"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "created_by",
+      "text"
+    ],
+    [
+      "candidate_records",
+      "candidate_sequence",
+      "bigint"
+    ],
+    [
+      "candidate_records",
+      "example_id",
+      "text"
+    ],
+    [
+      "candidate_records",
+      "candidate_hash",
+      "text"
+    ],
+    [
+      "candidate_records",
+      "family_id",
+      "text"
+    ],
+    [
+      "candidate_records",
+      "requested_split",
+      "text"
+    ],
+    [
+      "candidate_records",
+      "candidate_record",
+      "jsonb"
+    ],
+    [
+      "candidate_records",
+      "created_at",
+      "timestamp with time zone"
+    ],
+    [
+      "candidate_records",
+      "created_by",
+      "text"
+    ],
+    [
+      "dataset_releases",
+      "release_id",
+      "text"
+    ],
+    [
+      "dataset_releases",
+      "candidate_content_hash",
+      "text"
+    ],
+    [
+      "dataset_releases",
+      "recipe_version",
+      "text"
+    ],
+    [
+      "dataset_releases",
+      "manifest",
+      "jsonb"
+    ],
+    [
+      "dataset_releases",
+      "approved_by",
+      "text"
+    ],
+    [
+      "dataset_releases",
+      "approved_at",
+      "timestamp with time zone"
+    ],
+    [
+      "dataset_releases",
+      "recorded_at",
+      "timestamp with time zone"
+    ],
+    [
+      "dataset_releases",
+      "recorded_by",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "job_id",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "source_json",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "recipe_version",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "state",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "attempts",
+      "integer"
+    ],
+    [
+      "ingestion_jobs",
+      "max_attempts",
+      "integer"
+    ],
+    [
+      "ingestion_jobs",
+      "backoff_seconds",
+      "double precision"
+    ],
+    [
+      "ingestion_jobs",
+      "max_backoff_seconds",
+      "double precision"
+    ],
+    [
+      "ingestion_jobs",
+      "available_at",
+      "double precision"
+    ],
+    [
+      "ingestion_jobs",
+      "lease_token",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "lease_expires_at",
+      "double precision"
+    ],
+    [
+      "ingestion_jobs",
+      "worker_id",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "result_json",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "error_code",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "created_at",
+      "double precision"
+    ],
+    [
+      "ingestion_jobs",
+      "updated_at",
+      "double precision"
+    ],
+    [
+      "source_revisions",
+      "source_id",
+      "text"
+    ],
+    [
+      "source_revisions",
+      "revision_id",
+      "text"
+    ],
+    [
+      "source_revisions",
+      "content_sha256",
+      "text"
+    ],
+    [
+      "source_revisions",
+      "registry_ref",
+      "text"
+    ],
+    [
+      "source_revisions",
+      "source_record",
+      "jsonb"
+    ],
+    [
+      "source_revisions",
+      "created_at",
+      "timestamp with time zone"
+    ],
+    [
+      "source_revisions",
+      "created_by",
+      "text"
+    ]
+  ]
+}

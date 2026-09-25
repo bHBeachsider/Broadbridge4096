@@ -1,9 +1,11 @@
 # Ingestion delivery index — 25 September 2026
 
 Offline implementation is complete and independently reviewed. All pull requests
-remain drafts. No merge, production migration, live upload, model inference or
-EC2/GPU operation was performed. Automated Vercel preview builds ran; their data
-targets have not been approved for uploads.
+remain drafts. Live setup has started: migration 0005 is applied to the verified
+Neon `dev` branch, with unchanged capture row counts. No merge, production
+migration, live upload, model inference or EC2/GPU operation was performed.
+Preview uploads remain blocked by the configuration items in the
+[live setup record](INGESTION_LIVE_SETUP.md).
 
 ## Plans and operating instructions
 
@@ -11,6 +13,7 @@ targets have not been approved for uploads.
 - [Domain implementation plan](plans/2026-09-25-ingestion-domain.md)
 - [Domain bridge and migration runbook](INGESTION_PIPELINE_RUNBOOK.md)
 - [Repeatable browser acceptance and deployment handoff](INGESTION_ACCEPTANCE.md)
+- [Live setup, verified targets and remaining access](INGESTION_LIVE_SETUP.md)
 - [Generic engine operator guide](https://github.com/bHBeachsider/slm-foundry/blob/codex/foundry-ingestion-acceptance/docs/INGESTION_PIPELINE.md)
 
 ```mermaid
@@ -83,11 +86,12 @@ write-capable acceptance test.
   hashes. Synthetic training-control tests use fabricated adapter tensors and
   scores; they do not establish Qwen quality or a successful GPU training run.
 
-## Next live decisions
+## Live execution sequence
 
-1. Review drafts and approve a dedicated nonproduction R2/Neon/Vercel mapping,
-   scoped service credentials and a CPU worker host. Keep production separate.
-2. Apply 0005 to that approved test database and provision event/worker wiring.
+1. Neon `dev` and the existing `broadbridge-capture` Vercel project are identified.
+   Complete the isolated R2 mapping, scoped service credentials, Preview email
+   configuration and CPU worker host selection. Keep production separate.
+2. Migration 0005 is applied and read back on `dev`. Provision event/worker wiring.
    Verify real signing/CORS, restart recovery and review/revocation with synthetic uploads.
 3. Install and verify licensed local parser model artifacts for OCR/transcription.
 4. Admit real rights-cleared documents and signed cases, prepare reviewed examples,
@@ -95,8 +99,9 @@ write-capable acceptance test.
 5. Approve explicit GPU steps/time/budget and host prerequisites, run QLoRA, evaluate,
    and promote only after acceptance. No automatic training or production promotion.
 
-Install the missing Vercel CLI for the deployment handoff: `npm i -g vercel`.
-Keep environment values in approved secret stores and ignored local files.
+Vercel CLI 60.0.1 is installed and authenticated on Brad's machine. For another
+operator, install it with `npm i -g vercel`. Keep environment values in approved
+secret stores and ignored local files.
 
 ## Rulings made
 
