@@ -2,9 +2,11 @@
 
 Offline implementation is complete and independently reviewed. All pull requests
 remain drafts. Live setup has started: migration 0005 is applied to the verified
-Neon `dev` branch, with unchanged capture row counts. No merge, production
-migration, live upload, model inference or EC2/GPU operation was performed.
-Preview uploads remain blocked by the configuration items in the
+Neon `dev` branch, with unchanged capture row counts at migration time. A private
+`broadbridge-dev` bucket and exact-origin CORS are now configured; synthetic live
+R2 uploads and local Docker extraction have run. No merge, production migration,
+model inference or EC2/GPU operation was performed. The complete Preview flow
+remains blocked by dev database authentication and configuration items in the
 [live setup record](INGESTION_LIVE_SETUP.md).
 
 ## Plans and operating instructions
@@ -89,8 +91,9 @@ write-capable acceptance test.
 ## Live execution sequence
 
 1. Neon `dev` and the existing `broadbridge-capture` Vercel project are identified.
-   Complete the isolated R2 mapping, scoped service credentials, Preview email
-   configuration and CPU worker host selection. Keep production separate.
+   The private `broadbridge-dev` test bucket exists and Brad approved local Docker.
+   Refresh the rejected dev database password; complete scoped service credentials,
+   branch-specific Preview email and the HTTPS worker connection.
 2. Migration 0005 is applied and read back on `dev`. Provision event/worker wiring.
    Verify real signing/CORS, restart recovery and review/revocation with synthetic uploads.
 3. Install and verify licensed local parser model artifacts for OCR/transcription.

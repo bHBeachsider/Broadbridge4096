@@ -1,7 +1,10 @@
 # Broadbridge ingestion live setup — 25 September 2026
 
-Status: dev database ready; browser-to-worker live acceptance pending. This record
-continues the draft PR stack and does not authorize a merge or production release.
+Status: private dev bucket and exact-origin CORS configured; local Docker approved
+and R2/CPU smoke exercised. Neon dev currently rejects its configured password,
+and branch-specific Preview email settings remain pending. Browser-to-worker live
+acceptance is not complete. This record continues the draft PR stack and does not
+authorize a merge or production release.
 
 ## Verified destinations
 
@@ -13,13 +16,12 @@ continues the draft PR stack and does not authorize a merge or production releas
 | Vercel owner/project | `bhbeachsiders-projects/broadbridge-capture` | CLI authenticated; project root `apps/capture`, Next.js, Node 24 |
 | Preview branch | `codex/broadbridge-ingestion-live-test` | Pushed; branch-specific pooled dev database Secret created and metadata verified |
 | Existing R2 bucket | `broadbridge`, account `af7446fd472b9a8d087250687882a487` | Authenticated HEAD returned 200; CORS read returned AccessDenied |
-| Proposed test bucket | `broadbridge-dev`, same account | Pending Brad's confirmation and Cloudflare access; not created |
-| CPU runtime | Existing local Docker image `foundry-ingestion:acceptance` | Proposed first test host; no hosted service or paid instance provisioned |
+| Test bucket | `broadbridge-dev`, same account | Created after confirming it was absent; public access disabled; authenticated HEAD 200 |
+| CPU runtime | Existing local Docker image `foundry-ingestion:acceptance` | Brad approved local Docker; Docker 29.8.0 and the pinned non-root image verified |
 
 Always specify these targets. The shell's ambient bucket, Neon project, and
 Vercel team point to other projects. No unrelated bucket or database was accessed.
-Keep the existing `broadbridge` bucket unchanged while test storage isolation is
-being settled. Both environments currently use project prefix
+The existing `broadbridge` bucket is unchanged. Both environments use project prefix
 `incoming/broadbridge-oil-gas/`; a separate test bucket prevents their events,
 manifests and artifacts from mixing without changing domain IDs or schemas.
 If one bucket is required, implement and test environment namespaces before live
@@ -56,40 +58,60 @@ migration and connectivity evidence, not a live upload or parser test. See
 
 ## Remaining configuration
 
-1. **Cloudflare access and test bucket.** Sign in to the dashboard or configure a
-   suitably scoped operator credential through the approved secret store. Current
-   S3 credentials can access the existing bucket but cannot inspect CORS. They
-   have not been assumed suitable for a new service. Verify public access is off;
-   configure scoped upload/service access for the approved test bucket. Do not put
-   credentials in PRs, documents or command arguments.
+1. **Cloudflare access and test bucket — verified.** Brad's signed-in Edge session
+   is accessible. The account initially contained `broadbridge`, but not
+   `broadbridge-dev`; the separate test bucket was created with private defaults.
+   Current operator S3 credentials can access it but cannot inspect CORS through
+   S3. Dashboard configuration was used instead. Service credentials restricted
+   to the test bucket are still required before deploying a persistent worker or
+   copying storage credentials into Vercel. Existing broad operator credentials
+   were used only for the bounded local test, never copied to Vercel.
 2. **Preview database — configured.** Added branch-specific
    `BROADBRIDGE_DATABASE_URL` from the verified pooled dev URL using stdin.
    Vercel metadata confirms a hidden Secret limited to
    `codex/broadbridge-ingestion-live-test` in Preview. Earlier attempts before the
    branch was pushed did not create a setting; the post-push attempt succeeded.
    Production was not read or changed. Deploy after all required settings are
-   complete so the deployment receives the new configuration.
+   complete so the deployment receives the new configuration. On the subsequent
+   access check, the root pooled URL still identified the approved dev endpoint
+   but failed password authentication. Brad was asked to refresh both dev URLs
+   locally. Do not treat the older Preview secret as current after that refresh;
+   update the branch-specific Preview database secret from the verified new URL.
 3. **Preview email.** `RESEND_API_KEY` and `CAPTURE_EMAIL_FROM` currently exist
    for Production only. Add the approved values for the live-test Preview branch.
    `AUTH_SECRET` and `CAPTURE_ALLOWED_EMAILS` already have Preview entries. Do
    not enable the local email outbox or local integration test bypass on Vercel.
-4. **CPU host and HTTPS.** First test can use the existing local CPU container.
+   Automatic approval review rejected an attempted expansion of the two Production
+   email variables to all Preview deployments. The rejected command did not run;
+   the existing entries are unchanged. Brad was asked to create Preview entries
+   scoped specifically to `codex/broadbridge-ingestion-live-test`.
+4. **CPU host — local Docker approved; HTTPS still pending.** First test uses the
+   existing local CPU container.
    A remote Vercel Preview needs a reachable HTTPS service, its server-side bearer
    token, and a trusted proxy; localhost on this PC is not reachable from Vercel.
    Final cloud CPU hosting, exposure and budget remain a separate concrete decision.
 5. **Storage and worker variables.** Configure the approved test bucket and scoped
    credentials for both services. The capture app uses `R2_ENDPOINT`; the engine
-   uses `R2_ENDPOINT_URL`. Both use `R2_BUCKET`. The worker uses
+   uses `R2_ENDPOINT_URL`. Both use `R2_BUCKET`. Non-secret `R2_ENDPOINT` and
+   `R2_BUCKET=broadbridge-dev` are now set and metadata-verified for the isolated
+   Preview branch. Storage secrets and the live API connection remain pending.
+   The worker uses
    `INGESTION_DB_ENV=BROADBRIDGE_DATABASE_URL`, `INGESTION_DB_SCHEMA=broadbridge`,
    `INGESTION_PROJECT_ID=broadbridge-oil-gas`, `INGESTION_RECIPE_VERSION=oil-gas-v1`,
    and the absolute external `INGESTION_PACK_PATH`. Set `INGESTION_API_URL` and
    secret `INGESTION_API_TOKEN` in Preview only. Separate API and worker processes.
-6. **CORS and events.** After the preview origin is known, allow that exact origin
-   with PUT and `content-type`, `if-none-match`, `x-amz-meta-sha256`,
-   `x-amz-meta-source-id`, `x-amz-meta-revision-id`. Preserve other reviewed CORS
-   entries; do not use a wildcard origin. Provision a test queue, dead-letter
-   queue and Workflow with the same fixed project/recipe/bucket and object-create
-   events only for `incoming/broadbridge-oil-gas/`. Use the Foundry transport
+6. **CORS configured; events pending.** The test bucket allows PUT from exactly
+   `https://broadbridge-capture-git-codex-bro-d2e7c0-bhbeachsiders-projects.vercel.app`
+   with `content-type`, `if-none-match`, `x-amz-meta-sha256`,
+   `x-amz-meta-source-id`, `x-amz-meta-revision-id`; exposes `ETag`; and uses a
+   300-second preflight cache. There is no wildcard origin. Real HTTP preflight
+   accepts that origin and denies an unrelated origin. The dashboard reports
+   that R2 event notifications require Workers Paid; no upgrade was purchased.
+   The initial intake can enqueue explicitly through the implemented API while
+   event transport remains a separate live gate. Before enabling automatic events,
+   provision a test queue, dead-letter queue and Workflow with the same fixed
+   project/recipe/bucket and object-create events only for
+   `incoming/broadbridge-oil-gas/`. Use the Foundry transport
    template at `deploy/ingestion/cloudflare/wrangler.jsonc`; keep account-specific
    configuration outside the generic Foundry repository.
 
@@ -108,6 +130,43 @@ Use the same branch scope for the other live-test settings. Do not run uploads
 until the intended database, storage, email and authenticated CPU endpoint are
 verified together. Vercel CLI 60.0.1 is installed globally; installing it in a
 second repository does not create a second project-specific installation.
+
+## Live R2 and local CPU evidence
+
+The final run `r2-cpu-3ea716fb4034` passed **27 checks** for two synthetic inputs:
+a text process report and a CSV observation table. See
+[machine-readable evidence](verification/ingestion-live-r2-cpu.json). It used the
+actual private R2 service and the existing Docker image
+`sha256:8e170e65112a90c57dc91b90f6c2f7daa14b16636c901d84aa50b3ab16fc3991`.
+
+- Exact Preview-origin CORS preflight accepted; unrelated origin denied.
+- Presigned requests bind Content-Length; altered-size uploads returned 403.
+- Initial PUT succeeded; duplicate immutable PUT returned 412.
+- Original downloaded bytes and SHA-256 matched both fixtures.
+- Anonymous reads were denied. R2 returns HTTP 400 `InvalidArgument` with an
+  authorization-related message when the Authorization header is absent. The
+  probe initially expected only 403/404; after inspecting that response, it was
+  corrected to accept this specific missing-authorization error as well. It
+  continues to reject a returned source body or an unrelated HTTP 400 error.
+- Duplicate enqueue preserved job identity; both CPU extractions completed.
+- Each command used a fresh container; durable job state survived those restarts.
+- Normalized artifact hashes, source identity and nonempty extraction blocks
+  matched. Sources remained pending and `reference_only`, with no training grant.
+
+The containers ran as the image's non-root user, with a read-only root filesystem,
+all capabilities dropped, no-new-privileges, bounded temporary storage, 8 GiB
+memory, 4 CPUs and 256 PIDs. The external oil-gas pack was mounted read-only.
+Only generated fixtures were supplied; no original expert files or local model
+weights were mounted. Docker outbound networking was enabled for R2, so this
+test does not establish a production egress allowlist. Test containers stopped
+automatically. Synthetic objects and local receipts remain available for audit.
+
+Because Neon rejected its configured dev password, this run used a disposable
+**local SQLite queue**. It does not establish Neon job persistence, deployed
+Next.js signing, browser login/uploads, Cloudflare event delivery, human review,
+dataset release, OCR/ASR, model inference or fine-tuning. The initial 21-check run
+passed before the size and anonymous-read checks were added; the final expanded
+run above is the acceptance record for this limited storage/CPU scope.
 
 ## Live acceptance order
 
@@ -134,6 +193,7 @@ second repository does not create a second project-specific installation.
 
 The installed Neon CLI unexpectedly echoed an inherited `NEON_API_KEY` when
 displaying help. Brad was informed and asked to rotate that API key locally.
+Brad subsequently confirmed the key was rotated; the old API key was not reused.
 The value is omitted from these artifacts and must not be repeated. It was not
 used for subsequent Neon API requests. The verified database credentials used
 for migration are distinct from that API key. Avoid invoking that CLI's help
