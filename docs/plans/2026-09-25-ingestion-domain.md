@@ -48,3 +48,27 @@ T6 owns packs/oil-gas/ingestion.yaml, prompts/ingestion-classify.md, prompts/ing
 | Production migration and model promotion | Brad | separate production release |
 
 These are deployment gates, not reasons to stop independent engine implementation. The final report must distinguish tested local behavior, unrun cloud checks and unmeasured model quality.
+
+## Offline delivery record
+
+- T6: accepted after independent specification and quality review. Historical
+  family holdouts survive replacement; revoked/nontraining sources need explicit
+  exclusions; missing SQL contract fields fail closed. Independent actual
+  PostgreSQL tests: 56 passed. Pack regressions: 277 passed. Migration check: 1 passed.
+- T7: accepted after separate reviews. Authenticated upload, durable status,
+  hash-bound rights/technical decisions, complete keyset pagination and bounded
+  previews. Unit tests: 125 passed with 8 database-gated skips; independent review:
+  56 targeted passed. TypeScript and Next.js build passed.
+- T8: final local browser-to-dataset rehearsal passed with 2 actual PostgreSQL
+  repository tests and 1 browser test. Two sources reached succeeded CPU jobs;
+  an unreviewed candidate was blocked, then accepted through the UI, and one
+  immutable dataset was published and recorded idempotently. Three local harness
+  isolation tests passed; independent release verification matched all hashes.
+- Draft dependency order: Broadbridge #1 existing capture prerequisite, #2 plan,
+  #3 domain/migration, #4 intake/review UI, then the T8 handoff. The generic
+  Foundry draft stack #1–#7 carries engine implementation and CPU CI.
+- No PR was merged, no production migration ran, and no live model or EC2 was
+  used. Automatic Vercel preview builds are separate from write-capable acceptance.
+
+The inspected synthetic evidence and exact repeatable commands are linked from
+`docs/INGESTION_ACCEPTANCE.md`. Production and model-quality gates above remain open.
