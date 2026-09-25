@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { S3Client, PutObjectCommand, HeadObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { localIngestionTestEnabled } from "./db";
-import type { Source } from "./ingestion-validation";
+import { MAX_ACTION_BYTES, previewLimitError, type Source } from "./ingestion-validation";
 export function storageConfig() {
   const { R2_ENDPOINT, R2_BUCKET, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY } = process.env;
   if (!R2_ENDPOINT || !R2_BUCKET || !R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY) throw new Error("Storage configuration unavailable");
@@ -26,7 +26,8 @@ export async function verifyUpload(source: Source) {
   // HEAD verifies the receipt only. The CPU worker verifies the actual SHA-256 before parsing.
 }
 export async function readVerifiedDocument(receipt: { key: string; sha256: string; size_bytes: number }, jobId: string) {
-  if (!new RegExp(`^artifacts/broadbridge-oil-gas/${jobId}/[a-f0-9]{32}/normalized\\.json$`).test(receipt.key) || !/^[a-f0-9]{64}$/.test(receipt.sha256) || !Number.isSafeInteger(receipt.size_bytes) || receipt.size_bytes < 0 || receipt.size_bytes > 8 * 1024 * 1024) throw new Error("Preview unavailable or exceeds 8 MiB");
+  if (!new RegExp(`^artifacts/broadbridge-oil-gas/${jobId}/[a-f0-9]{32}/normalized\\.json$`).test(receipt.key) || !/^[a-f0-9]{64}$/.test(receipt.sha256) || !Number.isSafeInteger(receipt.size_bytes) || receipt.size_bytes < 0) throw new Error("Invalid preview receipt");
+  if (receipt.size_bytes > MAX_ACTION_BYTES / 2 - 16384) throw previewLimitError();
   const { client, bucket } = storageConfig();
   const result = await client.send(new GetObjectCommand({ Bucket: bucket, Key: receipt.key }));
   if (result.ContentLength !== receipt.size_bytes || !result.Body) throw new Error("Artifact size mismatch");

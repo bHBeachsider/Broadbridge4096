@@ -5,7 +5,7 @@ const mock = vi.hoisted(() => ({ registerSource: vi.fn(), findSource: vi.fn(), f
 vi.mock("../lib/ingestion-repository", () => mock);
 vi.mock("../lib/ingestion-storage", () => mock);
 vi.mock("../lib/db", () => ({ localIngestionTestEnabled: mock.local }));
-import { prepareUpload, completeUpload, retryJob, engineRequest } from "../lib/ingestion-service";
+import { prepareUpload, completeUpload, retryJob, engineRequest, candidatePage } from "../lib/ingestion-service";
 const metadata = { original_filename: "synthetic.txt", size_bytes: 8, media_type: "text/plain", content_sha256: "a".repeat(64), confidentiality: "internal" };
 const identity = { source_id: "source1", revision_id: "r1", content_sha256: metadata.content_sha256 };
 beforeEach(() => { vi.resetAllMocks(); vi.stubEnv("INGESTION_API_URL","https://engine.example.invalid"); vi.stubEnv("INGESTION_API_TOKEN","private-token"); mock.signUpload.mockResolvedValue({ url: "private-signed-url", headers: {} }); mock.local.mockReturnValue(false); });
@@ -30,3 +30,28 @@ describe("durable intake orchestration", () => {
   it("binds retry to the stored source before contacting the engine", async () => { mock.findJob.mockRejectedValue(new Error("wrong project")); const fetcher = vi.fn(); vi.stubGlobal("fetch",fetcher); await expect(retryJob(identity,"b".repeat(64))).rejects.toThrow(); expect(fetcher).not.toHaveBeenCalled(); });
   it.each(["http://engine.example", "https://u:p@engine.example", "https://engine.example?token=secret", "https://engine.example/path"])("rejects unsafe API endpoint %s", async endpoint => { vi.stubEnv("INGESTION_API_URL",endpoint); await expect(engineRequest("/v1/jobs",{})).rejects.toThrow(); });
 });
+describe("preview response limits and candidate continuations", () => {
+  it("keeps every candidate reachable when aggregate text exceeds one response", async () => {
+    const all = Array.from({length: 105}, (_, index) => ({example_id:`candidate-${String(index).padStart(3,"0")}`,candidate_hash:"a".repeat(64),status:"pending",review_id:null,reason:null,candidate_record:{messages:[{role:"assistant",content:"<".repeat(9000)}]}}));
+    mock.listCandidates.mockImplementation(async (_identity, cursor) => {
+      const start=cursor ? all.findIndex(row=>row.example_id===cursor.example_id)+1 : 0;
+      const candidates=all.slice(start,start+20); const last=candidates.at(-1)!;
+      return {candidates,next_cursor:start+20<all.length?{example_id:last.example_id,candidate_hash:last.candidate_hash}:null};
+    });
+    const seen:string[]=[]; let cursor: import("../lib/ingestion-validation").CandidateCursor=null;
+    do { const page=await candidatePage(identity,cursor); expect(actionResponseBytes(page)).toBeLessThanOrEqual(MAX_ACTION_BYTES); expect(page.candidates.length).toBeGreaterThan(0); seen.push(...page.candidates.map(row=>row.example_id)); cursor=page.next_cursor; } while(cursor);
+    expect(seen).toEqual(all.map(row=>row.example_id));
+  });
+  it("returns only identity and an explicit unavailable marker for a single oversized candidate", async () => {
+    mock.listCandidates.mockResolvedValue({candidates:[{example_id:"oversized",candidate_hash:"b".repeat(64),status:"pending",review_id:null,reason:null,candidate_record:{messages:[{content:"漢".repeat(300000)}]}}],next_cursor:null});
+    const page=await candidatePage(identity,null);
+    expect(page.candidates[0]).toMatchObject({candidate_record:null,preview_oversized:true,example_id:"oversized"});
+    expect(actionResponseBytes(page)).toBeLessThan(MAX_ACTION_BYTES);
+  });
+  it("never exposes a candidate page for an unknown/stale source identity", async () => {
+    mock.findSource.mockRejectedValue(Object.assign(new Error("stale"),{code:"40001"}));
+    await expect(candidatePage(identity,null)).rejects.toMatchObject({code:"40001"});expect(mock.listCandidates).not.toHaveBeenCalled();
+  });
+});
+
+import { actionResponseBytes, MAX_ACTION_BYTES } from "../lib/ingestion-validation";

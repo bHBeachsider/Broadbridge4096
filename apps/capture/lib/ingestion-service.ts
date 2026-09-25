@@ -4,7 +4,7 @@ import { z } from "zod";
 import { localIngestionTestEnabled } from "./db";
 import * as repository from "./ingestion-repository";
 import * as storage from "./ingestion-storage";
-import { PROJECT, uploadSchema, sourceSchema, type Identity, type Preview } from "./ingestion-validation";
+import { PROJECT, uploadSchema, sourceSchema, type Identity, type Preview, type CandidateCursor, type CandidatePage, assertActionBudget, actionResponseBytes, MAX_ACTION_BYTES, previewLimitError } from "./ingestion-validation";
 export async function engineRequest(path: string, body: unknown) {
   const base = process.env.INGESTION_API_URL; const token = process.env.INGESTION_API_TOKEN;
   if (!base || !token || !/^[\x21-\x7e]{1,4096}$/.test(token)) throw new Error("Ingestion service unavailable");
@@ -43,12 +43,29 @@ export async function retryJob(identity: Identity, jobId: string) {
 }
 export async function previewSource(identity: Identity, jobId: string | null): Promise<Preview> {
   await repository.findSource(identity);
-  const candidates = await repository.listCandidates(identity);
-  if (!jobId) return { document: null, candidates };
+  if (!jobId) return { document: null };
   const row = await repository.findJob(identity, jobId);
   const result = z.object({ normalized: z.object({ key: z.string(), sha256: z.string(), size_bytes: z.number() }) }).safeParse(row.result);
-  if (!result.success) return { document: null, candidates };
+  if (!result.success) return { document: null };
   const document = z.object({ source: sourceSchema, blocks: z.array(z.record(z.string(), z.unknown())), status: z.string() }).passthrough().parse(await storage.readVerifiedDocument(result.data.normalized, jobId));
   if (document.source.source_id !== identity.source_id || document.source.revision_id !== identity.revision_id || document.source.content_sha256 !== identity.content_sha256) throw new Error("Preview identity mismatch");
-  return { document, candidates };
+  return assertActionBudget({ document });
+}
+
+export async function candidatePage(identity: Identity, cursor: CandidateCursor): Promise<CandidatePage> {
+  await repository.findSource(identity);
+  const page = await repository.listCandidates(identity, cursor);
+  const accepted: CandidatePage["candidates"] = [];
+  for (const candidate of page.candidates) {
+    let item = candidate;
+    if (actionResponseBytes({ candidates: [item], next_cursor: null }) > MAX_ACTION_BYTES) item = { ...item, candidate_record: null, preview_oversized: true };
+    if (actionResponseBytes({ candidates: [...accepted, item], next_cursor: { example_id: item.example_id, candidate_hash: item.candidate_hash } }) > MAX_ACTION_BYTES) {
+      if (!accepted.length) throw previewLimitError();
+      break;
+    }
+    accepted.push(item);
+  }
+  const last = accepted.at(-1);
+  const next_cursor = accepted.length < page.candidates.length && last ? { example_id: last.example_id, candidate_hash: last.candidate_hash } : page.next_cursor;
+  return assertActionBudget({ candidates: accepted, next_cursor });
 }

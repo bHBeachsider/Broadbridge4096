@@ -20,3 +20,15 @@ describe("intake boundary", () => {
     expect(rightsSchema.safeParse({ ...identity, decision: "approved", permitted_use: "training", rights_basis: "", expected_review_id: null }).success).toBe(false);
   });
 });
+import { assertActionBudget, actionResponseBytes, MAX_ACTION_BYTES } from "../lib/ingestion-validation";
+describe("bounded serialized preview transport", () => {
+  it.each(["x".repeat(600000), "漢".repeat(200000), "<script>\\\"".repeat(80000)])("rejects a large complete block, including multibyte and escaped text", text => {
+    expect(() => assertActionBudget({ document: { blocks: [{ text }] } })).toThrow();
+  });
+  it("includes aggregate candidate text and escaping in the budget", () => {
+    const candidates = Array.from({ length: 20 }, (_, index) => ({ example_id: String(index), messages: [{ content: "<".repeat(6000) }] }));
+    expect(actionResponseBytes({ candidates })).toBeGreaterThan(MAX_ACTION_BYTES);
+    expect(() => assertActionBudget({ candidates })).toThrow();
+    expect(() => assertActionBudget({ document: { blocks: [{ text: "A small complete block." }] } })).not.toThrow();
+  });
+});

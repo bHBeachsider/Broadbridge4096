@@ -29,7 +29,7 @@ test("real magic-link intake → immutable upload → CPU evidence → separate 
     { name: `${marker}.txt`, mimeType: "text/plain", buffer: Buffer.from("Synthetic pump inspection. Measured inlet pressure: 3 bar absolute. No operational advice.") },
     { name: `${marker}.csv`, mimeType: "text/csv", buffer: Buffer.from("equipment,pressure,basis\npump,3,bar absolute\n") },
   ]);
-  await page.getByLabel("Confidentiality", { exact: true }).selectOption("internal");
+  await page.getByRole("combobox", { name: "Confidentiality", exact: true }).selectOption("internal");
   await page.getByRole("button", { name: "Upload selected files" }).click();
   await expect(page.getByText("Queued for CPU verification", { exact: false })).toHaveCount(2);
   await expect.poll(async () => {

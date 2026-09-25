@@ -15,7 +15,20 @@ export type Identity = z.infer<typeof identitySchema>;
 export type RightsInput = z.infer<typeof rightsSchema>;
 export type CandidateReviewInput = z.infer<typeof candidateReviewSchema>;
 export type SourceRow = Identity & { source_ref: string; original_filename: string; media_type: string; size_bytes: number; confidentiality: string; current_permission_status: string; current_permitted_use: string; current_rights_review_id: string | null; created_by: string; job_id: string | null; state: string | null; error_code: string | null; document_status: string | null };
-export type Candidate = { example_id: string; candidate_hash: string; status: string; review_id: string | null; reason: string | null; candidate_record: Record<string, unknown> };
-export type Preview = { document: Record<string, unknown> | null; candidates: Candidate[] };
-export type Snapshot = { sources: SourceRow[] };
+export const sourceCursorSchema = identitySchema.nullable();
+export const candidateCursorSchema = z.strictObject({ example_id: identifier, candidate_hash: hash }).nullable();
+export type SourceCursor = z.infer<typeof sourceCursorSchema>;
+export type CandidateCursor = z.infer<typeof candidateCursorSchema>;
+export const MAX_ACTION_BYTES = 1024 * 1024;
+export function previewLimitError() { return Object.assign(new Error("Preview exceeds the safe response budget"), { code: "PREVIEW_TOO_LARGE" }); }
+// Reserve framing space and count nested JSON/string escaping conservatively.
+export function actionResponseBytes(value: unknown) {
+  const encoded = JSON.stringify({ ok: true, value }).replace(/[<>&\u2028\u2029]/g, char => `\\u${char.charCodeAt(0).toString(16).padStart(4, "0")}`);
+  return new TextEncoder().encode(encoded).byteLength * 2 + 16384;
+}
+export function assertActionBudget<T>(value: T): T { if (actionResponseBytes(value) > MAX_ACTION_BYTES) throw previewLimitError(); return value; }
+export type Candidate = { example_id: string; candidate_hash: string; status: string; review_id: string | null; reason: string | null; candidate_record: Record<string, unknown> | null; preview_oversized?: boolean };
+export type Preview = { document: Record<string, unknown> | null };
+export type CandidatePage = { candidates: Candidate[]; next_cursor: CandidateCursor };
+export type Snapshot = { sources: SourceRow[]; next_cursor: SourceCursor };
 export type ActionResult<T> = { ok: true; value: T } | { ok: false; error: string; conflict?: boolean };
