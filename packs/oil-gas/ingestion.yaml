@@ -1,0 +1,123 @@
+schema: broadbridge.ingestion_policy/1
+project_id: broadbridge-oil-gas
+recipe_version: oil-gas-v1
+
+database:
+  environment_selector: INGESTION_DB_ENV
+  environments:
+    broadbridge:
+      url_env: BROADBRIDGE_DATABASE_URL
+      schema: broadbridge
+  migration_url_env: DATABASE_URL_UNPOOLED
+  constructors_run_ddl: false
+
+storage:
+  provider: cloudflare-r2
+  bucket: broadbridge
+  endpoint: https://af7446fd472b9a8d087250687882a487.r2.cloudflarestorage.com
+  event_prefix: incoming/broadbridge-oil-gas/
+  raw_prefix: raw/broadbridge-oil-gas/
+  derived_prefixes:
+    - extracted/
+    - normalized/
+    - candidates/
+    - datasets/
+    - models/
+    - evaluations/
+  credentials_verified: false
+
+taxonomy:
+  practice:
+    downstream: [refinery, refining, petrochemical, process unit, operations]
+    midstream: [pipeline, terminal, tank farm, gas processing]
+    upstream: [well, drilling, completion, production separator]
+  document_role:
+    troubleshooting_correspondence: [troubleshoot, incident, upset, root cause, email thread]
+    operating_procedure: [procedure, operating instruction, startup, shutdown]
+    engineering_report: [engineering report, technical report, study, assessment]
+    equipment_record: [datasheet, inspection record, maintenance record, vendor manual]
+    process_data: [trend, historian, laboratory result, operating data]
+  equipment:
+    column: [distillation column, fractionator, tower, wash bed]
+    heat_exchanger: [heat exchanger, exchanger, reboiler, condenser]
+    pump: [pump, centrifugal pump, seal]
+    compressor: [compressor, antisurge, suction drum]
+    furnace: [furnace, fired heater, burner, stack]
+    reactor: [reactor, catalyst bed, reactor effluent]
+    vessel: [separator, drum, vessel, knockout drum]
+  process:
+    crude_vacuum_distillation: [crude unit, atmospheric column, vacuum column, hvgo]
+    hydroprocessing: [hydrotreating, hydrocracker, hydrogen partial pressure]
+    catalytic_cracking: [fcc, fluid catalytic cracking, regenerator]
+    reforming: [catalytic reformer, reforming, octane]
+    sulfur_recovery: [amine, sour water, claus, sulfur recovery]
+    utilities: [steam, cooling water, flare, fuel gas]
+  topic:
+    troubleshooting: [diagnosis, hypothesis, discriminator, root cause]
+    process_safety: [hazard, relief, alarm, trip, safe operating limit]
+    reliability: [vibration, fouling, corrosion, failure, inspection]
+    performance: [yield, efficiency, heat duty, pressure drop, throughput]
+    measurement_quality: [calibration, instrument drift, uncertainty, data quality]
+
+admission_policy:
+  classification_grants_rights: false
+  initial_source_permission: pending
+  source_training_requires:
+    permission_status: approved
+    permitted_use: training
+    normalized_status: complete
+    technical_review_status: approved
+  case_training_requires:
+    status: signed
+    permitted_use: training
+    complete_reviewer_signoff: true
+  family_split_precedence: [train, val, test]
+  case_split_mapping:
+    train: train
+    dev: val
+    locked_test: test
+  include_excluded_family_members_in_split_closure: true
+  dataset_release_requires_hash_bound_approval: true
+  model_assisted_drafts_require_review: true
+
+review:
+  rights_role: rights_authority
+  technical_role: technical_reviewer
+  technical_reviewer: Bill Hurt
+  source_text_may_assign_rights: false
+  source_text_may_assign_reviewer: false
+  stale_review_policy: reject
+
+drafting:
+  model_policy: local_only
+  endpoint_env: OLLAMA_URL
+  unavailable_action: queue_for_later
+  prompts:
+    classification: prompts/ingestion-classify.md
+    examples: prompts/ingestion-examples.md
+
+task_recipes:
+  - id: troubleshooting-diagnosis-v1
+    task_type: grounded_explanation
+    prompt: prompts/ingestion-examples.md
+    required_labels: {practice: [downstream], topic: [troubleshooting]}
+    input_scope: decision_time_or_cited_blocks
+    target_scope: reviewed_reference_answer
+  - id: missing-data-request-v1
+    task_type: missing_data
+    prompt: prompts/ingestion-examples.md
+    required_labels: {practice: [downstream]}
+    input_scope: decision_time_or_cited_blocks
+    target_scope: reviewed_reference_answer
+  - id: engineering-calculation-v1
+    task_type: calculation
+    prompt: prompts/ingestion-examples.md
+    required_labels: {practice: [downstream]}
+    input_scope: decision_time_or_cited_blocks
+    target_scope: reviewed_reference_answer
+  - id: safe-abstention-v1
+    task_type: abstention
+    prompt: prompts/ingestion-examples.md
+    required_labels: {practice: [downstream]}
+    input_scope: decision_time_or_cited_blocks
+    target_scope: reviewed_reference_answer
