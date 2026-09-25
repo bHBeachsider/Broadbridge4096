@@ -129,7 +129,7 @@ def _candidate(source: dict, suffix: str = "") -> dict:
     }
 
 
-def _setup(release_database, tmp_path, *, suffix=None):
+def _setup(release_database, tmp_path, *, suffix=None, approve_rights=True):
     if not FOUNDRY.is_absolute() or not (FOUNDRY / "src/ingestion/datasets.py").is_file():
         pytest.skip("Set FOUNDRY_INGESTION_PATH to the pinned local Foundry checkout")
     suffix = suffix or uuid.uuid4().hex[:8].upper()
@@ -157,11 +157,12 @@ def _setup(release_database, tmp_path, *, suffix=None):
             (f"JOB-{suffix}", json.dumps(source), "oil-gas-v1",
              json.dumps({"normalized": receipt, "document_status": "complete", "attachments": []})),
         )
-        connection.execute(
-            "SELECT broadbridge.review_source_rights(%s,%s,%s,'approved','training',%s,NULL,%s)",
-            (source["source_id"], source["revision_id"], source["content_sha256"],
-             "synthetic owner grant", "rights@example.com"),
-        )
+        if approve_rights:
+            connection.execute(
+                "SELECT broadbridge.review_source_rights(%s,%s,%s,'approved','training',%s,NULL,%s)",
+                (source["source_id"], source["revision_id"], source["content_sha256"],
+                 "synthetic owner grant", "rights@example.com"),
+            )
         connection.commit()
     return bridge, engine, store, source
 
@@ -274,7 +275,7 @@ def test_rights_revoked_after_prepare_blocks_build(release_database, object_stor
              "synthetic withdrawal", current, "rights@example.com"),
         )
         connection.commit()
-    with pytest.raises(bridge.BridgeError, match="revoked|training-approved"):
+    with pytest.raises(bridge.BridgeError, match="acknowledged exclusion"):
         bridge.build_release(
             database_url=release_database, store=store, engine=engine,
             release_root=tmp_path / "releases", approval=_approval(prepared),
@@ -320,4 +321,137 @@ def test_bound_normalized_artifact_tamper_blocks_release(release_database, objec
             database_url=release_database, store=store, engine=engine,
             release_root=tmp_path / "releases", approval=_approval(prepared),
             actor="release@example.com", exclusions=[],
+        )
+
+
+@pytest.mark.parametrize("holdout", ["test", "val"])
+def test_replacement_and_new_family_members_keep_historical_holdout(
+        release_database, object_store_root, holdout):
+    bridge, engine, store, source = _setup(release_database, object_store_root)
+    original = _candidate(source)
+    original["split"] = holdout
+    registered, _ = _register_and_approve(
+        bridge, engine, store, source, release_database, original
+    )
+    replacement = _candidate(source)
+    replacement["messages"][0]["content"] += " Revised wording."
+    updated, _ = _register_and_approve(
+        bridge, engine, store, source, release_database, replacement
+    )
+    assert updated["candidate_hash"] != registered["candidate_hash"]
+    assert updated["requested_split"] == holdout
+    sibling, _ = _register_and_approve(
+        bridge, engine, store, source, release_database, _candidate(source, "-NEW")
+    )
+    assert sibling["requested_split"] == holdout
+    prepared = bridge.prepare_release(database_url=release_database, store=store, engine=engine)
+    assert {item["split"] for item in prepared["examples"]} == {holdout}
+
+
+@pytest.mark.parametrize("permission_state", ["revoked", "pending", "reference_only"])
+def test_ineligible_source_can_be_acknowledged_without_blocking_unrelated_release(
+        release_database, object_store_root, tmp_path, permission_state):
+    bridge, engine, store, excluded_source = _setup(
+        release_database, object_store_root, suffix="EXCLUDED", approve_rights=False
+    )
+    _, _, _, kept_source = _setup(release_database, object_store_root, suffix="KEPT")
+    excluded = _candidate(excluded_source)
+    excluded["messages"] = [
+        {"role": "user", "content": "Which evidence is ineligible for release?"},
+        {"role": "assistant", "content": "The excluded synthetic document."},
+    ]
+    _register_and_approve(bridge, engine, store, excluded_source, release_database, excluded)
+    kept, _ = _register_and_approve(bridge, engine, store, kept_source, release_database)
+    if permission_state != "pending":
+        with psycopg.connect(release_database) as connection:
+            connection.execute(
+                "SELECT broadbridge.review_source_rights(%s,%s,%s,%s,'reference_only',%s,NULL,%s)",
+                (excluded_source["source_id"], excluded_source["revision_id"],
+                 excluded_source["content_sha256"],
+                 "revoked" if permission_state == "revoked" else "approved",
+                 "synthetic nontraining permission", "rights@example.com"),
+            )
+    with pytest.raises(bridge.BridgeError):
+        bridge.prepare_release(database_url=release_database, store=store, engine=engine)
+    exclusions = [{
+        "example_id": excluded["example_id"], "reason": "Acknowledged nontraining source",
+        "acknowledged_by": "release@example.com", "acknowledged_at": "2026-09-25T14:00:00Z",
+    }]
+    prepared = bridge.prepare_release(
+        database_url=release_database, store=store, engine=engine, exclusions=exclusions
+    )
+    assert [row["example_id"] for row in prepared["examples"]] == [kept["example_id"]]
+    disposition = next(row for row in prepared["dispositions"] if row["example_id"] == excluded["example_id"])
+    assert disposition["status"] == "excluded"
+    assert "source_not_training_approved" in disposition["reasons"]
+    manifest = bridge.build_release(
+        database_url=release_database, store=store, engine=engine, release_root=tmp_path / "release",
+        approval=_approval(prepared), actor="release@example.com", exclusions=exclusions,
+    )
+    assert manifest["release_id"] == prepared["candidate_content_hash"]
+
+
+def test_snapshot_refuses_legacy_hash_that_dropped_historical_holdout(
+        release_database, object_store_root):
+    bridge, engine, store, source = _setup(release_database, object_store_root)
+    held = _candidate(source)
+    held["split"] = "test"
+    registered, _ = _register_and_approve(bridge, engine, store, source, release_database, held)
+    # Simulate a previously stored version that bypassed the Python bridge. It
+    # keeps real artifact bindings and valid technical approval, so only the
+    # historical split check prevents the contamination.
+    with psycopg.connect(release_database) as connection:
+        candidate = connection.execute(
+            "SELECT candidate_record FROM broadbridge.candidate_records WHERE candidate_hash=%s",
+            (registered["candidate_hash"],),
+        ).fetchone()[0]
+        candidate["split"] = "train"
+        legacy_hash = engine.content_hash(candidate)
+        connection.execute("SELECT broadbridge.register_candidate(%s,%s,%s)",
+                           (Jsonb(candidate), legacy_hash, "legacy@example.com"))
+        connection.execute(
+            """INSERT INTO broadbridge.candidate_artifact_bindings
+               (example_id,candidate_hash,source_id,revision_id,content_sha256,job_id,
+                artifact_key,artifact_sha256,artifact_size_bytes,normalized_document_hash,created_by)
+               SELECT example_id,%s,source_id,revision_id,content_sha256,job_id,
+                      artifact_key,artifact_sha256,artifact_size_bytes,normalized_document_hash,created_by
+               FROM broadbridge.candidate_artifact_bindings WHERE candidate_hash=%s""",
+            (legacy_hash, registered["candidate_hash"]),
+        )
+        connection.execute("SELECT broadbridge.review_candidate(%s,%s,'approved',%s,NULL,%s)",
+                           (candidate["example_id"], legacy_hash, "legacy technical approval", "reviewer@example.com"))
+    with pytest.raises(bridge.BridgeError, match="re-register"):
+        bridge.prepare_release(database_url=release_database, store=store, engine=engine)
+
+
+def test_revocation_exclusion_requires_a_new_release_hash_approval(
+        release_database, object_store_root, tmp_path):
+    bridge, engine, store, source = _setup(release_database, object_store_root, suffix="BEFORE")
+    _, _, _, kept_source = _setup(release_database, object_store_root, suffix="OTHER")
+    candidate = _candidate(source)
+    candidate["messages"] = [{"role": "user", "content": "Describe valve inspection."},
+                             {"role": "assistant", "content": "Synthetic valve was open."}]
+    _register_and_approve(bridge, engine, store, source, release_database, candidate)
+    _register_and_approve(bridge, engine, store, kept_source, release_database)
+    before = bridge.prepare_release(database_url=release_database, store=store, engine=engine)
+    with psycopg.connect(release_database) as connection:
+        current = connection.execute(
+            "SELECT review_id FROM broadbridge.current_source_permissions WHERE source_id=%s",
+            (source["source_id"],),
+        ).fetchone()[0]
+        connection.execute(
+            "SELECT broadbridge.review_source_rights(%s,%s,%s,'revoked','reference_only',%s,%s,%s)",
+            (source["source_id"], source["revision_id"], source["content_sha256"],
+             "synthetic withdrawal", current, "rights@example.com"),
+        )
+    exclusions = [{"example_id": candidate["example_id"], "reason": "withdrawn source",
+                   "acknowledged_by": "release@example.com", "acknowledged_at": "2026-09-25T14:00:00Z"}]
+    after = bridge.prepare_release(
+        database_url=release_database, store=store, engine=engine, exclusions=exclusions
+    )
+    assert after["candidate_content_hash"] != before["candidate_content_hash"]
+    with pytest.raises(bridge.BridgeError, match="approval is stale"):
+        bridge.build_release(
+            database_url=release_database, store=store, engine=engine, release_root=tmp_path / "release",
+            approval=_approval(before), actor="release@example.com", exclusions=exclusions,
         )

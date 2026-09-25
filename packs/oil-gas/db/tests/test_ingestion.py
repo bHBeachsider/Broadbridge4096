@@ -369,3 +369,77 @@ def test_candidate_dataset_and_model_records_are_hash_bound_and_stale_safe(conn)
         "SELECT state FROM broadbridge.current_model_runs WHERE run_id='RUN-1'"
     ).fetchone()[0] == "failed"
     assert conn.execute("SELECT count(*) FROM broadbridge.runs").fetchone()[0] == 0
+
+
+@pytest.mark.parametrize("key", list(_source_revision()))
+@pytest.mark.parametrize("mutation", ["missing", "null"])
+def test_source_contract_rejects_missing_or_null_required_fields(conn, key, mutation):
+    conn.execute("SELECT 1")  # Keep each attempted insert inside a savepoint.
+    source = _source_revision()
+    if mutation == "missing":
+        source.pop(key)
+    else:
+        source[key] = None
+    with pytest.raises(psycopg.errors.CheckViolation):
+        with conn.transaction():
+            conn.execute(
+                "SELECT broadbridge.register_source_revision(%s,%s,%s)",
+                (Jsonb(source), "registry/malformed.json", "intake@example.com"),
+            )
+
+
+@pytest.mark.parametrize("key", ["permitted_use", "status", "rights_basis", "reviewed_by", "reviewed_at"])
+def test_source_permission_requires_even_nullable_keys(conn, key):
+    conn.execute("SELECT 1")
+    source = _source_revision()
+    source["permission"].pop(key)
+    with pytest.raises(psycopg.errors.CheckViolation):
+        with conn.transaction():
+            conn.execute(
+                "SELECT broadbridge.register_source_revision(%s,%s,%s)",
+                (Jsonb(source), "registry/malformed.json", "intake@example.com"),
+            )
+
+
+def test_candidate_contract_rejects_missing_schema_and_review_nulls(conn):
+    conn.execute("SELECT 1")
+    candidate = {
+        "example_id": "EX-MALFORMED", "family_id": "FAMILY-1", "split": "train",
+        "source_refs": [{"source_id": "SRC-1"}], "review": {"status": "pending"},
+    }
+    with pytest.raises(psycopg.errors.CheckViolation):
+        with conn.transaction():
+            conn.execute(
+                "SELECT broadbridge.register_candidate(%s,%s,%s)",
+                (Jsonb(candidate), "a" * 64, "builder@example.com"),
+            )
+
+
+@pytest.mark.parametrize("schema_value", [None, "missing"])
+def test_dataset_and_model_checks_cannot_be_bypassed_by_null_schema(conn, schema_value):
+    release_id = "f" * 64
+    manifest = {
+        "schema": "foundry.dataset_release/1", "release_id": release_id,
+        "pack_name": "broadbridge-oil-gas", "recipe_version": "oil-gas-v1",
+        "review": {"status": "approved", "reviewer": "release@example.com",
+                   "reviewed_at": "2026-09-25T12:00:00Z", "candidate_content_hash": release_id},
+    }
+    bad_manifest = copy.deepcopy(manifest)
+    bad_manifest["schema"] = schema_value
+    if schema_value == "missing":
+        bad_manifest.pop("schema")
+    conn.execute("SELECT 1")
+    with pytest.raises(psycopg.errors.CheckViolation):
+        with conn.transaction():
+            conn.execute("SELECT broadbridge.record_dataset_release(%s,%s)",
+                         (Jsonb(bad_manifest), "release@example.com"))
+    conn.execute("SELECT broadbridge.record_dataset_release(%s,%s)",
+                 (Jsonb(manifest), "release@example.com"))
+    bad_run = {"schema": schema_value, "run_id": "RUN-MISSING-SCHEMA", "release_id": release_id,
+               "dataset_release_hash": release_id, "status": "queued"}
+    if schema_value == "missing":
+        bad_run.pop("schema")
+    with pytest.raises(psycopg.errors.CheckViolation):
+        with conn.transaction():
+            conn.execute("SELECT broadbridge.record_model_run(%s,NULL,%s)",
+                         (Jsonb(bad_run), "trainer@example.com"))

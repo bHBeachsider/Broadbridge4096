@@ -113,7 +113,11 @@ including intended exclusions and holdouts. If a later candidate introduces a
 stricter family split, source-quality flag, or near-duplicate flag, re-register
 the complete affected family and review the returned hashes. Preparation
 re-runs global curation across all current candidates and refuses any silent
-post-review change.
+post-review change. Historical assignments from every immutable candidate
+version also constrain its family: replacing a test/validation example or
+adding a new family member cannot move that family into training. Registration
+applies this closure before hashing and review. A legacy version that bypassed
+the rule must be re-registered and reviewed; changing its family ID is refused.
 
 Use an explicit local object root for offline operation:
 
@@ -145,8 +149,16 @@ python packs/oil-gas/scripts/ingestion_release.py `
 An optional `--exclusions` file uses the generic acknowledged-exclusion
 contract. Excluded examples remain in curation so their families still affect
 strictest split closure. The prepared output contains dispositions and
-`candidate_content_hash`, but no training message content. The release approver
-must name that exact hash in a generic approval JSON object:
+`candidate_content_hash`, but no training message content.
+
+Current revoked, pending, testing-only, and reference-only source permissions
+produce explicit ineligible dispositions. Acknowledging their exclusions lets
+unrelated approved examples proceed; omitting an acknowledgement still blocks
+release. Source/artifact integrity is verified even for excluded examples.
+Rights changes invalidate the previous release approval, so prepare and approve
+the new hash after recording any exclusion.
+
+The release approver must name that exact hash in a generic approval JSON object:
 
 ```json
 {
@@ -234,6 +246,9 @@ Database tests accept only an explicitly supplied loopback database named
 with pgvector, apply migrations 0001 through 0005, run the focused test, then
 stop and remove only that ownership-labeled container. The committed synthetic
 evidence is in `packs/oil-gas/db/verification/ingestion-T6.json`.
+The historical-holdout, explicit-exclusion, and NULL-contract regressions and
+their SQL column/count evidence are in
+`packs/oil-gas/db/verification/ingestion-T6-fixes.json`.
 
 Still open: scoped R2 credentials and private-access verification, dedicated
 nonproduction Neon/R2/Vercel mapping, CPU worker host and parser artifacts,

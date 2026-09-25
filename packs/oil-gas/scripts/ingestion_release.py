@@ -222,6 +222,7 @@ def register_candidates(*, database_url, store, engine, candidates, actor, recip
                               broadbridge.candidate_records,broadbridge.candidate_artifact_bindings
                IN SHARE ROW EXCLUSIVE MODE"""
         )
+        candidates = _historical_family_splits(connection, candidates)
         documents = {}
         bindings = {}
         for candidate in candidates:
@@ -298,6 +299,27 @@ def _timestamp(value):
     return value.isoformat().replace("+00:00", "Z")
 
 
+def _historical_family_splits(connection, candidates):
+    """Preserve assignments from every immutable version before hashing/review."""
+    rank = {"train": 0, "dev": 1, "val": 1, "locked_test": 2, "test": 2}
+    names = {0: "train", 1: "val", 2: "test"}
+    family_rank = {}
+    example_families = {}
+    history = connection.execute(
+        "SELECT example_id,family_id,requested_split FROM broadbridge.candidate_records"
+    ).fetchall()
+    for row in history:
+        family = row["family_id"]
+        family_rank[family] = max(family_rank.get(family, 0), rank[row["requested_split"]])
+        example_families.setdefault(row["example_id"], set()).add(family)
+    for candidate in candidates:
+        family = candidate["family_id"]
+        if example_families.get(candidate["example_id"], {family}) != {family}:
+            raise BridgeError("candidate family membership is immutable across versions")
+        family_rank[family] = max(family_rank.get(family, 0), rank[candidate["split"]])
+    return [{**item, "split": names[family_rank[item["family_id"]]]} for item in candidates]
+
+
 def _snapshot(connection, store, engine):
     rows = connection.execute(
         "SELECT * FROM broadbridge.current_candidate_versions ORDER BY example_id"
@@ -357,8 +379,6 @@ def _snapshot(connection, store, engine):
             ).fetchone()
             if permission is None or document["source"] != permission["source_record"]:
                 raise BridgeError("artifact source differs from immutable source revision")
-            if permission["status"] != "approved" or permission["permitted_use"] != "training":
-                raise BridgeError("source is revoked or is not currently training-approved")
             overlaid = dict(document)
             overlaid["source"] = dict(document["source"])
             overlaid["source"]["permission"] = {
@@ -376,7 +396,9 @@ def _snapshot(connection, store, engine):
         candidates.append(candidate)
     document_values = list(documents.values())
     try:
-        globally_curated = engine.curate_examples(candidates, document_values)
+        globally_curated = engine.curate_examples(
+            _historical_family_splits(connection, candidates), document_values
+        )
     except (TypeError, ValueError) as exc:
         raise BridgeError("current candidate set fails global curation: " + str(exc)) from exc
     if globally_curated != sorted(candidates, key=lambda item: item["example_id"]):
