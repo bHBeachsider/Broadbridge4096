@@ -11,7 +11,7 @@ continues the draft PR stack and does not authorize a merge or production releas
 | Neon branch | `dev`, endpoint `ep-restless-bread-au1nwu5h` | Root `.neon` and pooled URL agree; direct URL matches the same database identity |
 | Neon production | `br-old-leaf-au0q8w6y` | Not used by this work |
 | Vercel owner/project | `bhbeachsiders-projects/broadbridge-capture` | CLI authenticated; project root `apps/capture`, Next.js, Node 24 |
-| Preview branch | `codex/broadbridge-ingestion-live-test` | Isolated worktree based on Broadbridge acceptance commit `75355aeac7528e6fd9592b10951bd68fa8dd363a` |
+| Preview branch | `codex/broadbridge-ingestion-live-test` | Pushed; branch-specific pooled dev database Secret created and metadata verified |
 | Existing R2 bucket | `broadbridge`, account `af7446fd472b9a8d087250687882a487` | Authenticated HEAD returned 200; CORS read returned AccessDenied |
 | Proposed test bucket | `broadbridge-dev`, same account | Pending Brad's confirmation and Cloudflare access; not created |
 | CPU runtime | Existing local Docker image `foundry-ingestion:acceptance` | Proposed first test host; no hosted service or paid instance provisioned |
@@ -62,9 +62,13 @@ migration and connectivity evidence, not a live upload or parser test. See
    have not been assumed suitable for a new service. Verify public access is off;
    configure scoped upload/service access for the approved test bucket. Do not put
    credentials in PRs, documents or command arguments.
-2. **Preview database.** Configure a branch-specific `BROADBRIDGE_DATABASE_URL`
-   using the verified pooled dev URL. Check the resulting environment metadata
-   before deployment. Do not copy or decrypt the Production database setting.
+2. **Preview database — configured.** Added branch-specific
+   `BROADBRIDGE_DATABASE_URL` from the verified pooled dev URL using stdin.
+   Vercel metadata confirms a hidden Secret limited to
+   `codex/broadbridge-ingestion-live-test` in Preview. Earlier attempts before the
+   branch was pushed did not create a setting; the post-push attempt succeeded.
+   Production was not read or changed. Deploy after all required settings are
+   complete so the deployment receives the new configuration.
 3. **Preview email.** `RESEND_API_KEY` and `CAPTURE_EMAIL_FROM` currently exist
    for Production only. Add the approved values for the live-test Preview branch.
    `AUTH_SECRET` and `CAPTURE_ALLOWED_EMAILS` already have Preview entries. Do
