@@ -79,31 +79,18 @@ def _identifier(prefix, value):
 
 
 def _case_confidentiality(value):
-    text = value.casefold()
-    if "public" in text:
-        return "public"
+    text = value.strip().casefold()
+    if text in {"public", "internal", "confidential", "restricted"}:
+        return text
     if "restrict" in text:
         return "restricted"
     return "confidential"
 
 
-def _available_evidence(case):
-    values = []
-    for item in case["evidence"]:
-        marker = item["available_at_decision_time"]
-        available = marker is True or (
-            isinstance(marker, str)
-            and marker.strip().casefold() in {"true", "yes", "available", "decision_time"}
-        )
-        if available:
-            values.append(item)
-    return values
-
-
 def _decision_payload(case):
     return {
         "decision_time": case["decision_time"],
-        "evidence_available_at_decision_time": _available_evidence(case),
+        "unit_service": case["identity"]["unit_service"],
     }
 
 
@@ -187,8 +174,6 @@ def adapt_case_export(export, *, foundry, pack):
                 "question": question["question"],
                 "decision_context": decision_payload,
                 "evidence_ids": question["evidence_ids"],
-                "tolerance": question["tolerance"],
-                "hard_fail_criteria": question["hard_fail_criteria"],
             }
             example = {
                 "schema": "foundry.training_example/1",

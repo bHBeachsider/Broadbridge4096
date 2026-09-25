@@ -45,6 +45,8 @@ def test_case_adapter_requires_absolute_foundry_and_preserves_family_holdout():
         pytest.skip("Set FOUNDRY_INGESTION_PATH to the pinned local Foundry checkout")
 
     signed = _fixture("SYN-TRAIN-001.json")
+    signed["questions"][0]["hard_fail_criteria"] = "SCORING-ONLY-MARKER"
+    signed["questions"][0]["tolerance"] = "TOLERANCE-ONLY-MARKER"
     held = copy.deepcopy(signed)
     held.update(case_id="SYN-HOLDOUT", status="draft")
     held["family_id"] = signed["family_id"]
@@ -70,6 +72,11 @@ def test_case_adapter_requires_absolute_foundry_and_preserves_family_holdout():
     user_text = example["messages"][-2]["content"]
     assert signed["decision_time"]["b1_trigger"] in user_text
     assert signed["hindsight"]["b8_turning_point"] not in user_text
+    assert signed["identity"]["unit_service"] in user_text
+    assert "SCORING-ONLY-MARKER" not in user_text
+    assert "TOLERANCE-ONLY-MARKER" not in user_text
+    payload = json.loads(user_text)
+    assert set(payload["decision_context"]) == {"decision_time", "unit_service"}
     assert result["dispositions"] == [
         {
             "case_id": "SYN-HOLDOUT",
@@ -78,6 +85,11 @@ def test_case_adapter_requires_absolute_foundry_and_preserves_family_holdout():
         },
         {"case_id": "SYN-TRAIN-001", "status": "adapted", "example_count": 1},
     ]
+
+
+@pytest.mark.parametrize("label", ["not public", "confidential; public excerpt", "public only after permission"])
+def test_freeform_case_confidentiality_never_downgrades_by_substring(label):
+    assert _adapter()._case_confidentiality(label) == "confidential"
 
 
 def test_registered_source_adapter_keeps_case_optional_and_never_invents_review():
