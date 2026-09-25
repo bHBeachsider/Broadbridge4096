@@ -1,0 +1,34 @@
+{
+  "synthetic_only": true,
+  "database": "owned_local_postgresql_17",
+  "migrations": [
+    "0001_init.sql",
+    "0002_constraints.sql",
+    "0003_capture_auth.sql",
+    "0004_capture_actions.sql",
+    "0005_ingestion.sql"
+  ],
+  "transport": "local_S3_and_Neon_HTTP_fixtures",
+  "live_cloud": "not_run",
+  "gpu": "not_run",
+  "executions": {
+    "browser": 0,
+    "repository": 0
+  },
+  "counts": {
+    "source_revisions": 204,
+    "source_rights_reviews": 2,
+    "ingestion_jobs": 2,
+    "candidate_records": 102,
+    "candidate_artifact_bindings": 1,
+    "candidate_reviews": 2,
+    "dataset_releases": 1
+  },
+  "job_states": [
+    [
+      "succeeded",
+      2
+    ]
+  ],
+  "worker_error_types": []
+}

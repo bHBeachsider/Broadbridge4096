@@ -1,8 +1,10 @@
 import { readFile, writeFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
+import { resolve, join } from "node:path";
 import { test, expect } from "@playwright/test";
 import { neon, neonConfig } from "@neondatabase/serverless";
 
-test("real magic-link intake → immutable upload → CPU evidence → separate rights review", async ({ page, browser }) => {
+test("real magic-link intake → CPU evidence → separate reviews → immutable dataset", async ({ page, browser }) => {
   const connection = process.env.BROADBRIDGE_DATABASE_URL;
   const endpoint = process.env.CAPTURE_TEST_SQL_ENDPOINT;
   const outbox = process.env.CAPTURE_TEST_OUTBOX;
@@ -67,6 +69,58 @@ test("real magic-link intake → immutable upload → CPU evidence → separate 
   const textRecord = records.find(record => record.source_record.original_filename.endsWith(".txt"))!;
   const status = await sql`SELECT current_permission_status,current_permitted_use,rights_reviewed_by FROM broadbridge.ingestion_source_status WHERE source_id=${textRecord.source_id}`;
   expect(status[0]).toMatchObject({ current_permission_status: "approved", current_permitted_use: "training", rights_reviewed_by: email });
+  // Authored synthetic target only: the bridge, reviews and release builder are
+  // real; no LLM or GPU process runs in this acceptance path.
+  const foundry = process.env.CAPTURE_TEST_FOUNDRY;
+  const python = process.env.CAPTURE_TEST_PYTHON;
+  const objects = process.env.CAPTURE_TEST_OBJECT_ROOT;
+  const runRoot = process.env.CAPTURE_TEST_RUN_ROOT;
+  if (!foundry || !python || !objects || !runRoot) throw new Error("Owned harness paths are required for release verification.");
+  const jobs = await sql`SELECT result_json::jsonb AS result FROM broadbridge.ingestion_jobs WHERE source_json::jsonb->>'source_id'=${textRecord.source_id} AND state='succeeded'`;
+  expect(jobs).toHaveLength(1);
+  const document = JSON.parse(await readFile(join(objects, jobs[0].result.normalized.key), "utf8"));
+  const exampleId = `example-${textRecord.source_id}`;
+  const inputPath = join(runRoot, "candidate.json");
+  await writeFile(inputPath, JSON.stringify({
+    schema: "foundry.training_example/1", example_id: exampleId,
+    family_id: textRecord.source_record.family_id, split: "train", task_type: "grounded_explanation",
+    source_refs: [{ source_id: textRecord.source_id, revision_id: textRecord.revision_id,
+      content_sha256: textRecord.content_sha256, block_ids: document.blocks.map((block: { block_id: string }) => block.block_id) }],
+    messages: [{ role: "user", content: "What inlet pressure was recorded in the synthetic inspection?" },
+      { role: "assistant", content: "The recorded inlet pressure was 3 bar absolute." }],
+    review: { status: "pending", reviewer: null, reviewed_at: null, reason: "Authored synthetic acceptance fixture; no model output." }, quality_flags: [],
+  }));
+  const pack = resolve("../../packs/oil-gas");
+  const bridge = (args: string[]) => execFileSync(python, [join(pack, "scripts/ingestion_release.py"), "--foundry", foundry,
+    "--pack", pack, "--local-object-root", objects, ...args], { env: process.env, timeout: 60000, stdio: "pipe" });
+  const registeredPath = join(runRoot, "registered.json");
+  bridge(["register-candidates", "--input", inputPath, "--actor", email, "--output", registeredPath]);
+  const registered = JSON.parse(await readFile(registeredPath, "utf8"));
+  expect(registered.registered).toHaveLength(1);
+  const candidateHash = registered.registered[0].candidate_hash;
+  const preparedPath = join(runRoot, "prepared.json");
+  expect(() => bridge(["prepare-release", "--output", preparedPath])).toThrow();
+  await page.reload();
+  await page.getByRole("article").filter({ has: page.getByRole("heading", { name: `${marker}.txt`, exact: true }) }).getByRole("button", { name: "Review source" }).click();
+  await expect(review.getByRole("heading", { name: exampleId, exact: true })).toBeVisible();
+  await review.getByLabel("Technical review reason", { exact: true }).fill("Synthetic target checked against the displayed 3 bar absolute evidence.");
+  await review.getByRole("button", { name: "Accept candidate", exact: true }).click();
+  await expect(page.getByText("Technical review recorded.", { exact: true })).toBeVisible();
+  const reviews = await sql`SELECT status,reviewed_by FROM broadbridge.current_candidate_reviews WHERE example_id=${exampleId} AND candidate_hash=${candidateHash}`;
+  expect(reviews[0]).toMatchObject({ status: "approved", reviewed_by: email });
+  bridge(["prepare-release", "--output", preparedPath]);
+  const prepared = JSON.parse(await readFile(preparedPath, "utf8"));
+  const approvalPath = join(runRoot, "approval.json");
+  await writeFile(approvalPath, JSON.stringify({ status: "approved", reviewer: email, reviewed_at: new Date().toISOString(), candidate_content_hash: prepared.candidate_content_hash }));
+  const manifestPath = join(runRoot, "release.json");
+  const buildArgs = ["build-release", "--approval", approvalPath, "--release-root", join(runRoot, "releases"), "--actor", email, "--output", manifestPath];
+  bridge(buildArgs);
+  bridge(buildArgs); // Idempotent immutable publication and natural-key DB reference.
+  const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
+  expect(manifest.release_id).toBe(prepared.candidate_content_hash);
+  expect(manifest.artifacts.train.row_count).toBe(1);
+  const releases = await sql`SELECT release_id,approved_by FROM broadbridge.dataset_releases`;
+  expect(releases).toEqual([{ release_id: manifest.release_id, approved_by: email }]);
   await page.getByLabel("Theme", { exact: true }).selectOption("light");
   await page.screenshot({ path: "test-results/ingestion-light.png", fullPage: true });
   await page.getByLabel("Theme", { exact: true }).selectOption("dark");
@@ -75,5 +129,5 @@ test("real magic-link intake → immutable upload → CPU evidence → separate 
   await page.screenshot({ path: "test-results/ingestion-mobile.png", fullPage: true });
   const anonymous = await browser.newContext();
   try { const other = await anonymous.newPage(); await other.goto(`${process.env.AUTH_URL}/ingestion`); await expect(other.getByRole("heading", { name: "Sign in to capture." })).toBeVisible(); } finally { await anonymous.close(); }
-  await writeFile("test-results/ingestion-smoke-summary.json", JSON.stringify({ synthetic_sources: 2, real_auth: true, pending_default: true, cpu_preview: true, stale_review_rejected: true, actor_verified: true, local_only: true }, null, 2));
+  await writeFile("test-results/ingestion-smoke-summary.json", JSON.stringify({ synthetic_sources: 2, real_auth: true, pending_default: true, cpu_preview: true, stale_review_rejected: true, actor_verified: true, pending_candidate_blocked: true, exact_hash_technical_review: true, immutable_dataset_recorded: true, idempotent_release: true, local_only: true, live_model: "not_run" }, null, 2));
 });
