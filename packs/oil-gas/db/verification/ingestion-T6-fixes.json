@@ -1,0 +1,514 @@
+{
+  "backend": "owned Docker PostgreSQL 17 with pgvector",
+  "database": "broadbridge_test_ingestion_fixes",
+  "container_label": "broadbridge.ingestion-t6-fixes=20260925",
+  "scope": "Synthetic, loopback-only; no cloud, EC2, model, or production access",
+  "schema_query": "SELECT table_name,column_name,data_type FROM information_schema.columns WHERE table_schema='broadbridge' AND table_name=ANY(%s) ORDER BY table_name,ordinal_position",
+  "columns": [
+    [
+      "candidate_artifact_bindings",
+      "example_id",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "candidate_hash",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "source_id",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "revision_id",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "content_sha256",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "job_id",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "artifact_key",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "artifact_sha256",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "artifact_size_bytes",
+      "bigint"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "normalized_document_hash",
+      "text"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "created_at",
+      "timestamp with time zone"
+    ],
+    [
+      "candidate_artifact_bindings",
+      "created_by",
+      "text"
+    ],
+    [
+      "candidate_records",
+      "candidate_sequence",
+      "bigint"
+    ],
+    [
+      "candidate_records",
+      "example_id",
+      "text"
+    ],
+    [
+      "candidate_records",
+      "candidate_hash",
+      "text"
+    ],
+    [
+      "candidate_records",
+      "family_id",
+      "text"
+    ],
+    [
+      "candidate_records",
+      "requested_split",
+      "text"
+    ],
+    [
+      "candidate_records",
+      "candidate_record",
+      "jsonb"
+    ],
+    [
+      "candidate_records",
+      "created_at",
+      "timestamp with time zone"
+    ],
+    [
+      "candidate_records",
+      "created_by",
+      "text"
+    ],
+    [
+      "candidate_reviews",
+      "review_id",
+      "bigint"
+    ],
+    [
+      "candidate_reviews",
+      "example_id",
+      "text"
+    ],
+    [
+      "candidate_reviews",
+      "candidate_hash",
+      "text"
+    ],
+    [
+      "candidate_reviews",
+      "status",
+      "text"
+    ],
+    [
+      "candidate_reviews",
+      "reason",
+      "text"
+    ],
+    [
+      "candidate_reviews",
+      "reviewed_by",
+      "text"
+    ],
+    [
+      "candidate_reviews",
+      "reviewed_at",
+      "timestamp with time zone"
+    ],
+    [
+      "dataset_releases",
+      "release_id",
+      "text"
+    ],
+    [
+      "dataset_releases",
+      "candidate_content_hash",
+      "text"
+    ],
+    [
+      "dataset_releases",
+      "recipe_version",
+      "text"
+    ],
+    [
+      "dataset_releases",
+      "manifest",
+      "jsonb"
+    ],
+    [
+      "dataset_releases",
+      "approved_by",
+      "text"
+    ],
+    [
+      "dataset_releases",
+      "approved_at",
+      "timestamp with time zone"
+    ],
+    [
+      "dataset_releases",
+      "recorded_at",
+      "timestamp with time zone"
+    ],
+    [
+      "dataset_releases",
+      "recorded_by",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "job_id",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "source_json",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "recipe_version",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "state",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "attempts",
+      "integer"
+    ],
+    [
+      "ingestion_jobs",
+      "max_attempts",
+      "integer"
+    ],
+    [
+      "ingestion_jobs",
+      "backoff_seconds",
+      "double precision"
+    ],
+    [
+      "ingestion_jobs",
+      "max_backoff_seconds",
+      "double precision"
+    ],
+    [
+      "ingestion_jobs",
+      "available_at",
+      "double precision"
+    ],
+    [
+      "ingestion_jobs",
+      "lease_token",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "lease_expires_at",
+      "double precision"
+    ],
+    [
+      "ingestion_jobs",
+      "worker_id",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "result_json",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "error_code",
+      "text"
+    ],
+    [
+      "ingestion_jobs",
+      "created_at",
+      "double precision"
+    ],
+    [
+      "ingestion_jobs",
+      "updated_at",
+      "double precision"
+    ],
+    [
+      "model_runs",
+      "run_id",
+      "text"
+    ],
+    [
+      "model_runs",
+      "revision",
+      "bigint"
+    ],
+    [
+      "model_runs",
+      "release_id",
+      "text"
+    ],
+    [
+      "model_runs",
+      "dataset_release_hash",
+      "text"
+    ],
+    [
+      "model_runs",
+      "state",
+      "text"
+    ],
+    [
+      "model_runs",
+      "record",
+      "jsonb"
+    ],
+    [
+      "model_runs",
+      "recorded_at",
+      "timestamp with time zone"
+    ],
+    [
+      "model_runs",
+      "recorded_by",
+      "text"
+    ],
+    [
+      "source_revisions",
+      "source_id",
+      "text"
+    ],
+    [
+      "source_revisions",
+      "revision_id",
+      "text"
+    ],
+    [
+      "source_revisions",
+      "content_sha256",
+      "text"
+    ],
+    [
+      "source_revisions",
+      "registry_ref",
+      "text"
+    ],
+    [
+      "source_revisions",
+      "source_record",
+      "jsonb"
+    ],
+    [
+      "source_revisions",
+      "created_at",
+      "timestamp with time zone"
+    ],
+    [
+      "source_revisions",
+      "created_by",
+      "text"
+    ],
+    [
+      "source_rights_reviews",
+      "review_id",
+      "bigint"
+    ],
+    [
+      "source_rights_reviews",
+      "source_id",
+      "text"
+    ],
+    [
+      "source_rights_reviews",
+      "revision_id",
+      "text"
+    ],
+    [
+      "source_rights_reviews",
+      "content_sha256",
+      "text"
+    ],
+    [
+      "source_rights_reviews",
+      "status",
+      "text"
+    ],
+    [
+      "source_rights_reviews",
+      "permitted_use",
+      "text"
+    ],
+    [
+      "source_rights_reviews",
+      "rights_basis",
+      "text"
+    ],
+    [
+      "source_rights_reviews",
+      "reviewed_by",
+      "text"
+    ],
+    [
+      "source_rights_reviews",
+      "reviewed_at",
+      "timestamp with time zone"
+    ]
+  ],
+  "counts": {
+    "ingestion_jobs": 2,
+    "source_revisions": 2,
+    "source_rights_reviews": 2,
+    "candidate_records": 2,
+    "candidate_reviews": 2,
+    "candidate_artifact_bindings": 2,
+    "dataset_releases": 1,
+    "model_runs": 0
+  },
+  "foreign_keys": [
+    [
+      "candidate_artifact_bindings_example_id_candidate_hash_fkey",
+      "broadbridge.candidate_artifact_bindings",
+      "FOREIGN KEY (example_id, candidate_hash) REFERENCES broadbridge.candidate_records(example_id, candidate_hash)"
+    ],
+    [
+      "candidate_artifact_bindings_job_id_fkey",
+      "broadbridge.candidate_artifact_bindings",
+      "FOREIGN KEY (job_id) REFERENCES broadbridge.ingestion_jobs(job_id)"
+    ],
+    [
+      "candidate_artifact_bindings_source_id_revision_id_content__fkey",
+      "broadbridge.candidate_artifact_bindings",
+      "FOREIGN KEY (source_id, revision_id, content_sha256) REFERENCES broadbridge.source_revisions(source_id, revision_id, content_sha256)"
+    ],
+    [
+      "candidate_reviews_example_id_candidate_hash_fkey",
+      "broadbridge.candidate_reviews",
+      "FOREIGN KEY (example_id, candidate_hash) REFERENCES broadbridge.candidate_records(example_id, candidate_hash)"
+    ],
+    [
+      "evidence_case_id_fkey",
+      "broadbridge.evidence",
+      "FOREIGN KEY (case_id) REFERENCES broadbridge.cases(case_id)"
+    ],
+    [
+      "evidence_source_id_fkey",
+      "broadbridge.evidence",
+      "FOREIGN KEY (source_id) REFERENCES broadbridge.sources(source_id)"
+    ],
+    [
+      "model_runs_release_id_fkey",
+      "broadbridge.model_runs",
+      "FOREIGN KEY (release_id) REFERENCES broadbridge.dataset_releases(release_id)"
+    ],
+    [
+      "questions_case_id_fkey",
+      "broadbridge.questions",
+      "FOREIGN KEY (case_id) REFERENCES broadbridge.cases(case_id) ON DELETE CASCADE"
+    ],
+    [
+      "runs_case_id_fkey",
+      "broadbridge.runs",
+      "FOREIGN KEY (case_id) REFERENCES broadbridge.cases(case_id)"
+    ],
+    [
+      "scorecards_case_id_fkey",
+      "broadbridge.scorecards",
+      "FOREIGN KEY (case_id) REFERENCES broadbridge.cases(case_id)"
+    ],
+    [
+      "scorecards_run_id_case_id_fkey",
+      "broadbridge.scorecards",
+      "FOREIGN KEY (run_id, case_id) REFERENCES broadbridge.runs(run_id, case_id)"
+    ],
+    [
+      "source_revisions_source_id_fkey",
+      "broadbridge.source_revisions",
+      "FOREIGN KEY (source_id) REFERENCES broadbridge.sources(source_id)"
+    ],
+    [
+      "source_rights_reviews_source_id_revision_id_content_sha256_fkey",
+      "broadbridge.source_rights_reviews",
+      "FOREIGN KEY (source_id, revision_id, content_sha256) REFERENCES broadbridge.source_revisions(source_id, revision_id, content_sha256)"
+    ]
+  ],
+  "permissions": [
+    [
+      "SRC-EXCLUDED",
+      "approved",
+      "reference_only"
+    ],
+    [
+      "SRC-KEPT",
+      "approved",
+      "training"
+    ]
+  ],
+  "release_id": "2142dcf484136e5bac7f371133fa21bdabf9e05745f72fb9bf5dbd58376047ee",
+  "release_examples": [
+    {
+      "split": "train",
+      "family_id": "FAMILY-KEPT",
+      "example_id": "EX-SRC-KEPT"
+    }
+  ],
+  "release_dispositions": [
+    {
+      "status": "excluded",
+      "reasons": [
+        "source_not_training_approved"
+      ],
+      "example_id": "EX-SRC-EXCLUDED",
+      "final_split": null
+    },
+    {
+      "status": "admitted",
+      "reasons": [],
+      "example_id": "EX-SRC-KEPT",
+      "final_split": "train"
+    }
+  ],
+  "regression_results": {
+    "initial_red": "33 failed, 19 passed, 1 existing RequestsDependencyWarning",
+    "focused_final": "56 passed, 1 existing RequestsDependencyWarning in 10.80s",
+    "positive_exclusion_rehearsal": "3 passed, 10 deselected, 1 existing RequestsDependencyWarning in 3.10s",
+    "migration_runner": "1 passed, 49 deselected in 0.54s",
+    "broader_offline_pack_harness": "277 passed in 54.17s"
+  },
+  "verified_behaviors": [
+    "Historical test/val splits persist before replacement/new-member hash and review",
+    "Legacy lower-split candidate hash cannot release",
+    "Revoked/pending/reference-only sources require explicit exclusion acknowledgement",
+    "Unrelated approved examples can release with those acknowledgements",
+    "Rights-change exclusion requires fresh release hash approval",
+    "Required source fields and nullable permission keys cannot be omitted",
+    "Candidate/dataset/model NULL schema comparisons fail closed"
+  ],
+  "container_removed": true
+}

@@ -3,6 +3,8 @@ shapes: [A]
 governance: GOVERNANCE.md
 artifacts_s3: null  # Set an approved artifact prefix in the domain repository.
 confidential: true
+ingestion:
+  config: ingestion.yaml
 brain:
   train_config: configs/train.yaml
   base: unsloth/Qwen3-8B
@@ -16,10 +18,11 @@ gate0:
   owner: Brad / Broadbridge
   technical_reviewer: Bill Hurt
   storage_location:
-    case_records: Claude artifact store (pilot), cases collection and workflow/main
-    artifact_identifier: null  # Record the exact pilot artifact in the rights/storage record.
-    originals_and_documents: one approved private S3 bucket
-    s3_bucket_uri: null  # Record the approved bucket and prefixes; do not infer an existing bucket.
+    case_records: dedicated Broadbridge PostgreSQL, broadbridge schema
+    artifact_identifier: null  # Record exact exports in private release evidence, never in this public pack.
+    originals_and_documents: private Cloudflare R2 bucket, access not yet verified
+    r2_bucket: broadbridge
+    r2_endpoint: https://af7446fd472b9a8d087250687882a487.r2.cloudflarestorage.com
   rights_approved: false
   question_set: null
   question_source: signed case_record/1 questions arrays (Section C)
