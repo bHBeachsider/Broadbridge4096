@@ -1,0 +1,33 @@
+[
+  {
+    "source_id": "DB-TEST-001",
+    "name": "Synthetic local intake fixture 1",
+    "synthetic": true,
+    "description": "Offline database test data; not a registered production source.",
+    "metadata": {"fixture_number": 1}
+  },
+  {
+    "source_id": "DB-TEST-002",
+    "name": "Synthetic local intake fixture 2",
+    "synthetic": true,
+    "description": "Offline database test data; not a registered production source."
+  },
+  {
+    "source_id": "DB-TEST-003",
+    "name": "Synthetic local intake fixture 3",
+    "synthetic": true,
+    "description": "Offline database test data; not a registered production source."
+  },
+  {
+    "source_id": "DB-TEST-004",
+    "name": "Synthetic local intake fixture 4",
+    "synthetic": true,
+    "description": "Offline database test data; not a registered production source."
+  },
+  {
+    "source_id": "DB-TEST-005",
+    "name": "Synthetic local intake fixture 5",
+    "synthetic": true,
+    "description": "Offline database test data; not a registered production source."
+  }
+]

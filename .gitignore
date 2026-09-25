@@ -14,3 +14,15 @@ packs/**/data/
 packs/**/outputs/
 *.safetensors
 *.gguf
+.neon
+.env.*
+!.env.example
+.next/
+.vercel/
+playwright-report/
+test-results/
+*.tsbuildinfo
+/.tmp-intake-*/
+/.tmp-pipeline-*/
+
+.vercel

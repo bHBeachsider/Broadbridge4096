@@ -5,8 +5,10 @@ import json
 from pathlib import Path
 import re
 import sys
+import tempfile
 
 from case_contract import read_json, validate_case
+from db_publication import publish_staged
 from run_brief import assert_no_leak, brief_schema, build_messages, digest, validate_brief
 
 # These anchors guide a reviewer. They do not assign a grade to model output.
@@ -88,16 +90,59 @@ def render_scorecard(case, record):
     return "\n".join(lines)
 
 
-def write_scorecard(case, record, out_dir):
+def write_scorecard(case, record, out_dir, *, db_enabled=False, actor=None):
+    if db_enabled and not actor:
+        raise ValueError("--db requires --actor EMAIL")
     identifier = case["case_id"]
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", identifier):
         raise ValueError("Unsafe case_id for scorecard filename")
     text = render_scorecard(case, record)
     output = Path(out_dir) / f"scorecard_{identifier}.md"
     output.parent.mkdir(parents=True, exist_ok=True)
-    with output.open("x", encoding="utf-8", newline="\n") as handle:
-        handle.write(text)
+    if output.exists():
+        raise FileExistsError("Scorecard already exists; preserve the review and choose a fresh run directory")
+    with tempfile.TemporaryDirectory(prefix=".scorecard-", dir=output.parent) as stage_dir:
+        staged = Path(stage_dir) / output.name
+        staged.write_text(text, encoding="utf-8", newline="\n")
+        def db_write(conn):
+            import db
+            db.upsert_scorecard(conn, case, record, text, actor)
+        publish_staged(staged, output, db_write=db_write if db_enabled else None)
     return output
+
+
+def sync_review(case, record, out_dir, actor):
+    """Persist a completed human review without altering the file or answer key."""
+    if not actor:
+        raise ValueError("--sync-existing requires --actor EMAIL")
+    identifier = case["case_id"]
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", identifier):
+        raise ValueError("Unsafe case_id for scorecard filename")
+    path = Path(out_dir) / f"scorecard_{identifier}.md"
+    original = path.read_bytes()
+    text = original.decode("utf-8-sig")
+    sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+    from aggregate_scores import _read_card, _sections
+    expected, actual = _sections(render_scorecard(case, record)), _sections(text)
+    if set(expected) != set(actual):
+        raise ValueError("Review headings changed; preserve the generated scorecard structure")
+    for section in expected:
+        expected_blocks = [value for kind, value in expected[section] if kind == "block"]
+        actual_blocks = [value for kind, value in actual[section] if kind == "block"]
+        if expected_blocks != actual_blocks:
+            raise ValueError("Review changed protected metadata, brief, question or reference content")
+    review = _read_card(path)
+    if review["reasons"]:
+        raise ValueError("Review is incomplete: " + "; ".join(review["reasons"]))
+    try:
+        import db
+        with db.connection() as conn:
+            db.upsert_scorecard(conn, case, record, text, actor)
+            if path.read_bytes() != original:
+                raise ValueError("Review changed while being saved; retry from the current file")
+    except Exception as exc:
+        raise RuntimeError(f"Review database sync failed ({type(exc).__name__}); file unchanged. Verify commit outcome before retrying.") from None
+    return path
 
 
 def main(argv=None):
@@ -105,12 +150,23 @@ def main(argv=None):
     parser.add_argument("case")
     parser.add_argument("brief_run")
     parser.add_argument("out_dir", help="The run's eval directory; output is scorecard_<case_id>.md")
+    parser.add_argument("--db", action="store_true", help="Persist the sheet for a case already imported into Broadbridge")
+    parser.add_argument("--actor", help="Email of the operator responsible for this scorecard")
+    parser.add_argument("--sync-existing", action="store_true", help="With --db, save the completed reviewer sheet without rewriting it")
     args = parser.parse_args(argv)
     try:
-        output = write_scorecard(read_json(args.case), read_json(args.brief_run), args.out_dir)
+        if args.db and not args.actor:
+            raise ValueError("--db requires --actor EMAIL")
+        if args.sync_existing:
+            if not args.db:
+                raise ValueError("--sync-existing requires --db")
+            output = sync_review(read_json(args.case), read_json(args.brief_run), args.out_dir, args.actor)
+            print(f"Completed review saved to database; file preserved: {output}")
+            return 0
+        output = write_scorecard(read_json(args.case), read_json(args.brief_run), args.out_dir, db_enabled=args.db, actor=args.actor)
         print(f"UNREVIEWED scorecard saved: {output}")
         return 0
-    except (ValueError, OSError, AssertionError, KeyError, TypeError) as exc:
+    except (ValueError, OSError, RuntimeError, AssertionError, KeyError, TypeError) as exc:
         print(f"SCORECARD REFUSED: {exc}", file=sys.stderr)
         return 2
 
