@@ -14,7 +14,7 @@ The [first-case runbook](docs/FIRST_CASE_RUNBOOK.md) supports single cases or ba
 
 ## Raw-source ingestion and reviewed training batches
 
-[Accepted architecture](docs/R2_INGESTION_AND_TRAINING_PIPELINE_DESIGN.md) · [Implementation plan](docs/plans/2026-09-25-ingestion-domain.md) · [Domain operator runbook](docs/INGESTION_PIPELINE_RUNBOOK.md) · [Local acceptance and deployment handoff](docs/INGESTION_ACCEPTANCE.md)
+[Delivery index and draft PRs](docs/INGESTION_DELIVERY_INDEX.md) · [Accepted architecture](docs/R2_INGESTION_AND_TRAINING_PIPELINE_DESIGN.md) · [Implementation plan](docs/plans/2026-09-25-ingestion-domain.md) · [Domain operator runbook](docs/INGESTION_PIPELINE_RUNBOOK.md) · [Local acceptance and deployment handoff](docs/INGESTION_ACCEPTANCE.md)
 
 The draft implementation adds authenticated source uploads, CPU extraction and
 classification, evidence review, separate source-rights and candidate approval,

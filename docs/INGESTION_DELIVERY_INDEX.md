@@ -1,0 +1,110 @@
+# Ingestion delivery index — 25 September 2026
+
+Offline implementation is complete and independently reviewed. All pull requests
+remain drafts. No merge, production migration, live upload, model inference or
+EC2/GPU operation was performed. Automated Vercel preview builds ran; their data
+targets have not been approved for uploads.
+
+## Plans and operating instructions
+
+- [Architecture](R2_INGESTION_AND_TRAINING_PIPELINE_DESIGN.md)
+- [Domain implementation plan](plans/2026-09-25-ingestion-domain.md)
+- [Domain bridge and migration runbook](INGESTION_PIPELINE_RUNBOOK.md)
+- [Repeatable browser acceptance and deployment handoff](INGESTION_ACCEPTANCE.md)
+- [Generic engine operator guide](https://github.com/bHBeachsider/slm-foundry/blob/codex/foundry-ingestion-acceptance/docs/INGESTION_PIPELINE.md)
+
+```mermaid
+flowchart LR
+  A[Private incoming objects] --> B[Registered source hash and durable job]
+  B --> C[CPU extraction and classification]
+  C --> D[Normalized evidence and source locations]
+  D --> E[Source rights and candidate technical review]
+  E --> F[Approved immutable dataset batch]
+  F --> G[CPU audit and bounded compute authorization]
+  G --> H[Qwen fine-tuning]
+  H --> I[Comparable engineering evaluation]
+  I --> J[Approved model release and rollback]
+```
+
+Uploading queues extraction, not training. The implemented Qwen3-8B path trains
+on text examples extracted from multimodal inputs. Native vision/audio training
+requires a later compatible model/processor/evaluation extension. Scanned-image
+and transcription adapters require separately installed local model artifacts.
+
+## Draft review order
+
+These are verified implementation/acceptance revisions. Final reporting-only
+commits may advance a draft; `gh pr view` provides its current full head.
+Squash-merge only after Brad marks drafts ready, then retarget/rebase dependent
+drafts in order and rerun checks. Nothing goes directly to main/master.
+
+| Foundry draft | Package | Recorded head |
+|---|---|---|
+| [#1](https://github.com/bHBeachsider/slm-foundry/pull/1) | Plan, based on existing Gate 1 branch | ecd98d28784cdc7e73843cdebaa3a7f3a564d2b4 |
+| [#2](https://github.com/bHBeachsider/slm-foundry/pull/2) | Contracts, immutable stores, durable jobs | 2fedb7671fe6f7aae323638fa173df3293e44f34 |
+| [#3](https://github.com/bHBeachsider/slm-foundry/pull/3) | Curation and immutable datasets | 1a5e1792e14188900e616262eb7e7b0cf4d58b89 |
+| [#4](https://github.com/bHBeachsider/slm-foundry/pull/4) | Extraction and provenance | 5a44dfb41e3766f999bc8ce59d3701b7d454e804 |
+| [#5](https://github.com/bHBeachsider/slm-foundry/pull/5) | CPU worker and R2 event transport | eb63025dc0d79b4d0b9b9c0edc6aeb0fd679cb6c |
+| [#6](https://github.com/bHBeachsider/slm-foundry/pull/6) | Bounded training and accepted model releases | fb0735f21d66b30d835c9c313d70e339a61d7614 |
+| [#7](https://github.com/bHBeachsider/slm-foundry/pull/7) | CI, rehearsal and operator handoff | b2b57b88bdd21e1050390abd0c0cbd0bc4176826 |
+
+| Broadbridge draft | Package | Recorded head |
+|---|---|---|
+| [#1](https://github.com/bHBeachsider/Broadbridge4096/pull/1) | Earlier capture/database/batch prerequisite | 912ee869f37a041ac24c32aed8c55987ed305ebb |
+| [#2](https://github.com/bHBeachsider/Broadbridge4096/pull/2) | Domain plan | 9e6b5e7df30dd026ae8bfbe7129108970293d3ec |
+| [#3](https://github.com/bHBeachsider/Broadbridge4096/pull/3) | Domain policy, migration and dataset bridge | af63a0c5e4d5de0c77b207870b1c2c79f32a94dd |
+| [#4](https://github.com/bHBeachsider/Broadbridge4096/pull/4) | Source intake and review UI | 65a95f14edb3d747476ba8889b61f2b17d71b589 |
+| [#5](https://github.com/bHBeachsider/Broadbridge4096/pull/5) | Browser-to-dataset acceptance and handoff | b0351a34dba76c27696da3811432ce88aa35b1f6 |
+
+PR numbers belong to a repository. From `bb1` or any directory, use explicit
+repository arguments and omit watch mode:
+
+```powershell
+gh pr checks 7 --repo bHBeachsider/slm-foundry
+gh pr checks 5 --repo bHBeachsider/Broadbridge4096
+gh pr view 7 --repo bHBeachsider/slm-foundry --json headRefOid,isDraft,baseRefName
+```
+
+Early Foundry drafts have no hosted workflow individually; the final cumulative
+draft carries CPU CI. Broadbridge's Vercel build check is not a database or
+write-capable acceptance test.
+
+## Verified results
+
+- Foundry hosted CI: 473 Python tests passed, 1 optional parser host check skipped;
+  standalone synthetic rehearsal passed; Cloudflare and CPU container jobs passed.
+- Domain: 56 independent real PostgreSQL tests, 277 offline pack tests and 1
+  migration/checksum test passed.
+- Capture: 125 unit tests passed with 8 database-gated skips; TypeScript/build
+  passed. Actual PostgreSQL repository tests: 2 passed. Expanded browser flow:
+  1 passed. Harness isolation regressions: 3 passed.
+- Browser acceptance produced 2 succeeded extraction jobs and 1 immutable dataset
+  with one reviewed synthetic training row. Independent verification matched its
+  hashes. Synthetic training-control tests use fabricated adapter tensors and
+  scores; they do not establish Qwen quality or a successful GPU training run.
+
+## Next live decisions
+
+1. Review drafts and approve a dedicated nonproduction R2/Neon/Vercel mapping,
+   scoped service credentials and a CPU worker host. Keep production separate.
+2. Apply 0005 to that approved test database and provision event/worker wiring.
+   Verify real signing/CORS, restart recovery and review/revocation with synthetic uploads.
+3. Install and verify licensed local parser model artifacts for OCR/transcription.
+4. Admit real rights-cleared documents and signed cases, prepare reviewed examples,
+   freeze a batch, and run a CPU token audit. Establish comparable engineering baselines.
+5. Approve explicit GPU steps/time/budget and host prerequisites, run QLoRA, evaluate,
+   and promote only after acceptance. No automatic training or production promotion.
+
+Install the missing Vercel CLI for the deployment handoff: `npm i -g vercel`.
+Keep environment values in approved secret stores and ignored local files.
+
+## Rulings made
+
+- Eight work packages ran in waves using three worker slots, with exclusive file
+  ownership and separate specification/quality reviews.
+- Sources and extraction metadata cannot grant rights. Source rights, technical
+  review, batch release and compute authorization are distinct decisions.
+- Historical family holdouts cannot be downgraded by candidate replacement.
+  Excluded sources remain visible in release dispositions and split closure.
+- Local transport fixtures enable offline acceptance; they do not substitute for
+  live R2/Neon/Vercel validation or real model evaluation.
