@@ -1,0 +1,55 @@
+{
+  "date": "2026-09-25",
+  "environment": "dev",
+  "production_changed": false,
+  "ec2_started": false,
+  "neon": {
+    "project": "crimson-block-71962201",
+    "branch": "br-billowing-morning-audiqy3e",
+    "endpoint": "ep-restless-bread-au1nwu5h",
+    "read_only_check_passed": true,
+    "server_version": 180006,
+    "migration_version": "0005_ingestion.sql",
+    "migration_checksum_mismatches": [],
+    "counts": {"sources": 5, "evidence": 0, "cases": 4, "questions": 4, "workflow": 1, "runs": 0, "scorecards": 0, "review_log": 20}
+  },
+  "r2": {
+    "bucket": "broadbridge-dev",
+    "current_key_head_and_list_passed": true,
+    "synthetic_put_status": 403,
+    "synthetic_put_error": "AccessDenied",
+    "neon_r2_smoke_completed": false,
+    "failure_stage": "first_registry_object_write"
+  },
+  "preview": {
+    "project": "broadbridge-capture",
+    "branch": "codex/broadbridge-ingestion-live-test",
+    "branch_scoped_keys_present": ["BROADBRIDGE_DATABASE_URL", "R2_ENDPOINT", "R2_BUCKET", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "INGESTION_API_URL", "INGESTION_API_TOKEN"],
+    "email_preview_scope_present": true,
+    "human_login_verified": false,
+    "browser_to_worker_verified": false,
+    "temporary_api_requires_restart_and_settings_refresh": true
+  },
+  "cli_fix": {
+    "local_focused_passed": 47,
+    "local_full_passed": 473,
+    "local_full_skipped": 2,
+    "local_full_failed": 0,
+    "quality_review": "no actionable findings",
+    "separate_specification_review": "pass",
+    "image": "sha256:712863f27cdd2e69398e00572b049464c0ca653de347cff7d6043d68a53fd197"
+  },
+  "temporary_https": {
+    "earlier_probe_passed": 6,
+    "shutdown_recheck": {
+      "passed": [{"probe": "unauthenticated", "status": 401}, {"probe": "wrong_token", "status": 401}],
+      "failed_at": "authenticated_unknown_job",
+      "actual_response_retained": false,
+      "cause": "unresolved"
+    },
+    "runtime_stopped": true,
+    "remaining_task_containers": 0,
+    "current_authenticated_connectivity_accepted": false
+  },
+  "training_run": false
+}

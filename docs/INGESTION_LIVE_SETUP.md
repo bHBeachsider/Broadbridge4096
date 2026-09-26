@@ -1,10 +1,11 @@
 # Broadbridge ingestion live setup — 25 September 2026
 
-Status: private dev bucket and exact-origin CORS configured; local Docker approved
-and R2/CPU smoke exercised. Neon dev currently rejects its configured password,
-and branch-specific Preview email settings remain pending. Browser-to-worker live
-acceptance is not complete. This record continues the draft PR stack and does not
-authorize a merge or production release.
+Status: Neon dev authentication is repaired; migrations and unchanged capture
+counts were reverified. Preview email variables and branch-specific storage/API
+settings are present. The current R2 credential can read the dev bucket but its
+synthetic PUT returned 403 AccessDenied. A temporary local Docker API and HTTPS
+tunnel were exercised and have been stopped. Browser-to-worker live acceptance
+is incomplete. All work remains on draft PRs; no production release is authorized.
 
 ## Verified destinations
 
@@ -61,40 +62,43 @@ migration and connectivity evidence, not a live upload or parser test. See
 1. **Cloudflare access and test bucket — verified.** Brad's signed-in Edge session
    is accessible. The account initially contained `broadbridge`, but not
    `broadbridge-dev`; the separate test bucket was created with private defaults.
-   Current operator S3 credentials can access it but cannot inspect CORS through
-   S3. Dashboard configuration was used instead. Service credentials restricted
-   to the test bucket are still required before deploying a persistent worker or
-   copying storage credentials into Vercel. Existing broad operator credentials
-   were used only for the bounded local test, never copied to Vercel.
+   Dashboard configuration was used for CORS. The current service key in the
+   local environment authenticates HEAD and LIST, but synthetic PUT returned
+   403 AccessDenied. Brad must grant Object Read & Write scoped to
+   `broadbridge-dev` and save the matching pair locally and in the isolated
+   Preview branch. Do not fall back to earlier broad operator credentials; those
+   were used only for the historical bounded test below, never copied to Vercel.
 2. **Preview database — configured.** Added branch-specific
    `BROADBRIDGE_DATABASE_URL` from the verified pooled dev URL using stdin.
    Vercel metadata confirms a hidden Secret limited to
    `codex/broadbridge-ingestion-live-test` in Preview. Earlier attempts before the
    branch was pushed did not create a setting; the post-push attempt succeeded.
    Production was not read or changed. Deploy after all required settings are
-   complete so the deployment receives the new configuration. On the subsequent
-   access check, the root pooled URL still identified the approved dev endpoint
-   but failed password authentication. Brad was asked to refresh both dev URLs
-   locally. Do not treat the older Preview secret as current after that refresh;
-   update the branch-specific Preview database secret from the verified new URL.
-3. **Preview email.** `RESEND_API_KEY` and `CAPTURE_EMAIL_FROM` currently exist
-   for Production only. Add the approved values for the live-test Preview branch.
-   `AUTH_SECRET` and `CAPTURE_ALLOWED_EMAILS` already have Preview entries. Do
-   not enable the local email outbox or local integration test bypass on Vercel.
-   Automatic approval review rejected an attempted expansion of the two Production
-   email variables to all Preview deployments. The rejected command did not run;
-   the existing entries are unchanged. Brad was asked to create Preview entries
-   scoped specifically to `codex/broadbridge-ingestion-live-test`.
-4. **CPU host — local Docker approved; HTTPS still pending.** First test uses the
-   existing local CPU container.
-   A remote Vercel Preview needs a reachable HTTPS service, its server-side bearer
-   token, and a trusted proxy; localhost on this PC is not reachable from Vercel.
-   Final cloud CPU hosting, exposure and budget remain a separate concrete decision.
+   complete so the deployment receives the new configuration. After Brad repaired
+   both dev URLs, the pooled connection passed locally and from Docker. Updated
+   only this branch's Preview database secret from the verified local URL.
+   Readback confirms PostgreSQL 18.6, five matching migration checksums and the
+   unchanged capture counts listed above. The database password blocker is closed.
+3. **Preview email — present.** Brad added Preview to `RESEND_API_KEY` and
+   `CAPTURE_EMAIL_FROM`; metadata confirms Production and Preview scopes.
+   `AUTH_SECRET` and `CAPTURE_ALLOWED_EMAILS` already have Preview entries.
+   An earlier attempted scope expansion by the agent was rejected and did not
+   run; Brad subsequently made the configuration change himself. Normal deployed
+   magic-link login still requires a human test. Do not enable a local test bypass.
+4. **CPU host — temporary Docker/HTTPS test performed, now stopped.** A private
+   Docker network joined the non-root API, an unprivileged Nginx proxy and a
+   temporary Cloudflare tunnel. No host port was published. The API required a
+   bearer token on all routes. This was a bounded pilot runtime, not persistent
+   hosting. A later session must start a fresh runtime, replace the branch API
+   URL/token, redeploy Preview and verify the connection. Final cloud hosting
+   and budget remain a separate decision.
 5. **Storage and worker variables.** Configure the approved test bucket and scoped
    credentials for both services. The capture app uses `R2_ENDPOINT`; the engine
    uses `R2_ENDPOINT_URL`. Both use `R2_BUCKET`. Non-secret `R2_ENDPOINT` and
    `R2_BUCKET=broadbridge-dev` are now set and metadata-verified for the isolated
-   Preview branch. Storage secrets and the live API connection remain pending.
+   Preview branch. The R2 key pair and `INGESTION_API_URL`/`INGESTION_API_TOKEN`
+   are also present in that branch, but the temporary API is now offline and
+   storage write permission is not accepted. Presence alone is not verification.
    The worker uses
    `INGESTION_DB_ENV=BROADBRIDGE_DATABASE_URL`, `INGESTION_DB_SCHEMA=broadbridge`,
    `INGESTION_PROJECT_ID=broadbridge-oil-gas`, `INGESTION_RECIPE_VERSION=oil-gas-v1`,
@@ -167,6 +171,38 @@ Next.js signing, browser login/uploads, Cloudflare event delivery, human review,
 dataset release, OCR/ASR, model inference or fine-tuning. The initial 21-check run
 passed before the size and anonymous-read checks were added; the final expanded
 run above is the acceptance record for this limited storage/CPU scope.
+
+## Repaired configuration and follow-up tests
+
+The historical 27-check test above predates the repaired Neon credentials and
+current service key. The new Neon/R2 smoke stopped on its first registry object
+write: R2 returned 403 AccessDenied. It did not reach case/source database upserts
+or extraction. Current capture counts remain 5 sources, 0 evidence, 4 cases,
+4 questions, 1 workflow, 0 runs, 0 scorecards and 20 review-log entries.
+
+Real CLI serving exposed a Foundry exception-class identity bug. A dedicated
+fix delegates the module entry point to canonical `main`, preserving 404/409
+domain errors instead of returning generic 400. See
+[Foundry draft #8](https://github.com/bHBeachsider/slm-foundry/pull/8), head
+`877d43c`, after draft #7. The new subprocess regression
+and 47 focused tests passed; the full local suite recorded 473 passed and
+2 skips. The test API image was
+`sha256:712863f27cdd2e69398e00572b049464c0ca653de347cff7d6043d68a53fd197`,
+built from the earlier acceptance image with only the corrected CLI file.
+
+An earlier HTTPS probe passed six checks (missing/wrong token, missing job,
+oversized body, unregistered source and mismatched recipe). The final shutdown
+recheck confirmed the two expected 401 responses, then failed at the authenticated
+missing-job assertion. Its actual response was not retained, so the cause is
+unresolved; do not count current authenticated connectivity as accepted.
+All three task containers were stopped and a fresh Docker listing confirmed
+none remained. The local watchdog also bounded runtime lifetime to two hours.
+
+See [follow-up evidence](verification/ingestion-live-followup.json). Before any
+browser upload, correct R2 write permission, start the API with current dev
+credentials, repeat every HTTPS check, update the branch connection settings,
+redeploy and complete normal human sign-in. No EC2 or model call was used for
+these ingestion tests.
 
 ## Live acceptance order
 

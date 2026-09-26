@@ -6,7 +6,8 @@ Neon `dev` branch, with unchanged capture row counts at migration time. A privat
 `broadbridge-dev` bucket and exact-origin CORS are now configured; synthetic live
 R2 uploads and local Docker extraction have run. No merge, production migration,
 model inference or EC2/GPU operation was performed. The complete Preview flow
-remains blocked by dev database authentication and configuration items in the
+remains blocked by the current R2 key's upload permission and authenticated
+Preview-to-worker acceptance. Neon authentication is repaired. See the
 [live setup record](INGESTION_LIVE_SETUP.md).
 
 ## Plans and operating instructions
@@ -52,6 +53,7 @@ drafts in order and rerun checks. Nothing goes directly to main/master.
 | [#5](https://github.com/bHBeachsider/slm-foundry/pull/5) | CPU worker and R2 event transport | eb63025dc0d79b4d0b9b9c0edc6aeb0fd679cb6c |
 | [#6](https://github.com/bHBeachsider/slm-foundry/pull/6) | Bounded training and accepted model releases | fb0735f21d66b30d835c9c313d70e339a61d7614 |
 | [#7](https://github.com/bHBeachsider/slm-foundry/pull/7) | CI, rehearsal and operator handoff | b2b57b88bdd21e1050390abd0c0cbd0bc4176826 |
+| [#8](https://github.com/bHBeachsider/slm-foundry/pull/8) | CLI HTTP domain error correction, after #7 | 877d43c |
 
 | Broadbridge draft | Package | Recorded head |
 |---|---|---|
@@ -60,6 +62,7 @@ drafts in order and rerun checks. Nothing goes directly to main/master.
 | [#3](https://github.com/bHBeachsider/Broadbridge4096/pull/3) | Domain policy, migration and dataset bridge | af63a0c5e4d5de0c77b207870b1c2c79f32a94dd |
 | [#4](https://github.com/bHBeachsider/Broadbridge4096/pull/4) | Source intake and review UI | 65a95f14edb3d747476ba8889b61f2b17d71b589 |
 | [#5](https://github.com/bHBeachsider/Broadbridge4096/pull/5) | Browser-to-dataset acceptance and handoff | b0351a34dba76c27696da3811432ce88aa35b1f6 |
+| [#6](https://github.com/bHBeachsider/Broadbridge4096/pull/6) | Live dev setup and follow-up evidence | Reporting branch; use `gh pr view 6` for current head |
 
 PR numbers belong to a repository. From `bb1` or any directory, use explicit
 repository arguments and omit watch mode:
@@ -78,6 +81,9 @@ write-capable acceptance test.
 
 - Foundry hosted CI: 473 Python tests passed, 1 optional parser host check skipped;
   standalone synthetic rehearsal passed; Cloudflare and CPU container jobs passed.
+- Subsequent CLI HTTP fix: 47 focused tests passed; full local CPU suite recorded
+  473 passed and 2 skips. Independent specification and quality reviews passed.
+  This is separate from the preceding hosted CI result.
 - Domain: 56 independent real PostgreSQL tests, 277 offline pack tests and 1
   migration/checksum test passed.
 - Capture: 125 unit tests passed with 8 database-gated skips; TypeScript/build
@@ -92,8 +98,10 @@ write-capable acceptance test.
 
 1. Neon `dev` and the existing `broadbridge-capture` Vercel project are identified.
    The private `broadbridge-dev` test bucket exists and Brad approved local Docker.
-   Refresh the rejected dev database password; complete scoped service credentials,
-   branch-specific Preview email and the HTTPS worker connection.
+   Dev database authentication and Preview email configuration are repaired.
+   Correct the current scoped R2 key's 403 on PUT, restart the temporary local
+   service with current credentials, repeat all HTTPS probes, refresh branch API
+   settings and redeploy Preview. The previous test runtime is stopped.
 2. Migration 0005 is applied and read back on `dev`. Provision event/worker wiring.
    Verify real signing/CORS, restart recovery and review/revocation with synthetic uploads.
 3. Install and verify licensed local parser model artifacts for OCR/transcription.
