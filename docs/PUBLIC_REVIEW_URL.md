@@ -3,6 +3,10 @@
 Open the [reviewer Preview](https://broadbridge-capture-git-codex-bro-91d332-bhbeachsiders-projects.vercel.app/review/public-v1).
 For a specific incident question, [open PUB-022 / A](https://broadbridge-capture-git-codex-bro-91d332-bhbeachsiders-projects.vercel.app/review/public-v1?question=PUB-022&response=A).
 This branch uses the dedicated Broadbridge dev database; it is not the production app.
+Vercel Authentication currently protects this Preview before the app's email
+sign-in. Brad's Vercel account can access it. Bill's routine link should use the
+production app after the draft and production migration are approved; the
+capture email allowlist alone does not grant Vercel Preview access.
 
 The capture app now has an authenticated route `/review/public-v1`. Both the
 Case Capture navigation and Source Intake header link to **Public-document
