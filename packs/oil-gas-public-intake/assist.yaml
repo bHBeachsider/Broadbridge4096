@@ -1,0 +1,23 @@
+schema: foundry.assist_policy/1
+enabled: true
+provider: openrouter
+tasks:
+  classify:
+    prompt: prompts/classify.md
+    open_weight_teacher: true
+    client: &mistral_trial
+      model: mistralai/mistral-small-24b-instruct-2501
+      providers: [DeepInfra]
+      max_tokens: 1600
+      max_input_bytes: 24000
+      timeout: 90
+      max_price: {prompt: 0.30, completion: 0.60}
+      max_calls: 1
+      cost_stop_usd: 0.01
+  draft:
+    prompt: prompts/draft.md
+    open_weight_teacher: true
+    client:
+      <<: *mistral_trial
+      model: qwen/qwen3-30b-a3b-instruct-2507
+      providers: [Nebius]

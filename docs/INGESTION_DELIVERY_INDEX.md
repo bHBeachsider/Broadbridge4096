@@ -23,6 +23,7 @@ runtime is stopped after completion. See the
 - [Repeatable browser acceptance and deployment handoff](INGESTION_ACCEPTANCE.md)
 - [Live setup, verified targets and remaining access](INGESTION_LIVE_SETUP.md)
 - [OpenRouter/Jev model selection research](OPENROUTER_MODEL_SELECTION.md)
+- [Implemented public/synthetic OpenRouter helper and runbook](OPENROUTER_INTAKE_RUNBOOK.md)
 - [Generic engine operator guide](https://github.com/bHBeachsider/slm-foundry/blob/codex/foundry-ingestion-acceptance/docs/INGESTION_PIPELINE.md)
 
 ```mermaid
