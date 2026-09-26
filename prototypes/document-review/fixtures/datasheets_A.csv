@@ -1,0 +1,13 @@
+row_id,asset_tags,condition,pressure,pressure_unit,pressure_basis,temperature,temperature_unit
+D01,P-101,operating,999,bar,absolute,25,degC
+D02,P-102,operating,8,bar,gauge,30,degC
+D03,P-103,operating,2,bar,absolute,40,degC
+D04,P-104,operating,2,bar,absolute,40,degC
+D05,E-201,operating,5,bar,absolute,120,degC
+D06,E-202,operating,6,bar,absolute,200,degC
+D07,E-203,operating,7,bar,absolute,120,degC
+D08,V-301,operating,3,bar,absolute,50,degC
+D09,V-302,operating,4,bar,gauge,50,degC
+D10,T-401,operating,1.5,bar,absolute,35,degC
+D11,C-501,operating,30,bar,absolute,60,degC
+D12,F-601,operating,2,bar,absolute,70,degC

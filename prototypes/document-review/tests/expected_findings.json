@@ -1,0 +1,62 @@
+{
+  "note": "Withheld, hand-specified software fixture key. Not expert approval or model context.",
+  "findings": [
+    [
+      "duplicate_tag",
+      "P-102",
+      "tag"
+    ],
+    [
+      "missing_required_field",
+      "E-201",
+      "service"
+    ],
+    [
+      "ambiguous_asset_link",
+      "P-103|P-104",
+      "asset_tags"
+    ],
+    [
+      "value_conflict",
+      "E-202",
+      "temperature"
+    ],
+    [
+      "unit_dimension_mismatch",
+      "V-301",
+      "pressure"
+    ],
+    [
+      "basis_mismatch",
+      "V-302",
+      "pressure"
+    ],
+    [
+      "superseded_reference",
+      "T-401",
+      "datasheet_revision"
+    ],
+    [
+      "unsupported_unit",
+      "C-501",
+      "pressure"
+    ],
+    [
+      "unmatched_drawing_tag",
+      "T-499",
+      "tag"
+    ],
+    [
+      "missing_drawing_tag",
+      "F-601",
+      "tag"
+    ]
+  ],
+  "noncomparable": [
+    [
+      "E-203",
+      "operating",
+      "design"
+    ]
+  ]
+}

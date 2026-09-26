@@ -1,0 +1,984 @@
+{
+  "report_id": "92cc8d68d9bb50ea9cd6754986242c2dded0c81bbc880e9397f32096dc71e0ca",
+  "documents": [
+    {
+      "document_key": "INDEX",
+      "document_id": "INDEX",
+      "revision": "package",
+      "status": "control",
+      "kind": "index",
+      "file": "revision_index.csv",
+      "sha256": "6564e3aadd3db68fcfa56b916aa55f3a4dbfdf286724c0a79757e8d92d8ed67f",
+      "records": [
+        {
+          "locator": "CSV record 2",
+          "values": {
+            "document_id": "REG-001",
+            "revision": "A",
+            "status": "superseded",
+            "kind": "equipment",
+            "file": "equipment_A.csv"
+          }
+        },
+        {
+          "locator": "CSV record 3",
+          "values": {
+            "document_id": "REG-001",
+            "revision": "B",
+            "status": "approved",
+            "kind": "equipment",
+            "file": "equipment_B.csv"
+          }
+        },
+        {
+          "locator": "CSV record 4",
+          "values": {
+            "document_id": "DS-001",
+            "revision": "A",
+            "status": "superseded",
+            "kind": "datasheets",
+            "file": "datasheets_A.csv"
+          }
+        },
+        {
+          "locator": "CSV record 5",
+          "values": {
+            "document_id": "DS-001",
+            "revision": "B",
+            "status": "approved",
+            "kind": "datasheets",
+            "file": "datasheets_B.csv"
+          }
+        },
+        {
+          "locator": "CSV record 6",
+          "values": {
+            "document_id": "DWG-001",
+            "revision": "A",
+            "status": "superseded",
+            "kind": "drawing",
+            "file": "drawing_A.svg"
+          }
+        },
+        {
+          "locator": "CSV record 7",
+          "values": {
+            "document_id": "DWG-001",
+            "revision": "B",
+            "status": "approved",
+            "kind": "drawing",
+            "file": "drawing_B.svg"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "REG-001",
+      "revision": "A",
+      "status": "superseded",
+      "kind": "equipment",
+      "file": "equipment_A.csv",
+      "document_key": "REG-001@A",
+      "sha256": "9f2ee66062cacac89b2641f0c62d637edcbab31ca4711fc8a9e3d591867e442a",
+      "records": [
+        {
+          "locator": "CSV record 2",
+          "values": {
+            "tag": "P-101",
+            "service": "Feed transfer",
+            "condition": "operating",
+            "pressure": "10",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "25",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 3",
+          "values": {
+            "tag": "P-102",
+            "service": "Standby transfer",
+            "condition": "operating",
+            "pressure": "8",
+            "pressure_unit": "bar",
+            "pressure_basis": "gauge",
+            "temperature": "30",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 4",
+          "values": {
+            "tag": "P-103",
+            "service": "Wash transfer",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "40",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 5",
+          "values": {
+            "tag": "P-104",
+            "service": "Wash return",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "40",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 6",
+          "values": {
+            "tag": "E-201",
+            "service": "Preheat",
+            "condition": "operating",
+            "pressure": "5",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "120",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 7",
+          "values": {
+            "tag": "E-202",
+            "service": "Trim heating",
+            "condition": "operating",
+            "pressure": "6",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "200",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 8",
+          "values": {
+            "tag": "E-203",
+            "service": "Cooling",
+            "condition": "operating",
+            "pressure": "7",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "120",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 9",
+          "values": {
+            "tag": "V-301",
+            "service": "Surge",
+            "condition": "operating",
+            "pressure": "3",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "50",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 10",
+          "values": {
+            "tag": "V-302",
+            "service": "Receiver",
+            "condition": "operating",
+            "pressure": "4",
+            "pressure_unit": "bar",
+            "pressure_basis": "gauge",
+            "temperature": "50",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 11",
+          "values": {
+            "tag": "T-401",
+            "service": "Storage",
+            "condition": "operating",
+            "pressure": "1.5",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "35",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 12",
+          "values": {
+            "tag": "C-501",
+            "service": "Compression",
+            "condition": "operating",
+            "pressure": "30",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "60",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 13",
+          "values": {
+            "tag": "F-601",
+            "service": "Filtration",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "70",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "REG-001",
+      "revision": "B",
+      "status": "approved",
+      "kind": "equipment",
+      "file": "equipment_B.csv",
+      "document_key": "REG-001@B",
+      "sha256": "649c7d8a688fef07ca9f619764697b32504d8cd498976605588033dc4ee56f42",
+      "records": [
+        {
+          "locator": "CSV record 2",
+          "values": {
+            "tag": "P-101",
+            "service": "Feed transfer",
+            "condition": "operating",
+            "pressure": "10",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "25",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 3",
+          "values": {
+            "tag": "P-102",
+            "service": "Standby transfer",
+            "condition": "operating",
+            "pressure": "8",
+            "pressure_unit": "bar",
+            "pressure_basis": "gauge",
+            "temperature": "30",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 4",
+          "values": {
+            "tag": "P-102",
+            "service": "Standby transfer",
+            "condition": "operating",
+            "pressure": "8",
+            "pressure_unit": "bar",
+            "pressure_basis": "gauge",
+            "temperature": "30",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 5",
+          "values": {
+            "tag": "P-103",
+            "service": "Wash transfer",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "40",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 6",
+          "values": {
+            "tag": "P-104",
+            "service": "Wash return",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "40",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 7",
+          "values": {
+            "tag": "E-201",
+            "service": "",
+            "condition": "operating",
+            "pressure": "5",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "120",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 8",
+          "values": {
+            "tag": "E-202",
+            "service": "Trim heating",
+            "condition": "operating",
+            "pressure": "6",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "200",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 9",
+          "values": {
+            "tag": "E-203",
+            "service": "Cooling",
+            "condition": "operating",
+            "pressure": "7",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "120",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 10",
+          "values": {
+            "tag": "V-301",
+            "service": "Surge",
+            "condition": "operating",
+            "pressure": "3",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "50",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 11",
+          "values": {
+            "tag": "V-302",
+            "service": "Receiver",
+            "condition": "operating",
+            "pressure": "4",
+            "pressure_unit": "bar",
+            "pressure_basis": "gauge",
+            "temperature": "50",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 12",
+          "values": {
+            "tag": "T-401",
+            "service": "Storage",
+            "condition": "operating",
+            "pressure": "1.5",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "35",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "A"
+          }
+        },
+        {
+          "locator": "CSV record 13",
+          "values": {
+            "tag": "C-501",
+            "service": "Compression",
+            "condition": "operating",
+            "pressure": "30",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "60",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        },
+        {
+          "locator": "CSV record 14",
+          "values": {
+            "tag": "F-601",
+            "service": "Filtration",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "70",
+            "temperature_unit": "degC",
+            "datasheet_id": "DS-001",
+            "datasheet_revision": "B"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "DS-001",
+      "revision": "A",
+      "status": "superseded",
+      "kind": "datasheets",
+      "file": "datasheets_A.csv",
+      "document_key": "DS-001@A",
+      "sha256": "1d0e14dc8c3c8a57aba836b857fcaa6bd62285f87f5e76d89848ef3e0020e040",
+      "records": [
+        {
+          "locator": "CSV record 2",
+          "values": {
+            "row_id": "D01",
+            "asset_tags": "P-101",
+            "condition": "operating",
+            "pressure": "999",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "25",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 3",
+          "values": {
+            "row_id": "D02",
+            "asset_tags": "P-102",
+            "condition": "operating",
+            "pressure": "8",
+            "pressure_unit": "bar",
+            "pressure_basis": "gauge",
+            "temperature": "30",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 4",
+          "values": {
+            "row_id": "D03",
+            "asset_tags": "P-103",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "40",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 5",
+          "values": {
+            "row_id": "D04",
+            "asset_tags": "P-104",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "40",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 6",
+          "values": {
+            "row_id": "D05",
+            "asset_tags": "E-201",
+            "condition": "operating",
+            "pressure": "5",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "120",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 7",
+          "values": {
+            "row_id": "D06",
+            "asset_tags": "E-202",
+            "condition": "operating",
+            "pressure": "6",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "200",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 8",
+          "values": {
+            "row_id": "D07",
+            "asset_tags": "E-203",
+            "condition": "operating",
+            "pressure": "7",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "120",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 9",
+          "values": {
+            "row_id": "D08",
+            "asset_tags": "V-301",
+            "condition": "operating",
+            "pressure": "3",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "50",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 10",
+          "values": {
+            "row_id": "D09",
+            "asset_tags": "V-302",
+            "condition": "operating",
+            "pressure": "4",
+            "pressure_unit": "bar",
+            "pressure_basis": "gauge",
+            "temperature": "50",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 11",
+          "values": {
+            "row_id": "D10",
+            "asset_tags": "T-401",
+            "condition": "operating",
+            "pressure": "1.5",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "35",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 12",
+          "values": {
+            "row_id": "D11",
+            "asset_tags": "C-501",
+            "condition": "operating",
+            "pressure": "30",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "60",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 13",
+          "values": {
+            "row_id": "D12",
+            "asset_tags": "F-601",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "70",
+            "temperature_unit": "degC"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "DS-001",
+      "revision": "B",
+      "status": "approved",
+      "kind": "datasheets",
+      "file": "datasheets_B.csv",
+      "document_key": "DS-001@B",
+      "sha256": "3e435114df732a99deee2b8c429496fe40a18f4c6b8a2ed8a65cec3d481c0c47",
+      "records": [
+        {
+          "locator": "CSV record 2",
+          "values": {
+            "row_id": "D01",
+            "asset_tags": "P-101",
+            "condition": "operating",
+            "pressure": "1000",
+            "pressure_unit": "kPa",
+            "pressure_basis": "absolute",
+            "temperature": "25",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 3",
+          "values": {
+            "row_id": "D02",
+            "asset_tags": "P-102",
+            "condition": "operating",
+            "pressure": "8",
+            "pressure_unit": "bar",
+            "pressure_basis": "gauge",
+            "temperature": "30",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 4",
+          "values": {
+            "row_id": "D03",
+            "asset_tags": "P-103|P-104",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "40",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 5",
+          "values": {
+            "row_id": "D05",
+            "asset_tags": "E-201",
+            "condition": "operating",
+            "pressure": "5",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "120",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 6",
+          "values": {
+            "row_id": "D06",
+            "asset_tags": "E-202",
+            "condition": "operating",
+            "pressure": "6",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "220",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 7",
+          "values": {
+            "row_id": "D07",
+            "asset_tags": "E-203",
+            "condition": "design",
+            "pressure": "7",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "200",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 8",
+          "values": {
+            "row_id": "D08",
+            "asset_tags": "V-301",
+            "condition": "operating",
+            "pressure": "3",
+            "pressure_unit": "degC",
+            "pressure_basis": "absolute",
+            "temperature": "50",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 9",
+          "values": {
+            "row_id": "D09",
+            "asset_tags": "V-302",
+            "condition": "operating",
+            "pressure": "4",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "50",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 10",
+          "values": {
+            "row_id": "D10",
+            "asset_tags": "T-401",
+            "condition": "operating",
+            "pressure": "1.5",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "35",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 11",
+          "values": {
+            "row_id": "D11",
+            "asset_tags": "C-501",
+            "condition": "operating",
+            "pressure": "30",
+            "pressure_unit": "psi?",
+            "pressure_basis": "absolute",
+            "temperature": "60",
+            "temperature_unit": "degC"
+          }
+        },
+        {
+          "locator": "CSV record 12",
+          "values": {
+            "row_id": "D12",
+            "asset_tags": "F-601",
+            "condition": "operating",
+            "pressure": "2",
+            "pressure_unit": "bar",
+            "pressure_basis": "absolute",
+            "temperature": "70",
+            "temperature_unit": "degC"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "DWG-001",
+      "revision": "A",
+      "status": "superseded",
+      "kind": "drawing",
+      "file": "drawing_A.svg",
+      "document_key": "DWG-001@A",
+      "sha256": "cdf6abd210316791be72db3978cc4a04d7ff2303c1ce65a0a02460276729ca46",
+      "records": [
+        {
+          "locator": "SVG element asset-1",
+          "values": {
+            "tag": "P-101",
+            "element_id": "asset-1"
+          }
+        },
+        {
+          "locator": "SVG element asset-2",
+          "values": {
+            "tag": "P-102",
+            "element_id": "asset-2"
+          }
+        },
+        {
+          "locator": "SVG element asset-3",
+          "values": {
+            "tag": "P-103",
+            "element_id": "asset-3"
+          }
+        },
+        {
+          "locator": "SVG element asset-4",
+          "values": {
+            "tag": "P-104",
+            "element_id": "asset-4"
+          }
+        },
+        {
+          "locator": "SVG element asset-5",
+          "values": {
+            "tag": "E-201",
+            "element_id": "asset-5"
+          }
+        },
+        {
+          "locator": "SVG element asset-6",
+          "values": {
+            "tag": "E-202",
+            "element_id": "asset-6"
+          }
+        },
+        {
+          "locator": "SVG element asset-7",
+          "values": {
+            "tag": "E-203",
+            "element_id": "asset-7"
+          }
+        },
+        {
+          "locator": "SVG element asset-8",
+          "values": {
+            "tag": "V-301",
+            "element_id": "asset-8"
+          }
+        },
+        {
+          "locator": "SVG element asset-9",
+          "values": {
+            "tag": "V-302",
+            "element_id": "asset-9"
+          }
+        },
+        {
+          "locator": "SVG element asset-10",
+          "values": {
+            "tag": "T-401",
+            "element_id": "asset-10"
+          }
+        },
+        {
+          "locator": "SVG element asset-11",
+          "values": {
+            "tag": "C-501",
+            "element_id": "asset-11"
+          }
+        },
+        {
+          "locator": "SVG element asset-12",
+          "values": {
+            "tag": "F-601",
+            "element_id": "asset-12"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "DWG-001",
+      "revision": "B",
+      "status": "approved",
+      "kind": "drawing",
+      "file": "drawing_B.svg",
+      "document_key": "DWG-001@B",
+      "sha256": "145097c0c97e3ac397cd500245f06679751cfe466adbf32abfda64ad2cc795b1",
+      "records": [
+        {
+          "locator": "SVG element asset-1",
+          "values": {
+            "tag": "P-101",
+            "element_id": "asset-1"
+          }
+        },
+        {
+          "locator": "SVG element asset-2",
+          "values": {
+            "tag": "P-102",
+            "element_id": "asset-2"
+          }
+        },
+        {
+          "locator": "SVG element asset-3",
+          "values": {
+            "tag": "P-103",
+            "element_id": "asset-3"
+          }
+        },
+        {
+          "locator": "SVG element asset-4",
+          "values": {
+            "tag": "P-104",
+            "element_id": "asset-4"
+          }
+        },
+        {
+          "locator": "SVG element asset-5",
+          "values": {
+            "tag": "E-201",
+            "element_id": "asset-5"
+          }
+        },
+        {
+          "locator": "SVG element asset-6",
+          "values": {
+            "tag": "E-202",
+            "element_id": "asset-6"
+          }
+        },
+        {
+          "locator": "SVG element asset-7",
+          "values": {
+            "tag": "E-203",
+            "element_id": "asset-7"
+          }
+        },
+        {
+          "locator": "SVG element asset-8",
+          "values": {
+            "tag": "V-301",
+            "element_id": "asset-8"
+          }
+        },
+        {
+          "locator": "SVG element asset-9",
+          "values": {
+            "tag": "V-302",
+            "element_id": "asset-9"
+          }
+        },
+        {
+          "locator": "SVG element asset-10",
+          "values": {
+            "tag": "T-401",
+            "element_id": "asset-10"
+          }
+        },
+        {
+          "locator": "SVG element asset-11",
+          "values": {
+            "tag": "C-501",
+            "element_id": "asset-11"
+          }
+        },
+        {
+          "locator": "SVG element asset-12",
+          "values": {
+            "tag": "T-499",
+            "element_id": "asset-12"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "schema": "broadbridge.document_demo/1",
+  "package_id": "SYN-AREA-001",
+  "title": "Fictional utilities area",
+  "synthetic": true,
+  "revision_index": "revision_index.csv"
+}
