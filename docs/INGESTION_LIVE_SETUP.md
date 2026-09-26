@@ -6,7 +6,7 @@ checks. Preview storage/API settings were refreshed and the test Preview reached
 READY. The missing Preview auth-origin configuration was then fixed, and Brad's
 deployed sign-in was verified. Browser upload acceptance is in progress; automatic
 file selection needs Edge's extension file-URL permission. Temporary Docker
-services are bounded and will be stopped after this session. All work remains on draft PRs; no
+services were stopped while that prerequisite is pending. All work remains on draft PRs; no
 production release is authorized.
 
 ## Verified destinations
@@ -287,6 +287,11 @@ Edge blocked automatic selection of the prepared files because the ChatGPT
 extension's "Allow access to file URLs" permission was disabled. No upload had
 occurred at that point. This is a browser permission prerequisite, not an R2 or
 application failure; it does not change source admission or training rights.
+
+The runtime was subsequently stopped and `docker ps` found no containers with
+its task label. No new file was uploaded and the worker was not started. Once
+file selection is enabled, restart a bounded runtime, refresh the branch API
+connection and redeploy before resuming. The pinned `AUTH_URL` remains valid.
 
 | Step | Action | Evidence required before continuing |
 |---|---|---|

@@ -10,7 +10,8 @@ synthetic-only OpenRouter study is linked below. Preview infrastructure
 now has 19 passed R2/Docker/Neon checks and six passed HTTPS checks after Brad's
 credential update. The Preview auth-origin mismatch is fixed and Brad's normal
 sign-in is verified. Deployed browser-to-worker acceptance remains in progress;
-Edge extension file-URL permission is the next prerequisite. See the
+Edge extension file-URL permission is the next prerequisite. The temporary
+runtime is stopped while that prerequisite is pending. See the
 [live setup record](INGESTION_LIVE_SETUP.md).
 
 ## Plans and operating instructions
