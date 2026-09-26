@@ -140,7 +140,7 @@ independent acceptance or training release.
 - [x] Implement the sequential runner using existing transport/policy controls. Preserve every attempt and receipt. It must not turn uploads into model calls or `assist.py` into a training trigger.
 - [x] Add domain recipes/prompts/rubric and a fabricated rehearsal. The challenger cites objections; it cannot approve. Only SD-01-approved recipes enter real runs.
 - [x] Run focused tests and both domain synthetic rehearsal tests. Require pending packets and zero releases without human decisions.
-- [ ] Open separate draft engine/domain PRs with dependency hashes and named files; keep one implementation lane.
+- [x] Open separate draft engine/domain PRs with dependency hashes and named files; keep one implementation lane. [Foundry #11](https://github.com/bHBeachsider/slm-foundry/pull/11) and [Broadbridge #10](https://github.com/bHBeachsider/Broadbridge4096/pull/10); see the [delivery index](../../INGESTION_DELIVERY_INDEX.md).
 
 **Acceptance:** a second operator reproduces mock dispositions; CI makes no live
 call. A documented manual run can bind sources/settings/budget without executing.

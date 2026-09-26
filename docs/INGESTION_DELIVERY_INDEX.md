@@ -171,7 +171,7 @@ separates offline implementation, human decisions and the original GPU gates.
 SD-03 engine delivery: [Foundry draft #11](https://github.com/bHBeachsider/slm-foundry/pull/11),
 head `f1790dff35d15739afb77999414c7cc2f6153c6f`, stacked on draft #10 at
 `b40eab94538bd6017c3d1297eca5ca28330d6d6b`. The domain branch
-`codex/broadbridge-synthetic-batch` starts from draft #9 at
+[`codex/broadbridge-synthetic-batch`, draft #10](https://github.com/bHBeachsider/Broadbridge4096/pull/10) starts from draft #9 at
 `335c0c9206278464a22627d737d9a3b2d573231b` and binds to that engine head.
 All changes remain draft. Full CPU verification: Foundry 609 passed / 2 skipped;
 Broadbridge 314 passed / 106 gated tests skipped. Bill's priorities and technical
