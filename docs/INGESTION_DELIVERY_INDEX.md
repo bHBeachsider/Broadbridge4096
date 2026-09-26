@@ -5,10 +5,12 @@ remain drafts. Live setup has started: migration 0005 is applied to the verified
 Neon `dev` branch, with unchanged capture row counts at migration time. A private
 `broadbridge-dev` bucket and exact-origin CORS are now configured; synthetic live
 R2 uploads and local Docker extraction have run. No merge, production migration,
-model inference or EC2/GPU operation was performed. The complete Preview flow
+engineering model inference or EC2/GPU operation was performed. A separate
+synthetic-only OpenRouter study is linked below. Preview infrastructure
 now has 19 passed R2/Docker/Neon checks and six passed HTTPS checks after Brad's
-credential update. The refreshed Preview is READY; human sign-in and deployed
-browser-to-worker acceptance remain pending. Temporary services are stopped. See the
+credential update. The Preview auth-origin mismatch is fixed and Brad's normal
+sign-in is verified. Deployed browser-to-worker acceptance remains in progress;
+Edge extension file-URL permission is the next prerequisite. See the
 [live setup record](INGESTION_LIVE_SETUP.md).
 
 ## Plans and operating instructions

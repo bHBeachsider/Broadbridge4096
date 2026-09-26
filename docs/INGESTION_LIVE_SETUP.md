@@ -3,8 +3,10 @@
 Status: the updated R2 credentials passed live writes. The actual R2/Docker/Neon
 dev smoke passed 19 checks for two synthetic documents, followed by all six HTTPS
 checks. Preview storage/API settings were refreshed and the test Preview reached
-READY. Deployed human sign-in and browser uploads remain pending. Temporary Docker
-services were stopped after verification. All work remains on draft PRs; no
+READY. The missing Preview auth-origin configuration was then fixed, and Brad's
+deployed sign-in was verified. Browser upload acceptance is in progress; automatic
+file selection needs Edge's extension file-URL permission. Temporary Docker
+services are bounded and will be stopped after this session. All work remains on draft PRs; no
 production release is authorized.
 
 ## Verified destinations
@@ -84,6 +86,18 @@ migration and connectivity evidence, not a live upload or parser test. See
    An earlier attempted scope expansion by the agent was rejected and did not
    run; Brad subsequently made the configuration change himself. Normal deployed
    magic-link login still requires a human test. Do not enable a local test bypass.
+   The first human attempt exposed a missing Preview `AUTH_URL`: Auth.js used
+   the branch alias, while the app's origin guard used the immutable
+   `VERCEL_URL`. Runtime logs showed `Authentication is unavailable` inside
+   `sendVerificationRequest`; an offline reproduction confirmed the mismatch.
+   Added `AUTH_URL` for this Preview branch only, pinned to the exact stable
+   alias used for CORS. Redeployment `dpl_9deodWyyBDF3AgghmHztFk5Vfxvn` reached
+   READY. The next browser request for Brad's approved address reached
+   "Check your email" on that same alias; it passed the previous failure point.
+   This preserves the origin guard and avoids weakening authentication.
+   Brad received the email and completed its single-use link. The browser then
+   displayed Case capture and Source intake & review as `bupham@ilyrium.io`.
+   Deployed sign-in is verified; no auth bypass or token interception was used.
 4. **CPU host — temporary Docker/HTTPS test performed, now stopped.** A private
    Docker network joined the non-root API, an unprivileged Nginx proxy and a
    temporary Cloudflare tunnel. No host port was published. The API required a
@@ -233,10 +247,13 @@ none of its outputs entered the ingestion dataset.
 
 ## Live acceptance order
 
-1. Commit and open this handoff as a draft following Broadbridge PR #5. Continue
-   to use the cumulative Foundry acceptance branch for generic engine code.
-2. Complete the configuration above and deploy a Preview. Read back its branch
-   identity and environment configuration; keep production deployment separate.
+1. Handoff is open as Broadbridge draft #6, following #5. Use the cumulative
+   Foundry HTTP correction in draft #8 (`877d43c`) for the next live session;
+   the earlier acceptance image alone does not contain that correction.
+2. After human sign-in is available, restart the bounded local API and worker,
+   replace only the branch-specific Preview API URL/token, and redeploy Preview.
+   Read back its branch identity and dev targets before uploading. The previous
+   temporary API is stopped; a READY deployment does not make it reachable.
 3. Brad signs in through the normal magic-link flow. Use synthetic text and CSV
    documents only. Register source hashes, upload through presigned PUT, verify
    CORS, exact Content-Length, immutable PUT and bytes-to-hash matching. No test
@@ -251,6 +268,51 @@ none of its outputs entered the ingestion dataset.
 7. Admit rights-cleared real material, obtain reviewer acceptance and comparable
    engineering baselines, then present a bounded GPU training request. No EC2,
    base download, QLoRA, or model deployment occurs in this live setup step.
+
+### Next browser session: acceptance checklist
+
+The first human sign-in attempt exposed the origin mismatch described above.
+The corrected Preview accepted the email-link request and Brad completed normal
+sign-in. Source intake & review displayed his approved address and the two prior
+synthetic source records. See [the sanitized auth evidence](verification/ingestion-preview-auth.json).
+
+Fresh runtime `bb-ingest-ceedc31c55` passed all six HTTPS checks. Preview
+`dpl_C86JR65cvZtoicmiNVoHxL2qgJA7` reached READY with the new temporary API
+connection. Its preflight found two succeeded jobs, no runnable jobs, and four
+unchanged case records. A read-only pooled SQL session uses `SET LOCAL
+statement_timeout`; Neon's pooled endpoint rejects this setting as a connection
+startup option. Neither a migration nor the unpooled connection was needed.
+
+Edge blocked automatic selection of the prepared files because the ChatGPT
+extension's "Allow access to file URLs" permission was disabled. No upload had
+occurred at that point. This is a browser permission prerequisite, not an R2 or
+application failure; it does not change source admission or training rights.
+
+| Step | Action | Evidence required before continuing |
+|---|---|---|
+| Session setup | Verify Neon dev, `broadbridge-dev`, Preview branch and the corrected CPU image; inspect existing runnable jobs before starting a worker | No production target or unrelated pending work; authenticated HTTPS checks pass |
+| Upload | Send two labeled synthetic files, one text report and one CSV, through Source intake & review | Two distinct source revisions; stored bytes match locally recorded SHA-256 values; actor is the signed-in email |
+| Extraction | Run a bounded CPU worker for the synthetic jobs, refresh status and open Source review | Both jobs succeed; text and table evidence render with provenance; pressure unit/basis remain `3 bar absolute` |
+| Admission boundary | Inspect default permissions and attempt dataset preparation before review | Sources remain pending/reference-only and unreviewed examples cannot enter a training batch |
+| Synthetic review | Register an explicitly authored synthetic candidate, review its evidence and record separate source-rights and technical decisions | Decisions bind to the exact revision/candidate hash and authenticated actor; no real expert acceptance is implied |
+| Dataset | Build the approved synthetic batch twice; independently verify its manifest and artifact hashes | Same immutable release identity; expected synthetic row count; no real cases or research benchmark outputs included |
+| Revocation | Revoke the synthetic source and attempt a new release | Revoked material cannot enter a new release; existing release history is retained |
+| Close | Save sanitized receipts and stop the API, worker, proxy and tunnel | No task containers remain; deployment is documented as needing a fresh runtime for its next session |
+
+The file pair prepared for this operator session is under the ignored
+`tmp/browser-intake-ready/` folder in Brad's primary Broadbridge checkout.
+`fixture-manifest.json` records filenames, byte counts and SHA-256 values; it
+contains no upload token or signed URL. These files are test inputs only.
+The browser test is estimated at 20-40 minutes after sign-in, including setup
+and cleanup; this is an estimate, not a measured result.
+
+After that acceptance, implement generic OpenRouter provider support in Foundry
+as a separate draft, with HTTP tests, explicit cloud eligibility, local schema
+validation, cost receipts and no implicit direct-OpenAI fallback. Keep Jev
+classification and generative extraction separate. Expand the unseen evaluation
+sample before choosing a default; the eight research examples are insufficient.
+This can proceed without starting a GPU. Native OCR/audio parser readiness and
+rights-cleared data admission remain separate work items.
 
 ## Credential incident
 
