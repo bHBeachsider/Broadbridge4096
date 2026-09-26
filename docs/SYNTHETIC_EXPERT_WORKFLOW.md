@@ -2,6 +2,11 @@
 
 The authenticated [public-document scoring page](PUBLIC_REVIEW_URL.md) links fixed source/question/answer review into the capture workflow, with separate reviewer records and CSV export.
 
+SD-02 is implemented as an offline pending packet plus a two-record fabricated
+rehearsal. All six negative cases reject and unreviewed candidates cannot enter
+a release. It makes no model calls and does not close the human SD-01 gate.
+Use the reviewer page to identify real failure categories before SD-03 live work.
+
 Status: workflow added on 26 September 2026 at Brad's request. This subproject
 extends the main SLM workflow. Generation, expert acceptance and training have
 not been performed by adding this document. The first deliverable is a reviewed

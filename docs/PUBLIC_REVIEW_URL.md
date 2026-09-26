@@ -1,5 +1,9 @@
 # Public-document scoring in the capture workflow
 
+Open the [reviewer Preview](https://broadbridge-capture-git-codex-bro-91d332-bhbeachsiders-projects.vercel.app/review/public-v1).
+For a specific incident question, [open PUB-022 / A](https://broadbridge-capture-git-codex-bro-91d332-bhbeachsiders-projects.vercel.app/review/public-v1?question=PUB-022&response=A).
+This branch uses the dedicated Broadbridge dev database; it is not the production app.
+
 The capture app now has an authenticated route `/review/public-v1`. Both the
 Case Capture navigation and Source Intake header link to **Public-document
 scoring**. A specific response can be linked directly, for example:
@@ -102,3 +106,13 @@ width. Deployed email delivery still uses the configured Resend integration.
 Human steps remain: engineering scoring, resolving questionable references,
 agreeing selection thresholds and approving subsequent data recipes. No source
 in this evaluation or its derivatives becomes a training family.
+
+26 September acceptance: capture unit tests 141 passed / 9 optional integration
+tests skipped; separate local PostgreSQL and Playwright reviewer/ingestion tests
+passed. Typecheck and production build passed. Desktop and mobile were rendered
+and inspected. Domain Python regression: 29 passed. Foundry packet: 43 focused
+tests; full CPU suite 567 passed / 2 skipped. Existing Requests/SWIG warnings
+remain. [Dev migration receipt](verification/public-review-dev.json) confirms
+the endpoint/branch mapping and unchanged original capture counts; no real score
+was written during setup. Local mail used the test outbox; normal deployed
+email-link sign-in remains the reviewer's first step.
