@@ -58,7 +58,19 @@ that differed from the pack, and an outdated pagination candidate fixture. The
 final helper reads the actual pack recipe, and the fixture uses the canonical
 candidate fields. No acceptance assertion was removed.
 
-## Before live acceptance
+## Live acceptance result
+
+The deployed Preview path has now passed with actual R2, Neon dev and local
+Docker: Brad signed in, uploaded two synthetic files, and inspected their CPU
+evidence. Separate review gates, immutable one-row dataset construction, an
+identical second build, revocation and stale-review rejection were verified.
+This is distinct from the loopback rehearsal above. See the
+[live setup record](INGESTION_LIVE_SETUP.md#deployed-browser-to-dataset-acceptance-completed)
+and [sanitized evidence](verification/ingestion-live-browser-dataset.json).
+It proves pipeline mechanics for the text/CSV fixtures, not engineering quality,
+native multimodal extraction, or a trained model. The test runtime is stopped.
+
+## Before a new live acceptance session
 
 1. Review the completed independent package reports and keep PRs draft until Brad marks them ready.
 2. Confirm a dedicated nonproduction database/bucket mapping and CPU service host.

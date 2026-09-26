@@ -9,9 +9,10 @@ engineering model inference or EC2/GPU operation was performed. A separate
 synthetic-only OpenRouter study is linked below. Preview infrastructure
 now has 19 passed R2/Docker/Neon checks and six passed HTTPS checks after Brad's
 credential update. The Preview auth-origin mismatch is fixed and Brad's normal
-sign-in is verified. Deployed browser-to-worker acceptance remains in progress;
-Edge extension file-URL permission is the next prerequisite. The temporary
-runtime is stopped while that prerequisite is pending. See the
+sign-in is verified. Brad then uploaded both prepared synthetic files manually;
+live browser-to-dataset acceptance passed, including separate reviews, repeatable
+release construction, revocation and stale-review rejection. The temporary
+runtime is stopped after completion. See the
 [live setup record](INGESTION_LIVE_SETUP.md).
 
 ## Plans and operating instructions
@@ -92,6 +93,13 @@ write-capable acceptance test.
   the preceding hosted CI result.
 - Updated live credentials: 19 actual R2/Docker/Neon checks and six HTTPS checks
   passed. Two synthetic sources added; existing capture cases remained unchanged.
+- Deployed browser acceptance: two further synthetic files uploaded by Brad,
+  both CPU jobs succeeded, original/artifact hashes and authenticated actor
+  verified, one synthetic candidate admitted only after separate reviews, and
+  a one-row immutable release built twice with identical results. Revocation
+  blocked new admission; stale rights updates were rejected. Existing release
+  history and all four capture cases remain intact. See
+  [live browser/dataset evidence](verification/ingestion-live-browser-dataset.json).
 - Domain: 56 independent real PostgreSQL tests, 277 offline pack tests and 1
   migration/checksum test passed.
 - Capture: 125 unit tests passed with 8 database-gated skips; TypeScript/build
@@ -108,11 +116,12 @@ write-capable acceptance test.
    The private `broadbridge-dev` test bucket exists and Brad approved local Docker.
    Dev database authentication and Preview email configuration are repaired.
    The scoped R2 key now passes PUT; the test Preview was refreshed and reached
-   READY. Complete human sign-in, then restart the bounded local API/worker,
-   refresh its branch settings and redeploy for the browser test. The prior
-   temporary runtime is stopped.
+   READY. Human sign-in and the synthetic browser-to-dataset test are now
+   complete. Temporary runtime is stopped. A new upload session still needs a
+   bounded API/worker and refreshed Preview connection.
 2. Migration 0005 is applied and read back on `dev`. Provision event/worker wiring.
-   Verify real signing/CORS, restart recovery and review/revocation with synthetic uploads.
+   Real signing/CORS, restart recovery and synthetic review/revocation have been
+   verified. Automatic Cloudflare event transport remains a separate live gate.
 3. Install and verify licensed local parser model artifacts for OCR/transcription.
 4. Admit real rights-cleared documents and signed cases, prepare reviewed examples,
    freeze a batch, and run a CPU token audit. Establish comparable engineering baselines.

@@ -1,0 +1,166 @@
+{
+  "verified_at": "2026-09-26T02:21:31.314044Z",
+  "synthetic_only": true,
+  "environment": "Broadbridge Neon dev and broadbridge-dev R2; Preview only",
+  "runtime_run": "bb-ingest-b6da56cf67",
+  "preview_deployment": "dpl_4SHmZnKnRC5V5XVKDy9mp8biRHUo",
+  "worker": {
+    "run_id": "bb-ingest-b6da56cf67",
+    "worker_exit": 0,
+    "job_ids": [
+      "848e46e5c42988eae3bf37ef65dfa67a6c139f7487e633d5f35334c212b18f6d",
+      "f3d4e0ba8928abe3ae044b5bd43d724bacb573b6079e484aca5a1cf2170324dc"
+    ],
+    "synthetic_only": true,
+    "max_jobs": 2
+  },
+  "source_verification": {
+    "verified_at": "2026-09-26T02:16:13.103311Z",
+    "synthetic_only": true,
+    "rows": [
+      {
+        "filename": "SYN-BROWSER-PUMP.txt",
+        "job_id": "848e46e5c42988eae3bf37ef65dfa67a6c139f7487e633d5f35334c212b18f6d",
+        "source_id": "3edabdfe-9b85-453d-99c7-d715893f773b",
+        "revision_id": "r1",
+        "family_id": "3edabdfe-9b85-453d-99c7-d715893f773b",
+        "sha256": "ca3cb7e424a2ac1d55e1cf2a51c7b19158e2984052b4bf13c07816bf71cef4ff",
+        "block_ids": [
+          "block-0001"
+        ],
+        "created_by": "bupham@ilyrium.io",
+        "state": "succeeded",
+        "normalized_receipt": {
+          "key": "artifacts/broadbridge-oil-gas/848e46e5c42988eae3bf37ef65dfa67a6c139f7487e633d5f35334c212b18f6d/a0de54f6ac6d425b8b9fcd486271036d/normalized.json",
+          "sha256": "9251ee56e7874682a296a3335818b4cda5be4569fa230fcd3c4df5aad411e50c",
+          "size_bytes": 1593
+        }
+      },
+      {
+        "filename": "SYN-BROWSER-READINGS.csv",
+        "job_id": "f3d4e0ba8928abe3ae044b5bd43d724bacb573b6079e484aca5a1cf2170324dc",
+        "source_id": "0faf7f2e-5372-40f8-a12d-345fe6bd6bd3",
+        "revision_id": "r1",
+        "family_id": "0faf7f2e-5372-40f8-a12d-345fe6bd6bd3",
+        "sha256": "291756189f17b09cbe51d07fb4f32cbdc55d4a0d559c5585f3863a70d9867022",
+        "block_ids": [
+          "block-0001"
+        ],
+        "created_by": "bupham@ilyrium.io",
+        "state": "succeeded",
+        "normalized_receipt": {
+          "key": "artifacts/broadbridge-oil-gas/f3d4e0ba8928abe3ae044b5bd43d724bacb573b6079e484aca5a1cf2170324dc/4a6fe3578c9a4b7298d8b813c41a92d0/normalized.json",
+          "sha256": "f3e2a3a2c89a359aaa547aee9019637e4959a1538aa154dccdb13cdd77871d5a",
+          "size_bytes": 1213
+        }
+      }
+    ],
+    "counts": {
+      "sources": 9,
+      "source_revisions": 4,
+      "cases": 4,
+      "questions": 4,
+      "workflow": 1,
+      "runs": 0,
+      "scorecards": 0,
+      "review_log": 20,
+      "candidate_records": 0,
+      "candidate_reviews": 0,
+      "source_rights_reviews": 0,
+      "dataset_releases": 0
+    },
+    "checks": [
+      "two exact fixture jobs succeeded",
+      "uploaded bytes match local files",
+      "raw and normalized receipt sizes and SHA-256 match",
+      "normalized documents validate",
+      "source identities match",
+      "actor matches signed-in operator",
+      "pressure and temperature text preserved",
+      "existing capture counts unchanged"
+    ],
+    "limitation": "Structured measurement basis remains unknown; original block text retains explicit basis."
+  },
+  "release_verification": {
+    "checked_at": "2026-09-26T02:18:50.594389Z",
+    "synthetic_only": true,
+    "release_id": "929c0e6123c78726702e51782e42fec2512ab363374bf9c761e6d07cef7a6fd8",
+    "train_rows": 1,
+    "identical_second_build": true,
+    "independent_verification": true
+  },
+  "blocked_before_review": {
+    "stage": "blocked-before-review",
+    "blocked": true,
+    "reason": "candidate release preparation failed: acknowledged exclusion required for SYN-BROWSER-PUMP-EVIDENCE-001",
+    "checked_at": "2026-09-26T02:16:39.687839Z"
+  },
+  "blocked_before_technical_review": {
+    "stage": "blocked-before-technical-review",
+    "blocked": true,
+    "reason": "candidate release preparation failed: acknowledged exclusion required for SYN-BROWSER-PUMP-EVIDENCE-001",
+    "checked_at": "2026-09-26T02:18:11.164508Z"
+  },
+  "blocked_after_revocation": {
+    "stage": "blocked-after-revocation",
+    "blocked": true,
+    "reason": "candidate release preparation failed: acknowledged exclusion required for SYN-BROWSER-PUMP-EVIDENCE-001",
+    "checked_at": "2026-09-26T02:20:08.729370Z"
+  },
+  "browser_observations": {
+    "normal_operator_signin": true,
+    "two_manual_browser_uploads": true,
+    "text_and_csv_provenance_visible": true,
+    "initial_rights_pending_reference_only": true,
+    "exact_hash_synthetic_rights_review": true,
+    "exact_hash_synthetic_technical_review": true,
+    "stale_rights_update_rejected": true
+  },
+  "final_rights": {
+    "status": "revoked",
+    "permitted_use": "reference_only",
+    "reviewed_by": "bupham@ilyrium.io"
+  },
+  "final_technical_reviews": [
+    {
+      "status": "approved",
+      "reviewed_by": "bupham@ilyrium.io"
+    }
+  ],
+  "final_counts": {
+    "sources": 9,
+    "source_revisions": 4,
+    "cases": 4,
+    "questions": 4,
+    "workflow": 1,
+    "runs": 0,
+    "scorecards": 0,
+    "review_log": 20,
+    "candidate_records": 1,
+    "candidate_reviews": 1,
+    "source_rights_reviews": 2,
+    "dataset_releases": 1
+  },
+  "historical_release_retained_and_verified": true,
+  "revocation_impacts": [
+    {
+      "example_id": "SYN-BROWSER-PUMP-EVIDENCE-001",
+      "split": "train",
+      "source_id": "3edabdfe-9b85-453d-99c7-d715893f773b",
+      "revision_id": "r1",
+      "content_sha256": "ca3cb7e424a2ac1d55e1cf2a51c7b19158e2984052b4bf13c07816bf71cef4ff"
+    }
+  ],
+  "limitations": [
+    "Tiny synthetic fixture proves pipeline mechanics, not engineering competence.",
+    "Measurement index keeps basis unknown; original text retains 3 bar absolute. CSV retains explicit basis column.",
+    "No native OCR/audio/vision or model-generated extraction evaluated in this session.",
+    "Synthetic decisions were agent-executed under Brad-authorized dev testing, not independent expert acceptance."
+  ],
+  "ec2_started": false,
+  "model_training_started": false,
+  "production_changed": false,
+  "temporary_runtime_stopped": true,
+  "remaining_task_containers": 0,
+  "https_checks_passed": 6
+}

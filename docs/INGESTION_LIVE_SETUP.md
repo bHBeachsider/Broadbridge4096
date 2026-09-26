@@ -4,9 +4,9 @@ Status: the updated R2 credentials passed live writes. The actual R2/Docker/Neon
 dev smoke passed 19 checks for two synthetic documents, followed by all six HTTPS
 checks. Preview storage/API settings were refreshed and the test Preview reached
 READY. The missing Preview auth-origin configuration was then fixed, and Brad's
-deployed sign-in was verified. Browser upload acceptance is in progress; automatic
-file selection needs Edge's extension file-URL permission. Temporary Docker
-services were stopped while that prerequisite is pending. All work remains on draft PRs; no
+deployed sign-in was verified. Brad manually selected and uploaded both synthetic
+files; live browser-to-dataset acceptance passed through review and revocation.
+Temporary Docker services were stopped after completion. All work remains on draft PRs; no
 production release is authorized.
 
 ## Verified destinations
@@ -318,6 +318,55 @@ classification and generative extraction separate. Expand the unseen evaluation
 sample before choosing a default; the eight research examples are insufficient.
 This can proceed without starting a GPU. Native OCR/audio parser readiness and
 rights-cleared data admission remain separate work items.
+
+## Deployed browser-to-dataset acceptance completed
+
+Brad uploaded `SYN-BROWSER-PUMP.txt` (308 bytes) and `SYN-BROWSER-READINGS.csv`
+(140 bytes) through the signed-in Preview. Runtime `bb-ingest-b6da56cf67` had
+passed six HTTPS checks and Preview `dpl_4SHmZnKnRC5V5XVKDy9mp8biRHUo` was READY.
+The bounded helper accepted only those two filenames and SHA-256 values; both
+jobs succeeded. No extension permission change was necessary for Brad's manual
+file selection.
+
+Independent reads verified original bytes, raw and normalized artifact receipts,
+schema validity, source identities and `created_by=bupham@ilyrium.io`. Both
+documents appeared in Source review. The text retained `3 bar absolute` and
+`45 degC`; the CSV retained its explicit unit and basis columns. Sources began
+with pending rights and reference-only use.
+
+One authored synthetic question/answer was registered against the text source's
+exact revision, hash and block. Dataset preparation was blocked before review,
+and again after source-rights approval while technical review remained pending.
+The agent exercised the two separate review controls under Brad's authorization
+for this dev test, with reasons explicitly identifying synthetic acceptance.
+These records do not represent independent expert sign-off or real content rights.
+
+After both reviews, the domain bridge built a one-row synthetic release twice:
+`929c0e6123c78726702e51782e42fec2512ab363374bf9c761e6d07cef7a6fd8`.
+The second build returned the identical manifest, and independent verification
+matched all release hashes. The files are retained in ignored local test storage;
+this is a pipeline test artifact, not a model-training authorization.
+
+The text source was then deliberately revoked to reference-only. A stale browser
+view could not overwrite that decision, and a new release attempt was blocked.
+The existing release remained intact, and the revocation-impact utility identified
+its one affected example. The source will visibly show **revoked** as the intended
+test outcome; the CSV remains pending/reference-only.
+
+Final totals: 9 sources, 4 source revisions, 4 succeeded ingestion jobs, 1 candidate,
+1 technical review, 2 source-rights decisions and 1 dataset release. Capture cases
+(4), questions (4), workflow (1), runs (0), scorecards (0) and review_log (20) are
+unchanged. All task containers were stopped and their absence verified.
+See [sanitized live acceptance evidence](verification/ingestion-live-browser-dataset.json).
+
+Known limits: the measurement index deliberately keeps `basis=unknown`; the
+original evidence phrase is authoritative. CSV structure is preserved as table
+text. Native OCR/audio/vision and AI-generated extraction were not tested here.
+The upload receipt can continue to say "Queued for CPU verification" after the
+source card says "Extraction complete"; use the source card's current state.
+Improving basis extraction and this receipt wording belongs in subsequent drafts.
+No EC2, model inference, GPU training or production deployment occurred in this
+browser acceptance session.
 
 ## Credential incident
 
