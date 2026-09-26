@@ -1,0 +1,3 @@
+Synthetic evidence for offline intake tests only.
+Observed at the stated decision time: gauge reading is unknown.
+No source permission or case outcome is asserted by this fixture.

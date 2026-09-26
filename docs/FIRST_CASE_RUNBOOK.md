@@ -31,7 +31,30 @@ if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed' }
 
 On later days, set `$Repo`, `$Foundry`, `$Pack`, `$Python` and `$ErrorActionPreference` again in Terminal A; skip installation if this environment is already ready. Keep the two repositories' revisions with the run. AWS CLI credentials, SSH access and the named reviewer must already be available.
 
-## 2. Export and import (Terminal A, no GPU)
+## 2. Recommended command for one case or a batch
+
+Use `scripts/first_case.ps1` when signed cases arrive together. It imports the complete export once and checks every selected case before starting the existing box. `-CaseId` accepts a single ID, a quoted comma list, a PowerShell string array, or `all-signed`. `all-signed` selects signed cases only, including signed testing-only/reference-only cases; unsigned records are never selected automatically. No question set, document index or training host setup is needed.
+
+Before running live, Brad checks rights/storage, reviewer signoff, the selected cases' decision-time text and context length as described below. Every selected case must pass signoff, schema and prompt-leak preflight. Any importer rejection stops the batch, including a rejected family member outside the selection. An explicit bad/duplicate ID, an empty selection or a selected unsigned case also stops before AWS. The SSH key and current host key must already be trusted; first-time/changed-host-key verification remains a manual operator step. Port 11434 remains closed.
+
+After setting the local variables in section 1, use **either this command or the manual sections 3–7**, not both:
+
+```powershell
+$Export = Read-Host 'Full path to the complete All records as JSON export'
+$RunId = (Get-Date -Format 'yyyyMMdd-HHmmss') + '-' + [guid]::NewGuid().ToString('N').Substring(0,8)
+$Run = Join-Path $Pack "outputs\first-case\$RunId"
+# Replace all-signed with an explicit list such as 'CASE-001,CASE-002' if needed.
+& "$Repo\scripts\first_case.ps1" -Export $Export -CaseId 'all-signed' -RunRoot $Run -Python $Python -Foundry $Foundry
+if ($LASTEXITCODE -ne 0) { throw 'Batch needs attention; inspect the printed run root and teardown status' }
+```
+
+Each invocation creates a fresh ignored `packs/oil-gas/outputs/first-case/<run_id>/`. `-RunRoot <fresh-path>` overrides that location. The live path requires the box to be stopped and local port 11435 free, then starts EC2 once, discovers its current IP, opens one hidden SSH tunnel and saves the stock model digest/template once. The N briefs use the shared client with `think:false`, temperature 0.2 and `schema=brief`. The script stops EC2 once in `finally`, confirms stopped, and closes its own tunnel. No key checks are bypassed and no models are downloaded.
+
+Each valid response yields `cases/<case_id>/brief_run.json` and `eval/scorecard_<case_id>.md`. `batch_summary.md` prints **case_id, status, brief valid y/n, elapsed**; `batch_results.json` retains error details. One failed case does not discard successful cases or prevent later cases from running. Failed responses cannot receive a valid scorecard; they remain visible in the summary and count as unreviewed. No automatic retries or overwriting: retry explicitly in a fresh run. A session failure before inference leaves the selected cases as `not-run`. `session_error.txt`/`teardown_error.txt` record failures; absence of `instance_stopped.txt` after a start requires operator attention and the recovery block in section 6. Abrupt process termination or loss of power still requires manual teardown.
+
+The run also retains `batch_manifest.json`, both repository revisions (Broadbridge only for mock runs), the full family-aware import, and live-only model/session records. All review occurs after shutdown. A valid brief is only a schema result, not engineering acceptance.
+
+## 3. Manual alternative: export and import (Terminal A, no GPU)
 
 Brad confirms the written case is signed, its permitted use covers this internal exercise, the export/storage location is approved, and the reviewer and brief schema are agreed. A typed signature is not automatically authenticated by these scripts. Resolve missing reference answers, evidence IDs, tolerance for numerical questions and hard-fail criteria with the reviewer before scoring. If the rest of Gate 0 remains open, record that fact rather than declaring the full benchmark ready.
 
@@ -63,11 +86,11 @@ The page defaults new cases to `permitted_use=training`; unsigned cases still im
 
 `locked_test > dev > train` applies to the entire family. The case archive preserves the original question split; `eval/questions.jsonl` and `import_report.json` hold the **effective family split**. Never tune on a locked-test answer or merge snapshots with different family assignments. Real run outputs are under the already ignored `packs/oil-gas/outputs/` directory.
 
-## 3. Start EC2 and open the tunnel (Terminal B)
+## 4. Manual alternative: start EC2 and open the tunnel (Terminal B)
 
 These are the serving brief's instance, region, port mapping and key. The fresh IP is obtained directly from EC2. This replaces `infra/status.ps1` here because that helper also uses the saved SSH alias and probes unrelated training/S3 state.
 
-Run the following in a **second PowerShell window**. If bring-up fails after the instance starts, run the teardown block in section 5 before leaving. Check SSH host-key prompts normally; do not disable host-key verification.
+Run the following in a **second PowerShell window**. If bring-up fails after the instance starts, run the teardown block in section 6 before leaving. Check SSH host-key prompts normally; do not disable host-key verification.
 
 ```powershell
 $ErrorActionPreference = 'Stop'
@@ -87,7 +110,7 @@ ssh -i $Key -o ExitOnForwardFailure=yes -N -L 11435:localhost:11434 "ec2-user@$(
 
 Keep Terminal B open while Terminal A calls the model. If Brad's home IP changed, an authorized operator updates **SSH port 22** in `slm-foundry-sg` (`sg-00c7894c78785b6c3`) to the current home IP/32. Keep port **11434 closed** in the security group. Windows Ollama on local port 11434 is not the remote model and must not be used.
 
-## 4. Generate the stock brief (Terminal A)
+## 5. Manual alternative: generate the stock brief (Terminal A)
 
 The brief runner loads `schemas/brief.schema.json` and calls the shared client with `schema=<that JSON Schema object>`, `think=False`, `temperature=0.2`. The client sends POST `/api/chat`, `stream:false`, and the schema in Ollama's `format` field. The local validator rejects malformed JSON, duplicate keys, non-JSON numeric values and schema violations before publishing `brief_run.json`.
 
@@ -106,7 +129,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Brief failed; inspect error and preserve this run directory' }
 } finally {
     aws ec2 stop-instances --region us-east-1 --instance-ids i-0e5e1cbc7b1367566
-    if ($LASTEXITCODE -ne 0) { Write-Warning 'STOP FAILED: use section 5 and confirm stopped in AWS before leaving' }
+    if ($LASTEXITCODE -ne 0) { Write-Warning 'STOP FAILED: use section 6 and confirm stopped in AWS before leaving' }
 }
 ```
 
@@ -114,7 +137,7 @@ The saved tag digest and model-info/template snapshot identify the stock build; 
 
 The client timeout is 120 seconds. Cold-start latency and live schema-constrained generation have not been measured in this first-case workflow. A timeout or invalid reply fails the run; diagnose before an explicit retry in a fresh run directory. Do not repeatedly retry unattended. The serving brief reports a 4096-token default context. Review long cases against that limit before inference; this harness does not measure token counts or prove that the server avoided truncation. Do not silently trim a signed case to fit.
 
-## 5. Confirm teardown (Terminal A)
+## 6. Confirm teardown / recovery (Terminal A)
 
 Stop the GPU before the reviewer starts reading. This block is also the recovery path if Terminal B startup, health checks or inference failed before the `finally` block ran.
 
@@ -127,7 +150,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Stopped state not confirmed; check AWS console
 
 Press Ctrl+C in Terminal B if SSH has not already exited. No `bootstrap.sh`, IAM profile change, S3 transfer or deployment script is part of this run.
 
-## 6. Generate and complete the reviewer scorecard (no GPU)
+## 7. Generate and complete the reviewer scorecard (no GPU)
 
 ```powershell
 & $Python "$Pack\scripts\score_brief.py" $Case "$Run\brief_run.json" "$Run\eval"
@@ -159,9 +182,9 @@ packs/oil-gas/outputs/first-case/<run_id>/
   brief_run.json
 ```
 
-## 7. Offline rehearsal on SYN-001 (no EC2, no model connection)
+## 8. Offline rehearsal on SYN-001 (no EC2, no model connection)
 
-Use this block instead of sections 2–6. It exercises the same importer, prompt guard, structured output validation and scorecard generator. The response is a clearly labelled authored fixture; `--mock-response` never loads the Foundry client. SYN-001 stays draft/reference_only and eval-only, with zero training candidates. `--dry-run` alone only prints the prompt and does not exercise response/scoring output.
+Use this block instead of sections 2–7. It exercises the same importer, prompt guard, structured output validation and scorecard generator. The response is a clearly labelled authored fixture; `--mock-response` never loads the Foundry client. SYN-001 stays draft/reference_only and eval-only, with zero training candidates. `--dry-run` alone only prints the prompt and does not exercise response/scoring output.
 
 After local setup in section 1, run:
 
@@ -184,6 +207,51 @@ The tracked seed/export fixtures reproduce the page export stored under `output/
 
 Delivery verification on 24 September 2026: the PowerShell rehearsal above completed in **1.99 seconds** using the installed `C:\Python313\python.exe` with the local capture dependencies (no dependency installation in that measurement). The importer reported **1 case, 1 question, 0 training candidates**; SYN-001 was **eval-only**. The prompt guard passed and the generated brief/scorecard were explicitly marked MOCK. No AWS or model endpoint was contacted. Repeated runs will have different timestamps and timings.
 
+## 9. Offline three-case batch rehearsal
+
+This combines the unmodified SYN-001 seed and the two existing SYN-TRAIN fixtures in a temporary export. SYN-001 remains draft/reference_only and eval-only. Its explicit inclusion is allowed only because this invocation uses `-MockResponse`; a live invocation would refuse it. The three cases share the same synthetic decision-time scenario, so one authored mock response is suitable for this transport rehearsal. None is a real case or a human-reviewed result.
+
+```powershell
+$FixtureDir = Join-Path $Pack 'tests\fixtures'
+$RunId = 'batch-mock-' + [guid]::NewGuid().ToString('N')
+$Intake = Join-Path $Repo "tmp\$RunId"
+New-Item -ItemType Directory -Path $Intake | Out-Null
+$Example = Get-Content -LiteralPath "$FixtureDir\capture_export.json" -Raw -Encoding UTF8 | ConvertFrom-Json
+$Example.cases = @($Example.cases) + @(
+    (Get-Content -LiteralPath "$FixtureDir\SYN-TRAIN-001.json" -Raw -Encoding UTF8 | ConvertFrom-Json),
+    (Get-Content -LiteralPath "$FixtureDir\SYN-TRAIN-002.json" -Raw -Encoding UTF8 | ConvertFrom-Json)
+)
+$Export = Join-Path $Intake 'capture_export.json'
+$Utf8 = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllText($Export, ($Example | ConvertTo-Json -Depth 100), $Utf8)
+$Run = Join-Path $Pack "outputs\first-case\$RunId"
+& "$Repo\scripts\first_case.ps1" -Export $Export -CaseId 'SYN-001,SYN-TRAIN-001,SYN-TRAIN-002' -RunRoot $Run -Python $Python -MockResponse "$FixtureDir\SYN-001.mock_brief.json"
+if ($LASTEXITCODE -ne 0) { throw 'Offline batch failed' }
+& $Python "$Repo\scripts\aggregate_scores.py" $Run
+if ($LASTEXITCODE -ne 0) { throw 'Aggregate structural checks failed' }
+Get-Content -LiteralPath "$Run\batch_summary.md" -Encoding UTF8
+Get-Content -LiteralPath "$Run\scores_summary.md" -Encoding UTF8
+```
+
+Expected: three completed, schema-valid MOCK briefs, three UNREVIEWED scorecards, zero reviewed / three unreviewed cases, no live means. The importer derives two synthetic training candidates; this workflow never reads or trains on them. A separate mock invocation with `-CaseId 'all-signed'` selects only SYN-TRAIN-001 and SYN-TRAIN-002. The mock path never probes AWS, SSH, Foundry, ports or HTTP.
+
+The three-case rehearsal on 24 September 2026 completed in **1.344 seconds** after local setup: all three briefs passed the schema, three scorecards were written, and the aggregate reported **0 reviewed / 3 unreviewed**. SYN-001's draft/reference-only record was unchanged. This timing covers fixture replay and local processing only.
+
+## 10. Reviewer aggregate and S0-cases report
+
+After review, refresh the derived report:
+
+```powershell
+& $Python "$Repo\scripts\aggregate_scores.py" $Run
+if ($LASTEXITCODE -ne 0) { throw 'Resolve reported scorecard/manifest structural errors' }
+```
+
+This reads `scorecard_*.md` recursively under the run root and replaces only `scores_summary.md`. It calculates each type's mean from the actual 0/1/2 question scores, excludes reasoned N/A from the denominator, counts critical YES flags separately, and reports reviewed/unreviewed cases. Missing scorecards for selected batch cases count as unreviewed. Duplicate case sheets, conflicting identities or malformed structures produce a visible error and nonzero exit; do not silently pick a preferred rerun. For a report spanning several batch roots, use their common parent with one selected scorecard per case; resolve duplicate reruns explicitly before aggregation.
+
+A completed review requires the existing Reviewer, Review date and Reviewer acceptance signature/date lines, plus every question's score, assessed YES/NO critical flag, supporting quotation/evidence and matched criterion or explanation for NO. N/A needs its reason; critical YES requires score 0. These are the same fields already on the sheet. A completed **HOLD** with critical errors counts as reviewed, not accepted. ACCEPT with a critical YES is inconsistent and stays unreviewed until corrected. Partial reviews contribute no averages. The printed UNREVIEWED banner and handwritten points totals are not grading inputs. Keep the original section headings, question metadata and static question counts intact. Case/question IDs follow the importer's case-insensitive duplicate rule; identity spelling is preserved. Signed capture does not itself complete model-output review.
+
+Live and MOCK scores appear separately. Mock averages demonstrate the reporting workflow only. At Gate 0 close, this report supplies S0-cases results from completed live reviews; absent question types remain N/A, never zero. Bill and Brad still verify case coverage, source rights, authenticity of signoff and engineering acceptance. Gate 3 and S0-retrieval remain deferred until the first scored briefs identify the actual failures to address.
+
 ## Expected wall time and human handoffs
 
 These are planning estimates for a short case, not measured GPU performance. Allow 30–65 minutes after a reviewed export is ready; Python dependency setup is a separate one-time task.
@@ -198,3 +266,5 @@ These are planning estimates for a short case, not measured GPU performance. All
 | Offline synthetic rehearsal | Usually under 30 sec after setup | No EC2 or engineering acceptance; inspect dispositions and MOCK label. |
 
 Expected instance running time is roughly 5–15 minutes, with review performed after shutdown. Only the offline rehearsal is verified with this delivery. Full Gate 0 scope/reviewer acceptance, source rights, appropriate question coverage, live inference behavior and technical grading still require their respective human checks.
+
+For a batch of N short cases, budget one 3–8 minute bring-up, approximately N × 0.5–3 minutes for inference/validation, and one 1–3 minute teardown. Reviewer time still scales per case. These live timings are estimates; batch tests and rehearsal use only mocked services/responses.

@@ -8,6 +8,7 @@ import sys
 import tempfile
 
 from case_contract import disposition, read_json, validate_export
+from db_publication import publish_staged
 from run_brief import decision_payload
 
 SPLITS = {"train": 0, "dev": 1, "locked_test": 2}
@@ -41,7 +42,9 @@ def _validate_ids(cases):
             seen_questions.add(qid.casefold())
 
 
-def import_export(source, output):
+def import_export(source, output, *, db_enabled=False, actor=None):
+    if db_enabled and not actor:
+        raise ValueError("--db requires --actor EMAIL")
     source, output = Path(source).resolve(), Path(output).absolute()
     export = read_json(source)
     # A malformed export is rejected as a whole: no ambiguous family can be dropped.
@@ -79,6 +82,8 @@ def import_export(source, output):
               "exported_at": export["exported_at"], "cases": dispositions,
               "counts": {"case_files": len(accepted), "questions": len(questions), "train_candidates": len(candidates)},
               "family_splits": families, "complete": True}
+    if db_enabled and any(row["disposition"] == "rejected" for row in dispositions):
+        raise ValueError("Database import refuses a partially rejected export; resolve all rejected cases first")
     # Fresh snapshots prevent stale training rows surviving a later holdout promotion.
     # Permit an existing empty destination, but never merge into a previous snapshot.
     if output.is_symlink() or (output.exists() and (not output.is_dir() or any(output.iterdir()))):
@@ -95,9 +100,28 @@ def import_export(source, output):
         (snapshot / "data/train_candidates.jsonl").write_text(_jsonl(candidates), encoding="utf-8", newline="\n")
         (snapshot / "workflow.json").write_text(_json(export["workflow"]), encoding="utf-8", newline="\n")
         (snapshot / "import_report.json").write_text(_json(report), encoding="utf-8", newline="\n")
-        if output.exists():
-            output.rmdir()  # Empty destination only; never recursive.
-        snapshot.rename(output)
+        def db_write(conn):
+            import db
+            for case in accepted:
+                db.upsert_case(conn, case, actor)
+            db.upsert_workflow(conn, export["workflow"], actor)
+            # Other family members may already exist in the system of record.
+            # Their holdout restrictions must also govern this file snapshot.
+            families.update(db.effective_splits(conn, [case["family_id"] for case in accepted]))
+            for row in questions:
+                row["split"] = families.get(row["family_id"])
+            for row in candidates:
+                row["split"] = families.get(row["family_id"])
+            candidates[:] = [row for row in candidates if row["split"] == "train"]
+            for row in dispositions:
+                row["effective_split"] = families.get(row["family_id"])
+                if row["disposition"] == "imported" and row["effective_split"] != "train":
+                    row.update(disposition="eval-only", reason=f"family split={row['effective_split'] or 'no questions'}; excluded from training")
+            report["counts"]["train_candidates"] = len(candidates)
+            (snapshot / "eval/questions.jsonl").write_text(_jsonl(questions), encoding="utf-8", newline="\n")
+            (snapshot / "data/train_candidates.jsonl").write_text(_jsonl(candidates), encoding="utf-8", newline="\n")
+            (snapshot / "import_report.json").write_text(_json(report), encoding="utf-8", newline="\n")
+        publish_staged(snapshot, output, db_write=db_write if db_enabled else None)
     return report
 
 
@@ -113,12 +137,14 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("export")
     parser.add_argument("out_dir")
+    parser.add_argument("--db", action="store_true", help="Upsert into the dedicated Broadbridge database with this snapshot")
+    parser.add_argument("--actor", help="Email of the operator responsible for this import")
     args = parser.parse_args(argv)
     try:
-        report = import_export(args.export, args.out_dir)
+        report = import_export(args.export, args.out_dir, db_enabled=args.db, actor=args.actor)
         print_dispositions(report)
         return 2 if any(row["disposition"] == "rejected" for row in report["cases"]) else 0
-    except (ValueError, OSError) as exc:
+    except (ValueError, OSError, RuntimeError) as exc:
         # Whole-export failures are explicit and produce no partial datasets.
         print(f"EXPORT REJECTED; no snapshot published: {exc}", file=sys.stderr)
         return 2

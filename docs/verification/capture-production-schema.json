@@ -1,0 +1,25 @@
+{
+  "project": "crimson-block-71962201",
+  "branch": "production",
+  "branch_id": "br-old-leaf-au0q8w6y",
+  "schema_only_no_test_data_imported": true,
+  "status": {
+    "version": "0004_capture_actions.sql",
+    "migrations": [
+      "0001_init.sql",
+      "0002_constraints.sql",
+      "0003_capture_auth.sql",
+      "0004_capture_actions.sql"
+    ],
+    "counts": {
+      "sources": 0,
+      "evidence": 0,
+      "cases": 0,
+      "questions": 0,
+      "workflow": 0,
+      "runs": 0,
+      "scorecards": 0,
+      "review_log": 0
+    }
+  }
+}

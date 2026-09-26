@@ -1,0 +1,25 @@
+{
+  "project": "crimson-block-71962201",
+  "branch": "dev",
+  "branch_id": "br-billowing-morning-audiqy3e",
+  "source_records": "Five synthetic DB-TEST fixtures, not the unconfirmed real source register",
+  "state_after_fixture_import_before_browser_smoke": {
+    "version": "0004_capture_actions.sql",
+    "migrations": [
+      "0001_init.sql",
+      "0002_constraints.sql",
+      "0003_capture_auth.sql",
+      "0004_capture_actions.sql"
+    ],
+    "counts": {
+      "sources": 5,
+      "evidence": 0,
+      "cases": 3,
+      "questions": 3,
+      "workflow": 1,
+      "runs": 0,
+      "scorecards": 0,
+      "review_log": 10
+    }
+  }
+}

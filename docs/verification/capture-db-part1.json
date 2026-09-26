@@ -1,0 +1,31 @@
+{
+  "version": "0002_constraints.sql",
+  "migrations": [
+    "0001_init.sql",
+    "0002_constraints.sql"
+  ],
+  "counts": {
+    "sources": 5,
+    "evidence": 0,
+    "cases": 3,
+    "questions": 3,
+    "workflow": 1,
+    "runs": 3,
+    "scorecards": 3,
+    "review_log": 3
+  },
+  "train_candidates": 2,
+  "postgres_version": "18.6 (6569466)",
+  "vector_version": "0.8.6",
+  "checked_at": "2026-09-24T19:04:20.823051+00:00",
+  "project_id": "crimson-block-71962201",
+  "branch_id": "br-royal-moon-auq044a1",
+  "branch": "capture-dev",
+  "source_fixture": "five synthetic DB-TEST records; requested five registered sources still unidentified",
+  "mock_only": true,
+  "neon_core_tests": {
+    "passed": 48,
+    "skipped": 1,
+    "skip_reason": "remote reset intentionally prohibited"
+  }
+}
