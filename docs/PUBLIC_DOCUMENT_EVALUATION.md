@@ -6,6 +6,12 @@ It compares two open-weight text models on **10 public agency web publications,
 Bill Hurt is the target technical reviewer; Brad can perform an initial screening.
 No completed human scores are implied by generating this packet.
 
+An offline [assistant pre-review](../output/openrouter-public-evaluation/public-v1-live/PRE_REVIEW_TRIAGE.md)
+now covers all 30 returned answers and identifies review priorities. It is not
+human scoring or technical acceptance, and it reveals model identities. Complete
+an independent initial review before consulting it if maintaining the masked
+comparison is important. All original answers and score rows remain unchanged.
+
 ## What to open
 
 The observed run is in
