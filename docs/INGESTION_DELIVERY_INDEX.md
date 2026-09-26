@@ -135,6 +135,12 @@ secret stores and ignored local files.
 
 ## Rulings made
 
+Public-document helper evaluation is the current follow-up. See
+[the runbook and observed limitations](PUBLIC_DOCUMENT_EVALUATION.md). Ten public
+documents and thirty balanced questions are frozen for testing only. Qwen returned
+thirty answers; Mistral's first output was truncated and its client stopped.
+Reviewer scoring remains pending. No training, production or EC2 step was taken.
+
 - Eight work packages ran in waves using three worker slots, with exclusive file
   ownership and separate specification/quality reviews.
 - Sources and extraction metadata cannot grant rights. Source rights, technical

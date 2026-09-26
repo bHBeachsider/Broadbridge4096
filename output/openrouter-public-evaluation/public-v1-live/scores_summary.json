@@ -1,0 +1,53 @@
+{
+  "decision": "HOLD",
+  "training_approved": false,
+  "mode": "live",
+  "actual_answers": 30,
+  "missing_answer_slots": 30,
+  "reviewed_responses": 0,
+  "unreviewed_responses": 60,
+  "documents_fully_reviewed": 0,
+  "documents_not_fully_reviewed": 10,
+  "critical_errors_observed": 0,
+  "critical_error_assessment_complete": false,
+  "models": {
+    "mistral": {
+      "answered_documents": 0,
+      "mechanically_valid_documents": 0,
+      "scored_questions": 0,
+      "mean": null,
+      "critical_errors_observed": 0,
+      "per_type_mean": {
+        "brief": null,
+        "missing_data": null,
+        "calculation": null,
+        "grounded_explanation": null,
+        "abstention": null
+      },
+      "median_document_seconds": 56.993283,
+      "known_cost_usd": 0.0002947,
+      "cost_receipts_complete": true,
+      "reported_prompt_tokens": 774,
+      "reported_completion_tokens": 3200
+    },
+    "qwen": {
+      "answered_documents": 10,
+      "mechanically_valid_documents": 5,
+      "scored_questions": 0,
+      "mean": null,
+      "critical_errors_observed": 0,
+      "per_type_mean": {
+        "brief": null,
+        "missing_data": null,
+        "calculation": null,
+        "grounded_explanation": null,
+        "abstention": null
+      },
+      "median_document_seconds": 22.61495,
+      "known_cost_usd": 0.0031726,
+      "cost_receipts_complete": true,
+      "reported_prompt_tokens": 7795,
+      "reported_completion_tokens": 7977
+    }
+  }
+}

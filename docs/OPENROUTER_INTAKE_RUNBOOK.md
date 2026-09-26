@@ -131,3 +131,9 @@ Before wider use: collect unseen reviewer-labeled documents, measure errors and
 cost per accepted example, add numerical/unit/basis checks, and validate the
 chosen helper across that sample. Native OCR/audio/vision and automatic worker
 invocation remain separate work. Nothing here closes Gate 0 or authorizes QLoRA.
+
+The next public-document sample is now available in
+[PUBLIC_DOCUMENT_EVALUATION.md](PUBLIC_DOCUMENT_EVALUATION.md): ten agency pages,
+thirty fixed questions, draft references and unscored reviewer sheets. Live
+observations include Mistral output-limit failure and Qwen quotation-check flags;
+there is no completed technical score or approved training batch.
