@@ -1,6 +1,6 @@
 import type { Adapter, AdapterUser, VerificationToken } from "next-auth/adapters";
 import { getSql } from "./db";
-import { allowedEmail, assertAllowedEmail } from "./auth-policy";
+import { allowedEmail, assertAllowedEmail, MAGIC_LINK_MAX_AGE_SECONDS } from "./auth-policy";
 
 type Row = Record<string, unknown>;
 
@@ -76,7 +76,7 @@ export function createAuthAdapter(): Adapter {
       const identifier = assertAllowedEmail(verification.identifier);
       const expires = verification.expires.getTime();
       if (!validHash(verification.token) || !Number.isFinite(expires)
-          || expires <= Date.now() || expires > Date.now() + 15 * 60_000) {
+          || expires <= Date.now() || expires > Date.now() + MAGIC_LINK_MAX_AGE_SECONDS * 1000) {
         throw new Error("Invalid verification token");
       }
       const rows = await getSql()`
@@ -87,7 +87,7 @@ export function createAuthAdapter(): Adapter {
         )
         INSERT INTO broadbridge.auth_verification_tokens(identifier, token, expires, created_at)
         SELECT ${identifier}, ${verification.token},
-          LEAST(${verification.expires.toISOString()}::timestamptz, created_at + interval '15 minutes'), created_at
+          LEAST(${verification.expires.toISOString()}::timestamptz, created_at + ${MAGIC_LINK_MAX_AGE_SECONDS}::integer * interval '1 second'), created_at
         FROM issued
         RETURNING identifier, token, expires`;
       const saved = asToken(rows[0]);

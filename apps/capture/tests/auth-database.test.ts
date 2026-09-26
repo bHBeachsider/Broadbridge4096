@@ -43,14 +43,35 @@ describe.skipIf(!enabled)("auth tokens on a verified development database", () =
     const clock = await getSql()`SELECT (extract(epoch FROM clock_timestamp()) * 1000)::bigint::text AS milliseconds`;
     const appTime = Number(clock[0].milliseconds) + 60_000;
     vi.spyOn(Date, "now").mockReturnValue(appTime);
-    const requested = new Date(appTime + 15 * 60_000);
+    const requested = new Date(appTime + 24 * 60 * 60_000);
     const token = "a".repeat(64);
     const stored = await createAuthAdapter().createVerificationToken!({ identifier, token, expires: requested });
     expect(stored!.expires.getTime()).toBeLessThanOrEqual(requested.getTime());
-    const rows = await getSql()`SELECT expires <= created_at + interval '15 minutes' AS bounded,
-      expires > created_at AS valid, expires = created_at + interval '15 minutes' AS clipped
+    const rows = await getSql()`SELECT expires <= created_at + interval '24 hours' AS bounded,
+      expires > created_at AS valid, expires = created_at + interval '24 hours' AS clipped
       FROM broadbridge.auth_verification_tokens WHERE identifier=${identifier} AND token=${token}`;
     expect(rows).toEqual([{ bounded: true, valid: true, clipped: true }]);
+  });
+
+  it("accepts a twelve-hour-old unconsumed link once and refuses expired links", async () => {
+    const identifier = mailbox();
+    const sql = getSql();
+    const token = "c".repeat(64);
+    await sql`INSERT INTO broadbridge.auth_verification_tokens(identifier,token,created_at,expires)
+      VALUES (${identifier},${token},clock_timestamp()-interval '12 hours',clock_timestamp()+interval '11 hours')`;
+    const adapter = createAuthAdapter();
+    expect(await adapter.useVerificationToken!({identifier,token})).not.toBeNull();
+    expect(await adapter.useVerificationToken!({identifier,token})).toBeNull();
+    await sql`INSERT INTO broadbridge.auth_verification_tokens(identifier,token,created_at,expires)
+      VALUES (${identifier},${token},clock_timestamp()-interval '25 hours',clock_timestamp()-interval '1 hour')`;
+    expect(await adapter.useVerificationToken!({identifier,token})).toBeNull();
+  });
+
+  it("rejects database lifetimes beyond 24 hours", async () => {
+    const identifier = mailbox();
+    await expect(getSql()`INSERT INTO broadbridge.auth_verification_tokens(identifier,token,created_at,expires)
+      VALUES (${identifier},${"d".repeat(64)},clock_timestamp(),clock_timestamp()+interval '25 hours')`)
+      .rejects.toMatchObject({code:"23514"});
   });
 
   it("preserves a shorter expiry and permits exactly one concurrent token consumer", async () => {

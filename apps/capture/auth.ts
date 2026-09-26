@@ -3,7 +3,7 @@ import { appendFile } from "node:fs/promises";
 import NextAuth from "next-auth";
 import Resend from "next-auth/providers/resend";
 import { claimEmailIssuance, createAuthAdapter } from "./lib/auth-adapter";
-import { allowedEmail, assertAllowedEmail, authAvailability, configuredAuthOrigin, localTestOutbox } from "./lib/auth-policy";
+import { allowedEmail, assertAllowedEmail, authAvailability, configuredAuthOrigin, localTestOutbox, MAGIC_LINK_MAX_AGE_SECONDS } from "./lib/auth-policy";
 
 // Emit fixed diagnostic vocabulary only: never messages, stacks, URLs or SQL.
 const authErrorTypes = new Set(["AuthError", "AdapterError", "AccessDenied", "CallbackRouteError", "EmailSignInError", "JWTSessionError", "SessionTokenError", "MissingAdapter", "MissingAdapterMethods", "MissingSecret", "UntrustedHost", "Verification", "Configuration"]);
@@ -25,7 +25,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth(() => ({
     Resend({
       apiKey: process.env.RESEND_API_KEY,
       from: process.env.CAPTURE_EMAIL_FROM,
-      maxAge: 15 * 60,
+      maxAge: MAGIC_LINK_MAX_AGE_SECONDS,
       normalizeIdentifier: (identifier) => assertAllowedEmail(identifier),
       async sendVerificationRequest(params) {
         const email = assertAllowedEmail(params.identifier);
