@@ -1,5 +1,7 @@
 # Expert-guided synthetic training data
 
+The authenticated [public-document scoring page](PUBLIC_REVIEW_URL.md) links fixed source/question/answer review into the capture workflow, with separate reviewer records and CSV export.
+
 Status: workflow added on 26 September 2026 at Brad's request. This subproject
 extends the main SLM workflow. Generation, expert acceptance and training have
 not been performed by adding this document. The first deliverable is a reviewed

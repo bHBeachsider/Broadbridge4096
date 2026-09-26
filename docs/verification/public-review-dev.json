@@ -1,0 +1,21 @@
+{
+  "project": "crimson-block-71962201",
+  "branch": "br-billowing-morning-audiqy3e",
+  "endpoint": "ep-restless-bread-au1nwu5h",
+  "migration": "0006_public_review.sql",
+  "capture_counts_unchanged": true,
+  "capture_counts": {
+    "sources": 9,
+    "evidence": 0,
+    "cases": 4,
+    "questions": 4,
+    "workflow": 1,
+    "runs": 0,
+    "scorecards": 0,
+    "review_log": 20
+  },
+  "packet_sha256": "902adba5111f770d8ee36d60f5839ca499bbde800f4f1c7251f9829057d9a16e",
+  "items": 60,
+  "review_scores": 0,
+  "production_changed": false
+}

@@ -1,0 +1,15 @@
+{
+  "packet_count": 2,
+  "model_calls": 0,
+  "training_approved": false,
+  "release_blocked_without_review": true,
+  "rejections": {
+    "historical_holdout": "family_not_train",
+    "revoked_rights": "source_not_training_eligible",
+    "changed_answer": "generation_binding_mismatch",
+    "invented_quote": "evidence_does_not_match_source",
+    "missing_check": "invalid_synthetic_review_inputs",
+    "generated_approval": "generated_candidate_must_be_pending"
+  },
+  "limitation": "Software rehearsal only. No model quality or technical correctness claim."
+}

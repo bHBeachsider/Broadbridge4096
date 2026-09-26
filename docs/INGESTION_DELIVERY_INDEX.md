@@ -1,5 +1,7 @@
 # Ingestion delivery index — 25 September 2026
 
+The authenticated [public-document scoring page](PUBLIC_REVIEW_URL.md) links fixed source/question/answer review into the capture workflow, with separate reviewer records and CSV export.
+
 Offline implementation is complete and independently reviewed. All pull requests
 remain drafts. Live setup has started: migration 0005 is applied to the verified
 Neon `dev` branch, with unchanged capture row counts at migration time. A private

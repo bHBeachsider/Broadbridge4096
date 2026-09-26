@@ -1,0 +1,39 @@
+{
+  "foundry": {
+    "passed": 567,
+    "skipped": 2,
+    "focused_packet_tests": 43
+  },
+  "domain_python": {
+    "passed": 29
+  },
+  "capture_unit": {
+    "passed": 141,
+    "skipped": 9
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "local_database": "PostgreSQL 17 disposable Docker",
+  "local_browser": {
+    "ingestion": "passed",
+    "public_review": "passed",
+    "viewport_widths": [
+      1440,
+      390
+    ]
+  },
+  "public_review_sql": "passed",
+  "real_human_scores_written": 0,
+  "production_changed": false,
+  "ec2_started": false,
+  "model_calls": 0,
+  "limitations": [
+    "Local email uses a real Auth.js token in an outbox fixture, not Resend delivery.",
+    "Existing requests and SWIG environment warnings.",
+    "No subagent dispatch; one implementation lane with self-review."
+  ],
+  "repaired_test_issues": [
+    "Separate local test actors preserve the sign-in cooldown.",
+    "Explicit accessible names for score selectors."
+  ]
+}

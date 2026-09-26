@@ -42,7 +42,7 @@ and source admission determine elapsed time. No stage bypasses original Gate 0.
 | --- | --- | --- | --- | --- | --- |
 | SD-00 | Workflow, expert worksheet and project links | Brad's direction | Implementation controller | This update | Prepared |
 | SD-01 | Confirmed development failures and initial recipes | Human public review | Bill; Brad for rights/scope | 1-2 review sessions | Awaiting review |
-| SD-02 | Offline review-packet and holdout rehearsal | SD-00; fabricated fixtures permit preparation alongside SD-01 | Foundry implementation | 1-2 engineering days | Planned |
+| SD-02 | Offline review-packet and holdout rehearsal | SD-00; fabricated fixtures permit preparation alongside SD-01 | Foundry implementation | 1-2 engineering days | Implemented offline; draft |
 | SD-03 | Bounded author/challenger orchestration | SD-02; SD-01 before real generation | Foundry implementation, domain binding | 1-2 engineering days | Planned |
 | SD-04 | Independently checked calculation templates | SD-01, SD-02 | Qualified reviewer, implementation | 1-2 engineering days plus expert review | Planned |
 | SD-05 | Up to 100 candidates with complete dispositions | SD-01 to SD-04; admitted sources and run budget | Bill; Brad for external processing | 2-4 review sessions; measure actual time | Not run |
@@ -56,7 +56,7 @@ eligible families produce a smaller pilot, not forced repetition or acceptance.
 
 ## File ownership
 
-Planned paths below do not exist because of this documentation change.
+SD-02 packet and rehearsal paths are implemented; SD-03 onward remain planned.
 
 | Repository | Existing integration | Planned files |
 | --- | --- | --- |
@@ -119,11 +119,11 @@ candidate/hash, source/recipe/prompt/rubric/receipt hashes, family closure, auth
 identity and named checks (`status`, `evidence`, `limitation`). Use Foundry's
 canonical serialization/hash helpers. Model content cannot supply approval.
 
-- [ ] Write failing tests with fabricated normalized documents/candidates: changed source hash, testing-only family, excluded historical holdout, invented evidence block, preapproved generated candidate, missing applicable check, and changed answer after hashing.
-- [ ] Run `python -m pytest tests/test_synthetic_review.py -q`; confirm failures exercise absent behavior, not missing dependencies.
-- [ ] Implement schema checks, evidence resolution, existing family closure and deterministic envelope hashing. Results remain pending even when mechanical checks pass.
-- [ ] Test an otherwise valid positive fixture and a source instruction that tries to grant rights or set a reviewer; source instructions must not change trusted metadata.
-- [ ] Rerun focused and existing contract/curation tests, then commit only named files in a draft Foundry PR.
+- [x] Write failing tests with fabricated normalized documents/candidates: changed source hash, testing-only family, excluded historical holdout, invented evidence block, preapproved generated candidate, missing applicable check, and changed answer after hashing.
+- [x] Run `python -m pytest tests/test_synthetic_review.py -q`; confirm failures exercise absent behavior, not missing dependencies.
+- [x] Implement schema checks, evidence resolution, existing family closure and deterministic envelope hashing. Results remain pending even when mechanical checks pass.
+- [x] Test an otherwise valid positive fixture and a source instruction that tries to grant rights or set a reviewer; source instructions must not change trusted metadata.
+- [x] Rerun focused and existing contract/curation tests, then commit only named files in a draft Foundry PR.
 
 **Acceptance:** deterministic CPU-only packet construction, unable to grant rights,
 independent acceptance or training release.
@@ -202,3 +202,12 @@ Simulator sweeps need reviewed property methods, valid ranges and balance checks
 Preference/DPO needs reviewed preferred/rejected answers. Reinforcement learning
 needs executable rewards and reward-exploitation tests. Native image/audio work
 needs its own model and evaluation. None enters the current critical path.
+
+## 26 September continuation
+
+SD-02: 43 focused tests; full Foundry CPU suite 567 passed, 2 skipped.
+The two fabricated packets remain pending; release preparation rejects them.
+No model call, expert sign-off or training occurred. The trusted caller must
+supply complete history/current source snapshots; packet hashes are not signatures.
+The new [review URL](../../PUBLIC_REVIEW_URL.md) supports SD-01 human scoring.
+Its Preview migration is separate from production; real human scores remain blank.
