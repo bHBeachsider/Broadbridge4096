@@ -1,11 +1,11 @@
 # Broadbridge ingestion live setup — 25 September 2026
 
-Status: Neon dev authentication is repaired; migrations and unchanged capture
-counts were reverified. Preview email variables and branch-specific storage/API
-settings are present. The current R2 credential can read the dev bucket but its
-synthetic PUT returned 403 AccessDenied. A temporary local Docker API and HTTPS
-tunnel were exercised and have been stopped. Browser-to-worker live acceptance
-is incomplete. All work remains on draft PRs; no production release is authorized.
+Status: the updated R2 credentials passed live writes. The actual R2/Docker/Neon
+dev smoke passed 19 checks for two synthetic documents, followed by all six HTTPS
+checks. Preview storage/API settings were refreshed and the test Preview reached
+READY. Deployed human sign-in and browser uploads remain pending. Temporary Docker
+services were stopped after verification. All work remains on draft PRs; no
+production release is authorized.
 
 ## Verified destinations
 
@@ -62,11 +62,10 @@ migration and connectivity evidence, not a live upload or parser test. See
 1. **Cloudflare access and test bucket — verified.** Brad's signed-in Edge session
    is accessible. The account initially contained `broadbridge`, but not
    `broadbridge-dev`; the separate test bucket was created with private defaults.
-   Dashboard configuration was used for CORS. The current service key in the
-   local environment authenticates HEAD and LIST, but synthetic PUT returned
-   403 AccessDenied. Brad must grant Object Read & Write scoped to
-   `broadbridge-dev` and save the matching pair locally and in the isolated
-   Preview branch. Do not fall back to earlier broad operator credentials; those
+   Dashboard configuration was used for CORS. After Brad updated the service
+   credentials, both synthetic PUTs and normalized-artifact reads succeeded.
+   Refreshed the isolated Preview branch with the tested local key pair. Do not
+   fall back to earlier broad operator credentials; those
    were used only for the historical bounded test below, never copied to Vercel.
 2. **Preview database — configured.** Added branch-specific
    `BROADBRIDGE_DATABASE_URL` from the verified pooled dev URL using stdin.
@@ -97,8 +96,9 @@ migration and connectivity evidence, not a live upload or parser test. See
    uses `R2_ENDPOINT_URL`. Both use `R2_BUCKET`. Non-secret `R2_ENDPOINT` and
    `R2_BUCKET=broadbridge-dev` are now set and metadata-verified for the isolated
    Preview branch. The R2 key pair and `INGESTION_API_URL`/`INGESTION_API_TOKEN`
-   are also present in that branch, but the temporary API is now offline and
-   storage write permission is not accepted. Presence alone is not verification.
+   were refreshed in that branch and tested. The temporary API is now offline;
+   a fresh session must replace its URL/token before browser-to-worker testing.
+   Presence alone is not verification.
    The worker uses
    `INGESTION_DB_ENV=BROADBRIDGE_DATABASE_URL`, `INGESTION_DB_SCHEMA=broadbridge`,
    `INGESTION_PROJECT_ID=broadbridge-oil-gas`, `INGESTION_RECIPE_VERSION=oil-gas-v1`,
@@ -198,11 +198,38 @@ unresolved; do not count current authenticated connectivity as accepted.
 All three task containers were stopped and a fresh Docker listing confirmed
 none remained. The local watchdog also bounded runtime lifetime to two hours.
 
-See [follow-up evidence](verification/ingestion-live-followup.json). Before any
-browser upload, correct R2 write permission, start the API with current dev
-credentials, repeat every HTTPS check, update the branch connection settings,
-redeploy and complete normal human sign-in. No EC2 or model call was used for
-these ingestion tests.
+See [historical follow-up evidence](verification/ingestion-live-followup.json).
+The later accepted recheck below supersedes its connectivity status, without
+claiming to establish the cause of the earlier failure.
+
+## Updated credentials: live dev acceptance passed
+
+Run `neon-r2-cpu-d25c0dcc4c24` passed **19 checks**, including immutable synthetic
+uploads, idempotent Neon registration/enqueue, two completed CPU extractions,
+fresh-container job recovery, independent database reads, artifact/source hash
+matching and retained pending/reference-only permissions. Existing capture case,
+question, workflow, run and scorecard counts were unchanged. Sources increased
+from five to seven, solely for the two labeled synthetic inputs; review_log
+remained 20. This used Neon dev, not the older SQLite substitute.
+
+A fresh temporary runtime `bb-ingest-23181554fa` passed all six HTTPS checks:
+missing/wrong tokens returned 401, authenticated missing job returned 404,
+oversized request returned 413, and unregistered source/mismatched recipe
+returned 409. Its first connection attempt preceded hostname resolution; after
+DNS resolved, the complete probe succeeded without loosening assertions.
+
+Refreshed only this branch's R2 key pair and API URL/token. Vercel redeployment
+`dpl_B9muHKNk3qFqg2FTTp3b1t3ubK3n` reached READY as a Preview. The branch alias
+opened the real sign-in page in Edge. Brad must complete normal sign-in before
+the browser upload path can be exercised; no auth bypass or email interception
+was used. The runtime was stopped after these checks. Restart the API and a
+bounded worker, refresh the branch URL/token and redeploy for that next session.
+
+See [live Neon/R2/CPU evidence](verification/ingestion-live-neon-r2-cpu.json).
+Foundry draft #8's Cloudflare, Python and container CI jobs all passed. No EC2
+or model call was used for these ingestion checks. A separate, synthetic-only
+[OpenRouter/Jev study](OPENROUTER_MODEL_SELECTION.md) records model research;
+none of its outputs entered the ingestion dataset.
 
 ## Live acceptance order
 

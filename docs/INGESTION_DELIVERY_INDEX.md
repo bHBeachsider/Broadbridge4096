@@ -6,8 +6,9 @@ Neon `dev` branch, with unchanged capture row counts at migration time. A privat
 `broadbridge-dev` bucket and exact-origin CORS are now configured; synthetic live
 R2 uploads and local Docker extraction have run. No merge, production migration,
 model inference or EC2/GPU operation was performed. The complete Preview flow
-remains blocked by the current R2 key's upload permission and authenticated
-Preview-to-worker acceptance. Neon authentication is repaired. See the
+now has 19 passed R2/Docker/Neon checks and six passed HTTPS checks after Brad's
+credential update. The refreshed Preview is READY; human sign-in and deployed
+browser-to-worker acceptance remain pending. Temporary services are stopped. See the
 [live setup record](INGESTION_LIVE_SETUP.md).
 
 ## Plans and operating instructions
@@ -17,6 +18,7 @@ Preview-to-worker acceptance. Neon authentication is repaired. See the
 - [Domain bridge and migration runbook](INGESTION_PIPELINE_RUNBOOK.md)
 - [Repeatable browser acceptance and deployment handoff](INGESTION_ACCEPTANCE.md)
 - [Live setup, verified targets and remaining access](INGESTION_LIVE_SETUP.md)
+- [OpenRouter/Jev model selection research](OPENROUTER_MODEL_SELECTION.md)
 - [Generic engine operator guide](https://github.com/bHBeachsider/slm-foundry/blob/codex/foundry-ingestion-acceptance/docs/INGESTION_PIPELINE.md)
 
 ```mermaid
@@ -83,7 +85,10 @@ write-capable acceptance test.
   standalone synthetic rehearsal passed; Cloudflare and CPU container jobs passed.
 - Subsequent CLI HTTP fix: 47 focused tests passed; full local CPU suite recorded
   473 passed and 2 skips. Independent specification and quality reviews passed.
-  This is separate from the preceding hosted CI result.
+  Foundry #8 subsequently passed all three hosted CI jobs. This is separate from
+  the preceding hosted CI result.
+- Updated live credentials: 19 actual R2/Docker/Neon checks and six HTTPS checks
+  passed. Two synthetic sources added; existing capture cases remained unchanged.
 - Domain: 56 independent real PostgreSQL tests, 277 offline pack tests and 1
   migration/checksum test passed.
 - Capture: 125 unit tests passed with 8 database-gated skips; TypeScript/build
@@ -99,9 +104,10 @@ write-capable acceptance test.
 1. Neon `dev` and the existing `broadbridge-capture` Vercel project are identified.
    The private `broadbridge-dev` test bucket exists and Brad approved local Docker.
    Dev database authentication and Preview email configuration are repaired.
-   Correct the current scoped R2 key's 403 on PUT, restart the temporary local
-   service with current credentials, repeat all HTTPS probes, refresh branch API
-   settings and redeploy Preview. The previous test runtime is stopped.
+   The scoped R2 key now passes PUT; the test Preview was refreshed and reached
+   READY. Complete human sign-in, then restart the bounded local API/worker,
+   refresh its branch settings and redeploy for the browser test. The prior
+   temporary runtime is stopped.
 2. Migration 0005 is applied and read back on `dev`. Provision event/worker wiring.
    Verify real signing/CORS, restart recovery and review/revocation with synthetic uploads.
 3. Install and verify licensed local parser model artifacts for OCR/transcription.
