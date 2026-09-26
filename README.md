@@ -65,3 +65,7 @@ The detailed implementation package expands the CTO framework into 70 tasks and 
 [Energy Trading source folder](<Energy Trading>)
 
 The `Energy Trading` folder is a live Windows junction to `C:\Users\bradu\OneDrive\Documents\Claude\Projects\Energy Trading`. It does not duplicate the source files. Changes made through the link affect the original OneDrive files. The linked folder is excluded from Git.
+
+## Reviewer access
+
+[Case Capture](https://broadbridge-capture.vercel.app/) and [public-document scoring](https://broadbridge-capture.vercel.app/review/public-v1) use the same approved-email sign-in. See [reviewer and release instructions](docs/PUBLIC_REVIEW_URL.md).
