@@ -1,0 +1,24 @@
+# Scaffolded from slm-foundry/packs/_template. Curation only; no training config.
+name: broadbridge-oil-gas-public-intake
+shapes: [A]
+governance: GOVERNANCE.md
+artifacts_s3: null
+confidential: false
+ingestion_assist: assist.yaml
+ingestion:
+  taxonomy:
+    practice:
+      downstream: [refinery, refining, petrochemical]
+      midstream: [gas processing, LNG, pipeline]
+      upstream: [wellhead, production separator]
+      unknown: [unknown]
+    document_role:
+      report: [report, inspection]
+      correspondence: [email, subject]
+      process_data: [readings, measurement, table]
+      unknown: [unknown]
+    equipment:
+      pump: [pump]
+      compressor: [compressor]
+      exchanger: [exchanger, condenser]
+      unknown: [unknown]

@@ -6,6 +6,13 @@ Brad's decision: use OpenRouter to compare cost and capability for supporting
 ingestion tasks; do not select OpenAI merely because an API key is configured.
 The Qwen3-8B fine-tuning target and existing confidentiality restrictions remain.
 
+Implementation follow-up: [public/synthetic helper runbook](OPENROUTER_INTAKE_RUNBOOK.md).
+The later drafting smoke found a critical pressure-basis error in Mistral despite
+valid JSON and source quotations. Qwen3-30B-A3B-Instruct-2507 preserved the stated
+values/basis on that same synthetic source and is the provisional drafting
+candidate. This does not revise the earlier classification scores or establish
+a production optimum. All examples remain pending review.
+
 ## Jev is available and was called successfully
 
 The live catalogue lists `typesafe/jev-1.13`, resolving in our response to

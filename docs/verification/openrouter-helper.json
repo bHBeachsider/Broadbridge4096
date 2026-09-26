@@ -1,0 +1,205 @@
+{
+  "schema": "broadbridge.helper_verification/1",
+  "synthetic_only": true,
+  "foundry_tests": {
+    "passed": 524,
+    "skipped": 2,
+    "new_tests": 51,
+    "skip_reasons": [
+      "Optional host Docling not installed",
+      "Live disposable PostgreSQL opt-in not set"
+    ]
+  },
+  "domain_rehearsal_regression": {
+    "passed": 1
+  },
+  "offline_rehearsal": {
+    "calls_attempted": 10,
+    "candidate_count": 5,
+    "confidential_pack_blocked": true,
+    "cost_receipts_complete": true,
+    "ec2_started": false,
+    "fixture_count": 5,
+    "model_quality_evaluated": false,
+    "network_used": false,
+    "receipt_costs_are_mocked": true,
+    "release_blocked_without_technical_review": true,
+    "reported_cost_usd": 0.0001,
+    "rows": [
+      {
+        "candidate_valid": true,
+        "classification_valid": true,
+        "extraction": "complete",
+        "format": "txt",
+        "quoted_basis_preserved": true,
+        "review": "pending",
+        "source_id": "SYN-HELPER-TXT"
+      },
+      {
+        "candidate_valid": true,
+        "classification_valid": true,
+        "extraction": "complete",
+        "format": "csv",
+        "quoted_basis_preserved": true,
+        "review": "pending",
+        "source_id": "SYN-HELPER-CSV"
+      },
+      {
+        "candidate_valid": true,
+        "classification_valid": true,
+        "extraction": "complete",
+        "format": "eml",
+        "quoted_basis_preserved": true,
+        "review": "pending",
+        "source_id": "SYN-HELPER-EML"
+      },
+      {
+        "candidate_valid": true,
+        "classification_valid": true,
+        "extraction": "complete",
+        "format": "docx",
+        "quoted_basis_preserved": true,
+        "review": "pending",
+        "source_id": "SYN-HELPER-DOCX"
+      },
+      {
+        "candidate_valid": true,
+        "classification_valid": true,
+        "extraction": "complete",
+        "format": "xlsx",
+        "quoted_basis_preserved": true,
+        "review": "pending",
+        "source_id": "SYN-HELPER-XLSX"
+      }
+    ],
+    "synthetic_only": true
+  },
+  "live_attempts": [
+    {
+      "stage": "initial_mistral_classification_40s",
+      "receipt": {
+        "completion_tokens": null,
+        "cost_usd": null,
+        "elapsed_seconds": 40.01292,
+        "error": "openrouter_response_limit",
+        "http_status": 200,
+        "prompt_tokens": null,
+        "provider": null,
+        "requested_model": "mistralai/mistral-small-24b-instruct-2501",
+        "retries": 0,
+        "returned_model": null,
+        "task": "classify",
+        "valid": false
+      }
+    },
+    {
+      "stage": "mistral_classification_90s",
+      "receipt": {
+        "approval_sha256": "08d11b3ed1cebd2e6e318b920ed5df1dad9cc5687fef14f0a554c1863bf13015",
+        "completion_tokens": 195,
+        "cost_usd": 3.015e-05,
+        "document_sha256": "26590a8f423325fd5d41cdad1004fb1724b71097a7459d7b9a5a3cb9e87fa90d",
+        "elapsed_seconds": 32.302215,
+        "error": "model_evidence_does_not_match_source",
+        "http_status": 200,
+        "policy_sha256": "0bf33d01e6be5c2e4d58faeaae6d3bf68140a232bc3b88f7814ea6a6012830b4",
+        "prompt_sha256": "f646035ba42d959227ed3f47956061f8feb03743250770b4c7d9672273d6e0d6",
+        "prompt_tokens": 291,
+        "provider": "DeepInfra",
+        "requested_model": "mistralai/mistral-small-24b-instruct-2501",
+        "retries": 0,
+        "returned_model": "mistralai/mistral-small-24b-instruct-2501",
+        "task": "classify",
+        "valid": false
+      }
+    },
+    {
+      "stage": "mistral_classification_diagnostic",
+      "receipt": {
+        "requested_model": "mistralai/mistral-small-24b-instruct-2501",
+        "returned_model": "mistralai/mistral-small-24b-instruct-2501",
+        "provider": "DeepInfra",
+        "task": "classify",
+        "http_status": 200,
+        "prompt_tokens": 291,
+        "completion_tokens": 172,
+        "cost_usd": 2.831e-05,
+        "retries": 0,
+        "valid": true,
+        "elapsed_seconds": 19.335524,
+        "prompt_sha256": "f646035ba42d959227ed3f47956061f8feb03743250770b4c7d9672273d6e0d6",
+        "policy_sha256": "0bf33d01e6be5c2e4d58faeaae6d3bf68140a232bc3b88f7814ea6a6012830b4",
+        "document_sha256": "26590a8f423325fd5d41cdad1004fb1724b71097a7459d7b9a5a3cb9e87fa90d",
+        "approval_sha256": "08d11b3ed1cebd2e6e318b920ed5df1dad9cc5687fef14f0a554c1863bf13015"
+      }
+    },
+    {
+      "stage": "mistral_drafting_diagnostic",
+      "receipt": {
+        "requested_model": "mistralai/mistral-small-24b-instruct-2501",
+        "returned_model": "mistralai/mistral-small-24b-instruct-2501",
+        "provider": "DeepInfra",
+        "task": "draft",
+        "http_status": 200,
+        "prompt_tokens": 374,
+        "completion_tokens": 105,
+        "cost_usd": 2.71e-05,
+        "retries": 0,
+        "valid": true,
+        "elapsed_seconds": 13.123233,
+        "prompt_sha256": "fd2395fde2d61e660152bf2ad647d397fe4e5169bd1496416d9b7f5578a18151",
+        "policy_sha256": "0bf33d01e6be5c2e4d58faeaae6d3bf68140a232bc3b88f7814ea6a6012830b4",
+        "document_sha256": "26590a8f423325fd5d41cdad1004fb1724b71097a7459d7b9a5a3cb9e87fa90d",
+        "approval_sha256": "08d11b3ed1cebd2e6e318b920ed5df1dad9cc5687fef14f0a554c1863bf13015"
+      },
+      "engineering_check": "failed",
+      "critical_error": true,
+      "finding": "Source explicitly states 3 bar absolute; answer nevertheless calls the basis unknown.",
+      "candidate_review": "pending; not accepted for training"
+    },
+    {
+      "stage": "qwen_drafting_comparison",
+      "receipt": {
+        "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+        "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+        "provider": "Nebius",
+        "task": "draft",
+        "http_status": 200,
+        "prompt_tokens": 367,
+        "completion_tokens": 127,
+        "cost_usd": 7.48e-05,
+        "retries": 0,
+        "valid": true,
+        "elapsed_seconds": 7.523133,
+        "prompt_sha256": "fd2395fde2d61e660152bf2ad647d397fe4e5169bd1496416d9b7f5578a18151",
+        "policy_sha256": "2559b751bf4085e8d30e3158e0e5382aceec1121b5b92cdcac9f857d8a157dc8",
+        "document_sha256": "26590a8f423325fd5d41cdad1004fb1724b71097a7459d7b9a5a3cb9e87fa90d",
+        "approval_sha256": "b45c21a1bb68bb176e2c8b76389657264cd5ffbd99d20f425325a85b43bf7097"
+      },
+      "engineering_check": "synthetic values and basis preserved",
+      "critical_error_observed": false,
+      "candidate_review": "pending; not expert-approved"
+    }
+  ],
+  "live_call_count": 5,
+  "known_cost_subtotal_usd": 0.00016036000000000002,
+  "missing_cost_receipts": 1,
+  "total_cost_usd": null,
+  "paid_call_retries": "No automatic retries; manual diagnostics recorded separately",
+  "model_selection": {
+    "classification": "mistralai/mistral-small-24b-instruct-2501",
+    "draft": "qwen/qwen3-30b-a3b-instruct-2507",
+    "status": "provisional public/synthetic trial only"
+  },
+  "limitations": [
+    "One-source drafting comparison is not a representative engineering benchmark",
+    "Schema, exact quotes and numeric tokens do not establish semantic correctness",
+    "Model-generated candidates remain pending and need exact-hash technical review",
+    "Cloud helper is an explicit CLI step, not automatic upload processing"
+  ],
+  "database_writes": 0,
+  "r2_writes": 0,
+  "ec2_started": false,
+  "training_started": false,
+  "production_changed": false
+}
