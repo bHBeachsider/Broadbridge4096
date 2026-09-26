@@ -42,7 +42,7 @@ flowchart LR
   B --> C[CPU extraction and classification]
   C --> D[Normalized evidence and source locations]
   D --> E[Source rights and candidate technical review]
-  D -. Planned synthetic subproject .-> K[Expert recipes and bounded candidate generation]
+  D -. Expert review before live generation .-> K[Expert recipes and bounded candidate generation]
   L[Human-scored development failures] --> K
   K --> M[Evidence and independent calculation checks]
   M --> E
@@ -160,9 +160,22 @@ workflow. Bill owns the technical curriculum and acceptance within his scope;
 Norm is a potential specialist contributor. The initial proposal is up to 100
 candidates, 20 per question type, from new training-eligible families. Whole-family
 holdouts and independent acceptance apply before release. The workflow and blank
-worksheet are prepared; orchestration/verifier extensions and the pilot remain
-planned. The [task schedule](superpowers/plans/2026-09-26-synthetic-expert-data.md)
+worksheet are prepared. SD-02 packet validation and SD-03 bounded orchestration
+are implemented offline; calculation extensions and the live pilot remain open.
+[Bill's starting guide](BILL_START_HERE.md) links the case page and priority input.
+The [mock batch runbook](SYNTHETIC_BATCH_RUNBOOK.md) produces two pending drafts
+from four offline role calls and rejects release without review.
+The [task schedule](superpowers/plans/2026-09-26-synthetic-expert-data.md)
 separates offline implementation, human decisions and the original GPU gates.
+
+SD-03 engine delivery: [Foundry draft #11](https://github.com/bHBeachsider/slm-foundry/pull/11),
+head `f1790dff35d15739afb77999414c7cc2f6153c6f`, stacked on draft #10 at
+`b40eab94538bd6017c3d1297eca5ca28330d6d6b`. The domain branch
+`codex/broadbridge-synthetic-batch` starts from draft #9 at
+`335c0c9206278464a22627d737d9a3b2d573231b` and binds to that engine head.
+All changes remain draft. Full CPU verification: Foundry 609 passed / 2 skipped;
+Broadbridge 314 passed / 106 gated tests skipped. Bill's priorities and technical
+reviews are still required before a live synthetic batch.
 
 - Eight work packages ran in waves using three worker slots, with exclusive file
   ownership and separate specification/quality reviews.
