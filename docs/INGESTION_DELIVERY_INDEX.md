@@ -24,6 +24,9 @@ runtime is stopped after completion. See the
 - [Live setup, verified targets and remaining access](INGESTION_LIVE_SETUP.md)
 - [OpenRouter/Jev model selection research](OPENROUTER_MODEL_SELECTION.md)
 - [Implemented public/synthetic OpenRouter helper and runbook](OPENROUTER_INTAKE_RUNBOOK.md)
+- [Expert-guided synthetic-data workflow and responsibilities](SYNTHETIC_EXPERT_WORKFLOW.md)
+- [Synthetic subproject tasks and dependencies](superpowers/plans/2026-09-26-synthetic-expert-data.md)
+- [Blank expert recipe and candidate-review worksheet](templates/SYNTHETIC_EXPERT_REVIEW.md)
 - [Generic engine operator guide](https://github.com/bHBeachsider/slm-foundry/blob/codex/foundry-ingestion-acceptance/docs/INGESTION_PIPELINE.md)
 
 ```mermaid
@@ -32,6 +35,10 @@ flowchart LR
   B --> C[CPU extraction and classification]
   C --> D[Normalized evidence and source locations]
   D --> E[Source rights and candidate technical review]
+  D -. Planned synthetic subproject .-> K[Expert recipes and bounded candidate generation]
+  L[Human-scored development failures] --> K
+  K --> M[Evidence and independent calculation checks]
+  M --> E
   E --> F[Approved immutable dataset batch]
   F --> G[CPU audit and bounded compute authorization]
   G --> H[Qwen fine-tuning]
@@ -140,6 +147,15 @@ Public-document helper evaluation is the current follow-up. See
 documents and thirty balanced questions are frozen for testing only. Qwen returned
 thirty answers; Mistral's first output was truncated and its client stopped.
 Reviewer scoring remains pending. No training, production or EC2 step was taken.
+
+On 26 September Brad added the expert-guided synthetic-data subproject to this
+workflow. Bill owns the technical curriculum and acceptance within his scope;
+Norm is a potential specialist contributor. The initial proposal is up to 100
+candidates, 20 per question type, from new training-eligible families. Whole-family
+holdouts and independent acceptance apply before release. The workflow and blank
+worksheet are prepared; orchestration/verifier extensions and the pilot remain
+planned. The [task schedule](superpowers/plans/2026-09-26-synthetic-expert-data.md)
+separates offline implementation, human decisions and the original GPU gates.
 
 - Eight work packages ran in waves using three worker slots, with exclusive file
   ownership and separate specification/quality reviews.

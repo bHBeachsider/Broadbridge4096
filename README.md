@@ -27,6 +27,22 @@ Local acceptance covers real authentication, PostgreSQL, extraction, review and
 dataset publication with synthetic records. Live R2/Vercel/worker acceptance,
 real engineering scores and QLoRA remain open; no EC2 was started.
 
+## Expert-guided synthetic training data
+
+The [expert-guided synthetic-data subproject](docs/SYNTHETIC_EXPERT_WORKFLOW.md)
+adds Bill-led curriculum and technical acceptance, bounded author/challenger
+roles, independent evidence/calculation checks and a proposed 100-candidate
+pilot. [Implementation tasks](docs/superpowers/plans/2026-09-26-synthetic-expert-data.md)
+and a [blank expert worksheet](docs/templates/SYNTHETIC_EXPERT_REVIEW.md) are ready.
+Norm remains a potential specialist contributor. Runtime extensions and the pilot
+are planned, not implemented by these documents.
+
+The immediate main-project step is [human scoring of the public-document
+sample](docs/PUBLIC_DOCUMENT_EVALUATION.md). Confirmed development failures will
+guide new training families; the existing testing-only families stay excluded.
+Synthetic data does not replace signed-case Gate 0, the baseline comparisons,
+source-rights review or explicit compute authorization.
+
 ## Planning documents and earlier implementation references
 
 [Current foundry implementation update](Broadbridge-Foundry-Implementation-Update.md)

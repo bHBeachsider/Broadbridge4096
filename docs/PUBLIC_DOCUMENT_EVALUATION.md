@@ -207,3 +207,18 @@ No EC2, model weights, training, S0-retrieval construction, R2/Neon write,
 Vercel deploy, production change or email is part of this step. HTML text is
 tested here; PDF layout, OCR, tables, images and audio need their own later
 format-specific evaluation and are not validated by these results.
+
+## Follow-on synthetic-data work
+
+The [synthetic expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) is now a named
+subproject. Bill first confirms the failure categories through the original
+review; an assistant concern is not a confirmed error. Those categories can
+guide new recipes and independently sourced training families. This entire
+public-v1 sample, its answers and derivatives remain testing_only/dev, excluded
+from training. The sample is development calibration, not an unseen release test.
+
+The [expert worksheet](templates/SYNTHETIC_EXPERT_REVIEW.md) records recipe
+assumptions, variation limits and candidate acceptance. It does not replace
+scores.csv or add human scores to this run. The proposed 100-candidate pilot and
+its offline implementation are tracked in the [subproject plan](superpowers/plans/2026-09-26-synthetic-expert-data.md).
+Current human-review status, source/model results and training gates are unchanged.
