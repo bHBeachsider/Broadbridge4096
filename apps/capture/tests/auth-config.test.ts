@@ -37,3 +37,11 @@ describe("authentication diagnostic redaction", () => {
     expect(JSON.stringify(log.mock.calls)).not.toContain("private");
   });
 });
+
+
+it("issues 24-hour email links while keeping the existing eight-hour session", () => {
+  const config = state.factory!();
+  const provider = config.providers[0] as { options?: { maxAge?: number }; maxAge?: number };
+  expect(provider.options?.maxAge ?? provider.maxAge).toBe(86_400);
+  expect(config.session?.maxAge).toBe(28_800);
+});

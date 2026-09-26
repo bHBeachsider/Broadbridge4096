@@ -39,7 +39,7 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
             <input id="email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="you@example.com" style={{ width: "100%", border: "1px solid var(--rule)", borderRadius: 6, background: "var(--panel)", padding: "9px 11px" }} />
             <button type="submit" className="btn primary" style={{ marginTop: 8 }}>Email me a sign-in link</button>
           </form>
-          <p className="muted">Links expire after 15 minutes and can be used once.</p>
+          <p className="muted">Links expire after 24 hours and can be used once.</p>
         </>
       )}
     </main>

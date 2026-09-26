@@ -3,14 +3,16 @@
 Release target: https://broadbridge-capture.vercel.app/review/public-v1
 
 Case Capture remains at https://broadbridge-capture.vercel.app/. Both routes use
-one Auth.js session and the same exact-email allowlist. A signed-out review link
+one Auth.js session and the same exact-email allowlist. The page links can be
+opened whenever the reviewer is ready; the 24-hour limit starts only when a
+sign-in email is requested. A signed-out review link
 returns to its question after email sign-in. Review scores remain private to each
 reviewer; public source documents do not make reviewer records public.
 
 ## Reviewer steps
 
 1. Sign in with the approved email address. Open the newest emailed link within
-   15 minutes. No Vercel account or Preview sharing token is needed on production.
+   24 hours. No Vercel account or Preview sharing token is needed on production.
 2. Open Public-document scoring from Case Capture, or use the direct review URL.
 3. Read the original question, source excerpts and frozen A/B answer. The original
    agency URL and draft reference answer are available alongside the response.
@@ -27,7 +29,7 @@ grant training rights or release a training batch.
 
 Project: ProjectNext / broadbridge-capture, root apps/capture.
 Database: the dedicated Broadbridge Neon production branch, verified by the operator.
-The release uses migrations 0001 through 0006 without changing existing migration
+The release uses migrations 0001 through 0007 without changing existing migration
 bytes. 0005 is required by the helper functions used in 0006; its additional
 intake tables remain empty. This release does not publish the source-intake UI,
 start ingestion workers, call models, train, or start EC2.
@@ -61,3 +63,7 @@ Return the production domain to the previously recorded production deployment.
 Leave additive migrations, the immutable packet and any genuine scores in place.
 Do not reset or drop tables. Record the actual deployment and database receipts
 in ignored local operator storage after release.
+
+Migration 0007 expands the allowed lifetime of newly issued sign-in tokens to
+24 hours. Existing tokens retain their original expiry; the one-use deletion,
+email allowlist and issuance cooldown are unchanged.

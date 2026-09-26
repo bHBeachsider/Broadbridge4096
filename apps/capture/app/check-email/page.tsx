@@ -6,7 +6,7 @@ export default function CheckEmailPage() {
       <p className="brand">BROADBRIDGE / CASE CAPTURE</p>
       <h1>Check your email.</h1>
       <p>If your address has capture access, a sign-in link is on its way. Open it in this browser to continue.</p>
-      <p>The link expires after 15 minutes and works once. Please wait a minute before requesting another.</p>
+      <p>The link expires after 24 hours and works once. Please wait a minute before requesting another.</p>
       <Link href="/signin" className="btn" style={{ display: "inline-block", textDecoration: "none" }}>Back to sign in</Link>
     </main>
   );

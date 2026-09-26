@@ -1,4 +1,6 @@
 /** Server-side capture admission policy. Configuration is re-read on each decision. */
+export const MAGIC_LINK_MAX_AGE_SECONDS = 24 * 60 * 60;
+
 export type AuthEnvironment = Readonly<Record<string, string | undefined>>;
 
 export function normalizeEmail(value: unknown): string | null {

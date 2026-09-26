@@ -49,7 +49,7 @@ describe("email adapter", () => {
 
 describe("verification token boundary", () => {
   it("caps expiry against the same database clock used for created_at", async () => {
-    const requestedExpiry = new Date(Date.now() + 15 * 60_000);
+    const requestedExpiry = new Date(Date.now() + 24 * 60 * 60_000);
     const storedExpiry = new Date(requestedExpiry.getTime() - 1_087);
     query.mockResolvedValue([{ identifier: "brad@example.com", token, expires: storedExpiry }]);
     const saved = await createAuthAdapter().createVerificationToken!({ identifier: "brad@example.com", token, expires: requestedExpiry });
@@ -58,18 +58,18 @@ describe("verification token boundary", () => {
     const statement = strings.join("?").replace(/\s+/g, " ");
     expect(statement).toContain("issued AS MATERIALIZED ( SELECT clock_timestamp() AS created_at )");
     expect(statement).toContain("auth_verification_tokens(identifier, token, expires, created_at)");
-    expect(statement).toContain("LEAST(?::timestamptz, created_at + interval '15 minutes'), created_at FROM issued");
-    expect(values).toEqual(["brad@example.com", token, requestedExpiry.toISOString()]);
+    expect(statement).toContain("LEAST(?::timestamptz, created_at + ?::integer * interval '1 second'), created_at FROM issued");
+    expect(values).toEqual(["brad@example.com", token, requestedExpiry.toISOString(), 86_400]);
     expect(statement).not.toContain(token);
   });
 
   it("accepts only hashed tokens and a bounded future expiration", async () => {
     const adapter = createAuthAdapter();
-    const expires = new Date(Date.now() + 14 * 60_000);
+    const expires = new Date(Date.now() + 12 * 60 * 60_000);
     query.mockResolvedValue([{ identifier: "brad@example.com", token, expires }]);
     expect(await adapter.createVerificationToken!({ identifier: "BRAD@example.com", token, expires })).toEqual({ identifier: "brad@example.com", token, expires });
     await expect(adapter.createVerificationToken!({ identifier: "brad@example.com", token: "raw-secret", expires })).rejects.toThrow("Invalid verification token");
-    await expect(adapter.createVerificationToken!({ identifier: "brad@example.com", token, expires: new Date(Date.now() + 60 * 60_000) })).rejects.toThrow("Invalid verification token");
+    await expect(adapter.createVerificationToken!({ identifier: "brad@example.com", token, expires: new Date(Date.now() + 25 * 60 * 60_000) })).rejects.toThrow("Invalid verification token");
   });
 
   it("atomically consumes a token once and handles absent or expired rows", async () => {
