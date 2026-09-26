@@ -2,24 +2,26 @@ import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
 import { signIn } from "../../auth";
 import { allowedEmail, authAvailability } from "../../lib/auth-policy";
+import { safeReviewReturn } from "../../lib/public-review";
 
 export const dynamic = "force-dynamic";
 
 async function requestLink(formData: FormData) {
   "use server";
-  if (!authAvailability().available) redirect("/signin?error=unavailable");
+  const next = safeReviewReturn(formData.get("next"));
+  if (!authAvailability().available) redirect("/signin?error=unavailable&next=" + encodeURIComponent(next));
   const email = allowedEmail(formData.get("email"));
   if (!email) redirect("/check-email");
   try {
-    await signIn("resend", { email, redirectTo: "/" });
+    await signIn("resend", { email, redirectTo: next });
   } catch (error) {
-    if (error instanceof AuthError) redirect("/signin?error=request");
+    if (error instanceof AuthError) redirect("/signin?error=request&next=" + encodeURIComponent(next));
     throw error; // Preserve Next.js's successful redirect control flow.
   }
 }
 
-export default async function SignInPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
-  const { error } = await searchParams;
+export default async function SignInPage({ searchParams }: { searchParams: Promise<{ error?: string; next?: string }> }) {
+  const { error, next } = await searchParams;
   const available = authAvailability().available;
   return (
     <main className="auth-shell" style={{ maxWidth: 520, margin: "8vh auto", padding: 24, background: "var(--panel)", border: "1px solid var(--rule)", borderRadius: 8 }}>
@@ -32,6 +34,7 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
         <>
           {error ? <p role="alert">We couldn’t complete sign-in. Request a new link or try again shortly.</p> : null}
           <form action={requestLink} className="q">
+            <input type="hidden" name="next" value={safeReviewReturn(next)} />
             <label htmlFor="email">Email address</label>
             <input id="email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="you@example.com" style={{ width: "100%", border: "1px solid var(--rule)", borderRadius: 6, background: "var(--panel)", padding: "9px 11px" }} />
             <button type="submit" className="btn primary" style={{ marginTop: 8 }}>Email me a sign-in link</button>

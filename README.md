@@ -1,5 +1,7 @@
 # Broadbridge4096
 
+The authenticated [public-document scoring page](docs/PUBLIC_REVIEW_URL.md) links fixed source/question/answer review into the capture workflow, with separate reviewer records and CSV export.
+
 ## Current core SLM v0 plan
 
 [Infrastructure brief](output/foundry-infrastructure/SLM_Foundry_Broadbridge_Infrastructure_Brief.md) · [Editable Word brief](output/foundry-infrastructure/SLM_Foundry_Broadbridge_Infrastructure_Brief.docx) · [First-case runbook](docs/FIRST_CASE_RUNBOOK.md) · [Oil and gas pack](packs/oil-gas/README.md)

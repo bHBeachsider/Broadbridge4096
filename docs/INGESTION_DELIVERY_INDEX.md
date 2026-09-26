@@ -1,5 +1,12 @@
 # Ingestion delivery index — 25 September 2026
 
+The authenticated [public-document scoring page](PUBLIC_REVIEW_URL.md) links fixed source/question/answer review into the capture workflow, with separate reviewer records and CSV export.
+
+Current continuation: [Broadbridge draft #9](https://github.com/bHBeachsider/Broadbridge4096/pull/9)
+adds the reviewer URL and offline SD-02 rehearsal; [Foundry draft #10](https://github.com/bHBeachsider/slm-foundry/pull/10)
+adds the generic pending packet. These stack on Broadbridge #8 and Foundry #9.
+Migration 0006 is dev-only; production apply remains a separate decision.
+
 Offline implementation is complete and independently reviewed. All pull requests
 remain drafts. Live setup has started: migration 0005 is applied to the verified
 Neon `dev` branch, with unchanged capture row counts at migration time. A private

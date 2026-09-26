@@ -1,5 +1,7 @@
 # Public-document reviewer evaluation
 
+The authenticated [public-document scoring page](PUBLIC_REVIEW_URL.md) links fixed source/question/answer review into the capture workflow, with separate reviewer records and CSV export.
+
 This is the next helper-model screening step after the synthetic ingestion test.
 It compares two open-weight text models on **10 public agency web publications,
 30 fixed questions and 60 planned answer slots**. It does not approve a training batch.

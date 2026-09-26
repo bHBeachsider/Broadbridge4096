@@ -180,12 +180,12 @@ def isolated_libpq_environment():
         os.environ.update(inherited)
 
 
-def run(foundry, repo, output):
+def run(foundry, repo, output, *, public_review=False, review_only=False):
     with isolated_libpq_environment():
-        return _run_local(foundry, repo, output)
+        return _run_local(foundry, repo, output, public_review=public_review or review_only, review_only=review_only)
 
 
-def _run_local(foundry, repo, output):
+def _run_local(foundry, repo, output, *, public_review=False, review_only=False):
     output.mkdir(parents=True, exist_ok=False)
     # Ignore inherited service credentials and routing variables entirely.
     safe_names = {"PATH", "SYSTEMROOT", "WINDIR", "APPDATA", "LOCALAPPDATA", "TEMP", "TMP", "COMSPEC", "PATHEXT", "USERPROFILE"}
@@ -219,6 +219,10 @@ def _run_local(foundry, repo, output):
         from src.ingestion.curate import load_pack_taxonomy
         with psycopg.connect(dsn) as conn:
             migration = db.migrate(conn)
+            if public_review:
+                sys.path.insert(0, str(repo / "scripts/research"))
+                from public_review_packet import build_packet, register
+                register(conn, build_packet(repo / "output/openrouter-public-evaluation/public-v1-live", "public-v1"))
         store = LocalObjectStore(output / "objects")
         with socket.socket() as sock:
             sock.bind(("127.0.0.1", 0))
@@ -273,12 +277,26 @@ def _run_local(foundry, repo, output):
             )
             app = repo / "apps/capture"
             executions = {}
-            for label, args in [
+            checks = [
                 ("browser", ["node", "node_modules/@playwright/test/cli.js", "test", "e2e/ingestion.spec.ts"]),
                 ("repository", ["node", "node_modules/vitest/vitest.mjs", "run", "tests/ingestion-repository.test.ts"]),
-            ]:
+            ]
+            if review_only:
+                checks = []
+            if public_review:
+                checks += [
+                    ("public-review-repository", ["node", "node_modules/vitest/vitest.mjs", "run", "tests/public-review-repository.test.ts"]),
+                    ("public-review-browser", ["node", "node_modules/@playwright/test/cli.js", "test", "e2e/public-review.spec.ts"]),
+                ]
+            for label, args in checks:
+                child_env = dict(env)
+                if label == "public-review-browser":
+                    # Separate authenticated test actor: do not bypass the real
+                    # 60-second email issuance cooldown from the ingestion smoke.
+                    child_env.update(CAPTURE_TEST_EMAIL="public-reviewer@example.invalid",
+                                     CAPTURE_ALLOWED_EMAILS="public-reviewer@example.invalid")
                 with (output / f"{label}.log").open("w", encoding="utf-8") as log:
-                    result = subprocess.run(args, cwd=app, env=env, stdout=log, stderr=subprocess.STDOUT, timeout=300)
+                    result = subprocess.run(args, cwd=app, env=child_env, stdout=log, stderr=subprocess.STDOUT, timeout=300)
                 executions[label] = result.returncode
                 print(f"{label}: exit {result.returncode}", flush=True)
                 if result.returncode:
@@ -288,7 +306,8 @@ def _run_local(foundry, repo, output):
                 job_states = conn.execute("SELECT state,count(*) FROM broadbridge.ingestion_jobs GROUP BY state").fetchall()
             report = {"synthetic_only": True, "database": "owned_local_postgresql_17", "migrations": migration["migrations"], "transport": "local_S3_and_Neon_HTTP_fixtures", "live_cloud": "not_run", "gpu": "not_run", "executions": executions, "counts": counts, "job_states": job_states, "worker_error_types": sorted(set(worker_errors))}
             (output / "report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-            if any(executions.values()) or "browser" not in executions or worker_errors:
+            required_browser = "public-review-browser" if review_only else "browser"
+            if any(executions.values()) or required_browser not in executions or worker_errors:
                 raise RuntimeError("Local smoke failed; inspect sanitized local logs")
             return report
     finally:
@@ -303,9 +322,11 @@ if __name__ == "__main__":
     parser.add_argument("--foundry", required=True, type=Path)
     parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--public-review", action="store_true", help="Include frozen public packet and isolated reviewer URL tests")
+    parser.add_argument("--review-only", action="store_true", help="Only reviewer SQL/browser acceptance, on a new disposable database")
     args = parser.parse_args()
     try:
-        run(args.foundry.resolve(), args.repo.resolve(), args.output.resolve())
+        run(args.foundry.resolve(), args.repo.resolve(), args.output.resolve(), public_review=args.public_review, review_only=args.review_only)
     except Exception as exc:
         print(f"Local smoke failed ({type(exc).__name__}); no existing database was used.", file=sys.stderr)
         raise SystemExit(1)
