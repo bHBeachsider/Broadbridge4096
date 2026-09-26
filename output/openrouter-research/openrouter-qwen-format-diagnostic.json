@@ -1,0 +1,15 @@
+{
+  "source": "Sanitized output of the single diagnostic request after the initial eight HTTP 400 responses",
+  "synthetic_only": true,
+  "requested_model": "qwen/qwen3.5-flash-02-23",
+  "http_status": 400,
+  "error_code": 400,
+  "error_message": "Provider returned error",
+  "provider_name": "Alibaba",
+  "upstream_error_code": "invalid_parameter_error",
+  "upstream_error_message": "'messages' must contain the word 'json' in some form, to use 'response_format' of type 'json_object'.",
+  "requested_response_format": "json_schema",
+  "is_byok": false,
+  "redactions": ["upstream request identifier omitted"],
+  "correction": "Add Return a JSON object. to the system message; leave fixtures, labels, schema and other request parameters unchanged"
+}

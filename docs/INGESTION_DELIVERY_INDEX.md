@@ -1,9 +1,19 @@
 # Ingestion delivery index — 25 September 2026
 
 Offline implementation is complete and independently reviewed. All pull requests
-remain drafts. No merge, production migration, live upload, model inference or
-EC2/GPU operation was performed. Automated Vercel preview builds ran; their data
-targets have not been approved for uploads.
+remain drafts. Live setup has started: migration 0005 is applied to the verified
+Neon `dev` branch, with unchanged capture row counts at migration time. A private
+`broadbridge-dev` bucket and exact-origin CORS are now configured; synthetic live
+R2 uploads and local Docker extraction have run. No merge, production migration,
+engineering model inference or EC2/GPU operation was performed. A separate
+synthetic-only OpenRouter study is linked below. Preview infrastructure
+now has 19 passed R2/Docker/Neon checks and six passed HTTPS checks after Brad's
+credential update. The Preview auth-origin mismatch is fixed and Brad's normal
+sign-in is verified. Brad then uploaded both prepared synthetic files manually;
+live browser-to-dataset acceptance passed, including separate reviews, repeatable
+release construction, revocation and stale-review rejection. The temporary
+runtime is stopped after completion. See the
+[live setup record](INGESTION_LIVE_SETUP.md).
 
 ## Plans and operating instructions
 
@@ -11,6 +21,8 @@ targets have not been approved for uploads.
 - [Domain implementation plan](plans/2026-09-25-ingestion-domain.md)
 - [Domain bridge and migration runbook](INGESTION_PIPELINE_RUNBOOK.md)
 - [Repeatable browser acceptance and deployment handoff](INGESTION_ACCEPTANCE.md)
+- [Live setup, verified targets and remaining access](INGESTION_LIVE_SETUP.md)
+- [OpenRouter/Jev model selection research](OPENROUTER_MODEL_SELECTION.md)
 - [Generic engine operator guide](https://github.com/bHBeachsider/slm-foundry/blob/codex/foundry-ingestion-acceptance/docs/INGESTION_PIPELINE.md)
 
 ```mermaid
@@ -47,6 +59,7 @@ drafts in order and rerun checks. Nothing goes directly to main/master.
 | [#5](https://github.com/bHBeachsider/slm-foundry/pull/5) | CPU worker and R2 event transport | eb63025dc0d79b4d0b9b9c0edc6aeb0fd679cb6c |
 | [#6](https://github.com/bHBeachsider/slm-foundry/pull/6) | Bounded training and accepted model releases | fb0735f21d66b30d835c9c313d70e339a61d7614 |
 | [#7](https://github.com/bHBeachsider/slm-foundry/pull/7) | CI, rehearsal and operator handoff | b2b57b88bdd21e1050390abd0c0cbd0bc4176826 |
+| [#8](https://github.com/bHBeachsider/slm-foundry/pull/8) | CLI HTTP domain error correction, after #7 | 877d43c |
 
 | Broadbridge draft | Package | Recorded head |
 |---|---|---|
@@ -55,6 +68,7 @@ drafts in order and rerun checks. Nothing goes directly to main/master.
 | [#3](https://github.com/bHBeachsider/Broadbridge4096/pull/3) | Domain policy, migration and dataset bridge | af63a0c5e4d5de0c77b207870b1c2c79f32a94dd |
 | [#4](https://github.com/bHBeachsider/Broadbridge4096/pull/4) | Source intake and review UI | 65a95f14edb3d747476ba8889b61f2b17d71b589 |
 | [#5](https://github.com/bHBeachsider/Broadbridge4096/pull/5) | Browser-to-dataset acceptance and handoff | b0351a34dba76c27696da3811432ce88aa35b1f6 |
+| [#6](https://github.com/bHBeachsider/Broadbridge4096/pull/6) | Live dev setup and follow-up evidence | Reporting branch; use `gh pr view 6` for current head |
 
 PR numbers belong to a repository. From `bb1` or any directory, use explicit
 repository arguments and omit watch mode:
@@ -73,6 +87,19 @@ write-capable acceptance test.
 
 - Foundry hosted CI: 473 Python tests passed, 1 optional parser host check skipped;
   standalone synthetic rehearsal passed; Cloudflare and CPU container jobs passed.
+- Subsequent CLI HTTP fix: 47 focused tests passed; full local CPU suite recorded
+  473 passed and 2 skips. Independent specification and quality reviews passed.
+  Foundry #8 subsequently passed all three hosted CI jobs. This is separate from
+  the preceding hosted CI result.
+- Updated live credentials: 19 actual R2/Docker/Neon checks and six HTTPS checks
+  passed. Two synthetic sources added; existing capture cases remained unchanged.
+- Deployed browser acceptance: two further synthetic files uploaded by Brad,
+  both CPU jobs succeeded, original/artifact hashes and authenticated actor
+  verified, one synthetic candidate admitted only after separate reviews, and
+  a one-row immutable release built twice with identical results. Revocation
+  blocked new admission; stale rights updates were rejected. Existing release
+  history and all four capture cases remain intact. See
+  [live browser/dataset evidence](verification/ingestion-live-browser-dataset.json).
 - Domain: 56 independent real PostgreSQL tests, 277 offline pack tests and 1
   migration/checksum test passed.
 - Capture: 125 unit tests passed with 8 database-gated skips; TypeScript/build
@@ -83,20 +110,27 @@ write-capable acceptance test.
   hashes. Synthetic training-control tests use fabricated adapter tensors and
   scores; they do not establish Qwen quality or a successful GPU training run.
 
-## Next live decisions
+## Live execution sequence
 
-1. Review drafts and approve a dedicated nonproduction R2/Neon/Vercel mapping,
-   scoped service credentials and a CPU worker host. Keep production separate.
-2. Apply 0005 to that approved test database and provision event/worker wiring.
-   Verify real signing/CORS, restart recovery and review/revocation with synthetic uploads.
+1. Neon `dev` and the existing `broadbridge-capture` Vercel project are identified.
+   The private `broadbridge-dev` test bucket exists and Brad approved local Docker.
+   Dev database authentication and Preview email configuration are repaired.
+   The scoped R2 key now passes PUT; the test Preview was refreshed and reached
+   READY. Human sign-in and the synthetic browser-to-dataset test are now
+   complete. Temporary runtime is stopped. A new upload session still needs a
+   bounded API/worker and refreshed Preview connection.
+2. Migration 0005 is applied and read back on `dev`. Provision event/worker wiring.
+   Real signing/CORS, restart recovery and synthetic review/revocation have been
+   verified. Automatic Cloudflare event transport remains a separate live gate.
 3. Install and verify licensed local parser model artifacts for OCR/transcription.
 4. Admit real rights-cleared documents and signed cases, prepare reviewed examples,
    freeze a batch, and run a CPU token audit. Establish comparable engineering baselines.
 5. Approve explicit GPU steps/time/budget and host prerequisites, run QLoRA, evaluate,
    and promote only after acceptance. No automatic training or production promotion.
 
-Install the missing Vercel CLI for the deployment handoff: `npm i -g vercel`.
-Keep environment values in approved secret stores and ignored local files.
+Vercel CLI 60.0.1 is installed and authenticated on Brad's machine. For another
+operator, install it with `npm i -g vercel`. Keep environment values in approved
+secret stores and ignored local files.
 
 ## Rulings made
 

@@ -1,0 +1,114 @@
+{
+  "schema": "broadbridge.live_neon_r2_cpu/1",
+  "temporary_runtime_stopped_after_checks": true,
+  "run_id": "neon-r2-cpu-d25c0dcc4c24",
+  "synthetic_only": true,
+  "image": "sha256:712863f27cdd2e69398e00572b049464c0ca653de347cff7d6043d68a53fd197",
+  "bucket": "broadbridge-dev",
+  "project": "crimson-block-71962201",
+  "branch": "dev",
+  "endpoint_id": "ep-restless-bread-au1nwu5h",
+  "checks_passed": 19,
+  "checks": [
+    "dev migration 0005 exists",
+    "no unrelated active jobs",
+    "1: idempotent Neon source registration",
+    "1: immutable synthetic upload",
+    "1: duplicate enqueue stable",
+    "1: CPU extraction complete",
+    "1: survives fresh container",
+    "1: independent Neon read",
+    "1: artifact hash/source/blocks",
+    "1: rights stay pending/reference_only",
+    "2: idempotent Neon source registration",
+    "2: immutable synthetic upload",
+    "2: duplicate enqueue stable",
+    "2: CPU extraction complete",
+    "2: survives fresh container",
+    "2: independent Neon read",
+    "2: artifact hash/source/blocks",
+    "2: rights stay pending/reference_only",
+    "existing capture counts unchanged"
+  ],
+  "jobs": [
+    {
+      "source_id": "SYN-neon-r2-cpu-d25c0dcc4c24-1",
+      "job_id": "ab71394cf042a9aa22bcfa39c2b3a4d73718454ea2b07064a05e8cec33b689cb",
+      "state": "succeeded",
+      "block_count": 1,
+      "normalized": {
+        "key": "artifacts/broadbridge-oil-gas/ab71394cf042a9aa22bcfa39c2b3a4d73718454ea2b07064a05e8cec33b689cb/273ed4c9eea5425395e5ab65e86ddfd0/normalized.json",
+        "sha256": "cdfe4c52511252713264926fa4f10d11f14eb3e8e729e13a30bf5d28e572b3f1",
+        "size_bytes": 1416
+      }
+    },
+    {
+      "source_id": "SYN-neon-r2-cpu-d25c0dcc4c24-2",
+      "job_id": "d3acad282e418d6369ab53447bad576365ac2423e0e65580b5174c8082db0bd9",
+      "state": "succeeded",
+      "block_count": 1,
+      "normalized": {
+        "key": "artifacts/broadbridge-oil-gas/d3acad282e418d6369ab53447bad576365ac2423e0e65580b5174c8082db0bd9/523524726f59405aab0da04dbdf852fc/normalized.json",
+        "sha256": "8d493c5fe350d7247f14d5eaf7a2b5eb4d9e9a4623578b63e28f6861c8ddd866",
+        "size_bytes": 1288
+      }
+    }
+  ],
+  "elapsed_seconds": 64.02,
+  "capture_counts_unchanged": true,
+  "production_changed": false,
+  "browser_flow": "not_run",
+  "model_training": "not_run",
+  "https_checks": {
+    "exit_code": 0,
+    "checks": [
+      {
+        "probe": "unauthenticated",
+        "status": 401,
+        "passed": true
+      },
+      {
+        "probe": "wrong_token",
+        "status": 401,
+        "passed": true
+      },
+      {
+        "probe": "authenticated_unknown_job",
+        "status": 404,
+        "passed": true
+      },
+      {
+        "probe": "oversized_body",
+        "status": 413,
+        "passed": true
+      },
+      {
+        "probe": "registration_required",
+        "status": 409,
+        "passed": true
+      },
+      {
+        "probe": "recipe_mismatch",
+        "status": 409,
+        "passed": true
+      }
+    ]
+  },
+  "capture_counts_after": {
+    "sources": 7,
+    "evidence": 0,
+    "cases": 4,
+    "questions": 4,
+    "workflow": 1,
+    "runs": 0,
+    "scorecards": 0,
+    "review_log": 20
+  },
+  "preview": {
+    "deployment": "dpl_B9muHKNk3qFqg2FTTp3b1t3ubK3n",
+    "state": "READY",
+    "target": "preview",
+    "branch": "codex/broadbridge-ingestion-live-test",
+    "human_login": "pending"
+  }
+}

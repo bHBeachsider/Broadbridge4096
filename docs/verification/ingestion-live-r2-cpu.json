@@ -1,0 +1,83 @@
+{
+  "schema": "broadbridge.live_r2_cpu_evidence/1",
+  "run_id": "r2-cpu-3ea716fb4034",
+  "synthetic_only": true,
+  "bucket": "broadbridge-dev",
+  "image": "sha256:8e170e65112a90c57dc91b90f6c2f7daa14b16636c901d84aa50b3ab16fc3991",
+  "job_database": "disposable local SQLite; Neon not used",
+  "preview_origin": "https://broadbridge-capture-git-codex-bro-d2e7c0-bhbeachsiders-projects.vercel.app",
+  "checks_passed": 27,
+  "checks": [
+    "local SQLite queue initialized in non-root CPU container",
+    "1: signature binds content length",
+    "1: exact Preview origin CORS preflight",
+    "1: unrelated origin receives no CORS permission",
+    "1: changed content length rejected",
+    "1: signed PUT accepted",
+    "1: immutable duplicate PUT rejected",
+    "1: original bytes and SHA256 match",
+    "1: anonymous download denied",
+    "1: repeated enqueue keeps job identity",
+    "1: CPU extraction complete",
+    "1: job survives container restart",
+    "1: normalized artifact hash and source identity",
+    "1: extraction does not grant training rights",
+    "2: signature binds content length",
+    "2: exact Preview origin CORS preflight",
+    "2: unrelated origin receives no CORS permission",
+    "2: changed content length rejected",
+    "2: signed PUT accepted",
+    "2: immutable duplicate PUT rejected",
+    "2: original bytes and SHA256 match",
+    "2: anonymous download denied",
+    "2: repeated enqueue keeps job identity",
+    "2: CPU extraction complete",
+    "2: job survives container restart",
+    "2: normalized artifact hash and source identity",
+    "2: extraction does not grant training rights"
+  ],
+  "jobs": [
+    {
+      "source_id": "SYN-R2-r2-cpu-3ea716fb4034-1",
+      "job_id": "6f7a5680ecf5cc2ad96f3277f4fa9083030f09c6c8a0df969f43deeca76b7de9",
+      "state": "succeeded",
+      "document_status": "complete",
+      "block_count": 1,
+      "labels": {
+        "document_role": [
+          "troubleshooting_correspondence"
+        ],
+        "equipment": [
+          "heat_exchanger"
+        ],
+        "practice": [
+          "downstream"
+        ],
+        "topic": [
+          "performance",
+          "reliability"
+        ]
+      },
+      "artifact_sha256": "b06064bdb2206cdefba84accf64e6fbc63288814f0de5644c18c5549aba9194f"
+    },
+    {
+      "source_id": "SYN-R2-r2-cpu-3ea716fb4034-2",
+      "job_id": "9045d4f117965421f5c911fa3cd84121ee0cfce330418fb1a2df48adedd03ff6",
+      "state": "succeeded",
+      "document_status": "complete",
+      "block_count": 1,
+      "labels": {
+        "equipment": [
+          "heat_exchanger"
+        ]
+      },
+      "artifact_sha256": "f4f9a127c6a06c82eca7f3beb27f6743f25d508f6e8050ace9141a548ba8e97a"
+    }
+  ],
+  "elapsed_seconds": 53.56,
+  "production_changed": false,
+  "neon_integration": "blocked: configured dev password rejected",
+  "browser_flow": "not_run",
+  "event_transport": "not_run: account requires Workers Paid plan",
+  "model_training": "not_run"
+}

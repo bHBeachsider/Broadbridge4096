@@ -1,0 +1,39 @@
+{
+  "scope": "Preview branch codex/broadbridge-ingestion-live-test only",
+  "project": "bhbeachsiders-projects/broadbridge-capture",
+  "failure": {
+    "user_observation": "We couldn't complete sign-in",
+    "runtime_error": "Authentication is unavailable",
+    "runtime_location": "sendVerificationRequest",
+    "configuration": "No AUTH_URL applied to this Preview branch",
+    "cause": "Auth.js used the stable branch host; configuredAuthOrigin fell back to the immutable VERCEL_URL host"
+  },
+  "offline_reproduction": {
+    "implementation": "Installed Auth.js createActionURL plus capture configuredAuthOrigin",
+    "assertions_passed": 2,
+    "without_auth_url": "Request origin differs from configured origin",
+    "with_branch_auth_url": "Request origin equals configured origin"
+  },
+  "fix": {
+    "environment_variable": "AUTH_URL",
+    "target": "preview",
+    "git_branch": "codex/broadbridge-ingestion-live-test",
+    "origin": "https://broadbridge-capture-git-codex-bro-d2e7c0-bhbeachsiders-projects.vercel.app",
+    "deployment_id": "dpl_9deodWyyBDF3AgghmHztFk5Vfxvn",
+    "deployment_state": "READY"
+  },
+  "browser_result": {
+    "action": "Normal email-link request for the approved operator",
+    "visible_heading": "Check your email.",
+    "response_path": "/api/auth/verify-request",
+    "response_origin_matches_branch": true,
+    "mailbox_delivery_verified": true,
+    "completed_sign_in_verified": true,
+    "mailbox_evidence": "Brad confirmed the email link worked; no mailbox interception was used",
+    "authenticated_ui_evidence": "Case capture and Source intake & review displayed bupham@ilyrium.io",
+    "auth_bypass_used": false
+  },
+  "production_changed": false,
+  "ec2_started": false,
+  "upload_test_started": false
+}
