@@ -1,0 +1,7 @@
+# Existing lightweight evaluation runtime; no model weights, GPU or PDF stack.
+jsonschema>=4.23,<5
+requests>=2.32,<3
+python-dotenv>=1,<2
+beautifulsoup4>=4.12,<5
+PyYAML>=6,<7
+pytest>=8,<10

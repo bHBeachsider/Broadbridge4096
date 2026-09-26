@@ -1,0 +1,12 @@
+{
+  "python": "3.13.5",
+  "libraries": {
+    "requests": "2.32.5",
+    "jsonschema": "4.26.0",
+    "beautifulsoup4": "4.14.2",
+    "PyYAML": "6.0.3",
+    "python-dotenv": "1.2.1"
+  },
+  "foundry_head": "24de6af81fae969dc8abc51621e498c41a246e61",
+  "note": "Recorded after the completed run; execution settings are frozen in protocol.json. No model requests made by this audit."
+}

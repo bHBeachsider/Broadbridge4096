@@ -1,0 +1,798 @@
+[
+  {
+    "source_id": "EIA-REFINING",
+    "model_key": "mistral",
+    "prompt_sha256": "0b7e71d9e1398ecd36903c694b8d8be538e1955c927c735ab0dca2323078b60d",
+    "response": null,
+    "receipt": {
+      "requested_model": "mistralai/mistral-small-24b-instruct-2501",
+      "returned_model": "mistralai/mistral-small-24b-instruct-2501",
+      "provider": "DeepInfra",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 774,
+      "completion_tokens": 3200,
+      "cost_usd": 0.0002947,
+      "retries": 0,
+      "valid": false,
+      "error": "openrouter_incomplete_completion",
+      "elapsed_seconds": 56.993283
+    },
+    "status": "transport_failure",
+    "checks": [
+      "openrouter_incomplete_completion"
+    ]
+  },
+  {
+    "source_id": "EIA-REFINING",
+    "model_key": "qwen",
+    "prompt_sha256": "0b7e71d9e1398ecd36903c694b8d8be538e1955c927c735ab0dca2323078b60d",
+    "response": {
+      "answers": [
+        {
+          "question_id": "PUB-001",
+          "answer": "Crude oil is first separated physically via distillation: heated in furnaces, then fed into distillation units where fractions separate by boiling point—light fractions rise, heavy ones sink (EIA-REFINING-B01, B02). This is physical separation. Next, heavy, low-value fractions undergo chemical conversion, primarily cracking, which breaks large hydrocarbon molecules into smaller ones using heat, pressure, catalysts, or hydrogen (EIA-REFINING-B04). Alkylation further modifies gaseous byproducts into gasoline components (EIA-REFINING-B05). These transformed streams are then blended into finished gasoline, with final properties like octane and vapor pressure adjusted during treatment (EIA-REFINING-B06). Thus, distillation separates molecules without changing them; cracking and alkylation chemically alter molecular structure.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-REFINING",
+              "block_id": "EIA-REFINING-B01",
+              "quote": "Modern separation involves piping crude oil through hot furnaces. The resulting liquids and vapors are discharged into distillation units."
+            },
+            {
+              "source_id": "EIA-REFINING",
+              "block_id": "EIA-REFINING-B02",
+              "quote": "Inside the distillation units, the liquids and vapors separate into petroleum components, called fractions, according to their boiling points. Heavy fractions are on the bottom and light fractions are on the top."
+            },
+            {
+              "source_id": "EIA-REFINING",
+              "block_id": "EIA-REFINING-B04",
+              "quote": "The most widely used conversion method is called cracking because it uses heat, pressure, catalysts, and sometimes hydrogen to crack heavy hydrocarbon molecules into lighter ones."
+            },
+            {
+              "source_id": "EIA-REFINING",
+              "block_id": "EIA-REFINING-B05",
+              "quote": "Alkylation, for example, makes gasoline components by combining some of the gaseous byproducts of cracking."
+            },
+            {
+              "source_id": "EIA-REFINING",
+              "block_id": "EIA-REFINING-B06",
+              "quote": "To make gasoline, refinery technicians carefully combine a variety of streams from the processing units. Octane level, vapor pressure ratings, and other special considerations determine the gasoline blend."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-002",
+          "answer": "Distillation and cracking are not interchangeable because they serve fundamentally different purposes: distillation is a physical separation process based on boiling points, while cracking is a chemical conversion process that breaks molecular bonds. Distillation separates crude oil into fractions without altering molecular structure (EIA-REFINING-B02), whereas cracking uses heat, pressure, catalysts, or hydrogen to transform heavy hydrocarbons into lighter ones (EIA-REFINING-B04). The excerpt explicitly states that cracking 'cracks heavy hydrocarbon molecules into lighter ones,' indicating a chemical change. Furthermore, alkylation—another conversion process—combines gaseous byproducts of cracking, implying that cracking produces materials distinct from those of distillation. Thus, distillation separates; cracking transforms.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-REFINING",
+              "block_id": "EIA-REFINING-B02",
+              "quote": "Inside the distillation units, the liquids and vapors separate into petroleum components, called fractions, according to their boiling points."
+            },
+            {
+              "source_id": "EIA-REFINING",
+              "block_id": "EIA-REFINING-B04",
+              "quote": "The most widely used conversion method is called cracking because it uses heat, pressure, catalysts, and sometimes hydrogen to crack heavy hydrocarbon molecules into lighter ones."
+            },
+            {
+              "source_id": "EIA-REFINING",
+              "block_id": "EIA-REFINING-B05",
+              "quote": "Alkylation, for example, makes gasoline components by combining some of the gaseous byproducts of cracking."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-003",
+          "answer": "No, the vapor pressure and octane of the proposed gasoline blend cannot be calculated from this excerpt. The excerpt establishes that gasoline blending involves combining streams from processing units and adjusting for octane level and vapor pressure ratings (EIA-REFINING-B06), but it provides no numerical values, formulas, or data on the composition of the streams, their individual octane ratings, vapor pressures, or blending indices. Missing inputs include: (1) the number and identity of streams to be blended, (2) the octane number and vapor pressure of each stream, (3) the blending coefficients or rules (e.g., RON, MON, or Reid vapor pressure calculations), and (4) the target specifications for the final blend. The excerpt only confirms that these factors are considered, not how they are computed.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-REFINING",
+              "block_id": "EIA-REFINING-B06",
+              "quote": "Octane level, vapor pressure ratings, and other special considerations determine the gasoline blend."
+            }
+          ]
+        }
+      ]
+    },
+    "receipt": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 780,
+      "completion_tokens": 1217,
+      "cost_usd": 0.0004431,
+      "retries": 0,
+      "valid": true,
+      "elapsed_seconds": 31.512948
+    },
+    "status": "mechanical_failure",
+    "checks": [
+      "invalid_exact_citation:PUB-001",
+      "invalid_exact_citation:PUB-002"
+    ]
+  },
+  {
+    "source_id": "EIA-YIELD",
+    "model_key": "qwen",
+    "prompt_sha256": "f8bd4233727adc93d96189b2b4efdbce065e2fc4d57ec00cecac4f5e2271642b",
+    "response": {
+      "answers": [
+        {
+          "question_id": "PUB-004",
+          "answer": "Applying 6.3% volumetric processing gain to 42 US gallons: Output = 42 × (1 + 0.063) = 42 × 1.063 = 44.646 US gallons. This is a volumetric gain, not a mass-gain calculation. The increase in volume arises from chemical changes during refining, such as cracking, which break down heavier molecules into lighter, more voluminous ones. The total mass is conserved, but the volume expands due to lower density of the products. As stated: 'The total volume of products that refineries produce (output) is greater than the volume of crude oil that refineries process (input) because most of the products they make have a lower density than the crude oil they process.' This is a volumetric effect, not a mass gain.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-YIELD",
+              "block_id": "EIA-YIELD-B02",
+              "quote": "The total volume of products that refineries produce (output) is greater than the volume of crude oil that refineries process (input) because most of the products they make have a lower density than the crude oil they process."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-005",
+          "answer": "Refinery product volume can exceed crude feed volume because the refining process alters molecular structure through reactions like cracking, which convert heavier hydrocarbons into lighter, lower-density products. Although the total mass is conserved (per the law of conservation of mass), the lower density of the resulting products increases their volume. As noted: 'The total volume of products that refineries produce (output) is greater than the volume of crude oil that refineries process (input) because most of the products they make have a lower density than the crude oil they process.' This volumetric increase is due to changes in molecular composition and density, not mass creation.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-YIELD",
+              "block_id": "EIA-YIELD-B02",
+              "quote": "The total volume of products that refineries produce (output) is greater than the volume of crude oil that refineries process (input) because most of the products they make have a lower density than the crude oil they process."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-006",
+          "answer": "No, we may not use the reported 2023 average as a guaranteed yield for our refinery tomorrow. The 6.3% average is a statistical mean across U.S. refineries and does not account for daily operational variability, crude oil type, unit configuration, maintenance, or market-driven processing decisions. As stated: 'The average processing gain at U.S. refineries was about 6.3% in 2023.' This is a historical average, not a predictive guarantee. The limit is that the average reflects long-term trends and cannot be applied with certainty to a single refinery on a single day without additional site-specific data.",
+          "uncertainties": [
+            "Daily crude mix and processing conditions may vary significantly from the 2023 average."
+          ],
+          "evidence": [
+            {
+              "source_id": "EIA-YIELD",
+              "block_id": "EIA-YIELD-B02",
+              "quote": "The average processing gain at U.S. refineries was about 6.3% in 2023."
+            }
+          ]
+        }
+      ]
+    },
+    "receipt": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 678,
+      "completion_tokens": 804,
+      "cost_usd": 0.000309,
+      "retries": 0,
+      "valid": true,
+      "elapsed_seconds": 28.033294
+    },
+    "status": "answered",
+    "checks": []
+  },
+  {
+    "source_id": "EIA-YIELD",
+    "model_key": "mistral",
+    "prompt_sha256": "f8bd4233727adc93d96189b2b4efdbce065e2fc4d57ec00cecac4f5e2271642b",
+    "response": null,
+    "receipt": null,
+    "status": "stopped_no_retry",
+    "checks": []
+  },
+  {
+    "source_id": "EIA-LNG",
+    "model_key": "mistral",
+    "prompt_sha256": "be685eaecdc6557b79d967c995e3b4f84798df2745e73501cd42895816e6b686",
+    "response": null,
+    "receipt": null,
+    "status": "stopped_no_retry",
+    "checks": []
+  },
+  {
+    "source_id": "EIA-LNG",
+    "model_key": "qwen",
+    "prompt_sha256": "be685eaecdc6557b79d967c995e3b4f84798df2745e73501cd42895816e6b686",
+    "response": {
+      "answers": [
+        {
+          "question_id": "PUB-007",
+          "answer": "Given the 600:1 volume reduction from gaseous to liquid state, the liquid volume is calculated as: 120,000 m³ ÷ 600 = 200 m³. This maintains the same gaseous-volume basis as stated in the excerpt. The calculation is based on the volume reduction ratio provided in EIA-LNG-B01: 'The volume of natural gas in a liquid state is about 600 times smaller than its volume in a gaseous state.'",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-LNG",
+              "block_id": "EIA-LNG-B01",
+              "quote": "The volume of natural gas in a liquid state is about 600 times smaller than its volume in a gaseous state."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-008",
+          "answer": "Feed gas = 100 million standard cubic feet/day. 10% consumed onsite: 100 × 0.10 = 10 million standard cubic feet/day. Remaining for export: 100 - 10 = 90 million standard cubic feet/day. This is on the same gas-equivalent basis as feed gas, with no physical liquid volume reported. The calculation assumes no other losses and uses the given 10% onsite consumption. The basis is consistent with the feed gas volume as stated in EIA-LNG-B04: 'approximately 7% to 15% of LNG feed gas is used for liquefaction processes.'",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-LNG",
+              "block_id": "EIA-LNG-B04",
+              "quote": "approximately 7% to 15% of LNG feed gas is used for liquefaction processes"
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-009",
+          "answer": "The LNG export/import chain involves: (1) natural gas delivered via pipeline to export facilities; (2) liquefaction into cryogenic liquid for transport via LNG carriers or ISO containers; (3) offloading at import terminals; (4) storage in cryogenic tanks; and (5) regasification and delivery via pipelines to end users. Feed-gas volume and exported gas-equivalent volume differ because a portion of the feed gas (7–15%) is consumed on-site to power liquefaction equipment, as noted in EIA-LNG-B04: 'approximately 7% to 15% of LNG feed gas is used for liquefaction processes, mostly to operate on-site liquefaction equipment.' Thus, not all feed gas becomes exported LNG.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-LNG",
+              "block_id": "EIA-LNG-B04",
+              "quote": "approximately 7% to 15% of LNG feed gas is used for liquefaction processes, mostly to operate on-site liquefaction equipment."
+            }
+          ]
+        }
+      ]
+    },
+    "receipt": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 918,
+      "completion_tokens": 654,
+      "cost_usd": 0.000288,
+      "retries": 0,
+      "valid": true,
+      "elapsed_seconds": 17.68991
+    },
+    "status": "mechanical_failure",
+    "checks": [
+      "invalid_exact_citation:PUB-007"
+    ]
+  },
+  {
+    "source_id": "EIA-PIPELINE",
+    "model_key": "qwen",
+    "prompt_sha256": "318f1396fbf31db079ee5e7088b57f2d83e4ad14691ceb10bb27597f1d7e665b",
+    "response": {
+      "answers": [
+        {
+          "question_id": "PUB-010",
+          "answer": "Pressure ratio = discharge absolute pressure / suction absolute pressure = 60 bar / 30 bar = 2.0. This ratio is dimensionless. However, this alone cannot determine compressor power, as power depends on additional factors such as gas flow rate, gas composition, efficiency, and temperature changes during compression. The provided text does not include data on flow rate, efficiency, or temperature, which are essential for power calculation. Therefore, while the pressure ratio is calculated as 2.0, it is insufficient to determine compressor power. Cited: 'Compressor stations (or pumping stations) on the pipeline network keep the natural gas flowing forward through the pipeline system.' (EIA-PIPELINE-B03)",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-PIPELINE",
+              "block_id": "EIA-PIPELINE-B03",
+              "quote": "Compressor stations (or pumping stations) on the pipeline network keep the natural gas flowing forward through the pipeline system."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-011",
+          "answer": "To select a compressor for the line, additional data are needed beyond the function of keeping gas moving. Specifically, required gas flow rate, inlet and outlet temperatures, gas composition (to determine compressibility and heating value), desired discharge temperature, and compressor efficiency are necessary. The text only states that compressor stations maintain flow but does not provide flow rate, temperature, or efficiency data. Without these, the size, type, and power of the compressor cannot be determined. Cited: 'Compressor stations (or pumping stations) on the pipeline network keep the natural gas flowing forward through the pipeline system.' (EIA-PIPELINE-B03)",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-PIPELINE",
+              "block_id": "EIA-PIPELINE-B03",
+              "quote": "Compressor stations (or pumping stations) on the pipeline network keep the natural gas flowing forward through the pipeline system."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-012",
+          "answer": "Natural gas is first gathered via small-diameter, low-pressure pipelines from the wellhead to a processing plant (EIA-PIPELINE-B01). At the processing plant, hydrocarbon gas liquids, nonhydrocarbon gases, and water are removed (EIA-PIPELINE-B02). The cleaned gas is then transported via wide-diameter, high-pressure interstate or intrastate transmission pipelines to storage and distribution centers (EIA-PIPELINE-B03). Compressor stations maintain flow in transmission lines. Finally, local distribution companies deliver gas to consumers through small-diameter, lower-pressure service lines (EIA-PIPELINE-B04). Compression is essential to maintain pressure and flow over long distances in transmission systems. Cited: 'Compressor stations (or pumping stations) on the pipeline network keep the natural gas flowing forward through the pipeline system.' (EIA-PIPELINE-B03)",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-PIPELINE",
+              "block_id": "EIA-PIPELINE-B01",
+              "quote": "Gathering systems, primarily made up of small-diameter, low-pressure pipelines, move raw natural gas from the wellhead to a natural gas processing plant or to an interconnection with a larger mainline pipeline."
+            },
+            {
+              "source_id": "EIA-PIPELINE",
+              "block_id": "EIA-PIPELINE-B02",
+              "quote": "Natural gas processing plants separate hydrocarbon gas liquids, nonhydrocarbon gases, and water from the natural gas before the natural gas is delivered into a mainline transmission system."
+            },
+            {
+              "source_id": "EIA-PIPELINE",
+              "block_id": "EIA-PIPELINE-B03",
+              "quote": "Wide-diameter, high-pressure interstate transmission pipelines that cross state boundaries and intrastate transmission pipelines that operate within state boundaries transport natural gas from the producing and processing areas to storage facilities and distribution centers. Compressor stations (or pumping stations) on the pipeline network keep the natural gas flowing forward through the pipeline system."
+            },
+            {
+              "source_id": "EIA-PIPELINE",
+              "block_id": "EIA-PIPELINE-B04",
+              "quote": "Local distribution companies deliver natural gas to consumers through small-diameter, lower pressure service lines."
+            }
+          ]
+        }
+      ]
+    },
+    "receipt": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 609,
+      "completion_tokens": 999,
+      "cost_usd": 0.0003606,
+      "retries": 0,
+      "valid": true,
+      "elapsed_seconds": 33.465234
+    },
+    "status": "mechanical_failure",
+    "checks": [
+      "invalid_exact_citation:PUB-012"
+    ]
+  },
+  {
+    "source_id": "EIA-PIPELINE",
+    "model_key": "mistral",
+    "prompt_sha256": "318f1396fbf31db079ee5e7088b57f2d83e4ad14691ceb10bb27597f1d7e665b",
+    "response": null,
+    "receipt": null,
+    "status": "stopped_no_retry",
+    "checks": []
+  },
+  {
+    "source_id": "EIA-HGL",
+    "model_key": "mistral",
+    "prompt_sha256": "5dabbb1efbe280731d297ddeeaac3e2d10cad65f5d9c4eca698585b5c1789145",
+    "response": null,
+    "receipt": null,
+    "status": "stopped_no_retry",
+    "checks": []
+  },
+  {
+    "source_id": "EIA-HGL",
+    "model_key": "qwen",
+    "prompt_sha256": "5dabbb1efbe280731d297ddeeaac3e2d10cad65f5d9c4eca698585b5c1789145",
+    "response": {
+      "answers": [
+        {
+          "question_id": "PUB-013",
+          "answer": "Wet gas contains hydrocarbon gas liquids (HGLs), water vapor, and nonhydrocarbon gases as extracted from wells. Dry gas is processed natural gas with most HGLs and nonhydrocarbon compounds removed, primarily methane. Mixed HGL (Y-grade) is a stream of HGLs separated from wet gas before fractionation. Purity products (e.g., ethane, propane, butane) are individual HGLs separated via fractionation and are at least 90% pure. Dry gas is not necessarily chemically pure methane; it may contain trace nonhydrocarbon compounds and minor hydrocarbons, as it is defined by its heat content and pipeline specifications, not absolute chemical purity. As stated: 'Natural gas that has been processed to remove most of the HGLs and nonhydrocarbon compounds is called dry gas, which is mostly methane.' (EIA-HGL-B03)",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-HGL",
+              "block_id": "EIA-HGL-B03",
+              "quote": "Natural gas that has been processed to remove most of the HGLs and nonhydrocarbon compounds is called dry gas, which is mostly methane."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-014",
+          "answer": "No, this excerpt cannot establish whether processed gas meets a particular pipeline’s acceptance specification. It states that pipeline operators have strict specifications for dry gas characteristics like heat content, but it does not provide the actual values or criteria required by any specific pipeline. To determine compliance, the specific pipeline’s acceptance specifications must be obtained from the pipeline operator or regulatory documentation. As noted: 'Natural gas pipeline operators have strict specifications for the characteristics (such as the heat content) of the dry natural gas they accept...' (EIA-HGL-B03)",
+          "uncertainties": [
+            "Specific pipeline acceptance criteria are not provided."
+          ],
+          "evidence": [
+            {
+              "source_id": "EIA-HGL",
+              "block_id": "EIA-HGL-B03",
+              "quote": "Natural gas pipeline operators have strict specifications for the characteristics (such as the heat content) of the dry natural gas they accept..."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-015",
+          "answer": "No, the excerpt does not establish that a 90% propane purity product meets every buyer’s commercial and safety specification. While it states that purity products are at least 90% one type of HGL molecule, it does not address commercial requirements (e.g., sulfur content, mercury levels) or safety standards (e.g., flammability limits, regulatory compliance) that may vary by buyer or application. Therefore, additional data on buyer-specific requirements and safety regulations are needed. As stated: 'These HGL products are at least 90% one type of HGL molecule.' (EIA-HGL-B04)",
+          "uncertainties": [
+            "Buyer-specific commercial and safety requirements are not addressed."
+          ],
+          "evidence": [
+            {
+              "source_id": "EIA-HGL",
+              "block_id": "EIA-HGL-B04",
+              "quote": "These HGL products are at least 90% one type of HGL molecule."
+            }
+          ]
+        }
+      ]
+    },
+    "receipt": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 908,
+      "completion_tokens": 688,
+      "cost_usd": 0.0002972,
+      "retries": 0,
+      "valid": true,
+      "elapsed_seconds": 20.741052
+    },
+    "status": "mechanical_failure",
+    "checks": [
+      "invalid_exact_citation:PUB-013",
+      "invalid_exact_citation:PUB-014"
+    ]
+  },
+  {
+    "source_id": "EIA-OCTANE",
+    "model_key": "qwen",
+    "prompt_sha256": "be4bcda0ad3733efc0858c844215a945ba019de76b3896d898108f0009ae87d2",
+    "response": {
+      "answers": [
+        {
+          "question_id": "PUB-016",
+          "answer": "Using the (R+M)/2 method: (RON + MON) / 2 = (96 + 86) / 2 = 182 / 2 = 91. The pump rating is 91. Cited: 'The (R+M)/2 you see on the label refers to the average of the research octane number (R ON) and the motor octane number (M ON) ratings.' (EIA-OCTANE-B04)",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-OCTANE",
+              "block_id": "EIA-OCTANE-B04",
+              "quote": "The (R+M)/2 you see on the label refers to the average of the research octane number (R ON) and the motor octane number (M ON) ratings."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-017",
+          "answer": "Given (R+M)/2 = 91 and RON = 96, solve: (96 + MON) / 2 = 91 → 96 + MON = 182 → MON = 182 - 96 = 86. MON is 86. Equation: (RON + MON) / 2 = (R+M)/2. Cited: 'The (R+M)/2 you see on the label refers to the average of the research octane number (R ON) and the motor octane number (M ON) ratings.' (EIA-OCTANE-B04)",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-OCTANE",
+              "block_id": "EIA-OCTANE-B04",
+              "quote": "The (R+M)/2 you see on the label refers to the average of the research octane number (R ON) and the motor octane number (M ON) ratings."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-018",
+          "answer": "The (R+M)/2 label combines the Research Octane Number (RON) and Motor Octane Number (MON) to provide a balanced average rating. RON measures fuel resistance to knock under mild conditions (low speed, low temperature), while MON tests under severe conditions (high speed, high temperature). Their distinction reflects real-world engine performance across varying operating conditions. Cited: 'To determine the RON, the fuel is tested under engine idle conditions with a low air temperature and slow engine speed. To determine the MON, the fuel is tested under the more stressful conditions of higher air temperature and engine speed.' (EIA-OCTANE-B04)",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "EIA-OCTANE",
+              "block_id": "EIA-OCTANE-B04",
+              "quote": "To determine the RON, the fuel is tested under engine idle conditions with a low air temperature and slow engine speed. To determine the MON, the fuel is tested under the more stressful conditions of higher air temperature and engine speed."
+            }
+          ]
+        }
+      ]
+    },
+    "receipt": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 714,
+      "completion_tokens": 725,
+      "cost_usd": 0.0002889,
+      "retries": 0,
+      "valid": true,
+      "elapsed_seconds": 22.959996
+    },
+    "status": "mechanical_failure",
+    "checks": [
+      "invalid_exact_citation:PUB-016",
+      "invalid_exact_citation:PUB-017"
+    ]
+  },
+  {
+    "source_id": "EIA-OCTANE",
+    "model_key": "mistral",
+    "prompt_sha256": "be4bcda0ad3733efc0858c844215a945ba019de76b3896d898108f0009ae87d2",
+    "response": null,
+    "receipt": null,
+    "status": "stopped_no_retry",
+    "checks": []
+  },
+  {
+    "source_id": "CSB-CHEVRON",
+    "model_key": "mistral",
+    "prompt_sha256": "64f8fa9214738a6eff1a17c286f65e0a6ccf22036cb84b9f86c138c1ae64127b",
+    "response": null,
+    "receipt": null,
+    "status": "stopped_no_retry",
+    "checks": []
+  },
+  {
+    "source_id": "CSB-CHEVRON",
+    "model_key": "qwen",
+    "prompt_sha256": "64f8fa9214738a6eff1a17c286f65e0a6ccf22036cb84b9f86c138c1ae64127b",
+    "response": {
+      "answers": [
+        {
+          "question_id": "PUB-019",
+          "answer": "The 8-inch steel pipe, installed in 1976 and part of the 4-sidecut section, ruptured due to severe sulfidation corrosion, as confirmed by metallurgical analysis showing low silicon content and wall thinning. The failure occurred during operation of the crude unit when gas oil—hot (>600°F)—leaked and formed a vapor cloud, leading to a fire. The operating context involved ongoing process diagnostics in a still-operating distillation unit. This 2013 summary is a retrospective technical evaluation based on post-incident sampling and analysis, not a current operational assessment of an active asset. It describes a past failure mechanism, not a real-time safety determination for present conditions.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "CSB-CHEVRON",
+              "block_id": "CSB-CHEVRON-B02",
+              "quote": "the 8-inch steel pipe, from a section designated as 4-sidecut which was installed in 1976, ruptured due to severe sulfidation corrosion, and that tested pipe samples showed a very low concentration of corrosion-inhibiting silicon."
+            },
+            {
+              "source_id": "CSB-CHEVRON",
+              "block_id": "CSB-CHEVRON-B04",
+              "quote": "the pipe ruptured catastrophically. Due to the high temperature, in excess of 600 degrees Fahrenheit, and physical properties of the material in the equipment, the gas-oil immediately formed a large hydrocarbon vapor cloud."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-020",
+          "answer": "Before estimating remaining life for another similar pipe, critical data are missing: actual wall thickness measurements, operating temperature and pressure history, sulfur content of processed crude, silicon content of the steel, and inspection records (e.g., ultrasonic testing results). The summary only confirms failure due to sulfidation corrosion in a specific pipe with low silicon, but does not provide material or operational data for a different pipe. Without these, remaining life cannot be estimated.",
+          "uncertainties": [
+            "Wall thickness of the other pipe",
+            "Actual operating conditions",
+            "Material composition",
+            "Inspection history"
+          ],
+          "evidence": [
+            {
+              "source_id": "CSB-CHEVRON",
+              "block_id": "CSB-CHEVRON-B03",
+              "quote": "Corrosion rates vary according to the sulfur content of the oil being processed, temperature, and other factors, including silicon content and other materials in steel pipe."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-021",
+          "answer": "No, we cannot declare an adjacent pipe safe solely because it has the same nominal diameter. The failure was due to sulfidation corrosion, which depends on material composition (e.g., low silicon), operating conditions (temperature, sulfur content), and service history—not just diameter. The report does not confirm the adjacent pipe’s material, inspection history, or operating parameters. Safety cannot be inferred from nominal size alone.",
+          "uncertainties": [
+            "Material composition of adjacent pipe",
+            "Operating conditions",
+            "Inspection data"
+          ],
+          "evidence": [
+            {
+              "source_id": "CSB-CHEVRON",
+              "block_id": "CSB-CHEVRON-B02",
+              "quote": "tested pipe samples showed a very low concentration of corrosion-inhibiting silicon."
+            },
+            {
+              "source_id": "CSB-CHEVRON",
+              "block_id": "CSB-CHEVRON-B03",
+              "quote": "Corrosion rates vary according to the sulfur content of the oil being processed, temperature, and other factors, including silicon content and other materials in steel pipe."
+            }
+          ]
+        }
+      ]
+    },
+    "receipt": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 799,
+      "completion_tokens": 780,
+      "cost_usd": 0.0003139,
+      "retries": 0,
+      "valid": true,
+      "elapsed_seconds": 22.269904
+    },
+    "status": "answered",
+    "checks": []
+  },
+  {
+    "source_id": "CSB-TESORO",
+    "model_key": "qwen",
+    "prompt_sha256": "6c7b78d411095af368366157ee30e575856bd997b43eaa9f32b37ef557debdde",
+    "response": {
+      "answers": [
+        {
+          "question_id": "PUB-022",
+          "answer": "The pressure quantity to be verified for HTHA assessment is hydrogen partial pressure. According to the CSB alert, equipment must be evaluated based on actual operating conditions, specifically hydrogen partial pressure and temperature (CSB-TESORO-B02). An unqualified pressure reading—such as total system pressure—is insufficient because HTHA is driven by the concentration of atomic hydrogen, which depends on the partial pressure of hydrogen in the gas phase, not the total pressure. For example, a high total pressure with low hydrogen mole fraction may still result in low hydrogen partial pressure, reducing HTHA risk. Thus, only hydrogen partial pressure accurately reflects the driving force for hydrogen diffusion into steel, which is critical for HTHA assessment.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "CSB-TESORO",
+              "block_id": "CSB-TESORO-B02",
+              "quote": "Verify actual operating conditions (hydrogen partial pressure and temperature) for the identified carbon steel equipment"
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-023",
+          "answer": "No, this 2016 alert alone does not prove current equipment is safe below its cited threshold nor establish complete current code requirements. The alert provides guidance and recommendations, not a definitive safety certification or codified standard. It identifies a risk (HTHA) and suggests actions, but does not replace or supersede applicable codes such as ASME BPVC or API standards. Safety must be evaluated against current regulatory and engineering codes, which may include additional criteria beyond those in the alert. The alert is a safety recommendation, not a compliance statement.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "CSB-TESORO",
+              "block_id": "CSB-TESORO-B02",
+              "quote": "The Safety Alert provides the following guidance for industry"
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-024",
+          "answer": "To apply the alert meaningfully, the hydrogen partial pressure must be determined. The engineer has provided total pressure and bulk-stream temperature, but hydrogen partial pressure is required to assess HTHA risk. The alert specifies that equipment operating above 400 °F and greater than 50 psia hydrogen partial pressure should be replaced (CSB-TESORO-B02). Without knowing the mole fraction of hydrogen in the stream, the total pressure cannot be used to infer hydrogen partial pressure. Therefore, the composition of the gas stream—specifically the hydrogen mole fraction—is needed to calculate hydrogen partial pressure using the formula: P_H2 = y_H2 × P_total.",
+          "uncertainties": [
+            "Hydrogen mole fraction is unknown"
+          ],
+          "evidence": [
+            {
+              "source_id": "CSB-TESORO",
+              "block_id": "CSB-TESORO-B02",
+              "quote": "Verify actual operating conditions (hydrogen partial pressure and temperature) for the identified carbon steel equipment"
+            }
+          ]
+        }
+      ]
+    },
+    "receipt": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 595,
+      "completion_tokens": 689,
+      "cost_usd": 0.0002662,
+      "retries": 0,
+      "valid": true,
+      "elapsed_seconds": 24.654845
+    },
+    "status": "answered",
+    "checks": []
+  },
+  {
+    "source_id": "CSB-TESORO",
+    "model_key": "mistral",
+    "prompt_sha256": "6c7b78d411095af368366157ee30e575856bd997b43eaa9f32b37ef557debdde",
+    "response": null,
+    "receipt": null,
+    "status": "stopped_no_retry",
+    "checks": []
+  },
+  {
+    "source_id": "CSB-WILLIAMS",
+    "model_key": "mistral",
+    "prompt_sha256": "350a1c30e901790b86d8979c0e42fe9e44868d90af18e9473847189dd5fd4c92",
+    "response": null,
+    "receipt": null,
+    "status": "stopped_no_retry",
+    "checks": []
+  },
+  {
+    "source_id": "CSB-WILLIAMS",
+    "model_key": "qwen",
+    "prompt_sha256": "350a1c30e901790b86d8979c0e42fe9e44868d90af18e9473847189dd5fd4c92",
+    "response": {
+      "answers": [
+        {
+          "question_id": "PUB-025",
+          "answer": "The Williams reboiler incident followed this causal sequence: (1) Block valves were installed, isolating the reboiler from its pressure relief device; (2) Administrative controls failed to ensure the block valves remained open; (3) During non-routine operations, heat was introduced to the isolated reboiler; (4) The confined liquid propane mixture heated, causing a rapid pressure rise; (5) The reboiler shell ruptured due to overpressure, triggering a BLEVE and fire. The safeguard failure was reliance on a locked-open block valve to maintain an open path to pressure relief, instead of installing a dedicated pressure relief valve. As stated in Block 03: 'Failure to appropriately manage or effectively review two significant changes... (1) the installation of block valves that could isolate the reboiler from its protective pressure relief device.'",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "CSB-WILLIAMS",
+              "block_id": "CSB-WILLIAMS-B03",
+              "quote": "Failure to appropriately manage or effectively review two significant changes that introduced new hazards involving the reboiler that ruptured—(1) the installation of block valves that could isolate the reboiler from its protective pressure relief device"
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-026",
+          "answer": "Introducing heat to the isolated reboiler was hazardous because the vessel was sealed off from its pressure relief device, preventing pressure release during thermal expansion. As heat increased the temperature of the confined liquid propane mixture, pressure rose rapidly without mitigation. The summary implies that the pressure rise was sufficient to cause catastrophic rupture, indicating it exceeded the reboiler’s design pressure. However, no specific pressure value is provided in the report. Therefore, a numeric pressure prediction cannot be made from this summary alone. The report notes: 'The heat increased the temperature of a liquid propane mixture confined within the reboiler, resulting in a dramatic pressure rise within the vessel.'",
+          "uncertainties": [
+            "No design pressure or measured pressure value is provided in the summary."
+          ],
+          "evidence": [
+            {
+              "source_id": "CSB-WILLIAMS",
+              "block_id": "CSB-WILLIAMS-B02",
+              "quote": "The heat increased the temperature of a liquid propane mixture confined within the reboiler, resulting in a dramatic pressure rise within the vessel."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-027",
+          "answer": "Based only on the provided incident summary, the exact valve sequence to safely restart the reboiler cannot be prescribed. The summary identifies that block valves were installed to isolate the reboiler from its pressure relief device and that administrative controls failed to ensure their proper position. However, no details are given about the number of valves, their locations, or the required operational sequence (e.g., open/close order, verification steps). The report does not specify a safe restart procedure, nor does it describe the valve configuration or control logic. Therefore, prescribing a valve sequence is not possible from the information provided.",
+          "uncertainties": [
+            "No valve configuration, sequence, or operational procedure is described in the source material."
+          ],
+          "evidence": [
+            {
+              "source_id": "CSB-WILLIAMS",
+              "block_id": "CSB-WILLIAMS-B03",
+              "quote": "Failure to appropriately manage or effectively review two significant changes that introduced new hazards involving the reboiler that ruptured—(1) the installation of block valves that could isolate the reboiler from its protective pressure relief device"
+            }
+          ]
+        }
+      ]
+    },
+    "receipt": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 793,
+      "completion_tokens": 756,
+      "cost_usd": 0.0003061,
+      "retries": 0,
+      "valid": true,
+      "elapsed_seconds": 17.332461
+    },
+    "status": "answered",
+    "checks": []
+  },
+  {
+    "source_id": "CSB-ENTERPRISE",
+    "model_key": "qwen",
+    "prompt_sha256": "970067e7023d5bed8e1f90e21702d2d2c0be84d418b0cb00596685733a935283",
+    "response": {
+      "answers": [
+        {
+          "question_id": "PUB-028",
+          "answer": "The proposed damage mechanism is thermal fatigue in brazed aluminum heat exchangers (BAHXs), where differential thermal expansion and contraction of aluminum parts due to repeated temperature cycling cause progressive material weakening, leading to cracks and eventual hydrocarbon release. The CSB identified this as the 'probable cause' of the 2016 incident, meaning it is the most likely explanation based on available evidence, though not definitively proven. The report states: 'The CSB investigation determined that the probable cause of the incident was a failure of the BAHX due to thermal fatigue.' This indicates the mechanism is well-documented but inadequately managed under current industry practices.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "CSB-ENTERPRISE",
+              "block_id": "CSB-ENTERPRISE-B03",
+              "quote": "The CSB investigation determined that the probable cause of the incident was a failure of the BAHX due to thermal fatigue."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-029",
+          "answer": "Operating and maintenance evidence that would help evaluate the thermal fatigue failure mechanism includes: (1) historical temperature cycling data (e.g., maximum and minimum temperatures, rate of heating/cooling during startups/shutdowns) for the BAHX; (2) records of prior repairs, including dates, locations of cracks, and repair methods; (3) compliance logs with industry-recommended limits for cyclic temperature fluctuations; and (4) inspection reports (e.g., NDT results) showing crack initiation or propagation. Without such data, assessing the extent of thermal fatigue risk is not possible.",
+          "uncertainties": [
+            "No specific data on another BAHX is provided in the source."
+          ],
+          "evidence": [
+            {
+              "source_id": "CSB-ENTERPRISE",
+              "block_id": "CSB-ENTERPRISE-B04",
+              "quote": "At Enterprise, over a 17-year period, four different BAHX heat exchangers were repaired nine times."
+            }
+          ]
+        },
+        {
+          "question_id": "PUB-030",
+          "answer": "No, it is not acceptable to wait for a detectable leak before assessing this type of exchanger. The report explicitly states that relying on a 'leak-before-failure' assumption is inadequate, as demonstrated by the 2016 incident and four other BAHX failure events at other facilities. The CSB concluded: 'Operators of midstream gas plants need a more robust assessment and risk management plan that considers thermal fatigue to prevent the risk of sudden and catastrophic rupture of BAHX.' Waiting for a leak assumes the failure will be gradual and repairable, but thermal fatigue can lead to sudden rupture without prior detectable leakage.",
+          "uncertainties": [],
+          "evidence": [
+            {
+              "source_id": "CSB-ENTERPRISE",
+              "block_id": "CSB-ENTERPRISE-B05",
+              "quote": "The 2016 incident, as well as four other BAHX failure events at other facilities, illustrate that relying on a leak-before-failure assumption is not adequate."
+            }
+          ]
+        }
+      ]
+    },
+    "receipt": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "returned_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "task": "draft",
+      "http_status": 200,
+      "prompt_tokens": 1001,
+      "completion_tokens": 665,
+      "cost_usd": 0.0002996,
+      "retries": 0,
+      "valid": true,
+      "elapsed_seconds": 15.375541
+    },
+    "status": "answered",
+    "checks": []
+  },
+  {
+    "source_id": "CSB-ENTERPRISE",
+    "model_key": "mistral",
+    "prompt_sha256": "970067e7023d5bed8e1f90e21702d2d2c0be84d418b0cb00596685733a935283",
+    "response": null,
+    "receipt": null,
+    "status": "stopped_no_retry",
+    "checks": []
+  }
+]

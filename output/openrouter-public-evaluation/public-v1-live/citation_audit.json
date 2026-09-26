@@ -1,0 +1,101 @@
+[
+  {
+    "question_id": "PUB-001",
+    "model_key": "qwen",
+    "block_id": "EIA-REFINING-B01",
+    "quoted_text": "Modern separation involves piping crude oil through hot furnaces. The resulting liquids and vapors are discharged into distillation units.",
+    "original_block": "Modern separation involves piping crude oil through hot furnaces. The resulting liquids and vapors are discharged into distillation units . All refineries have atmospheric distillation units, but more complex refineries may have vacuum distillation units .",
+    "matches_after_punctuation_spacing_normalization": true,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  },
+  {
+    "question_id": "PUB-001",
+    "model_key": "qwen",
+    "block_id": "EIA-REFINING-B02",
+    "quoted_text": "Inside the distillation units, the liquids and vapors separate into petroleum components, called fractions, according to their boiling points. Heavy fractions are on the bottom and light fractions are on the top.",
+    "original_block": "Inside the distillation units, the liquids and vapors separate into petroleum components, called fractions , according to their boiling points. Heavy fractions are on the bottom and light fractions are on the top.",
+    "matches_after_punctuation_spacing_normalization": true,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  },
+  {
+    "question_id": "PUB-001",
+    "model_key": "qwen",
+    "block_id": "EIA-REFINING-B05",
+    "quoted_text": "Alkylation, for example, makes gasoline components by combining some of the gaseous byproducts of cracking.",
+    "original_block": "Alkylation , for example, makes gasoline components by combining some of the gaseous byproducts of cracking. The process, which essentially is cracking in reverse, takes place in a series of large, horizontal vessels and tall, skinny towers.",
+    "matches_after_punctuation_spacing_normalization": true,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  },
+  {
+    "question_id": "PUB-002",
+    "model_key": "qwen",
+    "block_id": "EIA-REFINING-B02",
+    "quoted_text": "Inside the distillation units, the liquids and vapors separate into petroleum components, called fractions, according to their boiling points.",
+    "original_block": "Inside the distillation units, the liquids and vapors separate into petroleum components, called fractions , according to their boiling points. Heavy fractions are on the bottom and light fractions are on the top.",
+    "matches_after_punctuation_spacing_normalization": true,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  },
+  {
+    "question_id": "PUB-002",
+    "model_key": "qwen",
+    "block_id": "EIA-REFINING-B05",
+    "quoted_text": "Alkylation, for example, makes gasoline components by combining some of the gaseous byproducts of cracking.",
+    "original_block": "Alkylation , for example, makes gasoline components by combining some of the gaseous byproducts of cracking. The process, which essentially is cracking in reverse, takes place in a series of large, horizontal vessels and tall, skinny towers.",
+    "matches_after_punctuation_spacing_normalization": true,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  },
+  {
+    "question_id": "PUB-007",
+    "model_key": "qwen",
+    "block_id": "EIA-LNG-B01",
+    "quoted_text": "The volume of natural gas in a liquid state is about 600 times smaller than its volume in a gaseous state.",
+    "original_block": "Liquefied natural gas (LNG) is natural gas that has been cooled to a liquid state ( liquefied ), to about -260° Fahrenheit, for shipping and storage. The volume of natural gas in a liquid state is about 600 times smaller than its volume in a gaseous state (in natural gas pipelines). The liquefaction process, developed in the 19 th century, makes it possible to transport natural gas to places natural gas pipelines do not reach and to use natural gas as a transportation fuel.",
+    "matches_after_punctuation_spacing_normalization": false,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  },
+  {
+    "question_id": "PUB-012",
+    "model_key": "qwen",
+    "block_id": "EIA-PIPELINE-B02",
+    "quoted_text": "Natural gas processing plants separate hydrocarbon gas liquids, nonhydrocarbon gases, and water from the natural gas before the natural gas is delivered into a mainline transmission system.",
+    "original_block": "Natural gas processing plants separate hydrocarbon gas liquids , nonhydrocarbon gases, and water from the natural gas before the natural gas is delivered into a mainline transmission system.",
+    "matches_after_punctuation_spacing_normalization": true,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  },
+  {
+    "question_id": "PUB-013",
+    "model_key": "qwen",
+    "block_id": "EIA-HGL-B03",
+    "quoted_text": "Natural gas that has been processed to remove most of the HGLs and nonhydrocarbon compounds is called dry gas, which is mostly methane.",
+    "original_block": "Natural gas is usually treated at natural gas processing plants before it enters natural gas transmission pipelines. HGLs extracted at these plants are called natural gas plant liquids . Natural gas that has been processed to remove most of the HGLs and nonhydrocarbon compounds is called dry gas , which is mostly methane. Natural gas pipeline operators have strict specifications for the characteristics (such as the heat content) of the dry natural gas they accept, which in turn, limits the amount of HGLs contained in natural gas that is transported through these pipelines.",
+    "matches_after_punctuation_spacing_normalization": true,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  },
+  {
+    "question_id": "PUB-014",
+    "model_key": "qwen",
+    "block_id": "EIA-HGL-B03",
+    "quoted_text": "Natural gas pipeline operators have strict specifications for the characteristics (such as the heat content) of the dry natural gas they accept...",
+    "original_block": "Natural gas is usually treated at natural gas processing plants before it enters natural gas transmission pipelines. HGLs extracted at these plants are called natural gas plant liquids . Natural gas that has been processed to remove most of the HGLs and nonhydrocarbon compounds is called dry gas , which is mostly methane. Natural gas pipeline operators have strict specifications for the characteristics (such as the heat content) of the dry natural gas they accept, which in turn, limits the amount of HGLs contained in natural gas that is transported through these pipelines.",
+    "matches_after_punctuation_spacing_normalization": false,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  },
+  {
+    "question_id": "PUB-016",
+    "model_key": "qwen",
+    "block_id": "EIA-OCTANE-B04",
+    "quoted_text": "The (R+M)/2 you see on the label refers to the average of the research octane number (R ON) and the motor octane number (M ON) ratings.",
+    "original_block": "The (R+M)/2 you see on the label refers to the average of the research octane number ( R ON) and the motor octane number ( M ON) ratings. To determine the RON, the fuel is tested under engine idle conditions with a low air temperature and slow engine speed. To determine the MON, the fuel is tested under the more stressful conditions of higher air temperature and engine speed.",
+    "matches_after_punctuation_spacing_normalization": false,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  },
+  {
+    "question_id": "PUB-017",
+    "model_key": "qwen",
+    "block_id": "EIA-OCTANE-B04",
+    "quoted_text": "The (R+M)/2 you see on the label refers to the average of the research octane number (R ON) and the motor octane number (M ON) ratings.",
+    "original_block": "The (R+M)/2 you see on the label refers to the average of the research octane number ( R ON) and the motor octane number ( M ON) ratings. To determine the RON, the fuel is tested under engine idle conditions with a low air temperature and slow engine speed. To determine the MON, the fuel is tested under the more stressful conditions of higher air temperature and engine speed.",
+    "matches_after_punctuation_spacing_normalization": false,
+    "status": "strict_check_failed; diagnostic only; no automatic approval"
+  }
+]

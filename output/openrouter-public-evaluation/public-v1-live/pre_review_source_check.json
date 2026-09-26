@@ -1,0 +1,82 @@
+[
+  {
+    "source_id": "EIA-REFINING",
+    "raw_hash_matches": true,
+    "normalized_hash_matches": true,
+    "all_excerpts_exact": true,
+    "all_locations_match": true,
+    "blocks": 6
+  },
+  {
+    "source_id": "EIA-YIELD",
+    "raw_hash_matches": true,
+    "normalized_hash_matches": true,
+    "all_excerpts_exact": true,
+    "all_locations_match": true,
+    "blocks": 2
+  },
+  {
+    "source_id": "EIA-LNG",
+    "raw_hash_matches": true,
+    "normalized_hash_matches": true,
+    "all_excerpts_exact": true,
+    "all_locations_match": true,
+    "blocks": 4
+  },
+  {
+    "source_id": "EIA-PIPELINE",
+    "raw_hash_matches": true,
+    "normalized_hash_matches": true,
+    "all_excerpts_exact": true,
+    "all_locations_match": true,
+    "blocks": 4
+  },
+  {
+    "source_id": "EIA-HGL",
+    "raw_hash_matches": true,
+    "normalized_hash_matches": true,
+    "all_excerpts_exact": true,
+    "all_locations_match": true,
+    "blocks": 5
+  },
+  {
+    "source_id": "EIA-OCTANE",
+    "raw_hash_matches": true,
+    "normalized_hash_matches": true,
+    "all_excerpts_exact": true,
+    "all_locations_match": true,
+    "blocks": 4
+  },
+  {
+    "source_id": "CSB-CHEVRON",
+    "raw_hash_matches": true,
+    "normalized_hash_matches": true,
+    "all_excerpts_exact": true,
+    "all_locations_match": true,
+    "blocks": 4
+  },
+  {
+    "source_id": "CSB-TESORO",
+    "raw_hash_matches": true,
+    "normalized_hash_matches": true,
+    "all_excerpts_exact": true,
+    "all_locations_match": true,
+    "blocks": 2
+  },
+  {
+    "source_id": "CSB-WILLIAMS",
+    "raw_hash_matches": true,
+    "normalized_hash_matches": true,
+    "all_excerpts_exact": true,
+    "all_locations_match": true,
+    "blocks": 4
+  },
+  {
+    "source_id": "CSB-ENTERPRISE",
+    "raw_hash_matches": true,
+    "normalized_hash_matches": true,
+    "all_excerpts_exact": true,
+    "all_locations_match": true,
+    "blocks": 5
+  }
+]

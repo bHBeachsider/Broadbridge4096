@@ -96,6 +96,25 @@ rule. It cannot grant source rights. Dataset release additionally requires the
 explicit named approval in the generic manifest to bind
 `candidate_content_hash` to `release_id`.
 
+## Planned expert-guided synthetic candidates
+
+The [synthetic expert subproject](SYNTHETIC_EXPERT_WORKFLOW.md) adds expert recipes,
+bounded author/challenger roles and independently checked evidence before the
+registration steps below. Its [implementation plan](superpowers/plans/2026-09-26-synthetic-expert-data.md)
+is a future runtime extension; this documentation does not claim the orchestrator
+or verification envelope is already enforced by the bridge.
+
+Synthetic candidates must use the existing `foundry.training_example/1` contract,
+retain their source families and enter pending review. No generated record
+becomes a signed expert case. The public calibration families stay excluded from
+training, and confidential expert inputs remain under local-only policy.
+
+An exact matching quote does not validate an engineering inference. New numerical
+claims require a separate reviewed calculation artifact; preserve the existing
+helper rejection for ungrounded new numbers. Use the [expert worksheet](templates/SYNTHETIC_EXPERT_REVIEW.md)
+to record assumptions, objections and acceptance evidence. It does not grant
+rights or replace the database's hash-bound review and release procedures.
+
 ## Candidate registration and release bridge
 
 The release bridge consumes no model endpoint. It accepts one pending
