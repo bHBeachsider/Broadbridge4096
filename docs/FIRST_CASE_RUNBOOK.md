@@ -1,8 +1,10 @@
 # First signed case: export, brief and reviewer scorecard
 
-Owner: Brad / Broadbridge Oil & Gas. Technical acceptance: Bill Hurt, the named Broadbridge reviewer. Updated 24 September 2026.
+Owner: Brad / Broadbridge Oil & Gas. Technical acceptance: Bill Hurt, the named Broadbridge reviewer. Updated 26 September 2026.
 
-Bill enters as many cases as he chooses directly in the Broadbridge Case Capture page, without a call first, and signs off the written records. Brad exports **All records as JSON**. The page and its `broadbridge.case_record/1` export are the primary, canonical intake. The Interview Guide is a pre-read/call script; `case_from_form_fallback.py` is available for a reviewer who cannot use the page and emits the same contract. Pilot case records live in the Claude artifact store; originals and any supporting documents live in the one approved S3 bucket. Domain tooling and restricted working snapshots belong to Broadbridge4096; the shared client stays in slm-foundry.
+Bill enters as many cases as he chooses directly in [Broadbridge Case Capture](https://broadbridge-capture.vercel.app), without a call first, and signs off the written records. Brad exports **All records as JSON**. The page and its `broadbridge.case_record/1` export are the primary, canonical intake. The Interview Guide is a pre-read/call script; `case_from_form_fallback.py` is available for a reviewer who cannot use the page and emits the same contract. The dedicated Broadbridge Neon project stores case records and workflow answers. Originals/supporting documents use the approved private R2 storage and source-admission process; an evidence description in a case is not an attachment upload or rights grant. Preserve the old Claude export for migration reconciliation under the [cutover procedure](CAPTURE_APP.md). Domain tooling and restricted working snapshots belong to Broadbridge4096; the shared client stays in slm-foundry.
+
+Bill first uses **A · Your workflow**, including A8, to identify priority areas and tasks. See [Bill's starting guide](BILL_START_HERE.md). Those answers guide case selection and the proposed synthetic curriculum; they do not become model input or automatically approve a training recipe.
 
 The result is one structured stock-model brief and an **unscored** `eval/scorecard_<case_id>.md` for a human reviewer. The model receives only `identity.unit_service` and `decision_time`, with a fixed system instruction and the brief output schema. Questions, reference answers, hindsight, workflow and evidence attachments are not sent to it.
 

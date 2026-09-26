@@ -5,7 +5,16 @@ The authenticated [public-document scoring page](PUBLIC_REVIEW_URL.md) links fix
 SD-02 is implemented as an offline pending packet plus a two-record fabricated
 rehearsal. All six negative cases reject and unreviewed candidates cannot enter
 a release. It makes no model calls and does not close the human SD-01 gate.
-Use the reviewer page to identify real failure categories before SD-03 live work.
+SD-03 adds a bounded sequential runner, immutable attempt receipts and a
+[two-job mock rehearsal](SYNTHETIC_BATCH_RUNBOOK.md). Both drafts remain pending;
+no external model call or live candidate pilot has run. Bill's priority choices
+and reviewer scores still gate live work.
+
+Bill starts with [Case Capture](https://broadbridge-capture.vercel.app): **A · Your
+workflow / A8** for ranked areas/tasks and **+ New case** for a representative
+example. [His starting guide](BILL_START_HERE.md) explains how to add areas,
+exclude low-value work and identify topics needing another specialist. The two
+fabricated recipe topics are provisional, not an agreed curriculum.
 
 Status: workflow added on 26 September 2026 at Brad's request. This subproject
 extends the main SLM workflow. Generation, expert acceptance and training have
@@ -23,6 +32,7 @@ curriculum and an offline rehearsal, followed by a bounded candidate pilot.
 flowchart TD
     A[Human scoring of public helper answers] --> B[Confirmed failure categories]
     B --> C[Expert-approved curriculum and variation rules]
+    P[Bill's ranked areas, tasks and limits] --> C
     D[New training-eligible sources and cases] --> C
     C --> E[Bounded candidate generation]
     E --> F[Evidence checks and independent calculations]
@@ -38,7 +48,7 @@ Only development failure categories return to the curriculum. Locked evaluation
 content, reference answers and answer-specific feedback do not return to the
 generator. Release testing remains independent of that loop.
 
-The next main-project action is human scoring of the existing public-document
+The next human actions are Bill's priority input and scoring of the existing public-document
 packet: 30 returned answers and 30 failure/not-run slots, with all 60 human rows
 still blank at this revision. Its assistant pre-review identifies possible
 failure categories; it does not establish confirmed errors or expert acceptance.
@@ -91,8 +101,9 @@ Each run records source revision/hash and family, recipe/prompt/rubric hashes,
 model/provider/settings, generation receipts, candidate hash, check evidence,
 author, reviewer and timestamps. Store this provenance alongside the unchanged
 `foundry.training_example/1` candidate; do not add unknown fields to that strict
-schema. New provenance checks and enforcement are planned work, not existing
-runtime capabilities.
+schema. SD-02/03 bind pending packets to recipes, plan and attempt receipts.
+Current-rights rechecks and binding these envelopes to final release acceptance
+remain SD-06 work; hashes do not establish that a named reviewer approved them.
 
 ## First pilot
 
@@ -185,14 +196,17 @@ remain subject to Brad/Bill's decision, not silently adopted here.
 
 ## Status and next action
 
-Workflow and blank expert worksheet: prepared. Runtime orchestration, verifier
-extensions, expert-approved recipes, the 100-candidate pilot and synthetic-data
-training comparison: not implemented or run by this change.
+Workflow, priority worksheet, pending-packet validation and bounded mock
+orchestration: implemented. Expert-approved recipes, new calculation verifiers,
+the 100-candidate pilot and synthetic-data training comparison remain open.
 
-The next human action remains completing the original public-review score rows
-and confirming the helper-selection criteria. The next independent engineering
-package is the mocked offline harness in the linked plan. Neither step requires
-a model call, a database write, a new deployment or EC2.
+Bill ranks the areas/tasks first and completes the original public-review score
+rows where Preview access is available; Brad/Bill confirm helper-selection
+criteria. Brad records curriculum decisions with Bill before any live generation.
+The next engineering package is SD-04's offline calculation path after its
+template scope is agreed. The mock harness needs no model call, database write,
+new deployment or EC2. Bill's capture-page answers use its existing authenticated
+save workflow; this implementation does not write answers on his behalf.
 
 ## Research basis
 
