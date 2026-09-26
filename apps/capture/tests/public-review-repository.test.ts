@@ -1,0 +1,33 @@
+import { randomUUID } from "node:crypto";
+import { describe,expect,it,vi } from "vitest";
+vi.mock("server-only",()=>({}));
+import { getSql,localIngestionTestEnabled } from "../lib/db";
+import { publicReviewPacketSchema } from "../lib/public-review";
+import { loadPublicReview,persistPublicScore } from "../lib/public-review-repository";
+const enabled=process.env.CAPTURE_LOCAL_INGESTION_TEST==="1"&&Boolean(process.env.CAPTURE_TEST_SQL_ENDPOINT);
+describe.skipIf(!enabled)("public review on disposable PostgreSQL",()=>{
+ it("binds the packet, preserves revisions, separates actors and rejects stale/invalid scores",async()=>{
+  if(!localIngestionTestEnabled())throw new Error("Local database required");
+  const sql=getSql();
+  const id="test-"+randomUUID();const actor="reviewer@example.invalid";const hash="a".repeat(64);
+  const base=(await loadPublicReview("public-v1",actor))!;
+  const packet=publicReviewPacketSchema.parse({...base.packet,packet_id:id});
+  await sql`INSERT INTO broadbridge.public_review_packets(packet_id,packet_sha256,record) VALUES (${id},${hash},${JSON.stringify(packet)}::jsonb)`;
+  const input={packet_id:id,packet_sha256:hash,question_id:"PUB-001",response_label:"B" as const,score:2,critical_error:false,hard_fail:false,notes:"Synthetic test score only",expected_revision:null};
+  const one=await persistPublicScore(input,actor);expect(one.revision).toBe(1);expect(one.reviewer).toBe(actor);
+  await expect(persistPublicScore(input,actor)).rejects.toMatchObject({code:"40001"});
+  const two=await persistPublicScore({...input,score:0,critical_error:true,hard_fail:true,expected_revision:1},actor);expect(two.revision).toBe(2);
+  expect((await loadPublicReview(id,actor))?.scores).toHaveLength(1);
+  expect((await loadPublicReview(id,"other@example.invalid"))?.scores).toHaveLength(0);
+  await persistPublicScore(input,"other@example.invalid");
+  const history=await sql`SELECT revision,score FROM broadbridge.public_review_scores WHERE packet_id=${id} AND reviewer=${actor} ORDER BY revision`;
+  expect(history).toEqual([{revision:1,score:2},{revision:2,score:0}]);
+  await expect(sql`UPDATE broadbridge.public_review_scores SET score=1 WHERE packet_id=${id}`).rejects.toMatchObject({code:"23514"});
+  await expect(sql`DELETE FROM broadbridge.public_review_packets WHERE packet_id=${id}`).rejects.toMatchObject({code:"23514"});
+  await expect(persistPublicScore({...input,packet_sha256:"b".repeat(64)},actor)).rejects.toThrow();
+  await expect(sql`SELECT broadbridge.save_public_review_score(${id},${hash},'PUB-001','A',${actor},2,false,false,'Unavailable answer',null)`).rejects.toMatchObject({code:"23514"});
+  await expect(sql`SELECT broadbridge.save_public_review_score(${id},${hash},'PUB-001','A',${actor},0,true,true,'Unavailable answer',null)`).rejects.toMatchObject({code:"23514"});
+  await expect(sql`SELECT broadbridge.save_public_review_score(${id},${hash},'PUB-001','B',${actor},2,true,false,'Invalid critical score',2)`).rejects.toMatchObject({code:"23514"});
+  await expect(sql`SELECT broadbridge.save_public_review_score(${id},${hash},'BAD','B',${actor},0,false,false,'Unknown question',null)`).rejects.toMatchObject({code:"23514"});
+ });
+});

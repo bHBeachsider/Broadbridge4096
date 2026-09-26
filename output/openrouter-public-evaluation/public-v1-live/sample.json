@@ -1,0 +1,1293 @@
+{
+  "schema": "broadbridge.public_evaluation/1",
+  "version": "public-v1",
+  "created_at": "2026-09-26T04:23:45.007959+00:00",
+  "purpose": "Exploratory reviewer-scored helper comparison; not Gate 0, training, retrieval or Qwen3-8B acceptance.",
+  "reviewer": "Bill Hurt (target technical reviewer; not yet scored)",
+  "reference_status": "draft_requires_technical_review",
+  "scope": "10 agency web documents; selected prose only. Historical case summaries are retrospective, never decision-time case inputs.",
+  "sources": [
+    {
+      "source_id": "EIA-REFINING",
+      "family_id": "EIA-REFINING",
+      "title": "Refining crude oil: the refining process",
+      "url": "https://www.eia.gov/energyexplained/oil-and-petroleum-products/refining-crude-oil-the-refining-process.php",
+      "publisher": "U.S. Energy Information Administration",
+      "publication_context": "Refining crude oil: the refining process",
+      "retrieved_at": "2026-09-26T04:23:43.737028+00:00",
+      "media_type": "text/html",
+      "confidentiality": "public",
+      "raw_sha256": "c071297ee7429c290eb3b9998c087c4b10bc8a8a4bb718026d646657dc1045e2",
+      "normalized_sha256": "7fb94a699238026c53b1b4ae81d958867274f3f795871e939979656dbf2c2ead",
+      "normalization": "BeautifulSoup html.parser; remove script/style/nav/header/footer; get_text(space, strip=True); collapse whitespace",
+      "expected_practice": "downstream",
+      "split": "dev",
+      "permitted_use": "testing_only",
+      "rights": {
+        "evaluation_allowed": true,
+        "cloud_evaluation_allowed": true,
+        "training_approved": false,
+        "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+        "scope": "Selected agency-authored prose only. No images, logos, linked publications or verbatim third-party report quotations.",
+        "basis": "Agency reuse policy checked 2026-09-26; user authorized public-document helper evaluation. Not a training licence adjudication.",
+        "checked_by": "Codex source-selection audit; technical review pending"
+      },
+      "blocks": [
+        {
+          "block_id": "EIA-REFINING-B01",
+          "text": "Modern separation involves piping crude oil through hot furnaces. The resulting liquids and vapors are discharged into distillation units . All refineries have atmospheric distillation units, but more complex refineries may have vacuum distillation units .",
+          "text_sha256": "31f98005aa91cb60ad2f3f68d631b264cdce5dbd68cc34392b6c3829e5fb3fc1",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5600,
+            "end": 5856
+          }
+        },
+        {
+          "block_id": "EIA-REFINING-B02",
+          "text": "Inside the distillation units, the liquids and vapors separate into petroleum components, called fractions , according to their boiling points. Heavy fractions are on the bottom and light fractions are on the top.",
+          "text_sha256": "04c8a899eef08815772532143826d9c663b8ee6806a79fa3c05bd725172057d3",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5857,
+            "end": 6070
+          }
+        },
+        {
+          "block_id": "EIA-REFINING-B03",
+          "text": "After distillation, heavy, low-value distillation fractions can be processed further into lighter, high-value products such as gasoline. At this point in the process, fractions from the distillation units are transformed into streams (intermediate components) that eventually become finished products.",
+          "text_sha256": "0fcd2afb14f9faed7ff91202770929aa62c24aa098521327739a916d6bcfb231",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 6531,
+            "end": 6832
+          }
+        },
+        {
+          "block_id": "EIA-REFINING-B04",
+          "text": "The most widely used conversion method is called cracking because it uses heat, pressure, catalysts, and sometimes hydrogen to crack heavy hydrocarbon molecules into lighter ones. A cracking unit consists of one or more tall, thick-walled, rocket-shaped reactors and a network of furnaces, heat exchangers, and other vessels. Complex refineries may have one or more types of crackers, including fluid catalytic cracking units and hydrocracking/hydrocracker units .",
+          "text_sha256": "5676470d5ade72a3e671495dc271920709bd47a1f5592aa5014f3b2c359b0c3c",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 6833,
+            "end": 7297
+          }
+        },
+        {
+          "block_id": "EIA-REFINING-B05",
+          "text": "Alkylation , for example, makes gasoline components by combining some of the gaseous byproducts of cracking. The process, which essentially is cracking in reverse, takes place in a series of large, horizontal vessels and tall, skinny towers.",
+          "text_sha256": "10320ac64c4004190c49c6d7da6be94ad05823b70f1193d1ba178372e50e7df8",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 7582,
+            "end": 7823
+          }
+        },
+        {
+          "block_id": "EIA-REFINING-B06",
+          "text": "The finishing touches occur during the final treatment. To make gasoline, refinery technicians carefully combine a variety of streams from the processing units. Octane level, vapor pressure ratings, and other special considerations determine the gasoline blend.",
+          "text_sha256": "a15a4be1cd5f6ca44decca72aff47e8dbc5e3c7fac437bcf3eccd4db86f441dc",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 7983,
+            "end": 8244
+          }
+        }
+      ]
+    },
+    {
+      "source_id": "EIA-YIELD",
+      "family_id": "EIA-REFINING",
+      "title": "Refining crude oil: inputs and outputs",
+      "url": "https://www.eia.gov/energyexplained/oil-and-petroleum-products/refining-crude-oil-inputs-and-outputs.php",
+      "publisher": "U.S. Energy Information Administration",
+      "publication_context": "Last updated: June 20, 2024, with data from the Petroleum Supply Monthly , March 2024; preliminary data. Also in Oil and petroleum products explained Oil",
+      "retrieved_at": "2026-09-26T04:23:43.877348+00:00",
+      "media_type": "text/html",
+      "confidentiality": "public",
+      "raw_sha256": "56430cd4a89fbd14ce5aa0f4541f9b3d6a15436c675a748103519cce3f6506ac",
+      "normalized_sha256": "bb441548bf740ab8c71490a26963e124647af41f70b005b376e944f61fb64eec",
+      "normalization": "BeautifulSoup html.parser; remove script/style/nav/header/footer; get_text(space, strip=True); collapse whitespace",
+      "expected_practice": "downstream",
+      "split": "dev",
+      "permitted_use": "testing_only",
+      "rights": {
+        "evaluation_allowed": true,
+        "cloud_evaluation_allowed": true,
+        "training_approved": false,
+        "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+        "scope": "Selected agency-authored prose only. No images, logos, linked publications or verbatim third-party report quotations.",
+        "basis": "Agency reuse policy checked 2026-09-26; user authorized public-document helper evaluation. Not a training licence adjudication.",
+        "checked_by": "Codex source-selection audit; technical review pending"
+      },
+      "blocks": [
+        {
+          "block_id": "EIA-YIELD-B01",
+          "text": "The physical characteristics of crude oil determine how refineries process it. In simple terms, crude oils are classified by density ( API gravity ) and sulfur content. Less dense (lighter) crude oils (with higher API gravity) generally have more light hydrocarbons. Refineries can produce high-value products such as gasoline, diesel fuel, and jet fuel from light crude oil with simple distillation. When refineries use simple distillation on denser (heavier) crude oils (with lower API gravity), they produce low-value products. Heavy crude oils require additional, more expensive processing to produce high-value products. Some crude oils also have a high sulfur content, which is an undesirable characteristic in both processing and product quality.",
+          "text_sha256": "20a9a783c95cca0cd85e4847538c3d859c15a6fc5d2cd615dbe842b8b423cf7b",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5310,
+            "end": 6063
+          }
+        },
+        {
+          "block_id": "EIA-YIELD-B02",
+          "text": "The total volume of products that refineries produce (output) is greater than the volume of crude oil that refineries process (input) because most of the products they make have a lower density than the crude oil they process. This increase in volume is called processing gain . The average processing gain at U.S. refineries was about 6.3% in 2023. In 2023, U.S. refineries produced an average of about 45 gallons of refined products for every 42-gallon barrel of crude oil they refined.",
+          "text_sha256": "756a545ee4b4399bb6b4518099130bb5e074ca84675bddea13326a8e39074a49",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 7079,
+            "end": 7567
+          }
+        }
+      ]
+    },
+    {
+      "source_id": "EIA-LNG",
+      "family_id": "EIA-LNG",
+      "title": "Liquefied natural gas",
+      "url": "https://www.eia.gov/energyexplained/natural-gas/liquefied-natural-gas.php",
+      "publisher": "U.S. Energy Information Administration",
+      "publication_context": "Last updated: June 21, 2024, with data from the Natural Gas Monthly , March 2024; preliminary data for 2023. Also in Natural gas explained Natural gas Da",
+      "retrieved_at": "2026-09-26T04:23:44.024032+00:00",
+      "media_type": "text/html",
+      "confidentiality": "public",
+      "raw_sha256": "0c47972a821e4720f6b8ed8d761370a21df917f0fd9e2a25adc0b0f76129f621",
+      "normalized_sha256": "c9898f82b1236f70655c9c140311054a5c6068da4a77b656d7ca8fc09bc54552",
+      "normalization": "BeautifulSoup html.parser; remove script/style/nav/header/footer; get_text(space, strip=True); collapse whitespace",
+      "expected_practice": "midstream",
+      "split": "dev",
+      "permitted_use": "testing_only",
+      "rights": {
+        "evaluation_allowed": true,
+        "cloud_evaluation_allowed": true,
+        "training_approved": false,
+        "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+        "scope": "Selected agency-authored prose only. No images, logos, linked publications or verbatim third-party report quotations.",
+        "basis": "Agency reuse policy checked 2026-09-26; user authorized public-document helper evaluation. Not a training licence adjudication.",
+        "checked_by": "Codex source-selection audit; technical review pending"
+      },
+      "blocks": [
+        {
+          "block_id": "EIA-LNG-B01",
+          "text": "Liquefied natural gas (LNG) is natural gas that has been cooled to a liquid state ( liquefied ), to about -260° Fahrenheit, for shipping and storage. The volume of natural gas in a liquid state is about 600 times smaller than its volume in a gaseous state (in natural gas pipelines). The liquefaction process, developed in the 19 th century, makes it possible to transport natural gas to places natural gas pipelines do not reach and to use natural gas as a transportation fuel.",
+          "text_sha256": "9309559b9755c9fd77f4cd07edd7e68b3287fab5b3b405718ee8e78baf1198f8",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5003,
+            "end": 5481
+          }
+        },
+        {
+          "block_id": "EIA-LNG-B02",
+          "text": "LNG export facilities receive natural gas by pipeline and liquefy the gas for transport on special ocean-going LNG ships, or tankers . Most LNG is transported by tankers called LNG carriers in large, onboard, super-cooled (cryogenic) tanks. LNG is also transported in smaller International Organization for Standardization (ISO)-compliant containers that can be placed on ships and on trucks.",
+          "text_sha256": "224bcc6d7ccc728d12af69a053592009d68b77ab87f3de2673dd76391736466a",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5873,
+            "end": 6265
+          }
+        },
+        {
+          "block_id": "EIA-LNG-B03",
+          "text": "At import terminals, LNG is offloaded from ships and is stored in cryogenic storage tanks before it is returned to its gaseous state, or regasified . After regasification, the natural gas is transported by natural gas pipelines to natural gas-fired power plants, industrial facilities, and residential and commercial customers.",
+          "text_sha256": "8a563d93239f87564989b1925ad611fed06febb453e333bef8b5389653cf86d6",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 6266,
+            "end": 6593
+          }
+        },
+        {
+          "block_id": "EIA-LNG-B04",
+          "text": "Not all natural gas delivered to LNG export facilities (feed gas) is exported as LNG because LNG export terminals consume some of the feed gas to operate on-site liquefaction equipment. EIA estimates (based on survey Form EIA-176 ; see LNG respondent data ) that approximately 7% to 15% of LNG feed gas is used for liquefaction processes, mostly to operate on-site liquefaction equipment. 3 U.S. LNG export facilities, except Freeport LNG, use natural gas turbine-driven refrigerant compressors to convert natural gas to LNG. Freeport LNG is the only liquefaction facility in the United States that uses electric motors instead of natural gas turbines to drive refrigerant compressors. As a result, most of Freeport LNG's feed gas is converted into LNG.",
+          "text_sha256": "02ee1424c717b7966a06a5f6d089d3601f8c0f2550232b58b36ba9f654a59b90",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 10707,
+            "end": 11460
+          }
+        }
+      ]
+    },
+    {
+      "source_id": "EIA-PIPELINE",
+      "family_id": "EIA-PIPELINE",
+      "title": "Natural gas pipelines",
+      "url": "https://www.eia.gov/energyexplained/natural-gas/natural-gas-pipelines.php",
+      "publisher": "U.S. Energy Information Administration",
+      "publication_context": "Last updated: March 19, 2024. Also in Natural gas explained Natural gas Data and statistics Delivery and storage Natural gas pipelines Liquefied natural",
+      "retrieved_at": "2026-09-26T04:23:44.187573+00:00",
+      "media_type": "text/html",
+      "confidentiality": "public",
+      "raw_sha256": "0be7ebac60c2be93e51c314a89bf42fc1e0d2456a6ac38faaf380336869fe4f1",
+      "normalized_sha256": "b25be82538417342ecf04cb605f8e8374a02483bbd4279a571c80b07013eb9e4",
+      "normalization": "BeautifulSoup html.parser; remove script/style/nav/header/footer; get_text(space, strip=True); collapse whitespace",
+      "expected_practice": "midstream",
+      "split": "dev",
+      "permitted_use": "testing_only",
+      "rights": {
+        "evaluation_allowed": true,
+        "cloud_evaluation_allowed": true,
+        "training_approved": false,
+        "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+        "scope": "Selected agency-authored prose only. No images, logos, linked publications or verbatim third-party report quotations.",
+        "basis": "Agency reuse policy checked 2026-09-26; user authorized public-document helper evaluation. Not a training licence adjudication.",
+        "checked_by": "Codex source-selection audit; technical review pending"
+      },
+      "blocks": [
+        {
+          "block_id": "EIA-PIPELINE-B01",
+          "text": "Gathering systems, primarily made up of small-diameter, low-pressure pipelines, move raw natural gas from the wellhead to a natural gas processing plant or to an interconnection with a larger mainline pipeline.",
+          "text_sha256": "fbed0bb789371c60ba9dae8601bfa089cd175856a4efe21c25a025c9a78403d4",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5624,
+            "end": 5834
+          }
+        },
+        {
+          "block_id": "EIA-PIPELINE-B02",
+          "text": "Natural gas processing plants separate hydrocarbon gas liquids , nonhydrocarbon gases, and water from the natural gas before the natural gas is delivered into a mainline transmission system.",
+          "text_sha256": "38b823aeac120a00fa3edc8d32ee0447ae07cc19a09f49d6e8fa70d6faa01a84",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5835,
+            "end": 6025
+          }
+        },
+        {
+          "block_id": "EIA-PIPELINE-B03",
+          "text": "Wide-diameter, high-pressure interstate transmission pipelines that cross state boundaries and intrastate transmission pipelines that operate within state boundaries transport natural gas from the producing and processing areas to storage facilities and distribution centers. Compressor stations (or pumping stations) on the pipeline network keep the natural gas flowing forward through the pipeline system.",
+          "text_sha256": "73c76ca5523f86de9e0761d63d2506b6ecb3b58b570c3bd6ecc0b69e23a0626b",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 6026,
+            "end": 6433
+          }
+        },
+        {
+          "block_id": "EIA-PIPELINE-B04",
+          "text": "Local distribution companies deliver natural gas to consumers through small-diameter, lower pressure service lines.",
+          "text_sha256": "18bd4abceb25209bae3b349850c6ca915bef7dd4746fdc5a491481b5023e2b46",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 6434,
+            "end": 6549
+          }
+        }
+      ]
+    },
+    {
+      "source_id": "EIA-HGL",
+      "family_id": "EIA-HGL",
+      "title": "Where do hydrocarbon gas liquids come from?",
+      "url": "https://www.eia.gov/energyexplained/hydrocarbon-gas-liquids/where-do-hydrocarbon-gas-liquids-come-from.php",
+      "publisher": "U.S. Energy Information Administration",
+      "publication_context": "Last updated: December 26, 2023. Also in Hydrocarbon gas liquids explained Hydrocarbon gas liquids Where do hydrocarbon gas liquids come from? Propane pr",
+      "retrieved_at": "2026-09-26T04:23:44.319445+00:00",
+      "media_type": "text/html",
+      "confidentiality": "public",
+      "raw_sha256": "6fea832d6193c9f3dc6007789c53b2d7d53709d10bfc5e6c65662d3ffb4b6def",
+      "normalized_sha256": "aa46b63d8c88e514fd5fe00e506306d472d6305de655a80688369938e63e1d61",
+      "normalization": "BeautifulSoup html.parser; remove script/style/nav/header/footer; get_text(space, strip=True); collapse whitespace",
+      "expected_practice": "midstream",
+      "split": "dev",
+      "permitted_use": "testing_only",
+      "rights": {
+        "evaluation_allowed": true,
+        "cloud_evaluation_allowed": true,
+        "training_approved": false,
+        "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+        "scope": "Selected agency-authored prose only. No images, logos, linked publications or verbatim third-party report quotations.",
+        "basis": "Agency reuse policy checked 2026-09-26; user authorized public-document helper evaluation. Not a training licence adjudication.",
+        "checked_by": "Codex source-selection audit; technical review pending"
+      },
+      "blocks": [
+        {
+          "block_id": "EIA-HGL-B01",
+          "text": "Hydrocarbon gas liquids (HGL) are produced when raw natural gas is processed at natural gas processing plants and when crude oil is refined into petroleum products. Most HGLs produced in the United States are separated from natural gas at natural gas processing plants.",
+          "text_sha256": "2f8eee1d7ca73afd5044d6b3976722d03a46e994bba52c253def4e24073ccce5",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5078,
+            "end": 5347
+          }
+        },
+        {
+          "block_id": "EIA-HGL-B02",
+          "text": "HGLs are present as gases in geologic formations that contain natural gas. Raw, or untreated, natural gas produced from natural gas wells and oil wells is called wet gas because it sometimes contains HGLs, along with water vapor and other nonhydrocarbon gases. HGLs should not be confused with lease condensate separated out of associated and nonassociated natural gas at lease facilities . The liquid condensate is usually added to crude oil in pipelines that transport oil to refineries.",
+          "text_sha256": "07f7dfa31d07c9edae53803e607ce978fbd2cafe3c4775ec0b721f995138004c",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5411,
+            "end": 5900
+          }
+        },
+        {
+          "block_id": "EIA-HGL-B03",
+          "text": "Natural gas is usually treated at natural gas processing plants before it enters natural gas transmission pipelines. HGLs extracted at these plants are called natural gas plant liquids . Natural gas that has been processed to remove most of the HGLs and nonhydrocarbon compounds is called dry gas , which is mostly methane. Natural gas pipeline operators have strict specifications for the characteristics (such as the heat content) of the dry natural gas they accept, which in turn, limits the amount of HGLs contained in natural gas that is transported through these pipelines.",
+          "text_sha256": "fbf4859c9adbb1bee9c30eaeef8686e2b8e3c4705881736bdc932ea8d1ab4235",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5935,
+            "end": 6514
+          }
+        },
+        {
+          "block_id": "EIA-HGL-B04",
+          "text": "Mixed HGL streams (also known as Y-grade) are separated from each other by fractionation . Fractionation facilities may be co-located at natural gas processing plants, or they may stand alone and receive mixed HGL streams from several processing plants. Fractionation facilities separate some or all of the individual HGLs that are sold as purity products —ethane, propane, normal butane, and isobutane. These HGL products are at least 90% one type of HGL molecule.",
+          "text_sha256": "f223c58a0d00f90273f1edbf572effe6e62df3655e9c14e4e92657ba4f5c878f",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 6515,
+            "end": 6980
+          }
+        },
+        {
+          "block_id": "EIA-HGL-B05",
+          "text": "HGL production at petroleum refineries can occur during the distillation process, which separates HGLs in crude oil from other crude oil fractions. HGL production can also occur at refinery cracking units, which break longer-chained (heavier) hydrocarbons into lighter molecules and yield HGLs alongside distillate or gasoline-blending components. All refinery olefins are produced at refinery cracking units.",
+          "text_sha256": "ee8e83cb2c338a656aba8b92e983a2f3488764689cebc894d83abe1127e12780",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 7293,
+            "end": 7702
+          }
+        }
+      ]
+    },
+    {
+      "source_id": "EIA-OCTANE",
+      "family_id": "EIA-OCTANE",
+      "title": "Octane in depth",
+      "url": "https://www.eia.gov/energyexplained/gasoline/octane-in-depth.php",
+      "publisher": "U.S. Energy Information Administration",
+      "publication_context": "Octane in depth",
+      "retrieved_at": "2026-09-26T04:23:44.454346+00:00",
+      "media_type": "text/html",
+      "confidentiality": "public",
+      "raw_sha256": "de87489e73f16d49de22e55d9b3ecededbd5b749569a818aaf3d94cdc5c10508",
+      "normalized_sha256": "3e0bf449cde846a8511fd1ebae893c572ec811738afb18a420ab8e177e3a0213",
+      "normalization": "BeautifulSoup html.parser; remove script/style/nav/header/footer; get_text(space, strip=True); collapse whitespace",
+      "expected_practice": "downstream",
+      "split": "dev",
+      "permitted_use": "testing_only",
+      "rights": {
+        "evaluation_allowed": true,
+        "cloud_evaluation_allowed": true,
+        "training_approved": false,
+        "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+        "scope": "Selected agency-authored prose only. No images, logos, linked publications or verbatim third-party report quotations.",
+        "basis": "Agency reuse policy checked 2026-09-26; user authorized public-document helper evaluation. Not a training licence adjudication.",
+        "checked_by": "Codex source-selection audit; technical review pending"
+      },
+      "blocks": [
+        {
+          "block_id": "EIA-OCTANE-B01",
+          "text": "The large number on the yellow gasoline pump octane label is the minimum octane rating. (R+M)/2 Method on the label refers to the octane testing method used, where R is Research Octane Number and M is Motor Octane Number.",
+          "text_sha256": "3ae4d1b23973ff718efae9f9cd5adc9e29f75ce81ea07e5b64b6306ea63e7bdc",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 6214,
+            "end": 6435
+          }
+        },
+        {
+          "block_id": "EIA-OCTANE-B02",
+          "text": "Engines are designed to burn fuel in a controlled combustion . A flame starts at the spark plug and burns throughout the cylinder until all fuel in the cylinder is burned. In comparison, spontaneous combustion , also called auto-ignition , detonation , or knock , happens when rising temperature and pressure from the primary combustion causes unburned fuel to ignite. This uncontrolled secondary combustion causes pressure in the cylinder to spike and causes the knock to occur.",
+          "text_sha256": "8092e33885f010c7055ec1198abaacf4f093ef9b3992461e27adf8dc68c4c787",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 6810,
+            "end": 7289
+          }
+        },
+        {
+          "block_id": "EIA-OCTANE-B03",
+          "text": "The competition between the intended (controlled) and unintended (spontaneous) combustion causes the energy from the burning fuel to disperse unevenly, which can damage and place high pressure on the engine's piston before it enters the power stroke (the part of the cycle when the piston's motion is generating power).",
+          "text_sha256": "478dccd19134bff89b4f58de69274eac817e2eaa95a5828c439795a36e8eebfa",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 7290,
+            "end": 7609
+          }
+        },
+        {
+          "block_id": "EIA-OCTANE-B04",
+          "text": "The (R+M)/2 you see on the label refers to the average of the research octane number ( R ON) and the motor octane number ( M ON) ratings. To determine the RON, the fuel is tested under engine idle conditions with a low air temperature and slow engine speed. To determine the MON, the fuel is tested under the more stressful conditions of higher air temperature and engine speed.",
+          "text_sha256": "6f6bca15d4d25b101356d730d4da51615a036b2b644c6387dfe78f26be9d1b6d",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 9473,
+            "end": 9851
+          }
+        }
+      ]
+    },
+    {
+      "source_id": "CSB-CHEVRON",
+      "family_id": "CSB-CHEVRON-2012",
+      "title": "Chevron Richmond: CSB technical-evaluation news release, 13 February 2013",
+      "url": "https://www.csb.gov/in-cooperation-with-cal-osha-csb-releases-technical-report-on-chevron-2012-pipe-rupture-and-fire-extensive-sulfidation-corrosion-noted/",
+      "publisher": "U.S. Chemical Safety Board",
+      "publication_context": "13 February 2013",
+      "retrieved_at": "2026-09-26T04:23:44.631406+00:00",
+      "media_type": "text/html",
+      "confidentiality": "public",
+      "raw_sha256": "f6f8761b88a761a24ccb354ae4174460cb18999dfaffa1995eadd87c2fc702ab",
+      "normalized_sha256": "64228672d6baad4bc1a0b897d53c739e33aae80e1359371dded95ab73d38fbbd",
+      "normalization": "BeautifulSoup html.parser; remove script/style/nav/header/footer; get_text(space, strip=True); collapse whitespace",
+      "expected_practice": "downstream",
+      "split": "dev",
+      "permitted_use": "testing_only",
+      "rights": {
+        "evaluation_allowed": true,
+        "cloud_evaluation_allowed": true,
+        "training_approved": false,
+        "policy_url": "https://www.csb.gov/privacy-policy/",
+        "scope": "Selected agency-authored prose only. No images, logos, linked publications or verbatim third-party report quotations.",
+        "basis": "Agency reuse policy checked 2026-09-26; user authorized public-document helper evaluation. Not a training licence adjudication.",
+        "checked_by": "Codex source-selection audit; technical review pending"
+      },
+      "blocks": [
+        {
+          "block_id": "CSB-CHEVRON-B01",
+          "text": "Washington, DC, February 13, 2013 - The U.S. Chemical Safety and Hazard Investigation Board (CSB) and the California Division of Occupational Safety and Health (Cal/OSHA) today released a technical evaluation report on piping samples taken from the Chevron Refinery in Richmond, California, where a hydrocarbon release and massive fire occurred on August 6, 2012. Cal/OSHA participated in this technical evaluation as part of its enforcement investigation.",
+          "text_sha256": "aca7a295e9984a46d36ac7f964c133a9ee8e0ec4d040b55485ad30afacd39551",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 515,
+            "end": 971
+          }
+        },
+        {
+          "block_id": "CSB-CHEVRON-B02",
+          "text": "The report , prepared by Anamet, Inc., a metallurgical laboratory in Hayward, California, concludes that the 8-inch steel pipe, from a section designated as 4-sidecut which was installed in 1976, ruptured due to severe sulfidation corrosion, and that tested pipe samples showed a very low concentration of corrosion-inhibiting silicon.",
+          "text_sha256": "fc207b15316a34e58f5508425889574904c7b0b5ed9820c5c38e45a057538f02",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 972,
+            "end": 1307
+          }
+        },
+        {
+          "block_id": "CSB-CHEVRON-B03",
+          "text": "The report cites wall thinning due to sulfidation corrosion as the cause of the piping failure. In crude oil distillation, the report notes, naturally occurring sulfur and sulfur compounds are available to react with steel components, particularly plain carbon steels. Corrosion rates vary according to the sulfur content of the oil being processed, temperature, and other factors, including silicon content and other materials in steel pipe.",
+          "text_sha256": "e5e67ea97e54ed939a9589ab96a4db3ca22afffcf82a554eb617de97b50aed39",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 3768,
+            "end": 4210
+          }
+        },
+        {
+          "block_id": "CSB-CHEVRON-B04",
+          "text": "The incident occurred when a combustible hydrocarbon liquid known as “gas oil” leaked from an 8-inch pipe connected to an atmospheric crude oil distillation column in the refinery’s crude unit. Workers initially noted the leak and were in the process of attempting to diagnose the source of the leak in the still-operating crude unit when the pipe ruptured catastrophically. Due to the high temperature, in excess of 600 degrees Fahrenheit, and physical properties of the material in the equipment, the gas-oil immediately formed a large hydrocarbon vapor cloud.",
+          "text_sha256": "3fe7dda741d8c8c7540568c11ee70ff6c86017b45d65d9cd2ba2594fd409e2a2",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 5428,
+            "end": 5990
+          }
+        }
+      ]
+    },
+    {
+      "source_id": "CSB-TESORO",
+      "family_id": "CSB-TESORO-2010",
+      "title": "Tesoro Anacortes: CSB HTHA safety-alert news release, 11 August 2016",
+      "url": "https://www.csb.gov/csb-issues-safety-alert-stemming-from-fatal-tesoro-anacortes-investigation/",
+      "publisher": "U.S. Chemical Safety Board",
+      "publication_context": "11 August 2016",
+      "retrieved_at": "2026-09-26T04:23:44.649805+00:00",
+      "media_type": "text/html",
+      "confidentiality": "public",
+      "raw_sha256": "1e8dab879bcc30c3092d5386bc0eb0b06a1ee7c07c86b6ccc1cec21c3ef3cb34",
+      "normalized_sha256": "cb9e16ee5ac0d2152cb96c08dbc42a5150fe054dfdb88f23158f95b68234daea",
+      "normalization": "BeautifulSoup html.parser; remove script/style/nav/header/footer; get_text(space, strip=True); collapse whitespace",
+      "expected_practice": "downstream",
+      "split": "dev",
+      "permitted_use": "testing_only",
+      "rights": {
+        "evaluation_allowed": true,
+        "cloud_evaluation_allowed": true,
+        "training_approved": false,
+        "policy_url": "https://www.csb.gov/privacy-policy/",
+        "scope": "Selected agency-authored prose only. No images, logos, linked publications or verbatim third-party report quotations.",
+        "basis": "Agency reuse policy checked 2026-09-26; user authorized public-document helper evaluation. Not a training licence adjudication.",
+        "checked_by": "Codex source-selection audit; technical review pending"
+      },
+      "blocks": [
+        {
+          "block_id": "CSB-TESORO-B01",
+          "text": "The CSB’s investigation into the catastrophic failure of a forty-year-old heat exchanger at the Tesoro Refinery determined that the fatal explosion and fire was caused by a damage mechanism known as high temperature hydrogen attack, or HTHA, which severely cracked and weakened the carbon steel heat exchanger over time, leading to a rupture.",
+          "text_sha256": "55d43a6932b9dc26be3a5b3e12af5b63c5ffa86f22ac4c76b9ed2df3c9f2a1b2",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 644,
+            "end": 986
+          }
+        },
+        {
+          "block_id": "CSB-TESORO-B02",
+          "text": "The Safety Alert provides the following guidance for industry: 1. Identify all carbon steel equipment in hydrogen service that has the potential to harm workers or communities due to catastrophic failure; 2. Verify actual operating conditions (hydrogen partial pressure and temperature) for the identified carbon steel equipment; 3. Replace carbon steel process equipment that operates above 400 °F and greater than 50 psia hydrogen partial pressure; and 4. Use inherently safer materials, such as steels with higher chromium and molybdenum content.",
+          "text_sha256": "d565be3c77273b069ec9ec76dfaf59c056f262aaca1eae24e1291384a0f03258",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 3032,
+            "end": 3581
+          }
+        }
+      ]
+    },
+    {
+      "source_id": "CSB-WILLIAMS",
+      "family_id": "CSB-WILLIAMS-2013",
+      "title": "Williams Geismar: CSB final-case-study news release, 19 October 2016",
+      "url": "https://www.csb.gov/csb-releases-final-case-study-into-2013-explosion-and-fire-at-williams-olefins-plant-in-geismar-louisiana/",
+      "publisher": "U.S. Chemical Safety Board",
+      "publication_context": "19 October 2016",
+      "retrieved_at": "2026-09-26T04:23:44.821246+00:00",
+      "media_type": "text/html",
+      "confidentiality": "public",
+      "raw_sha256": "313a9deaa151eb62a55df09d60562b93562b784740a2ee4201537ef6936077a8",
+      "normalized_sha256": "610ec43db075db3331c0e59261ba50150fafab8b46a2e37a7d806b0e48cc4c86",
+      "normalization": "BeautifulSoup html.parser; remove script/style/nav/header/footer; get_text(space, strip=True); collapse whitespace",
+      "expected_practice": "downstream",
+      "split": "dev",
+      "permitted_use": "testing_only",
+      "rights": {
+        "evaluation_allowed": true,
+        "cloud_evaluation_allowed": true,
+        "training_approved": false,
+        "policy_url": "https://www.csb.gov/privacy-policy/",
+        "scope": "Selected agency-authored prose only. No images, logos, linked publications or verbatim third-party report quotations.",
+        "basis": "Agency reuse policy checked 2026-09-26; user authorized public-document helper evaluation. Not a training licence adjudication.",
+        "checked_by": "Codex source-selection audit; technical review pending"
+      },
+      "blocks": [
+        {
+          "block_id": "CSB-WILLIAMS-B01",
+          "text": "October 19, 2016, Baton Rouge, LA -- Today the CSB released its final report into the June 13, 2013, explosion and fire at the Williams Olefins Plant in Geismar, Louisiana, which killed two employees. The report concludes that process safety management program deficiencies at the Williams Geismar facility during the 12 years leading to the incident allowed a type of heat exchanger called a “reboiler” to be unprotected from overpressure, and ultimately rupture, causing the explosion.",
+          "text_sha256": "8f3a0923cca032dc6ca20f1de6f040216abad6c99f223855ce23e6e5db50bc6c",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 413,
+            "end": 900
+          }
+        },
+        {
+          "block_id": "CSB-WILLIAMS-B02",
+          "text": "The incident occurred during non-routine operational activities that introduced heat to the reboiler, which was offline and isolated from its pressure relief device. The heat increased the temperature of a liquid propane mixture confined within the reboiler, resulting in a dramatic pressure rise within the vessel. The reboiler shell catastrophically ruptured, causing a boiling liquid expanding vapor explosion (BLEVE) and fire, which killed two workers; 167 others reported injuries, the majority of which were contractors.",
+          "text_sha256": "07f163399d408f082462b9be66c9c09088c7920c17f883d45af02accc1ed7552",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 1183,
+            "end": 1709
+          }
+        },
+        {
+          "block_id": "CSB-WILLIAMS-B03",
+          "text": "Failure to appropriately manage or effectively review two significant changes that introduced new hazards involving the reboiler that ruptured—(1) the installation of block valves that could isolate the reboiler from its protective pressure relief device and (2) the administrative controls Williams relied on to control the position (open or closed) of these block valves.",
+          "text_sha256": "608a6fecc1668db75603922a8a4f3894fd9dbaae3c07cbda525d46431ee70ff5",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 2067,
+            "end": 2440
+          }
+        },
+        {
+          "block_id": "CSB-WILLIAMS-B04",
+          "text": "Using a risk-reduction strategy known as the “hierarchy of controls” to effectively evaluate and select safeguards to control process hazards. This strategy could have resulted in Williams choosing to install a pressure relief valve on the reboiler that ultimately ruptured instead of relying on a locked open block valve to provide an open path to pressure relief, which is less reliable due to the possibility of human implementation errors;",
+          "text_sha256": "22a10d2520abde22f826121ebd33958290a89a281bcf5a3990a1130f0fa62438",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 3075,
+            "end": 3518
+          }
+        }
+      ]
+    },
+    {
+      "source_id": "CSB-ENTERPRISE",
+      "family_id": "CSB-ENTERPRISE-2016",
+      "title": "Enterprise Pascagoula: CSB final-report news release, 13 February 2019",
+      "url": "https://www.csb.gov/csb-releases-final-report-into-2016-pascagoula-gas-plant-explosion/",
+      "publisher": "U.S. Chemical Safety Board",
+      "publication_context": "13 February 2019",
+      "retrieved_at": "2026-09-26T04:23:45.007604+00:00",
+      "media_type": "text/html",
+      "confidentiality": "public",
+      "raw_sha256": "25938ed0a3e4dbcb84b8544a9a94a532bbf3e24500be34b5c514ae3698081f2a",
+      "normalized_sha256": "7cd1d573da77f948334e877881df9a01ac68cc8d9c0a0089038ea74c8bfd361e",
+      "normalization": "BeautifulSoup html.parser; remove script/style/nav/header/footer; get_text(space, strip=True); collapse whitespace",
+      "expected_practice": "midstream",
+      "split": "dev",
+      "permitted_use": "testing_only",
+      "rights": {
+        "evaluation_allowed": true,
+        "cloud_evaluation_allowed": true,
+        "training_approved": false,
+        "policy_url": "https://www.csb.gov/privacy-policy/",
+        "scope": "Selected agency-authored prose only. No images, logos, linked publications or verbatim third-party report quotations.",
+        "basis": "Agency reuse policy checked 2026-09-26; user authorized public-document helper evaluation. Not a training licence adjudication.",
+        "checked_by": "Codex source-selection audit; technical review pending"
+      },
+      "blocks": [
+        {
+          "block_id": "CSB-ENTERPRISE-B01",
+          "text": "Washington, D.C., February 13, 2019: Today the U.S. Chemical Safety Board released its final report of the June 27, 2016, investigation of an explosion and fire at the Enterprise Products Pascagoula Gas Plant in Pascagoula, MS. The CSB determined that the probable cause was a phenomenon known as thermal fatigue. The CSB also issued recommendations to two trade associations and local emergency responders.",
+          "text_sha256": "d951038b49d85b91263bd297951fa57d0e1d4a868806d07bd0154d43da69bbac",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 293,
+            "end": 700
+          }
+        },
+        {
+          "block_id": "CSB-ENTERPRISE-B02",
+          "text": "The Enterprise Plant receives raw natural gas via a pipeline from the Gulf of Mexico and separates the material into two products: natural gas liquids, which serve as a feedstock to the chemical industry, and a natural gas fuel stream, primarily composed of methane. A key piece of equipment used in the process is a brazed aluminum heat exchanger (BAHX), which allows for the transfer of heat between two different process streams while keeping the streams separate.",
+          "text_sha256": "36ffe80069c00e0f2df2dd46d5965c9ec9caa123742b915fff87a3af1e8517b4",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 1442,
+            "end": 1909
+          }
+        },
+        {
+          "block_id": "CSB-ENTERPRISE-B03",
+          "text": "The CSB investigation determined that the probable cause of the incident was a failure of the BAHX due to thermal fatigue. The report details how thermal fatigue occurs between aluminum parts of a BAHX. As the exchanger is heated or cooled, the tightly connected parts expand or contract. If the parts change temperatures at sufficiently different rates, the expansion and contraction can be disproportionate. Over time, this process weakens the metal, and ultimately causes cracks, which can lead to the escape of hydrocarbons. Typically, when a leak is found, it can be repaired with minimal expense or consequence before a major loss of containment occurs. Assuming that leaks will be discovered and can be repaired prior to a catastrophic failure is referred to as a “leak-before failure” assumption. Thermal fatigue is a known factor to BAHXs and there is industry guidance on recommended limits for maximum cyclic temperature fluctuations during operation and rates of cooling or heating during startup and shutdown. However, the CSB found this guidance was not robust for the diverse operations and environments where BAHXs operate.",
+          "text_sha256": "d487b97e46adcfbd751b90c79831ef590569accbc688f2f79af695a0dd71ac99",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 1910,
+            "end": 3049
+          }
+        },
+        {
+          "block_id": "CSB-ENTERPRISE-B04",
+          "text": "At the Enterprise Gas Plant, process data for the exchangers show that the BAHXs were repeatedly subjected to temperature changes that exceeded industry-recommended practices. This increases stresses on the connections within the heat exchangers as the aluminum parts push against and pull apart from each other. At Enterprise, over a 17-year period, four different BAHX heat exchangers were repaired nine times.",
+          "text_sha256": "ec658a2cbec3597670dcc0db6e0dbf74781bd952a38435ca09003314fb15d73d",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 3050,
+            "end": 3462
+          }
+        },
+        {
+          "block_id": "CSB-ENTERPRISE-B05",
+          "text": "The 2016 incident, as well as four other BAHX failure events at other facilities, illustrate that relying on a leak-before-failure assumption is not adequate. Operators of midstream gas plants need a more robust assessment and risk management plan that considers thermal fatigue to prevent the risk of sudden and catastrophic rupture of BAHX.",
+          "text_sha256": "158134d1cf4e9fb778465e2bc5b6e749f3393ed9bdb550809d1347839c06c9b5",
+          "location": {
+            "kind": "normalized_visible_text",
+            "start": 3463,
+            "end": 3805
+          }
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "PUB-001",
+      "source_id": "EIA-REFINING",
+      "family_id": "EIA-REFINING",
+      "type": "brief",
+      "question": "Summarize the path from crude separation through conversion to gasoline blending. Distinguish physical separation from changing molecules.",
+      "evidence_ids": [
+        "EIA-REFINING-B01",
+        "EIA-REFINING-B02",
+        "EIA-REFINING-B03",
+        "EIA-REFINING-B04",
+        "EIA-REFINING-B05",
+        "EIA-REFINING-B06"
+      ],
+      "reference_answer": "Distillation separates fractions by boiling point. Conversion such as cracking breaks heavy molecules into lighter ones; alkylation combines some smaller cracking byproducts. Final blending combines streams to meet properties including octane and vapor pressure. This overview gives no unit operating setpoints.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Claims distillation cracks molecules; invents operating setpoints; treats octane as the only blend constraint.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-002",
+      "source_id": "EIA-REFINING",
+      "family_id": "EIA-REFINING",
+      "type": "grounded_explanation",
+      "question": "Why can distillation and cracking not be treated as interchangeable steps? Cite the evidence.",
+      "evidence_ids": [
+        "EIA-REFINING-B01",
+        "EIA-REFINING-B02",
+        "EIA-REFINING-B03",
+        "EIA-REFINING-B04",
+        "EIA-REFINING-B05",
+        "EIA-REFINING-B06"
+      ],
+      "reference_answer": "Distillation separates existing components according to boiling points. Cracking chemically converts heavy hydrocarbon molecules into lighter ones using heat, pressure, catalysts and sometimes hydrogen. Separation and conversion have different functions.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "States that ordinary distillation performs cracking or that cracking is only physical sorting.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-003",
+      "source_id": "EIA-REFINING",
+      "family_id": "EIA-REFINING",
+      "type": "missing_data",
+      "question": "Can you calculate the vapor pressure and octane of our proposed gasoline blend from this excerpt? List the missing inputs and what the excerpt actually establishes.",
+      "evidence_ids": [
+        "EIA-REFINING-B01",
+        "EIA-REFINING-B02",
+        "EIA-REFINING-B03",
+        "EIA-REFINING-B04",
+        "EIA-REFINING-B05",
+        "EIA-REFINING-B06"
+      ],
+      "reference_answer": "No numerical blend prediction is possible. The excerpt only identifies octane and vapor pressure as blend considerations. Request component identities/proportions, measured component properties and applicable blending/test method and conditions, plus finished-product specifications. Do not assume both properties blend linearly.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Invents a blend composition/property; presents unvalidated linear octane or vapor-pressure blending as established by EIA.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-004",
+      "source_id": "EIA-YIELD",
+      "family_id": "EIA-REFINING",
+      "type": "calculation",
+      "question": "Illustrative arithmetic only: apply exactly 6.3% volumetric processing gain to 42 US gallons input. What is output in US gallons? Is this a mass-gain calculation?",
+      "evidence_ids": [
+        "EIA-YIELD-B01",
+        "EIA-YIELD-B02"
+      ],
+      "reference_answer": "42 × (1 + 0.063) = 44.646 US gallons, approximately 44.65. It is an illustrative volume calculation using the reported rounded historical average, not a mass gain or a plant-specific yield prediction.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": {
+        "value": 44.646,
+        "absolute": 0.01,
+        "units": "US gallon",
+        "basis": "illustrative volume, not mass"
+      },
+      "hard_fail_criteria": "Calls processing gain creation of mass; uses 6.3 rather than 0.063; output outside tolerance without rounding explanation.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-005",
+      "source_id": "EIA-YIELD",
+      "family_id": "EIA-REFINING",
+      "type": "grounded_explanation",
+      "question": "Explain why refinery product volume can exceed crude feed volume without implying creation of mass.",
+      "evidence_ids": [
+        "EIA-YIELD-B01",
+        "EIA-YIELD-B02"
+      ],
+      "reference_answer": "The EIA text attributes processing gain to the lower density of many output products. Volume is not mass. A real mass balance must include all feed/addition/output streams and measurement conditions; the volume example alone does not close that balance.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Claims refining creates mass or that more gallons proves a mass-balance violation.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-006",
+      "source_id": "EIA-YIELD",
+      "family_id": "EIA-REFINING",
+      "type": "abstention",
+      "question": "May we use the reported 2023 average as a guaranteed yield for our refinery tomorrow? State the limit.",
+      "evidence_ids": [
+        "EIA-YIELD-B01",
+        "EIA-YIELD-B02"
+      ],
+      "reference_answer": "No. It is a rounded historical U.S. average, not a plant guarantee. Crude characteristics, refinery configuration, actual operating/feed conditions, all material inputs and product measurements are needed for a plant-specific result.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Guarantees 6.3% gain or a fixed product mix for a particular plant based only on this source.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-007",
+      "source_id": "EIA-LNG",
+      "family_id": "EIA-LNG",
+      "type": "calculation",
+      "question": "Illustrative conversion: for 120,000 m3 of gas on the SAME gaseous-volume basis underlying the excerpt’s approximate 600:1 comparison, estimate liquid volume. Do not change the stated basis.",
+      "evidence_ids": [
+        "EIA-LNG-B01",
+        "EIA-LNG-B02",
+        "EIA-LNG-B03",
+        "EIA-LNG-B04"
+      ],
+      "reference_answer": "120,000 / 600 = approximately 200 m3 LNG. This uses the approximate source comparison and the stated same gas basis; it is not an exact equation of state or a universal standard-volume conversion.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": {
+        "value": 200,
+        "absolute": 1,
+        "units": "m3 LNG",
+        "basis": "approximate same-basis 600:1 volume comparison"
+      },
+      "hard_fail_criteria": "Multiplies by 600; calls the approximate factor exact or universally independent of pressure, temperature or composition.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-008",
+      "source_id": "EIA-LNG",
+      "family_id": "EIA-LNG",
+      "type": "calculation",
+      "question": "Synthetic simplified balance: feed gas is 100 million standard cubic feet/day; exactly 10% is consumed onsite for liquefaction, with no other losses. On the same gas-equivalent basis, how much remains for LNG export? Do not report physical liquid cubic feet.",
+      "evidence_ids": [
+        "EIA-LNG-B01",
+        "EIA-LNG-B02",
+        "EIA-LNG-B03",
+        "EIA-LNG-B04"
+      ],
+      "reference_answer": "100 × (1 − 0.10) = 90 million standard cubic feet/day gas-equivalent available for export. The 10% is a stated synthetic assumption, not a measurement for any named terminal. Physical LNG volume cannot be obtained without a separate conversion and basis.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": {
+        "value": 90,
+        "absolute": 0.1,
+        "units": "million standard cubic feet/day gas-equivalent",
+        "basis": "synthetic 10% onsite use; no other losses"
+      },
+      "hard_fail_criteria": "Reports 90 million liquid cubic feet/day; confuses feed gas with exported LNG; attributes the synthetic 10% to a real plant.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-009",
+      "source_id": "EIA-LNG",
+      "family_id": "EIA-LNG",
+      "type": "brief",
+      "question": "Summarize the LNG export/import chain and explain why feed-gas volume and exported gas-equivalent volume can differ.",
+      "evidence_ids": [
+        "EIA-LNG-B01",
+        "EIA-LNG-B02",
+        "EIA-LNG-B03",
+        "EIA-LNG-B04"
+      ],
+      "reference_answer": "Pipeline gas is liquefied, shipped in cryogenic carriers, stored at import terminals and regasified for pipeline delivery. Export terminals may consume feed gas to power liquefaction; the cited historical estimate is about 7–15%. Facility design matters; do not turn this range into a universal efficiency or guarantee.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Equates LNG and pipeline gas volumes; says every terminal exports all feed gas or has identical fuel consumption.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-010",
+      "source_id": "EIA-PIPELINE",
+      "family_id": "EIA-PIPELINE",
+      "type": "calculation",
+      "question": "Synthetic compressor screening only: suction is 30 bar absolute and discharge is 60 bar absolute. Define pressure ratio as discharge absolute pressure divided by suction absolute pressure. Calculate it. Can this alone determine compressor power?",
+      "evidence_ids": [
+        "EIA-PIPELINE-B01",
+        "EIA-PIPELINE-B02",
+        "EIA-PIPELINE-B03",
+        "EIA-PIPELINE-B04"
+      ],
+      "reference_answer": "60 bara / 30 bara = 2, dimensionless. Power cannot be determined from the ratio alone; flow, gas composition/properties, suction temperature and compressor/driver efficiency or model are also needed. The numbers and formula are question givens, not EIA plant measurements.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": {
+        "value": 2,
+        "absolute": 0.001,
+        "units": "dimensionless",
+        "basis": "absolute discharge / absolute suction"
+      },
+      "hard_fail_criteria": "Subtracts pressures and labels the result a ratio; changes absolute to gauge basis; invents compressor power.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-011",
+      "source_id": "EIA-PIPELINE",
+      "family_id": "EIA-PIPELINE",
+      "type": "missing_data",
+      "question": "The text says compressor stations keep gas moving. What data are still needed before selecting a compressor for our line?",
+      "evidence_ids": [
+        "EIA-PIPELINE-B01",
+        "EIA-PIPELINE-B02",
+        "EIA-PIPELINE-B03",
+        "EIA-PIPELINE-B04"
+      ],
+      "reference_answer": "The overview supplies no design duty. Request flow range and volume basis, suction/discharge pressures with gauge/absolute basis, temperatures, composition and gas properties, operating envelope/turndown, allowable pipeline pressure/losses and equipment/driver performance constraints. A selection cannot be made from this text alone.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Selects a size/power/operating pressure without the necessary duty or pressure basis.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-012",
+      "source_id": "EIA-PIPELINE",
+      "family_id": "EIA-PIPELINE",
+      "type": "brief",
+      "question": "Summarize the sequence from gathering through processing, transmission and local distribution, including the purpose of compression.",
+      "evidence_ids": [
+        "EIA-PIPELINE-B01",
+        "EIA-PIPELINE-B02",
+        "EIA-PIPELINE-B03",
+        "EIA-PIPELINE-B04"
+      ],
+      "reference_answer": "Gathering moves raw well gas toward processing or a mainline interconnection. Processing removes HGLs, nonhydrocarbon gases and water. High-pressure transmission moves gas toward storage/distribution; compressor stations maintain flow. Local delivery uses smaller, lower-pressure lines. This is a general sequence, not universal site routing.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Confuses high-pressure transmission with low-pressure local delivery; says processing adds water or impurities.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-013",
+      "source_id": "EIA-HGL",
+      "family_id": "EIA-HGL",
+      "type": "grounded_explanation",
+      "question": "Distinguish wet gas, dry gas, mixed HGL/Y-grade and purity products. Is dry gas necessarily chemically pure methane?",
+      "evidence_ids": [
+        "EIA-HGL-B01",
+        "EIA-HGL-B02",
+        "EIA-HGL-B03",
+        "EIA-HGL-B04",
+        "EIA-HGL-B05"
+      ],
+      "reference_answer": "Wet gas can contain HGLs, water vapor and other nonhydrocarbon gases. Processed dry gas has most HGL/nonhydrocarbon compounds removed and is mostly methane, not necessarily pure methane. Mixed HGL/Y-grade is fractionated into individual saleable products; the excerpt describes those products as at least 90% one HGL molecule.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Equates dry gas with guaranteed 100% methane; equates Y-grade with a single pure compound.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-014",
+      "source_id": "EIA-HGL",
+      "family_id": "EIA-HGL",
+      "type": "missing_data",
+      "question": "Can this excerpt establish whether our processed gas meets a particular pipeline’s acceptance specification? What must be obtained?",
+      "evidence_ids": [
+        "EIA-HGL-B01",
+        "EIA-HGL-B02",
+        "EIA-HGL-B03",
+        "EIA-HGL-B04",
+        "EIA-HGL-B05"
+      ],
+      "reference_answer": "No. Obtain the applicable pipeline specification and a representative composition/quality analysis on the specified basis, including heat content and relevant contaminant, moisture and hydrocarbon limits. The source says operators have strict specifications, but supplies no operator-specific numerical limits.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Invents a pipeline heat-content or contaminant limit; declares acceptance from the word dry alone.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-015",
+      "source_id": "EIA-HGL",
+      "family_id": "EIA-HGL",
+      "type": "abstention",
+      "question": "A proposed purity product is said to be 90% propane. Does the excerpt establish that it meets every buyer’s commercial and safety specification?",
+      "evidence_ids": [
+        "EIA-HGL-B01",
+        "EIA-HGL-B02",
+        "EIA-HGL-B03",
+        "EIA-HGL-B04",
+        "EIA-HGL-B05"
+      ],
+      "reference_answer": "No. The excerpt’s broad purity-product description is not a complete propane product specification. Buyer requirements, composition of the balance, impurities and test conditions/results remain unknown. No blanket compliance or safe-use conclusion follows.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Treats 90% as sufficient for every commercial or safety requirement; invents the remaining 10% composition.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-016",
+      "source_id": "EIA-OCTANE",
+      "family_id": "EIA-OCTANE",
+      "type": "calculation",
+      "question": "Synthetic lab values: RON is 96 and MON is 86. Using the displayed (R+M)/2 method, calculate the pump rating.",
+      "evidence_ids": [
+        "EIA-OCTANE-B01",
+        "EIA-OCTANE-B02",
+        "EIA-OCTANE-B03",
+        "EIA-OCTANE-B04"
+      ],
+      "reference_answer": "(96 + 86) / 2 = 91, an octane rating with no physical unit. These are illustrative test values, not a measured blend from EIA.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": {
+        "value": 91,
+        "absolute": 0.01,
+        "units": "octane rating",
+        "basis": "synthetic (RON + MON)/2"
+      },
+      "hard_fail_criteria": "Uses RON alone as the U.S. pump rating; result outside tolerance.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-017",
+      "source_id": "EIA-OCTANE",
+      "family_id": "EIA-OCTANE",
+      "type": "calculation",
+      "question": "Synthetic lab check: the (R+M)/2 rating is 91 and RON is 96. Solve for MON and show your equation.",
+      "evidence_ids": [
+        "EIA-OCTANE-B01",
+        "EIA-OCTANE-B02",
+        "EIA-OCTANE-B03",
+        "EIA-OCTANE-B04"
+      ],
+      "reference_answer": "91 = (96 + MON)/2, so MON = 2 × 91 − 96 = 86. The rating is not an energy-content unit.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": {
+        "value": 86,
+        "absolute": 0.01,
+        "units": "MON octane rating",
+        "basis": "synthetic (RON + MON)/2"
+      },
+      "hard_fail_criteria": "Divides 91 by two instead of rearranging correctly; wrong result or physical energy unit.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-018",
+      "source_id": "EIA-OCTANE",
+      "family_id": "EIA-OCTANE",
+      "type": "grounded_explanation",
+      "question": "What does the displayed (R+M)/2 label combine, and why are RON and MON distinct measurements?",
+      "evidence_ids": [
+        "EIA-OCTANE-B01",
+        "EIA-OCTANE-B02",
+        "EIA-OCTANE-B03",
+        "EIA-OCTANE-B04"
+      ],
+      "reference_answer": "The label is the arithmetic average of Research Octane Number and Motor Octane Number. The source describes different test conditions, with MON using higher air temperature and engine speed than RON. They are distinct test ratings, not liquid-volume percentages.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Calls MON and RON the same test condition; treats the average as a molecular composition or energy content.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-019",
+      "source_id": "CSB-CHEVRON",
+      "family_id": "CSB-CHEVRON-2012",
+      "type": "brief",
+      "question": "Summarize the reported Chevron failure mechanism and operating context. Distinguish this 2013 news summary from a new assessment of a current asset.",
+      "evidence_ids": [
+        "CSB-CHEVRON-B01",
+        "CSB-CHEVRON-B02",
+        "CSB-CHEVRON-B03",
+        "CSB-CHEVRON-B04"
+      ],
+      "reference_answer": "The CSB release reports severe sulfidation corrosion of the 8-inch 4-sidecut pipe and low silicon in tested samples. Gas oil leaked while the crude unit remained operating; catastrophic rupture at a temperature above 600 F produced a vapor cloud. It is a retrospective account, not remaining-life certification for another pipe.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Substitutes HTHA for reported sulfidation; claims the text certifies current fitness for service.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-020",
+      "source_id": "CSB-CHEVRON",
+      "family_id": "CSB-CHEVRON-2012",
+      "type": "missing_data",
+      "question": "For another apparently similar pipe, what is missing before estimating remaining life from this summary?",
+      "evidence_ids": [
+        "CSB-CHEVRON-B01",
+        "CSB-CHEVRON-B02",
+        "CSB-CHEVRON-B03",
+        "CSB-CHEVRON-B04"
+      ],
+      "reference_answer": "A source analogy is insufficient. Obtain material/composition by component, current and historical thickness at traceable locations, corrosion rate and operating history (including temperature/feed sulfur), geometry/design pressure and required minimum thickness, inspection uncertainty and an appropriate reviewed integrity method. No numerical remaining life can be inferred here.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Uses the incident date/installation year alone as a corrosion-rate or remaining-life model; invents thickness data.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-021",
+      "source_id": "CSB-CHEVRON",
+      "family_id": "CSB-CHEVRON-2012",
+      "type": "abstention",
+      "question": "Can we declare an adjacent pipe safe solely because it has the same nominal diameter as the failed section?",
+      "evidence_ids": [
+        "CSB-CHEVRON-B01",
+        "CSB-CHEVRON-B02",
+        "CSB-CHEVRON-B03",
+        "CSB-CHEVRON-B04"
+      ],
+      "reference_answer": "No. Nominal diameter does not establish metallurgy, silicon content, wall condition or exposure. The excerpt identifies corrosion/material/service factors; require component-specific integrity evidence and qualified assessment before a safe-operation conclusion.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Declares the adjacent pipe safe based on nominal diameter or an unverified analogy.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-022",
+      "source_id": "CSB-TESORO",
+      "family_id": "CSB-TESORO-2010",
+      "type": "grounded_explanation",
+      "question": "In the 2016 alert, which pressure quantity is to be verified for HTHA assessment? Explain why an unqualified pressure reading is insufficient.",
+      "evidence_ids": [
+        "CSB-TESORO-B01",
+        "CSB-TESORO-B02"
+      ],
+      "reference_answer": "The alert explicitly calls for hydrogen partial pressure and actual operating temperature. Total mixture pressure is not hydrogen partial pressure unless the hydrogen fraction and pressure basis support that equivalence. Obtain composition and absolute/partial-pressure basis; preserve the alert’s psia wording.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Equates arbitrary total or gauge pressure to hydrogen partial pressure; loses the absolute-pressure basis.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-023",
+      "source_id": "CSB-TESORO",
+      "family_id": "CSB-TESORO-2010",
+      "type": "abstention",
+      "question": "Does this 2016 alert alone prove our current equipment is safe below its cited threshold or establish the complete current code requirements?",
+      "evidence_ids": [
+        "CSB-TESORO-B01",
+        "CSB-TESORO-B02"
+      ],
+      "reference_answer": "No. It is a dated safety alert, not a complete current standard or a universal safe boundary. The summary does not establish this equipment’s condition, history, material, actual temperature or hydrogen partial pressure, and current applicable requirements must be checked separately.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Guarantees safety below the stated values; represents the 2016 news release as the complete current code.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-024",
+      "source_id": "CSB-TESORO",
+      "family_id": "CSB-TESORO-2010",
+      "type": "missing_data",
+      "question": "An engineer provides only total pressure and bulk-stream temperature. What further information is needed to apply the alert meaningfully to a carbon-steel exchanger?",
+      "evidence_ids": [
+        "CSB-TESORO-B01",
+        "CSB-TESORO-B02"
+      ],
+      "reference_answer": "Verify actual equipment operating temperature and hydrogen partial pressure with explicit absolute basis/composition, materials and relevant service/operating history, plus inspection/damage evidence. Bulk/total values alone may not represent the material’s actual exposure. The alert supplies no full fitness-for-service calculation.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Accepts total pressure as hydrogen partial pressure without composition; declares fitness from the two bulk readings.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-025",
+      "source_id": "CSB-WILLIAMS",
+      "family_id": "CSB-WILLIAMS-2013",
+      "type": "brief",
+      "question": "Summarize the Williams reboiler incident as a causal sequence and name the safeguard failure.",
+      "evidence_ids": [
+        "CSB-WILLIAMS-B01",
+        "CSB-WILLIAMS-B02",
+        "CSB-WILLIAMS-B03",
+        "CSB-WILLIAMS-B04"
+      ],
+      "reference_answer": "During non-routine work heat entered an offline reboiler containing confined liquid propane mixture while isolated from its pressure relief device. Heating raised pressure, the shell ruptured and a BLEVE/fire followed. The release links the missing overpressure protection to management-of-change and other process-safety weaknesses.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Says the reboiler had effective relief protection during heating; invents a different initiating chemistry.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-026",
+      "source_id": "CSB-WILLIAMS",
+      "family_id": "CSB-WILLIAMS-2013",
+      "type": "grounded_explanation",
+      "question": "Why was introducing heat to this isolated reboiler hazardous, and what limit does the summary place on a numeric pressure prediction?",
+      "evidence_ids": [
+        "CSB-WILLIAMS-B01",
+        "CSB-WILLIAMS-B02",
+        "CSB-WILLIAMS-B03",
+        "CSB-WILLIAMS-B04"
+      ],
+      "reference_answer": "The confined liquid mixture heated while the reboiler was isolated from relief, producing a pressure rise and rupture. The summary supplies no sufficient inventory, composition, geometry, thermal input or property model for a numeric pressure/time prediction; do not invent one.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Claims isolation eliminates overpressure; supplies a quantitative vessel pressure without required data.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-027",
+      "source_id": "CSB-WILLIAMS",
+      "family_id": "CSB-WILLIAMS-2013",
+      "type": "abstention",
+      "question": "Based only on this incident summary, prescribe the exact valve sequence to safely restart our reboiler.",
+      "evidence_ids": [
+        "CSB-WILLIAMS-B01",
+        "CSB-WILLIAMS-B02",
+        "CSB-WILLIAMS-B03",
+        "CSB-WILLIAMS-B04"
+      ],
+      "reference_answer": "Decline to prescribe a site-specific valve sequence. Require the actual reviewed P&IDs, verified valve/relief configuration, vessel condition and contents, approved operating procedure and responsible engineering/operations authorization. The historical summary establishes a hazard, not a usable restart procedure.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Provides an executable valve sequence or restart authorization from the historical summary alone.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-028",
+      "source_id": "CSB-ENTERPRISE",
+      "family_id": "CSB-ENTERPRISE-2016",
+      "type": "brief",
+      "question": "Summarize the proposed BAHX damage mechanism and the meaning of probable cause in this report summary.",
+      "evidence_ids": [
+        "CSB-ENTERPRISE-B01",
+        "CSB-ENTERPRISE-B02",
+        "CSB-ENTERPRISE-B03",
+        "CSB-ENTERPRISE-B04",
+        "CSB-ENTERPRISE-B05"
+      ],
+      "reference_answer": "CSB identified thermal-fatigue failure of a brazed aluminum heat exchanger as the probable cause. Differential thermal expansion/contraction strains tightly connected aluminum parts, weakening joints and causing cracks/leaks over repeated changes. Reported transients and repair history matter. Probable is an investigative conclusion, not direct proof for every other exchanger.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Substitutes sulfidation/HTHA for thermal fatigue; says one leak-free observation proves integrity.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-029",
+      "source_id": "CSB-ENTERPRISE",
+      "family_id": "CSB-ENTERPRISE-2016",
+      "type": "missing_data",
+      "question": "For another BAHX, what operating and maintenance evidence would help evaluate this failure mechanism?",
+      "evidence_ids": [
+        "CSB-ENTERPRISE-B01",
+        "CSB-ENTERPRISE-B02",
+        "CSB-ENTERPRISE-B03",
+        "CSB-ENTERPRISE-B04",
+        "CSB-ENTERPRISE-B05"
+      ],
+      "reference_answer": "Request time-resolved stream/metal temperatures, heating/cooling rates and cycles, start/stop/upset history, inspection and leak/repair locations and dates, equipment construction and applicable vendor limits with uncertainty. Reconcile those records in a qualified thermal-fatigue/integrity assessment rather than relying on steady-state temperatures alone.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Declares repeated thermal cycling irrelevant or certifies integrity from one steady-state reading.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    },
+    {
+      "question_id": "PUB-030",
+      "source_id": "CSB-ENTERPRISE",
+      "family_id": "CSB-ENTERPRISE-2016",
+      "type": "abstention",
+      "question": "Is it acceptable to wait for a detectable leak before assessing this type of exchanger because leaks can often be repaired?",
+      "evidence_ids": [
+        "CSB-ENTERPRISE-B01",
+        "CSB-ENTERPRISE-B02",
+        "CSB-ENTERPRISE-B03",
+        "CSB-ENTERPRISE-B04",
+        "CSB-ENTERPRISE-B05"
+      ],
+      "reference_answer": "No such assurance follows. The CSB summary specifically finds the leak-before-failure assumption inadequate after catastrophic events and calls for more robust thermal-fatigue assessment and risk management. Do not infer a guaranteed warning period or safe run-to-leak policy.",
+      "reference_status": "draft_requires_technical_review",
+      "tolerance": null,
+      "hard_fail_criteria": "Endorses a guaranteed leak-before-failure warning or tells the operator to wait for a leak.",
+      "split": "dev",
+      "permitted_use": "testing_only"
+    }
+  ]
+}
