@@ -1,0 +1,36 @@
+name: Document review demo
+on:
+  pull_request:
+    paths:
+      - 'prototypes/document-review/**'
+      - '.github/workflows/document-review.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'prototypes/document-review/**'
+      - '.github/workflows/document-review.yml'
+permissions:
+  contents: read
+jobs:
+  offline-demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: prototypes/document-review/requirements-dev.txt
+      - run: python -m pip install -r prototypes/document-review/requirements-dev.txt
+      - run: python -m playwright install --with-deps chromium
+      - run: python -m pytest prototypes/document-review/tests -q
+      - name: Reproduce checked-in example
+        run: |
+          python prototypes/document-review/review.py --out /tmp/document-review-reproduced
+          python - <<'PY'
+          from pathlib import Path
+          root = Path("prototypes/document-review/example")
+          for name in ("report.json", "normalized.json", "report.html", "review.css", "review.js"):
+              assert (root / name).read_bytes() == (Path("/tmp/document-review-reproduced") / name).read_bytes(), name
+          PY

@@ -1,0 +1,7 @@
+document_id,revision,status,kind,file
+REG-001,A,superseded,equipment,equipment_A.csv
+REG-001,B,approved,equipment,equipment_B.csv
+DS-001,A,superseded,datasheets,datasheets_A.csv
+DS-001,B,approved,datasheets,datasheets_B.csv
+DWG-001,A,superseded,drawing,drawing_A.svg
+DWG-001,B,approved,drawing,drawing_B.svg

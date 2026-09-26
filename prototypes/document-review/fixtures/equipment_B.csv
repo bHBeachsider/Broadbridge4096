@@ -1,0 +1,14 @@
+tag,service,condition,pressure,pressure_unit,pressure_basis,temperature,temperature_unit,datasheet_id,datasheet_revision
+P-101,Feed transfer,operating,10,bar,absolute,25,degC,DS-001,B
+P-102,Standby transfer,operating,8,bar,gauge,30,degC,DS-001,B
+P-102,Standby transfer,operating,8,bar,gauge,30,degC,DS-001,B
+P-103,Wash transfer,operating,2,bar,absolute,40,degC,DS-001,B
+P-104,Wash return,operating,2,bar,absolute,40,degC,DS-001,B
+E-201,,operating,5,bar,absolute,120,degC,DS-001,B
+E-202,Trim heating,operating,6,bar,absolute,200,degC,DS-001,B
+E-203,Cooling,operating,7,bar,absolute,120,degC,DS-001,B
+V-301,Surge,operating,3,bar,absolute,50,degC,DS-001,B
+V-302,Receiver,operating,4,bar,gauge,50,degC,DS-001,B
+T-401,Storage,operating,1.5,bar,absolute,35,degC,DS-001,A
+C-501,Compression,operating,30,bar,absolute,60,degC,DS-001,B
+F-601,Filtration,operating,2,bar,absolute,70,degC,DS-001,B
