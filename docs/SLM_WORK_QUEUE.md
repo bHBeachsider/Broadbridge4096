@@ -8,17 +8,17 @@ This is the ordered work backlog requested while the discovery questionnaire is 
 
 FQ-01 through FQ-07 prepare software, extraction evidence and reviewable inputs offline. They do not require Bill to enter a case. Another appropriately qualified reviewer may later accept engineering content within their competence. Bill's technical decisions are not supplied by an assistant or by passing software tests.
 
-Start with **FQ-01, the calculation-verifier rehearsal**, then **FQ-02, extraction of a small section from the DOE handbook already on disk**. This produces concrete material for review while the questionnaire progresses. DOE section choice is a provisional engineering-preparation choice, not a decision about the final commercial curriculum.
+**FQ-01 and FQ-02 are now prepared for review:** the calculation-verifier rehearsal and a three-page DOE pressure packet. See the [commands, results and remaining decisions](SLM_PREPARATION_REHEARSAL.md). DOE section choice is a provisional engineering-preparation choice, not a decision about the final commercial curriculum.
 
 ## Ordered register
 
 | ID | Work package | State | Deliverable / completion evidence |
 | --- | --- | --- | --- |
-| FQ-01 | Calculation verifier rehearsal (SD-04) | READY_OFFLINE | Checked calculation artifact and negative tests; preserve the existing generated-number guard; engineering method acceptance remains pending |
-| FQ-02 | Extract the acquired DOE handbook pilot section | READY_OFFLINE | Page-linked text/table/equation extraction, exception report and blank review packet; no automatic QA release |
+| FQ-01 | Calculation verifier rehearsal (SD-04) | PREPARED_WAIT_REVIEW | Decimal checker, five-vector admission rehearsal and release rejection verified; engineering method/tolerance acceptance remains pending |
+| FQ-02 | Extract the acquired DOE handbook pilot section | PREPARED_WAIT_REVIEW | PDF 35-37 with images, two text views, glyphs, equation/conversion proposals, nine exceptions and blank review packet; no QA release |
 | FQ-03 | Prepare new engineering source families | READY_OFFLINE | Shortlist with exact document/version, credits, rights action, intended task and family/split; download/extract only admitted items |
 | FQ-04 | Audit the existing Hugging Face math sample | READY_OFFLINE | Exact/near-duplicate and template-family audit; answer spot-checks; attribution and token report; isolated general-math control |
-| FQ-05 | Test extraction and normalization coverage | READY_OFFLINE | Format matrix, locator fidelity, units and revision checks; missing OCR/ASR artifacts shown as gaps |
+| FQ-05 | Test extraction and normalization coverage | READY_OFFLINE | Format matrix, locators/units/revisions; [vision companion pilot](VISION_INGESTION_PILOT.md) proposed for diagram gaps; no vision run yet |
 | FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | READY_OFFLINE | Reject revoked rights, holdout ancestry, edits after review and self-acceptance; show assistant mask, lengths and truncation |
 | FQ-07 | Prepare the helper comparison protocol revision | READY_OFFLINE | Shorter bounded paired protocol, model/provider revision fields and cost ceiling proposal; no live calls |
 | FQ-08 | Confirm priority tasks, references and recipes (SD-01) | WAIT_REVIEW | Named decisions on first tasks, exclusions, recipe versions, hard-fail criteria and reviewer competence |
@@ -31,7 +31,7 @@ Start with **FQ-01, the calculation-verifier rehearsal**, then **FQ-02, extracti
 | FQ-15 | Reproduce and release the accepted adapter | WAIT_ACCEPTANCE | Second-operator reproduction; hash-keyed deploy_pack.sh GGUF release and rollback record |
 | FQ-16 | Specialist expansion and advanced training | POST_V0 | Separate proposals for specialist families, simulator examples, preference data/RL and native vision/audio |
 
-State meanings: **READY_OFFLINE** = queued preparation can proceed without a live model; **WAIT_…** = the named input/decision is outstanding; **POST_V0** = outside the initial adapter release. Ready is not running or complete. Conditional work may be prepared out of row order when its recorded dependencies are satisfied; numbering is dispatch priority, not a mandatory finish-to-start schedule.
+State meanings: **READY_OFFLINE** = queued preparation can proceed without a live model; **PREPARED_WAIT_REVIEW** = software/extraction deliverable exists but the applicable human decisions remain open; **WAIT_…** = the named input/decision is outstanding; **POST_V0** = outside the initial adapter release. Ready is not running or complete. Conditional work may be prepared out of row order when its recorded dependencies are satisfied; numbering is dispatch priority, not a mandatory finish-to-start schedule.
 
 The intended first real synthetic pilot includes all five question types; calculation examples also depend on independent acceptance of FQ-01's method. A non-calculation pilot may proceed with recorded missing coverage rather than invented numerical verification. FQ-12 describes the synthetic-inclusive release; an independently approved expert-only release may be prepared for the later matched comparison without pretending the synthetic pilot ran.
 
@@ -69,9 +69,9 @@ For later adapter comparison, do not compare stock Ollama's default template wit
 
 ## Next dispatch and human inputs
 
-1. FQ-01: implement the already specified `absolute_pressure_ratio_v1` rehearsal with independent fixed vectors, explicit pressure basis and invalid-input tests. A ratio is not compressor power/sizing. This advances SD-04 software preparation; reviewer acceptance stays open.
-2. FQ-02: inspect/extract the existing DOE source into a small provenance-linked packet with extraction exceptions and blank review fields. Do not generate or approve an entire handbook's QA pairs.
-3. FQ-06 can follow without waiting for expert content, using fabricated rights/split/review failures and the existing CPU audit.
+1. Review the FQ-01 method/tolerance and FQ-02 evidence packet. No training approval is implied by their software checks.
+2. FQ-03 source-family preparation and FQ-04 existing math-sample audit can proceed without expert case entry.
+3. FQ-06 can follow using fabricated rights/split/review failures and the existing CPU audit. FQ-05 now includes a proposed local vision-model comparison, separate from native multimodal fine-tuning.
 4. Bill or another appointed reviewer chooses useful tasks and verifies the real source/method/candidate packets. Brad records rights, live processing budgets and release decisions independently.
 
 Original work packages and acceptance criteria remain in the [synthetic-data plan](superpowers/plans/2026-09-26-synthetic-expert-data.md), [expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) and [ingestion release runbook](INGESTION_PIPELINE_RUNBOOK.md). This queue organizes them; it does not mark unperformed work accepted.

@@ -1,0 +1,104 @@
+{
+  "date": "2026-09-27",
+  "scope": "Offline FQ-01/FQ-02 preparation; no method/rights/technical approval",
+  "domain_base_commit": "f1469aa25033af5baa5aba55e2bdf0d9e05bf034",
+  "engine_commit": "f1790dff35d15739afb77999414c7cc2f6153c6f",
+  "new_tests": {
+    "calculation_checker": 35,
+    "calculation_admission": 2,
+    "doe_packet": 8,
+    "total": 45
+  },
+  "domain_full_python_suite": {
+    "passed": 359,
+    "skipped": 106,
+    "skipped_reason": "Live/database integration gates unset",
+    "warnings": 1
+  },
+  "foundry_regression_suite": {
+    "passed": 146,
+    "skipped": 0,
+    "files": [
+      "test_ingestion_assist.py",
+      "test_synthetic_review.py",
+      "test_synthetic_batch.py",
+      "test_ingestion_curate.py",
+      "test_ingestion_datasets.py"
+    ]
+  },
+  "existing_warning": "requests dependency compatibility warning; unrelated environment unchanged",
+  "calculation_rehearsal": {
+    "schema": "broadbridge.calculation_rehearsal/1",
+    "model_calls": 0,
+    "fixed_vector_statuses": [
+      "pass",
+      "needs_review",
+      "fail",
+      "fail",
+      "needs_review"
+    ],
+    "rejections": {
+      "pending_artifact_rights": "blocked",
+      "revoked_artifact_rights": "blocked",
+      "historical_holdout": "blocked",
+      "changed_artifact_bytes": "blocked"
+    },
+    "release_blocked_without_review": true,
+    "training_approved": false,
+    "artifact_sha256": "84e04c2723bea47ee7a7794942c33afd9f70f00ae8fcf61effafc4e78a941336",
+    "packet_sha256": "225c35659819eb123c4a753c941288e8a29bc40a65b49097c7eba78fae6b7d5c",
+    "limitation": "Software rehearsal only; template, tolerance and real candidate admission await independent review."
+  },
+  "doe_extraction": {
+    "schema": "broadbridge.doe_extraction_receipt/1",
+    "source_sha256": "3c4ef4ad700cfd64444677404956ec2237bb5e24e31f7e591b1767526ec0b2c9",
+    "pdf_pages": [
+      35,
+      36,
+      37
+    ],
+    "printed_pages": [
+      9,
+      10,
+      11
+    ],
+    "parser_versions": {
+      "pypdf": "6.10.0",
+      "pdfplumber": "0.11.9",
+      "pypdfium2": "5.13.0"
+    },
+    "detected_tables": 0,
+    "equation_proposals": 2,
+    "conversion_row_proposals": 4,
+    "review_issues": 9,
+    "model_calls": 0,
+    "training_examples": 0,
+    "training_approved": false
+  },
+  "doe_packet_sha256": "0ae8da768e4fbc5427d5c4acbd4b2193dcf93308fffac6e8cb61fce26f0b8150",
+  "visual_inspection": {
+    "renderer": "PDFium via pdfplumber",
+    "pages": [
+      35,
+      36,
+      37
+    ],
+    "rho_visible": true,
+    "notes": "Poppler trial omitted rho; retained source and noted remaining extraction gaps."
+  },
+  "side_effects": {
+    "model_calls": 0,
+    "ec2": false,
+    "training": false,
+    "database_writes": false,
+    "production_changes": false
+  },
+  "vision_pilot": "Proposed only: no model installation, run or accuracy claim",
+  "review_pending": [
+    "method and tolerance",
+    "source rights and credits",
+    "source family/split",
+    "engineering applicability",
+    "training release"
+  ]
+}
