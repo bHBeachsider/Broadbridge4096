@@ -4,6 +4,8 @@ The authenticated [public-document scoring page](docs/PUBLIC_REVIEW_URL.md) link
 
 ## Current core SLM v0 plan
 
+[Ordered SLM work queue](docs/SLM_WORK_QUEUE.md) · [Editable task register](docs/SLM_WORK_QUEUE.csv). Offline preparation can proceed while expert inputs arrive; live generation, training and release retain their existing gates.
+
 [Infrastructure brief](output/foundry-infrastructure/SLM_Foundry_Broadbridge_Infrastructure_Brief.md) · [Editable Word brief](output/foundry-infrastructure/SLM_Foundry_Broadbridge_Infrastructure_Brief.docx) · [First-case runbook](docs/FIRST_CASE_RUNBOOK.md) · [Oil and gas pack](packs/oil-gas/README.md)
 
 Bill Hurt enters cases directly in the Broadbridge Case Capture page, without a call first. The canonical contract is `broadbridge.case_record/1`. Bill is the named reviewer. Gate 0 requires recorded rights/storage and at least 30 Section C questions with reference answers across all five types, derived from signed cases. The dedicated Broadbridge Neon project is the new system of record. The approved R2 ingestion design uses the private `broadbridge` bucket for originals/documents; scoped access and live integration still require verification. Keep the existing Claude page available until live sign-in and the export/import comparison pass the [capture app cutover procedure](docs/CAPTURE_APP.md).

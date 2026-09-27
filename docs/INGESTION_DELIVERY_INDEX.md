@@ -149,6 +149,8 @@ secret stores and ignored local files.
 
 ## Rulings made
 
+27 September: [SLM work queue](SLM_WORK_QUEUE.md) and [editable task register](SLM_WORK_QUEUE.csv) added. This queues offline preparation and records the gates for later model runs; it does not submit live jobs or authorize EC2.
+
 Public-document helper evaluation is the current follow-up. See
 [the runbook and observed limitations](PUBLIC_DOCUMENT_EVALUATION.md). Ten public
 documents and thirty balanced questions are frozen for testing only. Qwen returned

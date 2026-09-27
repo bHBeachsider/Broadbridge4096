@@ -1,5 +1,7 @@
 # Expert-guided synthetic training data
 
+The [SLM work queue](SLM_WORK_QUEUE.md) orders the remaining preparation, review and model runs. SD-04 calculation rehearsal and SD-06 rejection tests can advance offline with fabricated inputs; neither completes engineering acceptance.
+
 The authenticated [public-document scoring page](PUBLIC_REVIEW_URL.md) links fixed source/question/answer review into the capture workflow, with separate reviewer records and CSV export.
 
 SD-02 is implemented as an offline pending packet plus a two-record fabricated
