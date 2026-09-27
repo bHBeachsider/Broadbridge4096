@@ -44,7 +44,7 @@ and source admission determine elapsed time. No stage bypasses original Gate 0.
 | SD-01 | Ranked expert priorities, confirmed development failures and initial recipes | Bill's workflow input and human public review | Bill; Brad for rights/scope | 1-2 review sessions | Awaiting review |
 | SD-02 | Offline review-packet and holdout rehearsal | SD-00; fabricated fixtures permit preparation alongside SD-01 | Foundry implementation | 1-2 engineering days | Implemented offline; draft |
 | SD-03 | Bounded author/challenger orchestration | SD-02; SD-01 before real generation | Foundry implementation, domain binding | 1-2 engineering days | Implemented offline; draft |
-| SD-04 | Independently checked calculation templates | SD-01, SD-02 | Qualified reviewer, implementation | 1-2 engineering days plus expert review | Planned |
+| SD-04 | Independently checked calculation templates | SD-01, SD-02 | Qualified reviewer, implementation | 1-2 engineering days plus expert review | Offline checker/rehearsal prepared; method review pending |
 | SD-05 | Up to 100 candidates with complete dispositions | SD-01 to SD-04; admitted sources and run budget | Bill; Brad for external processing | 2-4 review sessions; measure actual time | Not run |
 | SD-06 | Reviewed immutable batch and CPU audit | SD-05 | Brad; Bill for technical acceptance | 0.5-1 engineering day | Not run |
 | SD-07 | Baseline/adapter and synthetic-data comparison | SD-06 plus original case/baseline/compute gates | Brad; independent reviewer | Sized after token audit | Deferred |
@@ -56,8 +56,9 @@ eligible families produce a smaller pilot, not forced repetition or acceptance.
 
 ## File ownership
 
-SD-02 and SD-03 paths are implemented for offline rehearsal. SD-04 onward remain
-planned; the two provisional recipes still await Bill's priorities and approval.
+SD-02/SD-03 and SD-04's software checker/rehearsal are implemented offline.
+SD-04 method acceptance and SD-05 onward remain open; the provisional recipes
+still await Bill's priorities and approval.
 
 | Repository | Existing integration | Planned files |
 | --- | --- | --- |
@@ -168,10 +169,11 @@ Independent reference vectors:
 | 30 bara suction, 60 bara discharge | ratio 0.5 | fail |
 | Same pressures, absent flow/composition/efficiency | numerical power | needs_review; ratio does not establish power |
 
-- [ ] Write fixed-vector tests before the checker. Expected answers come from independent arithmetic, not calls to the implementation under test.
-- [ ] Implement decimal arithmetic, explicit units/basis and accepted applicability limits. Persist template/version, synthetic givens, method and computed results as a calculation artifact, not a fabricated source quotation.
-- [ ] Rehearse artifact admission through existing source/evidence controls. Its candidate still requires separate source rights and technical acceptance.
-- [ ] Run `python -m pytest packs/oil-gas/tests/test_synthetic_checks.py -q` and the Foundry helper tests proving its original new-numerical-claim rejection still operates.
+- [x] Write fixed-vector tests before the checker. Expected answers come from independent arithmetic, not calls to the implementation under test.
+- [x] Implement decimal arithmetic and explicit units/basis with provisional documented limits/tolerance. Persist template/version, synthetic givens, method and computed results as a calculation artifact, not a fabricated source quotation.
+- [ ] Obtain independent engineering acceptance of the method, tolerance and applicability limits; software checks do not satisfy this decision.
+- [x] Rehearse artifact admission through existing source/evidence controls. Its candidate still requires separate source rights and technical acceptance.
+- [x] Run `python -m pytest packs/oil-gas/tests/test_synthetic_checks.py -q` and the Foundry helper tests proving its original new-numerical-claim rejection still operates. See [27 September preparation](../../SLM_PREPARATION_REHEARSAL.md).
 
 **Acceptance:** independently reviewed reference vectors and failure cases;
 calculation success does not certify the entire engineering answer.

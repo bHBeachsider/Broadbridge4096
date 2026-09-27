@@ -1,0 +1,4 @@
+# FQ-02 local PDF text, glyphs and rendering; no ML packages or model downloads.
+pypdf==6.10.0
+pdfplumber==0.11.9
+pypdfium2==5.13.0
