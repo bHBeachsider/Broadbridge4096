@@ -1,13 +1,17 @@
 # Vision companion for the Qwen3-8B pipeline
 
-27 September 2026. Proposed FQ-05 follow-up; no vision weights installed or inference run by this document.
+27 September 2026. FQ-05 local pilot implemented with separate pinned Docker
+models. See [execution results](LOCAL_VISION_RESULTS.md), the
+[runbook](LOCAL_VISION_RUNBOOK.md) and [visual training input guide](VISUAL_TRAINING_INPUTS.md).
+The protocol below remains the design basis; its software outputs are not
+engineering acceptance or permission to train.
 
 Use a separate vision-language model at ingestion to produce reviewable diagram
 evidence. Retain Qwen3-8B as the text engineering model and fine-tuning target.
 This makes the ingestion system multimodal; it does not give the current text
 model native image input. Native vision fine-tuning remains a later project.
 
-## Candidates to compare
+## Candidates tested
 
 | Candidate | Proposed job | Evidence and limit |
 | --- | --- | --- |
