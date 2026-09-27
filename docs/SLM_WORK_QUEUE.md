@@ -1,0 +1,77 @@
+# SLM preparation and fine-tuning work queue
+
+Updated 27 September 2026. Owner: Brad / Broadbridge Oil & Gas.
+
+This is the ordered work backlog requested while the discovery questionnaire is being developed. It does not submit training jobs or start a background scheduler. Execute one implementation lane; keep GPU, live generation and production gates explicit. The editable [queue CSV](SLM_WORK_QUEUE.csv) is the task register; update both views together.
+
+## What can proceed without waiting for Bill
+
+FQ-01 through FQ-07 prepare software, extraction evidence and reviewable inputs offline. They do not require Bill to enter a case. Another appropriately qualified reviewer may later accept engineering content within their competence. Bill's technical decisions are not supplied by an assistant or by passing software tests.
+
+Start with **FQ-01, the calculation-verifier rehearsal**, then **FQ-02, extraction of a small section from the DOE handbook already on disk**. This produces concrete material for review while the questionnaire progresses. DOE section choice is a provisional engineering-preparation choice, not a decision about the final commercial curriculum.
+
+## Ordered register
+
+| ID | Work package | State | Deliverable / completion evidence |
+| --- | --- | --- | --- |
+| FQ-01 | Calculation verifier rehearsal (SD-04) | READY_OFFLINE | Checked calculation artifact and negative tests; preserve the existing generated-number guard; engineering method acceptance remains pending |
+| FQ-02 | Extract the acquired DOE handbook pilot section | READY_OFFLINE | Page-linked text/table/equation extraction, exception report and blank review packet; no automatic QA release |
+| FQ-03 | Prepare new engineering source families | READY_OFFLINE | Shortlist with exact document/version, credits, rights action, intended task and family/split; download/extract only admitted items |
+| FQ-04 | Audit the existing Hugging Face math sample | READY_OFFLINE | Exact/near-duplicate and template-family audit; answer spot-checks; attribution and token report; isolated general-math control |
+| FQ-05 | Test extraction and normalization coverage | READY_OFFLINE | Format matrix, locator fidelity, units and revision checks; missing OCR/ASR artifacts shown as gaps |
+| FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | READY_OFFLINE | Reject revoked rights, holdout ancestry, edits after review and self-acceptance; show assistant mask, lengths and truncation |
+| FQ-07 | Prepare the helper comparison protocol revision | READY_OFFLINE | Shorter bounded paired protocol, model/provider revision fields and cost ceiling proposal; no live calls |
+| FQ-08 | Confirm priority tasks, references and recipes (SD-01) | WAIT_REVIEW | Named decisions on first tasks, exclusions, recipe versions, hard-fail criteria and reviewer competence |
+| FQ-09 | Run and score S0-cases | WAIT_CASES_AND_RUN | Stock qwen3:8b briefs plus human scorecards/aggregate; Gate 0 coverage recorded separately |
+| FQ-10 | Build and compare S0-retrieval | WAIT_SCORED_BASELINE | On-box index and comparable scored briefs; beat S0-cases before training is considered |
+| FQ-11 | Run the bounded synthetic candidate pilot (SD-05) | WAIT_REVIEW_AND_RUN | Up to 100 pending candidates, proposed 20/type and <=10/family; independent dispositions for every attempt |
+| FQ-12 | Freeze the reviewed dataset (SD-06) | WAIT_ACCEPTED_DATA | Immutable messages JSONL release/hash; lineage, family splits, assistant-target token audit and exclusions |
+| FQ-13 | Host readiness and bounded QLoRA smoke test | WAIT_GPU_GATE | Verified training venv/profile needs, pinned base/tokenizer revision, minimal adapter run and resource receipt |
+| FQ-14 | Train and compare the first domain adapter (SD-07) | WAIT_SMOKE_RESULT | Base/retrieval/adapter comparison: per-type scores, critical errors, grounding, abstention, latency and regressions |
+| FQ-15 | Reproduce and release the accepted adapter | WAIT_ACCEPTANCE | Second-operator reproduction; hash-keyed deploy_pack.sh GGUF release and rollback record |
+| FQ-16 | Specialist expansion and advanced training | POST_V0 | Separate proposals for specialist families, simulator examples, preference data/RL and native vision/audio |
+
+State meanings: **READY_OFFLINE** = queued preparation can proceed without a live model; **WAIT_…** = the named input/decision is outstanding; **POST_V0** = outside the initial adapter release. Ready is not running or complete. Conditional work may be prepared out of row order when its recorded dependencies are satisfied; numbering is dispatch priority, not a mandatory finish-to-start schedule.
+
+The intended first real synthetic pilot includes all five question types; calculation examples also depend on independent acceptance of FQ-01's method. A non-calculation pilot may proceed with recorded missing coverage rather than invented numerical verification. FQ-12 describes the synthetic-inclusive release; an independently approved expert-only release may be prepared for the later matched comparison without pretending the synthetic pilot ran.
+
+## Existing work to reuse
+
+- **SD-02 and SD-03 already exist for offline rehearsal:** pending review packets, bounded author/challenger orchestration and fabricated examples. Reuse the [batch runbook](SYNTHETIC_BATCH_RUNBOOK.md); do not rebuild them. Local code was inspected at Broadbridge `fed3482` and Foundry `f1790df`; both remain in draft delivery branches.
+- **Public-v1 has already run as helper evaluation:** ten agency publications, thirty questions, thirty returned Qwen answers and thirty Mistral unavailable/not-run slots. This is not the Qwen3-8B S0 baseline. The [evaluation record](PUBLIC_DOCUMENT_EVALUATION.md) describes its limitations; technical score status must be read from the review workflow before any new decision.
+- **Case batching and score aggregation already exist:** use the [first-case runbook](FIRST_CASE_RUNBOOK.md). The queue does not schedule another implementation of those tools.
+- **Source leads already exist:** the existing local research inventory (`docs/expert-outreach/DATASET_REVIEW_INVENTORY.md` on `codex/commercial-partner-strategy` at `cd421de`) distinguishes acquired originals, unreviewed samples and licensing leads. Recheck terms/credits at admission; a listed source is not cleared by this queue. The research branch is local; no published link is implied.
+- **Questionnaire and brainstorm design:** [draft PR #14](https://github.com/bHBeachsider/Broadbridge4096/pull/14) is a separate development track. Its `/discovery` route is not live at this queue revision. Case Capture A8 and the existing review page remain the available input paths.
+
+The DOE original was checked locally on this date: `packs/oil-gas/data/public-start-2026-09-24/raw/doe/DOE-HDBK-1012-92_VOL1.pdf`, 1,910,060 bytes, SHA-256 `3c4ef4ad700cfd64444677404956ec2237bb5e24e31f7e591b1767526ec0b2c9`. It remains in the primary checkout's ignored data directory; it is not added to Git here. The prior public-start intake receipt also exists. The inventory's OpenMath counts are prior receipt findings, not a new answer-quality or license audit.
+
+## Source allocation
+
+| Input family | Queue treatment | Intended use |
+| --- | --- | --- |
+| Acquired DOE fundamentals; selected steam/process-heating/pumping documents | Exact page/credit/rights review, extraction and source-family assignment | Candidate engineering explanations, evidence requests and reviewed calculation examples |
+| Existing EIA/CSB public-v1 families, related versions and derivatives | Preserve testing-only/dev status | Helper calibration and failure categories; never training examples |
+| New incident/report families | Assign family and intended split before question generation | Historical evidence exercises; distinguish after-event findings from information known at decision time |
+| Existing OpenMathInstruct-2 sample | Audit separately with provenance and attribution | General-math pipeline/control experiment; not evidence of refining expertise |
+| Bill/Norm cases, archives and recordings | Wait for actual contribution, rights and appropriate review | Candidate specialist knowledge; possession/public availability does not establish training permission |
+| Questionnaire answers and brainstorming | Interpret, confirm and triage first | Task priorities, new issues and source nominations; no automatic training admission |
+| Drawings, images, audio and CAD | Preserve originals; evaluate extraction separately | Human-checked text/evidence for current Qwen; native multimodal training remains a later model project |
+
+## Before a queued item becomes a model run
+
+Record the exact two repository commits, admitted source revisions/hashes and family history, recipe/prompt/rubric versions, permitted processing route, model/tokenizer revision, inference or training configuration, run/cost/time caps, output location and accepting reviewer. A run receipt records failures and actual costs as well as successes.
+
+For private material use the tested approved local route. If unavailable, retain the item; do not silently send it to OpenRouter. For a separately authorized public helper comparison, use the established OpenRouter selection process and refresh model/provider availability before spending. This queue makes no new claim about present pricing, model availability or current source licenses.
+
+S0-cases can run per signed case while Gate 0 coverage accumulates. Gate 0 itself still requires recorded rights/storage, a named reviewer and at least thirty case-derived questions covering brief, missing_data, calculation, grounded_explanation and abstention. S0-retrieval follows the first scored briefs and roughly twenty admitted documents, and must improve on S0-cases before training is considered.
+
+For later adapter comparison, do not compare stock Ollama's default template with a different fine-tuned template and call that an adapter effect. Re-run the base under the same pinned template/think/quantization/context settings used for the adapter; preserve the original S0 results separately. This is a new comparison configuration, not permission to rewrite the historical baseline.
+
+## Next dispatch and human inputs
+
+1. FQ-01: implement the already specified `absolute_pressure_ratio_v1` rehearsal with independent fixed vectors, explicit pressure basis and invalid-input tests. A ratio is not compressor power/sizing. This advances SD-04 software preparation; reviewer acceptance stays open.
+2. FQ-02: inspect/extract the existing DOE source into a small provenance-linked packet with extraction exceptions and blank review fields. Do not generate or approve an entire handbook's QA pairs.
+3. FQ-06 can follow without waiting for expert content, using fabricated rights/split/review failures and the existing CPU audit.
+4. Bill or another appointed reviewer chooses useful tasks and verifies the real source/method/candidate packets. Brad records rights, live processing budgets and release decisions independently.
+
+Original work packages and acceptance criteria remain in the [synthetic-data plan](superpowers/plans/2026-09-26-synthetic-expert-data.md), [expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) and [ingestion release runbook](INGESTION_PIPELINE_RUNBOOK.md). This queue organizes them; it does not mark unperformed work accepted.

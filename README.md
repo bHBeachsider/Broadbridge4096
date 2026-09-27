@@ -4,6 +4,8 @@ The authenticated [public-document scoring page](docs/PUBLIC_REVIEW_URL.md) link
 
 ## Current core SLM v0 plan
 
+[Ordered SLM work queue](docs/SLM_WORK_QUEUE.md) · [Editable task register](docs/SLM_WORK_QUEUE.csv). Offline preparation can proceed while expert inputs arrive; live generation, training and release retain their existing gates.
+
 [Infrastructure brief](output/foundry-infrastructure/SLM_Foundry_Broadbridge_Infrastructure_Brief.md) · [Editable Word brief](output/foundry-infrastructure/SLM_Foundry_Broadbridge_Infrastructure_Brief.docx) · [First-case runbook](docs/FIRST_CASE_RUNBOOK.md) · [Oil and gas pack](packs/oil-gas/README.md)
 
 Bill Hurt enters cases directly in the Broadbridge Case Capture page, without a call first. The canonical contract is `broadbridge.case_record/1`. Bill is the named reviewer. Gate 0 requires recorded rights/storage and at least 30 Section C questions with reference answers across all five types, derived from signed cases. The dedicated Broadbridge Neon project is the new system of record. The approved R2 ingestion design uses the private `broadbridge` bucket for originals/documents; scoped access and live integration still require verification. Keep the existing Claude page available until live sign-in and the export/import comparison pass the [capture app cutover procedure](docs/CAPTURE_APP.md).
@@ -36,11 +38,17 @@ adds Bill-led curriculum and technical acceptance, bounded author/challenger
 roles, independent evidence/calculation checks and a proposed 100-candidate
 pilot. [Implementation tasks](docs/superpowers/plans/2026-09-26-synthetic-expert-data.md)
 and a [blank expert worksheet](docs/templates/SYNTHETIC_EXPERT_REVIEW.md) are ready.
-Norm remains a potential specialist contributor. Runtime extensions and the pilot
-are planned, not implemented by these documents.
+Norm remains a potential specialist contributor. SD-02 pending packets and the
+SD-03 bounded runner are implemented for [offline rehearsal](docs/SYNTHETIC_BATCH_RUNBOOK.md).
+The recipes await Bill's priorities and approval; the real candidate pilot has
+not run.
 
-The immediate main-project step is [human scoring of the public-document
-sample](docs/PUBLIC_DOCUMENT_EVALUATION.md). Confirmed development failures will
+Bill starts at [Case Capture](https://broadbridge-capture.vercel.app), using
+**A · Your workflow / A8** to rank important areas and tasks, and **+ New case**
+to contribute a representative case. [Bill's starting guide](docs/BILL_START_HERE.md)
+explains the choices and the separate scoring/review steps. His priorities and
+[human scoring of the public-document sample](docs/PUBLIC_DOCUMENT_EVALUATION.md)
+are the next human inputs. Confirmed development failures will
 guide new training families; the existing testing-only families stay excluded.
 Synthetic data does not replace signed-case Gate 0, the baseline comparisons,
 source-rights review or explicit compute authorization.

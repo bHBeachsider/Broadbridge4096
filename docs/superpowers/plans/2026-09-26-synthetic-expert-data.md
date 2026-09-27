@@ -41,9 +41,9 @@ and source admission determine elapsed time. No stage bypasses original Gate 0.
 | ID | Deliverable | Depends on | Owner | Planning effort | State |
 | --- | --- | --- | --- | --- | --- |
 | SD-00 | Workflow, expert worksheet and project links | Brad's direction | Implementation controller | This update | Prepared |
-| SD-01 | Confirmed development failures and initial recipes | Human public review | Bill; Brad for rights/scope | 1-2 review sessions | Awaiting review |
+| SD-01 | Ranked expert priorities, confirmed development failures and initial recipes | Bill's workflow input and human public review | Bill; Brad for rights/scope | 1-2 review sessions | Awaiting review |
 | SD-02 | Offline review-packet and holdout rehearsal | SD-00; fabricated fixtures permit preparation alongside SD-01 | Foundry implementation | 1-2 engineering days | Implemented offline; draft |
-| SD-03 | Bounded author/challenger orchestration | SD-02; SD-01 before real generation | Foundry implementation, domain binding | 1-2 engineering days | Planned |
+| SD-03 | Bounded author/challenger orchestration | SD-02; SD-01 before real generation | Foundry implementation, domain binding | 1-2 engineering days | Implemented offline; draft |
 | SD-04 | Independently checked calculation templates | SD-01, SD-02 | Qualified reviewer, implementation | 1-2 engineering days plus expert review | Planned |
 | SD-05 | Up to 100 candidates with complete dispositions | SD-01 to SD-04; admitted sources and run budget | Bill; Brad for external processing | 2-4 review sessions; measure actual time | Not run |
 | SD-06 | Reviewed immutable batch and CPU audit | SD-05 | Brad; Bill for technical acceptance | 0.5-1 engineering day | Not run |
@@ -56,7 +56,8 @@ eligible families produce a smaller pilot, not forced repetition or acceptance.
 
 ## File ownership
 
-SD-02 packet and rehearsal paths are implemented; SD-03 onward remain planned.
+SD-02 and SD-03 paths are implemented for offline rehearsal. SD-04 onward remain
+planned; the two provisional recipes still await Bill's priorities and approval.
 
 | Repository | Existing integration | Planned files |
 | --- | --- | --- |
@@ -65,6 +66,7 @@ SD-02 packet and rehearsal paths are implemented; SD-03 onward remain planned.
 | Broadbridge4096 | Domain ingestion policy, canonical case adapter, existing release bridge | `packs/oil-gas/synthetic/recipes.yaml`, `rubric.md`, `prompts/author.md`, `prompts/challenger.md`: domain policy only |
 | Broadbridge4096 | Existing pack tests | `packs/oil-gas/scripts/synthetic_checks.py`, `packs/oil-gas/tests/test_synthetic_checks.py`: domain calculation checks |
 | Broadbridge4096 | Existing helper rehearsal | `scripts/research/rehearse_synthetic_experts.py`, `scripts/research/test_rehearse_synthetic_experts.py`: fabricated end-to-end rehearsal |
+| Broadbridge4096 | SD-02 fabricated sources | `scripts/research/rehearse_synthetic_batch.py`, `scripts/research/test_rehearse_synthetic_batch.py`: two-job SD-03 mock run and blocked release |
 
 Private runs belong under ignored `packs/oil-gas/outputs/` or approved private
 artifact storage. Public inputs use the public companion pack with explicit
@@ -90,6 +92,7 @@ remains. These are regression/document checks, not tests of the future runtime.
 
 **Files:** original `output/openrouter-public-evaluation/public-v1-live/REVIEW_INSTRUCTIONS.md`, `scorecard_*.md`, `scores.csv`; blank `docs/templates/SYNTHETIC_EXPERT_REVIEW.md`.
 
+- [ ] Bill ranks his top areas/tasks, importance, evidence, exclusions and specialist needs in Case Capture Part A/A8 or the blank [priority worksheet](../../templates/EXPERT_PRIORITY_INPUT.md). Brad records the decision and returns the proposed curriculum to Bill for review. Current recipe topics are not approved priorities.
 - [ ] Bill reads original packets and records independent 0/1/2 scores, critical flags, evidence, name and date. Brad may screen first. Assistant triage is not human acceptance.
 - [ ] Resolve disputed references through a new protocol version if material; do not silently change a benchmark after seeing answers.
 - [ ] Run the existing offline aggregator from the Broadbridge checkout:
@@ -106,7 +109,7 @@ outputs are availability findings, not observed technical errors.
 - [ ] Name an independent qualified reviewer when the accepting reviewer authored the answer or substantive correction. An unfilled assignment remains pending.
 - [ ] Independently review each calculation template's assumptions, units/basis, valid ranges, fixed reference results and tolerance.
 
-**Acceptance:** reviewed failure categories and recipe versions, with rights and
+**Acceptance:** Bill's recorded priorities, reviewed failure categories and recipe versions, with rights and
 external-processing authorization recorded separately. No selected teacher is
 inferred from the present incomplete paired comparison.
 
@@ -130,17 +133,26 @@ independent acceptance or training release.
 
 ## SD-03: Bounded generation and challenge
 
-**Planned interface:** `run_batch(plan, *, author, challenger, verifier, output_root) -> dict` in `src/ingestion/synthetic_batch.py`. Roles are injected callables. The plan binds sources, eligibility, recipes, models/settings, candidate/call caps and budget. Live execution requires an explicit mode and approved plan hash.
+**Implemented interface:** `run_batch(plan, *, author, challenger, verifier, output_root) -> dict` in `src/ingestion/synthetic_batch.py`. Roles are injected callables. The plan binds sources, eligibility, recipes, models/settings, candidate/call caps and a reported-cost stop. Live execution requires an explicit mode and approved plan hash. The CLI only checks plans; the domain rehearsal requires `--mock`.
 
-- [ ] Write mocked tests for success, challenge objections, malformed output, timeout, unknown cost, call cap, restart and duplicate immutable attempt writes. Require retained failures and no automatic retry or cloud fallback.
-- [ ] Test confidential ancestor policy and historical holdout rejection before either model callable. Add canary hindsight/reference strings to fabricated cases and assert absence from student/generation inputs.
-- [ ] Implement the sequential runner using existing transport/policy controls. Preserve every attempt and receipt. It must not turn uploads into model calls or `assist.py` into a training trigger.
-- [ ] Add domain recipes/prompts/rubric and a fabricated rehearsal. The challenger cites objections; it cannot approve. Only SD-01-approved recipes enter real runs.
-- [ ] Run focused tests and `python -m pytest scripts/research/test_rehearse_synthetic_experts.py -q`. Require pending packets and zero releases without human decisions.
-- [ ] Open separate draft engine/domain PRs with dependency hashes and named files; keep one implementation lane.
+- [x] Write mocked tests for success, challenge objections, malformed output, timeout, unknown cost, call cap, restart and duplicate immutable attempt writes. Require retained failures and no automatic retry or cloud fallback.
+- [x] Test confidential ancestor policy and historical holdout rejection before either model callable. Add canary hindsight/reference strings to fabricated cases and assert absence from student/generation inputs.
+- [x] Implement the sequential runner using existing transport/policy controls. Preserve every attempt and receipt. It must not turn uploads into model calls or `assist.py` into a training trigger.
+- [x] Add domain recipes/prompts/rubric and a fabricated rehearsal. The challenger cites objections; it cannot approve. Only SD-01-approved recipes enter real runs.
+- [x] Run focused tests and both domain synthetic rehearsal tests. Require pending packets and zero releases without human decisions.
+- [x] Open separate draft engine/domain PRs with dependency hashes and named files; keep one implementation lane. [Foundry #11](https://github.com/bHBeachsider/slm-foundry/pull/11) and [Broadbridge #10](https://github.com/bHBeachsider/Broadbridge4096/pull/10); see the [delivery index](../../INGESTION_DELIVERY_INDEX.md).
 
 **Acceptance:** a second operator reproduces mock dispositions; CI makes no live
 call. A documented manual run can bind sources/settings/budget without executing.
+
+**Limits:** injected functions are trusted adapters, not a sandbox. Confidential
+live generation is held for a separately tested local adapter. The public adapter
+reuses existing OpenRouter policy/transport without executing it here. Reported
+cost can exceed its stop by one completed call; unknown cost stops immediately.
+Existing output directories refuse restart rather than replay attempts. Exact
+label guards cannot detect paraphrased leakage or omitted private labels; a real
+case needs the trusted decision-time projection. New calculated values remain
+held for SD-04, and final release evidence integration remains SD-06.
 
 ## SD-04: Calculation path
 
@@ -211,3 +223,12 @@ No model call, expert sign-off or training occurred. The trusted caller must
 supply complete history/current source snapshots; packet hashes are not signatures.
 The new [review URL](../../PUBLIC_REVIEW_URL.md) supports SD-01 human scoring.
 Its Preview migration is separate from production; real human scores remain blank.
+
+SD-03 offline continuation: 42 batch tests; 136 focused Foundry tests; full
+Foundry CPU suite 609 passed, 2 skipped. Both domain rehearsal files: 5 passed;
+full Broadbridge Python suite: 314 passed, 106 gated integration tests skipped
+with database URLs unset. Direct mock rehearsal: four role calls, two pending
+packets, zero external calls, release blocked. Offline plan CLI and new local
+links pass. See the [runbook](../../SYNTHETIC_BATCH_RUNBOOK.md) for commands and
+observed limitations. Bill's priority input, scoring and recipe approval remain
+open. No real case, source right or expert decision was supplied by the fixtures.

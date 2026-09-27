@@ -1,0 +1,31 @@
+schema: broadbridge.synthetic_curriculum/1
+version: draft-1
+priority_decision:
+  status: awaiting_bill
+  technical_reviewer: Bill Hurt
+  decision_record: null
+  input_route: "Case Capture > A / Your workflow > A8; ranked areas, tasks and exclusions"
+recipes:
+  - recipe_id: missing-pressure-basis
+    version: draft-1
+    task_type: missing_data
+    proposed_area: pumps and measurement quality
+    status: draft
+    fixture_source: SYN-EXPERT-001
+    allowed_variations: "Mock equipment tags only; no invented pressure or calculation."
+    boundary: "Ask for pressure value, units and basis; no operating instruction."
+  - recipe_id: missing-exchanger-duty
+    version: draft-1
+    task_type: missing_data
+    proposed_area: heat transfer and incomplete evidence
+    status: draft
+    fixture_source: SYN-EXPERT-002
+    allowed_variations: "Mock equipment tags only; do not infer temperatures or duty."
+    boundary: "Identify missing evidence; no diagnosis or operating instruction."
+coverage:
+  brief: requires_expert_recipe
+  missing_data: fabricated_rehearsal_only
+  calculation: held_for_independently_reviewed_SD04_artifact
+  grounded_explanation: requires_expert_recipe
+  abstention: requires_expert_recipe
+release_rule: "Draft proposals and mock receipts are not Bill's approval or training admission."

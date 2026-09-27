@@ -22,7 +22,8 @@ def test_parent_connection_phase_cannot_inherit_host_routing(monkeypatch, tmp_pa
     monkeypatch.setenv("PGPASSFILE", "untrusted-password-file")
     seen = []
 
-    def local_phase(*_args):
+    def local_phase(*_args, public_review=False, review_only=False):
+        assert public_review is False and review_only is False
         seen.extend(key for key in os.environ if key.upper().startswith("PG"))
         if fail:
             raise RuntimeError("synthetic failure before connecting")
