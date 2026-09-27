@@ -1,0 +1,26 @@
+{
+  "whisper": {
+    "repo": "Systran/faster-whisper-small.en",
+    "revision": "d1d751a5f8271d482d14ca55d9e2deeebbae577f",
+    "license": "MIT"
+  },
+  "kokoro": {
+    "license": "Apache-2.0 (weights), MIT (ONNX runtime wrapper)",
+    "voice": "af_sarah",
+    "files": {
+      "kokoro-v1.0.onnx": {
+        "url": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/kokoro-v1.0.onnx",
+        "sha256": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a"
+      },
+      "voices-v1.0.bin": {
+        "url": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/voices-v1.0.bin",
+        "sha256": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+      }
+    }
+  },
+  "interviewer": {
+    "model": "qwen3:1.7b",
+    "digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+    "license": "Apache-2.0"
+  }
+}

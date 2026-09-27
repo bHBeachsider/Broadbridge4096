@@ -1,0 +1,6 @@
+**
+!Dockerfile
+!requirements.txt
+!requirements.lock.txt
+!local_voice.py
+!models.json
