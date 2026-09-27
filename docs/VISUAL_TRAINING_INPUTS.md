@@ -56,9 +56,13 @@ an admitted training row. Source permissions, confidentiality, actual reviewer
 sign-off, held-out family history and release approval remain mandatory. Keep
 multiple pages/crops/revisions from the same source family in the same split.
 
-The next work is to score the local pilot and decide whether targeted crops,
-specialist symbol detection or native CAD extraction are needed. Do not train
-the vision model simply because it produced syntactically valid output.
+The [v2 runbook](VISION_V2_RUNBOOK.md) separates labels, direct connections and
+focused transcription. Connection proposals are compared against independently
+frozen graphs; a second model agreeing is not a reference. The current checker
+compares graphs and does not independently trace pixels. Real engineering sheets
+need a reviewed trace or source-bound CAD topology. No reference means no pass.
+Even a matching synthetic graph remains outside training until the separate
+rights, normalization, engineering-review and release steps are completed.
 
 Sources: [IBM model scope](https://ollama.com/ibm/granite-docling:258m),
 [Qwen vision model card](https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct).

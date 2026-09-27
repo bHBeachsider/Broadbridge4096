@@ -1,0 +1,232 @@
+{
+  "schema": "broadbridge.vision_v2_receipt/1",
+  "date": "2026-09-27",
+  "foundry_commit": "41c17801618d22b736eec8d1a7bf3dd427756189",
+  "job_sha256": "d85e3bd33eda4618a3a84f941e707abe078d82333614307de6f30b3692953ccb",
+  "references_sha256": "15425e5128c2171434e85374e9492341147c223653295e21ab881f5ceb8f5a29",
+  "fixture_receipt_sha256": "0c2305dc21ec82f999f9948ee418a2b6fa182e7db8ba3d4bba5adce1ca25dd59",
+  "runtime_sha256": "a1b36e1e0e141d0c3d634272274bd8f6de7692c597ca8a6a76a779eb8b667fae",
+  "checks": {
+    "engineering_review": "pending",
+    "job_sha256": "d85e3bd33eda4618a3a84f941e707abe078d82333614307de6f30b3692953ccb",
+    "note": "Pass means a fixture check only. Formula meaning, rights and training release remain separately reviewed.",
+    "rows": [
+      {
+        "check_status": "pass",
+        "elapsed_seconds": 71.915,
+        "extra_labels": [],
+        "id": "syn-crossing-labels_v2",
+        "missing_labels": [],
+        "result_sha256": "3ca72de075e62414725e2e62ce17ee1b6c3914cdcee86a879df36a793666d7bf",
+        "status": "completed",
+        "unreadable_count_correct": true
+      },
+      {
+        "check_status": "fail",
+        "connectivity": {
+          "direction_errors": [],
+          "expected_count": 5,
+          "input_sha256": "250dbfd6ab28c42ad6d488dc6748006a7387169be99f24c4101226e73c3a4122",
+          "missing_edges": [
+            [
+              "A-101",
+              "B-101"
+            ],
+            [
+              "G-201",
+              "J-201"
+            ]
+          ],
+          "proposal_sha256": "b963ba1f7f83dec0f9dacf56c3627a28848963c7e7da557bed22859e7a03bf80",
+          "proposed_count": 7,
+          "reason": "Direct graph mismatch",
+          "reference_sha256": "acd13ce3526628955fd5c83c723acefacd8c59a54cf98e35bc792ad2ab04a39c",
+          "review_status": "pending",
+          "schema": "foundry.connectivity_check/1",
+          "status": "fail",
+          "training_approved": false,
+          "unexpected_edges": [
+            [
+              "A-101",
+              "C-101"
+            ],
+            [
+              "B-101",
+              "C-101"
+            ],
+            [
+              "E-201",
+              "G-201"
+            ],
+            [
+              "F-201",
+              "G-201"
+            ]
+          ]
+        },
+        "elapsed_seconds": 96.041,
+        "id": "syn-crossing-connectivity_v2",
+        "result_sha256": "9edc46b88e24f31642b93d08ed97edb50f4f88b8f9b82d16d40e158649663ce8",
+        "status": "completed"
+      },
+      {
+        "check_status": "pass",
+        "elapsed_seconds": 63.068,
+        "extra_labels": [],
+        "id": "syn-unreadable-labels_v2",
+        "missing_labels": [],
+        "result_sha256": "679dbd68e5349eb735d621f67b7935c87f059ddc4e0ae63991898b4e8290d9c3",
+        "status": "completed",
+        "unreadable_count_correct": true
+      },
+      {
+        "check_status": "pass",
+        "elapsed_seconds": 59.312,
+        "extra_labels": [],
+        "id": "syn-direction-labels_v2",
+        "missing_labels": [],
+        "result_sha256": "011e993d4f3193fc660c9aa73e35e6f6db15e8fc9a27ec20c14f49886cfe0a49",
+        "status": "completed",
+        "unreadable_count_correct": true
+      },
+      {
+        "check_status": "needs_review",
+        "connectivity": {
+          "direction_errors": [],
+          "expected_count": 1,
+          "input_sha256": "33f742796a5248db2c9d79dd53d0a56c0c9553af21cb0ad6d6df33dc5a8f724f",
+          "missing_edges": [],
+          "proposal_sha256": "06320c4e26ac5ef9ab43246b19b3023ddbe49c1f2f9ebfb6d516498b96e7d545",
+          "proposed_count": 1,
+          "reason": "Model reported uncertainty",
+          "reference_sha256": "d64218a6129e93ec46ddca508dbe97e926f5f43085f53c4c92403dd1f51437e7",
+          "review_status": "pending",
+          "schema": "foundry.connectivity_check/1",
+          "status": "needs_review",
+          "training_approved": false,
+          "unexpected_edges": []
+        },
+        "elapsed_seconds": 60.7,
+        "id": "syn-direction-connectivity_v2",
+        "result_sha256": "31c18920e81fc08743212610782822bba607d36c5652e3cd712fbe36b855917b",
+        "status": "completed"
+      },
+      {
+        "check_status": "pass",
+        "elapsed_seconds": 58.204,
+        "id": "syn-basis-transcription_v2",
+        "missing_text": [],
+        "result_sha256": "125bf2e6227904c61f021d7e35f7c01c9ff4921abf23a39390bb4d33de0bfa55",
+        "status": "completed"
+      },
+      {
+        "check_status": "fail",
+        "connectivity": {
+          "direction_errors": [],
+          "input_sha256": "0939d372513dc8e41d069e96a2776d8184bb083c9f4dbd6cf621724d1654ba4e",
+          "missing_edges": [],
+          "proposal_sha256": "2da40d47d5abb83451520cd9e48d35cfe7447087f9dfd11319b280f0f8408e3d",
+          "reason": "Proposed endpoint not in reference",
+          "reference_sha256": "c0aa1d115ab2024a781027b1d4601c613ea5c8301f0bc806e938a56a5d0a861c",
+          "review_status": "pending",
+          "schema": "foundry.connectivity_check/1",
+          "status": "fail",
+          "training_approved": false,
+          "unexpected_edges": []
+        },
+        "elapsed_seconds": 73.986,
+        "id": "syn-basis-connectivity_v2",
+        "result_sha256": "5fc36cb53846fc8822ce85c59cb274227dedd27a7e0c401b1fc98db4dc1ac0e2",
+        "status": "completed"
+      },
+      {
+        "check_status": "needs_review",
+        "elapsed_seconds": 12.546,
+        "id": "doe-rho-formula_v2",
+        "result_sha256": "29834c37d2852563fdfb49a44c860114213f5aae223bd8ba66f5d051b9e3fd3c",
+        "status": "completed"
+      },
+      {
+        "check_status": "needs_review",
+        "elapsed_seconds": 12.927,
+        "id": "doe-exponent-formula_v2",
+        "result_sha256": "09357d716a3a77942ae202056f255194b795ae40d125246004b85a00533ccad2",
+        "status": "completed"
+      }
+    ],
+    "schema": "broadbridge.vision_development_report/2",
+    "training_approved": false
+  },
+  "model_pins": {
+    "ibm/granite-docling:258m": "sha256:c4bb6f55fc69f97a51fab35408776a098c6836231b022149e66ed05084d33125",
+    "qwen3-vl:4b-instruct-q4_K_M": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b"
+  },
+  "code_sha256": {
+    "foundry/src/ingestion/local_vision.py": "0d92c17bc01a604202d0adbe9fb70a2137c77f23c82919657bd22fab7698c16b",
+    "foundry/src/ingestion/visual_connectivity.py": "720c84c20d5a36924208d44b17d7d199de9e8495e0eede8c24b254d98d44431b",
+    "broadbridge/scripts/research/vision/prepare_v2.py": "1a859af0b30d3226aabda1dbbe25a6ba0ea04b5fd3fe6eb98aa8b06fe58643df"
+  },
+  "profiles": {
+    "labels_v2": {
+      "temperature": 0.7,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 256,
+      "num_thread": 8,
+      "top_p": 0.8,
+      "top_k": 20,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 1.5
+    },
+    "connectivity_v2": {
+      "temperature": 0.7,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 384,
+      "num_thread": 8,
+      "top_p": 0.8,
+      "top_k": 20,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 1.5
+    },
+    "transcription_v2": {
+      "temperature": 0.7,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 256,
+      "num_thread": 8,
+      "top_p": 0.8,
+      "top_k": 20,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 1.5
+    },
+    "formula_v2": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 256,
+      "num_thread": 8
+    }
+  },
+  "request_seconds_total": 508.699,
+  "qwen_request_seconds_mean": 69.032,
+  "completed": 9,
+  "scheduled": 9,
+  "check_counts": {
+    "pass": 4,
+    "fail": 2,
+    "needs_review": 3
+  },
+  "peak_container_memory_bytes_including_cache": 9036910592,
+  "peak_container_memory_gib_including_cache": 8.416,
+  "vision_container_stopped": true,
+  "training_approved": false,
+  "training_rows_admitted": 0,
+  "source_images_committed": false,
+  "output_relative_path": "packs/oil-gas/outputs/vision-v2-2026-09-27",
+  "tests": {
+    "foundry_passed": 215,
+    "broadbridge_passed": 375,
+    "broadbridge_skipped": 113
+  }
+}
