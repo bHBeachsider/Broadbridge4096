@@ -73,6 +73,18 @@ Enforce access in every page, server action, export, media download and backgrou
 
 ## Verbal capture
 
+### Hosting decision: local Docker pilot
+
+Brad chose Docker on his local Windows machine for the single-contributor pilot on 27 September. Railway remains an optional later host; do not create Railway resources or introduce a paid inference service. Existing Vercel, Broadbridge Neon and private R2 remain the website, record store and original-media store.
+
+Use an outbound-only local worker: the authenticated website records a bounded job; the Docker worker claims it over the existing secure connection, reads authorized R2 objects, and publishes results for the website to retrieve. Bill's browser does not connect to Brad's localhost. No public desktop port, raw Ollama exposure or new tunnel is required for this turn-by-turn job design. Scoped worker access, leases, retries, cancellation and revision checks still require implementation/testing.
+
+Bill may save a recording while the PC is off. The website shows processing queued until the worker returns. Guided spoken follow-ups require the PC awake, Docker and the worker running, plus available local transcription, interviewer and speech-generation models. Use an explicit follow-up request initially; do not promise continuous real-time conversation before latency and accuracy are measured.
+
+The existing Qwen3-8B endpoint on localhost:11435 is a tunnel to EC2, not a model installed on Brad's PC. Docker alone does not provide a local model or GPU. Benchmark an explicitly configured CPU/local-model path separately; do not redirect the existing Foundry client to the empty Windows Ollama on :11434. If local models are unavailable, keep recording and typed/manual review usable. No EC2 start or external-model fallback is implied by the Docker decision.
+
+Local compute avoids a new hosting subscription; existing storage/network charges and the PC's resources still apply. The recorder, worker and guided follow-ups are planned functionality, not deployed by this decision.
+
 ### Supplied transcripts and passage review
 
 Accept pasted text and uploaded UTF-8 TXT, VTT and SRT transcripts. Preserve the original file/hash, speaker labels and timestamps when supplied. Plain TXT without timestamps remains untimed; never fabricate positions.

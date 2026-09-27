@@ -124,6 +124,10 @@ Pause/stop and ordinary save controls remain distinct. Navigating with an active
 
 ## Recording and model boundary
 
+The pilot processing worker runs in Docker on Brad's PC; Railway is deferred. Bill continues to use the authenticated website. Jobs/results pass through the existing backend; his browser never needs access to Brad's localhost. When the worker is offline, display "Recording saved. Processing will resume when the local worker is available." Do not show a successful transcription or follow-up until its result exists.
+
+Guided intake is a separate optional mode within the verbal workspace. Initially offer **Ask me a follow-up**, **Keep talking**, **Skip** and **Finish**. Show and optionally speak one neutral question at a time; keep original speaker turns and AI prompts separately attributed. An unavailable interviewer must offer Save/continue recording, not silently switch to an external model. Local processing availability and response time need real acceptance tests before the interface promises live guidance.
+
 Browser recording uses MediaRecorder and microphone capture, not SpeechRecognition: some speech-recognition implementations may use a remote service, which would conflict with the intended explicit processing policy. Browser recording does not itself transcribe or understand an engineering story.
 
 Transcription and structured interpretation are separate jobs. Reuse the private local-only Foundry path after actual speech/normalization acceptance; no EC2 is started automatically. With the local model route unavailable, keep proposals pending and allow manual passage mapping. Any cloud path would require separate exact-input permission and the user's provider-selection policy.

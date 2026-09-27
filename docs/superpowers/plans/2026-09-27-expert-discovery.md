@@ -21,6 +21,7 @@ Status: written plan for Brad's review after his approval of the initial design 
 - Dedicated Broadbridge database only: pooled `BROADBRIDGE_DATABASE_URL` at runtime; matching `DATABASE_URL_UNPOOLED` only for migrations.
 - Development migrations and fixtures use a verified dev branch or owned local PostgreSQL, never production.
 - No EC2, training, production migration/deployment or invitation email without the existing separately recorded authorization.
+- Pilot host decision: Docker on Brad's Windows PC. Railway is deferred; no new hosting subscription or paid model service. Use the existing website/backend for outbound worker jobs/results, without public desktop/Ollama ports. The existing localhost:11435 endpoint remains EC2 inference; it is not local PC compute.
 - No private audio/transcript sent to OpenRouter or another external inference service by default; unavailable local processing remains visible.
 - Pilot limits: 15 minutes per audio clip (recorded or uploaded), 50 MiB per audio upload, 1 MiB per supplied transcript and 256 KiB per response revision. Segment/paginate long transcripts; never silently truncate.
 - Do not persist secrets, signed URLs, real participant responses or recordings in public Git or application logs.
@@ -180,6 +181,7 @@ The test fixture supplies the MediaRecorder/getUserMedia fakes and checks every 
 - Foundry: create `src/ingestion/transcript_segments.py`, `schemas/transcript_segments.schema.json`, `tests/test_transcript_segments.py`.
 - Broadbridge: create `packs/oil-gas/scripts/discovery_worker.py`, `tests/test_discovery_worker.py`; extend media/job SQL in its next migration.
 - Create `apps/capture/lib/discovery/transcript-repository.ts`, `tests/discovery-transcripts.test.ts`.
+- Create domain worker Docker packaging in `infra/discovery/Dockerfile`, `infra/discovery/compose.yaml`, `infra/discovery/.env.example`; pin the Foundry dependency revision and runtime packages. Inject secrets at runtime; do not copy repository .env files, private data or credentials into the image/build context.
 
 **Interfaces**
 - `parse_transcript(data: bytes, *, format: str) -> dict`: TXT/VTT/SRT input; output `foundry.transcript_segments/1` with source hash and segment IDs, exact text, optional start/end seconds and optional speaker labels.
@@ -195,6 +197,7 @@ assert result["segments"][0]["text"] == "SYN: this is an untimed brainstorm."
 - [ ] Run `python -m pytest tests/test_transcript_segments.py -q` in Foundry and the domain worker tests before implementation; require intended failures.
 - [ ] Preserve supplied timings exactly; reject invalid ranges rather than repairing them silently. Label unsupplied speakers unknown. Split oversized text into documented, source-offset-bearing segments without dropping bytes.
 - [ ] Implement the domain worker using existing job leases, private storage and database publication patterns. Record parser/ASR versions, artifact manifest hashes, source checksum, attempts and reason for unavailable/rejected states. Only configured pre-provisioned local artifacts may run.
+- [ ] Package the worker for local Docker with outbound-only job polling, scoped database/R2 access, bounded scratch/model-cache mounts and clean stop/restart. Test host offline, expired lease, duplicate completion, withdrawal before processing and result publication after reconnect. Retain uploaded originals in R2; do not depend on the container filesystem as the system of record. Expose no desktop port for remote participants.
 - [ ] Add actual speech acceptance as a separately executed local test: a permitted fabricated recording, independently written transcript, declared model/artifact hashes and measured errors on numbers/units/negation/tags. Simulated ASR cannot close this check. No EC2 is authorized; if CPU artifacts are unavailable, report this as a remaining live-processing prerequisite.
 - [ ] Re-run Foundry extraction/Docling regression tests and domain worker tests; open separate draft Foundry/domain PRs with explicit dependency heads. No actual participant recording is a Git fixture.
 
@@ -221,6 +224,7 @@ The test imports an exact fabricated transcript fixture; no private source text.
 - [ ] Implement schema/span checks and preserve all unassigned segments in a remaining-passages queue. A matching quote does not prove interpretation truth; human confirmation remains required.
 - [ ] Use the existing local-only model client with `think=False`, schema-constrained output and explicit configured model route. Do not call it merely because a recording arrived. Job authorization/consent and current source state are checked before each call; no cloud or second-model retry.
 - [ ] If local inference is unavailable, manual passage-to-question/new-issue mapping is functional and suggestions remain unavailable. Do not generate canned responses and label them model interpretation.
+- [ ] For guided voice intake, reuse the authenticated turn-by-turn job path: persist each participant turn and the distinct interviewer question, allow an explicit follow-up request, and return one neutral question plus optional local speech audio. Keep user contributions, AI suggestions and confirmed interpretations distinct. Test no leading diagnosis, no repeated questioning after Skip/Finish, cancellation, worker offline and preservation of numbers/units/uncertainty. Benchmark a separately configured local CPU interviewer and speech path; do not start EC2 or repoint the existing Foundry serving defaults to Windows :11434.
 - [ ] Implement per-card source playback/text, Accept/Edit/Move/New issue/Reject/Later controls. A contradictory proposal cannot silently overwrite a prior answer; show both and record resolution. Re-transcription invalidates pending/accepted derivative references until re-reviewed.
 - [ ] Run validator/domain/app tests, confirm pending proposals cannot create signed cases or training examples, and record a real normalization acceptance result separately from mocked transport tests. Commit only scoped files.
 
