@@ -1,0 +1,10 @@
+# Explicit installation only. Remove this override after public model downloads.
+services:
+  speech:
+    environment:
+      HF_HUB_OFFLINE: "0"
+    volumes:
+      - speech-models:/models
+networks:
+  default:
+    internal: false
