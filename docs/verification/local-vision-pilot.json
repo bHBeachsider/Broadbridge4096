@@ -1,0 +1,375 @@
+{
+  "date": "2026-09-27",
+  "scope": "Local CPU development pilot; no engineering acceptance",
+  "engine_commit": "85dc97772f8471319fbc6709a9bcd70ba8cb5536",
+  "engine_pr": "https://github.com/bHBeachsider/slm-foundry/pull/12",
+  "domain_base_commit": "96b6c2271e1b0c2e6682b0eb7043a237573cf35e",
+  "job_sha256": "ed3d2c0f2a689bee722f34062166965884ed3b0ca72a8500db357a3c692947f7",
+  "references_sha256": "e28301080cb05f0974b6856e64e64d9aeb5a3928d06a4ef0572d2d3b3f789f95",
+  "fixture_receipt": {
+    "doe_packet_receipt_sha256": "61f2a61c756db38d35100b4192dbddf3b50855279615d08a76abcfdb27ae7df1",
+    "doe_source_sha256": "3c4ef4ad700cfd64444677404956ec2237bb5e24e31f7e591b1767526ec0b2c9",
+    "font_sha256": "b3658eadae55e682b5f69eb64c439c1ecc8f196c0bb8d4756d145d13bc86476a",
+    "job_sha256": "ed3d2c0f2a689bee722f34062166965884ed3b0ca72a8500db357a3c692947f7",
+    "pillow_version": "12.3.0",
+    "schema": "broadbridge.vision_fixture_receipt/1",
+    "synthetic_size": [
+      1024,
+      640
+    ],
+    "training_approved": false
+  },
+  "pins": {
+    "ibm/granite-docling:258m": "sha256:c4bb6f55fc69f97a51fab35408776a098c6836231b022149e66ed05084d33125",
+    "qwen3-vl:4b-instruct-q4_K_M": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b"
+  },
+  "ollama_version": "0.34.4",
+  "runtime_receipt_sha256": {
+    "results-v1": "c30531836b0ddad3537fc5f1678215df016dd3858c888cbbcb78fc7f6b68332a",
+    "results-remaining": "c30531836b0ddad3537fc5f1678215df016dd3858c888cbbcb78fc7f6b68332a",
+    "results-final-page": "6abdebcda8dc48a6ea332a5d138676069fd951fe527727f367f4e78786682c8a"
+  },
+  "scheduled": 14,
+  "attempted": 14,
+  "outcomes": {
+    "granite": {
+      "counts": {
+        "completed": 7
+      },
+      "elapsed_seconds": [
+        46.802,
+        50.93,
+        43.748,
+        31.665,
+        30.506,
+        28.862,
+        32.374
+      ],
+      "mean_seconds": 37.841
+    },
+    "qwen": {
+      "counts": {
+        "failed": 3,
+        "incomplete": 3,
+        "completed": 1
+      },
+      "elapsed_seconds": [
+        240.144,
+        240.123,
+        240.129,
+        187.557,
+        180.626,
+        88.503,
+        173.225
+      ],
+      "mean_seconds": 192.901
+    }
+  },
+  "settings": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192,
+    "granite_token_cap": 2048,
+    "qwen_token_cap": 1024,
+    "timeout_seconds": 240,
+    "cpu_limit": 8,
+    "model_ram_cap_gib": 10,
+    "think": false,
+    "keep_alive": 0
+  },
+  "resource_measurement": {
+    "cgroup_memory_peaks_bytes": [
+      5776179200,
+      5771714560,
+      5773131776
+    ],
+    "max_peak_gib": 5.379,
+    "note": "Model-service cgroup memory including cache; local desktop measurement, not controlled performance certification."
+  },
+  "source_chain_verified": true,
+  "same_frozen_job_across_selections": true,
+  "coverage": {
+    "critical_error_count": null,
+    "engineering_verified": false,
+    "job_sha256": "ed3d2c0f2a689bee722f34062166965884ed3b0ca72a8500db357a3c692947f7",
+    "native_text_coverage": [
+      {
+        "engineering_verified": false,
+        "found": 3,
+        "id": "doe-035",
+        "missing": [],
+        "total": 3
+      },
+      {
+        "engineering_verified": false,
+        "found": 3,
+        "id": "doe-036",
+        "missing": [],
+        "total": 3
+      },
+      {
+        "engineering_verified": false,
+        "found": 4,
+        "id": "doe-037",
+        "missing": [],
+        "total": 4
+      }
+    ],
+    "note": "Literal coverage is a debugging aid, not engineering accuracy. Missing, invalid and truncated outputs remain in the denominator.",
+    "rows": [
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 46.802,
+        "engineering_review": "pending",
+        "id": "granite-doe-035",
+        "result_sha256": "076ea6aab265f13017adf28c6567ad8c6786030edaee0ff39d0ad2ccaf501d43",
+        "status": "completed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 3,
+          "missing": [],
+          "total": 3
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 50.93,
+        "engineering_review": "pending",
+        "id": "granite-doe-036",
+        "result_sha256": "829f5464a38c61e73e37a7fabf62a2df7ff1c90c633c32251991ab577d7fa114",
+        "status": "completed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 3,
+          "missing": [],
+          "total": 3
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 43.748,
+        "engineering_review": "pending",
+        "id": "granite-doe-037",
+        "result_sha256": "b8fbc3989840c9765682cd6ac6b8d2387f9163f00ceb7eae708f8c3715f97d87",
+        "status": "completed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 4,
+          "missing": [],
+          "total": 4
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 31.665,
+        "engineering_review": "pending",
+        "id": "granite-syn-crossing",
+        "result_sha256": "cb3dbd8bb739aa1440d85b5b1e44cd0345745977c1cce160b8c16a082512bab1",
+        "status": "completed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 0,
+          "missing": [
+            "A-101",
+            "B-101",
+            "C-101",
+            "D-101",
+            "E-201",
+            "F-201",
+            "G-201",
+            "J-201"
+          ],
+          "total": 8
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 30.506,
+        "engineering_review": "pending",
+        "id": "granite-syn-unreadable",
+        "result_sha256": "592437b187e5a606233db4dd8d1602edf616d7cb68abdeb9280cb9ba8c83c0fb",
+        "status": "completed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 0,
+          "missing": [
+            "P-101",
+            "V-101"
+          ],
+          "total": 2
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 28.862,
+        "engineering_review": "pending",
+        "id": "granite-syn-direction",
+        "result_sha256": "33096e0adbbc85898188ae6bf1ce3bf0991be34015a23b45821f7443a79d55d9",
+        "status": "completed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 0,
+          "missing": [
+            "P-301",
+            "V-301"
+          ],
+          "total": 2
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 32.374,
+        "engineering_review": "pending",
+        "id": "granite-syn-basis",
+        "result_sha256": "4d094de8f7a8c6de063eeb0847af533d2fc24d3dd0202da8bf338680cfe4e583",
+        "status": "completed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 3,
+          "missing": [],
+          "total": 3
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 240.144,
+        "engineering_review": "pending",
+        "id": "qwen-doe-035",
+        "result_sha256": "a43a0de40f78ced9a93b0026c3a70a0ab72e99fee8cc073380a4f9e9a4a9e000",
+        "status": "failed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 0,
+          "missing": [
+            "Atmospheric Pressure",
+            "Absolute Zero Pressure",
+            "Vacuum"
+          ],
+          "total": 3
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 240.123,
+        "engineering_review": "pending",
+        "id": "qwen-doe-036",
+        "result_sha256": "26d731fe469e540175b0ae7157da4c2395099943b0e77e48ab354f88a2c89553",
+        "status": "failed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 0,
+          "missing": [
+            "65.3",
+            "146.9",
+            "14.7"
+          ],
+          "total": 3
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 240.129,
+        "engineering_review": "pending",
+        "id": "qwen-doe-037",
+        "result_sha256": "3eb93e8aa2fbacf7637ef62353644eadf22e5a68c19a165847d49cdb68e7ff81",
+        "status": "failed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 0,
+          "missing": [
+            "17.3",
+            "408",
+            "29.9",
+            "25.4"
+          ],
+          "total": 4
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 187.557,
+        "engineering_review": "pending",
+        "id": "qwen-syn-crossing",
+        "result_sha256": "45710ee8e247c8f4b9e337631e15effe73f74477b0a9cea58fc4968eecbfbdb2",
+        "status": "incomplete",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 8,
+          "missing": [],
+          "total": 8
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 180.626,
+        "engineering_review": "pending",
+        "id": "qwen-syn-unreadable",
+        "result_sha256": "5f6883b6dd4b183304f54f87f50ea2e54ff1c907bdb020afcfb580142a485995",
+        "status": "incomplete",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 2,
+          "missing": [],
+          "total": 2
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 88.503,
+        "engineering_review": "pending",
+        "id": "qwen-syn-direction",
+        "result_sha256": "addffbecad813de45a390011c6078335e52b428288de853906e545139974a0b6",
+        "status": "completed",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 2,
+          "missing": [],
+          "total": 2
+        }
+      },
+      {
+        "correction_minutes": null,
+        "elapsed_seconds": 173.225,
+        "engineering_review": "pending",
+        "id": "qwen-syn-basis",
+        "result_sha256": "839f06ca9519398e91907b040a9eba2b3d6d30e241bb4df56d529bfccfe9091a",
+        "status": "incomplete",
+        "text_coverage": {
+          "engineering_verified": false,
+          "found": 3,
+          "missing": [],
+          "total": 3
+        }
+      }
+    ],
+    "schema": "broadbridge.vision_development_report/1",
+    "training_approved": false
+  },
+  "tests": {
+    "foundry_new": 31,
+    "foundry_regression_passed": 177,
+    "domain_new": 12,
+    "domain_suite_passed": 371,
+    "domain_suite_skipped": 106,
+    "warning": "Pre-existing requests dependency compatibility warning"
+  },
+  "foundry_ci": {
+    "head": "85dc97772f8471319fbc6709a9bcd70ba8cb5536",
+    "python": "pass",
+    "cloudflare": "pass",
+    "container": "pass"
+  },
+  "engineering_review": {
+    "status": "pending",
+    "critical_error_count": null,
+    "correction_minutes": null
+  },
+  "side_effects": {
+    "ec2_started": false,
+    "cloud_inference": false,
+    "training_started": false,
+    "production_changes": false,
+    "training_examples_released": 0
+  },
+  "local_outputs": "packs/oil-gas/outputs/vision-pilot-2026-09-27/"
+}

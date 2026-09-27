@@ -1,0 +1,2 @@
+# Only required for deterministic local synthetic drawing generation.
+Pillow==12.3.0
