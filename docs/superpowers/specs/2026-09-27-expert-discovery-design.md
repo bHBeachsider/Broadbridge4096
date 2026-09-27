@@ -1,13 +1,15 @@
 # Expert discovery and feedback capture — proposed design
 
 Date: 27 September 2026
-Status: DRAFT FOR BRAD'S REVIEW. This is a design, not a deployed questionnaire.
+Status: concept reviewed by Brad; draft-2 incorporates his requested topic grouping and separate brainstorm workspace. Detailed implementation plan awaits review; the questionnaire is not deployed.
 Working name: Broadbridge Engineering Discovery.
-Questionnaire: [v1 draft](../../questionnaires/ENGINEERING_DISCOVERY_V1_DRAFT.md).
+Questionnaire: [categorized draft](../../questionnaires/ENGINEERING_DISCOVERY_V1_DRAFT.md).
+UI/UX: [screen and verbal-workflow handoff](../../questionnaires/ENGINEERING_DISCOVERY_UX.md).
+Implementation: [single-lane delivery plan](../plans/2026-09-27-expert-discovery.md).
 
 ## Purpose and success
 
-Extend Broadbridge's capture application with a versioned questionnaire for individual interviews, focus groups and repeat feedback. Capture known needs, participant-originated ideas and rare engineering problems. Accept typed responses, supplied transcripts and, in a later increment, directly recorded/uploaded audio.
+Extend Broadbridge's capture application with a versioned questionnaire for individual interviews, focus groups and repeat feedback. Capture known needs, participant-originated ideas and rare engineering problems. Accept typed responses and an independent verbal-brainstorm workspace with recording/upload and supplied transcripts. Audio capture/storage and automatic transcription/normalization have separate acceptance checks, but the recording option is part of the intended questionnaire experience.
 
 Success means an invited participant can contribute and correct their own answers; a facilitator can trace every proposed issue to its original response or transcript segment; rare or disputed observations survive aggregation; selected tasks become explicit curriculum/evaluation decisions. Submitted opinions, consensus and transcription accuracy are not proof of engineering correctness.
 
@@ -37,7 +39,7 @@ Steps:
 
 Every topic section includes "Add a task or issue we have missed". A separate "I disagree / important exception" action preserves dissent instead of averaging it away. Free text remains intact when tags are added. An unknown is not converted to a zero score.
 
-The short initial path asks for A01-A03 and B01-B03; later sections may be skipped, saved for follow-up or completed for one priority only. The interface does not require a 31-question sitting.
+The short written path asks for A01-A03 and B01-B03; the verbal path starts after participation choices without requiring those written answers. Later sections may be skipped or completed for one priority. Use six topic categories, a separate Record a brainstorm workspace and a review workspace. Follow-up R01-R06 belong to a later round; the interface does not require a 31-question sitting.
 
 A facilitator can create a focus-group session, record the participants' stated views with attribution, and invite corrections. Each participant also has their own independent response. The group summary is a separate record; it does not overwrite individual answers or imply unanimity. Participants need not have an account solely to be recorded in a facilitator-led interview, but must be distinguished from authenticated submitters and must have recorded participation choices.
 
@@ -71,21 +73,23 @@ Enforce access in every page, server action, export, media download and backgrou
 
 ## Verbal capture
 
-### First usable increment: transcript-assisted interviews
+### Supplied transcripts and passage review
 
 Accept pasted text and uploaded UTF-8 TXT, VTT and SRT transcripts. Preserve the original file/hash, speaker labels and timestamps when supplied. Plain TXT without timestamps remains untimed; never fabricate positions.
 
-A participant or facilitator selects a question and links a transcript passage to it. Any automated proposal is a separate draft, with exact segment/span references. The source transcript, extracted proposal and confirmed answer are distinct records. Source text is data, never an instruction to change permissions or approve content.
+A participant or facilitator contributes a free-form session without choosing a question. Parsing segments it into source-linked passages. Normalization proposes zero, one or several question matches, new issues, rare cases or clarification needs; manual mapping remains available. Any automated proposal is a separate draft, with exact segment/span references. The source transcript, extracted proposal and confirmed answer are distinct records. Source text is data, never an instruction to change permissions or approve content.
 
 Unmapped segments go into an explicit review queue, not the trash. This is where unexpected topics and long-tail problems often appear. Allow splitting a passage across several questions and linking one issue to several supporting passages.
 
-### Recording and audio increment
+### Separate recording workspace
 
-Add "Record answer" per question and whole-session recording/upload. The browser requests microphone access only after the user chooses Record. Show elapsed time, recording state and pause/stop controls. Support a documented, tested set of formats rather than claiming universal browser/audio support.
+Make "Record a brainstorm" a separate top-level option beside "Answer by topic". It captures one or more whole-session clips without requiring a question assignment. Per-question recording is not the primary design. The browser requests microphone access only after the user chooses Record. Show elapsed time, recording state and pause/stop controls. Support a documented, tested set of formats rather than claiming universal browser/audio support.
+
+Pilot recording/upload limits are 15 minutes and 50 MiB per audio clip, server-verified. Browser capture stops safely when either limit is reached. Longer interviews use linked clips. Retain the original audio, verbatim transcript, corrected transcript revisions, proposed mappings and confirmed interpretations as distinct artifacts. Do not overwrite typed answers with extracted suggestions.
 
 Record the participant's choices about recording, transcription/analysis and later recontact separately from training permission. For group recordings, record participant acknowledgments; a facilitator cannot silently grant another person's permission. Unknown speakers remain unknown until corrected.
 
-Send audio directly to private R2 using short-lived upload authorization bound to the session, actor, object key and size/type constraints. Confirm stored bytes and checksum before marking the upload complete. No audio bodies in Neon or ordinary Vercel server-action payloads. Use authenticated, short-lived playback access.
+Send audio directly to private R2 using short-lived upload authorization bound to the session, actor, object key and size/type constraints. Distinguish a received upload from verified media. The worker confirms actual stored bytes, duration and checksum before marking it verified and eligible for processing. No audio bodies in Neon or ordinary Vercel server-action payloads. Use authenticated, short-lived playback access.
 
 Queue transcription on the existing CPU-worker architecture; never make an upload start Qwen fine-tuning. Prefer the existing local-only Foundry adapter for private expert material after it passes an actual speech test. If local transcription is unavailable, show a queued/unavailable state and permit a supplied transcript. No silent cloud fallback.
 
@@ -153,10 +157,10 @@ Brad records scope/business decisions; a named qualified reviewer accepts engine
 
 This is proposed sequencing, not an approved implementation plan.
 
-1. **Questionnaire and access foundation.** Versioned definitions, own-response access, facilitator attribution, autosave/conflict handling, new-topic cards, submission/export and PostgreSQL tests. Rehearse cross-user denial across all old and new routes before real invitations.
-2. **Transcript-assisted discovery.** Upload/link original text, passage mapping, unmapped queue, source-linked proposals, correction history and triage dashboard. Synthetic interview fixture includes a novel issue and dissent.
-3. **Audio capture and ingestion.** Direct private upload, bounded jobs, tested local speech route, timestamp playback, terminology correction, cancellation/retry and explicit unavailable states.
-4. **Feedback rounds and reviewed handoff.** Aggregation, versioned follow-ups, task decisions and draft case/recipe nominations. Preserve permissions and holdouts end to end.
+1. **Questionnaire and access foundation.** Versioned definitions, own-response access, facilitator attribution, categorized form, autosave/conflict handling and new-topic cards. Rehearse cross-user denial across old and new routes before invitations.
+2. **Separate brainstorm capture.** Browser recording, private upload, transcript input, original evidence and honest saved/queued states. No question assignment required.
+3. **Verbal parsing and interpretation.** Validated local speech processing, source-linked proposed answers/new issues, unmapped queue, correction history and per-card confirmation. Actual speech/model acceptance is separate from recording success.
+4. **Feedback rounds and reviewed handoff.** Separate rare-issue and dissent views, versioned follow-ups, task decisions and draft case/recipe nominations. Preserve permissions and holdouts end to end.
 
 For each increment: local tests, dev database rehearsal, isolated Preview, user review and separately authorized production promotion. Draft PRs only; one implementation lane. Base the app changes on current released main and deliberately integrate required ingestion dependencies. Do not deploy an old ingestion branch snapshot over current capture/auth changes.
 
@@ -178,4 +182,4 @@ Inspected: released capture code at 9db21f9; repository/validation/auth patterns
 
 Read-only Vercel Marketplace discovery succeeded using installed CLI 60.0.1; categories returned with an update-worker warning and the AI category listed Deep Infra. No integration was installed. Existing providers are explicitly selected in this project, and the first transcript-assisted increment needs no new AI provider. A listing is not a speech-quality, privacy or pricing assessment. Evaluate any proposed external transcription service separately against the user's existing provider preference and processing permissions.
 
-Before implementation, confirm the participant access assumption and review this written design, including whether direct audio must be in the first release. No secret values, participant answers or private source material are included here.
+Brad reviewed the initial written design and requested categorized navigation and separate verbal brainstorming. Direct recording is included in the intended URL experience; do not advertise automatic transcription/normalization as operational until its real worker/model acceptance passes. Review the detailed implementation plan before product code changes. Keep invitation-only own-response access as the working default unless Brad changes it. No secret values, participant answers or private source material are included here.
