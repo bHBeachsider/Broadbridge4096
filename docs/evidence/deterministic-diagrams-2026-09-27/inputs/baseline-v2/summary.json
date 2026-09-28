@@ -1,0 +1,69 @@
+{
+  "job_sha256": "d15c1dbcd10e0a0b56c255d3e818f3931d3bfacade14cdbff28d60c51e57accf",
+  "results": [
+    {
+      "id": "forward",
+      "status": "completed",
+      "elapsed_seconds": 68.987
+    },
+    {
+      "id": "reverse",
+      "status": "completed",
+      "elapsed_seconds": 86.563
+    },
+    {
+      "id": "no-arrow",
+      "status": "completed",
+      "elapsed_seconds": 62.846
+    },
+    {
+      "id": "dense-crossings",
+      "status": "completed",
+      "elapsed_seconds": 85.831
+    },
+    {
+      "id": "hop",
+      "status": "completed",
+      "elapsed_seconds": 73.48
+    },
+    {
+      "id": "tee",
+      "status": "completed",
+      "elapsed_seconds": 69.565
+    },
+    {
+      "id": "tee-dot",
+      "status": "completed",
+      "elapsed_seconds": 66.613
+    },
+    {
+      "id": "cross-dot",
+      "status": "completed",
+      "elapsed_seconds": 73.199
+    },
+    {
+      "id": "rotated-forward",
+      "status": "completed",
+      "elapsed_seconds": 58.107
+    },
+    {
+      "id": "rotated-reverse",
+      "status": "completed",
+      "elapsed_seconds": 60.37
+    },
+    {
+      "id": "small-arrow",
+      "status": "completed",
+      "elapsed_seconds": 61.232
+    },
+    {
+      "id": "break-crossing",
+      "status": "completed",
+      "elapsed_seconds": 70.478
+    }
+  ],
+  "scheduled": 12,
+  "job_request_count": 12,
+  "not_run": 0,
+  "training_approved": false
+}

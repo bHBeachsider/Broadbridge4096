@@ -9,6 +9,7 @@ from collections import defaultdict
 import hashlib
 import importlib.util
 import json
+import importlib.metadata
 from math import hypot
 from pathlib import Path
 import sys
@@ -154,6 +155,13 @@ def verify(root):
 
 def run(root,out,repo):
     _,ge,dg,_=foundry(repo);job,m=verify(root);out.mkdir(parents=True,exist_ok=False)
+    sources={name:sha((repo/name).read_bytes()) for name in ('src/ingestion/geometry_contract.py',
+        'src/ingestion/diagram_geometry.py','src/ingestion/geometry_extractors.py')}
+    receipt={'manifest_sha256':job['manifest_sha256'],'engine_sources':sources,
+        'config':m['detector_config'],'training_approved':False,
+        'versions':{name:importlib.metadata.version(name) for name in ('PyMuPDF','ezdxf','scikit-image','numpy')},
+        'provenance':'pre-run-checksum','gate_eligible':False}
+    write(out/'run.json',receipt);outputs={}
     rows=[]
     for item in m['drawings']:
         name=item['id'];p=json.loads((root/(name+'.ports.json')).read_bytes())
@@ -163,19 +171,140 @@ def run(root,out,repo):
                 result=dg.build_graph(detection,p['ports']);result['status']='completed'
             except Exception as exc:result={'status':'failed','error':str(exc),'edges':[],'training_approved':False}
             result.update(id=name,input_format=ext,manifest_sha256=job['manifest_sha256'])
-            write(out/(name+'.'+ext+'.json'),result);rows.append({'id':name,'format':ext,'status':result['status'],'route':result.get('route')})
-    write(out/'routes.json',rows);return rows
+            result['input_sha256']=m['assets'][name+'.'+ext]
+            result['run_sha256']=sha((out/'run.json').read_bytes())
+            fname=name+'.'+ext+'.json';write(out/fname,result);outputs[fname]=sha((out/fname).read_bytes())
+            rows.append({'id':name,'format':ext,'status':result['status'],'route':result.get('route')})
+    write(out/'routes.json',rows);write(out/'outputs.json',{'files':outputs,'run_sha256':sha((out/'run.json').read_bytes())});return rows
+
+
+def edges_map(edges):
+    result={}
+    for e in edges:
+        a,b=e['a'],e['b'];direction=e['direction']
+        if a>b:a,b=b,a;direction={'a_to_b':'b_to_a','b_to_a':'a_to_b','unknown':'unknown'}[direction]
+        if (a,b) in result:raise ValueError('Duplicate evaluated edge')
+        result[(a,b)]=direction
+    return result
+
+
+def metrics(reference,actual,category):
+    r,a=edges_map(reference),edges_map(actual);correct=r.keys()&a.keys()
+    return {'edge_tp':len(correct),'edge_fp':len(a.keys()-r.keys()),'edge_fn':len(r.keys()-a.keys()),
+        'false_edges_at_crossings':len(a.keys()-r.keys()) if category in ('crossing','hop','break') else 0,
+        'known_directions':sum(v!='unknown' for v in r.values()),
+        'direction_claims':sum(v!='unknown' for v in a.values()),
+        'direction_correct':sum(r[k]!='unknown' and a[k]==r[k] for k in correct),
+        'known_direction_claims':sum(r[k]!='unknown' and a[k]!='unknown' for k in correct),
+        'known_direction_unknown':sum(r[k]!='unknown' and a[k]=='unknown' for k in correct),
+        'known_direction_missing':sum(r[k]!='unknown' for k in r.keys()-a.keys()),
+        'direction_reversals':sum(r[k]!='unknown' and a[k]!='unknown' and a[k]!=r[k] for k in correct),
+        'unsupported_directions':sum(v!='unknown' and r.get(k,'unknown')=='unknown' for k,v in a.items())}
+
+
+def evidence_metrics(edges,detection):
+    claims=[e for e in edges if e['direction']!='unknown']
+    if detection is None:unsupported=len(claims)
+    else:
+        from src.ingestion.geometry_contract import check_edges
+        unsupported=sum(check_edges([e],detection)['status']!='pass' for e in claims)
+    return {'direction_claims':len(claims),'unbacked_directions':unsupported,
+        'unbacked_direction_rate':unsupported/len(claims) if claims else None}
+
+
+def score_prediction(reference,actual,category,rules):
+    # Quality is measured before rejection, so safety gates cannot hide errors.
+    return {'metrics':metrics(reference,actual,category),
+        'accepted_metrics':metrics(reference,actual if rules and rules['status']=='pass' else [],category)}
+
+
+def aggregate(rows):
+    keys=('edge_tp','edge_fp','edge_fn','false_edges_at_crossings','known_directions','direction_claims',
+          'direction_correct','known_direction_claims','known_direction_unknown','known_direction_missing','direction_reversals','unsupported_directions')
+    t={k:sum(r['metrics'][k] for r in rows) for k in keys}
+    ratio=lambda a,b:a/b if b else None
+    t.update(edge_precision=ratio(t['edge_tp'],t['edge_tp']+t['edge_fp']),edge_recall=ratio(t['edge_tp'],t['edge_tp']+t['edge_fn']),
+        direction_reversal_rate=ratio(t['direction_reversals'],t['known_directions']),
+        supported_direction_recall=ratio(t['direction_correct'],t['known_directions']),
+        known_direction_coverage=ratio(t['known_direction_claims'],t['known_directions']),
+        direction_accuracy_when_claimed=ratio(t['direction_correct'],t['known_direction_claims']),
+        unsupported_direction_rate=ratio(t['unsupported_directions'],t['direction_claims']))
+    return t
+
+
+def report(root,detected,baseline,repo):
+    _,_,_,lv=foundry(repo);job,m=verify(root);rows=[]
+    from src.ingestion.geometry_contract import check_edges,gate_blockers
+    from src.ingestion.visual_connectivity import digest
+    refs=json.loads((root/'references.json').read_bytes());receipts=json.loads((detected/'outputs.json').read_bytes())
+    runraw=(detected/'run.json').read_bytes();run=json.loads(runraw)
+    if receipts['run_sha256']!=sha(runraw) or run['manifest_sha256']!=job['manifest_sha256']:raise ValueError('Detector run binding mismatch')
+    requests={q['id']:q for q in job['requests']}
+    for item in m['drawings']:
+        name=item['id'];ref=refs[name]['edges'];category=item['category']
+        for route in ('pdf','dxf','png','baseline'):
+            status='not_run';actual=[];rules=None;d=None
+            if route=='baseline':
+                path=baseline/(name+'.json')
+                if path.exists():
+                    r=json.loads(path.read_bytes());q=requests[name]
+                    binds={'id':name,'job_sha256':sha((root/'job.json').read_bytes()),'input_sha256':q['sha256'],
+                           'model':q['model'],'model_digest':m['baseline_model_pins'][q['model']],
+                           'prompt_sha256':sha(q['prompt'].encode()),'profile':q['profile']}
+                    if any(r.get(k)!=v for k,v in binds.items()):raise ValueError('Baseline binding mismatch')
+                    status=r['status']
+                    if status=='completed':
+                        try:lv.validate_profile(r['proposal'],'connectivity_v2');actual=r['proposal']['edges']
+                        except (ValueError,KeyError,TypeError):status='invalid'
+            else:
+                fname=name+'.'+route+'.json';path=detected/fname
+                if path.exists():
+                    raw=path.read_bytes()
+                    if receipts['files'].get(fname)!=sha(raw):raise ValueError('Detector output changed')
+                    r=json.loads(raw)
+                    if (r['id']!=name or r['input_format']!=route or r['input_sha256']!=m['assets'][name+'.'+route]
+                        or r['manifest_sha256']!=job['manifest_sha256'] or r['run_sha256']!=sha(runraw)):
+                        raise ValueError('Detector binding mismatch')
+                    status=r['status']
+                    if status=='completed':
+                        d=r['detection'];ports=json.loads((root/(name+'.ports.json')).read_bytes())['ports']
+                        if digest(d)!=r['detection_sha256'] or digest(ports)!=r['ports_sha256'] or d['input_sha256']!=r['input_sha256']:
+                            raise ValueError('Detector evidence mismatch')
+                        rules=check_edges(r['edges'],d)
+                        actual=r['edges']
+                        if rules['status']!='pass':status='invalid_evidence'
+            rows.append({'id':name,'category':category,'route':route,'status':status,'rules':rules,
+                'arrow_evidence':evidence_metrics(actual,d),**score_prediction(ref,actual,category,rules)})
+    summary={route:aggregate([r for r in rows if r['route']==route]) for route in ('pdf','dxf','png','baseline')}
+    by_category={route:{cat:aggregate([r for r in rows if r['route']==route and r['category']==cat])
+        for cat in sorted({x['category'] for x in rows})} for route in summary}
+    return {'schema':'broadbridge.geometry_stress_results/1','manifest_sha256':job['manifest_sha256'],
+        'rows':rows,'summary':summary,'by_category':by_category,
+        'arrow_evidence_summary':{route:{'direction_claims':sum(r['arrow_evidence']['direction_claims'] for r in rows if r['route']==route),
+            'unbacked_directions':sum(r['arrow_evidence']['unbacked_directions'] for r in rows if r['route']==route)} for route in summary},
+        'accepted_summary':{route:aggregate([{'metrics':r['accepted_metrics']} for r in rows if r['route']==route]) for route in ('pdf','dxf','png')},'provenance':'pre-run-checksum',
+        'training_approved':False,'gate_eligible':False,'blocking_gates':gate_blockers(m),
+        'limitations':m['limitations'],
+        'metric_definitions':{'reversal_rate':'reversed matched edges / all known reference directions',
+            'unsupported_rate':'claims absent from directed reference / all direction claims',
+            'zero_denominator':'null, not zero','invalid_or_missing':'malformed/missing predictions count as empty; evidence-rejected geometry remains in raw quality metrics',
+            'accepted_summary':'only geometry whose evidence checker passes; not training approval',
+            'baseline_evidence':'image-only baseline has no detected arrow IDs; it is never accepted by the new evidence contract'}}
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['prepare','run'])
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['prepare','run','report'])
     p.add_argument('--foundry',type=Path,required=True);p.add_argument('--work',type=Path,required=True);p.add_argument('--out',type=Path)
+    p.add_argument('--detected',type=Path);p.add_argument('--baseline',type=Path)
     a=p.parse_args()
     if a.action=='prepare':r=prepare(a.work,a.foundry)
-    else:
+    elif a.action=='run':
         if a.out is None:p.error('run requires --out')
         r=run(a.work,a.out,a.foundry)
-    print(json.dumps(r,indent=2))
+    else:
+        if None in (a.out,a.detected,a.baseline):p.error('report requires --out, --detected and --baseline')
+        r=report(a.work,a.detected,a.baseline,a.foundry);write(a.out,r)
+    print(json.dumps(r.get('summary',r) if isinstance(r,dict) else r,indent=2))
 
 
 if __name__=='__main__':main()

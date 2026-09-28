@@ -1,0 +1,17 @@
+{
+  "ids": [
+    "forward",
+    "reverse",
+    "no-arrow",
+    "dense-crossings",
+    "hop",
+    "tee",
+    "tee-dot",
+    "cross-dot",
+    "rotated-forward",
+    "rotated-reverse",
+    "small-arrow",
+    "break-crossing"
+  ],
+  "job_sha256": "d15c1dbcd10e0a0b56c255d3e818f3931d3bfacade14cdbff28d60c51e57accf"
+}

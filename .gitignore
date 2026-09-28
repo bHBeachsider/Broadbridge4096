@@ -26,3 +26,6 @@ test-results/
 /.tmp-pipeline-*/
 
 .vercel
+
+# Local container inspection metadata is not portable evaluation evidence.
+docs/evidence/**/runtime.json

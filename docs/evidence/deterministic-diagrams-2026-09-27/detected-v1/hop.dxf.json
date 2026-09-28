@@ -1,0 +1,969 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [
+      {
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "kind": "hop",
+        "point": [
+          300.0,
+          177.5
+        ],
+        "segment_ids": [
+          "s10",
+          "s18",
+          "s8",
+          "s9"
+        ]
+      }
+    ],
+    "input_sha256": "3f497a966afcb959e1b93843012a4be8d2848fa98dfb60ca851c3ce12cf4c646",
+    "junctions": [
+      {
+        "id": "j1",
+        "kind": "shared_endpoint",
+        "point": [
+          280.0,
+          200.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s1"
+        ]
+      },
+      {
+        "id": "j2",
+        "kind": "shared_endpoint",
+        "point": [
+          280.44921875,
+          194.7265625
+        ],
+        "segment_ids": [
+          "s1",
+          "s2"
+        ]
+      },
+      {
+        "id": "j3",
+        "kind": "shared_endpoint",
+        "point": [
+          281.71875,
+          190.15625
+        ],
+        "segment_ids": [
+          "s2",
+          "s3"
+        ]
+      },
+      {
+        "id": "j4",
+        "kind": "shared_endpoint",
+        "point": [
+          283.69140625,
+          186.2890625
+        ],
+        "segment_ids": [
+          "s3",
+          "s4"
+        ]
+      },
+      {
+        "id": "j5",
+        "kind": "shared_endpoint",
+        "point": [
+          286.25,
+          183.125
+        ],
+        "segment_ids": [
+          "s4",
+          "s5"
+        ]
+      },
+      {
+        "id": "j6",
+        "kind": "shared_endpoint",
+        "point": [
+          289.27734375,
+          180.6640625
+        ],
+        "segment_ids": [
+          "s5",
+          "s6",
+          "s7"
+        ]
+      },
+      {
+        "id": "j7",
+        "kind": "shared_endpoint",
+        "point": [
+          292.65625,
+          178.90625
+        ],
+        "segment_ids": [
+          "s6",
+          "s7",
+          "s8"
+        ]
+      },
+      {
+        "id": "j8",
+        "kind": "shared_endpoint",
+        "point": [
+          296.26953125,
+          177.8515625
+        ],
+        "segment_ids": [
+          "s7",
+          "s8",
+          "s9"
+        ]
+      },
+      {
+        "id": "j10",
+        "kind": "shared_endpoint",
+        "point": [
+          303.73046875,
+          177.8515625
+        ],
+        "segment_ids": [
+          "s10",
+          "s11",
+          "s9"
+        ]
+      },
+      {
+        "id": "j11",
+        "kind": "shared_endpoint",
+        "point": [
+          307.34375,
+          178.90625
+        ],
+        "segment_ids": [
+          "s10",
+          "s11",
+          "s12"
+        ]
+      },
+      {
+        "id": "j12",
+        "kind": "shared_endpoint",
+        "point": [
+          310.72265625,
+          180.6640625
+        ],
+        "segment_ids": [
+          "s11",
+          "s12"
+        ]
+      },
+      {
+        "id": "j13",
+        "kind": "shared_endpoint",
+        "point": [
+          313.75,
+          183.125
+        ],
+        "segment_ids": [
+          "s12",
+          "s13"
+        ]
+      },
+      {
+        "id": "j14",
+        "kind": "shared_endpoint",
+        "point": [
+          316.30859375,
+          186.2890625
+        ],
+        "segment_ids": [
+          "s13",
+          "s14"
+        ]
+      },
+      {
+        "id": "j15",
+        "kind": "shared_endpoint",
+        "point": [
+          318.28125,
+          190.15625
+        ],
+        "segment_ids": [
+          "s14",
+          "s15"
+        ]
+      },
+      {
+        "id": "j16",
+        "kind": "shared_endpoint",
+        "point": [
+          319.55078125,
+          194.7265625
+        ],
+        "segment_ids": [
+          "s15",
+          "s16"
+        ]
+      },
+      {
+        "id": "j17",
+        "kind": "shared_endpoint",
+        "point": [
+          320.0,
+          200.0
+        ],
+        "segment_ids": [
+          "s16",
+          "s17"
+        ]
+      }
+    ],
+    "route": "vector_dxf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          280.0,
+          200.0
+        ],
+        "id": "s0",
+        "source": "LINE:2F",
+        "start": [
+          100.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          280.44921875,
+          194.7265625
+        ],
+        "id": "s1",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          280.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          281.71875,
+          190.15625
+        ],
+        "id": "s2",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          280.44921875,
+          194.7265625
+        ]
+      },
+      {
+        "end": [
+          283.69140625,
+          186.2890625
+        ],
+        "id": "s3",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          281.71875,
+          190.15625
+        ]
+      },
+      {
+        "end": [
+          286.25,
+          183.125
+        ],
+        "id": "s4",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          283.69140625,
+          186.2890625
+        ]
+      },
+      {
+        "end": [
+          289.27734375,
+          180.6640625
+        ],
+        "id": "s5",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          286.25,
+          183.125
+        ]
+      },
+      {
+        "end": [
+          292.65625,
+          178.90625
+        ],
+        "id": "s6",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          289.27734375,
+          180.6640625
+        ]
+      },
+      {
+        "end": [
+          296.26953125,
+          177.8515625
+        ],
+        "id": "s7",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          292.65625,
+          178.90625
+        ]
+      },
+      {
+        "end": [
+          300.0,
+          177.5
+        ],
+        "id": "s8",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          296.26953125,
+          177.8515625
+        ]
+      },
+      {
+        "end": [
+          303.73046875,
+          177.8515625
+        ],
+        "id": "s9",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          300.0,
+          177.5
+        ]
+      },
+      {
+        "end": [
+          307.34375,
+          178.90625
+        ],
+        "id": "s10",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          303.73046875,
+          177.8515625
+        ]
+      },
+      {
+        "end": [
+          310.72265625,
+          180.6640625
+        ],
+        "id": "s11",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          307.34375,
+          178.90625
+        ]
+      },
+      {
+        "end": [
+          313.75,
+          183.125
+        ],
+        "id": "s12",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          310.72265625,
+          180.6640625
+        ]
+      },
+      {
+        "end": [
+          316.30859375,
+          186.2890625
+        ],
+        "id": "s13",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          313.75,
+          183.125
+        ]
+      },
+      {
+        "end": [
+          318.28125,
+          190.15625
+        ],
+        "id": "s14",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          316.30859375,
+          186.2890625
+        ]
+      },
+      {
+        "end": [
+          319.55078125,
+          194.7265625
+        ],
+        "id": "s15",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          318.28125,
+          190.15625
+        ]
+      },
+      {
+        "end": [
+          320.0,
+          200.0
+        ],
+        "id": "s16",
+        "primitive": "curve",
+        "source": "SPLINE:30",
+        "start": [
+          319.55078125,
+          194.7265625
+        ]
+      },
+      {
+        "end": [
+          500.0,
+          200.0
+        ],
+        "id": "s17",
+        "source": "LINE:31",
+        "start": [
+          320.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          300.0,
+          330.0
+        ],
+        "id": "s18",
+        "source": "LINE:32",
+        "start": [
+          300.0,
+          70.0
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "985c4e413a298ad71c9c16d3182c1505cbbdcd13602f2c352be8b555d40aed20",
+  "edges": [
+    {
+      "a": "J@289.28,180.66",
+      "arrow_id": null,
+      "b": "J@292.66,178.91",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            289.27734375,
+            180.6640625
+          ],
+          "segment_ids": [
+            "s6"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            292.65625,
+            178.90625
+          ],
+          "segment_ids": [
+            "s6"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          289.27734375,
+          180.6640625
+        ],
+        [
+          292.65625,
+          178.90625
+        ]
+      ],
+      "segment_ids": [
+        "s6"
+      ]
+    },
+    {
+      "a": "J@289.28,180.66",
+      "arrow_id": null,
+      "b": "V-21040",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            289.27734375,
+            180.6640625
+          ],
+          "segment_ids": [
+            "s5"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            286.25,
+            183.125
+          ],
+          "segment_ids": [
+            "s4",
+            "s5"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            283.69140625,
+            186.2890625
+          ],
+          "segment_ids": [
+            "s3",
+            "s4"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            281.71875,
+            190.15625
+          ],
+          "segment_ids": [
+            "s2",
+            "s3"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            280.44921875,
+            194.7265625
+          ],
+          "segment_ids": [
+            "s1",
+            "s2"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            280.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s0",
+            "s1"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          289.27734375,
+          180.6640625
+        ],
+        [
+          286.25,
+          183.125
+        ],
+        [
+          283.69140625,
+          186.2890625
+        ],
+        [
+          281.71875,
+          190.15625
+        ],
+        [
+          280.44921875,
+          194.7265625
+        ],
+        [
+          280.0,
+          200.0
+        ],
+        [
+          100.0,
+          200.0
+        ]
+      ],
+      "segment_ids": [
+        "s5",
+        "s4",
+        "s3",
+        "s2",
+        "s1",
+        "s0"
+      ]
+    },
+    {
+      "a": "J@292.66,178.91",
+      "arrow_id": null,
+      "b": "J@296.27,177.85",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            292.65625,
+            178.90625
+          ],
+          "segment_ids": [
+            "s7"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            296.26953125,
+            177.8515625
+          ],
+          "segment_ids": [
+            "s7"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          292.65625,
+          178.90625
+        ],
+        [
+          296.26953125,
+          177.8515625
+        ]
+      ],
+      "segment_ids": [
+        "s7"
+      ]
+    },
+    {
+      "a": "J@296.27,177.85",
+      "arrow_id": null,
+      "b": "J@303.73,177.85",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            296.26953125,
+            177.8515625
+          ],
+          "segment_ids": [
+            "s8",
+            "s9"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            303.73046875,
+            177.8515625
+          ],
+          "segment_ids": [
+            "s9"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          296.26953125,
+          177.8515625
+        ],
+        [
+          300.0,
+          177.5
+        ],
+        [
+          303.73046875,
+          177.8515625
+        ]
+      ],
+      "segment_ids": [
+        "s8",
+        "s9"
+      ]
+    },
+    {
+      "a": "J@303.73,177.85",
+      "arrow_id": null,
+      "b": "J@307.34,178.91",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            303.73046875,
+            177.8515625
+          ],
+          "segment_ids": [
+            "s10"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            307.34375,
+            178.90625
+          ],
+          "segment_ids": [
+            "s10"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          303.73046875,
+          177.8515625
+        ],
+        [
+          307.34375,
+          178.90625
+        ]
+      ],
+      "segment_ids": [
+        "s10"
+      ]
+    },
+    {
+      "a": "J@307.34,178.91",
+      "arrow_id": null,
+      "b": "J@310.72,180.66",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            307.34375,
+            178.90625
+          ],
+          "segment_ids": [
+            "s11"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            310.72265625,
+            180.6640625
+          ],
+          "segment_ids": [
+            "s11"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          307.34375,
+          178.90625
+        ],
+        [
+          310.72265625,
+          180.6640625
+        ]
+      ],
+      "segment_ids": [
+        "s11"
+      ]
+    },
+    {
+      "a": "J@310.72,180.66",
+      "arrow_id": null,
+      "b": "V-21041",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            310.72265625,
+            180.6640625
+          ],
+          "segment_ids": [
+            "s12"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            313.75,
+            183.125
+          ],
+          "segment_ids": [
+            "s12",
+            "s13"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            316.30859375,
+            186.2890625
+          ],
+          "segment_ids": [
+            "s13",
+            "s14"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            318.28125,
+            190.15625
+          ],
+          "segment_ids": [
+            "s14",
+            "s15"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            319.55078125,
+            194.7265625
+          ],
+          "segment_ids": [
+            "s15",
+            "s16"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            320.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s16",
+            "s17"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          310.72265625,
+          180.6640625
+        ],
+        [
+          313.75,
+          183.125
+        ],
+        [
+          316.30859375,
+          186.2890625
+        ],
+        [
+          318.28125,
+          190.15625
+        ],
+        [
+          319.55078125,
+          194.7265625
+        ],
+        [
+          320.0,
+          200.0
+        ],
+        [
+          500.0,
+          200.0
+        ]
+      ],
+      "segment_ids": [
+        "s12",
+        "s13",
+        "s14",
+        "s15",
+        "s16",
+        "s17"
+      ]
+    },
+    {
+      "a": "V-21042",
+      "arrow_id": null,
+      "b": "V-21043",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            300.0,
+            70.0
+          ],
+          "segment_ids": [
+            "s18"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          300.0,
+          70.0
+        ],
+        [
+          300.0,
+          177.5
+        ],
+        [
+          300.0,
+          330.0
+        ]
+      ],
+      "segment_ids": [
+        "s18"
+      ]
+    }
+  ],
+  "id": "hop",
+  "input_format": "dxf",
+  "input_sha256": "3f497a966afcb959e1b93843012a4be8d2848fa98dfb60ca851c3ce12cf4c646",
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "ports_sha256": "9a8e36dce0c75b8911e0c14e68d75b1fd0dedba200420694539b5dd34993f386",
+  "route": "vector_dxf",
+  "rules": {
+    "reason": "No shared endpoint at claimed location",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "fail",
+    "training_approved": false
+  },
+  "run_sha256": "f3070b1129f4dec47150d73d2ccbb7c0948e33418283aed3c1d60a5f0d0f1314",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

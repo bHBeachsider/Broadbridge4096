@@ -1,0 +1,119 @@
+{
+  "schema": "foundry.visual_proposal/1",
+  "id": "cross-dot",
+  "model": "qwen3-vl:4b-instruct-q4_K_M",
+  "input_sha256": "ee60277bbf47a01d6bb3c73dfe3cdb1383cc2dafc474fb196bdf7dc96e60655f",
+  "image": "cross-dot.png",
+  "prompt_sha256": "5f4ef52c51fca7c683a98d42806c5e02150629738c1f46759ac9772275c9d9c6",
+  "review_status": "pending",
+  "training_approved": false,
+  "status": "completed",
+  "profile": "connectivity_v2",
+  "settings": {
+    "model": "qwen3-vl:4b-instruct-q4_K_M",
+    "stream": false,
+    "think": false,
+    "keep_alive": 0,
+    "options": {
+      "temperature": 0.7,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 384,
+      "num_thread": 8,
+      "top_p": 0.8,
+      "top_k": 20,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 1.5
+    },
+    "format": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "edges",
+        "uncertain"
+      ],
+      "properties": {
+        "edges": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "a",
+              "b",
+              "direction"
+            ],
+            "properties": {
+              "a": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+              },
+              "b": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+              },
+              "direction": {
+                "enum": [
+                  "unknown",
+                  "a_to_b",
+                  "b_to_a"
+                ]
+              }
+            }
+          }
+        },
+        "uncertain": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "qwen3-vl:4b-instruct-q4_K_M",
+    "created_at": "2026-09-28T03:55:28.544022824Z",
+    "message": {
+      "role": "assistant",
+      "content": "{\n  \"edges\": [\n    {\n      \"a\": \"V-21070\",\n      \"b\": \"J-21074\",\n      \"direction\": \"unknown\"\n    },\n    {\n      \"a\": \"J-21074\",\n      \"b\": \"V-21071\",\n      \"direction\": \"unknown\"\n    },\n    {\n      \"a\": \"J-21074\",\n      \"b\": \"V-21072\",\n      \"direction\": \"unknown\"\n    },\n    {\n      \"a\": \"J-21074\",\n      \"b\": \"V-21073\",\n      \"direction\": \"unknown\"\n    }\n  ],\n  \"uncertain\": true\n}"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 73182394091,
+    "load_duration": 7338370266,
+    "prompt_eval_count": 1181,
+    "prompt_eval_cached_count": 0,
+    "prompt_eval_duration": 47627073000,
+    "eval_count": 173,
+    "eval_duration": 18169467000
+  },
+  "proposal": {
+    "edges": [
+      {
+        "a": "V-21070",
+        "b": "J-21074",
+        "direction": "unknown"
+      },
+      {
+        "a": "J-21074",
+        "b": "V-21071",
+        "direction": "unknown"
+      },
+      {
+        "a": "J-21074",
+        "b": "V-21072",
+        "direction": "unknown"
+      },
+      {
+        "a": "J-21074",
+        "b": "V-21073",
+        "direction": "unknown"
+      }
+    ],
+    "uncertain": true
+  },
+  "elapsed_seconds": 73.199,
+  "job_sha256": "d15c1dbcd10e0a0b56c255d3e818f3931d3bfacade14cdbff28d60c51e57accf",
+  "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b"
+}

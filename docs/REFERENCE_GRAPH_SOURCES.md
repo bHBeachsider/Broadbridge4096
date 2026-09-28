@@ -14,13 +14,13 @@ The proposals are useful, with one important qualification: a downloadable graph
 | PID2Graph OPEN100 | Same DOI/version; underlying drawing revisions not verified | Record-wide CC BY-SA 4.0; original drawing grant **UNKNOWN** | Twelve manually annotated nuclear-design drawings are described in the primary paper. No OPEN100 files acquired. Dataset annotation is not Bill's signed trace; no claims about operating refinery as-builts. |
 | [Dataset-P&ID / Digitize-PID](https://arxiv.org/abs/2109.03794) | Paper v1, 2021-09-08; original release revision unverified | Original dataset license **UNKNOWN**; paper license is not a dataset grant | Original release is symbols/labels/line segments, **not topology**. No original archive acquired. PID2Graph's additional conversion does not change this source's scope. |
 | [SynthPID](https://arxiv.org/abs/2604.16513) | Paper v1, 2026-04-15 | Paper CC BY 4.0; code/data **UNKNOWN** | Availability check only. Claimed GitHub release returned 404 publicly and via API. Do not integrate. |
-| Broadbridge original construction fixtures | Generator v1, seeds 901–906; one disclosed rendering correction | Original in-house parameters/shapes, internal evaluation | Six pyDEXPI models and seven renderings total. Graphs frozen from construction, not vision. No C01/OPEN100 seed derivation; all remain development/eval-only. |
+| Broadbridge original construction fixtures | Generator v1, seeds 901â€“906; one disclosed rendering correction | Original in-house parameters/shapes, internal evaluation | Six pyDEXPI models and seven renderings total. Graphs frozen from construction, not vision. No C01/OPEN100 seed derivation; all remain development/eval-only. |
 
 ## What was verified and what is blocked
 
 The actual repository license texts were acquired for DEXPI, pyDEXPI, dexpi-render and DEXPI2graphML; hashes are in the manifest/acquisition receipt. The pilot downloaded **7,511,497 bytes total** of samples, licenses, metadata and the small pyDEXPI wheel. Nothing over 1 GB was downloaded. PID2Graph's **9,303,633,645-byte** archive remains blocked by the explicit download boundary. Zenodo's container API exposes individual members, so only the named image and GraphML were fetched.
 
-PID2Graph contains a real-engineering subset: OPEN100. Its [primary paper, §III-D](https://arxiv.org/html/2411.13929v3#S3.SS4) identifies 12 public reactor drawings, manually annotated. The same paper explains that DatasetPID graphs are converted from overlapping annotated line segments. Keep these provenance paths distinct. Unverified underlying OPEN100 permissions prevent training; this is not resolved merely by an archive-level license label.
+PID2Graph contains a real-engineering subset: OPEN100. Its [primary paper, Â§III-D](https://arxiv.org/html/2411.13929v3#S3.SS4) identifies 12 public reactor drawings, manually annotated. The same paper explains that DatasetPID graphs are converted from overlapping annotated line segments. Keep these provenance paths distinct. Unverified underlying OPEN100 permissions prevent training; this is not resolved merely by an archive-level license label.
 
 The [SynthPID paper](https://arxiv.org/html/2604.16513v1) claims code, data and weights at `LatentSpaceIITB/SynthPID`. That public endpoint and GitHub API returned 404 during this check. This means public availability is **unverified**, not proof that the work does not exist. No integration/download was attempted. It also derives synthetic examples from OPEN100 evaluation drawings: under our family rule, derivatives cannot cross into training while the originals are held out.
 
@@ -32,7 +32,7 @@ The Foundry adapter retains source item IDs, port IDs, line/segment IDs and orig
 
 pyDEXPI JSON drops original Proteus IDs; the adapter stores an explicit ID sidecar and validates it on restore. The native inventory is separate from the existing small frozen checker schema. A bounded checker view records exactly which native edges were selected, along with the topology hash. Parallel pipes, unresolved selected endpoints, ambiguous tags and oversized views fail rather than being silently flattened. The mapping is not a simulation-ready plant model.
 
-## Human tracing — design only
+## Human tracing â€” design only
 
 Before any client drawing is accepted, record owner, written permitted use, confidentiality, storage location, original file hash, drawing number/revision/sheet and as-built status. Brad obtains permission; a qualified tracer records nodes, physical ports, line IDs and connections directly from the drawing. An optional vision proposal may highlight differences, but must never initialize an automatically trusted reference.
 
@@ -68,3 +68,7 @@ $researchPython = "$researchRoot/venv/Scripts/python.exe"
 ```
 
 Use `correct-crossing --raw <original pilot> --out <new correction directory>` for the disclosed bridge-rendering correction; run/report that one-item job separately. Original receipts are retained. Generation takes seconds; seven CPU vision calls took the time recorded in the results, with a 180-second cap per call. The wrapper stops only the vision stack in `finally`; it does not start EC2 or alter the speech service.
+
+## Deterministic stress extension
+
+Twelve original pyDEXPI construction fixtures (seeds 2100–2111), frozen before inference, now have PDF/DXF/PNG siblings and label-only port annotations. They remain eval-only; see [per-failure results and blockers](DETERMINISTIC_DIAGRAM_RESULTS.md). No additional PID2Graph archive, third-party drawing or client data was acquired for this extension. The original experiment is explicitly retrospective-checksum and excluded from gates.

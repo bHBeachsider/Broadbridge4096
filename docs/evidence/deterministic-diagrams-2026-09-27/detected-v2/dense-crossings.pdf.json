@@ -1,0 +1,293 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [
+      {
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "kind": "crossing",
+        "point": [
+          220.0,
+          140.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s2"
+        ]
+      },
+      {
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "kind": "crossing",
+        "point": [
+          380.0,
+          140.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s3"
+        ]
+      },
+      {
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "kind": "crossing",
+        "point": [
+          220.0,
+          260.0
+        ],
+        "segment_ids": [
+          "s1",
+          "s2"
+        ]
+      },
+      {
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "kind": "crossing",
+        "point": [
+          380.0,
+          260.0
+        ],
+        "segment_ids": [
+          "s1",
+          "s3"
+        ]
+      }
+    ],
+    "input_sha256": "8bbe33c675eba689b89e60eae3ea3a768ca399bd4181f8570bfc4c30f2b3ec50",
+    "junctions": [],
+    "route": "vector_pdf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          520.0,
+          140.0
+        ],
+        "id": "s0",
+        "source": "path:0",
+        "start": [
+          80.0,
+          140.0
+        ]
+      },
+      {
+        "end": [
+          520.0,
+          260.0
+        ],
+        "id": "s1",
+        "source": "path:1",
+        "start": [
+          80.0,
+          260.0
+        ]
+      },
+      {
+        "end": [
+          220.0,
+          340.0
+        ],
+        "id": "s2",
+        "source": "path:2",
+        "start": [
+          220.0,
+          60.0
+        ]
+      },
+      {
+        "end": [
+          380.0,
+          340.0
+        ],
+        "id": "s3",
+        "source": "path:3",
+        "start": [
+          380.0,
+          60.0
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "75478de6655d25bbe66821c146f0ba726f0829294a0f57224ba45f39257f0c69",
+  "edges": [
+    {
+      "a": "V-21030",
+      "arrow_id": null,
+      "b": "V-21031",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            80.0,
+            140.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          80.0,
+          140.0
+        ],
+        [
+          220.0,
+          140.0
+        ],
+        [
+          380.0,
+          140.0
+        ],
+        [
+          520.0,
+          140.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "V-21032",
+      "arrow_id": null,
+      "b": "V-21033",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            80.0,
+            260.0
+          ],
+          "segment_ids": [
+            "s1"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          80.0,
+          260.0
+        ],
+        [
+          220.0,
+          260.0
+        ],
+        [
+          380.0,
+          260.0
+        ],
+        [
+          520.0,
+          260.0
+        ]
+      ],
+      "segment_ids": [
+        "s1"
+      ]
+    },
+    {
+      "a": "V-21034",
+      "arrow_id": null,
+      "b": "V-21035",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            220.0,
+            60.0
+          ],
+          "segment_ids": [
+            "s2"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          220.0,
+          60.0
+        ],
+        [
+          220.0,
+          140.0
+        ],
+        [
+          220.0,
+          260.0
+        ],
+        [
+          220.0,
+          340.0
+        ]
+      ],
+      "segment_ids": [
+        "s2"
+      ]
+    },
+    {
+      "a": "V-21036",
+      "arrow_id": null,
+      "b": "V-21037",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            380.0,
+            60.0
+          ],
+          "segment_ids": [
+            "s3"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          380.0,
+          60.0
+        ],
+        [
+          380.0,
+          140.0
+        ],
+        [
+          380.0,
+          260.0
+        ],
+        [
+          380.0,
+          340.0
+        ]
+      ],
+      "segment_ids": [
+        "s3"
+      ]
+    }
+  ],
+  "id": "dense-crossings",
+  "input_format": "pdf",
+  "input_sha256": "8bbe33c675eba689b89e60eae3ea3a768ca399bd4181f8570bfc4c30f2b3ec50",
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "ports_sha256": "16fa3306fff668d8d250d584aed1eb5667d49d6ca4a313e6dc1fce2420bb5f09",
+  "route": "vector_pdf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "e029b32d8a7d6a063d1c485d5d4992e76668436cea5bdaadaa677541c691694d",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

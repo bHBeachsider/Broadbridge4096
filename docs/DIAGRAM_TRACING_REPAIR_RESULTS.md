@@ -59,3 +59,7 @@ python scripts/research/diagram_tracing_repair.py report-crops --foundry $foundr
 ```
 
 No new inference is authorized or necessary to reproduce these scores. Keep ad-hoc replay outputs out of the committed evidence.
+
+## Provenance disposition (28 September 2026)
+
+This original experiment is explicitly `provenance: retrospective-checksum` and `gate_eligible: false`; it is excluded from all diagram-training gate decisions. See the [machine disposition](evidence/diagram-repair-2026-09-27/disposition.json). Original receipts remain unchanged. The [subsequent deterministic experiment](DETERMINISTIC_DIAGRAM_RESULTS.md) has a new pre-run input freeze and still grants no training approval. Crop-history metadata pinning remains required and deferred.

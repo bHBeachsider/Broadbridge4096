@@ -1,0 +1,119 @@
+{
+  "schema": "foundry.visual_proposal/1",
+  "id": "hop",
+  "model": "qwen3-vl:4b-instruct-q4_K_M",
+  "input_sha256": "80ae668530063161a51f41cbc777e871bc41347c84b049f145b14eba6a4f0be8",
+  "image": "hop.png",
+  "prompt_sha256": "5f4ef52c51fca7c683a98d42806c5e02150629738c1f46759ac9772275c9d9c6",
+  "review_status": "pending",
+  "training_approved": false,
+  "status": "completed",
+  "profile": "connectivity_v2",
+  "settings": {
+    "model": "qwen3-vl:4b-instruct-q4_K_M",
+    "stream": false,
+    "think": false,
+    "keep_alive": 0,
+    "options": {
+      "temperature": 0.7,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 384,
+      "num_thread": 8,
+      "top_p": 0.8,
+      "top_k": 20,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 1.5
+    },
+    "format": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "edges",
+        "uncertain"
+      ],
+      "properties": {
+        "edges": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "a",
+              "b",
+              "direction"
+            ],
+            "properties": {
+              "a": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+              },
+              "b": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+              },
+              "direction": {
+                "enum": [
+                  "unknown",
+                  "a_to_b",
+                  "b_to_a"
+                ]
+              }
+            }
+          }
+        },
+        "uncertain": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "qwen3-vl:4b-instruct-q4_K_M",
+    "created_at": "2026-09-28T03:51:59.158971518Z",
+    "message": {
+      "role": "assistant",
+      "content": "{\n  \"edges\": [\n    {\n      \"a\": \"V-21040\",\n      \"b\": \"V-21042\",\n      \"direction\": \"unknown\"\n    },\n    {\n      \"a\": \"V-21042\",\n      \"b\": \"V-21043\",\n      \"direction\": \"unknown\"\n    },\n    {\n      \"a\": \"V-21043\",\n      \"b\": \"V-21041\",\n      \"direction\": \"unknown\"\n    },\n    {\n      \"a\": \"V-21041\",\n      \"b\": \"V-21040\",\n      \"direction\": \"unknown\"\n    }\n  ],\n  \"uncertain\": true\n}"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 73459372445,
+    "load_duration": 7341991255,
+    "prompt_eval_count": 1181,
+    "prompt_eval_cached_count": 0,
+    "prompt_eval_duration": 48088879000,
+    "eval_count": 165,
+    "eval_duration": 17965275000
+  },
+  "proposal": {
+    "edges": [
+      {
+        "a": "V-21040",
+        "b": "V-21042",
+        "direction": "unknown"
+      },
+      {
+        "a": "V-21042",
+        "b": "V-21043",
+        "direction": "unknown"
+      },
+      {
+        "a": "V-21043",
+        "b": "V-21041",
+        "direction": "unknown"
+      },
+      {
+        "a": "V-21041",
+        "b": "V-21040",
+        "direction": "unknown"
+      }
+    ],
+    "uncertain": true
+  },
+  "elapsed_seconds": 73.48,
+  "job_sha256": "d15c1dbcd10e0a0b56c255d3e818f3931d3bfacade14cdbff28d60c51e57accf",
+  "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b"
+}
