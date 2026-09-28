@@ -1,0 +1,295 @@
+{
+  "break-crossing": {
+    "edges": [
+      {
+        "a": "V-21110",
+        "b": "V-21111",
+        "direction": "unknown"
+      },
+      {
+        "a": "V-21112",
+        "b": "V-21113",
+        "direction": "unknown"
+      }
+    ],
+    "evidence_id": "8e397e34796b6d9fecf24016b7fa27f78e6008fc89696643c74edd9e30455f9b",
+    "image_sha256": "6efea9ce63ae05815d20eddf896736e85c9e8ff7099d5734ed803d53bf98b790",
+    "nodes": [
+      "V-21110",
+      "V-21111",
+      "V-21112",
+      "V-21113"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "cross-dot": {
+    "edges": [
+      {
+        "a": "V-21070",
+        "b": "J-21074",
+        "direction": "unknown"
+      },
+      {
+        "a": "J-21074",
+        "b": "V-21071",
+        "direction": "unknown"
+      },
+      {
+        "a": "V-21072",
+        "b": "J-21074",
+        "direction": "unknown"
+      },
+      {
+        "a": "J-21074",
+        "b": "V-21073",
+        "direction": "unknown"
+      }
+    ],
+    "evidence_id": "765d06d034c1f8a81f3595837b674d5a626b702aa3060d686773209483e29d7c",
+    "image_sha256": "ee60277bbf47a01d6bb3c73dfe3cdb1383cc2dafc474fb196bdf7dc96e60655f",
+    "nodes": [
+      "J-21074",
+      "V-21070",
+      "V-21071",
+      "V-21072",
+      "V-21073"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "dense-crossings": {
+    "edges": [
+      {
+        "a": "V-21030",
+        "b": "V-21031",
+        "direction": "unknown"
+      },
+      {
+        "a": "V-21032",
+        "b": "V-21033",
+        "direction": "unknown"
+      },
+      {
+        "a": "V-21034",
+        "b": "V-21035",
+        "direction": "unknown"
+      },
+      {
+        "a": "V-21036",
+        "b": "V-21037",
+        "direction": "unknown"
+      }
+    ],
+    "evidence_id": "d04efc6e52278dc8fccf96eca7b1b12688fcc0b213844fca3eeaeec17fb96aa2",
+    "image_sha256": "bdf0c754ebd292383414817eba1216f07058ced43e06bfd0084373a6e7408980",
+    "nodes": [
+      "V-21030",
+      "V-21031",
+      "V-21032",
+      "V-21033",
+      "V-21034",
+      "V-21035",
+      "V-21036",
+      "V-21037"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "forward": {
+    "edges": [
+      {
+        "a": "V-21000",
+        "b": "V-21001",
+        "direction": "a_to_b"
+      }
+    ],
+    "evidence_id": "96791d6af2c2b13925c119eec1d3b817d0ca62bd7b5c91c6766d2675413de149",
+    "image_sha256": "561445ef135c8bd3cdc82faea83c5ace8bf3071b5e22beb7eb077037973cb3dc",
+    "nodes": [
+      "V-21000",
+      "V-21001"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "hop": {
+    "edges": [
+      {
+        "a": "V-21040",
+        "b": "V-21041",
+        "direction": "unknown"
+      },
+      {
+        "a": "V-21042",
+        "b": "V-21043",
+        "direction": "unknown"
+      }
+    ],
+    "evidence_id": "6cac335a632de275ffcedbdc22a762bb31c91729fc93f4d2b87092b540d8e579",
+    "image_sha256": "80ae668530063161a51f41cbc777e871bc41347c84b049f145b14eba6a4f0be8",
+    "nodes": [
+      "V-21040",
+      "V-21041",
+      "V-21042",
+      "V-21043"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "no-arrow": {
+    "edges": [
+      {
+        "a": "V-21020",
+        "b": "V-21021",
+        "direction": "unknown"
+      }
+    ],
+    "evidence_id": "84ba6f0a488134f476678d5701e817d626018a621a176468cc72872717b6cc13",
+    "image_sha256": "1df41e5943d9ff2a60e64888a29239f0755711993610f2fa9c7fd934b075a3dd",
+    "nodes": [
+      "V-21020",
+      "V-21021"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "reverse": {
+    "edges": [
+      {
+        "a": "V-21010",
+        "b": "V-21011",
+        "direction": "b_to_a"
+      }
+    ],
+    "evidence_id": "e5fc6c13bb0d7776ec4f4bd1a3a5c41bb26ff4978079353c53480f28e1b2073e",
+    "image_sha256": "18097086acf3d1bcda6452580fc245e661a9eadf9b34d810e9d6655c7b1b38fb",
+    "nodes": [
+      "V-21010",
+      "V-21011"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "rotated-forward": {
+    "edges": [
+      {
+        "a": "V-21080",
+        "b": "V-21081",
+        "direction": "a_to_b"
+      }
+    ],
+    "evidence_id": "a53e2a5f22bffc24d681b900b90a064b93b7350f035593e8faa1f8a8e9a5ba0a",
+    "image_sha256": "b94a399c42a2dfe9b0a44211f3d1ab8fbb85563ef473f1bb15a3ff13cf605f9c",
+    "nodes": [
+      "V-21080",
+      "V-21081"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "rotated-reverse": {
+    "edges": [
+      {
+        "a": "V-21090",
+        "b": "V-21091",
+        "direction": "b_to_a"
+      }
+    ],
+    "evidence_id": "ecc3da8545c117f844df3b32f04360b3fe98ac4a06dcedc4b8cbbead9ea18030",
+    "image_sha256": "3f1f04135bacc54a6f3dde4deca497af2e023dab68787ee69d5dd75a3d95985f",
+    "nodes": [
+      "V-21090",
+      "V-21091"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "small-arrow": {
+    "edges": [
+      {
+        "a": "V-21100",
+        "b": "V-21101",
+        "direction": "b_to_a"
+      }
+    ],
+    "evidence_id": "b08c90bed5bdffa75af3860d329b98762691d30f17204e2add1a189db33ebe5b",
+    "image_sha256": "939852148b9c0db42eb5b0b3a1154f82b437e205b7396c61df58620674a49155",
+    "nodes": [
+      "V-21100",
+      "V-21101"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "tee": {
+    "edges": [
+      {
+        "a": "V-21050",
+        "b": "J-21051",
+        "direction": "a_to_b"
+      },
+      {
+        "a": "J-21051",
+        "b": "V-21052",
+        "direction": "unknown"
+      },
+      {
+        "a": "J-21051",
+        "b": "V-21053",
+        "direction": "unknown"
+      }
+    ],
+    "evidence_id": "d471782bd5dcc1324cded1ccd6ace75437214d7c1abaf23f3a607d4d920f4ffc",
+    "image_sha256": "61690a2cdd653cbe5188971a0246791f6c1a3d63c816b88b58d427ad1c6d952a",
+    "nodes": [
+      "J-21051",
+      "V-21050",
+      "V-21052",
+      "V-21053"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  },
+  "tee-dot": {
+    "edges": [
+      {
+        "a": "V-21060",
+        "b": "J-21061",
+        "direction": "b_to_a"
+      },
+      {
+        "a": "J-21061",
+        "b": "V-21062",
+        "direction": "unknown"
+      },
+      {
+        "a": "J-21061",
+        "b": "V-21063",
+        "direction": "unknown"
+      }
+    ],
+    "evidence_id": "a1f41d0d04bd299d225734e375f8799451fc4c5922a0614c1dbb995cbbe4630d",
+    "image_sha256": "b63ce5d18e9db660cb37a8d0f8c1b2eb69be1ba6cf0f46bc3fda0cdc7855341c",
+    "nodes": [
+      "J-21061",
+      "V-21060",
+      "V-21062",
+      "V-21063"
+    ],
+    "origin": "synthetic_fixture",
+    "reviewer": null,
+    "schema": "foundry.connectivity_reference/1"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "b94a399c42a2dfe9b0a44211f3d1ab8fbb85563ef473f1bb15a3ff13cf605f9c",
+    "junctions": [],
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          265.95166381098386,
+          215.90404905762466
+        ],
+        "id": "s0",
+        "source": "skeleton-hough",
+        "start": [
+          101.0,
+          299.0
+        ]
+      },
+      {
+        "end": [
+          499.08184542389813,
+          99.16225496316645
+        ],
+        "id": "s1",
+        "source": "skeleton-hough",
+        "start": [
+          319.0,
+          190.0
+        ]
+      },
+      {
+        "end": [
+          303.0,
+          198.0
+        ],
+        "id": "s2",
+        "source": "skeleton-hough",
+        "start": [
+          272.0,
+          213.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 412,
+    "tolerance": 3.0,
+    "warnings": [
+      "unclassified_raster_mark",
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "9d46170223fcae4394fd470583f52edce4500494c6870696f8b3e62b6b6df42e",
+  "edges": [],
+  "id": "rotated-forward",
+  "input_format": "png",
+  "input_sha256": "b94a399c42a2dfe9b0a44211f3d1ab8fbb85563ef473f1bb15a3ff13cf605f9c",
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "ports_sha256": "828cfd80abc5eeed8d2a1ce2f9b48065409baab836977558ded54d496de82592",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "e029b32d8a7d6a063d1c485d5d4992e76668436cea5bdaadaa677541c691694d",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

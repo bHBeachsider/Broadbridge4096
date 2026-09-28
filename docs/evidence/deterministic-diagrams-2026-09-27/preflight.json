@@ -1,0 +1,10 @@
+{
+  "drawings": 12,
+  "gate_eligible": false,
+  "job_sha256": "d15c1dbcd10e0a0b56c255d3e818f3931d3bfacade14cdbff28d60c51e57accf",
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "provenance": "pre-run-checksum",
+  "schema": "broadbridge.geometry_preflight/1",
+  "training_approved": false,
+  "visual_check": "All 12 inspected before inference; simple labels/linework and intended dot, tee, arrow, hop, gap variants visible. Not expert sign-off."
+}

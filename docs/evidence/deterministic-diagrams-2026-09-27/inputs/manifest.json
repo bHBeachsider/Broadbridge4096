@@ -1,0 +1,164 @@
+{
+  "assets": {
+    "break-crossing.dxf": "94b459879b1942f9c6f115c6dd6caf5fde733cf8953bb69be538df73eff05a3d",
+    "break-crossing.model.json": "63a179f1d4a4d0db514fbca3d23a4d4f685c02d526883ee179adff02123c20bd",
+    "break-crossing.pdf": "312874d4e2e55aee25c35be6c13e736a4657d19ad0258cb1724d0e19640b6614",
+    "break-crossing.png": "6efea9ce63ae05815d20eddf896736e85c9e8ff7099d5734ed803d53bf98b790",
+    "break-crossing.ports.json": "e69f59fc94585ed97e44bde6e4c34a6640e0c956949585cde535f6f2e289b94f",
+    "cross-dot.dxf": "3818d331f0999a3aa3f9b95064d84ece2b3a1be6ca8c85ae4298d7e0277303a5",
+    "cross-dot.model.json": "35795d6d4d195e02f24f769054af6b6108f3b2a837b69e007f169506eba545cb",
+    "cross-dot.pdf": "de90134b33fc3b8f57562a00d47fe5cf55b9bd685ef81cdb7b8fffb76b969dbd",
+    "cross-dot.png": "ee60277bbf47a01d6bb3c73dfe3cdb1383cc2dafc474fb196bdf7dc96e60655f",
+    "cross-dot.ports.json": "6625ddf68baf336a4b60096406afd7440c80dd111f93504d9876c4188818026f",
+    "dense-crossings.dxf": "bbe22486f81076fc1dc989871b1b4f947c77f2cfc9e9c4b97d6c5137b7588d39",
+    "dense-crossings.model.json": "196c3bb63c22e19bf79f09a0e0811bc8b4eb1a9303aad26c3ddd26edffd8037f",
+    "dense-crossings.pdf": "8bbe33c675eba689b89e60eae3ea3a768ca399bd4181f8570bfc4c30f2b3ec50",
+    "dense-crossings.png": "bdf0c754ebd292383414817eba1216f07058ced43e06bfd0084373a6e7408980",
+    "dense-crossings.ports.json": "450e98f57813940b30fade0dbbd7d93b24cc0777292ff786400ed3c5cd589b85",
+    "forward.dxf": "f349cd3b4c72524180bd8826b6a0d220fb306c62cf4f8d282285f7058bca7e9a",
+    "forward.model.json": "680aea8cd05f8419f781b3e00367fc798af8d8fdcbab11a928f5e9bd703c6403",
+    "forward.pdf": "9a55dc87d8b43b7e79d04fdd76b4387ae0cf96aecf988bc5f12bfaea661b1678",
+    "forward.png": "561445ef135c8bd3cdc82faea83c5ace8bf3071b5e22beb7eb077037973cb3dc",
+    "forward.ports.json": "814997b710d1a83867472de177dffc1718514c676894c56d9b7c56caf5e42c13",
+    "hop.dxf": "3f497a966afcb959e1b93843012a4be8d2848fa98dfb60ca851c3ce12cf4c646",
+    "hop.model.json": "ae55ca2bfff69a0a5a95231a5d7c5592f084b6bfec40f3eeaa68602b064b95a3",
+    "hop.pdf": "2da35674c8ca3d685f2e578550f56e6f6e2e4e1094a645c9558dadba11833130",
+    "hop.png": "80ae668530063161a51f41cbc777e871bc41347c84b049f145b14eba6a4f0be8",
+    "hop.ports.json": "f40bfcee8ba5e4cfc5e08b690517a28125783f2f2499e11705994ffa8f7497ff",
+    "no-arrow.dxf": "111b21becb1b472bdd68002b8fd17f1faf6539705f5bdc6b5230bddf6e77011f",
+    "no-arrow.model.json": "49f2039bd1fd6aa9e1d476864b53438f027fd537118513e217c9237039b1d20f",
+    "no-arrow.pdf": "a2ff44a663f675a1de9bf682845df2b5280a84ea9a024bcd5e3ed149643f4599",
+    "no-arrow.png": "1df41e5943d9ff2a60e64888a29239f0755711993610f2fa9c7fd934b075a3dd",
+    "no-arrow.ports.json": "274f8d99e90a7ede0f527bbff3a27f6632131ff45e116d93601c297799f34134",
+    "references.json": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23",
+    "reverse.dxf": "4fa44bf7265778e1a78953820d47f44d0357c91de5edf09d3057a410c7af7ba6",
+    "reverse.model.json": "5b8fe2bff6e89a978180fdfbaf46299a9117d88a3bf7d897f2bf337c1824efd5",
+    "reverse.pdf": "1fb65d011e22c15d604bd66c3640939e7dc30066ccd39d1cfa238220acfabe5a",
+    "reverse.png": "18097086acf3d1bcda6452580fc245e661a9eadf9b34d810e9d6655c7b1b38fb",
+    "reverse.ports.json": "db09b0a32ac470806a324c6859e477d4a7bd2365b2f30cf598fd0f7cc4ba881a",
+    "rotated-forward.dxf": "a2ba7125a1630d26393fba5fdc5f6debaeaa0d28fe8e305d5039713ce7453f29",
+    "rotated-forward.model.json": "cdc7008e67ad0ac77537020293847515e3ecce145735f33b812b7932dfaaa82e",
+    "rotated-forward.pdf": "9754ee630362743e5dc5e19884e3a930a89e9c07a553d2a8149474aa09984d3a",
+    "rotated-forward.png": "b94a399c42a2dfe9b0a44211f3d1ab8fbb85563ef473f1bb15a3ff13cf605f9c",
+    "rotated-forward.ports.json": "a9a56938fcd4e16935f7aea4cf31a053b90042d6306bc598edde86995700920e",
+    "rotated-reverse.dxf": "a8f4d32e71135536078ff7417a09ee0c44fabba88615bedaa39f6e62da19ac81",
+    "rotated-reverse.model.json": "fa4b4b148500b913998830be6d36978adb7c84f0540a46c2c728fec12183c39c",
+    "rotated-reverse.pdf": "487cc8cd2efc3cfcdbccaece3c0c34593383612b7553399281b978d9a8bc4559",
+    "rotated-reverse.png": "3f1f04135bacc54a6f3dde4deca497af2e023dab68787ee69d5dd75a3d95985f",
+    "rotated-reverse.ports.json": "9e13b51edb79c9d318930bbf533ec9ce45b07c19a1191379fce87bf9e6d8bdcc",
+    "small-arrow.dxf": "e3faf923f6f7a0464d31b819981a00da87ccdc477b474ba590d4dbf348f47552",
+    "small-arrow.model.json": "ff0b6577a63f35d5a14670a260e771a6a1f9d620e76f8494cd8df2074a8c23e0",
+    "small-arrow.pdf": "5e60395ef14465d965e9c6993a5afe149a52c1803a2b62e70b7be293f1bc43d6",
+    "small-arrow.png": "939852148b9c0db42eb5b0b3a1154f82b437e205b7396c61df58620674a49155",
+    "small-arrow.ports.json": "4f91f2d6b2f99437b2c3a800ef65c2a689c2eb08d8cc4257955c10d662d76afb",
+    "tee-dot.dxf": "382143ac1eec5b5b25485636b5b6624493a4223efb30176439d5999746855bcc",
+    "tee-dot.model.json": "06dcb093735c4ada5d6fc221578aa004cf8e8b573cb1345b570548235e44c0c2",
+    "tee-dot.pdf": "fb1665235496e24ae37d4daa84f1f8f0a890fc9799cd4ac117d22137c0de22f0",
+    "tee-dot.png": "b63ce5d18e9db660cb37a8d0f8c1b2eb69be1ba6cf0f46bc3fda0cdc7855341c",
+    "tee-dot.ports.json": "af88d77536c0209c4f8e39fd080f28b875e61e423f44ba71be16759b488b4644",
+    "tee.dxf": "de84cc79fd231c37d1bb15fc7f720074af499a783811c8df8d0dcf6fb10168c3",
+    "tee.model.json": "a39159f42074436f25c8ffe0cbba4a214fad7ef954b56737bc19263e14171d11",
+    "tee.pdf": "8535cf4de3db7bf7afe54fb56f9e2c56625cae44ac0008ff23d81d7396ab5104",
+    "tee.png": "61690a2cdd653cbe5188971a0246791f6c1a3d63c816b88b58d427ad1c6d952a",
+    "tee.ports.json": "6204d153f95d2ccf07629830a0ad656410eaa63d4f8f5c20804d4214b8dd65cc"
+  },
+  "baseline_model_pins": {
+    "ibm/granite-docling:258m": "sha256:c4bb6f55fc69f97a51fab35408776a098c6836231b022149e66ed05084d33125",
+    "qwen3-vl:4b-instruct-q4_K_M": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b"
+  },
+  "crop_history_pinned": false,
+  "detector_config": {
+    "dxf_tolerance": 2,
+    "gap": 2,
+    "hough_threshold": 15,
+    "minimum_line": 16,
+    "opening": 5,
+    "pdf_tolerance": 2,
+    "raster_threshold": 128,
+    "raster_tolerance": 3,
+    "skeleton": "zhang"
+  },
+  "drawings": [
+    {
+      "category": "forward",
+      "family_id": "geometry-stress-2100",
+      "id": "forward",
+      "seed": 2100
+    },
+    {
+      "category": "reverse",
+      "family_id": "geometry-stress-2101",
+      "id": "reverse",
+      "seed": 2101
+    },
+    {
+      "category": "no_arrow",
+      "family_id": "geometry-stress-2102",
+      "id": "no-arrow",
+      "seed": 2102
+    },
+    {
+      "category": "crossing",
+      "family_id": "geometry-stress-2103",
+      "id": "dense-crossings",
+      "seed": 2103
+    },
+    {
+      "category": "hop",
+      "family_id": "geometry-stress-2104",
+      "id": "hop",
+      "seed": 2104
+    },
+    {
+      "category": "tee",
+      "family_id": "geometry-stress-2105",
+      "id": "tee",
+      "seed": 2105
+    },
+    {
+      "category": "tee",
+      "family_id": "geometry-stress-2106",
+      "id": "tee-dot",
+      "seed": 2106
+    },
+    {
+      "category": "junction",
+      "family_id": "geometry-stress-2107",
+      "id": "cross-dot",
+      "seed": 2107
+    },
+    {
+      "category": "rotated",
+      "family_id": "geometry-stress-2108",
+      "id": "rotated-forward",
+      "seed": 2108
+    },
+    {
+      "category": "rotated",
+      "family_id": "geometry-stress-2109",
+      "id": "rotated-reverse",
+      "seed": 2109
+    },
+    {
+      "category": "small_arrow",
+      "family_id": "geometry-stress-2110",
+      "id": "small-arrow",
+      "seed": 2110
+    },
+    {
+      "category": "break",
+      "family_id": "geometry-stress-2111",
+      "id": "break-crossing",
+      "seed": 2111
+    }
+  ],
+  "gate_eligible": false,
+  "limitations": [
+    "No cropping in this set; system-wide crop-history gate still deferred",
+    "Supplied ports isolate connectivity from OCR",
+    "Synthetic development set, no expert sign-off"
+  ],
+  "provenance": "pre-run-checksum",
+  "schema": "broadbridge.geometry_stress_manifest/1",
+  "training_approved": false
+}

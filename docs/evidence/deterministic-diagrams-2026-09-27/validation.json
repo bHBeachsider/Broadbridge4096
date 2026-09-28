@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-28",
+  "foundry_commit": "9b53527",
+  "input_freeze_commit": "cb35724",
+  "dxf_binary_commit": "7ef89e7",
+  "training_approved": false,
+  "gate_eligible": false,
+  "foundry": {
+    "command": "python -m pytest tests -q -rs -o addopts= --tb=short",
+    "passed": 775,
+    "skipped": 3,
+    "skip_reasons": [
+      "optional docling_core not installed",
+      "disposable PostgreSQL not enabled",
+      "optional pinned C01 fixture path not configured"
+    ],
+    "warnings": [
+      "Existing Requests dependency range warning",
+      "SWIG deprecations"
+    ]
+  },
+  "broadbridge": {
+    "command": "python -m pytest packs/oil-gas/tests packs/oil-gas/db/tests scripts/research -q -o addopts= --tb=short",
+    "passed": 431,
+    "skipped": 103,
+    "skip_reasons": [
+      "Live/disposable database integration not configured"
+    ],
+    "warnings": [
+      "Existing Requests dependency range warning"
+    ]
+  },
+  "focused": {
+    "geometry_passed": 42,
+    "research_passed": 11,
+    "archive_replay": "exact machine results match; corrupt receipt tests reject"
+  },
+  "review": {
+    "method": "independent read-only code review and in-memory repros",
+    "fixed": [
+      "hidden/nonplanar DXF",
+      "patterned hatch as dot",
+      "white PDF geometry",
+      "pixel bound before render",
+      "known direction coverage/accuracy"
+    ],
+    "deferred_measured_failures": [
+      "DXF spline hop",
+      "raster arrow and hop recovery",
+      "break-symbol continuity"
+    ]
+  },
+  "runtime": {
+    "model_requests": 12,
+    "baseline_retries": 0,
+    "detector_drawings_per_attempt": 36,
+    "detector_attempts": 2,
+    "local_vision_container_stopped": true,
+    "ec2_used": false,
+    "gpu_used": false,
+    "production_changed": false,
+    "client_drawings_used": false,
+    "download_over_1gb": false
+  }
+}

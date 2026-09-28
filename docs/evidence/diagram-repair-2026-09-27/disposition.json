@@ -1,0 +1,17 @@
+{
+  "experiment": "diagram-repair-2026-09-27",
+  "gate_eligible": false,
+  "provenance": "retrospective-checksum",
+  "reason": "Original evaluation pin was recorded after inference; historical development diagnosis only.",
+  "required_before_unblocking": [
+    "crop-history metadata pinned",
+    "pre-run freeze verified",
+    "source rights cleared",
+    "independent technical acceptance",
+    "new held-out geometry evaluation",
+    "real drawing/OCR and conventions validated",
+    "release approved"
+  ],
+  "schema": "broadbridge.diagram_experiment_disposition/1",
+  "training_approved": false
+}

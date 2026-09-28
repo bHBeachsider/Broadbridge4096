@@ -1,0 +1,100 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [
+      {
+        "base": [
+          296.0,
+          200.0
+        ],
+        "id": "a0",
+        "segment_id": null,
+        "source": "raster-tip-base",
+        "tip": [
+          284.0,
+          201.0
+        ]
+      }
+    ],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "18097086acf3d1bcda6452580fc245e661a9eadf9b34d810e9d6655c7b1b38fb",
+    "junctions": [],
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          499.0,
+          199.0
+        ],
+        "id": "s0",
+        "source": "skeleton-hough",
+        "start": [
+          300.0,
+          199.0
+        ]
+      },
+      {
+        "end": [
+          248.0,
+          199.0
+        ],
+        "id": "s1",
+        "source": "skeleton-hough",
+        "start": [
+          171.0,
+          199.0
+        ]
+      },
+      {
+        "end": [
+          150.0,
+          199.0
+        ],
+        "id": "s2",
+        "source": "skeleton-hough",
+        "start": [
+          100.0,
+          199.0
+        ]
+      },
+      {
+        "end": [
+          279.0,
+          199.0
+        ],
+        "id": "s3",
+        "source": "skeleton-hough",
+        "start": [
+          259.0,
+          199.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 400,
+    "tolerance": 3.0,
+    "warnings": [
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "2cb4809e39ddc06daab97e17034b77b1e001e48f075db7efcfcddec346afcd1c",
+  "edges": [],
+  "id": "reverse",
+  "input_format": "png",
+  "input_sha256": "18097086acf3d1bcda6452580fc245e661a9eadf9b34d810e9d6655c7b1b38fb",
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "ports_sha256": "773d904528dd09abdac07b2c0d266023eb5c61449c2b8b9c9c8b25f87c5d8736",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "e029b32d8a7d6a063d1c485d5d4992e76668436cea5bdaadaa677541c691694d",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

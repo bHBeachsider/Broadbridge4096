@@ -1,0 +1,28 @@
+{
+  "origin": "supplied label/port annotations only; no connectivity",
+  "ports": {
+    "V-21090": [
+      100,
+      100
+    ],
+    "V-21091": [
+      500,
+      300
+    ]
+  },
+  "text_masks": [
+    [
+      108,
+      106,
+      158,
+      121
+    ],
+    [
+      508,
+      306,
+      558,
+      321
+    ]
+  ],
+  "training_approved": false
+}
