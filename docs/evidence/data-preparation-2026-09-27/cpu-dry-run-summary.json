@@ -1,0 +1,31 @@
+{
+  "status": "ready",
+  "train": {
+    "count": 946,
+    "min": 119,
+    "max": 1127,
+    "p50": 367,
+    "p95": 828,
+    "overlength_count": 0,
+    "truncation_count": 0
+  },
+  "val": {
+    "count": 128,
+    "min": 147,
+    "max": 1219,
+    "p50": 304,
+    "p95": 923,
+    "overlength_count": 0,
+    "truncation_count": 0
+  },
+  "schema": "broadbridge.cpu_token_audit/1",
+  "training_approved": false,
+  "rendered_batch_sha256": "ad3522cd36d15b7a9ccdcf1381654e2e660c79ce68ce11e6bf6429a11d9e280a",
+  "first_batch_tokens": 469,
+  "first_batch_assistant_tokens": 420,
+  "mask_matches_labels": true,
+  "tokenizer_revision": "946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+  "chat_template": "qwen-2.5",
+  "weights_loaded": false,
+  "model_calls": 0
+}
