@@ -2,6 +2,8 @@
 
 Updated 28 September 2026. Owner: Brad / Broadbridge Oil & Gas.
 
+**FQ means Fine-tuning Queue.** These are task IDs within the main SLM project, not separate projects.
+
 This is the ordered work backlog requested while the discovery questionnaire is being developed. It does not submit training jobs or start a background scheduler. Execute one implementation lane; keep GPU, live generation and production gates explicit. The editable [queue CSV](SLM_WORK_QUEUE.csv) is the task register; update both views together.
 
 ## What can proceed without waiting for Bill
@@ -26,7 +28,7 @@ without importing that implementation into this branch.
 | FQ-04 | Audit the existing Hugging Face math sample | PREPARED_WAIT_REVIEW | Audit and quality hold recorded on [draft #19](https://github.com/bHBeachsider/Broadbridge4096/pull/19); no training admission |
 | FQ-05 | Test extraction and normalization coverage | ISOLATED_IN_PROGRESS | [Diagram recovery draft #23](https://github.com/bHBeachsider/Broadbridge4096/pull/23), paired Foundry #19; remaining targets and qualification open |
 | FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | PREPARED_WAIT_REVIEW | Mock acceptance/release refusals and CPU audit prepared on [draft #19](https://github.com/bHBeachsider/Broadbridge4096/pull/19); live authenticated integration remains open |
-| FQ-07 | Prepare the helper comparison protocol revision | PREPARED_WAIT_REVIEW | [Protocol v2](HELPER_COMPARISON_V2.md): one question/request, paired stages, version fields, $0.10/$0.15 proposed limits and offline packets; no live executor or calls |
+| FQ-07 | Prepare the helper comparison protocol revision | PREPARED_WAIT_REVIEW | [Protocol v2](HELPER_COMPARISON_V2.md) and [execution/scoring runbook](HELPER_COMPARISON_EXECUTION.md): bounded paired runner, hash-bound approval worksheet, failure receipts and reviewer aggregation; HTTP-mocked rehearsal only, no live calls |
 | FQ-08 | Confirm priority tasks, references and recipes (SD-01) | WAIT_REVIEW | Named decisions on first tasks, exclusions, recipe versions, hard-fail criteria and reviewer competence |
 | FQ-09 | Run and score S0-cases | WAIT_CASES_AND_RUN | Stock qwen3:8b briefs plus human scorecards/aggregate; Gate 0 coverage recorded separately |
 | FQ-10 | Build and compare S0-retrieval | WAIT_SCORED_BASELINE | On-box index and comparable scored briefs; beat S0-cases before training is considered |
@@ -77,7 +79,7 @@ For later adapter comparison, do not compare stock Ollama's default template wit
 
 1. Review the FQ-01 method/tolerance and FQ-02 evidence packet. No training approval is implied by their software checks.
 2. Review FQ-03's proposed sources and FQ-04's quality findings; FQ-06's mock release/audit is prepared. Their draft status confers no technical or training acceptance.
-3. Review FQ-07's exact paired protocol and proposed limits. The next offline implementation can add the versioned live adapter and reviewer aggregation, tested entirely with mocked transport; no call is authorized by preparing them. Model/provider/rights checks and explicit exact-run approval precede any live stage. FQ-05 remains isolated; prompting for diagram connectivity is closed.
+3. Review FQ-07's exact paired protocol and proposed limits. Its execution adapter and reviewer aggregation are now implemented and rehearsed with mocked HTTP. Complete the runbook's real provider/token/rights preflight and exact-run approval before live stage A; the software does not authorize a call. FQ-05 remains isolated; prompting for diagram connectivity is closed.
 4. Bill or another appointed reviewer chooses useful tasks and verifies the real source/method/candidate packets. Brad records rights, live processing budgets and release decisions independently.
 
 Original work packages and acceptance criteria remain in the [synthetic-data plan](superpowers/plans/2026-09-26-synthetic-expert-data.md), [expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) and [ingestion release runbook](INGESTION_PIPELINE_RUNBOOK.md). This queue organizes them; it does not mark unperformed work accepted.

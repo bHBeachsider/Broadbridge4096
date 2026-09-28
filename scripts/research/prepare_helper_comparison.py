@@ -167,7 +167,7 @@ def prepare(output, stage='stage_a'):
                'prompt_sha256': sha(PROMPT.read_bytes()), 'compiler_sha256': sha(Path(__file__).read_bytes()),
                'live_blockers': ['protocol_reference_and_budget_acceptance', 'fresh_source_rights_check',
                                  'provider_revision_and_capability_snapshot', 'exact_input_token_preflight',
-                                 'bounded_v2_live_runner_not_implemented', 'spend_controls_and_exact_run_approval']}
+                                 'clean_committed_v2_executor_and_foundry_receipts', 'spend_controls_and_exact_run_approval']}
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
     v1.write_json(output/'preparation.json', summary)

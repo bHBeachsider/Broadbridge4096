@@ -176,22 +176,24 @@ Existing output directories are refused. Outputs are `preparation.json`, frozen
 Request descriptions are not direct API payloads. Do not feed this version into
 the v1 live runner, its aggregator or the production public-v1 review URL.
 
-## Remaining implementation and human steps
+## Execution adapter and remaining human steps
 
-FQ-07 delivers the revised protocol, offline compiler/checker and rehearsed packets.
-It does **not** yet implement a v2 live executor, receipt ingestion, paired score
-aggregator or capture UI integration. Before execution:
+FQ-07 now includes the [bounded executor and paired score aggregator](HELPER_COMPARISON_EXECUTION.md),
+with HTTP-mocked tests and offline rehearsals. The live code path is implemented
+but has not been authorized or run. Capture UI integration remains separate.
+Before live execution:
 
 1. Brad and the appointed technical reviewer accept this protocol, reference
    applicability, quality thresholds and exact stage budget. Review source rights
    and route eligibility at that time; the historical manifest is not a live registry.
 2. Refresh candidate/provider identity and capability records; obtain a bounded
    token/billing calculation. Proposed names do not confer current availability.
-3. Implement a separate bounded v2 execution adapter using Foundry transport, with
-   offline tests for paired stop behavior, reservation/accounting, identity drift,
-   length limits and unknown billing. Require exact artifact-hash approval.
-4. Add versioned reviewer ingestion/aggregation with missing-response, critical,
-   reference-dispute and partial-review refusals. Keep public-v1 unchanged.
+3. Use the executor's `plan` command to prepare exact wire requests and complete
+   its approval worksheet with real provider/token/rights evidence and the exact
+   two committed repository revisions. The incomplete template cannot authorize calls.
+4. Allocate independent reviewer time for the hash-bound score CSV. The aggregator
+   preserves missing responses, critical errors, disputes and partial-review holds;
+   it neither changes public-v1 nor substitutes for engineering acceptance.
 5. Only then authorize/run stage A. Review it before approving B. Fresh-family
    confirmation and training release are separate later decisions.
 
