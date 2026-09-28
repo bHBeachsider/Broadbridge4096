@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-28",
+  "suite": "packs/oil-gas/tests packs/oil-gas/db/tests scripts/research",
+  "counts": {
+    "tests": 514,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 104,
+    "passed": 410
+  },
+  "skips": "103 DB integration tests without credentials; 1 optional reference-graph configuration",
+  "foundry_full": {
+    "passed": 781,
+    "skipped": 3,
+    "note": "One further CLI test covered in final focused 30-pass run"
+  },
+  "focused_bundle_transfer_passed": 30,
+  "review": "Independent read-only review: no remaining actionable findings after encoding correction",
+  "ec2_started": false,
+  "inference": false,
+  "training": false,
+  "credentials_read": false,
+  "production_changes": false,
+  "wheels_or_weights_downloaded": false
+}
