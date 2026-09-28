@@ -1,0 +1,233 @@
+{
+  "schema": "foundry.diagram_qualification/1",
+  "evaluation_role": "regression",
+  "provenance": "pre-run-checksum",
+  "split_manifest_sha256": null,
+  "drawings": [
+    {
+      "drawing_id": "forward",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/forward.pdf",
+        "sha256": "9a55dc87d8b43b7e79d04fdd76b4387ae0cf96aecf988bc5f12bfaea661b1678"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "reverse",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/reverse.pdf",
+        "sha256": "1fb65d011e22c15d604bd66c3640939e7dc30066ccd39d1cfa238220acfabe5a"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "no-arrow",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/no-arrow.pdf",
+        "sha256": "a2ff44a663f675a1de9bf682845df2b5280a84ea9a024bcd5e3ed149643f4599"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "dense-crossings",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/dense-crossings.pdf",
+        "sha256": "8bbe33c675eba689b89e60eae3ea3a768ca399bd4181f8570bfc4c30f2b3ec50"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "hop",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/hop.pdf",
+        "sha256": "2da35674c8ca3d685f2e578550f56e6f6e2e4e1094a645c9558dadba11833130"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "tee",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/tee.pdf",
+        "sha256": "8535cf4de3db7bf7afe54fb56f9e2c56625cae44ac0008ff23d81d7396ab5104"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "tee-dot",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/tee-dot.pdf",
+        "sha256": "fb1665235496e24ae37d4daa84f1f8f0a890fc9799cd4ac117d22137c0de22f0"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "cross-dot",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/cross-dot.pdf",
+        "sha256": "de90134b33fc3b8f57562a00d47fe5cf55b9bd685ef81cdb7b8fffb76b969dbd"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "rotated-forward",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/rotated-forward.pdf",
+        "sha256": "9754ee630362743e5dc5e19884e3a930a89e9c07a553d2a8149474aa09984d3a"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "rotated-reverse",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/rotated-reverse.pdf",
+        "sha256": "487cc8cd2efc3cfcdbccaece3c0c34593383612b7553399281b978d9a8bc4559"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "small-arrow",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/small-arrow.pdf",
+        "sha256": "5e60395ef14465d965e9c6993a5afe149a52c1803a2b62e70b7be293f1bc43d6"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    },
+    {
+      "drawing_id": "break-crossing",
+      "family_id": "original-simple-line-generator",
+      "split": "regression",
+      "revision": "frozen-2026-09-27",
+      "convention_id": "no_dot_crossing_nonconnecting/1",
+      "coordinate_frame": "page-points-top-left",
+      "source": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/break-crossing.pdf",
+        "sha256": "312874d4e2e55aee25c35be6c13e736a4657d19ad0258cb1724d0e19640b6614"
+      },
+      "reference": {
+        "path": "docs/evidence/deterministic-diagrams-2026-09-27/inputs/references.json",
+        "sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23"
+      },
+      "crop_history": [],
+      "parent_source_sha256": null
+    }
+  ],
+  "acceptances": {
+    "rights": null,
+    "conventions": null,
+    "reference": null,
+    "visibility": null,
+    "technical": null,
+    "release": null
+  },
+  "statistical_design": null
+}

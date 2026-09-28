@@ -1,0 +1,25 @@
+{
+  "schema": "broadbridge.diagram_fixture_design/1",
+  "existing_count": 12,
+  "family_id": "original-simple-line-generator",
+  "split": "development",
+  "reserve_a": [],
+  "reserve_b": [],
+  "reserve_reason": "Shared construction ancestry; independent source families and source-only review required before assigning holdouts.",
+  "drawings": [
+    {"id":"dev-01","seed":3101,"case":"arrow","angle":0,"arrow_length":18,"direction":"a_to_b"},
+    {"id":"dev-02","seed":3102,"case":"arrow","angle":0,"arrow_length":18,"direction":"b_to_a"},
+    {"id":"dev-03","seed":3103,"case":"arrow","angle":30,"arrow_length":18,"direction":"a_to_b"},
+    {"id":"dev-04","seed":3104,"case":"arrow","angle":90,"arrow_length":18,"direction":"b_to_a"},
+    {"id":"dev-05","seed":3105,"case":"arrow","angle":150,"arrow_length":8,"direction":"a_to_b"},
+    {"id":"dev-06","seed":3106,"case":"arrow","angle":0,"arrow_length":5,"direction":"b_to_a"},
+    {"id":"dev-07","seed":3107,"case":"no-arrow"},
+    {"id":"dev-08","seed":3108,"case":"conflicting-arrows"},
+    {"id":"dev-09","seed":3109,"case":"dense-crossings"},
+    {"id":"dev-10","seed":3110,"case":"hop"},
+    {"id":"dev-11","seed":3111,"case":"tee"},
+    {"id":"dev-12","seed":3112,"case":"tee-dot"},
+    {"id":"dev-13","seed":3113,"case":"unexplained-break"},
+    {"id":"dev-14","seed":3114,"case":"unmatched-off-page"}
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "origin": "supplied annotations; not automatic port detection",
+  "ports": {
+    "V-31130": [
+      80,
+      200
+    ],
+    "V-31131": [
+      520,
+      200
+    ]
+  },
+  "text_masks": [
+    [
+      88,
+      206,
+      138,
+      221
+    ],
+    [
+      528,
+      206,
+      578,
+      221
+    ]
+  ]
+}
