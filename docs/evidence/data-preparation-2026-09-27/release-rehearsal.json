@@ -1,0 +1,29 @@
+{
+  "schema": "broadbridge.release_audit_rehearsal/1",
+  "training_approved": false,
+  "model_calls": 0,
+  "blocked": [
+    "self_acceptance",
+    "revoked_rights",
+    "historical_holdout",
+    "edited_candidate",
+    "stale_decision",
+    "mock_live_acceptance",
+    "pending_release",
+    "stale_release_approval"
+  ],
+  "mock_release_verified": true,
+  "live_integration_complete": false,
+  "acceptance_receipt": {
+    "schema": "foundry.synthetic_acceptance_check/1",
+    "mode": "rehearsal",
+    "training_approved": false,
+    "packet_sha256": "b28d083a8314aee4a257ab4d1d438513b8a549bc6f985b9a47f5823356535121",
+    "candidate_sha256": "fcdc4d3f7fc919e05a94e7ae476fce16afaef95828c03298ba42356b4c4fb7b9",
+    "decision_sha256": "a3acd49984154b89fb7a0fdafe7610e8abcf84728f0165dbbe67f0b63895410f",
+    "reviewer": "independent-fixture@example.invalid",
+    "limitation": "Trusted caller must authenticate identity, supply complete current state and separately approve release.",
+    "receipt_sha256": "ef22e7aaf3f817e353029593e5fdb4849b5ca879e7adde9b57eb60420a7a2579"
+  },
+  "limitation": "Fabricated identities/rights/checks. Live authenticated review, authoritative complete history and release wiring remain open."
+}

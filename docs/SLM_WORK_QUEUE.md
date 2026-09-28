@@ -10,16 +10,18 @@ FQ-01 through FQ-07 prepare software, extraction evidence and reviewable inputs 
 
 **FQ-01 and FQ-02 are now prepared for review:** the calculation-verifier rehearsal and a three-page DOE pressure packet. See the [commands, results and remaining decisions](SLM_PREPARATION_REHEARSAL.md). DOE section choice is a provisional engineering-preparation choice, not a decision about the final commercial curriculum.
 
+**FQ-03, FQ-04 and FQ-06 are also prepared:** [source shortlist, math quality findings and mock release/CPU audit](SLM_DATA_PREPARATION_RESULTS.md). They confer no training acceptance. In particular, the math sample remains on quality hold and live synthetic-review/release integration remains open.
+
 ## Ordered register
 
 | ID | Work package | State | Deliverable / completion evidence |
 | --- | --- | --- | --- |
 | FQ-01 | Calculation verifier rehearsal (SD-04) | PREPARED_WAIT_REVIEW | Decimal checker, five-vector admission rehearsal and release rejection verified; engineering method/tolerance acceptance remains pending |
 | FQ-02 | Extract the acquired DOE handbook pilot section | PREPARED_WAIT_REVIEW | PDF 35-37 with images, two text views, glyphs, equation/conversion proposals, nine exceptions and blank review packet; no QA release |
-| FQ-03 | Prepare new engineering source families | READY_OFFLINE | Shortlist with exact document/version, credits, rights action, intended task and family/split; download/extract only admitted items |
-| FQ-04 | Audit the existing Hugging Face math sample | READY_OFFLINE | Exact/near-duplicate and template-family audit; answer spot-checks; attribution and token report; isolated general-math control |
-| FQ-05 | Test extraction and normalization coverage | IN_PROGRESS | [Focused vision v2](VISION_V2_RESULTS.md): nine requests completed; separate graph checks rejected two wrong connection proposals. Labels and formula symbols improved on development fixtures; all outputs remain outside training. Broader coverage and engineering acceptance remain open. |
-| FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | READY_OFFLINE | Reject revoked rights, holdout ancestry, edits after review and self-acceptance; show assistant mask, lengths and truncation |
+| FQ-03 | Prepare new engineering source families | PREPARED_WAIT_REVIEW | Five exact DOE documents/four provisional families; rights/technical holds; frozen public-v1 families excluded |
+| FQ-04 | Audit the existing Hugging Face math sample | PREPARED_WAIT_REVIEW | 1,200 rows audited; three exact groups/four template groups; ten spot-checks expose three quality problems; quality hold |
+| FQ-05 | Test extraction and normalization coverage | IN_PROGRESS | [Reference pilot](REFERENCE_GRAPH_RESULTS.md): 14 correct edges plus two false connections, two reversed arrows and two unsupported directions. [Remediation](DIAGRAM_CONNECTIVITY_REMEDIATION.md); visual training admission remains blocked. |
+| FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | PREPARED_WAIT_REVIEW | Eight mock acceptance/release refusals, hash-keyed fixture verified and pinned CPU mask/length audit; live review wiring remains open |
 | FQ-07 | Prepare the helper comparison protocol revision | READY_OFFLINE | Shorter bounded paired protocol, model/provider revision fields and cost ceiling proposal; no live calls |
 | FQ-08 | Confirm priority tasks, references and recipes (SD-01) | WAIT_REVIEW | Named decisions on first tasks, exclusions, recipe versions, hard-fail criteria and reviewer competence |
 | FQ-09 | Run and score S0-cases | WAIT_CASES_AND_RUN | Stock qwen3:8b briefs plus human scorecards/aggregate; Gate 0 coverage recorded separately |
@@ -70,8 +72,8 @@ For later adapter comparison, do not compare stock Ollama's default template wit
 ## Next dispatch and human inputs
 
 1. Review the FQ-01 method/tolerance and FQ-02 evidence packet. No training approval is implied by their software checks.
-2. FQ-03 source-family preparation and FQ-04 existing math-sample audit can proceed without expert case entry.
-3. FQ-06 can follow using fabricated rights/split/review failures and the existing CPU audit. FQ-05 now has a local vision-model pilot; use its failures to refine extraction before considering native multimodal fine-tuning.
+2. Review FQ-03's rights/credits and technical task selection; adjudicate FQ-04's family/answer quality findings. Original samples and splits remain unchanged.
+3. Next offline dispatch: FQ-07 helper-comparison protocol revision. FQ-06's pure acceptance boundary still needs authenticated live integration before real synthetic release. FQ-05's next diagram step is a reviewed native-model crop set targeting crossing/arrow errors.
 4. Bill or another appointed reviewer chooses useful tasks and verifies the real source/method/candidate packets. Brad records rights, live processing budgets and release decisions independently.
 
 Original work packages and acceptance criteria remain in the [synthetic-data plan](superpowers/plans/2026-09-26-synthetic-expert-data.md), [expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) and [ingestion release runbook](INGESTION_PIPELINE_RUNBOOK.md). This queue organizes them; it does not mark unperformed work accepted.

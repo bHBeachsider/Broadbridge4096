@@ -1,0 +1,23 @@
+{
+  "schema": "broadbridge.offline_test_receipt/1",
+  "date": "2026-09-27",
+  "foundry": {
+    "command": "python -m pytest -q -o addopts= --tb=short",
+    "passed": 708,
+    "skipped": 12
+  },
+  "broadbridge": {
+    "command": "python -m pytest packs/oil-gas/tests packs/oil-gas/db/tests scripts/research -q -o addopts= --tb=short",
+    "passed": 408,
+    "skipped": 106
+  },
+  "after_spot_check_clarification": {
+    "command": "python -m pytest scripts/research/test_audit_openmath.py -q -o addopts= --tb=short",
+    "passed": 10
+  },
+  "scope": "Offline regressions. Optional DB/adapter integrations skip when unconfigured. No live model/cloud/production changes.",
+  "warnings": [
+    "Existing Requests dependency mismatch warning",
+    "Existing SWIG deprecation warnings"
+  ]
+}

@@ -1,0 +1,286 @@
+{
+  "schema": "broadbridge.math_audit/1",
+  "training_approved": false,
+  "disposition": "quality_and_family_review_hold",
+  "dataset": {
+    "dataset": "nvidia/OpenMathInstruct-2",
+    "revision": "469216e3f46f4dacf476b382e192485ea51a143e",
+    "license": "CC-BY-4.0",
+    "attribution": "NVIDIA, OpenMathInstruct-2; see preserved dataset card for authors and citation",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "acquisition": "First 1200 rows of the first immutable Parquet shard; intentionally not representative",
+    "raw_rows": 1200,
+    "candidate_counts": {
+      "train": 946,
+      "val": 128,
+      "test": 120
+    },
+    "rejected_rows": 6,
+    "max_tokens": 1219,
+    "truncation_count": 0,
+    "split_rule": "SHA256 of normalized problem, first 8 hex digits modulo 10: 0-7 train, 8 val, 9 test",
+    "quality_limits": [
+      "No independent verification of solutions",
+      "Near-duplicate and problem-template audit pending",
+      "Public math data may already occur in the base model training corpus",
+      "No petrochemical expertise or operational validation is established"
+    ],
+    "rejection_reasons": {
+      "duplicate_normalized_problem": 3,
+      "overlength": 3
+    }
+  },
+  "raw_sha256": "d3d0c3e9fcce74234e80f2f529226c64c8e258296dc5aaa14725b1cd2e4b112d",
+  "verified_files": [
+    {
+      "path": "packs/oil-gas/data/public-start-2026-09-24/raw/openmath/README.md",
+      "bytes": 6408,
+      "sha256": "8d0513c2f85e6ee1258f109017c2565f638cc10a72f1ffbee34ab8601c0dc199"
+    },
+    {
+      "path": "packs/oil-gas/data/public-start-2026-09-24/raw/doe/DOE-HDBK-1012-92_VOL1.pdf",
+      "bytes": 1910060,
+      "sha256": "3c4ef4ad700cfd64444677404956ec2237bb5e24e31f7e591b1767526ec0b2c9"
+    },
+    {
+      "path": "packs/oil-gas/data/public-start-2026-09-24/raw/doe/web-policies.html",
+      "bytes": 132437,
+      "sha256": "a8d5c32a62aca490f7db85b1c645b8e4be9e4e25f2bb3a1b4d36a329ce52e490"
+    },
+    {
+      "path": "packs/oil-gas/data/public-start-2026-09-24/raw/openmath/sample.jsonl",
+      "bytes": 1468901,
+      "sha256": "d3d0c3e9fcce74234e80f2f529226c64c8e258296dc5aaa14725b1cd2e4b112d"
+    },
+    {
+      "path": "packs/oil-gas/data/public-start-2026-09-24/candidates/math/train.jsonl",
+      "bytes": 1640908,
+      "sha256": "82274699acd5b8854222c59d91f6c2f71b67ae765eff0f2dbd5fc4fae277a457"
+    },
+    {
+      "path": "packs/oil-gas/data/public-start-2026-09-24/candidates/math/val.jsonl",
+      "bytes": 212786,
+      "sha256": "b2be9bba958801720a26d8f6b8f01e78440f24c2f8d2289f47c48f053e4a2a27"
+    },
+    {
+      "path": "packs/oil-gas/data/public-start-2026-09-24/candidates/math/test.jsonl",
+      "bytes": 195574,
+      "sha256": "17f1fb3c4f56be9758c90d2e4798f112d166b7716990012e9a010a7e53e15728"
+    },
+    {
+      "path": "packs/oil-gas/data/public-start-2026-09-24/candidates/math/rejected.jsonl",
+      "bytes": 605,
+      "sha256": "c455a30300115deb5a383f23b399f6983684ac91a58ffd6486b69255b7bdd6f1"
+    }
+  ],
+  "tokenizer_files": [
+    {
+      "file": "config.json",
+      "sha256": "044d62050d8fad299daf9f88cc37ed1b4e44c4b0ee7410c14699b71ab5538241"
+    },
+    {
+      "file": "revision.json",
+      "sha256": "aa32ef3656fe33df071220856488c1ec51c02276ea42c578ed96494d577d06a6"
+    },
+    {
+      "file": "special_tokens_map.json",
+      "sha256": "b5acd1507cb3a3539e63369cb4a2b675a599cf13afe62282d371518288967797"
+    },
+    {
+      "file": "tokenizer.json",
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    {
+      "file": "tokenizer_config.json",
+      "sha256": "5f95699c6cf42ee1e3ea6c468d6a1ad61fef4aadf5802b1b56fddbf68370a192"
+    }
+  ],
+  "tokenizer_revision": {
+    "repo": "unsloth/Qwen3-8B",
+    "revision": "946bc9ac74a6c1f8cf012497c503a119b2fcf2eb"
+  },
+  "rows": 1200,
+  "excluded_history_rows": 6,
+  "unassigned_history_rows": 6,
+  "original_split_counts": {
+    "train": 946,
+    "val": 128,
+    "test": 120
+  },
+  "exact_groups": 3,
+  "template_groups": 4,
+  "near_pairs": 0,
+  "proposed_families": 1196,
+  "cross_split_families": 0,
+  "cross_split_rows": 0,
+  "answer_conflict_groups": 0,
+  "spot_check_statuses": {
+    "final_answer_consistent": 7,
+    "wrong_answer": 1,
+    "ambiguous_or_inconsistent": 1,
+    "inconsistent": 1
+  },
+  "spot_checks": [
+    {
+      "source_row_index": 0,
+      "problem_sha256": "415929fc0a3413ec4a4fcbe4fe20aa7f4885aa59d4a5096cb14ffe4c797f06ca",
+      "dataset_expected_answer": "45",
+      "status": "final_answer_consistent",
+      "result": 45,
+      "method": "people * days * bars/person/day"
+    },
+    {
+      "source_row_index": 1,
+      "problem_sha256": "71aaece580db55d476c89cfd2cb9ff4ec1608aeeee44dc2d22a5f3d7d7fcd77b",
+      "dataset_expected_answer": "2000",
+      "status": "wrong_answer",
+      "result": 11990,
+      "count": 22,
+      "method": "enumerate every integer 100..999 with cube modulo 1000 = 125"
+    },
+    {
+      "source_row_index": 99,
+      "problem_sha256": "0209b53edcddaef6bc5dcd9ac4e7f74194e4e771578e56d31e5025b055fffdc4",
+      "dataset_expected_answer": "18",
+      "status": "final_answer_consistent",
+      "result": 18,
+      "method": "quadratic formula in standard unsimplified form: m=5,n=9,p=4; representation convention assumed"
+    },
+    {
+      "source_row_index": 199,
+      "problem_sha256": "eda7d40fd036e7442c4ebbb453b679150d71bc0e51f335cff609af22fa24eb70",
+      "dataset_expected_answer": "3",
+      "status": "final_answer_consistent",
+      "result": 3,
+      "method": "sphere volume inequality becomes r^3 > 24"
+    },
+    {
+      "source_row_index": 399,
+      "problem_sha256": "6b7a5f84ff221637a14e50c00aee7e576d05f5973edd36ef3d58f85e067bfe76",
+      "dataset_expected_answer": "\\left(-\\frac{1}{2}, 2\\right)",
+      "status": "final_answer_consistent",
+      "result": "(-1/2, 2)",
+      "method": "2=2r+3; 4=2k"
+    },
+    {
+      "source_row_index": 599,
+      "problem_sha256": "1bf1dc1bf69b10e2be0b9ff7d2e38ca482e3c96175c77247d2e7546aceadcd1a",
+      "dataset_expected_answer": "8",
+      "status": "ambiguous_or_inconsistent",
+      "result": "ambiguous_or_inconsistent",
+      "witness_1": [
+        10,
+        10,
+        10,
+        10,
+        8,
+        10,
+        10,
+        12
+      ],
+      "witness_2": [
+        9,
+        10,
+        10,
+        10,
+        9,
+        10,
+        10,
+        12
+      ],
+      "prefix_seven_total": 68,
+      "prefix_seven_remainder": 5,
+      "method": "If every prefix average is integer, first seven total 68 contradicts divisibility by 7. If only overall average is intended, two allocations give different fifth shelves; witnesses apply only to this weaker interpretation."
+    },
+    {
+      "source_row_index": 799,
+      "problem_sha256": "a52687af85bb09c0dc8d95ec8427b04800c34d1deb13fda24cef5e9405edb699",
+      "dataset_expected_answer": "\\begin{pmatrix}2&0&7\\\\3&5&-1\\\\-8&-2&4\\end{pmatrix}",
+      "status": "final_answer_consistent",
+      "result": [
+        [
+          2,
+          0,
+          7
+        ],
+        [
+          3,
+          5,
+          -1
+        ],
+        [
+          -8,
+          -2,
+          4
+        ]
+      ],
+      "method": "images of standard basis vectors are matrix columns"
+    },
+    {
+      "source_row_index": 999,
+      "problem_sha256": "19d12149bc2d04ef0b66daf5609aea1c17ac19ce34695eb7c3ac6496bf48c31a",
+      "dataset_expected_answer": "\\frac{625}{6561}",
+      "status": "final_answer_consistent",
+      "result": "625/6561",
+      "method": "multiplicativity of complex modulus; |z|^8=(5/9)^4"
+    },
+    {
+      "source_row_index": 1099,
+      "problem_sha256": "be39fe366c12a8eed69b523279ba0798189946a977b98e7e10cdd955870ebb2e",
+      "dataset_expected_answer": "65",
+      "status": "final_answer_consistent",
+      "result": 65,
+      "method": "integer exponent arithmetic"
+    },
+    {
+      "source_row_index": 1199,
+      "problem_sha256": "5c1145895864b0fd0dc5ddac2ecb59f275c2b88525fd31fabe3e7961c908cff7",
+      "dataset_expected_answer": "20",
+      "status": "inconsistent",
+      "result": "inconsistent",
+      "height_squared_from_volume": 400,
+      "height_squared_from_diagonal": 125,
+      "method": "volume and supplied diagonal constraints imply different h^2"
+    }
+  ],
+  "all_raw_token_stats": {
+    "count": 1200,
+    "min": 119,
+    "max": 2407,
+    "p50": 359,
+    "p95": 838,
+    "overlength_count": 3,
+    "truncation_count": 0
+  },
+  "original_split_token_stats": {
+    "train": {
+      "count": 946,
+      "min": 119,
+      "max": 1127,
+      "p50": 367,
+      "p95": 828,
+      "overlength_count": 0,
+      "truncation_count": 0
+    },
+    "val": {
+      "count": 128,
+      "min": 147,
+      "max": 1219,
+      "p50": 304,
+      "p95": 923,
+      "overlength_count": 0,
+      "truncation_count": 0
+    },
+    "test": {
+      "count": 120,
+      "min": 150,
+      "max": 1142,
+      "p50": 316,
+      "p95": 763,
+      "overlength_count": 0,
+      "truncation_count": 0
+    }
+  },
+  "assistant_target_tokens": 373538,
+  "limitation": "Ten disclosed convenience spot-checks, final answers only; no population accuracy or full solution verification. Similarity families need manual adjudication. Originals are unchanged. No model weights, inference or training."
+}

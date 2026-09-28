@@ -1,0 +1,124 @@
+{
+  "schema": "broadbridge.source_shortlist/1",
+  "checked_at": "2026-09-27",
+  "training_approved": false,
+  "policy_url": "https://www.energy.gov/web-policies",
+  "frozen_public_v1": {
+    "sample_sha256": "3407f8d2ea56e0cc8c379f9a84b5c1808b72d5dedd7c504d1badbcb423a0e736",
+    "documents": 10,
+    "excluded_families": [
+      "CSB-CHEVRON-2012",
+      "CSB-ENTERPRISE-2016",
+      "CSB-TESORO-2010",
+      "CSB-WILLIAMS-2013",
+      "EIA-HGL",
+      "EIA-LNG",
+      "EIA-OCTANE",
+      "EIA-PIPELINE",
+      "EIA-REFINING"
+    ],
+    "derivatives_excluded": true
+  },
+  "sources": [
+    {
+      "source_id": "DOE-STEAM1-2012",
+      "provisional_family_id": "DOE-STEAM-TIPS-GATECH",
+      "url": "https://www.energy.gov/sites/prod/files/2014/05/f16/steam1_traps.pdf",
+      "title": "Inspect and Repair Steam Traps",
+      "version": "DOE/GO-102012-3401; January 2012",
+      "pages": 2,
+      "credits": "Adapted Georgia Tech material credited on page 2",
+      "intended_task": "observations_and_missing_evidence",
+      "license_status": "UNKNOWN",
+      "permission_status": "pending",
+      "split": "unassigned",
+      "downloaded_this_task": false,
+      "training_eligible": false,
+      "required_actions": [
+        "item-level rights and credit review",
+        "family/reprint overlap adjudication",
+        "qualified technical scope and answer review"
+      ]
+    },
+    {
+      "source_id": "DOE-STEAM8-2012",
+      "provisional_family_id": "DOE-STEAM-TIPS-GATECH",
+      "url": "https://www.energy.gov/sites/prod/files/2014/05/f16/steam8_boiler.pdf",
+      "title": "Return Condensate to the Boiler",
+      "version": "DOE/GO-102012-3410; January 2012",
+      "pages": 2,
+      "credits": "Adapted Georgia Tech material credited on page 2",
+      "intended_task": "heat_balance_units_and_assumptions",
+      "license_status": "UNKNOWN",
+      "permission_status": "pending",
+      "split": "unassigned",
+      "downloaded_this_task": false,
+      "training_eligible": false,
+      "required_actions": [
+        "item-level rights and credit review",
+        "family/reprint overlap adjudication",
+        "qualified technical scope and answer review"
+      ]
+    },
+    {
+      "source_id": "DOE-HEATING2-2007",
+      "provisional_family_id": "DOE-PROCESS-HEATING-AIR-FUEL",
+      "url": "https://www.energy.gov/sites/prod/files/2014/05/f16/check_burner_air2.pdf",
+      "title": "Check Burner Air to Fuel Ratios",
+      "version": "DOE/GO-102007-2483; November 2007",
+      "pages": 2,
+      "credits": "DOE agency publication; contributed chart/image rights not cleared",
+      "intended_task": "conditional_chart_and_evidence_requests",
+      "license_status": "UNKNOWN",
+      "permission_status": "pending",
+      "split": "unassigned",
+      "downloaded_this_task": false,
+      "training_eligible": false,
+      "required_actions": [
+        "item-level rights and credit review",
+        "family/reprint overlap adjudication",
+        "qualified technical scope and answer review"
+      ]
+    },
+    {
+      "source_id": "DOE-PUMP-2006",
+      "provisional_family_id": "DOE-HI-PUMPING-SOURCEBOOK",
+      "url": "https://www.energy.gov/sites/prod/files/2014/05/f16/pump.pdf",
+      "title": "Improving Pumping System Performance",
+      "version": "Second edition; May 2006",
+      "pages": 122,
+      "credits": "DOE and Hydraulic Institute; multiple contributors and credited imagery",
+      "intended_task": "head_pressure_operating_point",
+      "license_status": "UNKNOWN",
+      "permission_status": "pending",
+      "split": "unassigned",
+      "downloaded_this_task": false,
+      "training_eligible": false,
+      "required_actions": [
+        "item-level rights and credit review",
+        "family/reprint overlap adjudication",
+        "qualified technical scope and answer review"
+      ]
+    },
+    {
+      "source_id": "DOE-DOW-2007",
+      "provisional_family_id": "DOW-STCHARLES-STEAM-ASSESSMENT",
+      "url": "https://www.energy.gov/sites/prod/files/2014/05/f16/dowassessmentsavings.pdf",
+      "title": "Dow Chemical Company: Assessment Leads to Steam System Energy Savings in a Petrochemical Plant",
+      "version": "DOE/GO-102007-2467; November 2007",
+      "pages": 4,
+      "credits": "DOE brochure with company-specific information and photos",
+      "intended_task": "retrospective_measurement_and_savings_uncertainty",
+      "license_status": "UNKNOWN",
+      "permission_status": "pending",
+      "split": "unassigned",
+      "downloaded_this_task": false,
+      "training_eligible": false,
+      "required_actions": [
+        "item-level rights and credit review",
+        "family/reprint overlap adjudication",
+        "qualified technical scope and answer review"
+      ]
+    }
+  ]
+}
