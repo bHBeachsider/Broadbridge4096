@@ -131,6 +131,13 @@ critical-error accounting. Final full offline suites:
   qualification, browser interaction and full historical reproducibility were
   explicitly outside that code review's acceptance.
 
+The first GitHub Python job exposed a test-collection issue in its lightweight
+environment: Pillow was imported before the optional geometry dependency checks.
+Foundry `d80cd22` fixes that test-only import. A no-Pillow collection rehearsal
+skipped cleanly, and all 23 focused raster/qualification tests passed with geometry
+dependencies installed. The detector and the archived measurements are unchanged;
+the separate geometry CI job continues to execute these tests with its full stack.
+
 The browser tool refused local `file:` URLs under its security policy. No alternate
 browser/proxy workaround was used. Interactive visual verification remains open.
 Neither a passing CPU suite nor a valid correction proposal closes the engineering,
