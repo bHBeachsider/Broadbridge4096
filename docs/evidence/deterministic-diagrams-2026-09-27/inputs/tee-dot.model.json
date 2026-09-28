@@ -1,0 +1,523 @@
+{
+  "snapshot": {
+    "model": {
+      "composition": {
+        "conceptualModel": {
+          "composition": {
+            "actuatingSystems": [],
+            "instrumentationLoopFunctions": [],
+            "metaData": null,
+            "pipingNetworkSystems": [
+              {
+                "composition": {
+                  "customAttributes": [],
+                  "segments": [
+                    {
+                      "composition": {
+                        "connections": [
+                          {
+                            "composition": {
+                              "customAttributes": []
+                            },
+                            "id": "E0",
+                            "reference": {
+                              "sourceItem": "V-21060",
+                              "sourceNode": null,
+                              "targetItem": "J-21061",
+                              "targetNode": null
+                            },
+                            "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/pipe.py"
+                          }
+                        ],
+                        "customAttributes": [],
+                        "items": [
+                          {
+                            "composition": {
+                              "customAttributes": [],
+                              "nodes": []
+                            },
+                            "data": {
+                              "fluidCode": null,
+                              "heatTracingType": null,
+                              "heatTracingTypeRepresentation": null,
+                              "insulationThickness": null,
+                              "insulationType": null,
+                              "lowerLimitHeatTracingTemperature": null,
+                              "numberOfPorts": null,
+                              "onHold": null,
+                              "operation": null,
+                              "pipingClassArtefact": null,
+                              "pipingClassCode": null,
+                              "pipingComponentName": null,
+                              "pipingComponentNumber": "V-21060",
+                              "pressureTestCircuitNumber": null
+                            },
+                            "id": "V-21060",
+                            "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/ballValve.py"
+                          },
+                          {
+                            "composition": {
+                              "customAttributes": [],
+                              "nodes": []
+                            },
+                            "data": {
+                              "fluidCode": null,
+                              "heatTracingType": null,
+                              "heatTracingTypeRepresentation": null,
+                              "insulationThickness": null,
+                              "insulationType": null,
+                              "lowerLimitHeatTracingTemperature": null,
+                              "onHold": null,
+                              "pipingClassArtefact": null,
+                              "pipingClassCode": null,
+                              "pipingComponentName": null,
+                              "pipingComponentNumber": "J-21061",
+                              "pressureTestCircuitNumber": null
+                            },
+                            "id": "J-21061",
+                            "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/pipeTee.py"
+                          }
+                        ]
+                      },
+                      "data": {
+                        "colorCode": null,
+                        "flowDirection": null,
+                        "fluidCode": null,
+                        "heatTracingType": null,
+                        "heatTracingTypeRepresentation": null,
+                        "inclination": null,
+                        "insulationThickness": null,
+                        "insulationType": null,
+                        "jacketedPipe": null,
+                        "lowerLimitHeatTracingTemperature": null,
+                        "nominalDiameterNumericalValueRepresentation": null,
+                        "nominalDiameterRepresentation": null,
+                        "nominalDiameterStandard": null,
+                        "nominalDiameterTypeRepresentation": null,
+                        "onHold": null,
+                        "operatingTemperature": null,
+                        "pipingClassCode": null,
+                        "pressureTestCircuitNumber": null,
+                        "primarySecondaryPipingNetworkSegment": null,
+                        "segmentNumber": "S0",
+                        "siphon": null,
+                        "slope": null
+                      },
+                      "id": "S0",
+                      "reference": {
+                        "sourceItem": null,
+                        "sourceNode": null,
+                        "targetItem": null,
+                        "targetNode": null
+                      },
+                      "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/pipingNetworkSegment.py"
+                    },
+                    {
+                      "composition": {
+                        "connections": [
+                          {
+                            "composition": {
+                              "customAttributes": []
+                            },
+                            "id": "E1",
+                            "reference": {
+                              "sourceItem": "J-21061",
+                              "sourceNode": null,
+                              "targetItem": "V-21062",
+                              "targetNode": null
+                            },
+                            "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/pipe.py"
+                          }
+                        ],
+                        "customAttributes": [],
+                        "items": [
+                          {
+                            "composition": {
+                              "customAttributes": [],
+                              "nodes": []
+                            },
+                            "data": {
+                              "fluidCode": null,
+                              "heatTracingType": null,
+                              "heatTracingTypeRepresentation": null,
+                              "insulationThickness": null,
+                              "insulationType": null,
+                              "lowerLimitHeatTracingTemperature": null,
+                              "numberOfPorts": null,
+                              "onHold": null,
+                              "operation": null,
+                              "pipingClassArtefact": null,
+                              "pipingClassCode": null,
+                              "pipingComponentName": null,
+                              "pipingComponentNumber": "V-21062",
+                              "pressureTestCircuitNumber": null
+                            },
+                            "id": "V-21062",
+                            "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/ballValve.py"
+                          }
+                        ]
+                      },
+                      "data": {
+                        "colorCode": null,
+                        "flowDirection": null,
+                        "fluidCode": null,
+                        "heatTracingType": null,
+                        "heatTracingTypeRepresentation": null,
+                        "inclination": null,
+                        "insulationThickness": null,
+                        "insulationType": null,
+                        "jacketedPipe": null,
+                        "lowerLimitHeatTracingTemperature": null,
+                        "nominalDiameterNumericalValueRepresentation": null,
+                        "nominalDiameterRepresentation": null,
+                        "nominalDiameterStandard": null,
+                        "nominalDiameterTypeRepresentation": null,
+                        "onHold": null,
+                        "operatingTemperature": null,
+                        "pipingClassCode": null,
+                        "pressureTestCircuitNumber": null,
+                        "primarySecondaryPipingNetworkSegment": null,
+                        "segmentNumber": "S1",
+                        "siphon": null,
+                        "slope": null
+                      },
+                      "id": "S1",
+                      "reference": {
+                        "sourceItem": null,
+                        "sourceNode": null,
+                        "targetItem": null,
+                        "targetNode": null
+                      },
+                      "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/pipingNetworkSegment.py"
+                    },
+                    {
+                      "composition": {
+                        "connections": [
+                          {
+                            "composition": {
+                              "customAttributes": []
+                            },
+                            "id": "E2",
+                            "reference": {
+                              "sourceItem": "J-21061",
+                              "sourceNode": null,
+                              "targetItem": "V-21063",
+                              "targetNode": null
+                            },
+                            "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/pipe.py"
+                          }
+                        ],
+                        "customAttributes": [],
+                        "items": [
+                          {
+                            "composition": {
+                              "customAttributes": [],
+                              "nodes": []
+                            },
+                            "data": {
+                              "fluidCode": null,
+                              "heatTracingType": null,
+                              "heatTracingTypeRepresentation": null,
+                              "insulationThickness": null,
+                              "insulationType": null,
+                              "lowerLimitHeatTracingTemperature": null,
+                              "numberOfPorts": null,
+                              "onHold": null,
+                              "operation": null,
+                              "pipingClassArtefact": null,
+                              "pipingClassCode": null,
+                              "pipingComponentName": null,
+                              "pipingComponentNumber": "V-21063",
+                              "pressureTestCircuitNumber": null
+                            },
+                            "id": "V-21063",
+                            "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/ballValve.py"
+                          }
+                        ]
+                      },
+                      "data": {
+                        "colorCode": null,
+                        "flowDirection": null,
+                        "fluidCode": null,
+                        "heatTracingType": null,
+                        "heatTracingTypeRepresentation": null,
+                        "inclination": null,
+                        "insulationThickness": null,
+                        "insulationType": null,
+                        "jacketedPipe": null,
+                        "lowerLimitHeatTracingTemperature": null,
+                        "nominalDiameterNumericalValueRepresentation": null,
+                        "nominalDiameterRepresentation": null,
+                        "nominalDiameterStandard": null,
+                        "nominalDiameterTypeRepresentation": null,
+                        "onHold": null,
+                        "operatingTemperature": null,
+                        "pipingClassCode": null,
+                        "pressureTestCircuitNumber": null,
+                        "primarySecondaryPipingNetworkSegment": null,
+                        "segmentNumber": "S2",
+                        "siphon": null,
+                        "slope": null
+                      },
+                      "id": "S2",
+                      "reference": {
+                        "sourceItem": null,
+                        "sourceNode": null,
+                        "targetItem": null,
+                        "targetNode": null
+                      },
+                      "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/pipingNetworkSegment.py"
+                    }
+                  ]
+                },
+                "data": {
+                  "fluidCode": null,
+                  "heatTracingType": null,
+                  "heatTracingTypeRepresentation": null,
+                  "insulationThickness": null,
+                  "insulationType": null,
+                  "jacketLineNumber": null,
+                  "jacketedLineNumber": null,
+                  "jacketedPipe": null,
+                  "lineNumber": "SYN-L1",
+                  "lowerLimitHeatTracingTemperature": null,
+                  "nominalDiameterNumericalValueRepresentation": null,
+                  "nominalDiameterRepresentation": null,
+                  "nominalDiameterStandard": null,
+                  "nominalDiameterTypeRepresentation": null,
+                  "onHold": null,
+                  "pipingClassCode": null,
+                  "pipingNetworkSystemGroupNumber": null
+                },
+                "id": "L1",
+                "reference": {
+                  "parentStructure": null,
+                  "plantArea": null,
+                  "plantSystem": null,
+                  "plantTrain": null
+                },
+                "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/pipingNetworkSystem.py"
+              }
+            ],
+            "plantStructureItems": [],
+            "processInstrumentationFunctions": [],
+            "processSignalGeneratingSystems": [],
+            "taggedPlantItems": []
+          },
+          "id": "conceptual",
+          "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/conceptualModel.py"
+        },
+        "diagram": null,
+        "shapeCatalogues": []
+      },
+      "data": {
+        "exportDateTime": null,
+        "originatingSystemName": null,
+        "originatingSystemVendorName": null,
+        "originatingSystemVersion": null
+      },
+      "id": "model",
+      "uri": "https://pyDEXPI.org/schemas/pydexpi_1_3/dexpiModel.py"
+    },
+    "schema": "foundry.dexpi_snapshot/1",
+    "source_ids": {
+      "E0": "E0",
+      "E1": "E1",
+      "E2": "E2",
+      "J-21061": "J-21061",
+      "L1": "L1",
+      "S0": "S0",
+      "S1": "S1",
+      "S2": "S2",
+      "V-21060": "V-21060",
+      "V-21062": "V-21062",
+      "V-21063": "V-21063",
+      "conceptual": null,
+      "model": null
+    }
+  },
+  "spec": {
+    "category": "tee",
+    "dots": [
+      1
+    ],
+    "edges": [
+      [
+        0,
+        1,
+        "b_to_a"
+      ],
+      [
+        1,
+        2,
+        "unknown"
+      ],
+      [
+        1,
+        3,
+        "unknown"
+      ]
+    ],
+    "family_id": "geometry-stress-2106",
+    "id": "tee-dot",
+    "positions": [
+      [
+        100,
+        200
+      ],
+      [
+        300,
+        200
+      ],
+      [
+        500,
+        200
+      ],
+      [
+        300,
+        80
+      ]
+    ],
+    "seed": 2106,
+    "tags": [
+      "V-21060",
+      "J-21061",
+      "V-21062",
+      "V-21063"
+    ],
+    "training_approved": false
+  },
+  "topology": {
+    "diagnostics": [],
+    "edges": [
+      {
+        "a": "V-21060",
+        "a_port": null,
+        "b": "J-21061",
+        "b_port": null,
+        "class": "Pipe",
+        "direction": "b_to_a",
+        "direction_basis": "construction seed 2106",
+        "id": "E0",
+        "line_id": "L1",
+        "line_tag": "SYN-L1",
+        "segment_id": "S0",
+        "segment_tag": "S0",
+        "source_flow_classification": null,
+        "source_id": "E0"
+      },
+      {
+        "a": "J-21061",
+        "a_port": null,
+        "b": "V-21062",
+        "b_port": null,
+        "class": "Pipe",
+        "direction": "unknown",
+        "direction_basis": "construction seed 2106",
+        "id": "E1",
+        "line_id": "L1",
+        "line_tag": "SYN-L1",
+        "segment_id": "S1",
+        "segment_tag": "S1",
+        "source_flow_classification": null,
+        "source_id": "E1"
+      },
+      {
+        "a": "J-21061",
+        "a_port": null,
+        "b": "V-21063",
+        "b_port": null,
+        "class": "Pipe",
+        "direction": "unknown",
+        "direction_basis": "construction seed 2106",
+        "id": "E2",
+        "line_id": "L1",
+        "line_tag": "SYN-L1",
+        "segment_id": "S2",
+        "segment_tag": "S2",
+        "source_flow_classification": null,
+        "source_id": "E2"
+      }
+    ],
+    "gaps": [],
+    "nodes": [
+      {
+        "class": "PipeTee",
+        "id": "J-21061",
+        "lineage": [
+          {
+            "class": "PipingNetworkSegment",
+            "id": "S0",
+            "tag": null
+          },
+          {
+            "class": "PipingNetworkSystem",
+            "id": "L1",
+            "tag": null
+          }
+        ],
+        "ports": [],
+        "tag": "J-21061"
+      },
+      {
+        "class": "BallValve",
+        "id": "V-21060",
+        "lineage": [
+          {
+            "class": "PipingNetworkSegment",
+            "id": "S0",
+            "tag": null
+          },
+          {
+            "class": "PipingNetworkSystem",
+            "id": "L1",
+            "tag": null
+          }
+        ],
+        "ports": [],
+        "tag": "V-21060"
+      },
+      {
+        "class": "BallValve",
+        "id": "V-21062",
+        "lineage": [
+          {
+            "class": "PipingNetworkSegment",
+            "id": "S1",
+            "tag": null
+          },
+          {
+            "class": "PipingNetworkSystem",
+            "id": "L1",
+            "tag": null
+          }
+        ],
+        "ports": [],
+        "tag": "V-21062"
+      },
+      {
+        "class": "BallValve",
+        "id": "V-21063",
+        "lineage": [
+          {
+            "class": "PipingNetworkSegment",
+            "id": "S2",
+            "tag": null
+          },
+          {
+            "class": "PipingNetworkSystem",
+            "id": "L1",
+            "tag": null
+          }
+        ],
+        "ports": [],
+        "tag": "V-21063"
+      }
+    ],
+    "origin": "synthetic-by-construction",
+    "schema": "foundry.reference_topology/1",
+    "semantics": "piping-connections",
+    "source_sha256": "a1f41d0d04bd299d225734e375f8799451fc4c5922a0614c1dbb995cbbe4630d",
+    "training_approved": false
+  }
+}

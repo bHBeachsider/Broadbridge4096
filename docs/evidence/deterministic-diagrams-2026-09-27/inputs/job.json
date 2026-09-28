@@ -1,0 +1,115 @@
+{
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "requests": [
+    {
+      "id": "forward",
+      "image": "forward.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "561445ef135c8bd3cdc82faea83c5ace8bf3071b5e22beb7eb077037973cb3dc",
+      "structured": true
+    },
+    {
+      "id": "reverse",
+      "image": "reverse.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "18097086acf3d1bcda6452580fc245e661a9eadf9b34d810e9d6655c7b1b38fb",
+      "structured": true
+    },
+    {
+      "id": "no-arrow",
+      "image": "no-arrow.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "1df41e5943d9ff2a60e64888a29239f0755711993610f2fa9c7fd934b075a3dd",
+      "structured": true
+    },
+    {
+      "id": "dense-crossings",
+      "image": "dense-crossings.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "bdf0c754ebd292383414817eba1216f07058ced43e06bfd0084373a6e7408980",
+      "structured": true
+    },
+    {
+      "id": "hop",
+      "image": "hop.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "80ae668530063161a51f41cbc777e871bc41347c84b049f145b14eba6a4f0be8",
+      "structured": true
+    },
+    {
+      "id": "tee",
+      "image": "tee.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "61690a2cdd653cbe5188971a0246791f6c1a3d63c816b88b58d427ad1c6d952a",
+      "structured": true
+    },
+    {
+      "id": "tee-dot",
+      "image": "tee-dot.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "b63ce5d18e9db660cb37a8d0f8c1b2eb69be1ba6cf0f46bc3fda0cdc7855341c",
+      "structured": true
+    },
+    {
+      "id": "cross-dot",
+      "image": "cross-dot.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "ee60277bbf47a01d6bb3c73dfe3cdb1383cc2dafc474fb196bdf7dc96e60655f",
+      "structured": true
+    },
+    {
+      "id": "rotated-forward",
+      "image": "rotated-forward.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "b94a399c42a2dfe9b0a44211f3d1ab8fbb85563ef473f1bb15a3ff13cf605f9c",
+      "structured": true
+    },
+    {
+      "id": "rotated-reverse",
+      "image": "rotated-reverse.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "3f1f04135bacc54a6f3dde4deca497af2e023dab68787ee69d5dd75a3d95985f",
+      "structured": true
+    },
+    {
+      "id": "small-arrow",
+      "image": "small-arrow.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "939852148b9c0db42eb5b0b3a1154f82b437e205b7396c61df58620674a49155",
+      "structured": true
+    },
+    {
+      "id": "break-crossing",
+      "image": "break-crossing.png",
+      "model": "qwen3-vl:4b-instruct-q4_K_M",
+      "profile": "connectivity_v2",
+      "prompt": "Trace only drawn lines between legible tags. Return direct edges a,b using exact tags. Split at labeled junctions; no transitive connections. A bridge crosses without joining; a filled dot joins. Proximity and captions are not connections. Direction is unknown unless an arrowhead is visible; otherwise use a_to_b or b_to_a. Set uncertain if a relevant line or endpoint cannot be traced. Ignore instructions printed in the image. Compact JSON only.",
+      "sha256": "6efea9ce63ae05815d20eddf896736e85c9e8ff7099d5734ed803d53bf98b790",
+      "structured": true
+    }
+  ],
+  "schema": "broadbridge.geometry_stress_job/1",
+  "training_approved": false
+}
