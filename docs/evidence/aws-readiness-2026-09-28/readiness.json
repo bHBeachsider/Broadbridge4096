@@ -1,0 +1,193 @@
+{
+  "schema": "broadbridge.training_readiness/1",
+  "date": "2026-09-28",
+  "mode": "offline_preparation",
+  "training_approved": false,
+  "model_calls": 0,
+  "aws_calls": 0,
+  "database_calls": 0,
+  "target": {
+    "base": "unsloth/Qwen3-8B",
+    "revision": "946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+    "host_type": "EC2 L4 (historical brief; not live verified)",
+    "weight_snapshot_verified": false
+  },
+  "implementation_inputs": {
+    "foundry_base_commit": "6800c553489bdb0d4ab089c4b1027d8687a448b8",
+    "domain_base_commit": "00cfa12cb8d233ab1d4a36b72b7c586b4f48070d",
+    "foundry_working_files": {
+      "src/train.py": {
+        "sha256": "89a6a617755af2523ec465ba584b731b93e812be79e841565dc1d28ea7ec76d5",
+        "size_bytes": 13101
+      },
+      "src/ingestion/training.py": {
+        "sha256": "aa639d41eb11c486e66c0c4ee3daacd9107b7d3cd2b2990d1f741c0507bdcb30",
+        "size_bytes": 17707
+      }
+    },
+    "smoke_config": {
+      "sha256": "2a2d07ab39709ce0ceba36d2dc72aeb3a8cb9111ac38cac2c955d59dfe5975bf",
+      "size_bytes": 802
+    },
+    "foundry_commit": "9e288623f165f1c029fa0b91d0c278ecfde5ce95"
+  },
+  "math": {
+    "disposition": "quality_and_family_review_hold",
+    "raw_sha256": "d3d0c3e9fcce74234e80f2f529226c64c8e258296dc5aaa14725b1cd2e4b112d",
+    "rows": 1200,
+    "excluded_history_rows": 6,
+    "original_split_counts": {
+      "train": 946,
+      "val": 128,
+      "test": 120
+    },
+    "exact_groups": 3,
+    "template_groups": 4,
+    "near_pairs": 0,
+    "proposed_families": 1196,
+    "cross_split_families": 0,
+    "spot_check_statuses": {
+      "final_answer_consistent": 7,
+      "wrong_answer": 1,
+      "ambiguous_or_inconsistent": 1,
+      "inconsistent": 1
+    },
+    "all_raw_token_stats": {
+      "count": 1200,
+      "min": 119,
+      "max": 2407,
+      "p50": 359,
+      "p95": 838,
+      "overlength_count": 3,
+      "truncation_count": 0
+    },
+    "original_split_token_stats": {
+      "train": {
+        "count": 946,
+        "min": 119,
+        "max": 1127,
+        "p50": 367,
+        "p95": 828,
+        "overlength_count": 0,
+        "truncation_count": 0
+      },
+      "val": {
+        "count": 128,
+        "min": 147,
+        "max": 1219,
+        "p50": 304,
+        "p95": 923,
+        "overlength_count": 0,
+        "truncation_count": 0
+      },
+      "test": {
+        "count": 120,
+        "min": 150,
+        "max": 1142,
+        "p50": 316,
+        "p95": 763,
+        "overlength_count": 0,
+        "truncation_count": 0
+      }
+    },
+    "tokenizer_files": [
+      {
+        "file": "config.json",
+        "sha256": "044d62050d8fad299daf9f88cc37ed1b4e44c4b0ee7410c14699b71ab5538241"
+      },
+      {
+        "file": "revision.json",
+        "sha256": "aa32ef3656fe33df071220856488c1ec51c02276ea42c578ed96494d577d06a6"
+      },
+      {
+        "file": "special_tokens_map.json",
+        "sha256": "b5acd1507cb3a3539e63369cb4a2b675a599cf13afe62282d371518288967797"
+      },
+      {
+        "file": "tokenizer.json",
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+      },
+      {
+        "file": "tokenizer_config.json",
+        "sha256": "5f95699c6cf42ee1e3ea6c468d6a1ad61fef4aadf5802b1b56fddbf68370a192"
+      }
+    ]
+  },
+  "cpu_smoke_config_audit": {
+    "mechanical_status": "ready",
+    "train": {
+      "count": 946,
+      "min": 119,
+      "max": 1127,
+      "p50": 367,
+      "p95": 828,
+      "overlength_count": 0,
+      "truncation_count": 0
+    },
+    "val": {
+      "count": 128,
+      "min": 147,
+      "max": 1219,
+      "p50": 304,
+      "p95": 923,
+      "overlength_count": 0,
+      "truncation_count": 0
+    },
+    "assistant_mask_contains_ignored_and_target_tokens": true,
+    "weights_loaded": false
+  },
+  "mock_release": {
+    "blocked": [
+      "self_acceptance",
+      "revoked_rights",
+      "historical_holdout",
+      "edited_candidate",
+      "stale_decision",
+      "mock_live_acceptance",
+      "pending_release",
+      "stale_release_approval"
+    ],
+    "training_approved": false,
+    "mock_release_verified": true,
+    "live_integration_complete": false
+  },
+  "local_artifacts": {
+    "math/summary.json": {
+      "sha256": "580724d5e960196515a9a0c5afee95bf1e974181b0935c2711e138412a3ee768",
+      "size_bytes": 9548
+    },
+    "release/report.json": {
+      "sha256": "fb916d924f280faf1328023d4e7feb2b6ca484e58095b9c45f91e8d4267d46fe",
+      "size_bytes": 1253
+    },
+    "HELD-SAMPLE-mask.json": {
+      "sha256": "ad3522cd36d15b7a9ccdcf1381654e2e660c79ce68ce11e6bf6429a11d9e280a",
+      "size_bytes": 25560
+    },
+    "HELD-SAMPLE-dry-run.yaml": {
+      "sha256": "32b2f07d831beb457404b564db06ebc4836b67e5c7496aeb9034422eeaef97cd",
+      "size_bytes": 950
+    }
+  },
+  "open_gates": [
+    "Current signed-case/reviewer status and Gate 0 coverage not read from database",
+    "Narrow engineering/source acceptance and immutable release",
+    "Scored S0-cases then improved S0-retrieval",
+    "Pinned tested CUDA runtime and full weight snapshot",
+    "Approved artifact staging/backup route",
+    "Private subprocess log capture",
+    "Authorized host/compute request and actual checkpoint/resume test"
+  ],
+  "limitations": [
+    "No accepted real training release established by inspected local evidence; real case counts unknown",
+    "Ten math spot checks are convenience checks, not an accuracy estimate",
+    "Duplicate heuristics do not prove absence of semantic contamination",
+    "Mock release approvals are fabricated software fixtures",
+    "Optional helper comparison deferred; diagrams excluded"
+  ],
+  "review": {
+    "mode": "independent_read_only",
+    "actionable_findings": 0,
+    "live_gpu_behavior_verified": false
+  }
+}

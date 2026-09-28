@@ -61,4 +61,4 @@ The existing intake config contains original absolute train/val paths; inspect/a
 
 See [connectivity errors and required corrections](DIAGRAM_CONNECTIVITY_REMEDIATION.md): disconnected crossings joined, explicit arrows reversed, unsupported directions asserted, plus incomplete source endpoints. The saved pilot is not rerun or retuned by this task. Next useful visual work is a reviewed native-model crop set with explicit arrows and crossing conventions; source gaps must not be filled by model guesses.
 
-Next offline queue item is FQ-07, the bounded helper-comparison protocol revision. Human decisions remain rights/credits, engineering scope and methods, case questions, and independent answer review. Those decisions precede a real training release.
+Update, 28 September: FQ-07 is deferred. [AWS and dataset readiness](AWS_TRAINING_READINESS.md) is now the active path. Human decisions remain rights/credits, engineering scope and methods, case questions, and independent answer review. Those decisions precede a real training release.

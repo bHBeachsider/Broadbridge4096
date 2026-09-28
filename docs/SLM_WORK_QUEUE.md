@@ -1,12 +1,12 @@
 # SLM preparation and fine-tuning work queue
 
-Updated 27 September 2026. Owner: Brad / Broadbridge Oil & Gas.
+Updated 28 September 2026. Owner: Brad / Broadbridge Oil & Gas.
 
 This is the ordered work backlog requested while the discovery questionnaire is being developed. It does not submit training jobs or start a background scheduler. Execute one implementation lane; keep GPU, live generation and production gates explicit. The editable [queue CSV](SLM_WORK_QUEUE.csv) is the task register; update both views together.
 
 ## What can proceed without waiting for Bill
 
-FQ-01 through FQ-07 prepare software, extraction evidence and reviewable inputs offline. They do not require Bill to enter a case. Another appropriately qualified reviewer may later accept engineering content within their competence. Bill's technical decisions are not supplied by an assistant or by passing software tests.
+FQ-01 through FQ-06 prepare software, extraction evidence and reviewable inputs offline. FQ-07 is deferred; offline FQ-12/FQ-13 readiness is the current focus. They do not require Bill to enter a case. Another appropriately qualified reviewer may later accept engineering content within their competence. Bill's technical decisions are not supplied by an assistant or by passing software tests.
 
 **FQ-01 and FQ-02 are now prepared for review:** the calculation-verifier rehearsal and a three-page DOE pressure packet. See the [commands, results and remaining decisions](SLM_PREPARATION_REHEARSAL.md). DOE section choice is a provisional engineering-preparation choice, not a decision about the final commercial curriculum.
 
@@ -22,18 +22,18 @@ FQ-01 through FQ-07 prepare software, extraction evidence and reviewable inputs 
 | FQ-04 | Audit the existing Hugging Face math sample | PREPARED_WAIT_REVIEW | 1,200 rows audited; three exact groups/four template groups; ten spot-checks expose three quality problems; quality hold |
 | FQ-05 | Test extraction and normalization coverage | IN_PROGRESS | [Reference pilot](REFERENCE_GRAPH_RESULTS.md): 14 correct edges plus two false connections, two reversed arrows and two unsupported directions. [Remediation](DIAGRAM_CONNECTIVITY_REMEDIATION.md); visual training admission remains blocked. |
 | FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | PREPARED_WAIT_REVIEW | Eight mock acceptance/release refusals, hash-keyed fixture verified and pinned CPU mask/length audit; live review wiring remains open |
-| FQ-07 | Prepare the helper comparison protocol revision | READY_OFFLINE | Shorter bounded paired protocol, model/provider revision fields and cost ceiling proposal; no live calls |
+| FQ-07 | Optional helper comparison | DEFERRED_OPTIONAL | Prepared in [Broadbridge draft #24](https://github.com/bHBeachsider/Broadbridge4096/pull/24) and [Foundry draft #20](https://github.com/bHBeachsider/slm-foundry/pull/20); provider/terms questions are not AWS-training prerequisites |
 | FQ-08 | Confirm priority tasks, references and recipes (SD-01) | WAIT_REVIEW | Named decisions on first tasks, exclusions, recipe versions, hard-fail criteria and reviewer competence |
 | FQ-09 | Run and score S0-cases | WAIT_CASES_AND_RUN | Stock qwen3:8b briefs plus human scorecards/aggregate; Gate 0 coverage recorded separately |
 | FQ-10 | Build and compare S0-retrieval | WAIT_SCORED_BASELINE | On-box index and comparable scored briefs; beat S0-cases before training is considered |
 | FQ-11 | Run the bounded synthetic candidate pilot (SD-05) | WAIT_REVIEW_AND_RUN | Up to 100 pending candidates, proposed 20/type and <=10/family; independent dispositions for every attempt |
 | FQ-12 | Freeze the reviewed dataset (SD-06) | WAIT_ACCEPTED_DATA | Immutable messages JSONL release/hash; lineage, family splits, assistant-target token audit and exclusions |
-| FQ-13 | Host readiness and bounded QLoRA smoke test | WAIT_GPU_GATE | Verified training venv/profile needs, pinned base/tokenizer revision, minimal adapter run and resource receipt |
+| FQ-13 | Host readiness and bounded QLoRA smoke test | PREPARED_WAIT_GPU_GATE | [Offline readiness](AWS_TRAINING_READINESS.md), proposed 20-step config, checkpoint-cadence fix and fresh CPU audit; runtime/storage/logging and real checkpoint evidence remain open |
 | FQ-14 | Train and compare the first domain adapter (SD-07) | WAIT_SMOKE_RESULT | Base/retrieval/adapter comparison: per-type scores, critical errors, grounding, abstention, latency and regressions |
 | FQ-15 | Reproduce and release the accepted adapter | WAIT_ACCEPTANCE | Second-operator reproduction; hash-keyed deploy_pack.sh GGUF release and rollback record |
 | FQ-16 | Specialist expansion and advanced training | POST_V0 | Separate proposals for specialist families, simulator examples, preference data/RL and native vision/audio |
 
-State meanings: **READY_OFFLINE** = queued preparation can proceed without a live model; **PREPARED_WAIT_REVIEW** = software/extraction deliverable exists but the applicable human decisions remain open; **WAIT_…** = the named input/decision is outstanding; **POST_V0** = outside the initial adapter release. Ready is not running or complete. Conditional work may be prepared out of row order when its recorded dependencies are satisfied; numbering is dispatch priority, not a mandatory finish-to-start schedule.
+State meanings: **DEFERRED_OPTIONAL** = parked and not a prerequisite for the main SLM; **PREPARED_WAIT_GPU_GATE** = offline preparation delivered, live prerequisites unresolved; **READY_OFFLINE** = queued preparation can proceed without a live model; **PREPARED_WAIT_REVIEW** = software/extraction deliverable exists but the applicable human decisions remain open; **WAIT_…** = the named input/decision is outstanding; **POST_V0** = outside the initial adapter release. Ready is not running or complete. Conditional work may be prepared out of row order when its recorded dependencies are satisfied; numbering is dispatch priority, not a mandatory finish-to-start schedule.
 
 The intended first real synthetic pilot includes all five question types; calculation examples also depend on independent acceptance of FQ-01's method. A non-calculation pilot may proceed with recorded missing coverage rather than invented numerical verification. FQ-12 describes the synthetic-inclusive release; an independently approved expert-only release may be prepared for the later matched comparison without pretending the synthetic pilot ran.
 
@@ -73,7 +73,7 @@ For later adapter comparison, do not compare stock Ollama's default template wit
 
 1. Review the FQ-01 method/tolerance and FQ-02 evidence packet. No training approval is implied by their software checks.
 2. Review FQ-03's rights/credits and technical task selection; adjudicate FQ-04's family/answer quality findings. Original samples and splits remain unchanged.
-3. Next offline dispatch: FQ-07 helper-comparison protocol revision. FQ-06's pure acceptance boundary still needs authenticated live integration before real synthetic release. FQ-05's next diagram step is a reviewed native-model crop set targeting crossing/arrow errors.
+3. Next dispatch: [FQ-12/FQ-13 AWS and dataset readiness](AWS_TRAINING_READINESS.md). Obtain current signed-case/review status, accept the narrow DOE/calculation packet, then freeze a real release. Finish the GPU runtime lock, approved artifact transfer and private training logs before a separately authorized session. FQ-07 remains deferred. Diagram recovery continues separately in draft Foundry #19 / Broadbridge #23; it does not block text/calculation preparation.
 4. Bill or another appointed reviewer chooses useful tasks and verifies the real source/method/candidate packets. Brad records rights, live processing budgets and release decisions independently.
 
 Original work packages and acceptance criteria remain in the [synthetic-data plan](superpowers/plans/2026-09-26-synthetic-expert-data.md), [expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) and [ingestion release runbook](INGESTION_PIPELINE_RUNBOOK.md). This queue organizes them; it does not mark unperformed work accepted.
