@@ -1,0 +1,73 @@
+{
+  "schema": "broadbridge.readiness_status/1",
+  "checked_at": "2026-09-28T20:58:15.775729+00:00",
+  "environment": "dev",
+  "endpoint_id": "ep-restless-bread-au1nwu5h",
+  "project_id": "crimson-block-71962201",
+  "read_only": true,
+  "production_checked": false,
+  "counts": {
+    "cases": 4,
+    "questions": 4,
+    "workflow": 1,
+    "runs": 0,
+    "scorecards": 0,
+    "sources": 9,
+    "source_revisions": 4,
+    "candidate_records": 1,
+    "dataset_releases": 1,
+    "model_runs": 0
+  },
+  "case_groups": [
+    {
+      "status": "draft",
+      "permitted_use": "reference_only",
+      "record_type": "hypothetical",
+      "fixture_id_prefix": true,
+      "count": 1
+    },
+    {
+      "status": "signed",
+      "permitted_use": "testing_only",
+      "record_type": "real_event",
+      "fixture_id_prefix": false,
+      "count": 1
+    },
+    {
+      "status": "signed",
+      "permitted_use": "training",
+      "record_type": "hypothetical",
+      "fixture_id_prefix": true,
+      "count": 2
+    }
+  ],
+  "signed_nonfixture_questions": [
+    {
+      "type": "brief",
+      "split": "dev",
+      "has_reference_answer": true,
+      "count": 1
+    }
+  ],
+  "current_source_permissions": [
+    {
+      "status": "pending",
+      "count": 3
+    },
+    {
+      "status": "revoked",
+      "count": 1
+    }
+  ],
+  "current_candidate_versions": [
+    {
+      "status": "approved",
+      "count": 1
+    }
+  ],
+  "limitations": [
+    "Configured dev branch only; production Bill submissions and Gate 0 coverage remain unknown.",
+    "Counts do not verify technical quality, rights, family history or training approval.",
+    "Stored scorecards are not necessarily completed reviews."
+  ]
+}

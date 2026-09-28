@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-28",
+  "mode": "offline_cpu",
+  "focused_logs_controller_e2e_passed": 34,
+  "regressions_reproduced_before_fix": [
+    "unstarted log thread finalization",
+    "log read failure skipping controller accounting"
+  ],
+  "independent_review": "P2 finalization failure fixed and re-reviewed; no remaining actionable findings",
+  "warnings": [
+    "Existing Requests dependency mismatch",
+    "Existing Foundry SWIG deprecation warnings"
+  ],
+  "no_live_database_or_gpu_in_tests": true,
+  "suites": {
+    "foundry": {
+      "command": "python -m pytest -o addopts= -q --tb=short",
+      "collected": 755,
+      "passed": 752,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 3,
+      "skip_reasons": {
+        "could not import 'docling_core.types.doc': No module named 'docling_core'": 1,
+        "set FOUNDRY_TEST_LOCAL_POSTGRES=1 to create a disposable local cluster": 1,
+        "Optional pinned public C01 file not configured": 1
+      },
+      "junit_sha256": "f57b92c999ae7a4daca657857e714b8d73c23fcd8dce30ba39c7430e9a2f6ddc"
+    },
+    "broadbridge": {
+      "command": "python -m pytest packs/oil-gas/tests packs/oil-gas/db/tests scripts/research -o addopts= -q --tb=short",
+      "collected": 514,
+      "passed": 410,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 104,
+      "skip_reasons": {
+        "Set BROADBRIDGE_DATABASE_URL or use db/test.ps1 for disposable PostgreSQL": 49,
+        "Set BROADBRIDGE_INGESTION_TEST_DATABASE_URL for the owned disposable database": 49,
+        "Set BROADBRIDGE_PIPELINE_TEST_URL to the disposable local pipeline database": 5,
+        "Matching Foundry checkout not configured": 1
+      },
+      "junit_sha256": "05dfa93ea0c0528c8aa0f9336bc950ab2abc8ac433ef2f2e62dde39ecf141156"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Qwen3-8B: AWS and dataset readiness
 
-28 September 2026. Owner: Brad / Broadbridge. **Offline preparation only; no Broadbridge fine-tuning job has run in this work.** This is the active FQ-12/FQ-13 readiness runbook. The optional OpenRouter helper comparison is deferred. Its provider availability and terms do not block this path.
+28 September 2026. Owner: Brad / Broadbridge. **CPU preparation plus an explicitly approved read-only development-database check; no Broadbridge fine-tuning job has run in this work.** This is the active FQ-12/FQ-13 readiness runbook. The optional OpenRouter helper comparison is deferred. Its provider availability and terms do not block this path.
 
 ## The model and the path
 
@@ -28,11 +28,11 @@ Steps 1–3 are not replaced by a helper-model contest. Offline host/configurati
 | Local math snapshot | 1,200 raw records verified against the original receipt; 946 train / 128 val / 120 test candidates and 6 exclusions. All raw records: 3 over 2,048 tokens; original candidate splits: 0 overlength, 0 truncation. This is encoding evidence, not approval. |
 | Math quality / family status | 3 exact duplicate groups, 4 numeric-template groups, 1,196 proposed families, no detected cross-split family under these heuristics. Ten convenience checks: 7 consistent, 1 wrong, 1 ambiguous/inconsistent, 1 contradictory. Whole sample stays on quality/family hold. These checks are not an accuracy estimate. |
 | Release boundary | Fresh fabricated rehearsal again refused all 8 invalid acceptance/release scenarios. Fixture identities and approvals confer no real training authority. Authenticated synthetic acceptance still needs complete current rights/history and live integration. |
-| Real accepted release / Gate 0 | Not established by the inspected local evidence. No database was queried in this task; this is not a claim that Bill has entered no cases. Obtain current signed-case export/reviews before counting coverage or declaring a release ready. |
+| Real accepted release / Gate 0 | The approved read-only check reached dev, not production. Dev has 4 cases, 4 questions, 0 brief runs and 0 scorecards. Its two signed/training cases are SYN-prefixed hypothetical fixtures; one other signed case is testing-only. Production Bill submissions and Gate 0 coverage remain unknown. See the follow-up below. |
 | AWS host | Last documented, 24 September: `i-0e5e1cbc7b1367566`, `g6.2xlarge`, L4, us-east-1; serving works, training venv absent, S3 instance profile absent. None was rechecked live. |
-| GPU runtime | `infra/bootstrap.sh` currently installs unpinned Unsloth. Before launch, choose/test a compatible CUDA/Torch/Unsloth/TRL/PEFT/bitsandbytes set and preserve its resolved package lock and driver versions. The CPU dev requirements are not a GPU lock. |
+| GPU runtime | Candidate Linux/Python 3.11 roots now pinned in Foundry, with versioned PyPI metadata. Selected Unsloth 2026.9.12 caps Transformers at 5.5.0; CPU tooling uses 5.9.0. The full CUDA lock, driver compatibility and actual imports remain unqualified. Do not run the floating bootstrap or reuse CPU requirements as a GPU recipe. |
 | Artifact storage | Broadbridge intake already uses private R2. Do not automatically attach the older Ilyrium S3 profile or create another bucket. Confirm the approved R2-to-EBS staging/backup path and least-privilege access. An S3 instance profile is a requirement only if a separately approved S3 artifact path is selected. |
-| Training diagnostics | The controller presently suppresses subprocess stdout/stderr. Retain training/evaluation metrics from Trainer checkpoint state and add bounded private run-log capture before a real launch; failures before the first checkpoint otherwise have poor diagnostics. No real runtime/logging evidence is claimed. |
+| Training diagnostics | Implemented and tested with local CPU child processes: merged stdout/stderr, private per-attempt files, 4 MiB cap with continuous draining, byte/hash/truncation receipts, and rejection of changed/incomplete captures. Actual CUDA logs and metrics remain unverified. |
 
 Fresh aggregate receipts: [data/release/config verification](evidence/aws-readiness-2026-09-28/readiness.json) and [test results](evidence/aws-readiness-2026-09-28/tests.json). Foundry: **742 passed, 3 skipped**. Broadbridge pack/DB/research suite: **410 passed, 104 skipped** (103 DB integration tests without credentials and 1 optional reference-graph configuration). Existing Requests/SWIG warnings remain. Detailed data findings and limitations remain in [SLM_DATA_PREPARATION_RESULTS.md](SLM_DATA_PREPARATION_RESULTS.md).
 
@@ -92,7 +92,7 @@ Pop-Location
 
 ## Later AWS session — gated, not executed
 
-Record the exact two repository commits, dataset hash, base revision, config hash, runtime lock, output/backup location, duration/cost caps, operator and release authority before the session. Resolve the runtime, storage and log-capture gaps above first. No source data should be sent to an external helper as a fallback.
+Record the exact two repository commits, dataset hash, base revision, config hash, runtime lock, output/backup location, duration/cost caps, operator and release authority before the session. Resolve the runtime and storage gaps above and retain private logs during qualification. No source data should be sent to an external helper as a fallback.
 
 Use the Foundry [serving brief](https://github.com/bHBeachsider/slm-foundry/blob/codex/aws-training-readiness/docs/SLM_SERVING_BRIEF.md) at `docs/SLM_SERVING_BRIEF.md` in the selected Foundry checkout. Approved-session bring-up/tear-down from that brief:
 
@@ -124,5 +124,26 @@ Generic engine changes: [draft Foundry #21](https://github.com/bHBeachsider/slm-
 
 1. Resolve current signed-case/reviewer status and accept the narrow DOE/calculation scope; no optional helper comparison is required.
 2. Complete authenticated candidate acceptance/history binding where needed and freeze the first accepted release.
-3. Finish the runtime lock, approved storage transfer and private run logging; review the concrete bounded AWS request.
-4. Only then authorize the GPU session and perform the smoke run. No EC2, training or production changes occurred in this readiness work.
+3. Resolve and qualify the full GPU runtime lock and approved storage transfer; private run logging is now implemented. Review the concrete bounded AWS request.
+4. Only then authorize the GPU session and perform the smoke run. No EC2, training or production changes occurred; the approved database check was read-only against dev.
+
+## Follow-up: diagnostics, runtime candidates and current dev counts
+
+The generic implementation and candidate runtime metadata are in the continuing [Foundry draft #21](https://github.com/bHBeachsider/slm-foundry/pull/21), follow-up commit `b10d8542407dba375b5c154b5a65bd11530a5fc0`. [GPU_RUNTIME_PLAN.md](https://github.com/bHBeachsider/slm-foundry/blob/codex/aws-training-readiness/docs/GPU_RUNTIME_PLAN.md) records the dependency mismatch, candidate roots and qualification steps. No wheels, weights or runtime packages were downloaded or installed. The candidates are not a resolved or GPU-tested lock.
+
+Follow-up [test receipt](evidence/aws-readiness-followup-2026-09-28/tests.json): Foundry **752 passed, 3 skipped**; Broadbridge **410 passed, 104 skipped**; focused log/controller/rehearsal tests **34 passed**. Tests were offline and did not load database credentials. Independent review identified and verified the fix for log-finalization errors skipping final accounting; no remaining actionable findings. The earlier test receipt above remains the historical checkpoint-control result.
+
+The [read-only dev receipt](evidence/aws-readiness-followup-2026-09-28/dev-status.json) records 4 cases, 4 questions, 1 workflow, 9 sources, 4 source revisions, 1 candidate version, 1 recorded release, and zero brief runs/scorecards/model runs. Current source permissions are **3 pending and 1 revoked, none approved**. A historical approved candidate/release row does not establish current source eligibility. The case labeled `real_event` is signed but `testing_only`; an ID/type label alone does not independently verify its real-world origin. No case text, email addresses or credentials were included in the receipt.
+
+The root `.neon` configuration and supplied pooled URL select **dev**, not the production capture branch. This check therefore cannot answer whether Bill submitted a production case. It used a repeatable-read, READ ONLY transaction and rollback; no data was changed. The initial approval-review block on credential access was resolved by Brad's explicit permission. A connection attempt using startup options was rejected by the pooler; configuring read-only mode in the transaction succeeded. Production status still requires a production-scoped read-only connection or an exported canonical case file; do not silently substitute another project or URL.
+
+### First acceptance work package
+
+Use the already prepared narrow pressure packet before collecting a larger corpus:
+
+1. **Brad: rights decision.** Record the exact DOE-HDBK-1012/1-92 source hash and permission basis for selected pages 35–37, including contractor/figure credits. Current status stays pending until that decision exists.
+2. **Appointed engineering reviewer: evidence and method.** Review the existing packet's nine exceptions against the PDFium page renders; accept/correct the two equations and four conversion proposals. Separately accept/correct `absolute_pressure_ratio_v1`, its absolute-pressure/matching-unit scope and provisional tolerance. Reject unsupported power/gauge conversions; the code does not supply missing physics.
+3. **Reviewer: questions and references.** Prepare or accept the intended questions/answers with units, assumptions, missing-evidence behavior and hard-fail criteria. Use signed cases for the case-derived evaluation set. Record reviewer identity and the exact packet hash; blank forms and fabricated fixtures are not approvals.
+4. **Operator: family allocation and release.** Keep handbook pages/derivatives in one family. Do not split pages or synthetic variants across training and held-out sets. Bind accepted examples and independent validation/test families with complete source history in the existing release flow, then run the exact-release CPU audit. The math sample stays on hold and diagram outputs remain excluded.
+
+Existing packet instructions and local artifact locations are in [SLM_PREPARATION_REHEARSAL.md](SLM_PREPARATION_REHEARSAL.md); reuse `REVIEW.md` and `review.csv` in `fq02-doe-pressure-2026-09-27`. This work package creates no new approvals, sends no reviewer invitation and does not change the capture application. Current production case/review status and scored baselines remain prerequisites, not assumed facts.
