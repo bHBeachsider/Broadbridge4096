@@ -1,0 +1,187 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "coordinate_frame": "pixels-top-left",
+    "dots": [
+      {
+        "point": [
+          299.5,
+          199.0
+        ],
+        "radius": 6.0,
+        "source": "original-raster-blob"
+      }
+    ],
+    "excluded_intersections": [],
+    "input_sha256": "f004034e090f95443e39b906971c9d3da8abbfec0467d4fc3de9b8bfe93e3c92",
+    "junctions": [
+      {
+        "id": "j2",
+        "kind": "junction_dot",
+        "point": [
+          299.0,
+          198.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s1"
+        ]
+      }
+    ],
+    "pixel_sha256": "8353d8c56a807d50ace352fbfb4d3841aa7c40a39d8a0abfa218d8ef060b0644",
+    "pixel_shape": [
+      400,
+      600,
+      3
+    ],
+    "raster_input_policy": "text masks only exclude arrow candidates; line branch uses unchanged original pixels",
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          519.0,
+          199.0
+        ],
+        "id": "s0",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          80.0,
+          199.0
+        ]
+      },
+      {
+        "end": [
+          299.0,
+          61.0
+        ],
+        "id": "s1",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          299.0,
+          198.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 851,
+    "tolerance": 3.0,
+    "warnings": [
+      "text_pipe_overlap_requires_review; line pixels retained",
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "00b613d1932daef7732b3ab654676a2c303429fe925b50297409513b7a3ebc5a",
+  "edges": [
+    {
+      "a": "J-31121",
+      "arrow_id": null,
+      "b": "V-31120",
+      "connection_evidence": [
+        {
+          "kind": "junction_dot",
+          "point": [
+            299.0,
+            198.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          299.0,
+          198.0
+        ],
+        [
+          80.0,
+          199.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "J-31121",
+      "arrow_id": null,
+      "b": "V-31122",
+      "connection_evidence": [
+        {
+          "kind": "junction_dot",
+          "point": [
+            299.0,
+            198.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          299.0,
+          198.0
+        ],
+        [
+          519.0,
+          199.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "J-31121",
+      "arrow_id": null,
+      "b": "V-31123",
+      "connection_evidence": [
+        {
+          "kind": "junction_dot",
+          "point": [
+            299.0,
+            198.0
+          ],
+          "segment_ids": [
+            "s1"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          299.0,
+          198.0
+        ],
+        [
+          299.0,
+          61.0
+        ]
+      ],
+      "segment_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "input_sha256": "f004034e090f95443e39b906971c9d3da8abbfec0467d4fc3de9b8bfe93e3c92",
+  "ports_sha256": "766028e2a32eddf03bf16471ee06731eae8069b8550a5b7344ec452f04f9d15b",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "6f6b01148c9d995dc6e91c8804a07f944ac0463cdc146453865c73d9d5a1225a",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

@@ -1,0 +1,37 @@
+{
+  "attempt": 3,
+  "config_id": "independent-raster-v3",
+  "engine_sources": {
+    "src/ingestion/diagram_geometry.py": "06976d8f05d5277fa3f16acbbd6cc8e73b54d74d43591dcf87fb49f6c0abb543",
+    "src/ingestion/diagram_metrics.py": "159241e508084df5a9c99f5eca4cf2652e259518c4ce26573f2a44a2f05b376e",
+    "src/ingestion/geometry_contract.py": "ae930641ba25f30719b44c50d3588af0fc89bb9ae8d9daa94b551f2c139f7546",
+    "src/ingestion/geometry_extractors.py": "cfbb59d7f54610194619356e8d980b955ce584a757b5ac09011e3104b6fb8071",
+    "src/ingestion/raster_connectivity.py": "9f32311d5caaac2e6533d9c33b76104c08e7d5dc33ac6e670c6ffaa60192ad96"
+  },
+  "evaluation_role": "development",
+  "harness_sha256": "46c8fed30324eab0aaf9f8723f9a8621f6d594aba6a2c268032670a0fdbd902e",
+  "input_manifest_sha256": "ec26c45446c588129a7b88c85d9888825762cb0925bba5e57a80d1573227ca39",
+  "legacy_metrics_sha256": "dc04b1a6b028ed67dac53c77872bf9b70f0b432033b0b32721641d9c6604cd31",
+  "model_calls": 0,
+  "notes": "Masks and ports supplied. Same construction family; no independent qualification.",
+  "provenance": "pre-run-checksum",
+  "schema": "broadbridge.diagram_recovery_run/1",
+  "source_snapshot": {
+    "harness/deterministic_diagrams.py": "dc04b1a6b028ed67dac53c77872bf9b70f0b432033b0b32721641d9c6604cd31",
+    "harness/diagram_fixture_suite.py": "5a72ff89b2d69e7ba16e7736be9285423885cb8d7c863799917e45bbcaa25797",
+    "harness/diagram_recovery.py": "46c8fed30324eab0aaf9f8723f9a8621f6d594aba6a2c268032670a0fdbd902e",
+    "src/ingestion/diagram_geometry.py": "06976d8f05d5277fa3f16acbbd6cc8e73b54d74d43591dcf87fb49f6c0abb543",
+    "src/ingestion/diagram_metrics.py": "159241e508084df5a9c99f5eca4cf2652e259518c4ce26573f2a44a2f05b376e",
+    "src/ingestion/geometry_contract.py": "ae930641ba25f30719b44c50d3588af0fc89bb9ae8d9daa94b551f2c139f7546",
+    "src/ingestion/geometry_extractors.py": "cfbb59d7f54610194619356e8d980b955ce584a757b5ac09011e3104b6fb8071",
+    "src/ingestion/raster_connectivity.py": "9f32311d5caaac2e6533d9c33b76104c08e7d5dc33ac6e670c6ffaa60192ad96"
+  },
+  "training_approved": false,
+  "versions": {
+    "PyMuPDF": "1.28.2",
+    "ezdxf": "1.4.4",
+    "numpy": "2.3.3",
+    "opencv": "4.13.0",
+    "scikit-image": "0.26.0"
+  }
+}

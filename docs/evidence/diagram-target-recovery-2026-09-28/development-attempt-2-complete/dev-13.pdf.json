@@ -1,0 +1,56 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "f448c230b13f60fc4c45d357df6215852153179c93422d47743468ab24a9341b",
+    "junctions": [],
+    "route": "vector_pdf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          289.0,
+          200.0
+        ],
+        "id": "s0",
+        "source": "path:0",
+        "start": [
+          80.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          520.0,
+          200.0
+        ],
+        "id": "s1",
+        "source": "path:1",
+        "start": [
+          311.0,
+          200.0
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "1ad4be6547f2f6c2623e70f4117bcf518dafa7d3d70bcf2eca2b8afc9ec6ae5f",
+  "edges": [],
+  "input_sha256": "f448c230b13f60fc4c45d357df6215852153179c93422d47743468ab24a9341b",
+  "ports_sha256": "a3c333c00521a99bb1360c40a2124ac6762d3fe643723e0012e9bfc4d9aff8d9",
+  "route": "vector_pdf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "b7ba2d37f8ad33924c87270d71cce1a299eb4307dffbf02a264fd0f697a54e34",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

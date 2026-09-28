@@ -1,0 +1,193 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [
+      {
+        "base": [
+          192.0,
+          200.0
+        ],
+        "id": "a0",
+        "segment_id": "s0",
+        "source": "path:1",
+        "tip": [
+          210.0,
+          200.0
+        ]
+      }
+    ],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "8535cf4de3db7bf7afe54fb56f9e2c56625cae44ac0008ff23d81d7396ab5104",
+    "junctions": [
+      {
+        "id": "j1",
+        "kind": "tee",
+        "point": [
+          300.0,
+          200.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s1",
+          "s2"
+        ]
+      }
+    ],
+    "route": "vector_pdf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          300.0,
+          200.0
+        ],
+        "id": "s0",
+        "source": "path:0",
+        "start": [
+          100.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          500.0,
+          200.0
+        ],
+        "id": "s1",
+        "source": "path:2",
+        "start": [
+          300.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          300.0,
+          80.0
+        ],
+        "id": "s2",
+        "source": "path:3",
+        "start": [
+          300.0,
+          200.0
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "4259efd7d077d7974742db1b92322ff0fa86eb4d9e0558bf92d690e8d4b648ed",
+  "edges": [
+    {
+      "a": "J-21051",
+      "arrow_id": "a0",
+      "b": "V-21050",
+      "connection_evidence": [
+        {
+          "kind": "tee",
+          "point": [
+            300.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "b_to_a",
+      "path": [
+        [
+          300.0,
+          200.0
+        ],
+        [
+          100.0,
+          200.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "J-21051",
+      "arrow_id": null,
+      "b": "V-21052",
+      "connection_evidence": [
+        {
+          "kind": "tee",
+          "point": [
+            300.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s1"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          300.0,
+          200.0
+        ],
+        [
+          500.0,
+          200.0
+        ]
+      ],
+      "segment_ids": [
+        "s1"
+      ]
+    },
+    {
+      "a": "J-21051",
+      "arrow_id": null,
+      "b": "V-21053",
+      "connection_evidence": [
+        {
+          "kind": "tee",
+          "point": [
+            300.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s2"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          300.0,
+          200.0
+        ],
+        [
+          300.0,
+          80.0
+        ]
+      ],
+      "segment_ids": [
+        "s2"
+      ]
+    }
+  ],
+  "input_sha256": "8535cf4de3db7bf7afe54fb56f9e2c56625cae44ac0008ff23d81d7396ab5104",
+  "ports_sha256": "62cd06619bb676d8811cb30cd6037f47cbcb29187ad1f3d4f45f0a5eefbceccb",
+  "route": "vector_pdf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "e6c64a9a715a88d4572450924d52c74dd09db01d42a02d7e45b5ed6dfa3c1340",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

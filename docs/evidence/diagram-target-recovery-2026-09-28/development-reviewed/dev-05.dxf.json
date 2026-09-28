@@ -1,0 +1,91 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [
+      {
+        "base": [
+          293.93782217350895,
+          203.5
+        ],
+        "id": "a0",
+        "segment_id": "s0",
+        "source": "SOLID:30",
+        "tip": [
+          287.0096189432334,
+          207.5
+        ]
+      }
+    ],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "a3cc8db067f59b6ec9249d340236fd489e4d43aada18a51bb6f5162356f8afa8",
+    "junctions": [],
+    "route": "vector_dxf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          170.0961894323342,
+          275.0
+        ],
+        "id": "s0",
+        "source": "LINE:2F",
+        "start": [
+          429.9038105676658,
+          125.00000000000001
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "d12a4d7289a3061655223c7100480ce98a41e6571ae5770f6e32fd871ca0b876",
+  "edges": [
+    {
+      "a": "V-31050",
+      "arrow_id": "a0",
+      "b": "V-31051",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            429.9038105676658,
+            125.00000000000001
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "a_to_b",
+      "path": [
+        [
+          429.9038105676658,
+          125.00000000000001
+        ],
+        [
+          170.0961894323342,
+          275.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    }
+  ],
+  "input_sha256": "a3cc8db067f59b6ec9249d340236fd489e4d43aada18a51bb6f5162356f8afa8",
+  "ports_sha256": "157060463faa64c59c99b420f123267c71e8d079fd0127442398c41b9cdc8a22",
+  "route": "vector_dxf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "e71a35601e00a33248090471f606782036e625074ba3b38ecb7400eb69627dda",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

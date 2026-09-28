@@ -1,0 +1,19 @@
+{
+  "schema": "broadbridge.diagram_archive_validation/1",
+  "verified_files": 467,
+  "errors": [],
+  "training_approved": false,
+  "old_archives": "unchanged in git; full archived replay test passed",
+  "tests": {
+    "foundry": {
+      "passed": 842,
+      "skipped": 3
+    },
+    "broadbridge": {
+      "passed": 450,
+      "skipped": 103
+    }
+  },
+  "review": "one P1 false direction reproduced and fixed; no authenticated engineering acceptance",
+  "visual_verification": "blocked by browser file URL policy; local operator check pending"
+}

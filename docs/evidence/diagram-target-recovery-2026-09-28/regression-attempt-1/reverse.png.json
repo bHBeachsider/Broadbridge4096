@@ -1,0 +1,121 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [
+      {
+        "attachment_blocked": false,
+        "base": [
+          297.4257425742574,
+          199.5
+        ],
+        "bbox": [
+          278,
+          190,
+          303,
+          210
+        ],
+        "coordinate_frame": "pixels-top-left",
+        "id": "a0",
+        "pixel_sha256": "727b04e28c06fc813b9b5c39306befbaa901ea870e490e75db5ebbd9d6acadc3",
+        "segment_id": "s0",
+        "source": "original-pixels:contour-rotated-template",
+        "source_sha256": "18097086acf3d1bcda6452580fc245e661a9eadf9b34d810e9d6655c7b1b38fb",
+        "template_iou": 0.8536585365853658,
+        "tip": [
+          279.4257425742574,
+          199.5
+        ],
+        "transform_to_source_pixels": [
+          1,
+          0,
+          0,
+          1,
+          278,
+          190
+        ]
+      }
+    ],
+    "coordinate_frame": "pixels-top-left",
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "18097086acf3d1bcda6452580fc245e661a9eadf9b34d810e9d6655c7b1b38fb",
+    "junctions": [],
+    "pixel_sha256": "ed13d4f989e43b68c4d89374f33bb2eafa4d8c8ea44cd0957584cb1fb14782ef",
+    "pixel_shape": [
+      400,
+      600,
+      3
+    ],
+    "raster_input_policy": "supplied text masks only; arrows never erased from independent line branch",
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          499.0,
+          199.0
+        ],
+        "id": "s0",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          100.0,
+          199.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 406,
+    "tolerance": 3.0,
+    "warnings": [
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "99a061ef5f097e84345db3a9ff253410ccf49a4ad7716a491723aa08ee59fbdd",
+  "edges": [
+    {
+      "a": "V-21010",
+      "arrow_id": "a0",
+      "b": "V-21011",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            100.0,
+            199.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "b_to_a",
+      "path": [
+        [
+          100.0,
+          199.0
+        ],
+        [
+          499.0,
+          199.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    }
+  ],
+  "input_sha256": "18097086acf3d1bcda6452580fc245e661a9eadf9b34d810e9d6655c7b1b38fb",
+  "ports_sha256": "773d904528dd09abdac07b2c0d266023eb5c61449c2b8b9c9c8b25f87c5d8736",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "01ca17eab548cc47d73a7ab1e86969d05bcb0f600d928874f792047696cf7eec",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

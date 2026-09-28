@@ -1,0 +1,99 @@
+{
+  "drawings": [
+    {
+      "angle": 0,
+      "arrow_length": 18,
+      "case": "arrow",
+      "direction": "a_to_b",
+      "id": "dev-01",
+      "seed": 3101
+    },
+    {
+      "angle": 0,
+      "arrow_length": 18,
+      "case": "arrow",
+      "direction": "b_to_a",
+      "id": "dev-02",
+      "seed": 3102
+    },
+    {
+      "angle": 30,
+      "arrow_length": 18,
+      "case": "arrow",
+      "direction": "a_to_b",
+      "id": "dev-03",
+      "seed": 3103
+    },
+    {
+      "angle": 90,
+      "arrow_length": 18,
+      "case": "arrow",
+      "direction": "b_to_a",
+      "id": "dev-04",
+      "seed": 3104
+    },
+    {
+      "angle": 150,
+      "arrow_length": 8,
+      "case": "arrow",
+      "direction": "a_to_b",
+      "id": "dev-05",
+      "seed": 3105
+    },
+    {
+      "angle": 0,
+      "arrow_length": 5,
+      "case": "arrow",
+      "direction": "b_to_a",
+      "id": "dev-06",
+      "seed": 3106
+    },
+    {
+      "case": "no-arrow",
+      "id": "dev-07",
+      "seed": 3107
+    },
+    {
+      "case": "conflicting-arrows",
+      "id": "dev-08",
+      "seed": 3108
+    },
+    {
+      "case": "dense-crossings",
+      "id": "dev-09",
+      "seed": 3109
+    },
+    {
+      "case": "hop",
+      "id": "dev-10",
+      "seed": 3110
+    },
+    {
+      "case": "tee",
+      "id": "dev-11",
+      "seed": 3111
+    },
+    {
+      "case": "tee-dot",
+      "id": "dev-12",
+      "seed": 3112
+    },
+    {
+      "case": "unexplained-break",
+      "id": "dev-13",
+      "seed": 3113
+    },
+    {
+      "case": "unmatched-off-page",
+      "id": "dev-14",
+      "seed": 3114
+    }
+  ],
+  "existing_count": 12,
+  "family_id": "original-simple-line-generator",
+  "reserve_a": [],
+  "reserve_b": [],
+  "reserve_reason": "Shared construction ancestry; independent source families and source-only review required before assigning holdouts.",
+  "schema": "broadbridge.diagram_fixture_design/1",
+  "split": "development"
+}

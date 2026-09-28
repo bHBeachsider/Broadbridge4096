@@ -1,0 +1,25 @@
+{
+  "edges": [
+    {
+      "a": "V-31100",
+      "b": "V-31101",
+      "direction": "unknown"
+    },
+    {
+      "a": "V-31102",
+      "b": "V-31103",
+      "direction": "unknown"
+    }
+  ],
+  "evidence_id": "320e6aa4909416ad032b6767ac3cd1b414b62d3a2d61cecd8b12b56ae389346a",
+  "image_sha256": "2456b2862a339e928a217f9fcaea42443b4c2a14861bc1d63a18d415d1cfb010",
+  "nodes": [
+    "V-31100",
+    "V-31101",
+    "V-31102",
+    "V-31103"
+  ],
+  "origin": "synthetic_fixture",
+  "reviewer": null,
+  "schema": "foundry.connectivity_reference/1"
+}

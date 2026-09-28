@@ -1,0 +1,88 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "coordinate_frame": "pixels-top-left",
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "1df41e5943d9ff2a60e64888a29239f0755711993610f2fa9c7fd934b075a3dd",
+    "junctions": [],
+    "pixel_sha256": "39f82fe62841a40dc9de13b8006b1d7473c24513f44290687b2d292aa56504dd",
+    "pixel_shape": [
+      400,
+      600,
+      3
+    ],
+    "raster_input_policy": "supplied text masks only; arrows never erased from independent line branch",
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          499.0,
+          199.0
+        ],
+        "id": "s0",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          100.0,
+          199.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 400,
+    "tolerance": 3.0,
+    "warnings": [
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "e328c6a0c662188b0fc01b9bd249c81580f7415396111e4d8594d1d76ad74306",
+  "edges": [
+    {
+      "a": "V-21020",
+      "arrow_id": null,
+      "b": "V-21021",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            100.0,
+            199.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          100.0,
+          199.0
+        ],
+        [
+          499.0,
+          199.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    }
+  ],
+  "input_sha256": "1df41e5943d9ff2a60e64888a29239f0755711993610f2fa9c7fd934b075a3dd",
+  "ports_sha256": "34de85c2acf920a08b71d1c9eb0c1129ec1b29c9a5f9c7b73d57dc6a5f0b4d17",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "e6c64a9a715a88d4572450924d52c74dd09db01d42a02d7e45b5ed6dfa3c1340",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

@@ -1,0 +1,18 @@
+{
+  "edges": [
+    {
+      "a": "V-31010",
+      "b": "V-31011",
+      "direction": "a_to_b"
+    }
+  ],
+  "evidence_id": "9f4e42f08f48d8c41b796d455e32c285fdb767026286a5ce30171738123c2e6c",
+  "image_sha256": "26a2ddba87cb9a4831270dc897bdbb271a0d3350ecbbeeeeda4fce36ac23d280",
+  "nodes": [
+    "V-31010",
+    "V-31011"
+  ],
+  "origin": "synthetic_fixture",
+  "reviewer": null,
+  "schema": "foundry.connectivity_reference/1"
+}

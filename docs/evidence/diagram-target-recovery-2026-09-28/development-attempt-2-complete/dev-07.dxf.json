@@ -1,0 +1,77 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "771f27dd98044c814596f3e56f6d770d8e20ea8ee2e851e85808b7c5d6cc52c1",
+    "junctions": [],
+    "route": "vector_dxf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          450.0,
+          200.0
+        ],
+        "id": "s0",
+        "source": "LINE:2F",
+        "start": [
+          150.0,
+          200.0
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "427fb19f974aab32665f5a48e178109448c7676075f989f2834ff7c216ba8e3a",
+  "edges": [
+    {
+      "a": "V-31070",
+      "arrow_id": null,
+      "b": "V-31071",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            150.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          150.0,
+          200.0
+        ],
+        [
+          450.0,
+          200.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    }
+  ],
+  "input_sha256": "771f27dd98044c814596f3e56f6d770d8e20ea8ee2e851e85808b7c5d6cc52c1",
+  "ports_sha256": "38e70e46e1224b416b11557f2ebb99d72a3549a838aa3a72a63e934818e4b186",
+  "route": "vector_dxf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "b7ba2d37f8ad33924c87270d71cce1a299eb4307dffbf02a264fd0f697a54e34",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

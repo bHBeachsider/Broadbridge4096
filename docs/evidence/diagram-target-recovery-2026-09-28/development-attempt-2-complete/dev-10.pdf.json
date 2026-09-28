@@ -1,0 +1,663 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [
+      {
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "kind": "hop",
+        "point": [
+          300.0,
+          177.5
+        ],
+        "segment_ids": [
+          "s2",
+          "s8",
+          "s9"
+        ]
+      }
+    ],
+    "input_sha256": "d8e5e14d2f7ab2327d83fb4fc987db5728ddbb51c91192e26ac9b30b0abd79f3",
+    "junctions": [
+      {
+        "id": "j1",
+        "kind": "shared_endpoint",
+        "point": [
+          280.0,
+          200.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s3"
+        ]
+      },
+      {
+        "id": "j2",
+        "kind": "shared_endpoint",
+        "point": [
+          320.0,
+          200.0
+        ],
+        "segment_ids": [
+          "s1",
+          "s14"
+        ]
+      },
+      {
+        "id": "j6",
+        "kind": "shared_endpoint",
+        "point": [
+          280.78703703703695,
+          193.12499999999994
+        ],
+        "segment_ids": [
+          "s3",
+          "s4"
+        ]
+      },
+      {
+        "id": "j7",
+        "kind": "shared_endpoint",
+        "point": [
+          282.962962962963,
+          187.5
+        ],
+        "segment_ids": [
+          "s4",
+          "s5"
+        ]
+      },
+      {
+        "id": "j8",
+        "kind": "shared_endpoint",
+        "point": [
+          286.25,
+          183.125
+        ],
+        "segment_ids": [
+          "s5",
+          "s6"
+        ]
+      },
+      {
+        "id": "j9",
+        "kind": "shared_endpoint",
+        "point": [
+          290.37037037037044,
+          180.00000000000003
+        ],
+        "segment_ids": [
+          "s6",
+          "s7"
+        ]
+      },
+      {
+        "id": "j10",
+        "kind": "shared_endpoint",
+        "point": [
+          295.04629629629625,
+          178.12499999999994
+        ],
+        "segment_ids": [
+          "s7",
+          "s8"
+        ]
+      },
+      {
+        "id": "j12",
+        "kind": "shared_endpoint",
+        "point": [
+          304.9537037037037,
+          178.125
+        ],
+        "segment_ids": [
+          "s10",
+          "s9"
+        ]
+      },
+      {
+        "id": "j13",
+        "kind": "shared_endpoint",
+        "point": [
+          309.6296296296296,
+          180.0
+        ],
+        "segment_ids": [
+          "s10",
+          "s11"
+        ]
+      },
+      {
+        "id": "j14",
+        "kind": "shared_endpoint",
+        "point": [
+          313.75,
+          183.125
+        ],
+        "segment_ids": [
+          "s11",
+          "s12"
+        ]
+      },
+      {
+        "id": "j15",
+        "kind": "shared_endpoint",
+        "point": [
+          317.03703703703707,
+          187.5
+        ],
+        "segment_ids": [
+          "s12",
+          "s13"
+        ]
+      },
+      {
+        "id": "j16",
+        "kind": "shared_endpoint",
+        "point": [
+          319.212962962963,
+          193.125
+        ],
+        "segment_ids": [
+          "s13",
+          "s14"
+        ]
+      }
+    ],
+    "route": "vector_pdf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          280.0,
+          200.0
+        ],
+        "id": "s0",
+        "source": "path:0",
+        "start": [
+          80.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          520.0,
+          200.0
+        ],
+        "id": "s1",
+        "source": "path:2",
+        "start": [
+          320.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          300.0,
+          340.0
+        ],
+        "id": "s2",
+        "source": "path:3",
+        "start": [
+          300.0,
+          60.0
+        ]
+      },
+      {
+        "end": [
+          280.78703703703695,
+          193.12499999999994
+        ],
+        "id": "s3",
+        "path_id": "path:1:curve:0",
+        "path_index": 0,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          280.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          282.962962962963,
+          187.5
+        ],
+        "id": "s4",
+        "path_id": "path:1:curve:0",
+        "path_index": 1,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          280.78703703703695,
+          193.12499999999994
+        ]
+      },
+      {
+        "end": [
+          286.25,
+          183.125
+        ],
+        "id": "s5",
+        "path_id": "path:1:curve:0",
+        "path_index": 2,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          282.962962962963,
+          187.5
+        ]
+      },
+      {
+        "end": [
+          290.37037037037044,
+          180.00000000000003
+        ],
+        "id": "s6",
+        "path_id": "path:1:curve:0",
+        "path_index": 3,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          286.25,
+          183.125
+        ]
+      },
+      {
+        "end": [
+          295.04629629629625,
+          178.12499999999994
+        ],
+        "id": "s7",
+        "path_id": "path:1:curve:0",
+        "path_index": 4,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          290.37037037037044,
+          180.00000000000003
+        ]
+      },
+      {
+        "end": [
+          300.0,
+          177.5
+        ],
+        "id": "s8",
+        "path_id": "path:1:curve:0",
+        "path_index": 5,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          295.04629629629625,
+          178.12499999999994
+        ]
+      },
+      {
+        "end": [
+          304.9537037037037,
+          178.125
+        ],
+        "id": "s9",
+        "path_id": "path:1:curve:0",
+        "path_index": 6,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          300.0,
+          177.5
+        ]
+      },
+      {
+        "end": [
+          309.6296296296296,
+          180.0
+        ],
+        "id": "s10",
+        "path_id": "path:1:curve:0",
+        "path_index": 7,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          304.9537037037037,
+          178.125
+        ]
+      },
+      {
+        "end": [
+          313.75,
+          183.125
+        ],
+        "id": "s11",
+        "path_id": "path:1:curve:0",
+        "path_index": 8,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          309.6296296296296,
+          180.0
+        ]
+      },
+      {
+        "end": [
+          317.03703703703707,
+          187.5
+        ],
+        "id": "s12",
+        "path_id": "path:1:curve:0",
+        "path_index": 9,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          313.75,
+          183.125
+        ]
+      },
+      {
+        "end": [
+          319.212962962963,
+          193.125
+        ],
+        "id": "s13",
+        "path_id": "path:1:curve:0",
+        "path_index": 10,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          317.03703703703707,
+          187.5
+        ]
+      },
+      {
+        "end": [
+          320.0,
+          200.0
+        ],
+        "id": "s14",
+        "path_id": "path:1:curve:0",
+        "path_index": 11,
+        "primitive": "curve",
+        "source": "path:1",
+        "start": [
+          319.212962962963,
+          193.125
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "41fde143ca7cacc3a5e28af6a5b5ce930aebd793b5aacea2df432ef3778d3b5f",
+  "edges": [
+    {
+      "a": "V-31100",
+      "arrow_id": null,
+      "b": "V-31101",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            280.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s0",
+            "s3"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            280.78703703703695,
+            193.12499999999994
+          ],
+          "segment_ids": [
+            "s3",
+            "s4"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            282.962962962963,
+            187.5
+          ],
+          "segment_ids": [
+            "s4",
+            "s5"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            286.25,
+            183.125
+          ],
+          "segment_ids": [
+            "s5",
+            "s6"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            290.37037037037044,
+            180.00000000000003
+          ],
+          "segment_ids": [
+            "s6",
+            "s7"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            295.04629629629625,
+            178.12499999999994
+          ],
+          "segment_ids": [
+            "s7",
+            "s8"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            304.9537037037037,
+            178.125
+          ],
+          "segment_ids": [
+            "s10",
+            "s9"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            309.6296296296296,
+            180.0
+          ],
+          "segment_ids": [
+            "s10",
+            "s11"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            313.75,
+            183.125
+          ],
+          "segment_ids": [
+            "s11",
+            "s12"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            317.03703703703707,
+            187.5
+          ],
+          "segment_ids": [
+            "s12",
+            "s13"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            319.212962962963,
+            193.125
+          ],
+          "segment_ids": [
+            "s13",
+            "s14"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            320.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s1",
+            "s14"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          80.0,
+          200.0
+        ],
+        [
+          280.0,
+          200.0
+        ],
+        [
+          280.78703703703695,
+          193.12499999999994
+        ],
+        [
+          282.962962962963,
+          187.5
+        ],
+        [
+          286.25,
+          183.125
+        ],
+        [
+          290.37037037037044,
+          180.00000000000003
+        ],
+        [
+          295.04629629629625,
+          178.12499999999994
+        ],
+        [
+          300.0,
+          177.5
+        ],
+        [
+          304.9537037037037,
+          178.125
+        ],
+        [
+          309.6296296296296,
+          180.0
+        ],
+        [
+          313.75,
+          183.125
+        ],
+        [
+          317.03703703703707,
+          187.5
+        ],
+        [
+          319.212962962963,
+          193.125
+        ],
+        [
+          320.0,
+          200.0
+        ],
+        [
+          520.0,
+          200.0
+        ]
+      ],
+      "segment_ids": [
+        "s0",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13",
+        "s14",
+        "s1"
+      ]
+    },
+    {
+      "a": "V-31102",
+      "arrow_id": null,
+      "b": "V-31103",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            300.0,
+            60.0
+          ],
+          "segment_ids": [
+            "s2"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          300.0,
+          60.0
+        ],
+        [
+          300.0,
+          177.5
+        ],
+        [
+          300.0,
+          340.0
+        ]
+      ],
+      "segment_ids": [
+        "s2"
+      ]
+    }
+  ],
+  "input_sha256": "d8e5e14d2f7ab2327d83fb4fc987db5728ddbb51c91192e26ac9b30b0abd79f3",
+  "ports_sha256": "1a2d4b60a3fad82edf7ae582370ef08a8f8577f06daaf7634d90c8e566b16846",
+  "route": "vector_pdf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "b7ba2d37f8ad33924c87270d71cce1a299eb4307dffbf02a264fd0f697a54e34",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

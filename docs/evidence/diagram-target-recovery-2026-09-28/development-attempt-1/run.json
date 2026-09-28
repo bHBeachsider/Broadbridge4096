@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "config_id": "independent-raster-v1",
+  "engine_sources": {
+    "src/ingestion/diagram_geometry.py": "06976d8f05d5277fa3f16acbbd6cc8e73b54d74d43591dcf87fb49f6c0abb543",
+    "src/ingestion/diagram_metrics.py": "159241e508084df5a9c99f5eca4cf2652e259518c4ce26573f2a44a2f05b376e",
+    "src/ingestion/geometry_contract.py": "ae930641ba25f30719b44c50d3588af0fc89bb9ae8d9daa94b551f2c139f7546",
+    "src/ingestion/geometry_extractors.py": "432efa6c7c3eb4383a7e44e58a357260663637f3f71a5d28955a83dec7d5efe5",
+    "src/ingestion/raster_connectivity.py": "b6a2acbf65057a8377cf0ad0a0774cdad21a0babecb08ce0797a471c8bbfa898"
+  },
+  "evaluation_role": "development",
+  "harness_sha256": "111b0e9e8f602431511bcefa52012b6f7d22b0cbb1d7879bde56960c74c4c5ba",
+  "input_manifest_sha256": "ec26c45446c588129a7b88c85d9888825762cb0925bba5e57a80d1573227ca39",
+  "legacy_metrics_sha256": "dc04b1a6b028ed67dac53c77872bf9b70f0b432033b0b32721641d9c6604cd31",
+  "model_calls": 0,
+  "notes": "Masks and ports supplied. Same construction family; no independent qualification.",
+  "provenance": "pre-run-checksum",
+  "schema": "broadbridge.diagram_recovery_run/1",
+  "training_approved": false
+}

@@ -1,0 +1,113 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [
+      {
+        "attachment_blocked": true,
+        "base": [
+          303.8695968127673,
+          197.72477064220183
+        ],
+        "bbox": [
+          297,
+          185,
+          325,
+          207
+        ],
+        "coordinate_frame": "pixels-top-left",
+        "id": "a0",
+        "pixel_sha256": "2f4cbd127a0b7a2155f15cd34765bfb5172dad315c6c378906092ee6b1887e79",
+        "segment_id": null,
+        "source": "original-pixels:contour-rotated-template",
+        "source_sha256": "b94a399c42a2dfe9b0a44211f3d1ab8fbb85563ef473f1bb15a3ff13cf605f9c",
+        "template_iou": 0.7833333333333333,
+        "tip": [
+          319.4580540808872,
+          188.72477064220183
+        ],
+        "transform_to_source_pixels": [
+          1,
+          0,
+          0,
+          1,
+          297,
+          185
+        ]
+      }
+    ],
+    "coordinate_frame": "pixels-top-left",
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "b94a399c42a2dfe9b0a44211f3d1ab8fbb85563ef473f1bb15a3ff13cf605f9c",
+    "junctions": [],
+    "pixel_sha256": "008b91ff57093d800d89424683db6757f1eba73b2f4cdc41f1b1c6e218c86a8a",
+    "pixel_shape": [
+      400,
+      600,
+      3
+    ],
+    "raster_input_policy": "supplied text masks only; arrows never erased from independent line branch",
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          265.95166381098386,
+          215.90404905762466
+        ],
+        "id": "s0",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          101.0,
+          299.0
+        ]
+      },
+      {
+        "end": [
+          499.08184542389813,
+          99.16225496316645
+        ],
+        "id": "s1",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          319.0,
+          190.0
+        ]
+      },
+      {
+        "end": [
+          303.0,
+          198.0
+        ],
+        "id": "s2",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          272.0,
+          213.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 412,
+    "tolerance": 3.0,
+    "warnings": [
+      "unresolved_raster_arrow_attachment:a0",
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "92c9d7602685a85757823c9d006ae0940e89f9447480f543fcec5b5f1bd2b3ae",
+  "edges": [],
+  "input_sha256": "b94a399c42a2dfe9b0a44211f3d1ab8fbb85563ef473f1bb15a3ff13cf605f9c",
+  "ports_sha256": "828cfd80abc5eeed8d2a1ce2f9b48065409baab836977558ded54d496de82592",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "01ca17eab548cc47d73a7ab1e86969d05bcb0f600d928874f792047696cf7eec",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}
