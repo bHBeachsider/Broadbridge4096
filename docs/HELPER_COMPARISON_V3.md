@@ -76,8 +76,9 @@ checks snapshots are at most 24 hours old and not future dated; exact model,
 provider, endpoint tag and context; required schema/temperature/output-limit
 parameters; prompt/completion prices within ceilings; and any disclosed request
 fee within its allowance. V3 accepts only numeric status `0`. This is a deliberately
-conservative acceptance policy, not a claim that the API documents all status
-meanings or that a status alone proves a route works.
+conservative acceptance policy; a status alone does not prove a route works.
+OpenRouter's first-party web application identifies `-2` as `DegradedPerformance`
+and `-5` as `Down`; see the [status investigation](HELPER_NEBIUS_STATUS.md).
 
 The operator must also record `context_and_billing_verified:true` with a pinned
 `billing_evidence_sha256`: evidence that the context is enforced without silent
@@ -86,12 +87,20 @@ price is not independently proven to mean zero fees. This field complements the
 existing `controls_verified` attestation for schema, privacy and reasoning behavior.
 Undisclosed hosted revisions remain null. Nothing is signed automatically.
 
-The 28 September recheck still returned **Nebius status -2**, so that real snapshot
-does not pass v3. DeepInfra returned status 0. Prices and context matched the prior
-preflight. The actual snapshots are retained under
-`docs/verification/helper-v3-endpoints-20260928/`. They are observations, not live
-capability tests. Refresh them before any later run; never edit a negative status
-into an approval. Changing providers requires a new reviewed protocol and packet.
+The 28 September 18:29 UTC snapshot returned **Nebius -2 (degraded performance)**.
+The 18:58 UTC recheck returned **-5 (down)**, and the public provider page also
+displayed Down. Both actual snapshots are rejected by the unchanged v3 validator.
+The code meaning is resolved; endpoint recovery is not. The upstream internal
+cause and recovery time are not disclosed by this evidence. No local credential
+change can clear a status obtained from the unauthenticated public catalogue.
+
+Preserve the earlier evidence under `docs/verification/helper-v3-endpoints-20260928/`;
+the [investigation and new evidence](HELPER_NEBIUS_STATUS.md) record the later state.
+Refresh metadata before a later run; never edit a negative status into an approval.
+Proceed with Nebius only after fresh metadata passes the existing acceptance
+checks and the remaining run requirements are completed. Alternatively, the
+investigation identifies `siliconflow/fp8` as a candidate for a **new reviewed
+protocol and packet** with the same Qwen model. It has not been selected or called.
 
 ## Offline commands
 
