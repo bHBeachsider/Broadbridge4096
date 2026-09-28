@@ -1,0 +1,79 @@
+{
+  "schema": "broadbridge.reference_graph_sources/1",
+  "verified_at": "2026-09-27",
+  "training_approved": false,
+  "sources": [
+    {
+      "id": "dexpi-c01",
+      "url": "https://gitlab.com/dexpi/TrainingTestCases",
+      "version": "a23d61e2e089eb2ca464cd552f9ae580a2785963",
+      "path": "dexpi 1.3/example pids/C01 DEXPI Reference P&ID/C01V04-VER.EX01.xml",
+      "license": {"spdx": "CC-BY-4.0", "url": "https://gitlab.com/dexpi/TrainingTestCases/-/blob/a23d61e2e089eb2ca464cd552f9ae580a2785963/LICENSE", "verified_from": "actual pinned repository LICENSE", "sha256": "7e7170e3cebf88a9f60c7b8421418323c09304da1af4d5e90f4da1dc1c8a2661"},
+      "topology": "native-model", "role": "topology-gold", "allowed_use": "eval-only",
+      "family_id": "dexpi-c01-all-revisions", "training_block": "Frozen evaluation family, including derivatives; four unresolved endpoints remain gaps.",
+      "acquired": {"xml_bytes": 445726, "xml_sha256": "a2b172f04e0dcf9a668e158c6dee3b5fd0dd4e9027b572dc39e54470562b809c", "svg_bytes": 79543}
+    },
+    {
+      "id": "pydexpi", "url": "https://github.com/process-intelligence-research/pyDEXPI",
+      "version": "1.2.0; commit 83e5a11c4af3635ad12290a4dbe310480eb6d7a3",
+      "license": {"spdx": "AGPL-3.0", "url": "https://github.com/process-intelligence-research/pyDEXPI/blob/83e5a11c4af3635ad12290a4dbe310480eb6d7a3/LICENSE", "verified_from": "actual repository LICENSE and PyPI wheel", "sha256": "23a9ef1b46f2ce9176afcd60eeaff285dde8285c64693ab10854b452d22b6cc7"},
+      "topology": "native-model", "role": "adapter-tool", "allowed_use": "eval-only",
+      "training_block": "Software is not a training corpus. Optional local research dependency; proprietary deployment/license review unresolved.",
+      "acquired": {"wheel_bytes": 201065, "wheel_sha256": "d2d4aedd03b88057b44677567ce2973e53525342119e4ea31fabade2ddab3b69"}
+    },
+    {
+      "id": "dexpi-render", "url": "https://github.com/uchokoro/dexpi-render",
+      "version": "5a64cdf0bbdbb95799e73b276e4915b624305260",
+      "license": {"spdx": "MIT", "url": "https://github.com/uchokoro/dexpi-render/blob/5a64cdf0bbdbb95799e73b276e4915b624305260/LICENSE", "verified_from": "actual repository LICENSE", "sha256": "21ef116fe58384ea27c0493bcec3378cca3ccf433c373bd5a0d7ca6817425dae"},
+      "topology": "native-model", "role": "renderer-tool", "allowed_use": "eval-only",
+      "training_block": "Tool catalog only; neither installed nor a data license. No bundled drawings admitted."
+    },
+    {
+      "id": "dexpi2graphml", "url": "https://github.com/TUDoAD/DEXPI2graphML",
+      "version": "cf2820fd185a17ab15097f5c17807db5ea566d3f",
+      "license": {"spdx": "LGPL-3.0", "url": "https://github.com/TUDoAD/DEXPI2graphML/blob/cf2820fd185a17ab15097f5c17807db5ea566d3f/LICENSE.txt", "verified_from": "actual repository LICENSE.txt", "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"},
+      "topology": "native-model", "role": "adapter-tool", "allowed_use": "eval-only",
+      "training_block": "Tool catalog only. Embedded laboratory/textbook drawings need separate rights verification."
+    },
+    {
+      "id": "pid2graph-datasetpid-sample", "url": "https://zenodo.org/records/14803338",
+      "version": "v1; DOI 10.5281/zenodo.14803338",
+      "license": {"spdx": "CC-BY-SA-4.0", "url": "https://zenodo.org/api/records/14803338", "verified_from": "record rights metadata and description; DatasetPID origin also declared CC BY-SA 4.0 by record"},
+      "topology": "none", "role": "annotation-adjacency", "allowed_use": "eval-only",
+      "family_id": "pid2graph-datasetpid-0-all-crops", "training_block": "Benchmark held out; annotation adjacency is not signed engineering topology. Original upstream grant should be independently confirmed before reuse beyond evaluation.",
+      "acquired": {"graph_member": "PID2Graph/Complete/Dataset PID/0.graphml", "graph_bytes": 145745, "graph_sha256": "c21f687f28568cf8a776c92b61d3f606360d31823949fa702e44636f36a3ee1a", "image_member": "PID2Graph/Complete/Dataset PID/0.png", "image_bytes": 6570851, "image_sha256": "29988daecbbfa9f82fd1339c81fb9b8dc3d8174ead3238ff4c14f70ac0d3bbe0", "full_archive_bytes": 9303633645, "full_archive_downloaded": false},
+      "topology_caveat": "Paper 2411.13929v3 section III-D: graph made by joining overlapping annotated line segments. Neither native-model nor human-signed tracing: mapped only, NOT trusted topology. Undirected, no flow gold."
+    },
+    {
+      "id": "pid2graph-open100", "url": "https://www.open-100.com/",
+      "version": "PID2Graph v1 / DOI 10.5281/zenodo.14803338; upstream drawing revisions not verified",
+      "license": {"spdx": "UNKNOWN", "url": "https://zenodo.org/records/14803338", "verified_from": "Zenodo record declares CC BY-SA-4.0 overall; separate underlying OPEN100 drawing grant not verified"},
+      "topology": "human-traced", "role": "annotation-adjacency", "allowed_use": "eval-only",
+      "family_id": "open100-all-drawings-and-derivatives", "training_block": "UNKNOWN underlying rights and evaluation-family restriction; no OPEN100 files acquired.",
+      "availability": "Real engineering subset exists: public nuclear design drawings, not verified as-built petrochemical facility drawings."
+    },
+    {
+      "id": "digitize-pid-original", "url": "https://arxiv.org/abs/2109.03794",
+      "version": "v1, 2021-09-08; original Dataset-P&ID release revision unverified",
+      "license": {"spdx": "UNKNOWN", "url": "https://arxiv.org/abs/2109.03794", "verified_from": "Original dataset LICENSE not verified. Paper license is not a dataset grant; PID2Graph's upstream CC-BY-SA claim recorded separately."},
+      "topology": "none", "role": "symbols-labels-only", "allowed_use": "eval-only",
+      "training_block": "UNKNOWN original rights. Symbols/labels cannot establish topology. No files acquired.",
+      "availability": "Paper reports 500 synthetic P&IDs and a separate private real-world evaluation set; private drawings not acquired."
+    },
+    {
+      "id": "synthpid", "url": "https://arxiv.org/abs/2604.16513",
+      "version": "v1, 2026-04-15",
+      "license": {"spdx": "UNKNOWN", "url": "https://github.com/LatentSpaceIITB/SynthPID", "verified_from": "Paper is CC BY 4.0; public code/data endpoint and GitHub API returned 404 on 2026-09-27. Code/data licenses not verified."},
+      "topology": "synthetic-by-construction", "role": "research-only-lead", "allowed_use": "eval-only",
+      "training_block": "Do not integrate. Release claimed by paper but public availability unverified; UNKNOWN code/data license. OPEN100 seed derivation is an evaluation leakage risk.",
+      "availability": "Paper claims 665 images plus code and weights. No dataset/code/weights downloaded."
+    },
+    {
+      "id": "broadbridge-original-six", "url": "https://github.com/bHBeachsider/Broadbridge4096",
+      "version": "reference_graph_pilot.py v1; seeds 901-906; exact generator commit and artifact hashes in results",
+      "license": {"spdx": "LicenseRef-Broadbridge-Internal", "url": "https://github.com/bHBeachsider/Broadbridge4096", "verified_from": "Original in-house construction parameters and symbols; no external seed diagrams"},
+      "topology": "synthetic-by-construction", "role": "topology-gold", "allowed_use": "eval-only",
+      "family_id": "original-dexpi-901-through-906", "training_block": "Development fixtures only. Not reviewed engineering examples or training-approved records."
+    }
+  ]
+}

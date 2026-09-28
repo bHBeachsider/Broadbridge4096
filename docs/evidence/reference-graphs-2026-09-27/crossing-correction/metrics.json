@@ -1,0 +1,65 @@
+{
+  "job_sha256": "ab56bbbe940d1abbe9bd00c56e2523a6c6fe1af4ebe314e3e0a4258601d91bf9",
+  "note": "Unknown reference directions excluded from direction P/R; unsupported direction claims counted separately. Failed/not-run calls are empty predictions and count against recall.",
+  "rows": [
+    {
+      "check": {
+        "direction_errors": [],
+        "expected_count": 2,
+        "input_sha256": "e95f8f2ae56b65e9a708ee9a4627457c535280b12568ee6dda2bcf91e9c6f890",
+        "missing_edges": [],
+        "proposal_sha256": "b9fd481cee7034f265d80de131eb902b80e8af680f6b596c11d28716e1c21581",
+        "proposed_count": 4,
+        "reason": "Direct graph mismatch",
+        "reference_sha256": "a1b583151b58eada0385f17b107a1a3e901b20a94f921e96d7ed7cee462de37a",
+        "review_status": "pending",
+        "schema": "foundry.connectivity_check/1",
+        "status": "fail",
+        "training_approved": false,
+        "unexpected_edges": [
+          [
+            "V-716",
+            "V-718"
+          ],
+          [
+            "V-717",
+            "V-719"
+          ]
+        ]
+      },
+      "check_status": "fail",
+      "elapsed_seconds": 69.819,
+      "id": "crossing-clear",
+      "metrics": {
+        "direction_precision": null,
+        "direction_recall": null,
+        "direction_scored_claims": 0,
+        "direction_tp": 0,
+        "edge_fn": 0,
+        "edge_fp": 2,
+        "edge_precision": 0.5,
+        "edge_recall": 1.0,
+        "edge_tp": 2,
+        "known_reference_directions": 0,
+        "unsupported_direction_claims": 0
+      },
+      "result_sha256": "039162a95f00ae3b162c44162bcac0fb9af1be284ef207eba7a16f683569401d",
+      "status": "completed"
+    }
+  ],
+  "schema": "broadbridge.reference_graph_metrics/1",
+  "totals": {
+    "direction_precision": null,
+    "direction_recall": null,
+    "direction_scored_claims": 0,
+    "direction_tp": 0,
+    "edge_fn": 0,
+    "edge_fp": 2,
+    "edge_precision": 0.5,
+    "edge_recall": 1.0,
+    "edge_tp": 2,
+    "known_reference_directions": 0,
+    "unsupported_direction_claims": 0
+  },
+  "training_approved": false
+}

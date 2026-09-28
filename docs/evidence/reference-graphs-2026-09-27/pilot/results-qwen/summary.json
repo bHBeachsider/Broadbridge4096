@@ -1,0 +1,39 @@
+{
+  "job_sha256": "d7a2ddeef7a8852e17445384b011e1b0aeeddd9ec588f958fa1d7111c4340e5b",
+  "results": [
+    {
+      "id": "forward-chain",
+      "status": "completed",
+      "elapsed_seconds": 69.913
+    },
+    {
+      "id": "reverse-chain",
+      "status": "completed",
+      "elapsed_seconds": 81.69
+    },
+    {
+      "id": "junction",
+      "status": "completed",
+      "elapsed_seconds": 68.586
+    },
+    {
+      "id": "crossing",
+      "status": "completed",
+      "elapsed_seconds": 69.017
+    },
+    {
+      "id": "unknown-chain",
+      "status": "completed",
+      "elapsed_seconds": 62.487
+    },
+    {
+      "id": "mixed-junction",
+      "status": "completed",
+      "elapsed_seconds": 67.41
+    }
+  ],
+  "scheduled": 6,
+  "job_request_count": 6,
+  "not_run": 0,
+  "training_approved": false
+}

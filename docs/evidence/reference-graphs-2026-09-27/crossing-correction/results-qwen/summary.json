@@ -1,0 +1,14 @@
+{
+  "job_sha256": "ab56bbbe940d1abbe9bd00c56e2523a6c6fe1af4ebe314e3e0a4258601d91bf9",
+  "results": [
+    {
+      "id": "crossing-clear",
+      "status": "completed",
+      "elapsed_seconds": 69.819
+    }
+  ],
+  "scheduled": 1,
+  "job_request_count": 1,
+  "not_run": 0,
+  "training_approved": false
+}

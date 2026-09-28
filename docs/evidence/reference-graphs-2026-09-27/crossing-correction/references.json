@@ -1,0 +1,41 @@
+{
+  "crossing-clear": {
+    "edge_ids": [
+      "E0",
+      "E1"
+    ],
+    "node_labels": {
+      "V-716": "V-716",
+      "V-717": "V-717",
+      "V-718": "V-718",
+      "V-719": "V-719"
+    },
+    "reference": {
+      "edges": [
+        {
+          "a": "V-716",
+          "b": "V-717",
+          "direction": "unknown"
+        },
+        {
+          "a": "V-718",
+          "b": "V-719",
+          "direction": "unknown"
+        }
+      ],
+      "evidence_id": "5b3f0c98f9d35ae2e3db9896e27c53eb5cced00fd6b772980a30f709140a87de",
+      "image_sha256": "e95f8f2ae56b65e9a708ee9a4627457c535280b12568ee6dda2bcf91e9c6f890",
+      "nodes": [
+        "V-716",
+        "V-717",
+        "V-718",
+        "V-719"
+      ],
+      "origin": "synthetic_fixture",
+      "reviewer": null,
+      "schema": "foundry.connectivity_reference/1"
+    },
+    "topology_sha256": "508466b792f7745b951468369d73ba8d5bd26cab2d0ec7cbe9eaffdc0288d5cb",
+    "training_approved": false
+  }
+}

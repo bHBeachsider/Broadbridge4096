@@ -1,0 +1,274 @@
+{
+  "job_sha256": "d7a2ddeef7a8852e17445384b011e1b0aeeddd9ec588f958fa1d7111c4340e5b",
+  "note": "Unknown reference directions excluded from direction P/R; unsupported direction claims counted separately. Failed/not-run calls are empty predictions and count against recall.",
+  "rows": [
+    {
+      "check": {
+        "direction_errors": [],
+        "expected_count": 2,
+        "input_sha256": "2c2646b1fa5bfcb23f5d9c30778b4fdd6c137163c994f424c3cdc55b0d163268",
+        "missing_edges": [],
+        "proposal_sha256": "a20d10584731e02cd95705ca7e54a92fe20db830617cbae561d964f6e09fb8e6",
+        "proposed_count": 2,
+        "reason": "Matches frozen reference; training remains unapproved",
+        "reference_sha256": "e3673392594fbf471b2a26c19519047419906eca8121c8dea0f97aa394292aaa",
+        "review_status": "pending",
+        "schema": "foundry.connectivity_check/1",
+        "status": "pass",
+        "training_approved": false,
+        "unexpected_edges": []
+      },
+      "check_status": "pass",
+      "elapsed_seconds": 69.913,
+      "id": "forward-chain",
+      "metrics": {
+        "direction_precision": 1.0,
+        "direction_recall": 1.0,
+        "direction_scored_claims": 2,
+        "direction_tp": 2,
+        "edge_fn": 0,
+        "edge_fp": 0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_tp": 2,
+        "known_reference_directions": 2,
+        "unsupported_direction_claims": 0
+      },
+      "result_sha256": "316fe0e1bce7671b0c20e97df0677fdf573422e3988f3979dd1c8db08cbc9f31",
+      "status": "completed"
+    },
+    {
+      "check": {
+        "direction_errors": [
+          {
+            "actual": "a_to_b",
+            "edge": [
+              "V-379",
+              "V-380"
+            ],
+            "expected": "b_to_a"
+          },
+          {
+            "actual": "a_to_b",
+            "edge": [
+              "V-380",
+              "V-381"
+            ],
+            "expected": "b_to_a"
+          }
+        ],
+        "expected_count": 2,
+        "input_sha256": "2a85d1fa9b1820f5a7043d69e28f703e515ec6ca685e6d516402bbe24d3b080b",
+        "missing_edges": [],
+        "proposal_sha256": "42d9d34a9844d7bcaf2aa6b8f7d60d170bb256c7ad593fcb7d391f7599e3b4b9",
+        "proposed_count": 2,
+        "reason": "Direct graph mismatch",
+        "reference_sha256": "7866792905354e7e6aa2f9665d40dafa88733df2e9c1ded25c5572845e129982",
+        "review_status": "pending",
+        "schema": "foundry.connectivity_check/1",
+        "status": "fail",
+        "training_approved": false,
+        "unexpected_edges": []
+      },
+      "check_status": "fail",
+      "elapsed_seconds": 81.69,
+      "id": "reverse-chain",
+      "metrics": {
+        "direction_precision": 0.0,
+        "direction_recall": 0.0,
+        "direction_scored_claims": 2,
+        "direction_tp": 0,
+        "edge_fn": 0,
+        "edge_fp": 0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_tp": 2,
+        "known_reference_directions": 2,
+        "unsupported_direction_claims": 0
+      },
+      "result_sha256": "7e0885d14e5d4a287ab616451d6cfbf295b0cf837b77c9c286a31ea40294bb24",
+      "status": "completed"
+    },
+    {
+      "check": {
+        "direction_errors": [],
+        "expected_count": 3,
+        "input_sha256": "7090a5687d95941fefad648d4068797d77273529757cf9886380a1a2c5ab7f23",
+        "missing_edges": [],
+        "proposal_sha256": "da64a5f4c31ecb5656153fbbd3cecdd539f16c4b953169475ef74aa3196f5dfc",
+        "proposed_count": 3,
+        "reason": "Matches frozen reference; training remains unapproved",
+        "reference_sha256": "ed98d69240a17f9b8eb36ba856a5fa282f5c8776fed608c1cb4a3d555422ace0",
+        "review_status": "pending",
+        "schema": "foundry.connectivity_check/1",
+        "status": "pass",
+        "training_approved": false,
+        "unexpected_edges": []
+      },
+      "check_status": "pass",
+      "elapsed_seconds": 68.586,
+      "id": "junction",
+      "metrics": {
+        "direction_precision": 1.0,
+        "direction_recall": 1.0,
+        "direction_scored_claims": 3,
+        "direction_tp": 3,
+        "edge_fn": 0,
+        "edge_fp": 0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_tp": 3,
+        "known_reference_directions": 3,
+        "unsupported_direction_claims": 0
+      },
+      "result_sha256": "c6652570cf51bbe6c3acb396d0a7360a37b6a60a11592584a110fa277eee8bb2",
+      "status": "completed"
+    },
+    {
+      "check": {
+        "direction_errors": [],
+        "expected_count": 2,
+        "input_sha256": "e6efe564cea550d74330bfb67f42135545fd299ed2060919c759337b791fa47e",
+        "missing_edges": [],
+        "proposal_sha256": "25c939774b5dbb72356eb3f4b0d15a6c70ff08bb4a15524774033f2716792268",
+        "proposed_count": 4,
+        "reason": "Direct graph mismatch",
+        "reference_sha256": "466b5c63fb28b82ac411c69af9a3f643b7f73c87893920dd789fd047238dbeb9",
+        "review_status": "pending",
+        "schema": "foundry.connectivity_check/1",
+        "status": "fail",
+        "training_approved": false,
+        "unexpected_edges": [
+          [
+            "V-716",
+            "V-718"
+          ],
+          [
+            "V-717",
+            "V-719"
+          ]
+        ]
+      },
+      "check_status": "fail",
+      "elapsed_seconds": 69.017,
+      "id": "crossing",
+      "metrics": {
+        "direction_precision": null,
+        "direction_recall": null,
+        "direction_scored_claims": 0,
+        "direction_tp": 0,
+        "edge_fn": 0,
+        "edge_fp": 2,
+        "edge_precision": 0.5,
+        "edge_recall": 1.0,
+        "edge_tp": 2,
+        "known_reference_directions": 0,
+        "unsupported_direction_claims": 0
+      },
+      "result_sha256": "04a7a3ed71fb5ac0760c49ad4573bd77a87559edefd707fe485c8d255ed18534",
+      "status": "completed"
+    },
+    {
+      "check": {
+        "direction_errors": [],
+        "expected_count": 2,
+        "input_sha256": "06b9ec5fe57112ba28f89ac93150bb103246ca1923ab39b79eefbe40e0b6f3af",
+        "missing_edges": [],
+        "proposal_sha256": "7cbc9f7b694c85bc34e5b0ebea87a58c5dfc4859ddaf5abe16d842b62359145d",
+        "proposed_count": 2,
+        "reason": "Model reported uncertainty",
+        "reference_sha256": "917f7097962efff9c23d783c386f60551ad001bf26661de924786d0ce3936400",
+        "review_status": "pending",
+        "schema": "foundry.connectivity_check/1",
+        "status": "needs_review",
+        "training_approved": false,
+        "unexpected_edges": []
+      },
+      "check_status": "needs_review",
+      "elapsed_seconds": 62.487,
+      "id": "unknown-chain",
+      "metrics": {
+        "direction_precision": null,
+        "direction_recall": null,
+        "direction_scored_claims": 0,
+        "direction_tp": 0,
+        "edge_fn": 0,
+        "edge_fp": 0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_tp": 2,
+        "known_reference_directions": 0,
+        "unsupported_direction_claims": 0
+      },
+      "result_sha256": "90436d84e7e2cad1b37ae788c8481e4bb802c927c888bdcce4f80e5c5c2caad1",
+      "status": "completed"
+    },
+    {
+      "check": {
+        "direction_errors": [
+          {
+            "actual": "a_to_b",
+            "edge": [
+              "J-102",
+              "V-103"
+            ],
+            "expected": "unknown"
+          },
+          {
+            "actual": "a_to_b",
+            "edge": [
+              "J-102",
+              "V-104"
+            ],
+            "expected": "unknown"
+          }
+        ],
+        "expected_count": 3,
+        "input_sha256": "ae62c6e14a167e9b87c5403c3b7a0cc7f9706c4c7b96b658e3de402d1ddc5cfa",
+        "missing_edges": [],
+        "proposal_sha256": "77f81a1a0be044326d129731384f0117c1ab927836885ef512eb1e281d26299f",
+        "proposed_count": 3,
+        "reason": "Direct graph mismatch",
+        "reference_sha256": "a9f8ad53fb224239739056cdcbd9f165738d8ad66c816f5dd271c53ec85971e7",
+        "review_status": "pending",
+        "schema": "foundry.connectivity_check/1",
+        "status": "fail",
+        "training_approved": false,
+        "unexpected_edges": []
+      },
+      "check_status": "fail",
+      "elapsed_seconds": 67.41,
+      "id": "mixed-junction",
+      "metrics": {
+        "direction_precision": 1.0,
+        "direction_recall": 1.0,
+        "direction_scored_claims": 1,
+        "direction_tp": 1,
+        "edge_fn": 0,
+        "edge_fp": 0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_tp": 3,
+        "known_reference_directions": 1,
+        "unsupported_direction_claims": 2
+      },
+      "result_sha256": "e97b2ed61e273acb756a7487480482ae6cb4240bb28105402cd6c0fbdc8525b7",
+      "status": "completed"
+    }
+  ],
+  "schema": "broadbridge.reference_graph_metrics/1",
+  "totals": {
+    "direction_precision": 0.75,
+    "direction_recall": 0.75,
+    "direction_scored_claims": 8,
+    "direction_tp": 6,
+    "edge_fn": 0,
+    "edge_fp": 2,
+    "edge_precision": 0.875,
+    "edge_recall": 1.0,
+    "edge_tp": 14,
+    "known_reference_directions": 8,
+    "unsupported_direction_claims": 2
+  },
+  "training_approved": false
+}

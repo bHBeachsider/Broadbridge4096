@@ -1,0 +1,67 @@
+{
+  "files": [
+    {
+      "file": "DEXPI-LICENSE.txt",
+      "url": "https://gitlab.com/api/v4/projects/8453791/repository/files/LICENSE/raw?ref=a23d61e2e089eb2ca464cd552f9ae580a2785963",
+      "bytes": 18650,
+      "sha256": "7e7170e3cebf88a9f60c7b8421418323c09304da1af4d5e90f4da1dc1c8a2661"
+    },
+    {
+      "file": "C01.xml",
+      "url": "https://gitlab.com/api/v4/projects/8453791/repository/files/dexpi%201.3%2Fexample%20pids%2FC01%20DEXPI%20Reference%20P%26ID%2FC01V04-VER.EX01.xml/raw?ref=a23d61e2e089eb2ca464cd552f9ae580a2785963",
+      "bytes": 445726,
+      "sha256": "a2b172f04e0dcf9a668e158c6dee3b5fd0dd4e9027b572dc39e54470562b809c"
+    },
+    {
+      "file": "C01.svg",
+      "url": "https://gitlab.com/api/v4/projects/8453791/repository/files/dexpi%201.3%2Fexample%20pids%2FC01%20DEXPI%20Reference%20P%26ID%2FC01V04-VER.EX01.svg/raw?ref=a23d61e2e089eb2ca464cd552f9ae580a2785963",
+      "bytes": 79543,
+      "sha256": "49696872639b2f99a9da72cd83adb0ae29e427c24c75ad374d33e3382e1db047"
+    },
+    {
+      "file": "pyDEXPI-LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/process-intelligence-research/pyDEXPI/83e5a11c4af3635ad12290a4dbe310480eb6d7a3/LICENSE",
+      "bytes": 34527,
+      "sha256": "23a9ef1b46f2ce9176afcd60eeaff285dde8285c64693ab10854b452d22b6cc7"
+    },
+    {
+      "file": "pydexpi-1.2.0-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/d4/5c/10924568ab8763c2ebeffef04463433f6573685399804ae206e15c3a805b/pydexpi-1.2.0-py3-none-any.whl",
+      "bytes": 201065,
+      "sha256": "d2d4aedd03b88057b44677567ce2973e53525342119e4ea31fabade2ddab3b69"
+    },
+    {
+      "file": "pid2graph-0.graphml",
+      "url": "https://zenodo.org/api/records/14803338/files/PID2Graph.zip/container/PID2Graph/Complete/Dataset%20PID/0.graphml",
+      "bytes": 145745,
+      "sha256": "c21f687f28568cf8a776c92b61d3f606360d31823949fa702e44636f36a3ee1a"
+    },
+    {
+      "file": "pid2graph-0.png",
+      "url": "https://zenodo.org/api/records/14803338/files/PID2Graph.zip/container/PID2Graph/Complete/Dataset%20PID/0.png",
+      "bytes": 6570851,
+      "sha256": "29988daecbbfa9f82fd1339c81fb9b8dc3d8174ead3238ff4c14f70ac0d3bbe0"
+    },
+    {
+      "file": "PID2Graph-record.json",
+      "url": "https://zenodo.org/api/records/14803338",
+      "bytes": 6668,
+      "sha256": "cc4b0c56493be6de1b663a1be9cecdfb0749257360e8fbcd8561a64f7af862e8"
+    },
+    {
+      "file": "dexpi-render-LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/uchokoro/dexpi-render/5a64cdf0bbdbb95799e73b276e4915b624305260/LICENSE",
+      "bytes": 1070,
+      "sha256": "21ef116fe58384ea27c0493bcec3378cca3ccf433c373bd5a0d7ca6817425dae"
+    },
+    {
+      "file": "DEXPI2graphML-LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/TUDoAD/DEXPI2graphML/cf2820fd185a17ab15097f5c17807db5ea566d3f/LICENSE.txt",
+      "bytes": 7652,
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    }
+  ],
+  "downloaded_bytes": 7511497,
+  "archive_downloaded": false,
+  "training_approved": false
+}

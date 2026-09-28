@@ -1,0 +1,11 @@
+{
+  "ids": [
+    "forward-chain",
+    "reverse-chain",
+    "junction",
+    "crossing",
+    "unknown-chain",
+    "mixed-junction"
+  ],
+  "job_sha256": "d7a2ddeef7a8852e17445384b011e1b0aeeddd9ec588f958fa1d7111c4340e5b"
+}
