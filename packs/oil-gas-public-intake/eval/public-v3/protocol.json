@@ -1,0 +1,120 @@
+{
+  "schema": "broadbridge.helper_comparison_protocol/3",
+  "version": "public-v3-context-reservations-2026-09-28",
+  "status": "proposed_requires_review",
+  "evaluation_role": "development_calibration",
+  "base_sample_sha256": "3407f8d2ea56e0cc8c379f9a84b5c1808b72d5dedd7c504d1badbcb423a0e736",
+  "base_sample_version": "public-v1",
+  "live_authorized": false,
+  "training_approved": false,
+  "models": {
+    "mistral": {
+      "requested_model": "mistralai/mistral-small-24b-instruct-2501",
+      "requested_provider": "DeepInfra",
+      "weights_revision": null,
+      "provider_revision": null,
+      "revision_status": "catalogue_observed_hosted_revisions_undisclosed",
+      "provider_route": "deepinfra/fp8",
+      "reservation": {
+        "context_tokens": 32768,
+        "max_price_usd_per_million": {
+          "prompt": "0.06",
+          "completion": "0.10"
+        },
+        "max_non_token_fee_usd": "0"
+      }
+    },
+    "qwen": {
+      "requested_model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "requested_provider": "Nebius",
+      "weights_revision": null,
+      "provider_revision": null,
+      "revision_status": "catalogue_observed_hosted_revisions_undisclosed",
+      "provider_route": "nebius/fp8",
+      "reservation": {
+        "context_tokens": 262144,
+        "max_price_usd_per_million": {
+          "prompt": "0.12",
+          "completion": "0.36"
+        },
+        "max_non_token_fee_usd": "0"
+      }
+    }
+  },
+  "limits": {
+    "question_batch_size": 1,
+    "temperature": 0,
+    "max_output_tokens": 1000,
+    "max_request_bytes": 12000,
+    "timeout_seconds": 60,
+    "max_attempts_per_slot": 1,
+    "concurrency": 1,
+    "proposed_total_ceiling_usd": "0.25"
+  },
+  "routing_requirements": {
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "data_collection": "deny",
+    "zero_data_retention": true,
+    "distillable_text": true,
+    "reasoning_mode": "native_nonreasoning_verified_or_block",
+    "transforms": []
+  },
+  "stages": {
+    "stage_a": {
+      "question_ids": [
+        "PUB-001",
+        "PUB-004",
+        "PUB-007",
+        "PUB-011",
+        "PUB-013",
+        "PUB-018",
+        "PUB-021",
+        "PUB-024",
+        "PUB-025",
+        "PUB-030"
+      ],
+      "max_calls": 20,
+      "proposed_ceiling_usd": "0.10",
+      "state": "awaiting_protocol_and_live_approval"
+    },
+    "stage_b": {
+      "question_ids": [
+        "PUB-002",
+        "PUB-003",
+        "PUB-005",
+        "PUB-006",
+        "PUB-008",
+        "PUB-009",
+        "PUB-010",
+        "PUB-012",
+        "PUB-014",
+        "PUB-015",
+        "PUB-016",
+        "PUB-017",
+        "PUB-019",
+        "PUB-020",
+        "PUB-022",
+        "PUB-023",
+        "PUB-026",
+        "PUB-027",
+        "PUB-028",
+        "PUB-029"
+      ],
+      "max_calls": 40,
+      "proposed_ceiling_usd": "0.15",
+      "state": "requires_stage_a_review_and_separate_approval"
+    }
+  },
+  "stop_policy": "Stop both arms on any transport, output-limit, schema, citation, identity, unknown-cost or budget failure. Preserve both slots; never retry or replace an arm within this version.",
+  "quality_proposal": {
+    "requires_complete_paired_review": true,
+    "critical_errors": 0,
+    "overall_mean_min": 1.8,
+    "per_type_mean_min": 1.5,
+    "reference_disputes_must_be_resolved": true,
+    "fresh_independent_family_confirmation_required": true,
+    "approved": false
+  },
+  "reservation_policy": "per_arm_full_context_plus_maximum_output"
+}

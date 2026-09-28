@@ -1,5 +1,9 @@
 # FQ-07: provider preflight and Stage-A packet
 
+Follow-up: [v3 context reservations](HELPER_COMPARISON_V3.md) now implements the
+recommended reservation design below. This document preserves the earlier v2
+preflight findings; neither version has performed a live comparison.
+
 Checked 28 September 2026. **Public metadata checked; live execution remains unverified.**
 The Stage-A packet contains ten questions, two of each type, paired across two
 helpers: twenty requests. No inference requests, paid calls, EC2 activity,

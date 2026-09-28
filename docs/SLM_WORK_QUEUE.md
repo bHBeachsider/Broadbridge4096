@@ -12,9 +12,9 @@ FQ-01 through FQ-07 prepare software, extraction evidence and reviewable inputs 
 
 **FQ-01 and FQ-02 are now prepared for review:** the calculation-verifier rehearsal and a three-page DOE pressure packet. See the [commands, results and remaining decisions](SLM_PREPARATION_REHEARSAL.md). DOE section choice is a provisional engineering-preparation choice, not a decision about the final commercial curriculum.
 
-**FQ-07 is prepared for review:** the [bounded helper comparison v2](HELPER_COMPARISON_V2.md)
-has an offline packet compiler, fixed paired selection and proposed spending limits.
-No helper was called. This branch starts before the diagram branches; completed
+**FQ-07 is prepared for review:** [helper comparison v3](HELPER_COMPARISON_V3.md)
+adds per-arm context reservations and exact endpoint routing to the offline compiler,
+paired executor and scorecards. V2 remains available. No helper was called. This branch starts before the diagram branches; completed
 FQ-03/04/06 work and isolated diagram work below are linked to their draft PRs
 without importing that implementation into this branch.
 
@@ -28,7 +28,7 @@ without importing that implementation into this branch.
 | FQ-04 | Audit the existing Hugging Face math sample | PREPARED_WAIT_REVIEW | Audit and quality hold recorded on [draft #19](https://github.com/bHBeachsider/Broadbridge4096/pull/19); no training admission |
 | FQ-05 | Test extraction and normalization coverage | ISOLATED_IN_PROGRESS | [Diagram recovery draft #23](https://github.com/bHBeachsider/Broadbridge4096/pull/23), paired Foundry #19; remaining targets and qualification open |
 | FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | PREPARED_WAIT_REVIEW | Mock acceptance/release refusals and CPU audit prepared on [draft #19](https://github.com/bHBeachsider/Broadbridge4096/pull/19); live authenticated integration remains open |
-| FQ-07 | Prepare the helper comparison protocol revision | PREPARED_WAIT_REVIEW | [Protocol v2](HELPER_COMPARISON_V2.md), [execution/scoring runbook](HELPER_COMPARISON_EXECUTION.md) and [provider preflight](HELPER_COMPARISON_PREFLIGHT.md): Stage-A wire packet prepared; endpoint status and hosted-token bound unresolved; no live calls |
+| FQ-07 | Prepare the helper comparison protocol revision | PREPARED_WAIT_REVIEW | [V3 reservation runbook](HELPER_COMPARISON_V3.md): per-arm context reservations, fresh endpoint evidence and exact routing implemented; A/B mocked rehearsal passed; selected Nebius status -2 still blocks live execution |
 | FQ-08 | Confirm priority tasks, references and recipes (SD-01) | WAIT_REVIEW | Named decisions on first tasks, exclusions, recipe versions, hard-fail criteria and reviewer competence |
 | FQ-09 | Run and score S0-cases | WAIT_CASES_AND_RUN | Stock qwen3:8b briefs plus human scorecards/aggregate; Gate 0 coverage recorded separately |
 | FQ-10 | Build and compare S0-retrieval | WAIT_SCORED_BASELINE | On-box index and comparable scored briefs; beat S0-cases before training is considered |
@@ -79,7 +79,7 @@ For later adapter comparison, do not compare stock Ollama's default template wit
 
 1. Review the FQ-01 method/tolerance and FQ-02 evidence packet. No training approval is implied by their software checks.
 2. Review FQ-03's proposed sources and FQ-04's quality findings; FQ-06's mock release/audit is prepared. Their draft status confers no technical or training acceptance.
-3. FQ-07's execution adapter and reviewer aggregation are implemented and rehearsed with mocked HTTP. The [provider preflight](HELPER_COMPARISON_PREFLIGHT.md) now records both candidates and a twenty-request packet. Resolve the selected endpoint's unexplained status and the hosted-token bound; a separately versioned context-reservation policy is the proposed next implementation. Rights/references, quality screen, spend controls and exact-run approval remain open. FQ-05 remains isolated; prompting for diagram connectivity is closed.
+3. FQ-07's [v3 context reservation policy](HELPER_COMPARISON_V3.md) is implemented and rehearsed, removing the exact hosted-token-count dependency for that version. Resolve the selected Nebius endpoint's unexplained -2 status before any live comparison; any provider change needs a new reviewed protocol/packet. Rights/references, quality screen, endpoint context/billing evidence, spend controls and exact-run approval remain open. FQ-05 remains isolated; prompting for diagram connectivity is closed.
 4. Bill or another appointed reviewer chooses useful tasks and verifies the real source/method/candidate packets. Brad records rights, live processing budgets and release decisions independently.
 
 Original work packages and acceptance criteria remain in the [synthetic-data plan](superpowers/plans/2026-09-26-synthetic-expert-data.md), [expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) and [ingestion release runbook](INGESTION_PIPELINE_RUNBOOK.md). This queue organizes them; it does not mark unperformed work accepted.

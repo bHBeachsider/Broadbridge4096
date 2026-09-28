@@ -1,0 +1,55 @@
+{
+  "schema": "broadbridge.helper_endpoint_snapshot/1",
+  "retrieved_at": "2026-09-28T18:29:23.868452+00:00",
+  "url": "https://openrouter.ai/api/v1/models/qwen/qwen3-30b-a3b-instruct-2507/endpoints",
+  "raw_response_sha256": "7e057b6a1bb748190007e2a0a1028c8e67c807e20c811a9f08c32dee94458a49",
+  "endpoint": {
+    "name": "Nebius | qwen/qwen3-30b-a3b-instruct-2507",
+    "model_id": "qwen/qwen3-30b-a3b-instruct-2507",
+    "model_name": "Qwen: Qwen3 30B A3B Instruct 2507",
+    "context_length": 262144,
+    "pricing": {
+      "prompt": "0.0000001",
+      "completion": "0.0000003",
+      "discount": 0
+    },
+    "provider_name": "Nebius",
+    "tag": "nebius/fp8",
+    "quantization": "fp8",
+    "max_completion_tokens": 235929,
+    "max_prompt_tokens": null,
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "top_p",
+      "stop",
+      "frequency_penalty",
+      "presence_penalty",
+      "seed",
+      "top_k",
+      "logit_bias",
+      "tools",
+      "tool_choice",
+      "response_format",
+      "structured_outputs",
+      "repetition_penalty"
+    ],
+    "supports_tool_choice": {
+      "none": true,
+      "auto": true,
+      "required": true,
+      "function": true
+    },
+    "status": -2,
+    "uptime_last_30m": 89.56628936456349,
+    "uptime_last_5m": 94.37781109445277,
+    "uptime_last_1d": 96.61828394845604,
+    "supports_implicit_caching": false,
+    "native_tools": {},
+    "supports_voice_cloning": false,
+    "supports_multiple_audio_references": false,
+    "supports_image_reference": false,
+    "latency_last_30m": null,
+    "throughput_last_30m": null
+  }
+}

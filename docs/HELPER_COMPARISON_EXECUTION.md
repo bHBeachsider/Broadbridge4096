@@ -1,5 +1,10 @@
 # FQ-07 execution and scoring runbook
 
+The same tools also support [v3 context reservations](HELPER_COMPARISON_V3.md).
+Use its explicit `--protocol-version v3` preparation command and endpoint evidence
+rules. Commands without that option continue to prepare v2, whose exact-token
+preflight requirements below remain in force.
+
 This implements the paired v2 comparison described in
 [HELPER_COMPARISON_V2.md](HELPER_COMPARISON_V2.md). The default run uses fabricated
 HTTP responses and has no network access. It tests the real Foundry client, paired

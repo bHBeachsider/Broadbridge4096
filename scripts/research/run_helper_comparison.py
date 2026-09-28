@@ -97,7 +97,7 @@ def read_packet(packet):
     verify_files(packet, checks)
     config = load(packet/'protocol.json'); sample = load(packet/'sample.json')
     # A changed protocol requires a new reviewed code/protocol version, not a rehashed packet.
-    if config != prep.load_protocol() or (packet/'prompt.md').read_bytes() != prep.PROMPT.read_bytes():
+    if config != prep.load_protocol(prep.protocol_version(config)) or (packet/'prompt.md').read_bytes() != prep.PROMPT.read_bytes():
         raise ValueError('Packet differs from this protocol/prompt revision')
     prep.validate_inputs(config, sample, (packet/'sample.json').read_bytes())
     stage = load(packet/'preparation.json')['stage']
@@ -109,28 +109,37 @@ def read_packet(packet):
 
 def options(config, model, reasoning):
     limits = config['limits']; arm = config['models'][model]
-    return {'model': arm['requested_model'], 'providers': [arm['requested_provider']],
+    v3 = prep.protocol_version(config) == 'v3'
+    prices = arm['reservation']['max_price_usd_per_million'] if v3 else limits['max_price_usd_per_million']
+    result = {'model': arm['requested_model'], 'providers': [arm['requested_provider']],
             'max_tokens': limits['max_output_tokens'], 'max_input_bytes': limits['max_request_bytes'],
             'timeout': limits['timeout_seconds'], 'max_calls': 30,
-            'max_price': {k: float(v) for k, v in limits['max_price_usd_per_million'].items()},
+            'max_price': {k: float(v) for k, v in prices.items()},
             'cost_stop_usd': float(config['limits']['proposed_total_ceiling_usd']),
             'reasoning': reasoning}
+    if v3:
+        if reasoning != 'native_nonreasoning':
+            raise ValueError('v3 requires native nonreasoning endpoints')
+        result.update(provider_routes=[arm['provider_route']], disable_transforms=True)
+    return result
 
 
 def bound(config):
-    limits = config['limits']; prices = limits['max_price_usd_per_million']
-    return (money(limits['max_input_tokens_for_budget'])*money(prices['prompt'])
-            + money(limits['max_output_tokens'])*money(prices['completion']))/Decimal(1000000)
+    amounts = set(prep.reservations(config).values())
+    if len(amounts) != 1:
+        raise ValueError('Use per-arm reservations for this protocol')
+    return amounts.pop()
 
 
 def plan(packet, output, foundry, *, reasoning=None):
     """Emit wire payloads and an intentionally INCOMPLETE approval worksheet offline."""
     config, sample, stage, rows, packet_hash = read_packet(packet)
     transport = foundry_module(foundry)
-    reasoning = reasoning or dict.fromkeys(config['models'], 'disabled')
+    version = prep.protocol_version(config)
+    reasoning = reasoning or dict.fromkeys(config['models'], 'native_nonreasoning' if version == 'v3' else 'disabled')
     clients = {key: transport.OpenRouterClient(options(config, key, reasoning[key])) for key in config['models']}
     payloads = [clients[r['model_key']].request_payload(r['messages'], r['response_schema'], task='draft') for r in rows]
-    proposal = {'schema': 'broadbridge.helper_execution_approval/2', 'stage': stage, 'packet_sha256': packet_hash,
+    proposal = {'schema': 'broadbridge.helper_execution_approval/'+version[1:], 'stage': stage, 'packet_sha256': packet_hash,
                 'domain_commit': git_state(prep.ROOT)['commit'], 'foundry_commit': git_state(foundry)['commit'],
                 'run_id': None, 'approved_by': None, 'technical_reviewer': None, 'approved_at': None, 'expires_at': None,
                 'rights_and_cloud_route_accepted': False, 'protocol_and_references_accepted': False,
@@ -144,6 +153,14 @@ def plan(packet, output, foundry, *, reasoning=None):
                                    'unknown_revision_reason': 'provider_not_disclosed'} for key in config['models']},
                 'requests': [{'request_sha256': v1.digest(p), 'input_tokens_upper_bound': None,
                               'includes_template_schema_overhead': False, 'method': None, 'evidence_sha256': None} for p in payloads]}
+    if version == 'v3':
+        amounts = prep.reservations(config)
+        for key, provider in proposal['providers'].items():
+            provider.update(provider_route=config['models'][key]['provider_route'],
+                            context_tokens=config['models'][key]['reservation']['context_tokens'],
+                            context_and_billing_verified=False, billing_evidence_sha256=None)
+        proposal['requests'] = [{'request_sha256': v1.digest(p), 'reservation_usd': str(amounts[r['model_key']])}
+                                for r, p in zip(rows, payloads)]
     output = Path(output); output.mkdir(parents=True, exist_ok=False)
     stamp(output/'approval.template.json', proposal)
     (output/'wire_requests.jsonl').write_bytes(b''.join(v1.canonical(p)+b'\n' for p in payloads))
@@ -157,7 +174,8 @@ def validate_approval(approval_path, approve_hash, context, payloads, *, now=Non
     if not approve_hash or prep.sha(raw) != approve_hash:
         raise ValueError('Explicit approval SHA-256 mismatch')
     approved = json.loads(raw)
-    if not isinstance(approved, dict) or approved.get('schema') != 'broadbridge.helper_execution_approval/2':
+    config = context['config']; version = prep.protocol_version(config)
+    if not isinstance(approved, dict) or approved.get('schema') != 'broadbridge.helper_execution_approval/'+version[1:]:
         raise ValueError('Unsupported approval schema')
     for key in ('packet_sha256', 'stage', 'domain_commit', 'foundry_commit'):
         if approved.get(key) != context[key]:
@@ -200,10 +218,18 @@ def validate_approval(approval_path, approve_hash, context, payloads, *, now=Non
                 raise ValueError('Explicit revision or null required: '+key)
         if any(provider[k] is None for k in REVISIONS) and provider.get('unknown_revision_reason') != 'provider_not_disclosed':
             raise ValueError('Unknown backend revisions must remain explicit')
+        if version == 'v3':
+            validate_endpoint(provider, config['models'][model], evidence, approval_path.parent, now)
     tokens = approved['requests']
     if not isinstance(tokens, list) or len(tokens) != len(payloads):
         raise ValueError('Every exact wire request needs token preflight')
     for row, payload in zip(tokens, payloads):
+        if version == 'v3':
+            model = next(k for k, a in config['models'].items() if a['requested_model'] == payload['model'])
+            if (row.get('request_sha256') != v1.digest(payload)
+                    or money(row.get('reservation_usd')) != prep.reservations(config)[model]):
+                raise ValueError('Missing or invalid exact request reservation')
+            continue
         if (row.get('request_sha256') != v1.digest(payload)
                 or type(row.get('input_tokens_upper_bound')) is not int
                 or not 0 < row['input_tokens_upper_bound'] <= config['limits']['max_input_tokens_for_budget']
@@ -212,6 +238,43 @@ def validate_approval(approval_path, approve_hash, context, payloads, *, now=Non
                 or row.get('evidence_sha256') not in evidence.values()):
             raise ValueError('Missing or invalid exact request token preflight')
     return approved
+
+
+def validate_endpoint(provider, arm, evidence, root, now):
+    """Check fresh catalogue evidence; attestations still cover hosted enforcement/fees."""
+    policy = arm['reservation']
+    if (provider.get('provider_route') != arm['provider_route']
+            or type(provider.get('context_tokens')) is not int
+            or provider['context_tokens'] != policy['context_tokens']
+            or provider.get('reasoning_mode') != 'native_nonreasoning'
+            or provider.get('context_and_billing_verified') is not True
+            or provider.get('billing_evidence_sha256') not in evidence.values()):
+        raise ValueError('Unverified endpoint context/billing policy')
+    name = next(n for n, digest in evidence.items() if digest == provider['endpoint_snapshot_sha256'])
+    snapshot = load(root/name)
+    try:
+        if snapshot['schema'] != 'broadbridge.helper_endpoint_snapshot/1':
+            raise ValueError('Unsupported endpoint snapshot')
+        captured = datetime.fromisoformat(snapshot['retrieved_at'])
+        if captured.tzinfo is None or not 0 <= (now-captured).total_seconds() <= 86400:
+            raise ValueError('Endpoint snapshot stale or future dated')
+        endpoint = snapshot['endpoint']
+        if (endpoint['model_id'] != arm['requested_model']
+                or endpoint['provider_name'] != arm['requested_provider']
+                or endpoint['tag'] != arm['provider_route']
+                or type(endpoint['context_length']) is not int
+                or endpoint['context_length'] != policy['context_tokens']
+                or type(endpoint['status']) is not int or endpoint['status'] != 0):
+            raise ValueError('Endpoint identity, context or status changed')
+        if not {'max_tokens', 'temperature', 'response_format', 'structured_outputs'} <= set(endpoint['supported_parameters']):
+            raise ValueError('Endpoint lacks required parameters')
+        for key, ceiling in policy['max_price_usd_per_million'].items():
+            if money(endpoint['pricing'][key])*1000000 > money(ceiling):
+                raise ValueError('Endpoint price exceeds reservation ceiling')
+        if money(endpoint['pricing'].get('request', '0')) > money(policy['max_non_token_fee_usd']):
+            raise ValueError('Endpoint request fee exceeds reservation')
+    except (KeyError, TypeError, AttributeError) as exc:
+        raise ValueError('Malformed endpoint snapshot') from exc
 
 
 def prior_stage(approved, config):
@@ -225,7 +288,7 @@ def prior_stage(approved, config):
         raise ValueError('Prior stage hash mismatch')
     run = load(root/'run.json')
     if (run['mode'] != 'live' or run['stage'] != 'stage_a'
-            or run['protocol_sha256'] != prep.sha(prep.PROTOCOL.read_bytes())):
+            or run['protocol_sha256'] != prep.sha(prep.protocol_path(prep.protocol_version(config)).read_bytes())):
         raise ValueError('Prior stage is not a complete reviewed live A')
     report = summarize(root, scores)
     if not report['proposed_screen_passed'] or not run['billing_complete']:
@@ -244,7 +307,10 @@ def mock_http(failure=None):
         answer = {'question_id': question['question_id'], 'answer': 'MOCK ONLY: not an engineering answer.',
                   'evidence': [{'source_id': content['source_id'], 'block_id': block['block_id'],
                                 'quote': block['text'][:60]}], 'uncertainties': ['Fabricated software rehearsal.']}
-        data = {'model': payload['model'], 'provider': payload['provider']['only'][0],
+        route = payload['provider']['only'][0]
+        # These two labels represent fabricated responses, not observed provider routing.
+        provider = {'deepinfra/fp8': 'DeepInfra', 'nebius/fp8': 'Nebius'}.get(route, route)
+        data = {'model': payload['model'], 'provider': provider,
                 'usage': {'cost': 0.0001, 'prompt_tokens': 500, 'completion_tokens': 50,
                           'completion_tokens_details': {'reasoning_tokens': 0}},
                 'choices': [{'finish_reason': 'stop', 'message': {'content': json.dumps(answer)}}]}
@@ -270,6 +336,7 @@ def execute(packet, output, foundry, *, mode='mock', approval=None, approve_hash
         raise ValueError('Live execution requires exact-run approval and SHA-256')
     if mode == 'live' and mock_failure is not None: raise ValueError('Mock fault is not a live option')
     config, sample, stage, requests_, packet_hash = read_packet(packet)
+    version = prep.protocol_version(config)
     transport = foundry_module(foundry)
     domain_state = git_state(prep.ROOT); engine_state = git_state(foundry)
     if mode == 'live' and (domain_state['dirty'] or engine_state['dirty']):
@@ -278,7 +345,8 @@ def execute(packet, output, foundry, *, mode='mock', approval=None, approve_hash
     if mode == 'live' and (not isinstance(preliminary, dict) or not preliminary):
         raise ValueError('Live approval must be a nonempty approval object')
     clients = {key: transport.OpenRouterClient(options(config, key,
-        preliminary['providers'][key]['reasoning_mode'] if mode == 'live' else 'disabled')) for key in config['models']}
+        preliminary['providers'][key]['reasoning_mode'] if mode == 'live' else
+        ('native_nonreasoning' if version == 'v3' else 'disabled'))) for key in config['models']}
     payloads = [clients[r['model_key']].request_payload(r['messages'], r['response_schema'], task='draft') for r in requests_]
     context = {'config': config, 'packet_sha256': packet_hash, 'stage': stage,
                'domain_commit': domain_state['commit'], 'foundry_commit': engine_state['commit']}
@@ -286,8 +354,9 @@ def execute(packet, output, foundry, *, mode='mock', approval=None, approve_hash
     earlier = prior_stage(accepted, config) if accepted and stage == 'stage_b' else Decimal(0)
     stage_cap = money(accepted['stage_ceiling_usd'] if accepted else config['stages'][stage]['proposed_ceiling_usd'])
     total_cap = money(accepted['total_ceiling_usd'] if accepted else config['limits']['proposed_total_ceiling_usd'])
-    reservation = bound(config)
-    if reservation*2 > stage_cap or earlier+reservation*2 > total_cap:
+    amounts = prep.reservations(config)
+    pair_reservation = sum(amounts.values())
+    if pair_reservation > stage_cap or earlier+pair_reservation > total_cap:
         raise ValueError('Budget cannot reserve both calls of the first pair')
     output = Path(output); output.mkdir(parents=True, exist_ok=False)
     if accepted:
@@ -299,10 +368,10 @@ def execute(packet, output, foundry, *, mode='mock', approval=None, approve_hash
               'request_sha256': v1.digest(p), 'prompt_sha256': r['prompt_sha256'], 'schema_sha256': r['schema_sha256'],
               'status': 'not_run', 'response': None, 'response_sha256': '', 'receipt': None,
               'error': None, 'reservation_usd': '0'} for r, p in zip(requests_, payloads)]
-    result = {'schema': 'broadbridge.helper_comparison_run/2', 'mode': mode, 'stage': stage,
+    result = {'schema': 'broadbridge.helper_comparison_run/'+version[1:], 'mode': mode, 'stage': stage,
               'evaluation_role': 'development_calibration', 'status': 'running', 'started_at': utc(),
               'ended_at': None, 'packet_sha256': packet_hash, 'sample_sha256': prep.sha(prep.SAMPLE.read_bytes()),
-              'protocol_sha256': prep.sha(prep.PROTOCOL.read_bytes()), 'prompt_sha256': prep.sha(prep.PROMPT.read_bytes()),
+              'protocol_sha256': prep.sha(Path(packet, 'protocol.json').read_bytes()), 'prompt_sha256': prep.sha(prep.PROMPT.read_bytes()),
               'domain': domain_state, 'foundry': engine_state, 'approval_sha256': approve_hash if accepted else None,
               'approval': accepted, 'training_approved': False, 'calls_attempted': 0, 'live_calls': 0,
               'known_cost_usd': '0', 'held_reservations_usd': '0', 'billing_complete': True,
@@ -323,13 +392,14 @@ def execute(packet, output, foundry, *, mode='mock', approval=None, approve_hash
             stack.enter_context(patch.dict(os.environ, {'OPENROUTER_API_KEY': 'mock-never-transmitted'}))
             stack.enter_context(patch.object(transport.requests, 'post', mock_http(mock_failure)))
         for pair in range(0, len(slots), 2):
-            if billed+held+reservation*2 > stage_cap or earlier+billed+held+reservation*2 > total_cap:
+            if billed+held+pair_reservation > stage_cap or earlier+billed+held+pair_reservation > total_cap:
                 result['status'] = 'stopped'; result['stop_reason'] = 'pair_budget_exhausted'; break
-            held += reservation*2
-            for slot in slots[pair:pair+2]: slot['reservation_usd'] = str(reservation)
+            held += pair_reservation
+            for slot in slots[pair:pair+2]: slot['reservation_usd'] = str(amounts[slot['model_key']])
             checkpoint()
             for index in (pair, pair+1):
                 slot = slots[index]; request = requests_[index]
+                reservation = amounts[slot['model_key']]
                 slot['status'] = 'attempting'; result['calls_attempted'] += 1
                 if mode == 'live': result['live_calls'] += 1
                 checkpoint()
@@ -337,11 +407,13 @@ def execute(packet, output, foundry, *, mode='mock', approval=None, approve_hash
                     answer, receipt = clients[slot['model_key']].complete(request['messages'], request['response_schema'], task='draft')
                     slot.update(receipt=receipt, response=answer, response_sha256=v1.digest(answer))
                     errors = prep.check_answer(sample, questions[slot['question_id']], answer)
-                    if receipt['prompt_tokens'] > config['limits']['max_input_tokens_for_budget']:
+                    token_bound = (config['models'][slot['model_key']]['reservation']['context_tokens']
+                                   if version == 'v3' else config['limits']['max_input_tokens_for_budget'])
+                    if receipt['prompt_tokens'] > token_bound:
                         errors.append('input_token_cap_exceeded')
                     if receipt['completion_tokens'] > config['limits']['max_output_tokens']:
                         errors.append('output_token_cap_exceeded')
-                    if accepted and receipt['prompt_tokens'] > accepted['requests'][index]['input_tokens_upper_bound']:
+                    if accepted and version == 'v2' and receipt['prompt_tokens'] > accepted['requests'][index]['input_tokens_upper_bound']:
                         errors.append('token_preflight_bound_exceeded')
                     slot['status'] = 'failed' if errors else 'valid'
                     slot['error'] = ','.join(errors) if errors else None
@@ -359,7 +431,7 @@ def execute(packet, output, foundry, *, mode='mock', approval=None, approve_hash
                 if slot['status'] == 'failed':
                     result['status'] = 'stopped'; result['stop_reason'] = slot['error']
                     if index == pair:
-                        held -= reservation; slots[pair+1]['reservation_usd'] = '0'
+                        held -= amounts[slots[pair+1]['model_key']]; slots[pair+1]['reservation_usd'] = '0'
                     checkpoint(); break
                 checkpoint()
             if result['status'] == 'stopped': break
@@ -544,8 +616,8 @@ def main(argv=None):
     sub = parser.add_subparsers(dest='command', required=True)
     proposal = sub.add_parser('plan'); proposal.add_argument('--packet', type=Path, required=True)
     proposal.add_argument('--out', type=Path, required=True); proposal.add_argument('--foundry', type=Path, required=True)
-    proposal.add_argument('--mistral-reasoning', choices=['disabled', 'native_nonreasoning'], default='disabled')
-    proposal.add_argument('--qwen-reasoning', choices=['disabled', 'native_nonreasoning'], default='disabled')
+    proposal.add_argument('--mistral-reasoning', choices=['disabled', 'native_nonreasoning'])
+    proposal.add_argument('--qwen-reasoning', choices=['disabled', 'native_nonreasoning'])
     run = sub.add_parser('run'); run.add_argument('--packet', type=Path, required=True)
     run.add_argument('--out', type=Path, required=True); run.add_argument('--foundry', type=Path, required=True)
     run.add_argument('--mode', choices=['mock', 'live'], default='mock')
@@ -554,7 +626,9 @@ def main(argv=None):
     score.add_argument('--scores', type=Path, required=True); score.add_argument('--out', type=Path, required=True)
     args = parser.parse_args(argv)
     if args.command == 'plan':
-        plan(args.packet, args.out, args.foundry, reasoning={'mistral': args.mistral_reasoning, 'qwen': args.qwen_reasoning})
+        config, *_ = read_packet(args.packet)
+        default = 'native_nonreasoning' if prep.protocol_version(config) == 'v3' else 'disabled'
+        plan(args.packet, args.out, args.foundry, reasoning={'mistral': args.mistral_reasoning or default, 'qwen': args.qwen_reasoning or default})
         print('Incomplete approval worksheet and wire payloads saved; no model called.')
     elif args.command == 'run':
         result = execute(args.packet, args.out, args.foundry, mode=args.mode, approval=args.approval, approve_hash=args.approve_sha256)

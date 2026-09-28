@@ -28,8 +28,36 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def load_protocol():
-    return json.loads(PROTOCOL.read_text(encoding='utf-8'))
+def protocol_path(version='v2'):
+    if version not in {'v2', 'v3'}:
+        raise ValueError('Unknown comparison protocol version')
+    return PROTOCOL if version == 'v2' else PROTOCOL.parent.parent/'public-v3/protocol.json'
+
+
+def protocol_version(config):
+    for version in ('v2', 'v3'):
+        if config['schema'] == 'broadbridge.helper_comparison_protocol/'+version[1:]:
+            return version
+    raise ValueError('Unknown comparison protocol schema')
+
+
+def load_protocol(version='v2'):
+    return json.loads(protocol_path(version).read_text(encoding='utf-8'))
+
+
+def reservations(config):
+    """Per-arm reservations, not predictions of input length or final charges."""
+    limits = config['limits']; result = {}
+    for key, arm in config['models'].items():
+        policy = arm['reservation'] if protocol_version(config) == 'v3' else limits
+        context = policy['context_tokens'] if protocol_version(config) == 'v3' else policy['max_input_tokens_for_budget']
+        prices = policy['max_price_usd_per_million']
+        fee = Decimal(policy.get('max_non_token_fee_usd', '0'))
+        values = [Decimal(prices['prompt']), Decimal(prices['completion']), fee]
+        if type(context) is not int or context <= 0 or any(not n.is_finite() or n < 0 for n in values):
+            raise ValueError('Invalid reservation policy')
+        result[key] = (Decimal(context)*values[0] + Decimal(limits['max_output_tokens'])*values[1])/Decimal(1000000) + fee
+    return result
 
 
 def validate_inputs(config, sample, sample_bytes):
@@ -38,8 +66,8 @@ def validate_inputs(config, sample, sample_bytes):
     if sample != json.loads(sample_bytes):
         raise ValueError('Parsed sample does not match frozen sample bytes')
     v1.validate_sample(sample)
-    if (config['schema'] != 'broadbridge.helper_comparison_protocol/2'
-            or config['live_authorized'] is not False or config['training_approved'] is not False
+    protocol_version(config)
+    if (config['live_authorized'] is not False or config['training_approved'] is not False
             or config['evaluation_role'] != 'development_calibration'):
         raise ValueError('Preparation cannot authorize live use, training or a held-out claim')
     questions = {q['question_id']: q for q in sample['questions']}
@@ -139,19 +167,18 @@ def build_requests(config, sample, stage):
     return rows
 
 
-def prepare(output, stage='stage_a'):
-    config = load_protocol(); sample_bytes = SAMPLE.read_bytes(); sample = json.loads(sample_bytes)
+def prepare(output, stage='stage_a', *, protocol_version='v2'):
+    config_path = protocol_path(protocol_version)
+    config = load_protocol(protocol_version); sample_bytes = SAMPLE.read_bytes(); sample = json.loads(sample_bytes)
     validate_inputs(config, sample, sample_bytes)
     rows = build_requests(config, sample, stage)
     selected_ids = set(config['stages'][stage]['question_ids'])
     questions = [q for q in sample['questions'] if q['question_id'] in selected_ids]
-    limits = config['limits']; prices = limits['max_price_usd_per_million']
-    per_call = (Decimal(limits['max_input_tokens_for_budget']) * Decimal(prices['prompt'])
-                + Decimal(limits['max_output_tokens']) * Decimal(prices['completion'])) / Decimal(1000000)
-    bound = per_call * len(rows)
-    if bound > Decimal(config['stages'][stage]['proposed_ceiling_usd']):
+    amounts = reservations(config)
+    bound = sum((amounts[r['model_key']] for r in rows), Decimal(0))
+    if protocol_version == 'v2' and bound > Decimal(config['stages'][stage]['proposed_ceiling_usd']):
         raise ValueError('Conditional token cost exceeds proposed stage budget')
-    summary = {'schema': 'broadbridge.helper_comparison_preparation/2',
+    summary = {'schema': 'broadbridge.helper_comparison_preparation/'+protocol_version[1:],
                'version': config['version'], 'stage': stage, 'mode': 'offline_prepare',
                'evaluation_role': config['evaluation_role'], 'live_authorized': False,
                'training_approved': False, 'calls_attempted': 0, 'actual_cost_usd': '0',
@@ -163,15 +190,23 @@ def prepare(output, stage='stage_a'):
                'conditional_token_cost_bound_usd': str(bound.normalize()),
                'token_count_verified': False, 'model_availability_checked': False,
                'max_prepared_request_bytes': max(r['request_bytes'] for r in rows),
-               'sample_sha256': sha(sample_bytes), 'protocol_sha256': sha(PROTOCOL.read_bytes()),
+               'sample_sha256': sha(sample_bytes), 'protocol_sha256': sha(config_path.read_bytes()),
                'prompt_sha256': sha(PROMPT.read_bytes()), 'compiler_sha256': sha(Path(__file__).read_bytes()),
                'live_blockers': ['protocol_reference_and_budget_acceptance', 'fresh_source_rights_check',
                                  'provider_revision_and_capability_snapshot', 'exact_input_token_preflight',
                                  'clean_committed_v2_executor_and_foundry_receipts', 'spend_controls_and_exact_run_approval']}
+    if protocol_version == 'v3':
+        del summary['conditional_token_cost_bound_usd']
+        summary.update(pair_reservation_usd=str(sum(amounts.values())),
+                       all_calls_fit_at_full_reservation=bound <= Decimal(config['stages'][stage]['proposed_ceiling_usd']),
+                       full_stage_reservations_usd=str(bound),
+                       reservation_policy='per_arm_full_context_plus_maximum_output')
+        summary['live_blockers'] = [b.replace('exact_input_token_preflight', 'endpoint_context_billing_and_truncation_evidence')
+                                   .replace('committed_v2', 'committed_v3') for b in summary['live_blockers']]
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
     v1.write_json(output/'preparation.json', summary)
-    (output/'protocol.json').write_bytes(PROTOCOL.read_bytes())
+    (output/'protocol.json').write_bytes(config_path.read_bytes())
     (output/'prompt.md').write_bytes(PROMPT.read_bytes())
     (output/'sample.json').write_bytes(sample_bytes)
     (output/'requests.jsonl').write_text(''.join(json.dumps(r, ensure_ascii=False) + '\n' for r in rows), encoding='utf-8')
@@ -189,7 +224,7 @@ def prepare(output, stage='stage_a'):
         'requests.jsonl is a preparation artifact, not executable OpenRouter request syntax.\n'
         'reviewer-only.json contains references and must never be sent to a model.\n'
         'Do not upload this packet into public-v1 or reuse the v1 runner with v2 labels.\n'
-        'See docs/HELPER_COMPARISON_V2.md for approval, receipt and scoring requirements.\n', encoding='utf-8')
+        'See docs/HELPER_COMPARISON_'+protocol_version.upper()+'.md for approval, receipt and scoring requirements.\n', encoding='utf-8')
     v1.write_json(output/'checksums.json', {p.name: sha(p.read_bytes()) for p in sorted(output.iterdir()) if p.is_file()})
     return summary
 
@@ -198,8 +233,9 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True, help='New exclusive output directory')
     parser.add_argument('--stage', choices=['stage_a', 'stage_b'], default='stage_a')
+    parser.add_argument('--protocol-version', choices=['v2', 'v3'], default='v2')
     args = parser.parse_args(argv)
-    print(json.dumps(prepare(args.out, args.stage), indent=2))
+    print(json.dumps(prepare(args.out, args.stage, protocol_version=args.protocol_version), indent=2))
 
 
 if __name__ == '__main__':

@@ -1,0 +1,109 @@
+{
+  "schema": "broadbridge.helper_context_reservation_verification/1",
+  "date": "2026-09-28",
+  "model_calls": 0,
+  "actual_inference_spend_usd": "0",
+  "ec2": false,
+  "training": false,
+  "production_changes": false,
+  "source_downloads": 0,
+  "public_metadata_gets": 2,
+  "code_sha256": {
+    "scripts/research/prepare_helper_comparison.py": "b4b8ef69471d644775963013bab8f89438bf13fe1ae185285ac44f60f9e8c468",
+    "scripts/research/run_helper_comparison.py": "8a147592809ac25fb1a7596d79d705af492c3a47df79a801a90a94846d2c7a8d",
+    "scripts/research/test_helper_comparison_v3.py": "347a655354a04d6a59c4ebf5f8ae3455b7cf7d55694b2c4864fc173dcdd1f5a5",
+    "packs/oil-gas-public-intake/eval/public-v3/protocol.json": "4c27be1251ce58198d6bd5419d282bf79b622e0d7690120a572b45258538d1ed"
+  },
+  "foundry_transport_sha256": "11555391668e08dcaca868314e2b4c1a6ca7c22e5fd4eac66304b40dc4847454",
+  "frozen_v2_and_sample_sha256": {
+    "packs/oil-gas-public-intake/eval/public-v2/protocol.json": "346a16f6fad2843b36d19e1f97eaaa09254bc908adca1615a17a8a965f9f7c59",
+    "packs/oil-gas-public-intake/eval/public-v2/prompt.md": "07f8c957fbf2d69f368465cdedc986a2254cbfbbfde4feedfe15d38a8da5ad6e",
+    "packs/oil-gas-public-intake/eval/public-v1/sample.json": "3407f8d2ea56e0cc8c379f9a84b5c1808b72d5dedd7c504d1badbcb423a0e736"
+  },
+  "rehearsals": {
+    "stage_a": {
+      "mock_attempts": 20,
+      "live_calls": 0,
+      "unreviewed_slots": 20,
+      "simulated_cost_usd": "0.0020",
+      "held_reservations_usd": "0E-8",
+      "run_sha256": "b794e86b841400962dc2ebe57b51d8638a662afaaf598296e5db88a331ff627d",
+      "packet_manifest_sha256": "08b50c8e4d2aef2d2b19803d23fd50b0b128c51d74e30d1443f814b064ca013a"
+    },
+    "stage_b": {
+      "mock_attempts": 40,
+      "live_calls": 0,
+      "unreviewed_slots": 40,
+      "simulated_cost_usd": "0.0040",
+      "held_reservations_usd": "0E-8",
+      "run_sha256": "51349ba60073ebb755080ef0bc8d29875aaa3668aca3371cabfe60b759d8781d",
+      "packet_manifest_sha256": "7b503329f68faba16ae29401760cb684efd1d67dbb26b21563ce77cf1a8a9dc4"
+    },
+    "timeout": {
+      "attempts": 2,
+      "known_simulated_cost_usd": "0.0001",
+      "held_reservations_usd": "0.03181728",
+      "billing_complete": false
+    },
+    "endpoint_snapshots": {
+      "mistral-endpoint.json": {
+        "sha256": "855dd652455b63a48e49d5d60a29279d53dbe9500a85d3d8de0f2227efc395e1",
+        "status": 0,
+        "retrieved_at": "2026-09-28T18:29:23.803074+00:00"
+      },
+      "qwen-endpoint.json": {
+        "sha256": "5355271fb5bc9ff63366789b8ad4d88cbc6c95ba982c262404437da0a7d839f5",
+        "status": -2,
+        "retrieved_at": "2026-09-28T18:29:23.868452+00:00"
+      }
+    }
+  },
+  "tests": {
+    "broadbridge_full": {
+      "passed": 449,
+      "skipped": 106,
+      "seconds": 164.34,
+      "command": "SLM_FOUNDRY_PATH=<checkout> python -m pytest -q --ignore=tmp --ignore=apps/capture/node_modules"
+    },
+    "broadbridge_adapter_recheck": {
+      "passed": 3,
+      "skipped": 0,
+      "reason": "Set FOUNDRY_INGESTION_PATH; ran only three previously skipped offline adapter checks"
+    },
+    "remaining_broadbridge_skips": 103,
+    "remaining_broadbridge_skip_reason": "Disposable database URLs not configured",
+    "foundry_full": {
+      "passed": 622,
+      "skipped": 2,
+      "seconds": 252.16,
+      "command": "python -m pytest",
+      "skip_reason": "Windows symlink support and opt-in disposable PostgreSQL"
+    },
+    "new_v3_tests_passed": 26,
+    "transport_tests_passed": 40,
+    "warnings": [
+      "Existing requests dependency-version warning",
+      "Existing SWIG deprecation warnings"
+    ]
+  },
+  "red_green": {
+    "v3_missing_version_support": 2,
+    "missing_endpoint_route_support": 1,
+    "missing_context_compression_control": 1,
+    "all_corrected": true
+  },
+  "review": {
+    "confirmed_p1_p2": 0,
+    "read_only": true,
+    "reviewer_tests": "40 transport passed; domain reviewer temp-file access blocked; parent suite results above apply",
+    "limitation": "Hosted enforcement, fees, routing and availability were not tested live",
+    "optional_context_sum_check": "Not added: policy reserves full input context plus output separately; provider enforcement semantics still require evidence"
+  },
+  "live_ready": false,
+  "remaining": [
+    "Selected Nebius endpoint status -2 is rejected by v3",
+    "Actual endpoint context/billing/schema/privacy/reasoning evidence and operator attestations",
+    "Source/reference/quality acceptance and verified account spending controls",
+    "Exact-run authorization after clean committed code and fresh evidence"
+  ]
+}

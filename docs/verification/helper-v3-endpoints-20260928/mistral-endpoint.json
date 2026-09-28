@@ -1,0 +1,54 @@
+{
+  "schema": "broadbridge.helper_endpoint_snapshot/1",
+  "retrieved_at": "2026-09-28T18:29:23.803074+00:00",
+  "url": "https://openrouter.ai/api/v1/models/mistralai/mistral-small-24b-instruct-2501/endpoints",
+  "raw_response_sha256": "3ccc73e16d2ad97d71b270a8186e4fd75e2502e073c874fe1818513254451389",
+  "endpoint": {
+    "name": "DeepInfra | mistralai/mistral-small-24b-instruct-2501",
+    "model_id": "mistralai/mistral-small-24b-instruct-2501",
+    "model_name": "Mistral: Mistral Small 3",
+    "context_length": 32768,
+    "pricing": {
+      "prompt": "0.00000005",
+      "completion": "0.00000008",
+      "discount": 0
+    },
+    "provider_name": "DeepInfra",
+    "tag": "deepinfra/fp8",
+    "quantization": "fp8",
+    "max_completion_tokens": 16384,
+    "max_prompt_tokens": null,
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "top_p",
+      "stop",
+      "frequency_penalty",
+      "presence_penalty",
+      "repetition_penalty",
+      "top_k",
+      "seed",
+      "min_p",
+      "logit_bias",
+      "structured_outputs",
+      "response_format"
+    ],
+    "supports_tool_choice": {
+      "none": true,
+      "auto": true,
+      "required": true,
+      "function": true
+    },
+    "status": 0,
+    "uptime_last_30m": 100,
+    "uptime_last_5m": 100,
+    "uptime_last_1d": 99.99007122125751,
+    "supports_implicit_caching": false,
+    "native_tools": {},
+    "supports_voice_cloning": false,
+    "supports_multiple_audio_references": false,
+    "supports_image_reference": false,
+    "latency_last_30m": null,
+    "throughput_last_30m": null
+  }
+}
