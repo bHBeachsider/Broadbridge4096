@@ -1,0 +1,242 @@
+{
+  "crossing": {
+    "edge_ids": [
+      "E0",
+      "E1"
+    ],
+    "node_labels": {
+      "V-716": "V-716",
+      "V-717": "V-717",
+      "V-718": "V-718",
+      "V-719": "V-719"
+    },
+    "reference": {
+      "edges": [
+        {
+          "a": "V-716",
+          "b": "V-717",
+          "direction": "unknown"
+        },
+        {
+          "a": "V-718",
+          "b": "V-719",
+          "direction": "unknown"
+        }
+      ],
+      "evidence_id": "5b3f0c98f9d35ae2e3db9896e27c53eb5cced00fd6b772980a30f709140a87de",
+      "image_sha256": "e6efe564cea550d74330bfb67f42135545fd299ed2060919c759337b791fa47e",
+      "nodes": [
+        "V-716",
+        "V-717",
+        "V-718",
+        "V-719"
+      ],
+      "origin": "synthetic_fixture",
+      "reviewer": null,
+      "schema": "foundry.connectivity_reference/1"
+    },
+    "topology_sha256": "508466b792f7745b951468369d73ba8d5bd26cab2d0ec7cbe9eaffdc0288d5cb",
+    "training_approved": false
+  },
+  "forward-chain": {
+    "edge_ids": [
+      "E0",
+      "E1"
+    ],
+    "node_labels": {
+      "V-541": "V-541",
+      "V-542": "V-542",
+      "V-543": "V-543"
+    },
+    "reference": {
+      "edges": [
+        {
+          "a": "V-541",
+          "b": "V-542",
+          "direction": "a_to_b"
+        },
+        {
+          "a": "V-542",
+          "b": "V-543",
+          "direction": "a_to_b"
+        }
+      ],
+      "evidence_id": "8b0751a8665401e8ee412aa3464d46378f1a60814687687ba1e95050d2d8f4ac",
+      "image_sha256": "2c2646b1fa5bfcb23f5d9c30778b4fdd6c137163c994f424c3cdc55b0d163268",
+      "nodes": [
+        "V-541",
+        "V-542",
+        "V-543"
+      ],
+      "origin": "synthetic_fixture",
+      "reviewer": null,
+      "schema": "foundry.connectivity_reference/1"
+    },
+    "topology_sha256": "4c61f6e9d5a506d72d438c4926eed7bebcc6a4c3b83f6d9cd9ce59c4e91e180f",
+    "training_approved": false
+  },
+  "junction": {
+    "edge_ids": [
+      "E0",
+      "E1",
+      "E2"
+    ],
+    "node_labels": {
+      "J-144": "J-144",
+      "V-143": "V-143",
+      "V-145": "V-145",
+      "V-146": "V-146"
+    },
+    "reference": {
+      "edges": [
+        {
+          "a": "V-143",
+          "b": "J-144",
+          "direction": "a_to_b"
+        },
+        {
+          "a": "J-144",
+          "b": "V-145",
+          "direction": "a_to_b"
+        },
+        {
+          "a": "J-144",
+          "b": "V-146",
+          "direction": "a_to_b"
+        }
+      ],
+      "evidence_id": "9c883796de5456b314a41d7b243dc4407b79003dc97ac3edb1c7dfea2ea66adb",
+      "image_sha256": "7090a5687d95941fefad648d4068797d77273529757cf9886380a1a2c5ab7f23",
+      "nodes": [
+        "J-144",
+        "V-143",
+        "V-145",
+        "V-146"
+      ],
+      "origin": "synthetic_fixture",
+      "reviewer": null,
+      "schema": "foundry.connectivity_reference/1"
+    },
+    "topology_sha256": "6a4df4dc80bbf2c1e0f04b2f6ca7f8757d95f34b5714037a2c0127428ab8194e",
+    "training_approved": false
+  },
+  "mixed-junction": {
+    "edge_ids": [
+      "E0",
+      "E1",
+      "E2"
+    ],
+    "node_labels": {
+      "J-102": "J-102",
+      "V-101": "V-101",
+      "V-103": "V-103",
+      "V-104": "V-104"
+    },
+    "reference": {
+      "edges": [
+        {
+          "a": "V-101",
+          "b": "J-102",
+          "direction": "a_to_b"
+        },
+        {
+          "a": "J-102",
+          "b": "V-103",
+          "direction": "unknown"
+        },
+        {
+          "a": "V-104",
+          "b": "J-102",
+          "direction": "unknown"
+        }
+      ],
+      "evidence_id": "a5ba8599dac3e04de48f277d29db4f47c69134bdd2e87170f03ba29528d428f4",
+      "image_sha256": "ae62c6e14a167e9b87c5403c3b7a0cc7f9706c4c7b96b658e3de402d1ddc5cfa",
+      "nodes": [
+        "J-102",
+        "V-101",
+        "V-103",
+        "V-104"
+      ],
+      "origin": "synthetic_fixture",
+      "reviewer": null,
+      "schema": "foundry.connectivity_reference/1"
+    },
+    "topology_sha256": "54973b0da6e820bb21ece5a3e87b9ca2f71cc32a4442de3cfbe53f9ed0c76713",
+    "training_approved": false
+  },
+  "reverse-chain": {
+    "edge_ids": [
+      "E0",
+      "E1"
+    ],
+    "node_labels": {
+      "V-379": "V-379",
+      "V-380": "V-380",
+      "V-381": "V-381"
+    },
+    "reference": {
+      "edges": [
+        {
+          "a": "V-379",
+          "b": "V-380",
+          "direction": "b_to_a"
+        },
+        {
+          "a": "V-380",
+          "b": "V-381",
+          "direction": "b_to_a"
+        }
+      ],
+      "evidence_id": "8505f86c433ea2798d534ad8ef7d0895da6c324256163082707beb6e6a61e4b3",
+      "image_sha256": "2a85d1fa9b1820f5a7043d69e28f703e515ec6ca685e6d516402bbe24d3b080b",
+      "nodes": [
+        "V-379",
+        "V-380",
+        "V-381"
+      ],
+      "origin": "synthetic_fixture",
+      "reviewer": null,
+      "schema": "foundry.connectivity_reference/1"
+    },
+    "topology_sha256": "504e5ae3834ef7182c600758355a1b6e505e81b2adfde6be6a6024485a9f8055",
+    "training_approved": false
+  },
+  "unknown-chain": {
+    "edge_ids": [
+      "E0",
+      "E1"
+    ],
+    "node_labels": {
+      "V-800": "V-800",
+      "V-801": "V-801",
+      "V-802": "V-802"
+    },
+    "reference": {
+      "edges": [
+        {
+          "a": "V-800",
+          "b": "V-801",
+          "direction": "unknown"
+        },
+        {
+          "a": "V-801",
+          "b": "V-802",
+          "direction": "unknown"
+        }
+      ],
+      "evidence_id": "34388fc652e44e3da83705fc1874060cbda032a59251ffe2a9f7b7fce8715f1a",
+      "image_sha256": "06b9ec5fe57112ba28f89ac93150bb103246ca1923ab39b79eefbe40e0b6f3af",
+      "nodes": [
+        "V-800",
+        "V-801",
+        "V-802"
+      ],
+      "origin": "synthetic_fixture",
+      "reviewer": null,
+      "schema": "foundry.connectivity_reference/1"
+    },
+    "topology_sha256": "308235281127c262a8f55010b5c8194c2f07efa3470003c1ae179c569c8a173a",
+    "training_approved": false
+  }
+}

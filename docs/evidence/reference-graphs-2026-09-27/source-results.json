@@ -1,0 +1,97 @@
+{
+  "c01": {
+    "diagnostics": [
+      {
+        "level": "info",
+        "message": "Association Chamber-3 with TubeBundle-1 added in reverse order.",
+        "source_id": "Chamber-3"
+      },
+      {
+        "level": "info",
+        "message": "Found 2 connector lines in segment. Connecting them sequentially using known connection and inner points.",
+        "source_id": "PipingNetworkSegment-3"
+      },
+      {
+        "level": "info",
+        "message": "Found 2 connector lines in segment. Connecting them sequentially using known connection and inner points.",
+        "source_id": "PipingNetworkSegment-4"
+      },
+      {
+        "level": "info",
+        "message": "Found 2 connector lines in segment. Connecting them sequentially using known connection and inner points.",
+        "source_id": "PipingNetworkSegment-6"
+      },
+      {
+        "level": "info",
+        "message": "Found 2 connector lines in segment. Connecting them sequentially using known connection and inner points.",
+        "source_id": "PipingNetworkSegment-14"
+      },
+      {
+        "level": "info",
+        "message": "Found 2 connector lines in segment. Connecting them sequentially using known connection and inner points.",
+        "source_id": "PipingNetworkSegment-19"
+      }
+    ],
+    "edges": 31,
+    "gaps": [
+      {
+        "edge_id": "PipingNetworkSegment-20/connection/0",
+        "reason": "Unresolved endpoint in source model"
+      },
+      {
+        "edge_id": "PipingNetworkSegment-21/connection/0",
+        "reason": "Unresolved endpoint in source model"
+      },
+      {
+        "edge_id": "PipingNetworkSegment-22/connection/0",
+        "reason": "Unresolved endpoint in source model"
+      },
+      {
+        "edge_id": "PipingNetworkSegment-23/connection/1",
+        "reason": "Unresolved endpoint in source model"
+      }
+    ],
+    "known_directions": 0,
+    "nodes": 37,
+    "roundtrip": "Proteus -> pyDEXPI -> JSON + source-ID sidecar -> pyDEXPI -> topology: identical"
+  },
+  "pid2graph": {
+    "classes": {
+      "arrow": 4,
+      "background": 4,
+      "connector": 235,
+      "crossing": 92,
+      "general": 34,
+      "instrumentation": 25,
+      "valve": 58
+    },
+    "edge_classes": {
+      "non-solid": 22,
+      "solid": 474
+    },
+    "edges": 496,
+    "gaps": [
+      "Annotation authorship is not a signed engineering trace.",
+      "No equipment tags, physical ports, line numbers or source revision.",
+      "Crossings/connectors/borders retain dataset semantics; do not infer pipe junctions.",
+      "Undirected annotations provide no flow-direction ground truth."
+    ],
+    "known_directions": 0,
+    "nodes": 452
+  },
+  "schema": "broadbridge.reference_graph_sources_result/1",
+  "synthetic": {
+    "images": 6,
+    "job_sha256": "d7a2ddeef7a8852e17445384b011e1b0aeeddd9ec588f958fa1d7111c4340e5b",
+    "renderer": "Pillow, original schematic symbols; connections from pyDEXPI models",
+    "seeds": [
+      901,
+      902,
+      903,
+      904,
+      905,
+      906
+    ]
+  },
+  "training_approved": false
+}
