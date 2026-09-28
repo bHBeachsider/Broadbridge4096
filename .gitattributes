@@ -3,5 +3,6 @@
 *.xlsx binary
 *.pdf binary
 *.png binary
+*.dxf binary
 *.jpg binary
 *.zip binary
