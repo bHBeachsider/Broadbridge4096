@@ -1,0 +1,90 @@
+{
+  "schema": "foundry.visual_proposal/1",
+  "id": "junction-connections",
+  "model": "qwen3-vl:4b-instruct-q4_K_M",
+  "input_sha256": "7090a5687d95941fefad648d4068797d77273529757cf9886380a1a2c5ab7f23",
+  "image": "junction.png",
+  "prompt_sha256": "5929e00431764fcae285c789235c778ac41d0124cbbd0121003e8493cf51b0ea",
+  "review_status": "pending",
+  "training_approved": false,
+  "status": "completed",
+  "profile": "connections_v3",
+  "settings": {
+    "model": "qwen3-vl:4b-instruct-q4_K_M",
+    "stream": false,
+    "think": false,
+    "keep_alive": 0,
+    "options": {
+      "temperature": 0.7,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 384,
+      "num_thread": 8,
+      "top_p": 0.8,
+      "top_k": 20,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 1.5
+    },
+    "format": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "connections",
+        "uncertain"
+      ],
+      "properties": {
+        "connections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "a",
+              "b"
+            ],
+            "properties": {
+              "a": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+              },
+              "b": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+              }
+            }
+          }
+        },
+        "uncertain": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "qwen3-vl:4b-instruct-q4_K_M",
+    "created_at": "2026-09-28T02:42:05.609270671Z",
+    "message": {
+      "role": "assistant",
+      "content": "{\n  \"connections\": [],\n  \"uncertain\": true\n}"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 57245652142,
+    "load_duration": 7323803658,
+    "prompt_eval_count": 1217,
+    "prompt_eval_cached_count": 0,
+    "prompt_eval_duration": 48551102000,
+    "eval_count": 15,
+    "eval_duration": 1320150000
+  },
+  "proposal": {
+    "connections": [],
+    "uncertain": true
+  },
+  "elapsed_seconds": 57.286,
+  "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922",
+  "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b"
+}

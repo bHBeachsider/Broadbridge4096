@@ -1,0 +1,29 @@
+{
+  "job_sha256": "c77ab77ca2d58abca7c122af576aec9b6c591a9129f3b40b00934bd9043b569c",
+  "results": [
+    {
+      "id": "forward-chain-crop2x",
+      "status": "completed",
+      "elapsed_seconds": 64.787
+    },
+    {
+      "id": "reverse-chain-crop2x",
+      "status": "completed",
+      "elapsed_seconds": 62.567
+    },
+    {
+      "id": "crossing-clear-crop2x",
+      "status": "completed",
+      "elapsed_seconds": 78.756
+    },
+    {
+      "id": "mixed-junction-crop2x",
+      "status": "completed",
+      "elapsed_seconds": 64.257
+    }
+  ],
+  "scheduled": 4,
+  "job_request_count": 4,
+  "not_run": 0,
+  "training_approved": false
+}

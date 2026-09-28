@@ -1,0 +1,26 @@
+{
+  "schema": "broadbridge.offline_test_receipt/1",
+  "date": "2026-09-27",
+  "python": "C:/Python313/python.exe",
+  "foundry": {
+    "command": "python -m pytest -q -o addopts= --tb=short",
+    "passed": 724,
+    "skipped": 12,
+    "elapsed_seconds": 187.04
+  },
+  "broadbridge": {
+    "command": "python -m pytest packs/oil-gas/tests packs/oil-gas/db/tests scripts/research -q -rs -o addopts= --tb=short",
+    "checkout_variables": ["FOUNDRY_REPO", "SLM_FOUNDRY_PATH", "FOUNDRY_INGESTION_PATH"],
+    "passed": 420,
+    "skipped": 103,
+    "elapsed_seconds": 68.74
+  },
+  "review_regressions": {
+    "before_fixes": "3 failed, 5 passed: reference/baseline edits accepted; crop digest validator absent",
+    "after_fixes_and_legacy_coverage": "9 passed"
+  },
+  "skips": "Optional reference-adapter and database integrations; no live database URLs configured.",
+  "warnings": ["Existing Requests dependency mismatch", "Existing SWIG deprecations"],
+  "test_scope": "Offline software checks, not model accuracy. Installed Foundry .venv lacked pytest; tests used C:/Python313/python.exe. No dependencies installed.",
+  "training_approved": false
+}

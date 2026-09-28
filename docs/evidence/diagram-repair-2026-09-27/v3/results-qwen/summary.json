@@ -1,0 +1,69 @@
+{
+  "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922",
+  "results": [
+    {
+      "id": "forward-chain-connections",
+      "status": "completed",
+      "elapsed_seconds": 58.339
+    },
+    {
+      "id": "forward-chain-arrows",
+      "status": "completed",
+      "elapsed_seconds": 65.195
+    },
+    {
+      "id": "reverse-chain-connections",
+      "status": "completed",
+      "elapsed_seconds": 58.672
+    },
+    {
+      "id": "reverse-chain-arrows",
+      "status": "completed",
+      "elapsed_seconds": 59.343
+    },
+    {
+      "id": "junction-connections",
+      "status": "completed",
+      "elapsed_seconds": 57.286
+    },
+    {
+      "id": "junction-arrows",
+      "status": "completed",
+      "elapsed_seconds": 55.698
+    },
+    {
+      "id": "crossing-clear-connections",
+      "status": "completed",
+      "elapsed_seconds": 56.681
+    },
+    {
+      "id": "crossing-clear-arrows",
+      "status": "completed",
+      "elapsed_seconds": 54.874
+    },
+    {
+      "id": "unknown-chain-connections",
+      "status": "completed",
+      "elapsed_seconds": 56.155
+    },
+    {
+      "id": "unknown-chain-arrows",
+      "status": "completed",
+      "elapsed_seconds": 56.17
+    },
+    {
+      "id": "mixed-junction-connections",
+      "status": "completed",
+      "elapsed_seconds": 55.859
+    },
+    {
+      "id": "mixed-junction-arrows",
+      "status": "completed",
+      "elapsed_seconds": 55.676
+    }
+  ],
+  "scheduled": 12,
+  "job_request_count": 12,
+  "not_run": 0,
+  "training_approved": false
+}
