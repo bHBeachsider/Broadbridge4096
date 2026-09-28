@@ -29,13 +29,13 @@ def sha(data):
 
 
 def protocol_path(version='v2'):
-    if version not in {'v2', 'v3'}:
+    if version not in {'v2', 'v3', 'v4'}:
         raise ValueError('Unknown comparison protocol version')
-    return PROTOCOL if version == 'v2' else PROTOCOL.parent.parent/'public-v3/protocol.json'
+    return PROTOCOL.parent.parent / ('public-'+version) / 'protocol.json'
 
 
 def protocol_version(config):
-    for version in ('v2', 'v3'):
+    for version in ('v2', 'v3', 'v4'):
         if config['schema'] == 'broadbridge.helper_comparison_protocol/'+version[1:]:
             return version
     raise ValueError('Unknown comparison protocol schema')
@@ -49,8 +49,8 @@ def reservations(config):
     """Per-arm reservations, not predictions of input length or final charges."""
     limits = config['limits']; result = {}
     for key, arm in config['models'].items():
-        policy = arm['reservation'] if protocol_version(config) == 'v3' else limits
-        context = policy['context_tokens'] if protocol_version(config) == 'v3' else policy['max_input_tokens_for_budget']
+        policy = arm['reservation'] if protocol_version(config) in {'v3', 'v4'} else limits
+        context = policy['context_tokens'] if protocol_version(config) in {'v3', 'v4'} else policy['max_input_tokens_for_budget']
         prices = policy['max_price_usd_per_million']
         fee = Decimal(policy.get('max_non_token_fee_usd', '0'))
         values = [Decimal(prices['prompt']), Decimal(prices['completion']), fee]
@@ -195,14 +195,14 @@ def prepare(output, stage='stage_a', *, protocol_version='v2'):
                'live_blockers': ['protocol_reference_and_budget_acceptance', 'fresh_source_rights_check',
                                  'provider_revision_and_capability_snapshot', 'exact_input_token_preflight',
                                  'clean_committed_v2_executor_and_foundry_receipts', 'spend_controls_and_exact_run_approval']}
-    if protocol_version == 'v3':
+    if protocol_version in {'v3', 'v4'}:
         del summary['conditional_token_cost_bound_usd']
         summary.update(pair_reservation_usd=str(sum(amounts.values())),
                        all_calls_fit_at_full_reservation=bound <= Decimal(config['stages'][stage]['proposed_ceiling_usd']),
                        full_stage_reservations_usd=str(bound),
                        reservation_policy='per_arm_full_context_plus_maximum_output')
         summary['live_blockers'] = [b.replace('exact_input_token_preflight', 'endpoint_context_billing_and_truncation_evidence')
-                                   .replace('committed_v2', 'committed_v3') for b in summary['live_blockers']]
+                                   .replace('committed_v2', 'committed_'+protocol_version) for b in summary['live_blockers']]
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
     v1.write_json(output/'preparation.json', summary)
@@ -233,7 +233,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True, help='New exclusive output directory')
     parser.add_argument('--stage', choices=['stage_a', 'stage_b'], default='stage_a')
-    parser.add_argument('--protocol-version', choices=['v2', 'v3'], default='v2')
+    parser.add_argument('--protocol-version', choices=['v2', 'v3', 'v4'], default='v2')
     args = parser.parse_args(argv)
     print(json.dumps(prepare(args.out, args.stage, protocol_version=args.protocol_version), indent=2))
 

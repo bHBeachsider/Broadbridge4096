@@ -1,8 +1,10 @@
 # FQ-07: Nebius endpoint status investigation
 
 28 September 2026. **The meaning is resolved: `-2` means degraded performance.**
-The later public API observation is `-5`, which OpenRouter labels Down. The live
-comparison remains blocked on this route. No software defect was found in our
+The 18:58 UTC public API observation was `-5`, which OpenRouter labels Down.
+The 19:22 UTC [amendment refresh](HELPER_COMPARISON_V4.md) subsequently returned
+status `0`; live authorization and the other preflight gates remain open.
+No software defect was found in our
 status check, and no inference request was needed to diagnose the catalogue flag.
 
 ## Evidence and interpretation

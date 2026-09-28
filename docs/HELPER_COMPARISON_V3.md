@@ -13,6 +13,11 @@ must use reviewed Stage A from the same protocol, with A's actual cost deducted
 from the combined allowance. The v3 quality criteria and development-only source
 allocation are unchanged.
 
+A separate [v4 SiliconFlow amendment](HELPER_COMPARISON_V4.md) is now prepared.
+The 19:22 UTC metadata refresh returned Nebius status 0; the earlier states below
+are historical observations. V4 has an unresolved provider-terms issue. Neither
+protocol has live authorization.
+
 ## Reservation policy
 
 | Arm | Requested endpoint | Published context used | Input / output price ceiling per million | Reservation per call |

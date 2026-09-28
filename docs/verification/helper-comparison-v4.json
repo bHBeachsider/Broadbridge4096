@@ -1,0 +1,132 @@
+{
+  "schema": "broadbridge.helper_siliconflow_amendment_verification/1",
+  "created_at": "2026-09-28T19:34:22.498075+00:00",
+  "base_commit": "c2644425216bfeb23b55722fa16cbb1b80a32162",
+  "foundry_commit": "82904854503381a7082a0c13231c9d4a9a8d9748",
+  "model_calls": 0,
+  "actual_inference_spend_usd": "0",
+  "ec2": false,
+  "training": false,
+  "production_changes": false,
+  "live_provider_changed": false,
+  "code_sha256": {
+    "scripts/research/prepare_helper_comparison.py": "d4f8152bca5fbb48cbef716c15b8759dde9febd8c6323dea74fd085894f98d55",
+    "scripts/research/run_helper_comparison.py": "8ac94986fa6dad6cea970d1ea979d0772d1850bf02884fd851e98471ecb0a0aa",
+    "scripts/research/test_helper_comparison_v4.py": "378f5d8de648d5e3c512cfcf60a4a84aac2d02ab942de3ba9765a22ae5376651",
+    "packs/oil-gas-public-intake/eval/public-v4/protocol.json": "19ce166793846e63114c2f35a1c88dc3a23ea03f7f90679795d2aafb99ef79fd"
+  },
+  "frozen_sha256": {
+    "packs/oil-gas-public-intake/eval/public-v1/sample.json": "3407f8d2ea56e0cc8c379f9a84b5c1808b72d5dedd7c504d1badbcb423a0e736",
+    "packs/oil-gas-public-intake/eval/public-v2/protocol.json": "346a16f6fad2843b36d19e1f97eaaa09254bc908adca1615a17a8a965f9f7c59",
+    "packs/oil-gas-public-intake/eval/public-v2/prompt.md": "07f8c957fbf2d69f368465cdedc986a2254cbfbbfde4feedfe15d38a8da5ad6e",
+    "packs/oil-gas-public-intake/eval/public-v3/protocol.json": "4c27be1251ce58198d6bd5419d282bf79b622e0d7690120a572b45258538d1ed"
+  },
+  "protocol_changes": [
+    "schema",
+    "version",
+    "models.qwen.requested_provider",
+    "models.qwen.provider_route"
+  ],
+  "tests": {
+    "red": {
+      "failed": 11,
+      "reason": "v4 not implemented; all rejected unknown protocol version"
+    },
+    "targeted": {
+      "passed": 37,
+      "v4": 11,
+      "v3": 26,
+      "seconds": 40.73
+    },
+    "full_initial": {
+      "passed": 459,
+      "failed": 4,
+      "errors": 0,
+      "skipped": 103,
+      "seconds": 167.692,
+      "log_sha256": "0084c703984c7e358f111535d2d46d0a114b4cc8e3b7c79fe6328c1bb5bfc9d4",
+      "junit_sha256": "db1efe8ec670ff87d41e6909ee2d174c56dcbc713a345db24ce832929eb0239b",
+      "failures": [
+        {
+          "test": "packs.oil-gas.tests.test_case_batch::test_live_preflight_refuses_invalid_selection_before_session[all-signed,SYN-001]",
+          "type": "PermissionError"
+        },
+        {
+          "test": "scripts.research.test_helper_comparison_execution::test_mock_full_review_cannot_become_real_quality_approval",
+          "type": "PermissionError"
+        },
+        {
+          "test": "scripts.research.test_helper_comparison_execution::test_stale_or_invalid_review_rejected[review_date-not-a-date]",
+          "type": "PermissionError"
+        },
+        {
+          "test": "scripts.research.test_helper_comparison_v4::test_both_stages_rehearse_without_implying_review_or_live_approval[stage_b-40]",
+          "type": "PermissionError"
+        }
+      ]
+    },
+    "full_recheck": {
+      "passed": 463,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 103,
+      "seconds": 150.19,
+      "log_sha256": "496f497032eecc0a8a90c82fc38cfc9266bf98cf8fc8cdd261a435fafe53887a",
+      "junit_sha256": "f342038ce3e089f858116260ba4768813c79214a744361989d9e60c11ce525b9",
+      "failures": []
+    },
+    "recheck_reason": "Initial four failures were WinError 5 at unchanged filesystem rename/replace operations. Recheck uses fresh Windows TEMP location, unchanged code. Root cause of access failures not established.",
+    "skips": "103 disposable database tests; no DB connection configured",
+    "warning": "Existing requests dependency-version warning"
+  },
+  "rehearsals": {
+    "stage_a": {
+      "calls_attempted_mock": 20,
+      "live_calls": 0,
+      "valid_slots": 20,
+      "reviewed_slots": 0,
+      "proposed_screen_passed": false,
+      "simulated_cost_usd": "0.0020",
+      "run_sha256": "6c0436923bb486ac5e8e461d65c18711a0a81dc965f6ba4b953b1b39984d8b5e",
+      "packet_manifest_sha256": "46e7118fb0ae9db0acc3bea1e84e92469d81005804af6aea34cecfbde75c9505",
+      "approval_template_sha256": "78a7e096370af4dc60bf0e399833de113769492d80c4f24dcb0e980ecf0017f6",
+      "proposal_warning": "Rehearsal proposal binds pre-amendment commit; regenerate after final commit. It is incomplete and cannot authorize a live run."
+    },
+    "stage_b": {
+      "calls_attempted_mock": 40,
+      "live_calls": 0,
+      "valid_slots": 40,
+      "reviewed_slots": 0,
+      "proposed_screen_passed": false,
+      "simulated_cost_usd": "0.0040",
+      "run_sha256": "25239f7d422d681eaf52dfb3400d602d7d27e7a32be75545c8687fdbe0839466",
+      "packet_manifest_sha256": "15e662651094ee13d3615ae6c3c6c644c57531dd221e45fe6a9bd62cf4ea5773",
+      "approval_template_sha256": "098ae5fb0d7b43f3200b34544d4709c3d474347db9423c23cdd883fe3e691cec",
+      "proposal_warning": "Rehearsal proposal binds pre-amendment commit; regenerate after final commit. It is incomplete and cannot authorize a live run."
+    }
+  },
+  "review": {
+    "read_only": true,
+    "confirmed_code_findings": 0,
+    "reviewer_ran_tests": false,
+    "verified": [
+      "exact four protocol changes",
+      "historical bytes unchanged",
+      "raw metadata hashes and selected rows",
+      "A/B mock outputs and unreviewed scores",
+      "Foundry unchanged"
+    ],
+    "initial_verdict": "Draft review ready after receipt includes full test results; no live or merge authorization",
+    "concerns": [
+      "Initial filesystem access failures; unchanged-code recheck recorded separately",
+      "Provider terms applicability unresolved; hosted controls unverified"
+    ]
+  },
+  "live_ready": false,
+  "remaining": [
+    "Resolve applicable SiliconFlow terms 3.4(b/j/l/p) for the OpenRouter route",
+    "Source/reference/quality acceptance",
+    "Fresh exact endpoint/control/context/billing evidence and account spending controls",
+    "Clean commits and separate hash-bound exact-run approval; v4 A review before v4 B"
+  ]
+}

@@ -109,17 +109,17 @@ def read_packet(packet):
 
 def options(config, model, reasoning):
     limits = config['limits']; arm = config['models'][model]
-    v3 = prep.protocol_version(config) == 'v3'
-    prices = arm['reservation']['max_price_usd_per_million'] if v3 else limits['max_price_usd_per_million']
+    context_policy = prep.protocol_version(config) in {'v3', 'v4'}
+    prices = arm['reservation']['max_price_usd_per_million'] if context_policy else limits['max_price_usd_per_million']
     result = {'model': arm['requested_model'], 'providers': [arm['requested_provider']],
             'max_tokens': limits['max_output_tokens'], 'max_input_bytes': limits['max_request_bytes'],
             'timeout': limits['timeout_seconds'], 'max_calls': 30,
             'max_price': {k: float(v) for k, v in prices.items()},
             'cost_stop_usd': float(config['limits']['proposed_total_ceiling_usd']),
             'reasoning': reasoning}
-    if v3:
+    if context_policy:
         if reasoning != 'native_nonreasoning':
-            raise ValueError('v3 requires native nonreasoning endpoints')
+            raise ValueError('Context-reservation protocols require native nonreasoning endpoints')
         result.update(provider_routes=[arm['provider_route']], disable_transforms=True)
     return result
 
@@ -136,7 +136,7 @@ def plan(packet, output, foundry, *, reasoning=None):
     config, sample, stage, rows, packet_hash = read_packet(packet)
     transport = foundry_module(foundry)
     version = prep.protocol_version(config)
-    reasoning = reasoning or dict.fromkeys(config['models'], 'native_nonreasoning' if version == 'v3' else 'disabled')
+    reasoning = reasoning or dict.fromkeys(config['models'], 'native_nonreasoning' if version in {'v3', 'v4'} else 'disabled')
     clients = {key: transport.OpenRouterClient(options(config, key, reasoning[key])) for key in config['models']}
     payloads = [clients[r['model_key']].request_payload(r['messages'], r['response_schema'], task='draft') for r in rows]
     proposal = {'schema': 'broadbridge.helper_execution_approval/'+version[1:], 'stage': stage, 'packet_sha256': packet_hash,
@@ -153,7 +153,7 @@ def plan(packet, output, foundry, *, reasoning=None):
                                    'unknown_revision_reason': 'provider_not_disclosed'} for key in config['models']},
                 'requests': [{'request_sha256': v1.digest(p), 'input_tokens_upper_bound': None,
                               'includes_template_schema_overhead': False, 'method': None, 'evidence_sha256': None} for p in payloads]}
-    if version == 'v3':
+    if version in {'v3', 'v4'}:
         amounts = prep.reservations(config)
         for key, provider in proposal['providers'].items():
             provider.update(provider_route=config['models'][key]['provider_route'],
@@ -218,13 +218,13 @@ def validate_approval(approval_path, approve_hash, context, payloads, *, now=Non
                 raise ValueError('Explicit revision or null required: '+key)
         if any(provider[k] is None for k in REVISIONS) and provider.get('unknown_revision_reason') != 'provider_not_disclosed':
             raise ValueError('Unknown backend revisions must remain explicit')
-        if version == 'v3':
+        if version in {'v3', 'v4'}:
             validate_endpoint(provider, config['models'][model], evidence, approval_path.parent, now)
     tokens = approved['requests']
     if not isinstance(tokens, list) or len(tokens) != len(payloads):
         raise ValueError('Every exact wire request needs token preflight')
     for row, payload in zip(tokens, payloads):
-        if version == 'v3':
+        if version in {'v3', 'v4'}:
             model = next(k for k, a in config['models'].items() if a['requested_model'] == payload['model'])
             if (row.get('request_sha256') != v1.digest(payload)
                     or money(row.get('reservation_usd')) != prep.reservations(config)[model]):
@@ -308,8 +308,8 @@ def mock_http(failure=None):
                   'evidence': [{'source_id': content['source_id'], 'block_id': block['block_id'],
                                 'quote': block['text'][:60]}], 'uncertainties': ['Fabricated software rehearsal.']}
         route = payload['provider']['only'][0]
-        # These two labels represent fabricated responses, not observed provider routing.
-        provider = {'deepinfra/fp8': 'DeepInfra', 'nebius/fp8': 'Nebius'}.get(route, route)
+        # These labels represent fabricated responses, not observed provider routing.
+        provider = {'deepinfra/fp8': 'DeepInfra', 'nebius/fp8': 'Nebius', 'siliconflow/fp8': 'SiliconFlow'}.get(route, route)
         data = {'model': payload['model'], 'provider': provider,
                 'usage': {'cost': 0.0001, 'prompt_tokens': 500, 'completion_tokens': 50,
                           'completion_tokens_details': {'reasoning_tokens': 0}},
@@ -346,7 +346,7 @@ def execute(packet, output, foundry, *, mode='mock', approval=None, approve_hash
         raise ValueError('Live approval must be a nonempty approval object')
     clients = {key: transport.OpenRouterClient(options(config, key,
         preliminary['providers'][key]['reasoning_mode'] if mode == 'live' else
-        ('native_nonreasoning' if version == 'v3' else 'disabled'))) for key in config['models']}
+        ('native_nonreasoning' if version in {'v3', 'v4'} else 'disabled'))) for key in config['models']}
     payloads = [clients[r['model_key']].request_payload(r['messages'], r['response_schema'], task='draft') for r in requests_]
     context = {'config': config, 'packet_sha256': packet_hash, 'stage': stage,
                'domain_commit': domain_state['commit'], 'foundry_commit': engine_state['commit']}
@@ -408,7 +408,7 @@ def execute(packet, output, foundry, *, mode='mock', approval=None, approve_hash
                     slot.update(receipt=receipt, response=answer, response_sha256=v1.digest(answer))
                     errors = prep.check_answer(sample, questions[slot['question_id']], answer)
                     token_bound = (config['models'][slot['model_key']]['reservation']['context_tokens']
-                                   if version == 'v3' else config['limits']['max_input_tokens_for_budget'])
+                                   if version in {'v3', 'v4'} else config['limits']['max_input_tokens_for_budget'])
                     if receipt['prompt_tokens'] > token_bound:
                         errors.append('input_token_cap_exceeded')
                     if receipt['completion_tokens'] > config['limits']['max_output_tokens']:
@@ -627,7 +627,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if args.command == 'plan':
         config, *_ = read_packet(args.packet)
-        default = 'native_nonreasoning' if prep.protocol_version(config) == 'v3' else 'disabled'
+        default = 'native_nonreasoning' if prep.protocol_version(config) in {'v3', 'v4'} else 'disabled'
         plan(args.packet, args.out, args.foundry, reasoning={'mistral': args.mistral_reasoning or default, 'qwen': args.qwen_reasoning or default})
         print('Incomplete approval worksheet and wire payloads saved; no model called.')
     elif args.command == 'run':
