@@ -138,6 +138,12 @@ skipped cleanly, and all 23 focused raster/qualification tests passed with geome
 dependencies installed. The detector and the archived measurements are unchanged;
 the separate geometry CI job continues to execute these tests with its full stack.
 
+The next Python job collected successfully and exposed an existing one-millisecond
+retry-test race: parsing could finish before the timeout poll on Linux. Foundry
+`4a860d8` makes retry-state tests inject a parser timeout and retains a real
+stalled-child timeout/termination test. All 52 ingestion-CLI, raster and
+qualification tests passed locally afterward. This changes test setup only.
+
 The browser tool refused local `file:` URLs under its security policy. No alternate
 browser/proxy workaround was used. Interactive visual verification remains open.
 Neither a passing CPU suite nor a valid correction proposal closes the engineering,
