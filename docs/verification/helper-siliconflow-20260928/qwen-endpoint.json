@@ -1,0 +1,48 @@
+{
+  "schema": "broadbridge.helper_endpoint_snapshot/1",
+  "retrieved_at": "2026-09-28T19:22:19.464676+00:00",
+  "endpoint": {
+    "name": "SiliconFlow | qwen/qwen3-30b-a3b-instruct-2507",
+    "model_id": "qwen/qwen3-30b-a3b-instruct-2507",
+    "model_name": "Qwen: Qwen3 30B A3B Instruct 2507",
+    "context_length": 262144,
+    "pricing": {
+      "prompt": "0.00000009",
+      "completion": "0.0000003",
+      "discount": 0
+    },
+    "provider_name": "SiliconFlow",
+    "tag": "siliconflow/fp8",
+    "quantization": "fp8",
+    "max_completion_tokens": 235929,
+    "max_prompt_tokens": null,
+    "supported_parameters": [
+      "structured_outputs",
+      "response_format",
+      "temperature",
+      "top_p",
+      "top_k",
+      "frequency_penalty",
+      "tools",
+      "tool_choice",
+      "max_tokens"
+    ],
+    "supports_tool_choice": {
+      "none": true,
+      "auto": true,
+      "required": true,
+      "function": true
+    },
+    "status": 0,
+    "uptime_last_30m": 96.8860966948921,
+    "uptime_last_5m": 97.6878612716763,
+    "uptime_last_1d": 98.46363680284826,
+    "supports_implicit_caching": false,
+    "native_tools": {},
+    "supports_voice_cloning": false,
+    "supports_multiple_audio_references": false,
+    "supports_image_reference": false,
+    "latency_last_30m": null,
+    "throughput_last_30m": null
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "schema": "broadbridge.helper_provider_amendment_evidence/1",
+  "live_authorized": false,
+  "inference_calls": 0,
+  "public_gets_saved": 5,
+  "sources": {
+    "qwen-endpoints.json": {
+      "url": "https://openrouter.ai/api/v1/models/qwen/qwen3-30b-a3b-instruct-2507/endpoints",
+      "retrieved_at": "2026-09-28T19:22:19.464676+00:00",
+      "sha256": "68c95b65735e63499dc632e804941d7a00f14b4c9f695ef78819f30a1122571e",
+      "bytes": 5334,
+      "http_status": 200
+    },
+    "mistral-endpoints.json": {
+      "url": "https://openrouter.ai/api/v1/models/mistralai/mistral-small-24b-instruct-2501/endpoints",
+      "retrieved_at": "2026-09-28T19:22:19.909750+00:00",
+      "sha256": "0c10cd163b4af73aeaf7270ca6cd546e1e1ded7137e6c17455eb53ca3ec540d5",
+      "bytes": 1472,
+      "http_status": 200
+    },
+    "zdr.json": {
+      "url": "https://openrouter.ai/api/v1/endpoints/zdr",
+      "retrieved_at": "2026-09-28T19:22:20.374311+00:00",
+      "sha256": "d6d5caa5842f8aea016d79845df70dc55a0276529a34317db7ff08318401e7f5",
+      "bytes": 907930,
+      "http_status": 200
+    },
+    "terms.md": {
+      "url": "https://docs.siliconflow.com/en/legals/terms-of-service.md",
+      "retrieved_at": "2026-09-28T19:22:21.138927+00:00",
+      "sha256": "5608558b125d966262bdadb7debc08efc480715a7d6c950659a56a39a6cced3a",
+      "bytes": 56791,
+      "http_status": 200
+    },
+    "privacy.md": {
+      "url": "https://docs.siliconflow.com/en/legals/privacy-policy.md",
+      "retrieved_at": "2026-09-28T19:22:21.784425+00:00",
+      "sha256": "520d3ec863da5c37d2ddfe8041dc673c335ce8ac847d3660fe6098e6d3009dca",
+      "bytes": 19307,
+      "http_status": 200
+    }
+  },
+  "zdr_selected_rows": [
+    {
+      "name": "SiliconFlow | qwen/qwen3-30b-a3b-instruct-2507",
+      "model_id": "qwen/qwen3-30b-a3b-instruct-2507",
+      "model_name": "Qwen: Qwen3 30B A3B Instruct 2507",
+      "context_length": 262144,
+      "pricing": {
+        "prompt": "0.00000009",
+        "completion": "0.0000003",
+        "discount": 0
+      },
+      "provider_name": "SiliconFlow",
+      "tag": "siliconflow/fp8",
+      "quantization": "fp8",
+      "max_completion_tokens": 235929,
+      "max_prompt_tokens": null,
+      "supported_parameters": [
+        "structured_outputs",
+        "response_format",
+        "temperature",
+        "top_p",
+        "top_k",
+        "frequency_penalty",
+        "tools",
+        "tool_choice",
+        "max_tokens"
+      ],
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": true,
+        "function": true
+      },
+      "status": 0,
+      "uptime_last_30m": 97.13244613434728,
+      "uptime_last_5m": 100,
+      "uptime_last_1d": 98.46267193311144,
+      "supports_implicit_caching": false,
+      "native_tools": {},
+      "supports_voice_cloning": false,
+      "supports_multiple_audio_references": false,
+      "supports_image_reference": false,
+      "latency_last_30m": null,
+      "throughput_last_30m": null
+    },
+    {
+      "name": "DeepInfra | mistralai/mistral-small-24b-instruct-2501",
+      "model_id": "mistralai/mistral-small-24b-instruct-2501",
+      "model_name": "Mistral: Mistral Small 3",
+      "context_length": 32768,
+      "pricing": {
+        "prompt": "0.00000005",
+        "completion": "0.00000008",
+        "discount": 0
+      },
+      "provider_name": "DeepInfra",
+      "tag": "deepinfra/fp8",
+      "quantization": "fp8",
+      "max_completion_tokens": 16384,
+      "max_prompt_tokens": null,
+      "supported_parameters": [
+        "max_tokens",
+        "temperature",
+        "top_p",
+        "stop",
+        "frequency_penalty",
+        "presence_penalty",
+        "repetition_penalty",
+        "top_k",
+        "seed",
+        "min_p",
+        "logit_bias",
+        "structured_outputs",
+        "response_format"
+      ],
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": true,
+        "function": true
+      },
+      "status": 0,
+      "uptime_last_30m": 100,
+      "uptime_last_5m": 100,
+      "uptime_last_1d": 99.9906734803052,
+      "supports_implicit_caching": false,
+      "native_tools": {},
+      "supports_voice_cloning": false,
+      "supports_multiple_audio_references": false,
+      "supports_image_reference": false,
+      "latency_last_30m": null,
+      "throughput_last_30m": null
+    }
+  ],
+  "interpretation": {
+    "technical_catalogue_checks": "pass_at_capture_time_only",
+    "terms_applicability": "unresolved_block_live",
+    "required_terms_resolution": [
+      "SiliconFlow 3.4(b) AI/ML training and development",
+      "SiliconFlow 3.4(j) competition",
+      "SiliconFlow 3.4(l) benchmarking",
+      "SiliconFlow 3.4(p) commercial purposes"
+    ],
+    "distillable_text_filter": "Model-author setting; does not establish waiver of provider terms",
+    "privacy": "ZDR routing remains required; general privacy policy is not endpoint-specific verification"
+  },
+  "raw_zdr_and_policy_files": "Retained locally under tmp/helper-siliconflow-amendment-20260928; hashes and public URLs above; not copied in full into Git"
+}

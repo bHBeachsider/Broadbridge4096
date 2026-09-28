@@ -1,0 +1,199 @@
+{
+  "schema": "broadbridge.helper_provider_alternative_observation/1",
+  "selected": false,
+  "live_authorized": false,
+  "endpoint": {
+    "name": "SiliconFlow | qwen/qwen3-30b-a3b-instruct-2507",
+    "model_id": "qwen/qwen3-30b-a3b-instruct-2507",
+    "model_name": "Qwen: Qwen3 30B A3B Instruct 2507",
+    "context_length": 262144,
+    "pricing": {
+      "prompt": "0.00000009",
+      "completion": "0.0000003",
+      "discount": 0
+    },
+    "provider_name": "SiliconFlow",
+    "tag": "siliconflow/fp8",
+    "quantization": "fp8",
+    "max_completion_tokens": 235929,
+    "max_prompt_tokens": null,
+    "supported_parameters": [
+      "structured_outputs",
+      "response_format",
+      "temperature",
+      "top_p",
+      "top_k",
+      "frequency_penalty",
+      "tools",
+      "tool_choice",
+      "max_tokens"
+    ],
+    "supports_tool_choice": {
+      "none": true,
+      "auto": true,
+      "required": true,
+      "function": true
+    },
+    "status": 0,
+    "uptime_last_30m": 98.36880534410439,
+    "uptime_last_5m": 96.59300184162063,
+    "uptime_last_1d": 98.46944860642111,
+    "supports_implicit_caching": false,
+    "native_tools": {},
+    "supports_voice_cloning": false,
+    "supports_multiple_audio_references": false,
+    "supports_image_reference": false,
+    "latency_last_30m": null,
+    "throughput_last_30m": null
+  },
+  "endpoint_source": {
+    "url": "https://openrouter.ai/api/v1/models/qwen/qwen3-30b-a3b-instruct-2507/endpoints",
+    "retrieved_at": "2026-09-28T18:58:53.628719+00:00",
+    "sha256": "59b0332800fb242648c9eb7188d938b8946d5016d003c9d7c9cc7141e1705452",
+    "bytes": 5328,
+    "http_status": 200
+  },
+  "openrouter_provider_info": {
+    "name": "SiliconFlow",
+    "displayName": "SiliconFlow",
+    "slug": "siliconflow",
+    "baseUrl": "https://api.siliconflow.com/v1",
+    "dataPolicy": {
+      "training": false,
+      "trainingOpenRouter": false,
+      "retainsPrompts": false,
+      "canPublish": false,
+      "termsOfServiceURL": "https://docs.siliconflow.com/en/legals/terms-of-service",
+      "privacyPolicyURL": "https://docs.siliconflow.com/en/legals/privacy-policy",
+      "requiresUserIDs": false
+    },
+    "headquarters": "SG",
+    "datacenters": [
+      "US"
+    ],
+    "hasChatCompletions": true,
+    "hasCompletions": false,
+    "isAbortable": false,
+    "moderationRequired": false,
+    "requiredAttestationTypes": [],
+    "adapterName": "SiliconFlowAdapter",
+    "statusPageUrl": null,
+    "byokEnabled": true,
+    "icon": {
+      "url": "/images/icons/SiliconFlow.svg"
+    },
+    "sendClientIp": false,
+    "pricingStrategy": "openai_chat_completions"
+  },
+  "provider_info_source": {
+    "url": "https://openrouter.ai/qwen/qwen3-30b-a3b-instruct-2507",
+    "retrieved_at": "2026-09-28T19:01:58.001356+00:00",
+    "sha256": "5be27662d42e993834d450b35c89e5d460d685c8b4c3212050b9fbd0a87ff81d"
+  },
+  "zdr_source": {
+    "url": "https://openrouter.ai/api/v1/endpoints/zdr",
+    "retrieved_at": "2026-09-28T19:03:09.820463+00:00",
+    "sha256": "8e4a72bda57c416fe0c98f865318eb7db58d1073664fa1bd58674f5088c06553",
+    "bytes": 905569
+  },
+  "zdr_entries": [
+    {
+      "name": "SiliconFlow | qwen/qwen3-30b-a3b-instruct-2507",
+      "model_id": "qwen/qwen3-30b-a3b-instruct-2507",
+      "model_name": "Qwen: Qwen3 30B A3B Instruct 2507",
+      "context_length": 262144,
+      "pricing": {
+        "prompt": "0.00000009",
+        "completion": "0.0000003",
+        "discount": 0
+      },
+      "provider_name": "SiliconFlow",
+      "tag": "siliconflow/fp8",
+      "quantization": "fp8",
+      "max_completion_tokens": 235929,
+      "max_prompt_tokens": null,
+      "supported_parameters": [
+        "structured_outputs",
+        "response_format",
+        "temperature",
+        "top_p",
+        "top_k",
+        "frequency_penalty",
+        "tools",
+        "tool_choice",
+        "max_tokens"
+      ],
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": true,
+        "function": true
+      },
+      "status": 0,
+      "uptime_last_30m": 98.4822934232715,
+      "uptime_last_5m": 98.58281665190434,
+      "uptime_last_1d": 98.46707269162522,
+      "supports_implicit_caching": false,
+      "native_tools": {},
+      "supports_voice_cloning": false,
+      "supports_multiple_audio_references": false,
+      "supports_image_reference": false,
+      "latency_last_30m": null,
+      "throughput_last_30m": null
+    },
+    {
+      "name": "Nebius | qwen/qwen3-30b-a3b-instruct-2507",
+      "model_id": "qwen/qwen3-30b-a3b-instruct-2507",
+      "model_name": "Qwen: Qwen3 30B A3B Instruct 2507",
+      "context_length": 262144,
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0.0000003",
+        "discount": 0
+      },
+      "provider_name": "Nebius",
+      "tag": "nebius/fp8",
+      "quantization": "fp8",
+      "max_completion_tokens": 235929,
+      "max_prompt_tokens": null,
+      "supported_parameters": [
+        "max_tokens",
+        "temperature",
+        "top_p",
+        "stop",
+        "frequency_penalty",
+        "presence_penalty",
+        "seed",
+        "top_k",
+        "logit_bias",
+        "tools",
+        "tool_choice",
+        "response_format",
+        "structured_outputs",
+        "repetition_penalty"
+      ],
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": true,
+        "function": true
+      },
+      "status": -5,
+      "uptime_last_30m": 77.45487916794127,
+      "uptime_last_5m": 100,
+      "uptime_last_1d": 96.36210364977488,
+      "supports_implicit_caching": false,
+      "native_tools": {},
+      "supports_voice_cloning": false,
+      "supports_multiple_audio_references": false,
+      "supports_image_reference": false,
+      "latency_last_30m": null,
+      "throughput_last_30m": null
+    }
+  ],
+  "limits": [
+    "Catalogue declarations only; no inference or independent provider assurance test.",
+    "Legal terms, distillability, context enforcement, billing and exact-run approvals remain to be verified before use.",
+    "Existing v3 remains pinned to Nebius; an alternative needs a new reviewed protocol and packet."
+  ]
+}

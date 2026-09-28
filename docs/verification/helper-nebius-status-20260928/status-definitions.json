@@ -1,0 +1,25 @@
+{
+  "schema": "broadbridge.endpoint_status_definition_evidence/1",
+  "source_kind": "first_party_public_web_application_javascript",
+  "url": "https://openrouter.ai/_next/static/immutable/chunks/3h226b2h-dywl.js",
+  "retrieved_at": "2026-09-28T19:01:58.639621+00:00",
+  "asset_sha256": "4dcb2a6890e6f0927e4758056cb8a1a7166b6f3814065bf8fe9ea3623cece759",
+  "asset_bytes": 56258,
+  "page_url": "https://openrouter.ai/qwen/qwen3-30b-a3b-instruct-2507",
+  "page_metadata": {
+    "url": "https://openrouter.ai/qwen/qwen3-30b-a3b-instruct-2507",
+    "retrieved_at": "2026-09-28T19:01:58.001356+00:00",
+    "sha256": "5be27662d42e993834d450b35c89e5d460d685c8b4c3212050b9fbd0a87ff81d"
+  },
+  "page_commit": "c3ac9f1f9c77c0260bc5b9eaa1d60f1fff6d92f6",
+  "numeric_to_symbol": {
+    "0": "Default",
+    "-1": "Deprioritized",
+    "-2": "DegradedPerformance",
+    "-3": "Deranked",
+    "-5": "Down",
+    "-10": "Disabled"
+  },
+  "enum_excerpt": "var t,i=((t={})[t.Default=0]=\"Default\",t[t.Deprioritized=-1]=\"Deprioritized\",t[t.DegradedPerformance=-2]=\"DegradedPerformance\",t[t.Deranked=-3]=\"Deranked\",t[t.Down=-5]=\"Down\",t[t.Disabled=-10]=\"Disabled\",t);e.s([\"EndpointStatus\",()=>i])",
+  "limit": "First-party client implementation observed at capture time, not a stable published API guarantee or provider incident root-cause disclosure."
+}

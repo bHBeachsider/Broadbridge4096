@@ -1,6 +1,8 @@
 # SLM preparation and fine-tuning work queue
 
-Updated 27 September 2026. Owner: Brad / Broadbridge Oil & Gas.
+Updated 28 September 2026. Owner: Brad / Broadbridge Oil & Gas.
+
+**FQ means Fine-tuning Queue.** These are task IDs within the main SLM project, not separate projects.
 
 This is the ordered work backlog requested while the discovery questionnaire is being developed. It does not submit training jobs or start a background scheduler. Execute one implementation lane; keep GPU, live generation and production gates explicit. The editable [queue CSV](SLM_WORK_QUEUE.csv) is the task register; update both views together.
 
@@ -10,17 +12,24 @@ FQ-01 through FQ-07 prepare software, extraction evidence and reviewable inputs 
 
 **FQ-01 and FQ-02 are now prepared for review:** the calculation-verifier rehearsal and a three-page DOE pressure packet. See the [commands, results and remaining decisions](SLM_PREPARATION_REHEARSAL.md). DOE section choice is a provisional engineering-preparation choice, not a decision about the final commercial curriculum.
 
+**FQ-07 has a [v4 SiliconFlow amendment](HELPER_COMPARISON_V4.md):** the same Qwen
+model, questions, prompts and budgets, with explicit FP8 routing and fresh public
+evidence. V2/v3 remain available and frozen. Provider terms now require clarification
+before live use; no helper was called. This branch starts before the diagram branches; completed
+FQ-03/04/06 work and isolated diagram work below are linked to their draft PRs
+without importing that implementation into this branch.
+
 ## Ordered register
 
 | ID | Work package | State | Deliverable / completion evidence |
 | --- | --- | --- | --- |
 | FQ-01 | Calculation verifier rehearsal (SD-04) | PREPARED_WAIT_REVIEW | Decimal checker, five-vector admission rehearsal and release rejection verified; engineering method/tolerance acceptance remains pending |
 | FQ-02 | Extract the acquired DOE handbook pilot section | PREPARED_WAIT_REVIEW | PDF 35-37 with images, two text views, glyphs, equation/conversion proposals, nine exceptions and blank review packet; no QA release |
-| FQ-03 | Prepare new engineering source families | READY_OFFLINE | Shortlist with exact document/version, credits, rights action, intended task and family/split; download/extract only admitted items |
-| FQ-04 | Audit the existing Hugging Face math sample | READY_OFFLINE | Exact/near-duplicate and template-family audit; answer spot-checks; attribution and token report; isolated general-math control |
-| FQ-05 | Test extraction and normalization coverage | READY_OFFLINE | Format matrix, locators/units/revisions; [vision companion pilot](VISION_INGESTION_PILOT.md) proposed for diagram gaps; no vision run yet |
-| FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | READY_OFFLINE | Reject revoked rights, holdout ancestry, edits after review and self-acceptance; show assistant mask, lengths and truncation |
-| FQ-07 | Prepare the helper comparison protocol revision | READY_OFFLINE | Shorter bounded paired protocol, model/provider revision fields and cost ceiling proposal; no live calls |
+| FQ-03 | Prepare new engineering source families | PREPARED_WAIT_REVIEW | Source shortlist prepared on [draft #19](https://github.com/bHBeachsider/Broadbridge4096/pull/19); rights and technical acceptance remain open |
+| FQ-04 | Audit the existing Hugging Face math sample | PREPARED_WAIT_REVIEW | Audit and quality hold recorded on [draft #19](https://github.com/bHBeachsider/Broadbridge4096/pull/19); no training admission |
+| FQ-05 | Test extraction and normalization coverage | ISOLATED_IN_PROGRESS | [Diagram recovery draft #23](https://github.com/bHBeachsider/Broadbridge4096/pull/23), paired Foundry #19; remaining targets and qualification open |
+| FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | PREPARED_WAIT_REVIEW | Mock acceptance/release refusals and CPU audit prepared on [draft #19](https://github.com/bHBeachsider/Broadbridge4096/pull/19); live authenticated integration remains open |
+| FQ-07 | Prepare the helper comparison protocol revision | PREPARED_WAIT_REVIEW | [V4 SiliconFlow amendment](HELPER_COMPARISON_V4.md): same model and budgets; offline validation; fresh metadata shows both routes at 0; SiliconFlow terms conflict requires resolution before live use |
 | FQ-08 | Confirm priority tasks, references and recipes (SD-01) | WAIT_REVIEW | Named decisions on first tasks, exclusions, recipe versions, hard-fail criteria and reviewer competence |
 | FQ-09 | Run and score S0-cases | WAIT_CASES_AND_RUN | Stock qwen3:8b briefs plus human scorecards/aggregate; Gate 0 coverage recorded separately |
 | FQ-10 | Build and compare S0-retrieval | WAIT_SCORED_BASELINE | On-box index and comparable scored briefs; beat S0-cases before training is considered |
@@ -31,7 +40,7 @@ FQ-01 through FQ-07 prepare software, extraction evidence and reviewable inputs 
 | FQ-15 | Reproduce and release the accepted adapter | WAIT_ACCEPTANCE | Second-operator reproduction; hash-keyed deploy_pack.sh GGUF release and rollback record |
 | FQ-16 | Specialist expansion and advanced training | POST_V0 | Separate proposals for specialist families, simulator examples, preference data/RL and native vision/audio |
 
-State meanings: **READY_OFFLINE** = queued preparation can proceed without a live model; **PREPARED_WAIT_REVIEW** = software/extraction deliverable exists but the applicable human decisions remain open; **WAIT_…** = the named input/decision is outstanding; **POST_V0** = outside the initial adapter release. Ready is not running or complete. Conditional work may be prepared out of row order when its recorded dependencies are satisfied; numbering is dispatch priority, not a mandatory finish-to-start schedule.
+State meanings: **READY_OFFLINE** = queued preparation can proceed without a live model; **PREPARED_WAIT_REVIEW** = software/extraction deliverable exists but the applicable human decisions remain open; **ISOLATED_IN_PROGRESS** = work has separate branches and does not block this queue; **WAIT_…** = the named input/decision is outstanding; **POST_V0** = outside the initial adapter release. Ready is not running or complete. Conditional work may be prepared out of row order when its recorded dependencies are satisfied; numbering is dispatch priority, not a mandatory finish-to-start schedule.
 
 The intended first real synthetic pilot includes all five question types; calculation examples also depend on independent acceptance of FQ-01's method. A non-calculation pilot may proceed with recorded missing coverage rather than invented numerical verification. FQ-12 describes the synthetic-inclusive release; an independently approved expert-only release may be prepared for the later matched comparison without pretending the synthetic pilot ran.
 
@@ -70,8 +79,8 @@ For later adapter comparison, do not compare stock Ollama's default template wit
 ## Next dispatch and human inputs
 
 1. Review the FQ-01 method/tolerance and FQ-02 evidence packet. No training approval is implied by their software checks.
-2. FQ-03 source-family preparation and FQ-04 existing math-sample audit can proceed without expert case entry.
-3. FQ-06 can follow using fabricated rights/split/review failures and the existing CPU audit. FQ-05 now includes a proposed local vision-model comparison, separate from native multimodal fine-tuning.
+2. Review FQ-03's proposed sources and FQ-04's quality findings; FQ-06's mock release/audit is prepared. Their draft status confers no technical or training acceptance.
+3. FQ-07's [v4 SiliconFlow amendment](HELPER_COMPARISON_V4.md) preserves v3 and the existing questions/budgets. Fresh metadata shows both SiliconFlow and Nebius at status 0; earlier degraded/down snapshots remain historical evidence. Resolve the published SiliconFlow terms restrictions applicable to OpenRouter before live use. Rights/references, quality screen, context/billing evidence, spending controls and exact-run approval remain open. FQ-05 remains isolated; prompting for diagram connectivity is closed.
 4. Bill or another appointed reviewer chooses useful tasks and verifies the real source/method/candidate packets. Brad records rights, live processing budgets and release decisions independently.
 
 Original work packages and acceptance criteria remain in the [synthetic-data plan](superpowers/plans/2026-09-26-synthetic-expert-data.md), [expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) and [ingestion release runbook](INGESTION_PIPELINE_RUNBOOK.md). This queue organizes them; it does not mark unperformed work accepted.

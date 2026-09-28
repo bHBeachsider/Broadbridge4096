@@ -1,0 +1,56 @@
+{
+  "schema": "broadbridge.helper_endpoint_diagnosis_verification/1",
+  "date": "2026-09-28",
+  "meaning_resolved": true,
+  "upstream_internal_cause": "not disclosed",
+  "endpoint_usable_under_v3": false,
+  "runtime_changed": false,
+  "protocol_changed": false,
+  "live_calls": 0,
+  "ec2": false,
+  "training": false,
+  "production_changes": false,
+  "status_branch_probes": [
+    {
+      "snapshot": "docs/verification/helper-v3-endpoints-20260928/qwen-endpoint.json",
+      "sha256": "5355271fb5bc9ff63366789b8ad4d88cbc6c95ba982c262404437da0a7d839f5",
+      "status": -2,
+      "rejected": true,
+      "error": "Endpoint identity, context or status changed"
+    },
+    {
+      "snapshot": "docs/verification/helper-nebius-status-20260928/nebius-endpoint.json",
+      "sha256": "154f55554f477567750213891b56330e4e18d0af2929c0a91ff96c058a600241",
+      "status": -5,
+      "rejected": true,
+      "error": "Endpoint identity, context or status changed"
+    }
+  ],
+  "probe_scope": "Synthetic prerequisite attestations in memory only to isolate status rejection. No approval file or actual attestation created. HTTP forbidden during probes.",
+  "frozen_protocol_sha256": "4c27be1251ce58198d6bd5419d282bf79b622e0d7690120a572b45258538d1ed",
+  "evidence_files_sha256": {
+    "alternative-metadata.json": "eb35b4408cf7d5de66bc58178f5f05ffcf719fd52b60d7db292765280a5ab212",
+    "nebius-endpoint.json": "154f55554f477567750213891b56330e4e18d0af2929c0a91ff96c058a600241",
+    "qwen-endpoints.json": "59b0332800fb242648c9eb7188d938b8946d5016d003c9d7c9cc7141e1705452",
+    "status-definitions.json": "72c1fe52051fef42422b5fc59b0034302062d2ee0631fa96614e5e3321b8d2d0"
+  },
+  "tests": {
+    "command": "pytest scripts/research/test_helper_comparison_v3.py -q",
+    "passed": 26,
+    "failed": 0,
+    "warnings": [
+      "Existing requests dependency version warning"
+    ],
+    "elapsed_seconds": 25.21
+  },
+  "foundry_ci": {
+    "pr": 20,
+    "head": "82904854503381a7082a0c13231c9d4a9a8d9748",
+    "checks": {
+      "python": "passed",
+      "container": "passed",
+      "cloudflare": "passed"
+    },
+    "observed_on": "2026-09-28"
+  }
+}

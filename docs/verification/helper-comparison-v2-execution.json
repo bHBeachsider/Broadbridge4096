@@ -1,0 +1,76 @@
+{
+  "schema": "broadbridge.helper_execution_verification/2",
+  "date": "2026-09-28",
+  "mode": "offline_mocked_http",
+  "model_calls": 0,
+  "actual_spend_usd": "0",
+  "source_downloads": 0,
+  "ec2": false,
+  "training": false,
+  "production_changes": false,
+  "code_hashes": {
+    "scripts\\research\\prepare_helper_comparison.py": "c5a8234a2e1be80c03d95235a1a48150ed13338a28f7b9a3833ec9ac3bd7ea29",
+    "scripts\\research\\run_helper_comparison.py": "beb052a4f46f76b2621352f416e5be5c1311ff4201aac45db002f3609b4259ff"
+  },
+  "foundry_transport_sha256": "1ad98b8e3eaffc1c25925782cb13123606659acd64a26149f439ebd723dbee4b",
+  "stages": {
+    "stage_a": {
+      "mock_attempts": 20,
+      "live_calls": 0,
+      "status": "completed",
+      "valid_slots": 20,
+      "reviewed_slots": 0,
+      "unreviewed_slots": 20,
+      "model_selection_approved": false,
+      "simulated_cost_usd": "0.0020",
+      "run_sha256": "5c197d53a449610cf9dde70b8c08ef8aff7bec642646fc5ae54448135bf3ce80",
+      "immutable_files_verified": 6
+    },
+    "stage_b": {
+      "mock_attempts": 40,
+      "live_calls": 0,
+      "status": "completed",
+      "valid_slots": 40,
+      "reviewed_slots": 0,
+      "unreviewed_slots": 40,
+      "model_selection_approved": false,
+      "simulated_cost_usd": "0.0040",
+      "run_sha256": "4171be08ee4c464809252a813fc337659d08d14d0aa2be3d24a6d592dd3e3b2a",
+      "immutable_files_verified": 6
+    }
+  },
+  "timeout_rehearsal": {
+    "attempts": 2,
+    "valid": 1,
+    "failed": 1,
+    "not_run": 18,
+    "billing_complete": false,
+    "held_reservations_usd": "0.0030576"
+  },
+  "tests": {
+    "broadbridge_passed": 426,
+    "broadbridge_skipped": 103,
+    "new_executor_and_scoring": 51,
+    "foundry_passed": 617,
+    "foundry_skipped": 2,
+    "shared_client_passed": 35,
+    "broadbridge_skips": "Disposable database URLs not configured",
+    "warnings": [
+      "Existing requests dependency-version warning",
+      "Existing SWIG deprecation warnings in Foundry"
+    ]
+  },
+  "review": {
+    "important_findings_fixed": 1,
+    "fix": "Live validation selected by mode; empty/nonobject approvals rejected before transport",
+    "regression": "Four empty-approval regression cases failed at intercepted HTTP before repair, then passed",
+    "remaining_demonstrated_p1_p2": 0,
+    "combined_report": "Stage A+B paired counts, charges and review time verified with mocked HTTP"
+  },
+  "limitations": [
+    "All saved example scores remain blank",
+    "Provider availability, token preflight and source rights not revalidated",
+    "No model quality or engineering acceptance established",
+    "Fresh independent confirmation required before model selection"
+  ]
+}

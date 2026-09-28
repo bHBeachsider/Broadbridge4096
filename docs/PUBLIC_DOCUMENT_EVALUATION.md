@@ -1,5 +1,9 @@
 # Public-document reviewer evaluation
 
+Follow-up: [FQ-07 helper comparison v2](HELPER_COMPARISON_V2.md) prepares a shorter,
+single-question paired protocol offline. It preserves this v1 sample and run;
+no new answers, scores, live calls or production review-page changes are implied.
+
 The authenticated [public-document scoring page](PUBLIC_REVIEW_URL.md) links fixed source/question/answer review into the capture workflow, with separate reviewer records and CSV export.
 
 This is the next helper-model screening step after the synthetic ingestion test.
