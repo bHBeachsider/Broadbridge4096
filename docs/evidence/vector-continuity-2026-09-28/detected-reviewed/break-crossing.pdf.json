@@ -1,0 +1,104 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "312874d4e2e55aee25c35be6c13e736a4657d19ad0258cb1724d0e19640b6614",
+    "junctions": [],
+    "route": "vector_pdf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          289.0,
+          200.0
+        ],
+        "id": "s0",
+        "source": "path:0",
+        "start": [
+          100.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          500.0,
+          200.0
+        ],
+        "id": "s1",
+        "source": "path:1",
+        "start": [
+          311.0,
+          200.0
+        ]
+      },
+      {
+        "end": [
+          300.0,
+          330.0
+        ],
+        "id": "s2",
+        "source": "path:2",
+        "start": [
+          300.0,
+          70.0
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "9bf30dd61138aae4afeafb6fd08195ad19fb6a729dfe54eb72ea91e7e696fa7c",
+  "edges": [
+    {
+      "a": "V-21112",
+      "arrow_id": null,
+      "b": "V-21113",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            300.0,
+            70.0
+          ],
+          "segment_ids": [
+            "s2"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          300.0,
+          70.0
+        ],
+        [
+          300.0,
+          330.0
+        ]
+      ],
+      "segment_ids": [
+        "s2"
+      ]
+    }
+  ],
+  "id": "break-crossing",
+  "input_format": "pdf",
+  "input_sha256": "312874d4e2e55aee25c35be6c13e736a4657d19ad0258cb1724d0e19640b6614",
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "ports_sha256": "f8053b4417b199c86635ce162a2e8e973f36f7db9a601e40f9c0b999d7cbb664",
+  "route": "vector_pdf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "3c692a8a62516062963e84a9321c82e8f779b305dacb722a041edd2b81343d6e",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

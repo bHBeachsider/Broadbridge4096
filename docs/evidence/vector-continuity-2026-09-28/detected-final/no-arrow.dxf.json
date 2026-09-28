@@ -1,0 +1,80 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "111b21becb1b472bdd68002b8fd17f1faf6539705f5bdc6b5230bddf6e77011f",
+    "junctions": [],
+    "route": "vector_dxf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          500.0,
+          200.0
+        ],
+        "id": "s0",
+        "source": "LINE:2F",
+        "start": [
+          100.0,
+          200.0
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "a4d9731f23bdc521798786c9e8ec64163f4dd9d0aae7fc411e83712bef69f506",
+  "edges": [
+    {
+      "a": "V-21020",
+      "arrow_id": null,
+      "b": "V-21021",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            100.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          100.0,
+          200.0
+        ],
+        [
+          500.0,
+          200.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    }
+  ],
+  "id": "no-arrow",
+  "input_format": "dxf",
+  "input_sha256": "111b21becb1b472bdd68002b8fd17f1faf6539705f5bdc6b5230bddf6e77011f",
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "ports_sha256": "34de85c2acf920a08b71d1c9eb0c1129ec1b29c9a5f9c7b73d57dc6a5f0b4d17",
+  "route": "vector_dxf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "1c6d3c0b23ec1203ec8c515bb706cea13fa47255e010e2c196d5aad4d84c4b5d",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

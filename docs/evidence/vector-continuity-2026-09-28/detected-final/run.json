@@ -1,0 +1,35 @@
+{
+  "config": {
+    "dxf_tolerance": 2,
+    "gap": 2,
+    "hough_threshold": 15,
+    "minimum_line": 16,
+    "opening": 5,
+    "pdf_tolerance": 2,
+    "raster_threshold": 128,
+    "raster_tolerance": 3,
+    "skeleton": "zhang"
+  },
+  "engine_sources": {
+    "src/ingestion/diagram_geometry.py": "636bdccc130e038362400475ac24551124008eb30b1d99d222e3317e7a8d1f1f",
+    "src/ingestion/geometry_contract.py": "ae930641ba25f30719b44c50d3588af0fc89bb9ae8d9daa94b551f2c139f7546",
+    "src/ingestion/geometry_extractors.py": "7b3a1775f9ffdb6a3e8b2cd7b1941b1a6bd48bcc59e455bfbc7003fbf0d592c7"
+  },
+  "evaluation_role": "regression-only; engine developed after original input freeze",
+  "gate_eligible": false,
+  "implementation_policy": {
+    "legacy_noncurve_snap": "unchanged",
+    "native_curve_contact": "source-curve coincidence before approximation",
+    "native_path_contact_tolerance": 1e-07,
+    "vision_baseline": "archived, no new calls"
+  },
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "provenance": "pre-run-checksum",
+  "training_approved": false,
+  "versions": {
+    "PyMuPDF": "1.28.2",
+    "ezdxf": "1.4.4",
+    "numpy": "2.3.3",
+    "scikit-image": "0.26.0"
+  }
+}

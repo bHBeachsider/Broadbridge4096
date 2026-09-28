@@ -1,0 +1,62 @@
+{
+  "date": "2026-09-28",
+  "foundry_commit": "19f55e300936587244613a16b82412ddc073809b",
+  "foundry_base": "9b53527",
+  "domain_base": "43ba9c7",
+  "foundry": {
+    "command": "outputs/geometry-venv/Scripts/python.exe -m pytest tests -q -rs -o addopts= --tb=short",
+    "passed": 819,
+    "skipped": 3,
+    "seconds": 184.31,
+    "skip_reasons": [
+      "optional docling_core missing",
+      "owned disposable PostgreSQL not enabled",
+      "optional C01 fixture not configured"
+    ]
+  },
+  "broadbridge": {
+    "command": "python -m pytest packs/oil-gas/tests packs/oil-gas/db/tests scripts/research -q -o addopts= --tb=short",
+    "path_variables": [
+      "SLM_FOUNDRY_PATH",
+      "FOUNDRY_REPO",
+      "FOUNDRY_INGESTION_PATH"
+    ],
+    "passed": 437,
+    "skipped": 103,
+    "seconds": 80.99,
+    "skip_reasons": [
+      "database integration not configured"
+    ]
+  },
+  "focused_geometry": {
+    "passed": 86,
+    "command": "python -m pytest tests/test_curve_continuity.py tests/test_geometry_extractors.py tests/test_diagram_geometry.py tests/test_geometry_contract.py tests/test_diagram_metrics.py -q -o addopts= --tb=short"
+  },
+  "review": {
+    "method": "independent read-only agent code review, not engineering sign-off",
+    "findings_fixed": [
+      "non-sample-aligned native curve tees",
+      "straight polyline continuation",
+      "missing/failed outputs counted as checker rejections",
+      "native spline parameter order",
+      "unproven chord-interior tee admission"
+    ],
+    "final_recheck": "All five resolved; no remaining material findings within constrained repair"
+  },
+  "warnings": [
+    "existing Requests dependency range warning",
+    "SWIG deprecation warnings"
+  ],
+  "prior_archive_files_verified": 161,
+  "new_detector_attempts": 3,
+  "drawings_per_route": 12,
+  "routes_per_attempt": 3,
+  "model_calls": 0,
+  "training_approved": false,
+  "gate_eligible": false,
+  "ec2_used": false,
+  "gpu_used": false,
+  "production_changed": false,
+  "client_drawings_used": false,
+  "new_dataset_downloads": 0
+}

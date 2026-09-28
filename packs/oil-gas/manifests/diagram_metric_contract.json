@@ -1,0 +1,18 @@
+{
+  "schema": "broadbridge.diagram_metric_contract/1",
+  "status": "proposed-project-gates-awaiting-technical-ratification",
+  "interval": "two-sided Wilson 95%",
+  "routes": {
+    "pdf": {"edge_precision": 0.995, "edge_recall": 0.95, "direction_precision": 0.995, "direction_recovery": 0.95},
+    "dxf": {"edge_precision": 0.995, "edge_recall": 0.95, "direction_precision": 0.995, "direction_recovery": 0.95},
+    "png": {"edge_precision": 0.99, "edge_recall": 0.90, "direction_precision": 0.995, "direction_recovery": 0.90}
+  },
+  "pilot_comparison": "point estimates only; never qualification",
+  "qualification_comparison": "lower confidence bound for every metric, plus independent-family analysis and approvals",
+  "critical_errors_max_observed": 0,
+  "evidence_completeness_required": 1.0,
+  "direction_visibility": "eligible reference arrows must be marked clearly visible before the freeze",
+  "independence_unit": "source-model/drawing family; formats, crops and revisions stay together",
+  "qualification_requires": ["independent-heldout-families", "pre-run-checksum", "source-only-signed-reference", "visible-arrow-eligibility-pinned", "crop-history-metadata-pinned", "rights-approval", "technical-convention-acceptance", "cluster-aware-uncertainty-review", "explicit-release-approval"],
+  "training_approved": false
+}

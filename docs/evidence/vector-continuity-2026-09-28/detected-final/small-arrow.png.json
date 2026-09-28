@@ -1,0 +1,83 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "939852148b9c0db42eb5b0b3a1154f82b437e205b7396c61df58620674a49155",
+    "junctions": [],
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          499.0,
+          199.0
+        ],
+        "id": "s0",
+        "source": "skeleton-hough",
+        "start": [
+          100.0,
+          199.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 400,
+    "tolerance": 3.0,
+    "warnings": [
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "96379a9a8a3bd599ca92cc247f4d1ced94193cfa0c3fc616f8fedf5697da5c40",
+  "edges": [
+    {
+      "a": "V-21100",
+      "arrow_id": null,
+      "b": "V-21101",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            100.0,
+            199.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          100.0,
+          199.0
+        ],
+        [
+          499.0,
+          199.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    }
+  ],
+  "id": "small-arrow",
+  "input_format": "png",
+  "input_sha256": "939852148b9c0db42eb5b0b3a1154f82b437e205b7396c61df58620674a49155",
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "ports_sha256": "90bc709426332b74a0cf03a26f6de958bfd5adc6b5a22bc7b1e95b2a912e2c19",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "1c6d3c0b23ec1203ec8c515bb706cea13fa47255e010e2c196d5aad4d84c4b5d",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

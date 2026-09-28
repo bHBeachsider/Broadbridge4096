@@ -159,6 +159,10 @@ def run(root,out,repo):
         'src/ingestion/diagram_geometry.py','src/ingestion/geometry_extractors.py')}
     receipt={'manifest_sha256':job['manifest_sha256'],'engine_sources':sources,
         'config':m['detector_config'],'training_approved':False,
+        'evaluation_role':'regression-only; engine developed after original input freeze',
+        'implementation_policy':{'native_path_contact_tolerance':1e-7,
+            'native_curve_contact':'source-curve coincidence before approximation',
+            'legacy_noncurve_snap':'unchanged','vision_baseline':'archived, no new calls'},
         'versions':{name:importlib.metadata.version(name) for name in ('PyMuPDF','ezdxf','scikit-image','numpy')},
         'provenance':'pre-run-checksum','gate_eligible':False}
     write(out/'run.json',receipt);outputs={}

@@ -1,0 +1,296 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [
+      {
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "kind": "crossing",
+        "point": [
+          219.0,
+          139.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s2"
+        ]
+      },
+      {
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "kind": "crossing",
+        "point": [
+          379.0,
+          139.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s3"
+        ]
+      },
+      {
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "kind": "crossing",
+        "point": [
+          219.0,
+          259.0
+        ],
+        "segment_ids": [
+          "s1",
+          "s2"
+        ]
+      },
+      {
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "kind": "crossing",
+        "point": [
+          379.0,
+          259.0
+        ],
+        "segment_ids": [
+          "s1",
+          "s3"
+        ]
+      }
+    ],
+    "input_sha256": "bdf0c754ebd292383414817eba1216f07058ced43e06bfd0084373a6e7408980",
+    "junctions": [],
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          519.0,
+          139.0
+        ],
+        "id": "s0",
+        "source": "skeleton-hough",
+        "start": [
+          80.0,
+          139.0
+        ]
+      },
+      {
+        "end": [
+          519.0,
+          259.0
+        ],
+        "id": "s1",
+        "source": "skeleton-hough",
+        "start": [
+          80.0,
+          259.0
+        ]
+      },
+      {
+        "end": [
+          219.0,
+          61.0
+        ],
+        "id": "s2",
+        "source": "skeleton-hough",
+        "start": [
+          219.0,
+          338.0
+        ]
+      },
+      {
+        "end": [
+          379.0,
+          61.0
+        ],
+        "id": "s3",
+        "source": "skeleton-hough",
+        "start": [
+          379.0,
+          338.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 1432,
+    "tolerance": 3.0,
+    "warnings": [
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "24762b3c55bd4aa7790e3e4aedc7631cd50a5d13cafc90c95fdd4ad267de7cf0",
+  "edges": [
+    {
+      "a": "V-21030",
+      "arrow_id": null,
+      "b": "V-21031",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            80.0,
+            139.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          80.0,
+          139.0
+        ],
+        [
+          219.0,
+          139.0
+        ],
+        [
+          379.0,
+          139.0
+        ],
+        [
+          519.0,
+          139.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "V-21032",
+      "arrow_id": null,
+      "b": "V-21033",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            80.0,
+            259.0
+          ],
+          "segment_ids": [
+            "s1"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          80.0,
+          259.0
+        ],
+        [
+          219.0,
+          259.0
+        ],
+        [
+          379.0,
+          259.0
+        ],
+        [
+          519.0,
+          259.0
+        ]
+      ],
+      "segment_ids": [
+        "s1"
+      ]
+    },
+    {
+      "a": "V-21034",
+      "arrow_id": null,
+      "b": "V-21035",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            219.0,
+            338.0
+          ],
+          "segment_ids": [
+            "s2"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          219.0,
+          61.0
+        ],
+        [
+          219.0,
+          139.0
+        ],
+        [
+          219.0,
+          259.0
+        ],
+        [
+          219.0,
+          338.0
+        ]
+      ],
+      "segment_ids": [
+        "s2"
+      ]
+    },
+    {
+      "a": "V-21036",
+      "arrow_id": null,
+      "b": "V-21037",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            379.0,
+            338.0
+          ],
+          "segment_ids": [
+            "s3"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          379.0,
+          61.0
+        ],
+        [
+          379.0,
+          139.0
+        ],
+        [
+          379.0,
+          259.0
+        ],
+        [
+          379.0,
+          338.0
+        ]
+      ],
+      "segment_ids": [
+        "s3"
+      ]
+    }
+  ],
+  "id": "dense-crossings",
+  "input_format": "png",
+  "input_sha256": "bdf0c754ebd292383414817eba1216f07058ced43e06bfd0084373a6e7408980",
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "ports_sha256": "16fa3306fff668d8d250d584aed1eb5667d49d6ca4a313e6dc1fce2420bb5f09",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "3c692a8a62516062963e84a9321c82e8f779b305dacb722a041edd2b81343d6e",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

@@ -1,0 +1,28 @@
+{
+  "config": {
+    "dxf_tolerance": 2,
+    "gap": 2,
+    "hough_threshold": 15,
+    "minimum_line": 16,
+    "opening": 5,
+    "pdf_tolerance": 2,
+    "raster_threshold": 128,
+    "raster_tolerance": 3,
+    "skeleton": "zhang"
+  },
+  "engine_sources": {
+    "src/ingestion/diagram_geometry.py": "310b97b9d99579e499af4dc6d7c36fa54762a619bce5c7e4ba4a4f598dea4f4b",
+    "src/ingestion/geometry_contract.py": "ae930641ba25f30719b44c50d3588af0fc89bb9ae8d9daa94b551f2c139f7546",
+    "src/ingestion/geometry_extractors.py": "ea058a24a4e0eb950c856b2af776ed6349f74a5c71844cc64323144a5aa1b97e"
+  },
+  "gate_eligible": false,
+  "manifest_sha256": "962e2c8156cc2085d95c2be40994bde23486ce2b29e79ffafcf6bf42a6eb7c19",
+  "provenance": "pre-run-checksum",
+  "training_approved": false,
+  "versions": {
+    "PyMuPDF": "1.28.2",
+    "ezdxf": "1.4.4",
+    "numpy": "2.3.3",
+    "scikit-image": "0.26.0"
+  }
+}
