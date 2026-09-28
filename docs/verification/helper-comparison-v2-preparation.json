@@ -1,0 +1,115 @@
+{
+  "schema": "broadbridge.helper_comparison_verification/1",
+  "date": "2026-09-28",
+  "mode": "offline",
+  "stages": {
+    "stage-a": {
+      "preparation": {
+        "schema": "broadbridge.helper_comparison_preparation/2",
+        "version": "public-v2-offline-2026-09-28",
+        "stage": "stage_a",
+        "mode": "offline_prepare",
+        "evaluation_role": "development_calibration",
+        "live_authorized": false,
+        "training_approved": false,
+        "calls_attempted": 0,
+        "actual_cost_usd": "0",
+        "question_count": 10,
+        "request_count": 20,
+        "source_count": 10,
+        "family_count": 9,
+        "type_counts": {
+          "brief": 2,
+          "calculation": 2,
+          "missing_data": 2,
+          "grounded_explanation": 2,
+          "abstention": 2
+        },
+        "proposed_stage_ceiling_usd": "0.10",
+        "conditional_token_cost_bound_usd": "0.061152",
+        "token_count_verified": false,
+        "model_availability_checked": false,
+        "max_prepared_request_bytes": 5982,
+        "sample_sha256": "3407f8d2ea56e0cc8c379f9a84b5c1808b72d5dedd7c504d1badbcb423a0e736",
+        "protocol_sha256": "346a16f6fad2843b36d19e1f97eaaa09254bc908adca1615a17a8a965f9f7c59",
+        "prompt_sha256": "07f8c957fbf2d69f368465cdedc986a2254cbfbbfde4feedfe15d38a8da5ad6e",
+        "compiler_sha256": "e4280ed62fca27473453dbe77b03f062f943ae02bfe46960ec4faf1f67bb95b1",
+        "live_blockers": [
+          "protocol_reference_and_budget_acceptance",
+          "fresh_source_rights_check",
+          "provider_revision_and_capability_snapshot",
+          "exact_input_token_preflight",
+          "bounded_v2_live_runner_not_implemented",
+          "spend_controls_and_exact_run_approval"
+        ]
+      },
+      "verified_file_count": 8,
+      "approval_snapshot_hashes_verified": true,
+      "blank_score_rows": 20,
+      "checksums_sha256": "322bb75a18886cc498a854c12df132970afdbe57e7f94aae66f0c0a873ee4413"
+    },
+    "stage-b": {
+      "preparation": {
+        "schema": "broadbridge.helper_comparison_preparation/2",
+        "version": "public-v2-offline-2026-09-28",
+        "stage": "stage_b",
+        "mode": "offline_prepare",
+        "evaluation_role": "development_calibration",
+        "live_authorized": false,
+        "training_approved": false,
+        "calls_attempted": 0,
+        "actual_cost_usd": "0",
+        "question_count": 20,
+        "request_count": 40,
+        "source_count": 10,
+        "family_count": 9,
+        "type_counts": {
+          "grounded_explanation": 4,
+          "missing_data": 4,
+          "abstention": 4,
+          "calculation": 4,
+          "brief": 4
+        },
+        "proposed_stage_ceiling_usd": "0.15",
+        "conditional_token_cost_bound_usd": "0.122304",
+        "token_count_verified": false,
+        "model_availability_checked": false,
+        "max_prepared_request_bytes": 5962,
+        "sample_sha256": "3407f8d2ea56e0cc8c379f9a84b5c1808b72d5dedd7c504d1badbcb423a0e736",
+        "protocol_sha256": "346a16f6fad2843b36d19e1f97eaaa09254bc908adca1615a17a8a965f9f7c59",
+        "prompt_sha256": "07f8c957fbf2d69f368465cdedc986a2254cbfbbfde4feedfe15d38a8da5ad6e",
+        "compiler_sha256": "e4280ed62fca27473453dbe77b03f062f943ae02bfe46960ec4faf1f67bb95b1",
+        "live_blockers": [
+          "protocol_reference_and_budget_acceptance",
+          "fresh_source_rights_check",
+          "provider_revision_and_capability_snapshot",
+          "exact_input_token_preflight",
+          "bounded_v2_live_runner_not_implemented",
+          "spend_controls_and_exact_run_approval"
+        ]
+      },
+      "verified_file_count": 8,
+      "approval_snapshot_hashes_verified": true,
+      "blank_score_rows": 40,
+      "checksums_sha256": "09665a7eddfc2efcd03f7bc1adf51adab5e11c00d70d258ec40d17e9f0bb616a"
+    }
+  },
+  "tests": {
+    "focused_new": 13,
+    "existing_baseline": 26,
+    "full_branch_passed": 375,
+    "full_branch_skipped": 103,
+    "skip_reason": "Disposable database URLs not configured",
+    "warning": "Existing requests dependency-version warning"
+  },
+  "review": {
+    "important_findings": 1,
+    "fixed": "Source protocol bytes are copied verbatim; recorded approval hash now verifies the emitted snapshot",
+    "regression_test": "test_approval_hashes_verify_the_emitted_protocol_and_input_snapshots"
+  },
+  "model_calls": 0,
+  "source_downloads": 0,
+  "training": false,
+  "ec2": false,
+  "production_changes": false
+}
