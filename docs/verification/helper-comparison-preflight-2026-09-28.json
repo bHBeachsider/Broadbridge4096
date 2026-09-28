@@ -1,0 +1,423 @@
+{
+  "schema": "broadbridge.helper_preflight_observation/1",
+  "date": "2026-09-28",
+  "status": "metadata_checked_live_unverified",
+  "model_calls": 0,
+  "actual_inference_spend_usd": "0",
+  "credentials_accessed": false,
+  "ec2": false,
+  "training": false,
+  "production_changes": false,
+  "domain_code_commit": "8d5e9bffc0307a12edc4db6a30ee6e515bca674a",
+  "foundry_code_commit": "6ffc7e5a52126403572e22feac6a670641656fd5",
+  "providers": {
+    "mistral": {
+      "model": "mistralai/mistral-small-24b-instruct-2501",
+      "provider": "DeepInfra",
+      "endpoint_tag": "deepinfra/fp8",
+      "observed_status": 0,
+      "status_semantics_verified": false,
+      "context_length": 32768,
+      "quantization_label": "fp8",
+      "price_usd_per_million": {
+        "prompt": "0.05000000",
+        "completion": "0.08000000"
+      },
+      "structured_output_advertised": true,
+      "reasoning_parameter_advertised": false,
+      "proposed_reasoning_mode": "native_nonreasoning",
+      "zdr_catalogue_member": true,
+      "filtered_distillable_zdr_catalogue_member": true,
+      "upstream_repository_sha": "9527884be6e5616bdd54de542f9ae13384489724",
+      "upstream_card_license": "apache-2.0",
+      "hosted_weights_revision": null,
+      "hosted_template_revision": null,
+      "live_capability_verified": false
+    },
+    "qwen": {
+      "model": "qwen/qwen3-30b-a3b-instruct-2507",
+      "provider": "Nebius",
+      "endpoint_tag": "nebius/fp8",
+      "observed_status": -2,
+      "status_semantics_verified": false,
+      "context_length": 262144,
+      "quantization_label": "fp8",
+      "price_usd_per_million": {
+        "prompt": "0.1000000",
+        "completion": "0.3000000"
+      },
+      "structured_output_advertised": true,
+      "reasoning_parameter_advertised": false,
+      "proposed_reasoning_mode": "native_nonreasoning",
+      "zdr_catalogue_member": true,
+      "filtered_distillable_zdr_catalogue_member": true,
+      "upstream_repository_sha": "0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe",
+      "upstream_card_license": "apache-2.0",
+      "hosted_weights_revision": null,
+      "hosted_template_revision": null,
+      "live_capability_verified": false
+    }
+  },
+  "stage_a": {
+    "question_count": 10,
+    "request_count": 20,
+    "packet_manifest_sha256": "41410be190dc4a506c8b5be7855c65454d7215095cafcdcda22634e463960f26",
+    "wire_requests_sha256": "435f6315265260de2fedbf0c90fa08149f223dfa94d2fcdab0f5ac6415d2c412",
+    "wire_max_bytes": 5802,
+    "reasoning_parameter_omitted": true,
+    "input_token_bound_verified": false,
+    "approvals_remain_false": true,
+    "requests": [
+      {
+        "question_id": "PUB-001",
+        "arm": "mistral",
+        "request_sha256": "7029b145677ff84b7b06cfcc0a47dae57cfb82ed94b50a4ca5173aa7dc9f7fb9",
+        "bytes": 4813,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-001",
+        "arm": "qwen",
+        "request_sha256": "72cf35a0495ad6f6c0222a67d3ab1e713381d2a203e55fa98e23c2a1c70634a8",
+        "bytes": 4801,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-004",
+        "arm": "qwen",
+        "request_sha256": "e090b28e31b8f2373c61d50e3feb2ebcc7f3e394bacf3e2f2c4c52b164105210",
+        "bytes": 4222,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-004",
+        "arm": "mistral",
+        "request_sha256": "37944240f506af1b068c6f3052fb03651a9bd4b5bd817fadf882f8b238af9b69",
+        "bytes": 4234,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-007",
+        "arm": "mistral",
+        "request_sha256": "29c0c95c3ef48701686315bddb51bffc0598973dfe87338bd1494ece1e0ba602",
+        "bytes": 5049,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-007",
+        "arm": "qwen",
+        "request_sha256": "768abf6b16d7ec5edb1fb2fcab3eaba3deb8b031dba5d9e212b9031bcdd255e8",
+        "bytes": 5037,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-011",
+        "arm": "qwen",
+        "request_sha256": "160bf4f1e0890e8e3b4c07cd77e21c4104534b59164a5e112a62b1c00c5a6914",
+        "bytes": 3962,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-011",
+        "arm": "mistral",
+        "request_sha256": "6b0f41e987ddfac518400791681cd9f2699bd172703ca29ce7bf09f03d8b3188",
+        "bytes": 3974,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-013",
+        "arm": "mistral",
+        "request_sha256": "71f6ec0934bf08fa19c89c213501b4fc0c1f51642aa4304450939a81a440b3b9",
+        "bytes": 5315,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-013",
+        "arm": "qwen",
+        "request_sha256": "e1385c6c9da78cad74d3089964848a953a60a5ad1ac2217a3a0dd393e6994a06",
+        "bytes": 5303,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-018",
+        "arm": "qwen",
+        "request_sha256": "8d006a27dc43ded4dc3a76e3c2c5083d835f30d6b2186c62408ba7f4bdb52c59",
+        "bytes": 4264,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-018",
+        "arm": "mistral",
+        "request_sha256": "8b8125922473ef7ddbbf4ffee0ab0f483409a1b71c296d59cd3078108f6d571e",
+        "bytes": 4276,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-021",
+        "arm": "mistral",
+        "request_sha256": "f2b1fbd41804f608ac7aa82e720a72cee14f6a4c51f4f12abac58977518b6f7a",
+        "bytes": 4748,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-021",
+        "arm": "qwen",
+        "request_sha256": "32e1fc82c3e01f3f516405218ec692a3982e037dce81d80e20c7f930d733483b",
+        "bytes": 4736,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-024",
+        "arm": "qwen",
+        "request_sha256": "d012e729f95698dfd74e10895480ebad1d4bc462009d4f8b1a45bbdf64561f70",
+        "bytes": 3773,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-024",
+        "arm": "mistral",
+        "request_sha256": "b7d89812532676b04863dc2a222b627167fa84d0d95750e3fb9349e70b086194",
+        "bytes": 3785,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-025",
+        "arm": "mistral",
+        "request_sha256": "c2f58871a2e7069575abb69e8f8dc27ec5e0ed3ae0855232318feab963e4a2d5",
+        "bytes": 4766,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-025",
+        "arm": "qwen",
+        "request_sha256": "5f422eb5b10468227279bc253b4060b4a0c77aeb8b497218808025eec51f3020",
+        "bytes": 4754,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-030",
+        "arm": "qwen",
+        "request_sha256": "fbc47b3c72fe330c5acf990f016d9a55161dcd5d6855032976deb2bcc0f75339",
+        "bytes": 5790,
+        "input_tokens_upper_bound": null
+      },
+      {
+        "question_id": "PUB-030",
+        "arm": "mistral",
+        "request_sha256": "ba51e0202d109c4463f93ec0338c7375341fc7266a3fdffe3685fbfe5aefc609",
+        "bytes": 5802,
+        "input_tokens_upper_bound": null
+      }
+    ]
+  },
+  "frozen_sample_sha256": "3407f8d2ea56e0cc8c379f9a84b5c1808b72d5dedd7c504d1badbcb423a0e736",
+  "frozen_protocol_sha256": "346a16f6fad2843b36d19e1f97eaaa09254bc908adca1615a17a8a965f9f7c59",
+  "frozen_prompt_sha256": "07f8c957fbf2d69f368465cdedc986a2254cbfbbfde4feedfe15d38a8da5ad6e",
+  "retained_evidence_directory": "helper-preflight-20260928",
+  "retained_evidence_sha256": {
+    "mistral-endpoints.json": "cfec4e7fd97f12e359d738381569ca8f72e21cee7ca03c0bc3a5afa3231377ab",
+    "qwen-endpoints.json": "6d5aedbd2c7e7f23aa4dac168e62680f609dce608fd2b79633c591654df2d384",
+    "qwen-endpoints-recheck.json": "6d5aedbd2c7e7f23aa4dac168e62680f609dce608fd2b79633c591654df2d384",
+    "distillable-mistral.json": "55011b787f1ec3d7f136df2f111023cfb55e156676ef7aac1cb98153a46c8cea",
+    "distillable-qwen.json": "17e6cf031f1e55100591c951fd203818c00eb16e39d4db48b4c84d92ace4609a",
+    "zdr-selected.json": "a0b86377a28006d5b032848a9d6cd8af5f8f9bd4c118f8f8cdf52946abc01687"
+  },
+  "public_metadata_retrievals": [
+    {
+      "file": "mistral-endpoints.json",
+      "url": "https://openrouter.ai/api/v1/models/mistralai/mistral-small-24b-instruct-2501/endpoints",
+      "retrieved_at": "2026-09-28T17:38:13.482814+00:00",
+      "status": 200,
+      "bytes": 1454,
+      "sha256": "cfec4e7fd97f12e359d738381569ca8f72e21cee7ca03c0bc3a5afa3231377ab"
+    },
+    {
+      "file": "qwen-endpoints.json",
+      "url": "https://openrouter.ai/api/v1/models/qwen/qwen3-30b-a3b-instruct-2507/endpoints",
+      "retrieved_at": "2026-09-28T17:38:14.073338+00:00",
+      "status": 200,
+      "bytes": 5257,
+      "sha256": "6d5aedbd2c7e7f23aa4dac168e62680f609dce608fd2b79633c591654df2d384"
+    },
+    {
+      "file": "mistral-catalog.json",
+      "url": "https://openrouter.ai/api/v1/models?q=mistral-small-24b-instruct-2501",
+      "retrieved_at": "2026-09-28T17:38:14.129634+00:00",
+      "status": 200,
+      "bytes": 1306,
+      "sha256": "55011b787f1ec3d7f136df2f111023cfb55e156676ef7aac1cb98153a46c8cea"
+    },
+    {
+      "file": "qwen-catalog.json",
+      "url": "https://openrouter.ai/api/v1/models?q=qwen3-30b-a3b-instruct-2507",
+      "retrieved_at": "2026-09-28T17:38:14.631719+00:00",
+      "status": 200,
+      "bytes": 1301,
+      "sha256": "17e6cf031f1e55100591c951fd203818c00eb16e39d4db48b4c84d92ace4609a"
+    },
+    {
+      "file": "zdr-endpoints.json",
+      "url": "https://openrouter.ai/api/v1/endpoints/zdr",
+      "retrieved_at": "2026-09-28T17:38:14.975085+00:00",
+      "status": 200,
+      "bytes": 876146,
+      "sha256": "a3c1137b381303b686ce32f4a386676890f59adda6bb606624feca039f16269b"
+    },
+    {
+      "file": "openrouter-doc-index.txt",
+      "url": "https://openrouter.ai/docs/llms.txt",
+      "retrieved_at": "2026-09-28T17:40:15.365970+00:00",
+      "status": 200,
+      "bytes": 88903,
+      "sha256": "650c673d5faa8d9b852ced8043f942bf50bd335e07b36dfffc0ba46af0021f56"
+    },
+    {
+      "file": "nebius-doc-index.txt",
+      "url": "https://docs.tokenfactory.nebius.com/llms.txt",
+      "retrieved_at": "2026-09-28T17:40:16.208969+00:00",
+      "status": 200,
+      "bytes": 31060,
+      "sha256": "3cf8bf6b3f567b792a596d834fcd8752c3fe20a126dcbe09c7f4b04309e73e1e"
+    },
+    {
+      "file": "deepinfra-doc-index.txt",
+      "url": "https://deepinfra.com/llms.txt",
+      "retrieved_at": "2026-09-28T17:40:16.835693+00:00",
+      "status": 404,
+      "bytes": 245698,
+      "sha256": "9048cfb9a226249d2e37311972e46316d45620fef27265ef0561c6aea0060616"
+    },
+    {
+      "file": "distillable-mistral.json",
+      "url": "https://openrouter.ai/api/v1/models?q=mistral-small-24b-instruct-2501&distillable=true&zdr=true&providers=DeepInfra",
+      "retrieved_at": "2026-09-28T17:40:17.146174+00:00",
+      "status": 200,
+      "bytes": 1306,
+      "sha256": "55011b787f1ec3d7f136df2f111023cfb55e156676ef7aac1cb98153a46c8cea"
+    },
+    {
+      "file": "distillable-qwen.json",
+      "url": "https://openrouter.ai/api/v1/models?q=qwen3-30b-a3b-instruct-2507&distillable=true&zdr=true&providers=Nebius",
+      "retrieved_at": "2026-09-28T17:40:17.330600+00:00",
+      "status": 200,
+      "bytes": 1301,
+      "sha256": "17e6cf031f1e55100591c951fd203818c00eb16e39d4db48b4c84d92ace4609a"
+    },
+    {
+      "file": "provider-policies.json",
+      "url": "https://openrouter.ai/api/v1/providers",
+      "retrieved_at": "2026-09-28T17:40:17.380313+00:00",
+      "status": 200,
+      "bytes": 25573,
+      "sha256": "422eceb0d7ecd42f7c1efbec5b86763bbe19431fb722b9e506226b0f77648102"
+    },
+    {
+      "file": "hf-mistral-metadata.json",
+      "url": "https://huggingface.co/api/models/mistralai/Mistral-Small-24B-Instruct-2501",
+      "retrieved_at": "2026-09-28T17:40:18.006461+00:00",
+      "status": 200,
+      "bytes": 7369,
+      "sha256": "f64669ffd45e94bc2934fd9ae13c5ae313a60e1b1d09baf364ba265cdaee5718"
+    },
+    {
+      "file": "hf-qwen-metadata.json",
+      "url": "https://huggingface.co/api/models/Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "retrieved_at": "2026-09-28T17:40:18.073384+00:00",
+      "status": 200,
+      "bytes": 7766,
+      "sha256": "5f77975be5de6198cd2e19f3995cd1a7c1694b849a2ef6191f5765d269f3a17c"
+    },
+    {
+      "file": "endpoints-doc.md",
+      "url": "https://openrouter.ai/docs/api/api-reference/endpoints/list-endpoints.md",
+      "retrieved_at": "2026-09-28T17:44:33.282321+00:00",
+      "status": 307,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "nebius-openapi.json",
+      "url": "https://api.tokenfactory.nebius.com/openapi.json",
+      "retrieved_at": "2026-09-28T17:44:34.506517+00:00",
+      "status": 200,
+      "bytes": 280282,
+      "sha256": "c8b46cf3fdd00280b920f55175c05a8ca1db0d723a975c7600ac7c6cb6a26b7f"
+    },
+    {
+      "file": "qwen-endpoints-recheck.json",
+      "url": "https://openrouter.ai/api/v1/models/qwen/qwen3-30b-a3b-instruct-2507/endpoints",
+      "retrieved_at": "2026-09-28T17:44:34.573408+00:00",
+      "status": 200,
+      "bytes": 5257,
+      "sha256": "6d5aedbd2c7e7f23aa4dac168e62680f609dce608fd2b79633c591654df2d384"
+    },
+    {
+      "file": "endpoints-doc-followed.md",
+      "url": "https://openrouter.ai/docs/api/api-reference/endpoints/list-endpoints.md",
+      "final_url": "https://openrouter.ai/docs/api/api-reference/endpoints/list-all-endpoints-for-a-model.md",
+      "retrieved_at": "2026-09-28T17:45:27.663020+00:00",
+      "status": 200,
+      "bytes": 47096,
+      "sha256": "524255d44899a12309f30a89e4ed933748206ea99c2180396872bdc55a4694ac"
+    },
+    {
+      "file": "mistral-card.md",
+      "url": "https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501/raw/9527884be6e5616bdd54de542f9ae13384489724/README.md",
+      "final_url": "https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501/raw/9527884be6e5616bdd54de542f9ae13384489724/README.md",
+      "retrieved_at": "2026-09-28T17:45:28.211126+00:00",
+      "status": 200,
+      "bytes": 14757,
+      "sha256": "c3889bddcf96969899f867f657f1929f0f66ee9e91cf15870a7b0452a6b5a6ca"
+    },
+    {
+      "file": "qwen-card.md",
+      "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507/raw/0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe/README.md",
+      "final_url": "https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507/raw/0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe/README.md",
+      "retrieved_at": "2026-09-28T17:45:28.273795+00:00",
+      "status": 200,
+      "bytes": 15418,
+      "sha256": "5d25d4b43cdfaf83e3d71df8f3436703ab26d92c07305053be667f577a49bb9e"
+    }
+  ],
+  "proposed_alternative": {
+    "implemented": false,
+    "approved": false,
+    "policy": "per_arm_full_context_plus_maximum_output_reservation",
+    "pair_reservation_usd": "0.03388336",
+    "stage_a_ceiling_usd": "0.10",
+    "stage_b_ceiling_usd": "0.15",
+    "total_ceiling_usd": "0.25",
+    "all_twenty_stage_a_calls_guaranteed_to_fit": false
+  },
+  "remaining": [
+    "Resolve selected Nebius status semantics/current route capability",
+    "Verified hosted token bound for v2, or separately implemented/reviewed reservation protocol",
+    "Item-level rights, references and quality-screen acceptance",
+    "Account/key spend controls and applicable fees",
+    "Exact-run authorization; refresh snapshots and commit bindings"
+  ],
+  "verification": {
+    "retrieval_file_hashes_passed": 19,
+    "wire_requests_checked": 20,
+    "worksheet_unapproved": true,
+    "pricing_arithmetic_passed": true,
+    "frozen_packet_recompiled": true,
+    "tests": {
+      "command": "SLM_FOUNDRY_PATH=<helper-receipts checkout> python -m pytest scripts/research/test_helper_comparison_execution.py -q",
+      "passed": 51,
+      "skipped": 0,
+      "seconds": 65.2,
+      "warnings": [
+        "Existing requests dependency-version warning"
+      ],
+      "initial_invocation": {
+        "skipped": 51,
+        "reason": "SLM_FOUNDRY_PATH not set; corrected and rerun"
+      },
+      "http": "mocked"
+    },
+    "retained_metadata_hashes_passed": 6,
+    "local_document_links_valid": true,
+    "queue_rows_unique": 16
+  }
+}

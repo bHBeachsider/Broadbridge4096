@@ -29,6 +29,11 @@ the run. See the [official reasoning documentation](https://openrouter.ai/docs/g
 and [provider routing documentation](https://openrouter.ai/docs/guides/routing/provider-selection).
 No current model availability or provider prices are asserted here.
 
+The [28 September provider preflight](HELPER_COMPARISON_PREFLIGHT.md) records
+current catalogue observations, a prepared native-nonreasoning Stage-A packet,
+and the unresolved hosted-token bound. Its proposed context-based reservation
+alternative is not implemented in v2 and does not authorize execution.
+
 ## Offline rehearsal
 
 Use an existing Python environment with the repository's lightweight evaluation
