@@ -8,6 +8,9 @@ and existing metric contract define acceptance; tests cannot confer human approv
 
 Both branches: `codex/diagram-target-recovery`.
 
+Published as draft [Foundry #19](https://github.com/bHBeachsider/slm-foundry/pull/19)
+and [Broadbridge #23](https://github.com/bHBeachsider/Broadbridge4096/pull/23).
+
 - Foundry worktree: `C:/Users/bradu/Documents/Broadbridge4096/tmp/slm-foundry-worktrees/codex-foundry-ingestion-live-http`, base `19f55e300936587244613a16b82412ddc073809b` (draft #18).
 - Domain worktree: `C:/Users/bradu/Documents/Broadbridge4096/tmp/codex-broadbridge-ingestion-live-test`, base `d4bb302` (draft #22).
 - CPU Python: Foundry `outputs/geometry-venv/Scripts/python.exe`; installed geometry
@@ -40,7 +43,7 @@ synthetic reserve split was replaced with empty reserves. The unexplained gap wa
 not filled to inflate recall. One post-review verification followed three
 experiments to confirm a reproduced false-direction fix. No GPU or model use.
 
-### Remaining schedule
+### Work-package effort estimates
 
 Effort estimates are engineering estimates, not scheduled promises. Human
 qualification depends on available rights-cleared drawings and independent review.
@@ -57,6 +60,10 @@ qualification depends on available rights-cleared drawings and independent revie
 | DG-08 | Independent engineering qualification | DG-07 + human inputs | External dependency | Targets/uncertainty/review gates actually satisfied |
 
 ## DG-01 — fail-closed qualification profile
+
+The detailed checklists below preserve the original package specifications;
+unchecked boxes are not a current completion tally. The execution table above
+and the results document distinguish implemented subsets from open requirements.
 
 - [ ] Add Foundry `schemas/diagram_qualification.schema.json`,
   `src/ingestion/diagram_qualification.py`, `tests/test_diagram_qualification.py`.

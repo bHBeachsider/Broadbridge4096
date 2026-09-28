@@ -3,6 +3,14 @@
 28 September 2026. Work is isolated on `codex/diagram-target-recovery` in both
 repositories. Text/calculation SLM preparation can continue independently.
 
+Draft review branches:
+
+- [Foundry #19](https://github.com/bHBeachsider/slm-foundry/pull/19), engine
+  implementation `82b7329`, based on draft #18.
+- [Broadbridge #23](https://github.com/bHBeachsider/Broadbridge4096/pull/23),
+  implementation/evidence `1069391`, based on draft #22. Later documentation-only
+  commits may update these links without changing the measured artifacts.
+
 **The implementation improves extraction, but does not yet achieve every target
 or qualify diagram training.** No model calls, training, EC2/GPU, new downloads,
 client drawings or production changes occurred.
