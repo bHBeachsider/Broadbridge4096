@@ -1,0 +1,219 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [
+      {
+        "attachment_blocked": false,
+        "base": [
+          207.4257425742574,
+          199.5
+        ],
+        "bbox": [
+          188,
+          190,
+          213,
+          210
+        ],
+        "coordinate_frame": "pixels-top-left",
+        "id": "a0",
+        "pixel_sha256": "727b04e28c06fc813b9b5c39306befbaa901ea870e490e75db5ebbd9d6acadc3",
+        "segment_id": "s0",
+        "source": "original-pixels:contour-rotated-template",
+        "source_sha256": "b63ce5d18e9db660cb37a8d0f8c1b2eb69be1ba6cf0f46bc3fda0cdc7855341c",
+        "template_iou": 0.8536585365853658,
+        "tip": [
+          189.4257425742574,
+          199.5
+        ],
+        "transform_to_source_pixels": [
+          1,
+          0,
+          0,
+          1,
+          188,
+          190
+        ]
+      }
+    ],
+    "coordinate_frame": "pixels-top-left",
+    "dots": [
+      {
+        "point": [
+          299.5,
+          199.0
+        ],
+        "radius": 6.0,
+        "source": "original-raster-blob"
+      }
+    ],
+    "excluded_intersections": [],
+    "input_sha256": "b63ce5d18e9db660cb37a8d0f8c1b2eb69be1ba6cf0f46bc3fda0cdc7855341c",
+    "junctions": [
+      {
+        "id": "j2",
+        "kind": "junction_dot",
+        "point": [
+          299.0,
+          198.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s1"
+        ]
+      }
+    ],
+    "pixel_sha256": "d655212e4ab840815174d52c935943d91961acf8b96766fe0419399f404c04a9",
+    "pixel_shape": [
+      400,
+      600,
+      3
+    ],
+    "raster_input_policy": "supplied text masks only; arrows never erased from independent line branch",
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          499.0,
+          199.0
+        ],
+        "id": "s0",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          100.0,
+          199.0
+        ]
+      },
+      {
+        "end": [
+          299.0,
+          81.0
+        ],
+        "id": "s1",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          299.0,
+          198.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 524,
+    "tolerance": 3.0,
+    "warnings": [
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "37f8478e844b6c3ccc0507f29353537099547e4d5e18114dd5343c5503fbab84",
+  "edges": [
+    {
+      "a": "J-21061",
+      "arrow_id": "a0",
+      "b": "V-21060",
+      "connection_evidence": [
+        {
+          "kind": "junction_dot",
+          "point": [
+            299.0,
+            198.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "a_to_b",
+      "path": [
+        [
+          299.0,
+          198.0
+        ],
+        [
+          100.0,
+          199.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "J-21061",
+      "arrow_id": null,
+      "b": "V-21062",
+      "connection_evidence": [
+        {
+          "kind": "junction_dot",
+          "point": [
+            299.0,
+            198.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          299.0,
+          198.0
+        ],
+        [
+          499.0,
+          199.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "J-21061",
+      "arrow_id": null,
+      "b": "V-21063",
+      "connection_evidence": [
+        {
+          "kind": "junction_dot",
+          "point": [
+            299.0,
+            198.0
+          ],
+          "segment_ids": [
+            "s1"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          299.0,
+          198.0
+        ],
+        [
+          299.0,
+          81.0
+        ]
+      ],
+      "segment_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "input_sha256": "b63ce5d18e9db660cb37a8d0f8c1b2eb69be1ba6cf0f46bc3fda0cdc7855341c",
+  "ports_sha256": "34e63dedce918914006e9c96238fbfff7096b4509f2f093141351c8a97145190",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "e6c64a9a715a88d4572450924d52c74dd09db01d42a02d7e45b5ed6dfa3c1340",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

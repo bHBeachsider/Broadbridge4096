@@ -1,0 +1,121 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "a77ee8c5102e1d00f6d460097f448652125b1601e08e424fe8f57195a18c7d8c",
+    "junctions": [],
+    "route": "vector_pdf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          270.0,
+          160.0
+        ],
+        "id": "s0",
+        "source": "path:0",
+        "start": [
+          80.0,
+          160.0
+        ]
+      },
+      {
+        "end": [
+          520.0,
+          240.0
+        ],
+        "id": "s1",
+        "source": "path:1",
+        "start": [
+          330.0,
+          240.0
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "1b25ca0d0ff419ae101818fe20c2b6bb8cc96b7a14ec64a18e1e457dbaf013de",
+  "edges": [
+    {
+      "a": "V-31140",
+      "arrow_id": null,
+      "b": "V-31141",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            80.0,
+            160.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          80.0,
+          160.0
+        ],
+        [
+          270.0,
+          160.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "V-31142",
+      "arrow_id": null,
+      "b": "V-31143",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            330.0,
+            240.0
+          ],
+          "segment_ids": [
+            "s1"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          330.0,
+          240.0
+        ],
+        [
+          520.0,
+          240.0
+        ]
+      ],
+      "segment_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "input_sha256": "a77ee8c5102e1d00f6d460097f448652125b1601e08e424fe8f57195a18c7d8c",
+  "ports_sha256": "9ae3047063beba5d343a5b76f59319746331833e6e1dd0493a564e9094b277d2",
+  "route": "vector_pdf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "b7ba2d37f8ad33924c87270d71cce1a299eb4307dffbf02a264fd0f697a54e34",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

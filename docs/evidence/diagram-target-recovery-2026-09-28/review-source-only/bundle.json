@@ -1,0 +1,22 @@
+{
+  "schema": "broadbridge.diagram_review_bundle/1",
+  "mode": "source_only",
+  "coordinate_frame": "pixels-top-left",
+  "width": 600,
+  "height": 400,
+  "training_approved": false,
+  "proposal_template": {
+    "schema": "broadbridge.diagram_correction_proposal/1",
+    "mode": "source_only",
+    "revision": "frozen-2026-09-27",
+    "source_sha256": "561445ef135c8bd3cdc82faea83c5ace8bf3071b5e22beb7eb077037973cb3dc",
+    "detection_sha256": null,
+    "reference_sha256": null,
+    "before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "reviewer": "",
+    "date": null,
+    "status": "pending_authenticated_review",
+    "after": [],
+    "comment": ""
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [
+      {
+        "attachment_blocked": false,
+        "base": [
+          296.76860528654447,
+          197.80323054331862
+        ],
+        "bbox": [
+          290,
+          189,
+          317,
+          212
+        ],
+        "coordinate_frame": "pixels-top-left",
+        "id": "a0",
+        "pixel_sha256": "409958010b414716ac02867b67ff53169ad737f1ab884742f7e7fd0ed3e340bc",
+        "segment_id": "s0",
+        "source": "original-pixels:contour-rotated-template",
+        "source_sha256": "6710bd45312134d946ca55d6c944a933a16b0bffc3207745f42ffc6218805c84",
+        "template_iou": 0.872093023255814,
+        "tip": [
+          312.35706255466437,
+          206.80323054331862
+        ],
+        "transform_to_source_pixels": [
+          1,
+          0,
+          0,
+          1,
+          290,
+          189
+        ]
+      }
+    ],
+    "coordinate_frame": "pixels-top-left",
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "6710bd45312134d946ca55d6c944a933a16b0bffc3207745f42ffc6218805c84",
+    "junctions": [
+      {
+        "id": "j1",
+        "kind": "shared_endpoint",
+        "point": [
+          352.7717842323651,
+          230.3941908713693
+        ],
+        "segment_ids": [
+          "s0",
+          "s1"
+        ]
+      },
+      {
+        "id": "j2",
+        "kind": "shared_endpoint",
+        "point": [
+          350.0,
+          229.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s1"
+        ]
+      },
+      {
+        "id": "j3",
+        "kind": "shared_endpoint",
+        "point": [
+          405.0,
+          260.0
+        ],
+        "segment_ids": [
+          "s1",
+          "s2"
+        ]
+      }
+    ],
+    "pixel_sha256": "532c878835e4e4b4de25a3c575116cddede9f7840a7047e7573e887cfa1bde52",
+    "pixel_shape": [
+      400,
+      600,
+      3
+    ],
+    "raster_input_policy": "supplied text masks only; arrows never erased from independent line branch",
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          352.7717842323651,
+          230.3941908713693
+        ],
+        "id": "s0",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          207.0,
+          146.0
+        ]
+      },
+      {
+        "end": [
+          405.0,
+          260.0
+        ],
+        "id": "s1",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          350.0,
+          229.0
+        ]
+      },
+      {
+        "end": [
+          429.0,
+          274.0
+        ],
+        "id": "s2",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          407.0,
+          262.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 245,
+    "tolerance": 3.0,
+    "warnings": [
+      "experimental_raster_requires_reference_review",
+      "unattached_port:V-31030"
+    ]
+  },
+  "detection_sha256": "7cc917a8f10a7d36a2c62ce2bbba369f4be1ceb1e86098ba765e68714c3902c1",
+  "edges": [
+    {
+      "a": "J@350.00,229.00",
+      "arrow_id": null,
+      "b": "J@352.77,230.39",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            350.0,
+            229.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            352.7717842323651,
+            230.3941908713693
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          350.0,
+          229.0
+        ],
+        [
+          352.7717842323651,
+          230.3941908713693
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "J@352.77,230.39",
+      "arrow_id": null,
+      "b": "V-31031",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            352.7717842323651,
+            230.3941908713693
+          ],
+          "segment_ids": [
+            "s1"
+          ]
+        },
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            405.0,
+            260.0
+          ],
+          "segment_ids": [
+            "s1",
+            "s2"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          352.7717842323651,
+          230.3941908713693
+        ],
+        [
+          405.0,
+          260.0
+        ],
+        [
+          429.0,
+          274.0
+        ]
+      ],
+      "segment_ids": [
+        "s1",
+        "s2"
+      ]
+    }
+  ],
+  "input_sha256": "6710bd45312134d946ca55d6c944a933a16b0bffc3207745f42ffc6218805c84",
+  "ports_sha256": "e5f077cd85ff20cc42ac53d8b56968d6fba726574772f2632984043cd9612a94",
+  "route": "raster",
+  "rules": {
+    "reason": "No shared endpoint at claimed location",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "fail",
+    "training_approved": false
+  },
+  "run_sha256": "b7ba2d37f8ad33924c87270d71cce1a299eb4307dffbf02a264fd0f697a54e34",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "broadbridge.diagram_review_bundle/1",
+  "mode": "detector_overlay",
+  "coordinate_frame": "pixels-top-left",
+  "width": 600,
+  "height": 400,
+  "training_approved": false,
+  "proposal_template": {
+    "schema": "broadbridge.diagram_correction_proposal/1",
+    "mode": "detector_overlay",
+    "revision": "frozen-2026-09-27",
+    "source_sha256": "561445ef135c8bd3cdc82faea83c5ace8bf3071b5e22beb7eb077037973cb3dc",
+    "detection_sha256": "828aca8bf23d33b2092bb1ef790cd6f1f65fb34fcdce6b8fde9b2b43ecbdaf75",
+    "reference_sha256": "a11f0b9f2854c8e51af4190816f3f4334ff0e01a88f1bf35ce4d3cb042520b23",
+    "before_sha256": "6abf9121eba71069f4153def2ce546a64f41435d6740125607fbc33bb06d5a0c",
+    "reviewer": "",
+    "date": null,
+    "status": "pending_authenticated_review",
+    "after": [
+      {
+        "a": "V-21000",
+        "arrow_id": "a0",
+        "b": "V-21001",
+        "connection_evidence": [
+          {
+            "kind": "shared_endpoint",
+            "point": [
+              100.0,
+              199.0
+            ],
+            "segment_ids": [
+              "s0"
+            ]
+          }
+        ],
+        "convention": "no_dot_crossing_nonconnecting/1",
+        "direction": "a_to_b",
+        "path": [
+          [
+            100.0,
+            199.0
+          ],
+          [
+            499.0,
+            199.0
+          ]
+        ],
+        "segment_ids": [
+          "s0"
+        ]
+      }
+    ],
+    "comment": ""
+  }
+}

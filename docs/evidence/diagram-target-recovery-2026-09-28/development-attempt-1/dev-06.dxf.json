@@ -1,0 +1,91 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [
+      {
+        "base": [
+          290.0,
+          200.0
+        ],
+        "id": "a0",
+        "segment_id": "s0",
+        "source": "SOLID:30",
+        "tip": [
+          285.0,
+          200.0
+        ]
+      }
+    ],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "fc2e8103508ade9631bf253bbb25694b959e6aeab382ea6c91665d26e2fff2eb",
+    "junctions": [],
+    "route": "vector_dxf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          450.0,
+          200.0
+        ],
+        "id": "s0",
+        "source": "LINE:2F",
+        "start": [
+          150.0,
+          200.0
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": []
+  },
+  "detection_sha256": "ca28ea0254453f7ace3d265642a9cd055b4c8d964d5fee240b45122a778b9b58",
+  "edges": [
+    {
+      "a": "V-31060",
+      "arrow_id": "a0",
+      "b": "V-31061",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            150.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "b_to_a",
+      "path": [
+        [
+          150.0,
+          200.0
+        ],
+        [
+          450.0,
+          200.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    }
+  ],
+  "input_sha256": "fc2e8103508ade9631bf253bbb25694b959e6aeab382ea6c91665d26e2fff2eb",
+  "ports_sha256": "f1eb60803f2805fa1f50025dc634272d3df6d2178ca5dee1f7abf508caca587a",
+  "route": "vector_dxf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "a3bacf1943fe4fd1ec932cc17ece63a22ffc5a1900c10c1b731e5e546841926d",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": false
+}

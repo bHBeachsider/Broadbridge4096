@@ -1,0 +1,43 @@
+{
+  "attempt": 3,
+  "config_id": "independent-raster-v3",
+  "engine_sources": {
+    "src/ingestion/diagram_geometry.py": "06976d8f05d5277fa3f16acbbd6cc8e73b54d74d43591dcf87fb49f6c0abb543",
+    "src/ingestion/diagram_metrics.py": "159241e508084df5a9c99f5eca4cf2652e259518c4ce26573f2a44a2f05b376e",
+    "src/ingestion/geometry_contract.py": "ae930641ba25f30719b44c50d3588af0fc89bb9ae8d9daa94b551f2c139f7546",
+    "src/ingestion/geometry_extractors.py": "0dea8ee6a52f413f30423aeacc8dcbb23a2c8442daa93377d50d14982a680c3b",
+    "src/ingestion/raster_connectivity.py": "a5af5bed12bd24c8f992c2c5f1f7a4b787757f477a72f48536c7b5fd04555b88",
+    "src/ingestion/visual_connectivity.py": "a82b09f5aeee0c8a1a35a2fb963cd3b17776427321453043acc7ddd9404ee553"
+  },
+  "evaluation_role": "development",
+  "harness_sha256": "f24d9038a539888ba177f4ccbab37ae1f00d4d4137c64ce6c29e8be127a0d3a8",
+  "input_manifest_sha256": "ec26c45446c588129a7b88c85d9888825762cb0925bba5e57a80d1573227ca39",
+  "legacy_metrics_sha256": "dc04b1a6b028ed67dac53c77872bf9b70f0b432033b0b32721641d9c6604cd31",
+  "model_calls": 0,
+  "notes": "Masks and ports supplied. Same construction family; no independent qualification.",
+  "phase": "review_verification",
+  "provenance": "pre-run-checksum",
+  "schema": "broadbridge.diagram_recovery_run/1",
+  "source_snapshot": {
+    "harness/deterministic_diagrams.py": "dc04b1a6b028ed67dac53c77872bf9b70f0b432033b0b32721641d9c6604cd31",
+    "harness/diagram_fixture_suite.py": "5a72ff89b2d69e7ba16e7736be9285423885cb8d7c863799917e45bbcaa25797",
+    "harness/diagram_recovery.py": "f24d9038a539888ba177f4ccbab37ae1f00d4d4137c64ce6c29e8be127a0d3a8",
+    "src/ingestion/diagram_geometry.py": "06976d8f05d5277fa3f16acbbd6cc8e73b54d74d43591dcf87fb49f6c0abb543",
+    "src/ingestion/diagram_metrics.py": "159241e508084df5a9c99f5eca4cf2652e259518c4ce26573f2a44a2f05b376e",
+    "src/ingestion/geometry_contract.py": "ae930641ba25f30719b44c50d3588af0fc89bb9ae8d9daa94b551f2c139f7546",
+    "src/ingestion/geometry_extractors.py": "0dea8ee6a52f413f30423aeacc8dcbb23a2c8442daa93377d50d14982a680c3b",
+    "src/ingestion/raster_connectivity.py": "a5af5bed12bd24c8f992c2c5f1f7a4b787757f477a72f48536c7b5fd04555b88",
+    "src/ingestion/visual_connectivity.py": "a82b09f5aeee0c8a1a35a2fb963cd3b17776427321453043acc7ddd9404ee553"
+  },
+  "training_approved": false,
+  "versions": {
+    "Pillow": "12.1.1",
+    "PyMuPDF": "1.28.2",
+    "ezdxf": "1.4.4",
+    "jsonschema": "4.26.0",
+    "numpy": "2.3.3",
+    "opencv": "4.13.0",
+    "scikit-image": "0.26.0",
+    "scipy": "1.17.1"
+  }
+}

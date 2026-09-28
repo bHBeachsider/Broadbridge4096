@@ -1,0 +1,24 @@
+{
+  "schema": "broadbridge.diagram_convention_scope/1",
+  "status": "pending_technical_acceptance",
+  "reviewer": null,
+  "training_approved": false,
+  "convention_id": "no_dot_crossing_nonconnecting/1",
+  "scope": "Local monochrome simple-geometry pilot with supplied ports; no plant-wide ISA certification",
+  "cases": [
+    {"name":"unmarked crossing","behavior":"two straight paths; no turning connection","test":"tests/test_diagram_geometry.py::test_plain_crossing_has_only_straight_connections"},
+    {"name":"native hop","behavior":"preserve native curve continuity; no junction with crossed line","test":"tests/test_diagram_geometry.py::test_hop_curve_never_joins_crossing_straight_pipe"},
+    {"name":"tee with or without filled dot","behavior":"connect supported incident paths","test":"tests/test_diagram_geometry.py::test_tee_connects_and_splits_at_labeled_junction"},
+    {"name":"reversed direction claim","behavior":"reject if inconsistent with detected arrow tip/base","test":"tests/test_geometry_contract.py::test_detected_arrow_cannot_be_cited_in_reverse"},
+    {"name":"unexplained break","behavior":"abstain; source continuity is not visible evidence","test":"tests/test_diagram_geometry.py::test_gap_is_not_invented_connection"},
+    {"name":"off-page merge","behavior":"unsupported; no cross-sheet resolver or inferred merge; require sheet/tag/revision/legend evidence","test":null},
+    {"name":"reducer or instrument symbol","behavior":"semantic interpretation unsupported; needs a reviewed symbol library and port model","test":null}
+  ],
+  "review_questions": [
+    "Which plant/drawing legend and revision defines each supported crossing, hop and break?",
+    "Which arrows represent process flow rather than instrument signals?",
+    "What combination of sheet, line/tag and revision uniquely matches an off-page connector?",
+    "Which equipment/nozzle ports and symbol classes are required for the first useful task?",
+    "When should ambiguous marks trigger abstention and a better drawing request?"
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [
+      {
+        "base": [
+          252.0,
+          200.0
+        ],
+        "id": "a0",
+        "segment_id": "s0",
+        "source": "SOLID:30",
+        "tip": [
+          270.0,
+          200.0
+        ]
+      },
+      {
+        "base": [
+          348.0,
+          200.0
+        ],
+        "id": "a1",
+        "segment_id": "s0",
+        "source": "SOLID:31",
+        "tip": [
+          330.0,
+          200.0
+        ]
+      }
+    ],
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "262a0891d96193a4352619fb0b68f6de3e6eb3a515f792d92ed20a8fbc3736c2",
+    "junctions": [],
+    "route": "vector_dxf",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          450.0,
+          200.0
+        ],
+        "id": "s0",
+        "source": "LINE:2F",
+        "start": [
+          150.0,
+          200.0
+        ]
+      }
+    ],
+    "tolerance": 2.0,
+    "warnings": [
+      "conflicting_arrows"
+    ]
+  },
+  "detection_sha256": "84bae65d1f0addcd100878f9aefb712368d3a4b168ecefaebb48f48f94badbad",
+  "edges": [
+    {
+      "a": "V-31080",
+      "arrow_id": null,
+      "b": "V-31081",
+      "connection_evidence": [
+        {
+          "kind": "shared_endpoint",
+          "point": [
+            150.0,
+            200.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          150.0,
+          200.0
+        ],
+        [
+          450.0,
+          200.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    }
+  ],
+  "input_sha256": "262a0891d96193a4352619fb0b68f6de3e6eb3a515f792d92ed20a8fbc3736c2",
+  "ports_sha256": "447bf5f39391d5f5e4abe03a487f8e80c636340be9546d44aaed793f0550ed09",
+  "route": "vector_dxf",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "6f6b01148c9d995dc6e91c8804a07f944ac0463cdc146453865c73d9d5a1225a",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

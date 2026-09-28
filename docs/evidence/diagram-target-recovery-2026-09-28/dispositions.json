@@ -1,0 +1,19 @@
+{
+  "schema": "broadbridge.diagram_run_dispositions/1",
+  "training_approved": false,
+  "qualification_eligible": false,
+  "parameter_attempts": 3,
+  "review_verification": "Additional replay after the mask-created-arrow bug fix; no further parameter search",
+  "diagnostic_only": ["development-attempt-1", "regression-attempt-1"],
+  "setup_failure": {
+    "directory": "development-attempt-2",
+    "status": "failed_before_extraction",
+    "reason": "OpenCV module installed, but opencv-python-headless distribution metadata absent",
+    "model_calls": 0,
+    "detector_runs": 0,
+    "retry": "development-attempt-2-complete"
+  },
+  "authoritative_reports": ["development-reviewed/report.json", "regression-reviewed/report.json"],
+  "early_report_limitation": "Attempt summaries retain raw crossing false-edge counts but their combined critical-flag total omitted that category; fixed in reviewed reports. Old results unchanged.",
+  "all_sources": "Original synthetic construction; same family; no client data or new downloads"
+}

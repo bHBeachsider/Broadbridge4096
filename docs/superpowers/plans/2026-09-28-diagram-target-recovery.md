@@ -18,6 +18,30 @@ Both branches: `codex/diagram-target-recovery`.
 
 ## Sequence and estimates
 
+### Execution record: first cycle
+
+The [results and residual work](../../DIAGRAM_TARGET_RECOVERY_RESULTS.md) are the
+current execution record. This plan is not marked wholly complete: independent
+qualification and remaining detector/reviewer capabilities still need work.
+
+| Package | State after this cycle |
+|---|---|
+| DG-01 | Implemented/tested offline; authenticated acceptances remain unverified |
+| DG-02 | 14 new development drawings frozen; no fabricated holdouts; 24 slots reserved for later independent sources |
+| DG-03 | Three configurations and post-review verification executed; raster targets still not all met |
+| DG-04 | Existing vector rules revalidated and convention scope documented; off-page/symbol semantics unsupported pending reviewed evidence |
+| DG-05 | Local PNG prototype and pending exports tested; vector transforms, finished tracing controls, visual check and real timing study remain open |
+| DG-06 | Stratified raw/accepted reports, explicit unknown/empty/unmeasured metrics and CI tests implemented |
+| DG-07 | Fresh review fixed; full suites 842/450 passed; draft publication only |
+| DG-08 | Open: independent sources, signed references/visibility/conventions, uncertainty analysis, rights and release |
+
+Decisions: generated seeds from one family remain development data; the planned
+synthetic reserve split was replaced with empty reserves. The unexplained gap was
+not filled to inflate recall. One post-review verification followed three
+experiments to confirm a reproduced false-direction fix. No GPU or model use.
+
+### Remaining schedule
+
 Effort estimates are engineering estimates, not scheduled promises. Human
 qualification depends on available rights-cleared drawings and independent review.
 

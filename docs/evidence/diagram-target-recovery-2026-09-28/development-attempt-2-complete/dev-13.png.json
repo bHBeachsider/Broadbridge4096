@@ -1,0 +1,91 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "coordinate_frame": "pixels-top-left",
+    "dots": [],
+    "excluded_intersections": [],
+    "input_sha256": "fe6e57dd5c72e453b94cb18200b54cdaceaab9cdbc1b8a8652ab6b6f2e1dc170",
+    "junctions": [],
+    "pixel_sha256": "15a496d987a2931dec565f5890de502ca627c7582932168776d85998e9ba481d",
+    "pixel_shape": [
+      400,
+      600,
+      3
+    ],
+    "raster_input_policy": "supplied text masks only; arrows never erased from independent line branch",
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          288.0,
+          199.0
+        ],
+        "id": "s0",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          80.0,
+          199.0
+        ]
+      },
+      {
+        "end": [
+          469.0,
+          199.0
+        ],
+        "id": "s1",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          395.0,
+          199.0
+        ]
+      },
+      {
+        "end": [
+          519.0,
+          199.0
+        ],
+        "id": "s2",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          476.0,
+          199.0
+        ]
+      },
+      {
+        "end": [
+          377.0,
+          199.0
+        ],
+        "id": "s3",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          311.0,
+          199.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 418,
+    "tolerance": 3.0,
+    "warnings": [
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "08e654f3f663b4fc2d50e473dafe75f29b812311ea4d4df9d56e67d4ec692c7a",
+  "edges": [],
+  "input_sha256": "fe6e57dd5c72e453b94cb18200b54cdaceaab9cdbc1b8a8652ab6b6f2e1dc170",
+  "ports_sha256": "a3c333c00521a99bb1360c40a2124ac6762d3fe643723e0012e9bfc4d9aff8d9",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "b7ba2d37f8ad33924c87270d71cce1a299eb4307dffbf02a264fd0f697a54e34",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

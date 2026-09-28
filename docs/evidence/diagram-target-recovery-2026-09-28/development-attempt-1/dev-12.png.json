@@ -1,0 +1,186 @@
+{
+  "convention": "no_dot_crossing_nonconnecting/1",
+  "detection": {
+    "arrows": [],
+    "coordinate_frame": "pixels-top-left",
+    "dots": [
+      {
+        "point": [
+          299.5,
+          199.0
+        ],
+        "radius": 6.0,
+        "source": "original-raster-blob"
+      }
+    ],
+    "excluded_intersections": [],
+    "input_sha256": "f004034e090f95443e39b906971c9d3da8abbfec0467d4fc3de9b8bfe93e3c92",
+    "junctions": [
+      {
+        "id": "j2",
+        "kind": "junction_dot",
+        "point": [
+          299.0,
+          198.0
+        ],
+        "segment_ids": [
+          "s0",
+          "s1"
+        ]
+      }
+    ],
+    "pixel_sha256": "8353d8c56a807d50ace352fbfb4d3841aa7c40a39d8a0abfa218d8ef060b0644",
+    "pixel_shape": [
+      400,
+      600,
+      3
+    ],
+    "raster_input_policy": "supplied text masks only; arrows never erased from independent line branch",
+    "route": "raster",
+    "schema": "foundry.diagram_detection/1",
+    "segments": [
+      {
+        "end": [
+          519.0,
+          199.0
+        ],
+        "id": "s0",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          80.0,
+          199.0
+        ]
+      },
+      {
+        "end": [
+          299.0,
+          61.0
+        ],
+        "id": "s1",
+        "source": "unchanged-skeleton-hough",
+        "start": [
+          299.0,
+          198.0
+        ]
+      }
+    ],
+    "skeleton_pixels": 578,
+    "tolerance": 3.0,
+    "warnings": [
+      "experimental_raster_requires_reference_review"
+    ]
+  },
+  "detection_sha256": "c982d0777ad4cf231c906d0be8a00a46769e5abbbc5c38aef7c7cd9949342a6b",
+  "edges": [
+    {
+      "a": "J-31121",
+      "arrow_id": null,
+      "b": "V-31120",
+      "connection_evidence": [
+        {
+          "kind": "junction_dot",
+          "point": [
+            299.0,
+            198.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          299.0,
+          198.0
+        ],
+        [
+          80.0,
+          199.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "J-31121",
+      "arrow_id": null,
+      "b": "V-31122",
+      "connection_evidence": [
+        {
+          "kind": "junction_dot",
+          "point": [
+            299.0,
+            198.0
+          ],
+          "segment_ids": [
+            "s0"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          299.0,
+          198.0
+        ],
+        [
+          519.0,
+          199.0
+        ]
+      ],
+      "segment_ids": [
+        "s0"
+      ]
+    },
+    {
+      "a": "J-31121",
+      "arrow_id": null,
+      "b": "V-31123",
+      "connection_evidence": [
+        {
+          "kind": "junction_dot",
+          "point": [
+            299.0,
+            198.0
+          ],
+          "segment_ids": [
+            "s1"
+          ]
+        }
+      ],
+      "convention": "no_dot_crossing_nonconnecting/1",
+      "direction": "unknown",
+      "path": [
+        [
+          299.0,
+          198.0
+        ],
+        [
+          299.0,
+          61.0
+        ]
+      ],
+      "segment_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "input_sha256": "f004034e090f95443e39b906971c9d3da8abbfec0467d4fc3de9b8bfe93e3c92",
+  "ports_sha256": "766028e2a32eddf03bf16471ee06731eae8069b8550a5b7344ec452f04f9d15b",
+  "route": "raster",
+  "rules": {
+    "reason": "Evidence rules satisfied; independent graph review still required",
+    "schema": "foundry.geometry_rules_check/1",
+    "status": "pass",
+    "training_approved": false
+  },
+  "run_sha256": "a3bacf1943fe4fd1ec932cc17ece63a22ffc5a1900c10c1b731e5e546841926d",
+  "schema": "foundry.detected_connectivity/1",
+  "status": "completed",
+  "training_approved": false,
+  "uncertain": true
+}

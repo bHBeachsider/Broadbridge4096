@@ -20,7 +20,7 @@ FQ-01 through FQ-07 prepare software, extraction evidence and reviewable inputs 
 | FQ-02 | Extract the acquired DOE handbook pilot section | PREPARED_WAIT_REVIEW | PDF 35-37 with images, two text views, glyphs, equation/conversion proposals, nine exceptions and blank review packet; no QA release |
 | FQ-03 | Prepare new engineering source families | PREPARED_WAIT_REVIEW | Five exact DOE documents/four provisional families; rights/technical holds; frozen public-v1 families excluded |
 | FQ-04 | Audit the existing Hugging Face math sample | PREPARED_WAIT_REVIEW | 1,200 rows audited; three exact groups/four template groups; ten spot-checks expose three quality problems; quality hold |
-| FQ-05 | Test extraction and normalization coverage | IN_PROGRESS | [Vector continuity repair](VECTOR_CONTINUITY_RESULTS.md): same 12 frozen regression drawings; PDF/DXF 100% precision/95.8% recall; confidence gates not met, raster arrows unresolved. Prompting closed; diagram training blocked, including crop-history pinning. |
+| FQ-05 | Test extraction and normalization coverage | ISOLATED_IN_PROGRESS | [Diagram target recovery](DIAGRAM_TARGET_RECOVERY_RESULTS.md) on `codex/diagram-target-recovery` in both repos: vector unchanged; raster regression 21/24 edges and 5/7 directions. Remaining targets/qualification open; text/calculation work continues. |
 | FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | PREPARED_WAIT_REVIEW | Eight mock acceptance/release refusals, hash-keyed fixture verified and pinned CPU mask/length audit; live review wiring remains open |
 | FQ-07 | Prepare the helper comparison protocol revision | READY_OFFLINE | Shorter bounded paired protocol, model/provider revision fields and cost ceiling proposal; no live calls |
 | FQ-08 | Confirm priority tasks, references and recipes (SD-01) | WAIT_REVIEW | Named decisions on first tasks, exclusions, recipe versions, hard-fail criteria and reviewer competence |
@@ -38,6 +38,9 @@ State meanings: **READY_OFFLINE** = queued preparation can proceed without a liv
 The intended first real synthetic pilot includes all five question types; calculation examples also depend on independent acceptance of FQ-01's method. A non-calculation pilot may proceed with recorded missing coverage rather than invented numerical verification. FQ-12 describes the synthetic-inclusive release; an independently approved expert-only release may be prepared for the later matched comparison without pretending the synthetic pilot ran.
 
 ## Existing work to reuse
+
+`ISOLATED_IN_PROGRESS` means diagram implementation has its own branches. It does
+not block dispatch of FQ-07 or imply a background scheduler or training approval.
 
 - **SD-02 and SD-03 already exist for offline rehearsal:** pending review packets, bounded author/challenger orchestration and fabricated examples. Reuse the [batch runbook](SYNTHETIC_BATCH_RUNBOOK.md); do not rebuild them. Local code was inspected at Broadbridge `fed3482` and Foundry `f1790df`; both remain in draft delivery branches.
 - **Public-v1 has already run as helper evaluation:** ten agency publications, thirty questions, thirty returned Qwen answers and thirty Mistral unavailable/not-run slots. This is not the Qwen3-8B S0 baseline. The [evaluation record](PUBLIC_DOCUMENT_EVALUATION.md) describes its limitations; technical score status must be read from the review workflow before any new decision.
