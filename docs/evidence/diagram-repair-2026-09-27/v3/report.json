@@ -1,0 +1,504 @@
+{
+  "schema": "broadbridge.diagram_tracing_results/1",
+  "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922",
+  "rows": [
+    {
+      "id": "forward-chain",
+      "elapsed_seconds": 123.534,
+      "check": {
+        "schema": "foundry.connectivity_check/1",
+        "status": "fail",
+        "training_approved": false,
+        "review_status": "pending",
+        "missing_edges": [
+          [
+            "V-541",
+            "V-542"
+          ],
+          [
+            "V-542",
+            "V-543"
+          ]
+        ],
+        "unexpected_edges": [],
+        "direction_errors": [],
+        "reference_sha256": "e3673392594fbf471b2a26c19519047419906eca8121c8dea0f97aa394292aaa",
+        "input_sha256": "2c2646b1fa5bfcb23f5d9c30778b4fdd6c137163c994f424c3cdc55b0d163268",
+        "proposal_sha256": "f955fd3dd49154dadf442abc1504cc1f62f494e245aaaf89bbcd1c5b91278e61",
+        "expected_count": 2,
+        "proposed_count": 0,
+        "reason": "Direct graph mismatch"
+      },
+      "composition_error": null,
+      "composed": {
+        "schema": "foundry.visual_proposal/1",
+        "profile": "connectivity_v2",
+        "status": "completed",
+        "derived_protocol": "separate_routes_arrows_v3",
+        "input_sha256": "2c2646b1fa5bfcb23f5d9c30778b4fdd6c137163c994f424c3cdc55b0d163268",
+        "model": "qwen3-vl:4b-instruct-q4_K_M",
+        "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+        "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922",
+        "stage_sha256s": {
+          "connections": "a02efea88a009fa781a20d228e15cb495226983e6140e90f1ad07d4e74aff7ea",
+          "arrows": "e58244eb4afa3efca1a4a279361e45d80e656bae17520969395bb532febeb282"
+        },
+        "review_status": "pending",
+        "training_approved": false,
+        "proposal": {
+          "edges": [],
+          "uncertain": true
+        }
+      },
+      "metrics": {
+        "edge_tp": 0,
+        "edge_fp": 0,
+        "edge_fn": 2,
+        "edge_precision": null,
+        "edge_recall": 0.0,
+        "direction_tp": 0,
+        "direction_scored_claims": 0,
+        "known_reference_directions": 2,
+        "direction_precision": null,
+        "direction_recall": 0.0,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_metrics": {
+        "edge_tp": 2,
+        "edge_fp": 0,
+        "edge_fn": 0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "direction_tp": 2,
+        "direction_scored_claims": 2,
+        "known_reference_directions": 2,
+        "direction_precision": 1.0,
+        "direction_recall": 1.0,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_check": "pass",
+      "baseline_seconds": 69.913
+    },
+    {
+      "id": "reverse-chain",
+      "elapsed_seconds": 118.015,
+      "check": {
+        "schema": "foundry.connectivity_check/1",
+        "status": "fail",
+        "training_approved": false,
+        "review_status": "pending",
+        "missing_edges": [
+          [
+            "V-379",
+            "V-380"
+          ],
+          [
+            "V-380",
+            "V-381"
+          ]
+        ],
+        "unexpected_edges": [],
+        "direction_errors": [],
+        "reference_sha256": "7866792905354e7e6aa2f9665d40dafa88733df2e9c1ded25c5572845e129982",
+        "input_sha256": "2a85d1fa9b1820f5a7043d69e28f703e515ec6ca685e6d516402bbe24d3b080b",
+        "proposal_sha256": "f955fd3dd49154dadf442abc1504cc1f62f494e245aaaf89bbcd1c5b91278e61",
+        "expected_count": 2,
+        "proposed_count": 0,
+        "reason": "Direct graph mismatch"
+      },
+      "composition_error": null,
+      "composed": {
+        "schema": "foundry.visual_proposal/1",
+        "profile": "connectivity_v2",
+        "status": "completed",
+        "derived_protocol": "separate_routes_arrows_v3",
+        "input_sha256": "2a85d1fa9b1820f5a7043d69e28f703e515ec6ca685e6d516402bbe24d3b080b",
+        "model": "qwen3-vl:4b-instruct-q4_K_M",
+        "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+        "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922",
+        "stage_sha256s": {
+          "connections": "1a6854db21ca6cf7a6e9efae5ca4dc015b2ba58bc4d22e56e3e92c104d78fe26",
+          "arrows": "e473906a5c6b30c3926ca98b48bdfaa2efd86910317d5301556a698cc213bb7f"
+        },
+        "review_status": "pending",
+        "training_approved": false,
+        "proposal": {
+          "edges": [],
+          "uncertain": true
+        }
+      },
+      "metrics": {
+        "edge_tp": 0,
+        "edge_fp": 0,
+        "edge_fn": 2,
+        "edge_precision": null,
+        "edge_recall": 0.0,
+        "direction_tp": 0,
+        "direction_scored_claims": 0,
+        "known_reference_directions": 2,
+        "direction_precision": null,
+        "direction_recall": 0.0,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_metrics": {
+        "edge_tp": 2,
+        "edge_fp": 0,
+        "edge_fn": 0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "direction_tp": 0,
+        "direction_scored_claims": 2,
+        "known_reference_directions": 2,
+        "direction_precision": 0.0,
+        "direction_recall": 0.0,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_check": "fail",
+      "baseline_seconds": 81.69
+    },
+    {
+      "id": "junction",
+      "elapsed_seconds": 112.984,
+      "check": {
+        "schema": "foundry.connectivity_check/1",
+        "status": "fail",
+        "training_approved": false,
+        "review_status": "pending",
+        "missing_edges": [
+          [
+            "J-144",
+            "V-143"
+          ],
+          [
+            "J-144",
+            "V-145"
+          ],
+          [
+            "J-144",
+            "V-146"
+          ]
+        ],
+        "unexpected_edges": [],
+        "direction_errors": [],
+        "reference_sha256": "ed98d69240a17f9b8eb36ba856a5fa282f5c8776fed608c1cb4a3d555422ace0",
+        "input_sha256": "7090a5687d95941fefad648d4068797d77273529757cf9886380a1a2c5ab7f23",
+        "proposal_sha256": "f955fd3dd49154dadf442abc1504cc1f62f494e245aaaf89bbcd1c5b91278e61",
+        "expected_count": 3,
+        "proposed_count": 0,
+        "reason": "Direct graph mismatch"
+      },
+      "composition_error": null,
+      "composed": {
+        "schema": "foundry.visual_proposal/1",
+        "profile": "connectivity_v2",
+        "status": "completed",
+        "derived_protocol": "separate_routes_arrows_v3",
+        "input_sha256": "7090a5687d95941fefad648d4068797d77273529757cf9886380a1a2c5ab7f23",
+        "model": "qwen3-vl:4b-instruct-q4_K_M",
+        "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+        "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922",
+        "stage_sha256s": {
+          "connections": "2fe83cfe7e7d95172332e53f28e917806ee09ad7ff9db07649727c11a7532913",
+          "arrows": "fd8d26b2fc045559dc535df6d51e15c1867c2f2f2e6831e74b7117156eb536b1"
+        },
+        "review_status": "pending",
+        "training_approved": false,
+        "proposal": {
+          "edges": [],
+          "uncertain": true
+        }
+      },
+      "metrics": {
+        "edge_tp": 0,
+        "edge_fp": 0,
+        "edge_fn": 3,
+        "edge_precision": null,
+        "edge_recall": 0.0,
+        "direction_tp": 0,
+        "direction_scored_claims": 0,
+        "known_reference_directions": 3,
+        "direction_precision": null,
+        "direction_recall": 0.0,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_metrics": {
+        "edge_tp": 3,
+        "edge_fp": 0,
+        "edge_fn": 0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "direction_tp": 3,
+        "direction_scored_claims": 3,
+        "known_reference_directions": 3,
+        "direction_precision": 1.0,
+        "direction_recall": 1.0,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_check": "pass",
+      "baseline_seconds": 68.586
+    },
+    {
+      "id": "crossing-clear",
+      "elapsed_seconds": 111.555,
+      "check": {
+        "schema": "foundry.connectivity_check/1",
+        "status": "fail",
+        "training_approved": false,
+        "review_status": "pending",
+        "missing_edges": [
+          [
+            "V-716",
+            "V-717"
+          ],
+          [
+            "V-718",
+            "V-719"
+          ]
+        ],
+        "unexpected_edges": [],
+        "direction_errors": [],
+        "reference_sha256": "a1b583151b58eada0385f17b107a1a3e901b20a94f921e96d7ed7cee462de37a",
+        "input_sha256": "e95f8f2ae56b65e9a708ee9a4627457c535280b12568ee6dda2bcf91e9c6f890",
+        "proposal_sha256": "f955fd3dd49154dadf442abc1504cc1f62f494e245aaaf89bbcd1c5b91278e61",
+        "expected_count": 2,
+        "proposed_count": 0,
+        "reason": "Direct graph mismatch"
+      },
+      "composition_error": null,
+      "composed": {
+        "schema": "foundry.visual_proposal/1",
+        "profile": "connectivity_v2",
+        "status": "completed",
+        "derived_protocol": "separate_routes_arrows_v3",
+        "input_sha256": "e95f8f2ae56b65e9a708ee9a4627457c535280b12568ee6dda2bcf91e9c6f890",
+        "model": "qwen3-vl:4b-instruct-q4_K_M",
+        "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+        "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922",
+        "stage_sha256s": {
+          "connections": "bc5735a81894783d17c6077b25b88a6a6d2b6ab00e7cb40ed5b63faca2040b02",
+          "arrows": "1824ff5ec809e494f8457c07728d530e9d042588cd29810b75bb6e85d0df7c6a"
+        },
+        "review_status": "pending",
+        "training_approved": false,
+        "proposal": {
+          "edges": [],
+          "uncertain": true
+        }
+      },
+      "metrics": {
+        "edge_tp": 0,
+        "edge_fp": 0,
+        "edge_fn": 2,
+        "edge_precision": null,
+        "edge_recall": 0.0,
+        "direction_tp": 0,
+        "direction_scored_claims": 0,
+        "known_reference_directions": 0,
+        "direction_precision": null,
+        "direction_recall": null,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_metrics": {
+        "edge_tp": 2,
+        "edge_fp": 2,
+        "edge_fn": 0,
+        "edge_precision": 0.5,
+        "edge_recall": 1.0,
+        "direction_tp": 0,
+        "direction_scored_claims": 0,
+        "known_reference_directions": 0,
+        "direction_precision": null,
+        "direction_recall": null,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_check": "fail",
+      "baseline_seconds": 69.819
+    },
+    {
+      "id": "unknown-chain",
+      "elapsed_seconds": 112.325,
+      "check": {
+        "schema": "foundry.connectivity_check/1",
+        "status": "fail",
+        "training_approved": false,
+        "review_status": "pending",
+        "missing_edges": [
+          [
+            "V-800",
+            "V-801"
+          ],
+          [
+            "V-801",
+            "V-802"
+          ]
+        ],
+        "unexpected_edges": [],
+        "direction_errors": [],
+        "reference_sha256": "917f7097962efff9c23d783c386f60551ad001bf26661de924786d0ce3936400",
+        "input_sha256": "06b9ec5fe57112ba28f89ac93150bb103246ca1923ab39b79eefbe40e0b6f3af",
+        "proposal_sha256": "f955fd3dd49154dadf442abc1504cc1f62f494e245aaaf89bbcd1c5b91278e61",
+        "expected_count": 2,
+        "proposed_count": 0,
+        "reason": "Direct graph mismatch"
+      },
+      "composition_error": null,
+      "composed": {
+        "schema": "foundry.visual_proposal/1",
+        "profile": "connectivity_v2",
+        "status": "completed",
+        "derived_protocol": "separate_routes_arrows_v3",
+        "input_sha256": "06b9ec5fe57112ba28f89ac93150bb103246ca1923ab39b79eefbe40e0b6f3af",
+        "model": "qwen3-vl:4b-instruct-q4_K_M",
+        "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+        "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922",
+        "stage_sha256s": {
+          "connections": "fb6263628c28ed82dad4ec9afe5fd7d41a29789de9ed31e7bf23b8953a912ae9",
+          "arrows": "2608938a1d755a5e6e038a8cbb183be5b1d430fbc16dc9baa935634ccfb5e08d"
+        },
+        "review_status": "pending",
+        "training_approved": false,
+        "proposal": {
+          "edges": [],
+          "uncertain": true
+        }
+      },
+      "metrics": {
+        "edge_tp": 0,
+        "edge_fp": 0,
+        "edge_fn": 2,
+        "edge_precision": null,
+        "edge_recall": 0.0,
+        "direction_tp": 0,
+        "direction_scored_claims": 0,
+        "known_reference_directions": 0,
+        "direction_precision": null,
+        "direction_recall": null,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_metrics": {
+        "edge_tp": 2,
+        "edge_fp": 0,
+        "edge_fn": 0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "direction_tp": 0,
+        "direction_scored_claims": 0,
+        "known_reference_directions": 0,
+        "direction_precision": null,
+        "direction_recall": null,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_check": "needs_review",
+      "baseline_seconds": 62.487
+    },
+    {
+      "id": "mixed-junction",
+      "elapsed_seconds": 111.535,
+      "check": {
+        "schema": "foundry.connectivity_check/1",
+        "status": "fail",
+        "training_approved": false,
+        "review_status": "pending",
+        "missing_edges": [
+          [
+            "J-102",
+            "V-101"
+          ],
+          [
+            "J-102",
+            "V-103"
+          ],
+          [
+            "J-102",
+            "V-104"
+          ]
+        ],
+        "unexpected_edges": [],
+        "direction_errors": [],
+        "reference_sha256": "a9f8ad53fb224239739056cdcbd9f165738d8ad66c816f5dd271c53ec85971e7",
+        "input_sha256": "ae62c6e14a167e9b87c5403c3b7a0cc7f9706c4c7b96b658e3de402d1ddc5cfa",
+        "proposal_sha256": "f955fd3dd49154dadf442abc1504cc1f62f494e245aaaf89bbcd1c5b91278e61",
+        "expected_count": 3,
+        "proposed_count": 0,
+        "reason": "Direct graph mismatch"
+      },
+      "composition_error": null,
+      "composed": {
+        "schema": "foundry.visual_proposal/1",
+        "profile": "connectivity_v2",
+        "status": "completed",
+        "derived_protocol": "separate_routes_arrows_v3",
+        "input_sha256": "ae62c6e14a167e9b87c5403c3b7a0cc7f9706c4c7b96b658e3de402d1ddc5cfa",
+        "model": "qwen3-vl:4b-instruct-q4_K_M",
+        "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+        "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922",
+        "stage_sha256s": {
+          "connections": "d660c962dd9db90233ca2f6e9005a8b08c4b722424569cf45e43da3818a45d78",
+          "arrows": "f8dc8a86a8aed62ae5a26dbef497158c29c435d8d453656595c5d00cedca6fcf"
+        },
+        "review_status": "pending",
+        "training_approved": false,
+        "proposal": {
+          "edges": [],
+          "uncertain": true
+        }
+      },
+      "metrics": {
+        "edge_tp": 0,
+        "edge_fp": 0,
+        "edge_fn": 3,
+        "edge_precision": null,
+        "edge_recall": 0.0,
+        "direction_tp": 0,
+        "direction_scored_claims": 0,
+        "known_reference_directions": 1,
+        "direction_precision": null,
+        "direction_recall": 0.0,
+        "unsupported_direction_claims": 0
+      },
+      "baseline_metrics": {
+        "edge_tp": 3,
+        "edge_fp": 0,
+        "edge_fn": 0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "direction_tp": 1,
+        "direction_scored_claims": 1,
+        "known_reference_directions": 1,
+        "direction_precision": 1.0,
+        "direction_recall": 1.0,
+        "unsupported_direction_claims": 2
+      },
+      "baseline_check": "fail",
+      "baseline_seconds": 67.41
+    }
+  ],
+  "totals": {
+    "edge_tp": 0,
+    "edge_fp": 0,
+    "edge_fn": 14,
+    "direction_tp": 0,
+    "direction_scored_claims": 0,
+    "known_reference_directions": 8,
+    "unsupported_direction_claims": 0,
+    "edge_precision": null,
+    "edge_recall": 0.0,
+    "direction_precision": null,
+    "direction_recall": 0.0
+  },
+  "baseline_totals": {
+    "edge_tp": 14,
+    "edge_fp": 2,
+    "edge_fn": 0,
+    "direction_tp": 6,
+    "direction_scored_claims": 8,
+    "known_reference_directions": 8,
+    "unsupported_direction_claims": 2,
+    "edge_precision": 0.875,
+    "edge_recall": 1.0,
+    "direction_precision": 0.75,
+    "direction_recall": 0.75
+  },
+  "training_approved": false,
+  "limitation": "Same development fixtures. Passing exact graph checks is not engineering sign-off. No reference graph was sent to either model call."
+}

@@ -1,0 +1,109 @@
+{
+  "schema": "foundry.visual_proposal/1",
+  "id": "reverse-chain-crop2x",
+  "model": "qwen3-vl:4b-instruct-q4_K_M",
+  "input_sha256": "2626c306b10c2868cec9974ad9d208f66ae4b11f6d91253cf8ca54e1eaf6d128",
+  "image": "reverse-chain-crop2x.png",
+  "prompt_sha256": "5f4ef52c51fca7c683a98d42806c5e02150629738c1f46759ac9772275c9d9c6",
+  "review_status": "pending",
+  "training_approved": false,
+  "status": "completed",
+  "profile": "connectivity_v2",
+  "settings": {
+    "model": "qwen3-vl:4b-instruct-q4_K_M",
+    "stream": false,
+    "think": false,
+    "keep_alive": 0,
+    "options": {
+      "temperature": 0.7,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 384,
+      "num_thread": 8,
+      "top_p": 0.8,
+      "top_k": 20,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 1.5
+    },
+    "format": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "edges",
+        "uncertain"
+      ],
+      "properties": {
+        "edges": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "a",
+              "b",
+              "direction"
+            ],
+            "properties": {
+              "a": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+              },
+              "b": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+              },
+              "direction": {
+                "enum": [
+                  "unknown",
+                  "a_to_b",
+                  "b_to_a"
+                ]
+              }
+            }
+          }
+        },
+        "uncertain": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "qwen3-vl:4b-instruct-q4_K_M",
+    "created_at": "2026-09-28T02:51:15.070309923Z",
+    "message": {
+      "role": "assistant",
+      "content": "{\n  \"edges\": [\n    {\n      \"a\": \"V-379\",\n      \"b\": \"V-380\",\n      \"direction\": \"a_to_b\"\n    },\n    {\n      \"a\": \"V-380\",\n      \"b\": \"V-381\",\n      \"direction\": \"a_to_b\"\n    }\n  ],\n  \"uncertain\": false\n}"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 62545870287,
+    "load_duration": 7815177588,
+    "prompt_eval_count": 1154,
+    "prompt_eval_cached_count": 0,
+    "prompt_eval_duration": 46015646000,
+    "eval_count": 87,
+    "eval_duration": 8653060000
+  },
+  "proposal": {
+    "edges": [
+      {
+        "a": "V-379",
+        "b": "V-380",
+        "direction": "a_to_b"
+      },
+      {
+        "a": "V-380",
+        "b": "V-381",
+        "direction": "a_to_b"
+      }
+    ],
+    "uncertain": false
+  },
+  "elapsed_seconds": 62.567,
+  "job_sha256": "c77ab77ca2d58abca7c122af576aec9b6c591a9129f3b40b00934bd9043b569c",
+  "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b"
+}

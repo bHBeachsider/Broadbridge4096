@@ -20,7 +20,7 @@ FQ-01 through FQ-07 prepare software, extraction evidence and reviewable inputs 
 | FQ-02 | Extract the acquired DOE handbook pilot section | PREPARED_WAIT_REVIEW | PDF 35-37 with images, two text views, glyphs, equation/conversion proposals, nine exceptions and blank review packet; no QA release |
 | FQ-03 | Prepare new engineering source families | PREPARED_WAIT_REVIEW | Five exact DOE documents/four provisional families; rights/technical holds; frozen public-v1 families excluded |
 | FQ-04 | Audit the existing Hugging Face math sample | PREPARED_WAIT_REVIEW | 1,200 rows audited; three exact groups/four template groups; ten spot-checks expose three quality problems; quality hold |
-| FQ-05 | Test extraction and normalization coverage | IN_PROGRESS | [Reference pilot](REFERENCE_GRAPH_RESULTS.md): 14 correct edges plus two false connections, two reversed arrows and two unsupported directions. [Remediation](DIAGRAM_CONNECTIVITY_REMEDIATION.md); visual training admission remains blocked. |
+| FQ-05 | Test extraction and normalization coverage | IN_PROGRESS | [Repair experiment](DIAGRAM_TRACING_REPAIR_RESULTS.md): 12 separate-task calls regressed to empty graphs; four enlarged crops retained crossing/arrow errors. No repair demonstrated; use trusted native graphs or signed tracing; visual training admission remains blocked. |
 | FQ-06 | Rehearse release rejection and CPU training audit (SD-06 preparation) | PREPARED_WAIT_REVIEW | Eight mock acceptance/release refusals, hash-keyed fixture verified and pinned CPU mask/length audit; live review wiring remains open |
 | FQ-07 | Prepare the helper comparison protocol revision | READY_OFFLINE | Shorter bounded paired protocol, model/provider revision fields and cost ceiling proposal; no live calls |
 | FQ-08 | Confirm priority tasks, references and recipes (SD-01) | WAIT_REVIEW | Named decisions on first tasks, exclusions, recipe versions, hard-fail criteria and reviewer competence |
@@ -73,7 +73,7 @@ For later adapter comparison, do not compare stock Ollama's default template wit
 
 1. Review the FQ-01 method/tolerance and FQ-02 evidence packet. No training approval is implied by their software checks.
 2. Review FQ-03's rights/credits and technical task selection; adjudicate FQ-04's family/answer quality findings. Original samples and splits remain unchanged.
-3. Next offline dispatch: FQ-07 helper-comparison protocol revision. FQ-06's pure acceptance boundary still needs authenticated live integration before real synthetic release. FQ-05's next diagram step is a reviewed native-model crop set targeting crossing/arrow errors.
+3. Next offline dispatch: FQ-07 helper-comparison protocol revision. FQ-06's pure acceptance boundary still needs authenticated live integration before real synthetic release. FQ-05's bounded prompt/crop experiment failed; next test a dedicated line/arrow tracer against independent native-model references and new development families. Neither general vision output nor unsigned tracing is gold.
 4. Bill or another appointed reviewer chooses useful tasks and verifies the real source/method/candidate packets. Brad records rights, live processing budgets and release decisions independently.
 
 Original work packages and acceptance criteria remain in the [synthetic-data plan](superpowers/plans/2026-09-26-synthetic-expert-data.md), [expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) and [ingestion release runbook](INGESTION_PIPELINE_RUNBOOK.md). This queue organizes them; it does not mark unperformed work accepted.

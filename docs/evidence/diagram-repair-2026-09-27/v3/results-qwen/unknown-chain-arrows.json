@@ -1,0 +1,90 @@
+{
+  "schema": "foundry.visual_proposal/1",
+  "id": "unknown-chain-arrows",
+  "model": "qwen3-vl:4b-instruct-q4_K_M",
+  "input_sha256": "06b9ec5fe57112ba28f89ac93150bb103246ca1923ab39b79eefbe40e0b6f3af",
+  "image": "unknown-chain.png",
+  "prompt_sha256": "d9d26a3a60d632163bd63985afccd379deffc4a8a8a805ff57c4ada19ce4075d",
+  "review_status": "pending",
+  "training_approved": false,
+  "status": "completed",
+  "profile": "arrows_v3",
+  "settings": {
+    "model": "qwen3-vl:4b-instruct-q4_K_M",
+    "stream": false,
+    "think": false,
+    "keep_alive": 0,
+    "options": {
+      "temperature": 0.7,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 384,
+      "num_thread": 8,
+      "top_p": 0.8,
+      "top_k": 20,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 1.5
+    },
+    "format": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arrows",
+        "uncertain"
+      ],
+      "properties": {
+        "arrows": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "from_tag",
+              "to_tag"
+            ],
+            "properties": {
+              "from_tag": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+              },
+              "to_tag": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+              }
+            }
+          }
+        },
+        "uncertain": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "qwen3-vl:4b-instruct-q4_K_M",
+    "created_at": "2026-09-28T02:46:45.201734431Z",
+    "message": {
+      "role": "assistant",
+      "content": "{\n  \"arrows\": [],\n  \"uncertain\": false\n}"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 56153203164,
+    "load_duration": 6835201465,
+    "prompt_eval_count": 1243,
+    "prompt_eval_cached_count": 0,
+    "prompt_eval_duration": 47680200000,
+    "eval_count": 16,
+    "eval_duration": 1585260000
+  },
+  "proposal": {
+    "arrows": [],
+    "uncertain": false
+  },
+  "elapsed_seconds": 56.17,
+  "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922",
+  "model_digest": "sha256:ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b"
+}

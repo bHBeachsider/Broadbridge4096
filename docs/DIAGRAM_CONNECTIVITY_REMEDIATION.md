@@ -1,5 +1,7 @@
 # Which diagram errors remain
 
+**Update, 27 September:** the [bounded repair experiment](DIAGRAM_TRACING_REPAIR_RESULTS.md) tested separate route/arrow prompts and enlarged crops. Neither repaired the recorded errors; v3 is not promoted. The checker still blocks these outputs from training.
+
 The [frozen reference-graph pilot](REFERENCE_GRAPH_RESULTS.md) identifies three separate model failures. These are Qwen3-VL extraction failures on small local test drawings, not results from fine-tuning the text Qwen3-8B model.
 
 | Failure | Observed evidence | Required correction / acceptance condition |
@@ -16,8 +18,8 @@ There are also **source/mapping gaps**, distinct from the model failures:
 - The sampled PID2Graph member has undirected annotation edges. Its graph has not been approved as physical piping connectivity. Symbol adjacency, signal lines and fluid connections cannot be treated interchangeably without a reviewed mapping.
 - Unmapped DEXPI classes fail explicitly. Additional mappings need tests and reviewer acceptance; they must not silently drop equipment or invent ports.
 
-Next diagram experiment: create a small **separate development crop set** from licensed native models with explicit ports, arrows and crossing conventions. Preserve image/graph/seed and drawing revision. Have a qualified reviewer accept render quality and the graph mapping; then test targeted arrow/crossing extraction against that independent reference. Preserve the current failed runs. Use separate locked evaluation families for any later effectiveness claim; tuning against these pilot drawings makes them development data.
+Next diagram experiment: test a dedicated line/arrow tracing stage on a small **new development set** from licensed native models with explicit ports, arrows and crossing conventions. Preserve image/graph/seed and drawing revision. Have a qualified reviewer accept render quality and the graph mapping; compare deterministic pixel tracing and explicit arrow detection against that independent reference before introducing any richer model. This is a hypothesis to test, not an implemented repair. Use separate locked evaluation families for any later effectiveness claim; tuning against these pilot drawings makes them development data.
 
 For eventual training admission, all required connections/directions in each accepted example must agree with its trusted reference, unsupported claims must be absent, and unresolved endpoint/mapping issues must be resolved or the example excluded. Confidence scores cannot waive this condition. Human-traced references need independent sign-off; model output can propose a tracing but cannot certify itself.
 
-Text, calculation and document-source preparation can continue while these visual issues are unresolved. No model call, training, EC2 or production change was made in this remediation note.
+Text, calculation and document-source preparation can continue while these visual issues are unresolved. The linked repair experiment used 16 bounded local CPU calls; no training, EC2 or production changes occurred.

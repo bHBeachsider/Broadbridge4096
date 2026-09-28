@@ -1,0 +1,17 @@
+{
+  "ids": [
+    "forward-chain-connections",
+    "forward-chain-arrows",
+    "reverse-chain-connections",
+    "reverse-chain-arrows",
+    "junction-connections",
+    "junction-arrows",
+    "crossing-clear-connections",
+    "crossing-clear-arrows",
+    "unknown-chain-connections",
+    "unknown-chain-arrows",
+    "mixed-junction-connections",
+    "mixed-junction-arrows"
+  ],
+  "job_sha256": "30ee71a5dc24fe4a020565b43bb8efa568be0488fc4314820121902ee0d2a922"
+}
