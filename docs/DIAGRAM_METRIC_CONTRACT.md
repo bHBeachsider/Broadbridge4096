@@ -82,6 +82,78 @@ new version marked development/review data; never overwrite evaluated gold.
 4. Fix raster segmentation/arrow localization in its own development lane. No
    prompting, no transfer of vector acceptance to scans, no training admission.
 
+## Additional review requirements and evaluation template
+
+The following requirements incorporate the supplied assessment. They extend the
+qualification plan; they are not claims that every listed detector, test or UI
+already exists.
+
+- **Miss categories:** hop, unmarked crossing, break symbol, off-page connector
+  and port association. Two or more misses in a category trigger a dedicated
+  development regression group. This grouping does not change the source-family
+  split or make variants independent observations.
+- **Critical classes:** phantom junction on a hop, crossing treated as a
+  connection, reversed flow direction, and an incorrect off-page merge. Each
+  supported class needs a named positive/negative regression test and zero
+  observed critical failures. Off-page handling is not currently qualified;
+  document it as unsupported rather than implying its tests have passed.
+- **Arrow evidence:** each claim must resolve to detected geometry and its source
+  entity handle or bounding box, drawing/page/revision, coordinate frame and
+  original input hash. IDs alone do not establish correct geometry. Missing
+  evidence fails CI acceptance; preserve unknowns explicitly. The existing
+  evidence-rule tests cover missing arrow IDs and false joins; complete location
+  metadata, crop lineage and all new convention fixtures remain qualification work.
+- **Stratification:** report direction recovery by pre-frozen arrow size,
+  rotation, scan DPI/noise and intersection type. Report the number of eligible
+  arrows in each bucket, including empty buckets. Eligibility comes from a
+  source-only reviewer before predictions are visible. Keep an all-reference
+  denominator alongside the clearly-visible subset.
+- **No supplied ports:** separately measure port/tag detection precision, recall
+  and F1, plus correctly attached detected tags / attempted attachments and
+  correctly attached reference tags / all reference tags. Report missing tags and
+  wrong attachment counts. These are tracking metrics for now, not a waived
+  requirement for any future end-to-end production claim.
+- **Split and CI:** freeze source-family membership and a split-manifest hash
+  before tuning; keep the current twelve examples immutable and outside holdout.
+  CI checks the freeze/receipt bindings, structural evidence, unknown preservation
+  and metric output. A passing CI run does not replace an untouched qualification
+  evaluation or an engineer's sign-off.
+- **Reviewer overlay:** show proposed edges, arrows and their evidence anchors,
+  rejected/uncertain contacts and unknown directions on the original drawing.
+  Export reviewer identity, date, drawing revision, before/after diff and source
+  hashes with each signed correction. Corrections create a new reference version;
+  they do not amend a scored holdout in place.
+
+Use this compact report layout for every qualification run. The current machine
+report supplies route/drawing/category counts and intervals; new bucket and
+end-to-end measurements must be added before claiming those capabilities.
+
+| Run / route / family / drawing / bucket | Reference edges | TP / FP / FN | Precision count, estimate, CI | Recall count, estimate, CI | Direction correct / claims / eligible | Unknown / missed directions | Evidence passed / emitted | Not run / extraction failed / checker rejected | Critical flags |
+|---|---:|---:|---|---|---|---|---|---|---|
+| Frozen IDs and hashes; raw or accepted explicitly labeled | n | n / n / n | TP/(TP+FP), %, 95% CI | TP/(TP+FN), %, 95% CI | Separate precision and recovery estimates and CIs | n / n | n/n, % or null | Separate counts, never combined | Named classes; no double-counted incident total |
+
+Add a second table for port/tag and attachment results, and a reviewer-study table
+for drawing assignment, review minutes and errors remaining after review. Target
+at least 50% lower median review time on matched different drawings, with
+counterbalanced conditions and no increase in post-review errors. Keep this small
+pilot descriptive until enough reviewers and independent drawings are available.
+
+## Raster experiment to evaluate separately
+
+Detect arrow candidates on the original image using bounded multiscale contour
+and rotated-template methods. Skeletonize a separate, unmodified image branch
+so arrow isolation does not erase pipe pixels. Then reconcile the candidates
+with line geometry. A nearby arrow base alone is insufficient: require compatible
+orientation, uniquely supported local attachment and base-to-tip direction; use
+unknown when these conflict or cannot be resolved. Skeleton spurs caused by filled
+arrows still need explicit evaluation even though the original pixels are intact.
+
+Retain original pixel crops and their transforms/hashes as evidence, with the
+crop-history gate still open until implemented. Compare against the unchanged
+raster baseline, bucket the failures as above, and remain reviewer-assisted until
+the raster-specific gate passes on two separately reserved unseen family cohorts.
+Do not tune on the first qualification cohort and then count a rerun as the second.
+
 Diagram training remains blocked on crop lineage, rights/software terms, signed
 reference and technical acceptance, held-out/cluster-aware qualification and an
 explicit training/release decision. Text and calculation work can continue.

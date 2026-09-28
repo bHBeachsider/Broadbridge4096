@@ -67,10 +67,10 @@ confidence requirements, evidence obligations and independent-family gates.
 
 | PDF and DXF metric | Count | Point estimate | Two-sided 95% Wilson interval |
 |---|---:|---:|---:|
-| Edge precision | 23 / 23 | 100% | 85.69%â€“100% |
-| Edge recall | 23 / 24 | 95.83% | 79.76%â€“99.26% |
-| Direction precision | 7 / 7 | 100% | 64.57%â€“100% |
-| Direction recovery | 7 / 7 | 100% | 64.57%â€“100% |
+| Edge precision | 23 / 23 | 100% | 85.69%–100% |
+| Edge recall | 23 / 24 | 95.83% | 79.76%–99.26% |
+| Direction precision | 7 / 7 | 100% | 64.57%–100% |
+| Direction recovery | 7 / 7 | 100% | 64.57%–100% |
 
 Both vector routes meet the proposed **point** targets here; neither meets the
 confidence requirements. Moreover, these are correlated development drawings
@@ -81,6 +81,35 @@ Wilson intervals are descriptive iid approximations; the later qualification
 study needs preregistered independent families and cluster-aware analysis.
 
 ## Next gates and who contributes
+
+### Assessment comments incorporated (28 September)
+
+The supplied assessment describes the **pre-repair** experiment. Its priorities
+are retained below, with the final replay and evaluation-integrity corrections
+applied. Its embedded lane prompt is review context, not a new execution request.
+
+| Supplied observation or proposal | Assessment and disposition |
+|---|---|
+| Vector PDF is the only route near a usable bar; identify its single miss. | Correct for the original run. DXF now matches PDF on the same regression set. The remaining miss is the horizontal interrupted line in `break-crossing`, not a port-supply artifact. Neither route is qualified by this sample. |
+| DXF's seven false edges have one root cause; checker rejection is working. | Agreed: concentrated spline-fragmentation errors made a targeted repair worthwhile. The measured 75.9% raw precision was still a real failure, not an overstated metric. Checker rejection protected downstream use and reduced accepted recall; it did not erase those errors. The repair now gives 23 TP / 0 FP / 1 FN. |
+| Raster loses line pixels during arrow removal; detect arrows and lines separately. | A useful hypothesis and next experiment, not a demonstrated sole cause. Six directed edges are missed; the small-arrow edge is recovered with unknown direction, and hop recovery also fails. Test independent arrow/line paths and classify their failures before choosing a remedy. |
+| Keep the vision baseline only as a reference row. | Accepted. Archived outputs remain diagnostic comparison data; they cannot satisfy the detector-evidence contract or supply trusted topology. No further prompting is planned. |
+| Twelve drawings, seven arrows and supplied ports cannot establish deployment accuracy. | Accepted. One missed edge changes recall by 1/24, about 4.17 percentage points. Report raw counts, point estimates and intervals; do not pool sibling formats or call the regression set held out. |
+| About 750 error-free edges establishes a 99.5% precision lower bound. | Corrected: the two-sided 95% Wilson lower bound is 99.4904% at 750/750, below the target. It first exceeds 99.5% at 765/765 under independent-trial assumptions. Correlated edges and a separate arrow denominator require additional study design, not just more edges. |
+| Preserve native curves; flatten for rendering only; one spline hop gives one edge. | Preserve native topology/identity and verified source contacts. Controlled approximation may support geometry calculations, but its samples must not become junctions. Actual endpoint-on-curve tees and filled dots must remain supported. An isolated hop path has one connection; the complete hop fixture includes a second crossing line, so its expected result is **two independent through edges**. |
+| Raster must pass held-out twice; reviewer timing uses the same drawings. | Require two separately reserved, untouched family cohorts for two independent validation rounds. Repeating the same set only checks reproducibility. For timing, use matched different drawings in counterbalanced conditions to avoid familiarity effects; post-review errors must not increase. |
+| Signed overlay corrections feed ground truth. | They feed a new version of development/reference data with provenance and independent review. Never overwrite frozen gold after seeing predictions. Source-only reference tracing and signing must precede held-out scoring. |
+
+The requested workstreams therefore remain: **(1) native continuity repair,
+completed for this bounded regression; (2) vector qualification and reviewer
+overlay, next; (3) raster recovery, separate and deferred.** The raster research
+can later run alongside qualification when separately scheduled, but this update
+does not start another implementation lane.
+
+The [metric contract and evaluation template](DIAGRAM_METRIC_CONTRACT.md) now also
+record the requested critical-error classes, miss categories, arrow/scan buckets,
+end-to-end port/tag measurements and CI/reporting requirements. These are future
+qualification obligations where the current harness does not yet implement them.
 
 1. **Bill/appointed reviewer:** accept drawing conventions, first useful task and
    critical-error/abstention policy using the checklist in the metric contract.
