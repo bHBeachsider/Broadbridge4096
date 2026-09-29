@@ -5,7 +5,65 @@ capacity failures. It qualifies the existing runtime candidate on another GPU;
 it does not download Qwen weights, load a model, run a dataset or train an adapter.
 The existing L4 machines and the prepared replacement disk stay intact.
 
-## Execution result: capacity rejected
+## Latest execution result: A10G runtime checks passed
+
+Brad's subsequent **"keep trying"** authorized sequential alternate-zone attempts
+within the original window. The first follow-up request, `g5.2xlarge` in
+`us-east-1b` / `use1-az2`, succeeded at **19:20:33 UTC**. No further zone was
+requested. Host **`i-079b24e2b51ef7630`** used the prepared private image
+`ami-0a425c55dcc606687`, existing SSH-only security group, IMDSv2 and one
+encrypted 200 GiB gp3 root (`vol-09fff6b5c32ddfc09`). The two L4 hosts stayed stopped.
+
+The original **20:43:39 UTC / 4:43 p.m. Eastern** deadline was retained, measured
+from the first 19:13:39 request, not reset by the successful launch. Guest shutdown
+was armed for 20:33:38 UTC; the independent API watchdog retained its 20:38:39
+deadline. The reviewed seven Python packages were installed from locked Amazon
+Linux release `2023.12.20260918`; GCC was already present and no driver/OS upgrade
+was performed. The runtime used a fresh isolated venv:
+`~/slm-training/venv-a10g-a23670f4d161`.
+
+The complete cached archive transfer finished at **19:57:02 UTC**; all installation
+and checks finished at **19:59:12 UTC**. A graceful API stop was accepted at
+19:59:15. After three minutes, the approved forced-stop fallback was requested
+at **20:02:18**. **Stopped was confirmed at 20:03:41 UTC / 4:03 p.m. Eastern**,
+50 minutes 2 seconds from the original request and about 40 minutes before the
+hard deadline. Independent inventory confirms all three hosts stopped. The disks
+and source image are retained; EBS storage costs continue while instances are stopped.
+
+| Check | Actual result |
+| --- | --- |
+| Host | A10G, capability 8.6, 23,028 MiB VRAM; driver 595.91.07; Python 3.11.16; glibc 2.34 |
+| Install and integrity | 113 wheels / 3,792,751,006 bytes verified; all 113 installed versions matched; pip consistency passed |
+| FP16 matrix multiplication | Passed; relative L2 error 0.0002065 (<0.002) |
+| BF16 matrix multiplication | Passed; relative L2 error 0.0016482 (<0.015) |
+| Triton JIT | Vector add passed against PyTorch |
+| bitsandbytes NF4 | Round-trip relative L2 error 0.0944532 (<0.2) |
+| xformers attention | Passed against CPU reference; maximum absolute error 0.0004722 |
+| Foundry CPU tests on this venv | **149 passed, 0 failed, 0 skipped**, 5.89 seconds |
+
+The five probes used fabricated tensors, with peak allocated GPU memory of
+8,656,384 bytes. This is a small-kernel compatibility test, not an estimate of
+Qwen memory use or engineering accuracy. PyTorch/Unsloth emitted deprecation
+warnings about Enum registration and `inline_inbuilt_nn_modules`; no failing
+checks occurred. Do not upgrade dependencies to suppress those warnings here.
+
+Status: **RUNTIME_CHECKS_PASSED_WAIT_MODEL_AND_DATA**. This closes the runtime-only
+installation/kernel task on this exact A10G environment. It does not qualify
+the L4 environment or prove Qwen model load, QLoRA, checkpoint/resume, a domain
+adapter, or second-operator reproduction. The static host-profile contract still
+says `qualified: false`; a host preflight alone never certifies a runtime. The
+separate execution receipt records the passed checks.
+
+The run used Foundry source `395ab994220ab7398b63ca383b8dc465c61aae13` and the
+domain plan at `47879aa5a763693433bab56f31d4c3a39cb7e5a5`. Later documentation
+commits do not rewrite those bindings. [Redacted validation receipt](evidence/aws-runtime-bundle-2026-09-28/a10g-validation-2026-09-29.json)
+records actual metrics, private log/script hashes, original deadline and stopped
+inventory. Raw logs remain ignored in the Foundry
+`outputs/runtime-a10g-retry-20260929-1920/` directory. No model weights were
+downloaded, no model was loaded or called, and no training, database/R2 operation,
+production change or merge occurred. The capacity retry automation stays paused.
+
+## Initial attempt: capacity rejected
 
 Brad explicitly requested execution. At **19:13:39 UTC / 3:13 p.m. Eastern** on
 29 September, the prepared launcher made one RunInstances CLI invocation for
@@ -19,14 +77,14 @@ remained stopped with their earlier boot times unchanged. No new resource or
 compute session was observed; no transfer, prerequisite installation, runtime
 installation, GPU checks, host CPU tests, model call or training occurred.
 
-Runtime status remains **RUNTIME_BLOCKED_CAPACITY**. The launch retry policy was
+At that initial checkpoint, runtime status was **RUNTIME_BLOCKED_CAPACITY**. The launch retry policy was
 configured explicitly; the CloudTrail service-request count has not yet been
 independently audited. The original 90-minute deadline was 20:43:39 UTC, but no
 host started. This failed one-request session is closed, not a running task or
 an automatic retry. Preserve its files and use a new explicit session decision
 before any further launch. [Attempt receipt](evidence/aws-runtime-bundle-2026-09-28/a10g-attempt-2026-09-29.json).
 
-## Prepared configuration
+## Original prepared configuration (before the authorized alternate-zone retry)
 
 | Item | Bound configuration |
 | --- | --- |

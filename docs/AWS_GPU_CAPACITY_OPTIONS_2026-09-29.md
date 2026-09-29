@@ -1,5 +1,14 @@
 # GPU capacity alternatives and AWS escalation
 
+**Latest result, 29 September 20:03 UTC:** the approved A10G retry in
+`us-east-1b` succeeded. All 113 pinned wheels installed and matched; `pip check`,
+five synthetic GPU probes and **149 selected CPU tests** passed. The A10G and
+both retained L4 hosts are independently confirmed stopped. Runtime installation
+and small-kernel checks are complete; Qwen weight staging/model load, accepted
+data/baselines, QLoRA smoke/resume and second-operator reproduction remain open.
+No model inference or training ran. [Session result](AWS_A10G_RUNTIME_SESSION_2026-09-29.md).
+Earlier dated entries below preserve the capacity/transfer history.
+
 **Later update:** account case [179070520900642](https://console.aws.amazon.com/support/home#/case/?displayId=179070520900642&language=en)
 is now confirmed **Unassigned**, under Service Quotas, General. No AWS reply is
 visible. The earlier technical-route rejection below remains the history of that

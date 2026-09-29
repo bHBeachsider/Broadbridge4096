@@ -1,12 +1,21 @@
 # Approved runtime session: 28 September 2026
 
+**Latest result, 29 September 20:03 UTC:** the approved A10G retry in
+`us-east-1b` succeeded. All 113 pinned wheels installed and matched; `pip check`,
+five synthetic GPU probes and **149 selected CPU tests** passed. The A10G and
+both retained L4 hosts are independently confirmed stopped. Runtime installation
+and small-kernel checks are complete; Qwen weight staging/model load, accepted
+data/baselines, QLoRA smoke/resume and second-operator reproduction remain open.
+No model inference or training ran. [Session result](AWS_A10G_RUNTIME_SESSION_2026-09-29.md).
+Earlier dated entries below preserve the capacity/transfer history.
+
 **29 September alternatives assessment:** [A10G/L40S and region options](AWS_GPU_CAPACITY_OPTIONS_2026-09-29.md) are assessed on paper; no new host was started or provisioned. Virginia has quota for one g5.2xlarge; Ohio/Oregon GPU quota is zero. AWS automated Support intake received the approved [report](AWS_SUPPORT_CAPACITY_CASE_2026-09-29.md); Basic Support blocks creation of a human technical case. No support upgrade was purchased. CloudTrail corrects the latest retry count to two CLI calls / six failed service requests. Both existing hosts remain stopped; runtime qualification is still open.
 
-## Latest retry: both existing hosts unavailable
+## Historical 16:47 UTC retry: both existing hosts unavailable
 
 **29 September 16:47 UTC retry:** Brad authorized a new bounded attempt using whichever existing host was available. The replacement in `us-east-1c` and then the original in `us-east-1d` each returned `InsufficientInstanceCapacity`; neither started. Both were independently confirmed stopped with unchanged launch times. The verified wheelhouse, replacement Python prerequisites and partial upload are preserved. All 18 offline selection/resume tests passed. No guest command, new transfer, installation or GPU test ran. Retry automation remains paused. [Receipt](evidence/aws-runtime-bundle-2026-09-28/retry-pair-2026-09-29-1647.json).
 
-## Latest: approved replacement and transfer timeout
+## Historical replacement attempt: transfer timeout
 
 **29 September runtime update:** the approved replacement `i-0439f5841d631d9f8` in `us-east-1c` passed host preflight after the reviewed Python 3.11 prerequisite installation. The runtime upload hit a 30-minute SCP command timeout near completion; candidate installation and GPU/CPU checks did not run. Both instances are stopped, independently verified; the original 15:06 UTC deadline was met. A prefix-verified SFTP resume passed nine offline tests but needs a new bounded-start decision. The heartbeat stays paused. See [relocation and transfer receipt](AWS_RUNTIME_RELOCATION_2026-09-29.md).
 

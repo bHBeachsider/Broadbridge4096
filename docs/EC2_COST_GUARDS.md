@@ -1,5 +1,13 @@
 # EC2 cost guards: review of the shutdown proposal
 
+**29 September A10G validation:** all five GPU probes and 149 CPU tests passed.
+The 19:13:39 UTC start-request deadline remained fixed after an alternate-zone
+launch at 19:20:33. Graceful stop was accepted at 19:59:15; the approved three-minute
+forced-stop fallback was requested at 20:02:18; stopped was confirmed at 20:03:41,
+before the 20:43:39 hard deadline. All three GPU hosts are stopped and the retry
+automation is paused. Retained disks continue to incur storage charges.
+[Exact session and evidence](AWS_A10G_RUNTIME_SESSION_2026-09-29.md).
+
 Reviewed 28 September 2026 (America/New_York). Scope: the existing Broadbridge Qwen3-8B EC2 workstation. This is a review and staged recommendation, not authorization to create ECS, an Auto Scaling group, an IAM role, a new bucket or a persistent alarm.
 
 **29 September relocation:** Brad separately approved one replacement L4 in another availability zone, then explicitly approved its missing Python prerequisites and a further start within the original deadline. The same 80/85/90-minute safeguards apply to that recorded replacement boot. The source stays stopped. See [the relocation record](AWS_RUNTIME_RELOCATION_2026-09-29.md) for the exact identities, retained storage and execution outcome; this does not create a standing permission for replacement instances or repeated paid retries.
