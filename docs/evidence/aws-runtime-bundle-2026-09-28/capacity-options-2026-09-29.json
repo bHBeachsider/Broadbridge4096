@@ -1,0 +1,932 @@
+{
+  "schema": "broadbridge.gpu_capacity_assessment/1",
+  "date": "2026-09-29",
+  "scope": "Read-only alternatives assessment and support submission preparation",
+  "prices_and_specifications": {
+    "checked_at": "2026-09-29T17:23:03.513954+00:00",
+    "checks": {
+      "price_us-east-1_g6.2xlarge": {
+        "ok": true,
+        "data": [
+          {
+            "sku": "XCA3J9EEM739PU6M",
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "unit": "Hrs",
+            "usd": "0.9776000000",
+            "description": "$0.9776 per On Demand Linux g6.2xlarge Instance Hour",
+            "region": "us-east-1",
+            "instance": "g6.2xlarge"
+          }
+        ]
+      },
+      "price_us-east-1_g5.2xlarge": {
+        "ok": true,
+        "data": [
+          {
+            "sku": "FX9TUYTJKEENVBSR",
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "unit": "Hrs",
+            "usd": "1.2120000000",
+            "description": "$1.212 per On Demand Linux g5.2xlarge Instance Hour",
+            "region": "us-east-1",
+            "instance": "g5.2xlarge"
+          }
+        ]
+      },
+      "price_us-east-1_g6e.xlarge": {
+        "ok": true,
+        "data": [
+          {
+            "sku": "HEU7PA78QPB8SDYY",
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "unit": "Hrs",
+            "usd": "1.8610000000",
+            "description": "$1.861 per On Demand Linux g6e.xlarge Instance Hour",
+            "region": "us-east-1",
+            "instance": "g6e.xlarge"
+          }
+        ]
+      },
+      "price_us-east-2_g6.2xlarge": {
+        "ok": true,
+        "data": [
+          {
+            "sku": "QU23QP46J3B7WM7Z",
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "unit": "Hrs",
+            "usd": "0.9776000000",
+            "description": "$0.9776 per On Demand Linux g6.2xlarge Instance Hour",
+            "region": "us-east-2",
+            "instance": "g6.2xlarge"
+          }
+        ]
+      },
+      "price_us-east-2_g5.2xlarge": {
+        "ok": true,
+        "data": [
+          {
+            "sku": "6BKQGE374ZZN28NG",
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "unit": "Hrs",
+            "usd": "1.2120000000",
+            "description": "$1.212 per On Demand Linux g5.2xlarge Instance Hour",
+            "region": "us-east-2",
+            "instance": "g5.2xlarge"
+          }
+        ]
+      },
+      "price_us-east-2_g6e.xlarge": {
+        "ok": true,
+        "data": [
+          {
+            "sku": "U8RNZPYWBGZY88NB",
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "unit": "Hrs",
+            "usd": "1.8610000000",
+            "description": "$1.861 per On Demand Linux g6e.xlarge Instance Hour",
+            "region": "us-east-2",
+            "instance": "g6e.xlarge"
+          }
+        ]
+      },
+      "price_us-west-2_g6.2xlarge": {
+        "ok": true,
+        "data": [
+          {
+            "sku": "MKSNW4MKWBRK2GUW",
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "unit": "Hrs",
+            "usd": "0.9776000000",
+            "description": "$0.9776 per On Demand Linux g6.2xlarge Instance Hour",
+            "region": "us-west-2",
+            "instance": "g6.2xlarge"
+          }
+        ]
+      },
+      "price_us-west-2_g5.2xlarge": {
+        "ok": true,
+        "data": [
+          {
+            "sku": "GY47PZ4E422T8DWN",
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "unit": "Hrs",
+            "usd": "1.2120000000",
+            "description": "$1.212 per On Demand Linux g5.2xlarge Instance Hour",
+            "region": "us-west-2",
+            "instance": "g5.2xlarge"
+          }
+        ]
+      },
+      "price_us-west-2_g6e.xlarge": {
+        "ok": true,
+        "data": [
+          {
+            "sku": "XP569DMTPBR7ZJ9R",
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "unit": "Hrs",
+            "usd": "1.8610000000",
+            "description": "$1.861 per On Demand Linux g6e.xlarge Instance Hour",
+            "region": "us-west-2",
+            "instance": "g6e.xlarge"
+          }
+        ]
+      },
+      "g6e_specs": {
+        "ok": true,
+        "data": [
+          {
+            "Type": "g6e.xlarge",
+            "vCPUs": 4,
+            "MemoryMiB": 32768,
+            "Architectures": [
+              "x86_64"
+            ],
+            "GPU": {
+              "Gpus": [
+                {
+                  "Name": "L40S",
+                  "Manufacturer": "NVIDIA",
+                  "Count": 1,
+                  "LogicalGpuCount": 1,
+                  "GpuPartitionSize": 1.0,
+                  "Workloads": [
+                    "graphics",
+                    "ml-ai"
+                  ],
+                  "MemoryInfo": {
+                    "SizeInMiB": 45776
+                  }
+                }
+              ],
+              "TotalGpuMemoryInMiB": 45776
+            },
+            "BootModes": [
+              "legacy-bios",
+              "uefi"
+            ]
+          }
+        ]
+      },
+      "g6e_offerings": {
+        "ok": true,
+        "data": {
+          "InstanceTypeOfferings": [
+            {
+              "InstanceType": "g6e.xlarge",
+              "LocationType": "availability-zone",
+              "Location": "us-east-1a"
+            },
+            {
+              "InstanceType": "g6e.xlarge",
+              "LocationType": "availability-zone",
+              "Location": "us-east-1b"
+            },
+            {
+              "InstanceType": "g6e.xlarge",
+              "LocationType": "availability-zone",
+              "Location": "us-east-1c"
+            },
+            {
+              "InstanceType": "g6e.xlarge",
+              "LocationType": "availability-zone",
+              "Location": "us-east-1d"
+            }
+          ]
+        }
+      },
+      "image": {
+        "ok": true,
+        "data": [
+          {
+            "Image": "ami-0a425c55dcc606687",
+            "State": "available",
+            "Architecture": "x86_64",
+            "Root": "ebs",
+            "Virtualization": "hvm",
+            "BootMode": "uefi-preferred",
+            "Ena": true,
+            "Public": false
+          }
+        ]
+      }
+    },
+    "compute_mutations": false
+  },
+  "capacity_evidence": {
+    "checked_at": "2026-09-29T17:24:08.702629+00:00",
+    "checks": {
+      "quota_us-east-1": {
+        "ok": true,
+        "data": {
+          "Name": "Running On-Demand G and VT instances",
+          "Value": 8.0
+        }
+      },
+      "offering_us-east-1": {
+        "ok": true,
+        "data": [
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1a"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1f"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1b"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1a"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1a"
+          },
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1f"
+          },
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1d"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1d"
+          },
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1b"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1c"
+          },
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1c"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1c"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1d"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-1b"
+          }
+        ]
+      },
+      "quota_us-east-2": {
+        "ok": true,
+        "data": {
+          "Name": "Running On-Demand G and VT instances",
+          "Value": 0.0
+        }
+      },
+      "offering_us-east-2": {
+        "ok": true,
+        "data": [
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-2a"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-2b"
+          },
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-2b"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-2a"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-2c"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-2b"
+          },
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-2c"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-2a"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-east-2c"
+          }
+        ]
+      },
+      "quota_us-west-2": {
+        "ok": true,
+        "data": {
+          "Name": "Running On-Demand G and VT instances",
+          "Value": 0.0
+        }
+      },
+      "offering_us-west-2": {
+        "ok": true,
+        "data": [
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2c"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2c"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2a"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2d"
+          },
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2a"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2a"
+          },
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2b"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2d"
+          },
+          {
+            "InstanceType": "g6.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2b"
+          },
+          {
+            "InstanceType": "g6e.xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2b"
+          },
+          {
+            "InstanceType": "g5.2xlarge",
+            "LocationType": "availability-zone",
+            "Location": "us-west-2c"
+          }
+        ]
+      },
+      "zones": {
+        "ok": true,
+        "data": [
+          {
+            "Name": "us-east-1a",
+            "Id": "use1-az1",
+            "State": "available"
+          },
+          {
+            "Name": "us-east-1b",
+            "Id": "use1-az2",
+            "State": "available"
+          },
+          {
+            "Name": "us-east-1c",
+            "Id": "use1-az4",
+            "State": "available"
+          },
+          {
+            "Name": "us-east-1d",
+            "Id": "use1-az6",
+            "State": "available"
+          },
+          {
+            "Name": "us-east-1e",
+            "Id": "use1-az3",
+            "State": "available"
+          },
+          {
+            "Name": "us-east-1f",
+            "Id": "use1-az5",
+            "State": "available"
+          }
+        ]
+      },
+      "host_state": {
+        "ok": true,
+        "data": [
+          {
+            "Id": "i-0439f5841d631d9f8",
+            "Type": "g6.2xlarge",
+            "State": "stopped",
+            "Zone": "us-east-1c",
+            "LaunchTime": "2026-09-29T13:47:53+00:00"
+          },
+          {
+            "Id": "i-0e5e1cbc7b1367566",
+            "Type": "g6.2xlarge",
+            "State": "stopped",
+            "Zone": "us-east-1d",
+            "LaunchTime": "2026-09-29T05:35:30+00:00"
+          }
+        ]
+      },
+      "start_events": {
+        "ok": true,
+        "data": [
+          {
+            "eventTime": "2026-09-29T16:47:37Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "fe276ed1-778e-4501-9abf-af8ba9e5fa5a",
+            "eventID": "7389b458-eb6c-4f63-87be-51de4f28f7e1",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T16:47:35Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "1b9c9fe6-20a7-4df4-b499-1d4e10cbf172",
+            "eventID": "4804cd1f-73ce-4708-b501-ca0105322e84",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T16:47:33Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "acbee627-0f71-4e1b-a0e5-3a95d95c601e",
+            "eventID": "c23fb539-b0f5-4e60-8e5b-85a363b162c2",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T16:47:26Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "51f4a74f-7972-42f4-a474-47db70b8c3dc",
+            "eventID": "88561491-59f5-412a-95df-c2da08449b49",
+            "instance_ids": [
+              "i-0439f5841d631d9f8"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T16:47:24Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "adc5e7ff-192c-4ea9-b7a4-ed07b489b9e6",
+            "eventID": "1c84dbe0-dd1d-4d6f-af0b-5b75fff5abcf",
+            "instance_ids": [
+              "i-0439f5841d631d9f8"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T16:47:23Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "056839a0-e6d4-418d-943d-403ee0dd2cf1",
+            "eventID": "06eadb4a-8ad1-4077-85ba-077a0e72602e",
+            "instance_ids": [
+              "i-0439f5841d631d9f8"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T13:47:53Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": null,
+            "errorMessage": null,
+            "requestID": "69e52f2e-2a02-4377-bb95-e0dc9e8d8fda",
+            "eventID": "110799ff-dd7d-4c6a-be80-89a90f757298",
+            "instance_ids": [
+              "i-0439f5841d631d9f8"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T13:44:49Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "556c878b-2a6c-414d-8863-a039bb013818",
+            "eventID": "9cdbaa7b-b216-4501-9ac2-726f09688a26",
+            "instance_ids": [
+              "i-0439f5841d631d9f8"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T13:44:47Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "c3ed2f85-d268-4fe0-8e25-aab37fbed245",
+            "eventID": "6c3b9870-43f4-4008-956b-311ffa029657",
+            "instance_ids": [
+              "i-0439f5841d631d9f8"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T13:44:45Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "fc92b1eb-0e82-43f9-952c-47d45645e09d",
+            "eventID": "921613ff-cc48-4fd8-8c1d-eab4eba21e16",
+            "instance_ids": [
+              "i-0439f5841d631d9f8"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T12:54:47Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "34cac1ed-0973-44d2-904e-fc24a8ab9cbb",
+            "eventID": "0d21cd8b-4cf4-4c46-b58a-51a7deba19bd",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T12:54:45Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "c544fb82-cbbd-4629-b2fb-3d7361393caf",
+            "eventID": "ae574898-721f-428d-ac10-a9c1d8b15186",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T12:54:44Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "0f4fa3c5-4ff7-44e3-9e37-9db136d68425",
+            "eventID": "0bc622dc-b508-4c57-8092-f559ec587631",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T05:35:30Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": null,
+            "errorMessage": null,
+            "requestID": "2fde8128-e5ff-4919-9ef1-6496321cb314",
+            "eventID": "56122d09-0fa2-4255-a6c3-4f3e694cb50e",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:29:36Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "736f9f3e-83dd-4f34-a37e-4362bc45c6b6",
+            "eventID": "2837dad5-aaf1-4d93-9616-22beb47a5c3f",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:29:34Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "897b3331-2887-419f-afe3-519c51ec8f1f",
+            "eventID": "d049c58d-90b8-4e5c-9ccf-5f64b0d7859e",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:29:33Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "c2287923-11a8-4bbb-905c-a5d0ebe9c7ab",
+            "eventID": "e0078020-2338-4dbc-aac4-ea8ae9df41a4",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:14:40Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "1818bb0a-5593-4498-840c-62bb3ffb3b25",
+            "eventID": "f982ff74-e188-4190-9a3a-133f2b7aa4e2",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:14:38Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "528a8060-aae3-4abd-bc43-4065b93d584b",
+            "eventID": "a9ebac12-d06d-4c77-8225-a9fa46347256",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:14:36Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "f6d9f285-9386-47dc-9006-9335f477e9cb",
+            "eventID": "88696954-fa17-42a5-92d0-ee4e89e9b885",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:09:20Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "2e52eb81-ea8c-40af-a253-fd7361068da7",
+            "eventID": "f3bb6bb2-8152-475e-8745-6ef7f2793b82",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:09:18Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "e7931152-0086-48b6-8876-1b0d12b3e987",
+            "eventID": "3624b7fe-69ad-4082-8a1c-b49430a9f22e",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:09:17Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "a7ea1178-4672-487b-ac0c-6000c2d75748",
+            "eventID": "4cec7867-e5f3-44f5-bc39-69104104f10f",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:08:09Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "a227b9f6-1ed6-4ba0-9377-a56c26f6d20c",
+            "eventID": "fdd3d859-3adc-40dc-8ba8-0627aefbf5c0",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:08:07Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "a5caf17e-1627-4153-8531-fd3b6899eceb",
+            "eventID": "56051d27-16cd-4aed-965e-126308f1dfa4",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:08:06Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": "Server.InsufficientInstanceCapacity",
+            "errorMessage": "Insufficient capacity.",
+            "requestID": "d8a4ba8e-6b70-44e3-b38f-babf1e0a63e0",
+            "eventID": "3bed87d6-e14b-4266-93c8-7d5d8e036672",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T04:00:51Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": null,
+            "errorMessage": null,
+            "requestID": "3a24a791-a040-4d57-a9eb-04f87b249559",
+            "eventID": "655fb790-f004-4afc-b7a0-02e7fbca3f11",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          },
+          {
+            "eventTime": "2026-09-29T03:49:03Z",
+            "eventName": "StartInstances",
+            "awsRegion": "us-east-1",
+            "errorCode": null,
+            "errorMessage": null,
+            "requestID": "ee74172b-4b02-4f50-814d-113af7096599",
+            "eventID": "a1c71943-9b91-4f01-a83b-7a6bd9fba08b",
+            "instance_ids": [
+              "i-0e5e1cbc7b1367566"
+            ]
+          }
+        ]
+      }
+    },
+    "compute_mutations": false
+  },
+  "support": {
+    "api_result": "SubscriptionRequiredException",
+    "operations": [
+      "DescribeServices",
+      "DescribeSeverityLevels"
+    ],
+    "console": "sign-in required",
+    "case_submitted": false,
+    "case_id": null,
+    "plan_purchased": false
+  },
+  "offline_policy_probes": {
+    "passed": 3,
+    "invented_facts": true,
+    "L4_unmet": [],
+    "A10G_unmet": [
+      "gpu"
+    ],
+    "L40S_unmet": [
+      "gpu"
+    ],
+    "gpu_execution": false
+  },
+  "latest_retry_audit": {
+    "cli_invocations": 2,
+    "service_requests": 6,
+    "successful_starts": 0,
+    "evidence": [
+      {
+        "eventTime": "2026-09-29T16:47:37Z",
+        "eventName": "StartInstances",
+        "awsRegion": "us-east-1",
+        "errorCode": "Server.InsufficientInstanceCapacity",
+        "errorMessage": "Insufficient capacity.",
+        "requestID": "fe276ed1-778e-4501-9abf-af8ba9e5fa5a",
+        "eventID": "7389b458-eb6c-4f63-87be-51de4f28f7e1",
+        "instance_ids": [
+          "i-0e5e1cbc7b1367566"
+        ]
+      },
+      {
+        "eventTime": "2026-09-29T16:47:35Z",
+        "eventName": "StartInstances",
+        "awsRegion": "us-east-1",
+        "errorCode": "Server.InsufficientInstanceCapacity",
+        "errorMessage": "Insufficient capacity.",
+        "requestID": "1b9c9fe6-20a7-4df4-b499-1d4e10cbf172",
+        "eventID": "4804cd1f-73ce-4708-b501-ca0105322e84",
+        "instance_ids": [
+          "i-0e5e1cbc7b1367566"
+        ]
+      },
+      {
+        "eventTime": "2026-09-29T16:47:33Z",
+        "eventName": "StartInstances",
+        "awsRegion": "us-east-1",
+        "errorCode": "Server.InsufficientInstanceCapacity",
+        "errorMessage": "Insufficient capacity.",
+        "requestID": "acbee627-0f71-4e1b-a0e5-3a95d95c601e",
+        "eventID": "c23fb539-b0f5-4e60-8e5b-85a363b162c2",
+        "instance_ids": [
+          "i-0e5e1cbc7b1367566"
+        ]
+      },
+      {
+        "eventTime": "2026-09-29T16:47:26Z",
+        "eventName": "StartInstances",
+        "awsRegion": "us-east-1",
+        "errorCode": "Server.InsufficientInstanceCapacity",
+        "errorMessage": "Insufficient capacity.",
+        "requestID": "51f4a74f-7972-42f4-a474-47db70b8c3dc",
+        "eventID": "88561491-59f5-412a-95df-c2da08449b49",
+        "instance_ids": [
+          "i-0439f5841d631d9f8"
+        ]
+      },
+      {
+        "eventTime": "2026-09-29T16:47:24Z",
+        "eventName": "StartInstances",
+        "awsRegion": "us-east-1",
+        "errorCode": "Server.InsufficientInstanceCapacity",
+        "errorMessage": "Insufficient capacity.",
+        "requestID": "adc5e7ff-192c-4ea9-b7a4-ed07b489b9e6",
+        "eventID": "1c84dbe0-dd1d-4d6f-af0b-5b75fff5abcf",
+        "instance_ids": [
+          "i-0439f5841d631d9f8"
+        ]
+      },
+      {
+        "eventTime": "2026-09-29T16:47:23Z",
+        "eventName": "StartInstances",
+        "awsRegion": "us-east-1",
+        "errorCode": "Server.InsufficientInstanceCapacity",
+        "errorMessage": "Insufficient capacity.",
+        "requestID": "056839a0-e6d4-418d-943d-403ee0dd2cf1",
+        "eventID": "06eadb4a-8ad1-4077-85ba-077a0e72602e",
+        "instance_ids": [
+          "i-0439f5841d631d9f8"
+        ]
+      }
+    ]
+  },
+  "changes": {
+    "compute": false,
+    "quotas": false,
+    "storage": false,
+    "runtime": false,
+    "model_or_training": false
+  },
+  "automation": "PAUSED"
+}
