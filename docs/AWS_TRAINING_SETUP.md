@@ -1,18 +1,18 @@
 # AWS training setup and private staging
 
-28 September 2026. Task 3 deliverable: a reproducible **candidate** environment and exact staging procedure. No EC2, inference, training, production or credential access was performed. The optional helper comparison is deferred. This document does not authorize any command marked “later approved”.
+Prepared 28 September 2026; updated after the approved runtime session on 29 September UTC. Task 3 delivers a reproducible **candidate** environment and exact staging procedure. The **113-wheel / 3.79 GB bundle is now downloaded and verified on the PC**. EC2 installation/GPU checks remain blocked after AWS rejected restarts with `InsufficientInstanceCapacity`; final stopped state was verified within 26 minutes of the original start request. See [session results](AWS_RUNTIME_SESSION_2026-09-28.md) and [cost safeguards](EC2_COST_GUARDS.md). No inference, training, dataset transfer or production change occurred. The optional helper comparison stays deferred; future gated commands below are not automatically authorized by this document.
 
 ## Prepared inputs and remaining gates
 
 | Input | Prepared evidence | Still required |
 | --- | --- | --- |
-| Linux runtime | Foundry `infra/training/`: 113 selected wheels, pinned versions, sizes, SHA-256, 227 dependency checks; **3,792,751,006 bytes** | Download approval, Linux installation, actual driver/import/kernel qualification |
+| Linux runtime | Foundry `infra/training/`: 113 wheels, pinned versions, sizes, SHA-256, 227 dependency checks; **3,792,751,006 downloaded bytes verified** | Existing-host capacity, Linux installation, actual driver/import/kernel qualification; reuse the PC wheelhouse |
 | Qwen base | [Pinned public inventory](evidence/aws-runtime-bundle-2026-09-28/qwen-base-inventory.json): `unsloth/Qwen3-8B` at `946bc9ac74a6c1f8cf012497c503a119b2fcf2eb`; 15 selected files; **16,397,438,697 bytes (15.271 GiB)** | Separate >1 GB download approval; downloaded-byte verification; no weights were acquired |
 | Dataset | Tested four-file private transfer with fabricated records; accepted release format already exists | Real independent acceptance, current rights/history, held-out families and exact manifest hash |
-| Host | Existing `i-0e5e1cbc7b1367566`, L4, us-east-1, per 24 September brief | Approved session and live identity/driver/Python/disk preflight; existing state not rechecked |
+| Host | Existing `i-0e5e1cbc7b1367566`, g6.2xlarge, us-east-1; API and guest identity checked; final state stopped | Capacity retry and complete driver/Python/disk preflight; a working Ollama host does not establish training-runtime compatibility |
 | Model experiment | Existing 20-step/1,800-second controller proposal, every-5-step checkpoints and private logs | Gate 0, scored baselines, real release and bounded run authorization remain open |
 
-Combined runtime and base transfer is **20,190,189,703 bytes (18.804 GiB)** before dataset, source archives, temporary files or checkpoints. Four weight shards individually exceed 1 GB. These amounts are reported before download. They are not a spend approval. Keep >=64 GiB free as the provisional host gate; actual checkpoint/optimizer usage remains unmeasured. The existing 200 GB EBS volume's free space is unknown.
+Combined runtime and base artifact size is **20,190,189,703 bytes (18.804 GiB)** before dataset, source archives, temporary files or checkpoints. The runtime portion has been acquired on the PC; the base has not. Four weight shards individually exceed 1 GB and remain subject to separate approval. Keep >=64 GiB free as the provisional host gate; actual checkpoint/optimizer usage remains unmeasured. The existing 200 GB EBS volume's free space is unknown.
 
 The first-run candidate keeps Transformers **5.5.0** with Unsloth 2026.9.12. It does not change the CPU environment's 5.9.0. Full details and tested commands are in Foundry's [runtime README](https://github.com/bHBeachsider/slm-foundry/blob/codex/aws-training-readiness/infra/training/README.md). Passing dependency constraints does not establish CUDA compatibility or improved engineering answers.
 

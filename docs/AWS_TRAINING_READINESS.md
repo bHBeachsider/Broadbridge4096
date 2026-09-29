@@ -1,5 +1,7 @@
 # Qwen3-8B: AWS and dataset readiness
 
+**29 September UTC runtime update:** the approved **113-wheel / 3.79 GB runtime download is verified on the PC**. The existing EC2 host was started for setup, but installation was not reached: host-key/preflight transport issues were corrected, then AWS rejected restarts with `InsufficientInstanceCapacity`. Final state is stopped, verified inside the 90-minute window. [Session evidence](AWS_RUNTIME_SESSION_2026-09-28.md) supersedes the historical no-EC2/no-wheel statements below. No weights, model inference or training ran; dataset gates are unchanged.
+
 28 September 2026. Owner: Brad / Broadbridge. **CPU preparation plus an explicitly approved read-only development-database check; no Broadbridge fine-tuning job has run in this work.** This is the active FQ-12/FQ-13 readiness runbook. The optional OpenRouter helper comparison is deferred. Its provider availability and terms do not block this path.
 
 ## The model and the path
@@ -29,8 +31,8 @@ Steps 1–3 are not replaced by a helper-model contest. Offline host/configurati
 | Math quality / family status | 3 exact duplicate groups, 4 numeric-template groups, 1,196 proposed families, no detected cross-split family under these heuristics. Ten convenience checks: 7 consistent, 1 wrong, 1 ambiguous/inconsistent, 1 contradictory. Whole sample stays on quality/family hold. These checks are not an accuracy estimate. |
 | Release boundary | Fresh fabricated rehearsal again refused all 8 invalid acceptance/release scenarios. Fixture identities and approvals confer no real training authority. Authenticated synthetic acceptance still needs complete current rights/history and live integration. |
 | Real accepted release / Gate 0 | The approved read-only check reached dev, not production. Dev has 4 cases, 4 questions, 0 brief runs and 0 scorecards. Its two signed/training cases are SYN-prefixed hypothetical fixtures; one other signed case is testing-only. Production Bill submissions and Gate 0 coverage remain unknown. See the follow-up below. |
-| AWS host | Last documented, 24 September: `i-0e5e1cbc7b1367566`, `g6.2xlarge`, L4, us-east-1; serving works, training venv absent, S3 instance profile absent. None was rechecked live. |
-| GPU runtime | Complete candidate Linux/Python 3.11/CUDA 12.6 lock now resolved: 113 wheels, 3.79 GB, 227 dependency checks. Selected Unsloth 2026.9.12 caps Transformers at 5.5.0; CPU tooling uses 5.9.0. Driver compatibility and actual imports remain unqualified. See [setup and staging](AWS_TRAINING_SETUP.md). Do not run the floating bootstrap or reuse CPU requirements as a GPU recipe. |
+| AWS host | `i-0e5e1cbc7b1367566`, `g6.2xlarge`, us-east-1 identity checked live; guest identity and shutdown timer verified. Final state stopped. Complete driver/Python/disk preflight and runtime installation remain open after AWS capacity failures. |
+| GPU runtime | Complete Linux/Python 3.11/CUDA 12.6 candidate lock: 113 wheels, 3.79 GB, 227 dependency checks; all wheels now downloaded and hash-verified on the PC. Unsloth 2026.9.12 caps Transformers at 5.5.0; CPU tooling stays at 5.9.0. Driver compatibility, installation and imports remain unqualified. See [setup and staging](AWS_TRAINING_SETUP.md). Do not run the floating bootstrap or reuse CPU requirements as a GPU recipe. |
 | Artifact storage | Broadbridge intake already uses private R2. Do not automatically attach the older Ilyrium S3 profile or create another bucket. The [R2-to-EBS setup runbook](AWS_TRAINING_SETUP.md) and immutable transfer tool are prepared and rehearsed locally. Live prefix/token scope and exact transfer still need approval. An S3 instance profile is a requirement only if a separately approved S3 artifact path is selected. |
 | Training diagnostics | Implemented and tested with local CPU child processes: merged stdout/stderr, private per-attempt files, 4 MiB cap with continuous draining, byte/hash/truncation receipts, and rejection of changed/incomplete captures. Actual CUDA logs and metrics remain unverified. |
 
@@ -124,8 +126,8 @@ Generic engine changes: [draft Foundry #21](https://github.com/bHBeachsider/slm-
 
 1. Resolve current signed-case/reviewer status and accept the narrow DOE/calculation scope; no optional helper comparison is required.
 2. Complete authenticated candidate acceptance/history binding where needed and freeze the first accepted release.
-3. Task 3 preparation delivered: [resolved candidate runtime and private staging](AWS_TRAINING_SETUP.md). Review download/host authority and the bounded AWS request; GPU installation, imports, smoke and resume remain unperformed.
-4. Only then authorize the GPU session and perform the smoke run. No EC2, training or production changes occurred; the approved database check was read-only against dev.
+3. Task 3 preparation delivered: [resolved candidate runtime and private staging](AWS_TRAINING_SETUP.md). The approved runtime download is now verified; [EC2 installation remains capacity-blocked](AWS_RUNTIME_SESSION_2026-09-28.md). Reuse the wheelhouse and complete actual host/import/kernel checks in a bounded session.
+4. Only after runtime, dataset and baseline gates are satisfied, authorize and perform the smoke run. No model inference, training or production changes occurred during runtime setup; the earlier approved database check was read-only against dev.
 
 ## Follow-up: diagnostics, runtime candidates and current dev counts
 
