@@ -5,6 +5,27 @@ capacity failures. It qualifies the existing runtime candidate on another GPU;
 it does not download Qwen weights, load a model, run a dataset or train an adapter.
 The existing L4 machines and the prepared replacement disk stay intact.
 
+## Execution result: capacity rejected
+
+Brad explicitly requested execution. At **19:13:39 UTC / 3:13 p.m. Eastern** on
+29 September, the prepared launcher made one RunInstances CLI invocation for
+`g5.2xlarge` in `us-east-1a`, with `AWS_MAX_ATTEMPTS=1` and standard retry mode.
+AWS returned **InsufficientInstanceCapacity** at **19:13:44 UTC**. No second
+request, alternate zone or different type was attempted.
+
+Independent DescribeInstances checks at **19:14:34 UTC** found zero instances
+under the request's client token or validation-host tag. Both existing L4 hosts
+remained stopped with their earlier boot times unchanged. No new resource or
+compute session was observed; no transfer, prerequisite installation, runtime
+installation, GPU checks, host CPU tests, model call or training occurred.
+
+Runtime status remains **RUNTIME_BLOCKED_CAPACITY**. The launch retry policy was
+configured explicitly; the CloudTrail service-request count has not yet been
+independently audited. The original 90-minute deadline was 20:43:39 UTC, but no
+host started. This failed one-request session is closed, not a running task or
+an automatic retry. Preserve its files and use a new explicit session decision
+before any further launch. [Attempt receipt](evidence/aws-runtime-bundle-2026-09-28/a10g-attempt-2026-09-29.json).
+
 ## Prepared configuration
 
 | Item | Bound configuration |

@@ -163,3 +163,11 @@ Public metadata at the pinned Qwen revision identifies 15 required files totalin
 The [A10G session plan](AWS_A10G_RUNTIME_SESSION_2026-09-29.md) is prepared with an explicit host profile and one-request launch policy. Offline verification: Foundry 813 passed / 3 skipped; final focused tests 62 passed; private launch/transfer checks 18 passed. All 113 cached wheels reverified. No A10G host has been created and no GPU checks or training ran. Both L4 hosts were reconfirmed stopped. [Preparation receipt](evidence/aws-runtime-bundle-2026-09-28/a10g-preparation-2026-09-29.json).
 
 AWS account case **179070520900642** is now confirmed **Unassigned**, category **Service Quotas, General**, with the approved report in correspondence. No AWS reply or engineer assignment is visible. This supersedes earlier wording that only an intake interaction existed, while preserving the earlier Technical-route rejection. [Case record](AWS_SUPPORT_CAPACITY_CASE_2026-09-29.md).
+
+## 29 September 19:13 UTC: A10G validation attempt
+
+The approved one-request A10G validation attempt was rejected with
+`InsufficientInstanceCapacity` for `g5.2xlarge` in `us-east-1a`. Independent
+inventory confirmed no created A10G instance and both L4 hosts still stopped.
+No GPU validation or installation ran. The session is closed; no automatic
+retry is active. [Result and receipt](AWS_A10G_RUNTIME_SESSION_2026-09-29.md).
