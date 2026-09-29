@@ -1,5 +1,11 @@
 # SLM preparation and fine-tuning work queue
 
+**Checkpoint execution, 29 September 22:17 UTC:** no checkpoint was acquired.
+Two controller defects were corrected and 19 offline tests passed; AWS then
+rejected the corrected start for insufficient capacity. All hosts are stopped.
+FQ-13 still waits for actual model loading and accepted data/baselines. See
+[the exact result](QWEN_MODEL_LOAD_SESSION.md) and [the process diagram](SLM_PROCESS_FLOW.md).
+
 **Next packet prepared:** [pinned Qwen checkpoint and model-load check](QWEN_MODEL_LOAD_SESSION.md). The 15-file public inventory was refreshed without downloading weights. Offline tooling is tested; no new EC2 session, inference or training occurred. Live execution remains separately scoped.
 
 **Latest result, 29 September 20:03 UTC:** the approved A10G retry in

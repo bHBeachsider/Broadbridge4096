@@ -1,5 +1,12 @@
 # Qwen3-8B: AWS and dataset readiness
 
+**29 September 22:17 UTC:** the approved checkpoint session ended before any
+model download. Controller key-selection and startup-clock defects were fixed
+and 19 offline lifecycle tests passed; the corrected start was rejected for
+capacity. All three GPU hosts are stopped. The runtime qualification remains
+valid, but model load and training remain pending. See [the session record](QWEN_MODEL_LOAD_SESSION.md)
+and [the overall process diagram](SLM_PROCESS_FLOW.md).
+
 **Next packet prepared:** [pinned Qwen checkpoint and model-load check](QWEN_MODEL_LOAD_SESSION.md). The 15-file public inventory was refreshed without downloading weights. Offline tooling is tested; no new EC2 session, inference or training occurred. Live execution remains separately scoped.
 
 **Latest result, 29 September 20:03 UTC:** the approved A10G retry in

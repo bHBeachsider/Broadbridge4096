@@ -1,5 +1,31 @@
 # Qwen checkpoint download and model-load session
 
+**Execution update, 29 September 22:17 UTC: blocked before model acquisition.**
+Brad approved the checkpoint download and load check. The first start stopped
+after the controller selected older source-image SSH pins instead of the actual
+keys recorded during successful A10G validation. Both current keys matched that
+successful session's `known_hosts`. A correction then exposed a startup-clock
+bug: startup readiness used the original session epoch rather than the restart
+epoch. Both accepted starts were stopped before any guest transfer or download.
+After fixing both paths, **19 offline tests** passed, including full mocked
+first/restart lifecycles and failure cleanup. The third start request returned
+`InsufficientInstanceCapacity`. The original **23:31:49 UTC** deadline was never
+extended. All three GPU hosts are stopped; no weights, inference or training ran.
+
+The original single-start procedure below received two controller corrections
+within the same approved time window; three requests are recorded rather than
+presented as one. No further start is scheduled. Actual acquisition and model
+fit remain unverified. [Execution receipt](evidence/aws-runtime-bundle-2026-09-28/qwen-load-attempt-2026-09-29.json).
+
+Before any later attempt: use the **actual successful A10G `known_hosts`** as
+the trust source; calculate startup/SSH readiness from that attempt's timestamp,
+capped by the original operation cutoff; retain one absolute acquisition/load/
+shutdown deadline. The corrected private controller and its tests are preserved
+under Foundry `outputs/qwen-load-session-20260929-2218/` with hashes in the receipt.
+The recorded deadline must not be reset to continue this ended packet.
+
+The following is the original prepared scope, retained for audit.
+
 Prepared 29 September 2026. **Preparation only: no model weights downloaded,
 EC2 start, inference or training in this task.** This is the next reviewable
 execution packet after the [successful A10G runtime checks](AWS_A10G_RUNTIME_SESSION_2026-09-29.md).
