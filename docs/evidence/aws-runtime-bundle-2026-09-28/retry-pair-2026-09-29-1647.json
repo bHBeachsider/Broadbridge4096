@@ -1,0 +1,47 @@
+{
+  "schema": "broadbridge.runtime_pair_retry/1",
+  "date_utc": "2026-09-29",
+  "status": "BLOCKED_AWS_CAPACITY_BOTH_HOSTS",
+  "attempts": [
+    {
+      "instance_id": "i-0439f5841d631d9f8",
+      "requested_at": "2026-09-29T16:47:21.637665+00:00",
+      "result": "InsufficientInstanceCapacity; confirmed stopped with unchanged boot"
+    },
+    {
+      "instance_id": "i-0e5e1cbc7b1367566",
+      "requested_at": "2026-09-29T16:47:32.501163+00:00",
+      "result": "InsufficientInstanceCapacity; confirmed stopped with unchanged boot"
+    }
+  ],
+  "first_request_utc": "2026-09-29T16:47:21.637599+00:00",
+  "absolute_deadline_utc": "2026-09-29T18:17:21.637599+00:00",
+  "maximum_minutes": 90,
+  "successful_starts": 0,
+  "final_states": {
+    "i-0439f5841d631d9f8": "stopped",
+    "i-0e5e1cbc7b1367566": "stopped"
+  },
+  "launch_times_unchanged": true,
+  "independent_check_utc": "2026-09-29T16:48:19+00:00",
+  "controller_exited": true,
+  "watchdog_spawned": false,
+  "guest_operations": false,
+  "manifest_sha256": "a23670f4d161c03466798f1a4bd548b5bf37c0d3740726aa6ac338533e8abdea",
+  "cached_wheels_reverified": 113,
+  "cached_wheel_bytes": 3792751006,
+  "archives_reverified": 2,
+  "offline_selection_and_resume_tests_passed": 18,
+  "shell_scripts_syntax_checked": 4,
+  "new_runtime_download_bytes": 0,
+  "new_model_weights_downloaded": false,
+  "runtime_installed": false,
+  "gpu_probes_run": 0,
+  "on_host_cpu_tests_run": 0,
+  "training_steps": 0,
+  "database_operations": false,
+  "r2_operations": false,
+  "production_changes": false,
+  "automation_status": "PAUSED",
+  "existing_partial_upload": "Preserved on replacement; durable prefix still requires verification before resume."
+}
