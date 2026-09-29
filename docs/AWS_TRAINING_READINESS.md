@@ -157,3 +157,9 @@ Existing packet instructions and local artifact locations are in [SLM_PREPARATIO
 [Setup runbook](AWS_TRAINING_SETUP.md): the Linux candidate has 113 hashed wheels (3,792,751,006 bytes), independently checked metadata closure, explicit download authorization, offline installation commands and host gates. A fabricated four-file release passed a local private-store round trip; corruption, unsafe/intake prefixes, unexpected destinations and missing execution authority are rejected. No R2 credentials or cloud objects were accessed.
 
 Public metadata at the pinned Qwen revision identifies 15 required files totaling 16,397,438,697 bytes, including four weight shards. No weights or wheel set were downloaded. Total planned package/base bytes are 20,190,189,703 before data and checkpoints. The >1 GB download gate remains open. Installation, actual driver/kernel compatibility and second-operator reproduction are not proven by metadata resolution.
+
+## 29 September: A10G preparation and support case update
+
+The [A10G session plan](AWS_A10G_RUNTIME_SESSION_2026-09-29.md) is prepared with an explicit host profile and one-request launch policy. Offline verification: Foundry 813 passed / 3 skipped; final focused tests 62 passed; private launch/transfer checks 18 passed. All 113 cached wheels reverified. No A10G host has been created and no GPU checks or training ran. Both L4 hosts were reconfirmed stopped. [Preparation receipt](evidence/aws-runtime-bundle-2026-09-28/a10g-preparation-2026-09-29.json).
+
+AWS account case **179070520900642** is now confirmed **Unassigned**, category **Service Quotas, General**, with the approved report in correspondence. No AWS reply or engineer assignment is visible. This supersedes earlier wording that only an intake interaction existed, while preserving the earlier Technical-route rejection. [Case record](AWS_SUPPORT_CAPACITY_CASE_2026-09-29.md).

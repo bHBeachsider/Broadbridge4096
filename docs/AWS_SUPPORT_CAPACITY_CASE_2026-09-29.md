@@ -1,10 +1,16 @@
 # AWS Support case: repeated g6.2xlarge capacity failures
 
-**Submission status: received by AWS automated Support intake; human technical case BLOCKED by Basic Support.** Brad explicitly approved the exact payload, and it was sent on 29 September at approximately 17:48 UTC. The signed-in console matches the affected AWS account. Interaction ID: `0ca2dd14-33a4-4dec-8ecc-c90d368c465b`. Selecting Technical in the case form returned **"Technical case type is not available for your support plan."** The form showed Draft saved. No human case number was issued, no engineer response was obtained, and no paid support/trial or infrastructure change was made. [Open the support interaction](https://console.aws.amazon.com/support/home?interactionId=0ca2dd14-33a4-4dec-8ecc-c90d368c465b#/).
+**Current status: case `179070520900642` exists and is Unassigned.** After Brad supplied the case-correspondence screenshot, the signed-in console confirmed creation at `2026-09-29T18:06:49.413Z`, case type **Account**, category **Service Quotas, General**, severity **General question**. The correspondence contains the approved capacity report. Only the opening message is visible; no AWS reply, engineer assignment, capacity commitment or quota change has been observed. [Open the case](https://console.aws.amazon.com/support/home#/case/?displayId=179070520900642&language=en).
 
-The [approved and sent payload](AWS_SUPPORT_CAPACITY_PAYLOAD_2026-09-29.txt) and [submission receipt](evidence/aws-runtime-bundle-2026-09-28/support-submission-2026-09-29.json) preserve the result. The prior automatic-approval rejection was resolved by Brad's explicit payload approval; the remaining block is AWS plan eligibility. An interaction/draft ID must not be reported as a human support case number.
+The account still shows Basic Support. This updates the earlier outcome without claiming that the Technical route became available. The agent read the newly created case; it did not submit a duplicate or reclassify it. See the [case confirmation](evidence/aws-runtime-bundle-2026-09-28/support-case-confirmed-2026-09-29.json).
 
-The console offered Account and billing, Service limit increase, and Technical; Technical was unavailable under Basic Support. The issue was not misclassified as billing or a quota increase. The generic AI intake is not an engineering diagnosis of live capacity and supplies no guaranteed recovery time. Keep the saved draft; continue the separately scoped fallback qualification without purchasing support automatically.
+## Earlier submission history
+
+Brad explicitly approved the exact payload, and it was sent to automated intake on 29 September at approximately 17:48 UTC. Interaction ID: `0ca2dd14-33a4-4dec-8ecc-c90d368c465b`. Selecting Technical then returned **"Technical case type is not available for your support plan."** The form showed Draft saved. At that earlier checkpoint no case number had been issued. No paid support/trial or infrastructure change was made.
+
+The [approved and sent payload](AWS_SUPPORT_CAPACITY_PAYLOAD_2026-09-29.txt) and [earlier submission receipt](evidence/aws-runtime-bundle-2026-09-28/support-submission-2026-09-29.json) preserve the historical result. The prior automatic-approval rejection was resolved by Brad's explicit payload approval. The interaction ID and the subsequent case number are distinct.
+
+The generic AI intake is not an engineering diagnosis of live capacity and supplies no guaranteed recovery time. The subsequently created account case may receive routing guidance, but its presence does not establish technical-support entitlement. Continue fallback preparation without purchasing support automatically.
 
 ## Subject
 

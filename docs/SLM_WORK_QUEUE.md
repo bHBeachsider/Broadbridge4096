@@ -77,3 +77,9 @@ For later adapter comparison, do not compare stock Ollama's default template wit
 4. Bill or another appointed reviewer chooses useful tasks and verifies the real source/method/candidate packets. Brad records rights, live processing budgets and release decisions independently.
 
 Original work packages and acceptance criteria remain in the [synthetic-data plan](superpowers/plans/2026-09-26-synthetic-expert-data.md), [expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) and [ingestion release runbook](INGESTION_PIPELINE_RUNBOOK.md). This queue organizes them; it does not mark unperformed work accepted.
+
+## 29 September: A10G preparation and support case update
+
+The [A10G session plan](AWS_A10G_RUNTIME_SESSION_2026-09-29.md) is prepared with an explicit host profile and one-request launch policy. Offline verification: Foundry 813 passed / 3 skipped; final focused tests 62 passed; private launch/transfer checks 18 passed. All 113 cached wheels reverified. No A10G host has been created and no GPU checks or training ran. Both L4 hosts were reconfirmed stopped. [Preparation receipt](evidence/aws-runtime-bundle-2026-09-28/a10g-preparation-2026-09-29.json).
+
+AWS account case **179070520900642** is now confirmed **Unassigned**, category **Service Quotas, General**, with the approved report in correspondence. No AWS reply or engineer assignment is visible. This supersedes earlier wording that only an intake interaction existed, while preserving the earlier Technical-route rejection. [Case record](AWS_SUPPORT_CAPACITY_CASE_2026-09-29.md).

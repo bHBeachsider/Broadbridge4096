@@ -1,5 +1,11 @@
 # GPU capacity alternatives and AWS escalation
 
+**Later update:** account case [179070520900642](https://console.aws.amazon.com/support/home#/case/?displayId=179070520900642&language=en)
+is now confirmed **Unassigned**, under Service Quotas, General. No AWS reply is
+visible. The earlier technical-route rejection below remains the history of that
+attempt. The separate A10G profile and local tests are prepared; see the
+[concrete bounded-session plan](AWS_A10G_RUNTIME_SESSION_2026-09-29.md).
+
 29 September 2026. Brad authorized qualification of alternative GPU types/regions and escalation of the repeated capacity errors to AWS Support. This assessment made read-only AWS calls. It did not start, resize or replace an instance, purchase support, reserve capacity, request a quota increase, or run a model. Both existing hosts and the prepared replacement disk are preserved.
 
 ## Recommendation
@@ -64,7 +70,7 @@ Latest selected service request IDs:
 | 16:47:35 | Original / use1-az6 | 1b9c9fe6-20a7-4df4-b499-1d4e10cbf172 | InsufficientInstanceCapacity |
 | 16:47:37 | Original / use1-az6 | fe276ed1-778e-4501-9abf-af8ba9e5fa5a | InsufficientInstanceCapacity |
 
-Runtime status stays **RUNTIME_BLOCKED_CAPACITY**. AWS automated intake received the report but a human technical case is blocked by Basic Support; alternatives are assessed on paper only, the original and replacement remain stopped with unchanged launch times, and automatic retries remain paused.
+Runtime status stays **RUNTIME_BLOCKED_CAPACITY**. The later account case is open and Unassigned; the Technical route remains unavailable under Basic Support. A10G now has an offline-tested candidate profile and prepared session package, but no hardware validation. The original and replacement remain stopped with unchanged launch times, and automatic retries remain paused.
 
 ## References
 
