@@ -1,0 +1,20 @@
+{
+  "schema": "broadbridge.aws_support_submission/1",
+  "recorded_at": "2026-09-29T17:50:50.536672+00:00",
+  "user_payload_approval": "yes. approved.",
+  "console_account_matches_cli": true,
+  "support_plan": "Basic Support",
+  "payload_file": "docs/AWS_SUPPORT_CAPACITY_PAYLOAD_2026-09-29.txt",
+  "payload_sha256": "fcf68457e5d54372421f012478f55bc0ee75a3a7ecf3984616d47686c63c4598",
+  "automated_intake_submitted": true,
+  "interaction_id": "0ca2dd14-33a4-4dec-8ecc-c90d368c465b",
+  "interaction_url": "https://console.aws.amazon.com/support/home?interactionId=0ca2dd14-33a4-4dec-8ecc-c90d368c465b#/",
+  "case_form_draft_saved": true,
+  "technical_case_result": "Technical case type is not available for your support plan.",
+  "human_case_created": false,
+  "case_number": null,
+  "engineer_response_obtained": false,
+  "paid_plan_or_trial_started": false,
+  "compute_or_storage_changes": false,
+  "model_or_training_operations": false
+}

@@ -1,0 +1,28 @@
+Repeated InsufficientInstanceCapacity for one g6.2xlarge in us-east-1; compatible GPU alternative requested.
+
+We are preparing a small non-production ML runtime on one On-Demand Linux GPU instance. Repeated capacity errors are delaying development. We need one running host for a bounded session of at most 90 minutes; there is no production outage or fleet request.
+
+Region us-east-1; g6.2xlarge; default tenancy; no placement group; capacity reservation preference open.
+Original: i-0e5e1cbc7b1367566, account zone us-east-1d / use1-az6.
+Replacement: i-0439f5841d631d9f8, account zone us-east-1c / use1-az4.
+Both were last verified stopped, with no running/pending G/VT usage. Our Running On-Demand G and VT instances quota (L-DB2E81BA) is 8 vCPUs, sufficient for one host. We are not attempting simultaneous starts.
+
+Failures were intermittent on 29 September 2026. The original successfully started at 05:35:30 UTC and the replacement restarted at 13:47:53 UTC. We stopped after our own setup/transfer problems under a cost guard; we are not attributing those setup problems to AWS capacity.
+
+The latest two sequential CLI start invocations around 16:47 UTC generated three service requests each. All failed with CloudTrail errorCode Server.InsufficientInstanceCapacity, errorMessage "Insufficient capacity." We will disable implicit retries on future start calls.
+Request IDs (29 September UTC):
+Replacement 16:47:23: 056839a0-e6d4-418d-943d-403ee0dd2cf1
+Replacement 16:47:24: adc5e7ff-192c-4ea9-b7a4-ed07b489b9e6
+Replacement 16:47:26: 51f4a74f-7972-42f4-a474-47db70b8c3dc
+Original 16:47:33: acbee627-0f71-4e1b-a0e5-3a95d95c601e
+Original 16:47:35: 1b9c9fe6-20a7-4df4-b499-1d4e10cbf172
+Original 16:47:37: fe276ed1-778e-4501-9abf-af8ba9e5fa5a
+Earlier new-launch attempts in account zones us-east-1a and us-east-1b also failed for capacity before one replacement launch succeeded in us-east-1c. We understand instance-type offerings do not establish free capacity.
+
+Please help determine:
+1. Do these requests indicate an On-Demand hardware shortage, or an additional account/configuration restriction?
+2. Which compatible type or location should we try? Our preferred alternative is g5.2xlarge (A10G, 8 vCPU, 32 GiB RAM) in us-east-1; g6e.xlarge (L40S, 4 vCPU, 32 GiB RAM) is another candidate. We will qualify software on any changed GPU.
+3. Is there a recovery estimate or specific guidance beyond repeated identical starts? We understand free capacity cannot be guaranteed.
+4. If another region is recommended, which quota/capacity planning steps apply? G/VT quota in us-east-2 and us-west-2 is currently zero.
+
+We have Basic Support. Please indicate whether this can be routed to a support engineer under our current plan. If not, state that limitation. We do not authorize a paid plan/trial or reservation. Please do not modify/start/create resources on our behalf; this is a request for diagnosis and guidance only.

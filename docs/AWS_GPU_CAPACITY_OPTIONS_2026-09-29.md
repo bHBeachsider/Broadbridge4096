@@ -49,7 +49,7 @@ For an eventual cross-region alternative, first obtain a quota of at least 8 G/V
 
 ## Support escalation and corrected request count
 
-AWS Support `DescribeServices` and `DescribeSeverityLevels` both returned `SubscriptionRequiredException`. The API requires an eligible support subscription. The browser Support Center is at sign-in, so console eligibility and case submission are **pending Brad's sign-in**. No support plan was purchased and no case number has been returned. The [ready-to-submit case](AWS_SUPPORT_CAPACITY_CASE_2026-09-29.md) includes exact request IDs and asks AWS to identify the constraint and compatible alternatives, with development impact stated accurately.
+AWS Support `DescribeServices` and `DescribeSeverityLevels` both returned `SubscriptionRequiredException`. The API requires an eligible support subscription. After sign-in and explicit approval of the exact payload, AWS received the report in its automated Support intake (interaction `0ca2dd14-33a4-4dec-8ecc-c90d368c465b`). The console confirmed Basic Support and rejected the Technical case type: **"Technical case type is not available for your support plan."** A draft was saved, but no human support case number or engineer response exists. No paid plan/trial was purchased. See the [submission and limitation](AWS_SUPPORT_CAPACITY_CASE_2026-09-29.md).
 
 CloudTrail confirms the failures as **Server.InsufficientInstanceCapacity**. It also corrects the earlier wording: the 16:47 attempt made **two CLI invocations, which produced six service requests** (three per host), consistent with automatic CLI retries. The controller has no explicit retry loop for selection, but its subprocess inherited AWS retry behavior. All six requests failed; no host started. Earlier receipts remain unchanged; this is the additive audit correction. Future start calls must explicitly disable implicit retries as described above.
 
@@ -64,7 +64,7 @@ Latest selected service request IDs:
 | 16:47:35 | Original / use1-az6 | 1b9c9fe6-20a7-4df4-b499-1d4e10cbf172 | InsufficientInstanceCapacity |
 | 16:47:37 | Original / use1-az6 | fe276ed1-778e-4501-9abf-af8ba9e5fa5a | InsufficientInstanceCapacity |
 
-Runtime status stays **RUNTIME_BLOCKED_CAPACITY**. Support submission is pending, alternatives are assessed on paper only, the original and replacement remain stopped with unchanged launch times, and automatic retries remain paused.
+Runtime status stays **RUNTIME_BLOCKED_CAPACITY**. AWS automated intake received the report but a human technical case is blocked by Basic Support; alternatives are assessed on paper only, the original and replacement remain stopped with unchanged launch times, and automatic retries remain paused.
 
 ## References
 

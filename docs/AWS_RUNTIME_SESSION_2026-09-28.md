@@ -1,6 +1,6 @@
 # Approved runtime session: 28 September 2026
 
-**29 September alternatives assessment:** [A10G/L40S and region options](AWS_GPU_CAPACITY_OPTIONS_2026-09-29.md) are assessed on paper; no new host was started or provisioned. Virginia has quota for one g5.2xlarge; Ohio/Oregon GPU quota is zero. Support API eligibility is blocked by the subscription; the [case packet](AWS_SUPPORT_CAPACITY_CASE_2026-09-29.md) awaits console sign-in/submission. CloudTrail corrects the latest retry count to two CLI calls / six failed service requests. Both existing hosts remain stopped; runtime qualification is still open.
+**29 September alternatives assessment:** [A10G/L40S and region options](AWS_GPU_CAPACITY_OPTIONS_2026-09-29.md) are assessed on paper; no new host was started or provisioned. Virginia has quota for one g5.2xlarge; Ohio/Oregon GPU quota is zero. AWS automated Support intake received the approved [report](AWS_SUPPORT_CAPACITY_CASE_2026-09-29.md); Basic Support blocks creation of a human technical case. No support upgrade was purchased. CloudTrail corrects the latest retry count to two CLI calls / six failed service requests. Both existing hosts remain stopped; runtime qualification is still open.
 
 ## Latest retry: both existing hosts unavailable
 

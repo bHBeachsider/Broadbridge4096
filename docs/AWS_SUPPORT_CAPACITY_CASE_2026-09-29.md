@@ -1,8 +1,10 @@
 # AWS Support case: repeated g6.2xlarge capacity failures
 
-**Submission status: NOT SUBMITTED.** Brad authorized escalation. AWS Support API eligibility checks returned `SubscriptionRequiredException`; the Support Center requires Brad's browser sign-in. No support subscription purchase is authorized. Console case eligibility remains unknown until sign-in. The text below is ready to submit without credentials or customer datasets.
+**Submission status: received by AWS automated Support intake; human technical case BLOCKED by Basic Support.** Brad explicitly approved the exact payload, and it was sent on 29 September at approximately 17:48 UTC. The signed-in console matches the affected AWS account. Interaction ID: `0ca2dd14-33a4-4dec-8ecc-c90d368c465b`. Selecting Technical in the case form returned **"Technical case type is not available for your support plan."** The form showed Draft saved. No human case number was issued, no engineer response was obtained, and no paid support/trial or infrastructure change was made. [Open the support interaction](https://console.aws.amazon.com/support/home?interactionId=0ca2dd14-33a4-4dec-8ecc-c90d368c465b#/).
 
-Open [AWS Support Center](https://console.aws.amazon.com/support/home). Select EC2 Linux / instance launch or capacity if the current plan offers technical cases, at development/general-guidance severity. Do not describe this as a production outage, disguise it as billing, or upgrade the support plan automatically. If technical support is unavailable, retain this packet and report the available route and any cost before proceeding.
+The [approved and sent payload](AWS_SUPPORT_CAPACITY_PAYLOAD_2026-09-29.txt) and [submission receipt](evidence/aws-runtime-bundle-2026-09-28/support-submission-2026-09-29.json) preserve the result. The prior automatic-approval rejection was resolved by Brad's explicit payload approval; the remaining block is AWS plan eligibility. An interaction/draft ID must not be reported as a human support case number.
+
+The console offered Account and billing, Service limit increase, and Technical; Technical was unavailable under Basic Support. The issue was not misclassified as billing or a quota increase. The generic AI intake is not an engineering diagnosis of live capacity and supplies no guaranteed recovery time. Keep the saved draft; continue the separately scoped fallback qualification without purchasing support automatically.
 
 ## Subject
 
