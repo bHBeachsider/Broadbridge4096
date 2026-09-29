@@ -1,5 +1,9 @@
 # Approved runtime session: 28 September 2026
 
+## Latest: approved replacement and transfer timeout
+
+**29 September runtime update:** the approved replacement `i-0439f5841d631d9f8` in `us-east-1c` passed host preflight after the reviewed Python 3.11 prerequisite installation. The runtime upload hit a 30-minute SCP command timeout near completion; candidate installation and GPU/CPU checks did not run. Both instances are stopped, independently verified; the original 15:06 UTC deadline was met. A prefix-verified SFTP resume passed nine offline tests but needs a new bounded-start decision. The heartbeat stays paused. See [relocation and transfer receipt](AWS_RUNTIME_RELOCATION_2026-09-29.md).
+
 ## 29 September immediate retry: capacity unavailable
 
 Brad explicitly requested another retry after the preflight correction. The fresh attempt at **12:54:42 UTC** used the corrected full-output glibc check and remote-exit diagnostics. All 113 wheels (**3,792,751,006 bytes**) and both archives were reverified, and the shell/Python syntax checks passed. No files were downloaded again.

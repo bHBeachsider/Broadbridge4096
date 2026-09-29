@@ -1,20 +1,20 @@
 # AWS training setup and private staging
 
-**Latest attempt, 29 September 12:54 UTC:** the explicitly approved retry with corrected preflight was rejected for AWS capacity. The instance is stopped; no transfer or installation occurred. Reuse the verified wheelhouse and corrected private session scripts. The hourly retry remains paused. [Session evidence](AWS_RUNTIME_SESSION_2026-09-28.md).
+**29 September runtime update:** the approved replacement `i-0439f5841d631d9f8` in `us-east-1c` passed host preflight after the reviewed Python 3.11 prerequisite installation. The runtime upload hit a 30-minute SCP command timeout near completion; candidate installation and GPU/CPU checks did not run. Both instances are stopped, independently verified; the original 15:06 UTC deadline was met. A prefix-verified SFTP resume passed nine offline tests but needs a new bounded-start decision. The heartbeat stays paused. See [relocation and transfer receipt](AWS_RUNTIME_RELOCATION_2026-09-29.md).
 
-Prepared 28 September 2026; updated after the approved runtime retries on 29 September UTC. Task 3 delivers a reproducible **candidate** environment and exact staging procedure. The **113-wheel / 3.79 GB bundle is downloaded and verified on the PC**. The 05:35 UTC retry obtained capacity but failed preflight after the glibc output, before installation or GPU checks. A likely pipefail/SIGPIPE correction passed local regression checks; retries are paused pending review of the new failure. See [session results and shutdown evidence](AWS_RUNTIME_SESSION_2026-09-28.md) and [cost safeguards](EC2_COST_GUARDS.md). No inference, training, dataset transfer or production change occurred. The optional helper comparison stays deferred; future gated commands below are not automatically authorized by this document.
+Prepared 28 September 2026; updated 29 September. Runtime preparation does not authorize the separate base download, model inference, accepted-data release or training. Historical attempts remain in [the original session record](AWS_RUNTIME_SESSION_2026-09-28.md); the active host record is the relocation report above.
 
 ## Prepared inputs and remaining gates
 
 | Input | Prepared evidence | Still required |
 | --- | --- | --- |
-| Linux runtime | Foundry `infra/training/`: 113 wheels, pinned versions, sizes, SHA-256, 227 dependency checks; **3,792,751,006 downloaded bytes verified** | Corrected host preflight, Linux installation, actual driver/import/kernel qualification; reuse the PC wheelhouse |
+| Linux runtime | Foundry `infra/training/`: 113 wheels, exact hashes and 227 metadata dependency checks; PC bundle verified | Complete prefix-verified transfer, isolated Linux install, actual imports/kernels and selected CPU checks |
 | Qwen base | [Pinned public inventory](evidence/aws-runtime-bundle-2026-09-28/qwen-base-inventory.json): `unsloth/Qwen3-8B` at `946bc9ac74a6c1f8cf012497c503a119b2fcf2eb`; 15 selected files; **16,397,438,697 bytes (15.271 GiB)** | Separate >1 GB download approval; downloaded-byte verification; no weights were acquired |
 | Dataset | Tested four-file private transfer with fabricated records; accepted release format already exists | Real independent acceptance, current rights/history, held-out families and exact manifest hash |
-| Host | Existing `i-0e5e1cbc7b1367566`, g6.2xlarge, us-east-1; API and guest identity checked; shutdown recorded in session evidence | Review preflight correction before another bounded session; complete driver/Python/disk checks. A working Ollama host does not establish training-runtime compatibility |
+| Host | Replacement `i-0439f5841d631d9f8`, g6.2xlarge, us-east-1c; Python 3.11 prerequisites installed and preflight passed; source retained stopped | Both hosts stopped. No runtime venv installation or GPU check yet; another bounded start needs explicit approval |
 | Model experiment | Existing 20-step/1,800-second controller proposal, every-5-step checkpoints and private logs | Gate 0, scored baselines, real release and bounded run authorization remain open |
 
-Combined runtime and base artifact size is **20,190,189,703 bytes (18.804 GiB)** before dataset, source archives, temporary files or checkpoints. The runtime portion has been acquired on the PC; the base has not. Four weight shards individually exceed 1 GB and remain subject to separate approval. Keep >=64 GiB free as the provisional host gate; actual checkpoint/optimizer usage remains unmeasured. The existing 200 GB EBS volume's free space is unknown.
+Combined runtime and base artifact size is **20,190,189,703 bytes (18.804 GiB)** before dataset, source archives, temporary files or checkpoints. The runtime portion has been acquired on the PC; the base has not. Four weight shards individually exceed 1 GB and remain subject to separate approval. Keep >=64 GiB free as the provisional host gate; actual checkpoint/optimizer usage remains unmeasured. Replacement preflight measured 149,799,608,320 bytes free before transfer. Recheck after installation and before any weight/checkpoint staging.
 
 The first-run candidate keeps Transformers **5.5.0** with Unsloth 2026.9.12. It does not change the CPU environment's 5.9.0. Full details and tested commands are in Foundry's [runtime README](https://github.com/bHBeachsider/slm-foundry/blob/codex/aws-training-readiness/infra/training/README.md). Passing dependency constraints does not establish CUDA compatibility or improved engineering answers.
 
@@ -69,7 +69,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Domain archive failed' }
 tar -tf "$stage/foundry.tar"
 tar -tf "$stage/domain.tar"
 Get-FileHash "$stage/foundry.tar","$stage/domain.tar" -Algorithm SHA256
-$gpuAddress = aws ec2 describe-instances --region us-east-1 --instance-ids i-0e5e1cbc7b1367566 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
+$gpuAddress = aws ec2 describe-instances --region us-east-1 --instance-ids i-0439f5841d631d9f8 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
 $sshKey = 'C:\Users\bradu\Documents\ilyrium-autostudio\slm-foundry-key-v2.pem'
 ssh -i $sshKey "ec2-user@$gpuAddress" 'umask 077; mkdir -p ~/slm-training/inbox'
 scp -i $sshKey "$stage/foundry.tar" "$stage/domain.tar" "ec2-user@${gpuAddress}:slm-training/inbox/"

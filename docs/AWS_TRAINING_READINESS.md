@@ -1,14 +1,12 @@
 # Qwen3-8B: AWS and dataset readiness
 
-**Latest attempt, 29 September 12:54 UTC:** Brad approved retrying the corrected preflight. AWS returned `InsufficientInstanceCapacity`; stopped state was independently confirmed. The 113 cached wheels and both archives were reverified. The correction has not yet run on the host, and installation/GPU qualification remain open. Automatic retries remain paused. [Receipt](evidence/aws-runtime-bundle-2026-09-28/retry-2026-09-29-1254.json).
-
-**29 September UTC runtime update:** the approved **113-wheel / 3.79 GB runtime download is verified on the PC**. The scheduled retry obtained capacity at 05:35 UTC, but preflight failed immediately after the glibc check, before installation. The likely pipefail/SIGPIPE issue has a locally tested correction; the actual remote exit code was not retained. Automatic retries are paused. See [session and shutdown evidence](AWS_RUNTIME_SESSION_2026-09-28.md). No weights, model inference or training ran; dataset gates are unchanged.
+**29 September runtime update:** the approved replacement `i-0439f5841d631d9f8` in `us-east-1c` passed host preflight after the reviewed Python 3.11 prerequisite installation. The runtime upload hit a 30-minute SCP command timeout near completion; candidate installation and GPU/CPU checks did not run. Both instances are stopped, independently verified; the original 15:06 UTC deadline was met. A prefix-verified SFTP resume passed nine offline tests but needs a new bounded-start decision. The heartbeat stays paused. See [relocation and transfer receipt](AWS_RUNTIME_RELOCATION_2026-09-29.md).
 
 28 September 2026. Owner: Brad / Broadbridge. **CPU preparation plus an explicitly approved read-only development-database check; no Broadbridge fine-tuning job has run in this work.** This is the active FQ-12/FQ-13 readiness runbook. The optional OpenRouter helper comparison is deferred. Its provider availability and terms do not block this path.
 
 ## The model and the path
 
-The target is **`unsloth/Qwen3-8B` on the existing AWS EC2 L4 instance**, not ECS and not the larger Qwen helper accessed through OpenRouter. Ollama's installed `qwen3:8b` GGUF serves responses; it is not the trainable checkpoint. The later training session needs the pinned Hugging Face weights plus the CUDA/Unsloth/TRL stack. A LoRA adapter is then evaluated, merged and converted to GGUF for serving.
+The target is **`unsloth/Qwen3-8B` on the approved AWS EC2 L4 host**, not ECS and not the larger Qwen helper accessed through OpenRouter. Ollama's installed `qwen3:8b` GGUF serves responses; it is not the trainable checkpoint. The later training session needs the pinned Hugging Face weights plus the CUDA/Unsloth/TRL stack. A LoRA adapter is then evaluated, merged and converted to GGUF for serving.
 
 The local tokenizer snapshot is pinned to `946bc9ac74a6c1f8cf012497c503a119b2fcf2eb`. The smoke configuration proposes that same base revision; this task verifies tokenizer files only, not availability or completeness of the corresponding weight snapshot on AWS.
 
@@ -33,8 +31,8 @@ Steps 1–3 are not replaced by a helper-model contest. Offline host/configurati
 | Math quality / family status | 3 exact duplicate groups, 4 numeric-template groups, 1,196 proposed families, no detected cross-split family under these heuristics. Ten convenience checks: 7 consistent, 1 wrong, 1 ambiguous/inconsistent, 1 contradictory. Whole sample stays on quality/family hold. These checks are not an accuracy estimate. |
 | Release boundary | Fresh fabricated rehearsal again refused all 8 invalid acceptance/release scenarios. Fixture identities and approvals confer no real training authority. Authenticated synthetic acceptance still needs complete current rights/history and live integration. |
 | Real accepted release / Gate 0 | The approved read-only check reached dev, not production. Dev has 4 cases, 4 questions, 0 brief runs and 0 scorecards. Its two signed/training cases are SYN-prefixed hypothetical fixtures; one other signed case is testing-only. Production Bill submissions and Gate 0 coverage remain unknown. See the follow-up below. |
-| AWS host | `i-0e5e1cbc7b1367566`, `g6.2xlarge`, us-east-1 identity checked live; guest identity and shutdown timer verified. The 05:35 UTC retry obtained capacity but failed preflight after glibc output. Complete driver/Python/disk preflight and runtime installation remain open; retries are paused. See session evidence for final shutdown state. |
-| GPU runtime | Complete Linux/Python 3.11/CUDA 12.6 candidate lock: 113 wheels, 3.79 GB, 227 dependency checks; all wheels now downloaded and hash-verified on the PC. Unsloth 2026.9.12 caps Transformers at 5.5.0; CPU tooling stays at 5.9.0. Driver compatibility, installation and imports remain unqualified. See [setup and staging](AWS_TRAINING_SETUP.md). Do not run the floating bootstrap or reuse CPU requirements as a GPU recipe. |
+| AWS host | Replacement `i-0439f5841d631d9f8`, g6.2xlarge, us-east-1c; source `i-0e5e1cbc7b1367566` retained stopped. Both stopped after the bounded session. Replacement preflight passed: Python 3.11.16, headers/GCC, glibc 2.34, driver 595.91.07, L4 23,034 MiB; see relocation receipt. |
+| GPU runtime | Exact 113-wheel CUDA 12.6 candidate reverified on PC. Python OS prerequisites installed; runtime archive upload incomplete after command timeout. No candidate venv installation, imports or kernel tests yet. Unsloth stays 2026.9.12 / Transformers 5.5.0; local CPU 5.9.0 unchanged. Prefix-verified resume prepared; no floating bootstrap. |
 | Artifact storage | Broadbridge intake already uses private R2. Do not automatically attach the older Ilyrium S3 profile or create another bucket. The [R2-to-EBS setup runbook](AWS_TRAINING_SETUP.md) and immutable transfer tool are prepared and rehearsed locally. Live prefix/token scope and exact transfer still need approval. An S3 instance profile is a requirement only if a separately approved S3 artifact path is selected. |
 | Training diagnostics | Implemented and tested with local CPU child processes: merged stdout/stderr, private per-attempt files, 4 MiB cap with continuous draining, byte/hash/truncation receipts, and rejection of changed/incomplete captures. Actual CUDA logs and metrics remain unverified. |
 
@@ -102,14 +100,14 @@ Use the Foundry [serving brief](https://github.com/bHBeachsider/slm-foundry/blob
 
 ```powershell
 # Future authorized session only; these commands were NOT run for readiness.
-aws ec2 start-instances --region us-east-1 --instance-ids i-0e5e1cbc7b1367566
-aws ec2 wait instance-running --region us-east-1 --instance-ids i-0e5e1cbc7b1367566
-aws ec2 wait instance-status-ok --region us-east-1 --instance-ids i-0e5e1cbc7b1367566
-$gpuAddress = aws ec2 describe-instances --region us-east-1 --instance-ids i-0e5e1cbc7b1367566 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
+aws ec2 start-instances --region us-east-1 --instance-ids i-0439f5841d631d9f8
+aws ec2 wait instance-running --region us-east-1 --instance-ids i-0439f5841d631d9f8
+aws ec2 wait instance-status-ok --region us-east-1 --instance-ids i-0439f5841d631d9f8
+$gpuAddress = aws ec2 describe-instances --region us-east-1 --instance-ids i-0439f5841d631d9f8 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
 ssh -i 'C:\Users\bradu\Documents\ilyrium-autostudio\slm-foundry-key-v2.pem' "ec2-user@$gpuAddress"
 # At the end of the authorized session, including failures:
-aws ec2 stop-instances --region us-east-1 --instance-ids i-0e5e1cbc7b1367566
-aws ec2 wait instance-stopped --region us-east-1 --instance-ids i-0e5e1cbc7b1367566
+aws ec2 stop-instances --region us-east-1 --instance-ids i-0439f5841d631d9f8
+aws ec2 wait instance-stopped --region us-east-1 --instance-ids i-0439f5841d631d9f8
 ```
 
 Training uses SSH; the serving tunnel is needed only for model calls. Keep port 11434 private, use local port 11435 for later Ollama testing, and never pin a public IP. Recheck identity, GPU/disk capacity, runtime and actual hourly cost at session preflight. Stop if the host differs from the approved plan.
@@ -128,7 +126,7 @@ Generic engine changes: [draft Foundry #21](https://github.com/bHBeachsider/slm-
 
 1. Resolve current signed-case/reviewer status and accept the narrow DOE/calculation scope; no optional helper comparison is required.
 2. Complete authenticated candidate acceptance/history binding where needed and freeze the first accepted release.
-3. Task 3 preparation delivered: [resolved candidate runtime and private staging](AWS_TRAINING_SETUP.md). The approved runtime download is verified; [EC2 installation is blocked by preflight](AWS_RUNTIME_SESSION_2026-09-28.md). Review the locally tested script correction before another paid session. Reuse the wheelhouse; actual host/import/kernel checks remain open.
+3. Task 3 preparation delivered: [resolved candidate runtime and private staging](AWS_TRAINING_SETUP.md). Host capacity and Python prerequisites resolved on the replacement; [runtime transfer remains incomplete](AWS_RUNTIME_RELOCATION_2026-09-29.md). A tested resumable transfer is prepared. Installation/import/kernel checks remain open; another start needs an explicit bounded decision.
 4. Only after runtime, dataset and baseline gates are satisfied, authorize and perform the smoke run. No model inference, training or production changes occurred during runtime setup; the earlier approved database check was read-only against dev.
 
 ## Follow-up: diagnostics, runtime candidates and current dev counts
