@@ -1,5 +1,7 @@
 # Qwen3-8B: AWS and dataset readiness
 
+**Latest attempt, 29 September 12:54 UTC:** Brad approved retrying the corrected preflight. AWS returned `InsufficientInstanceCapacity`; stopped state was independently confirmed. The 113 cached wheels and both archives were reverified. The correction has not yet run on the host, and installation/GPU qualification remain open. Automatic retries remain paused. [Receipt](evidence/aws-runtime-bundle-2026-09-28/retry-2026-09-29-1254.json).
+
 **29 September UTC runtime update:** the approved **113-wheel / 3.79 GB runtime download is verified on the PC**. The scheduled retry obtained capacity at 05:35 UTC, but preflight failed immediately after the glibc check, before installation. The likely pipefail/SIGPIPE issue has a locally tested correction; the actual remote exit code was not retained. Automatic retries are paused. See [session and shutdown evidence](AWS_RUNTIME_SESSION_2026-09-28.md). No weights, model inference or training ran; dataset gates are unchanged.
 
 28 September 2026. Owner: Brad / Broadbridge. **CPU preparation plus an explicitly approved read-only development-database check; no Broadbridge fine-tuning job has run in this work.** This is the active FQ-12/FQ-13 readiness runbook. The optional OpenRouter helper comparison is deferred. Its provider availability and terms do not block this path.

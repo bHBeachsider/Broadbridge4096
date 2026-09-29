@@ -1,5 +1,13 @@
 # Approved runtime session: 28 September 2026
 
+## 29 September immediate retry: capacity unavailable
+
+Brad explicitly requested another retry after the preflight correction. The fresh attempt at **12:54:42 UTC** used the corrected full-output glibc check and remote-exit diagnostics. All 113 wheels (**3,792,751,006 bytes**) and both archives were reverified, and the shell/Python syntax checks passed. No files were downloaded again.
+
+AWS rejected the single start request with **`InsufficientInstanceCapacity`**. The controller confirmed **stopped at 12:54:50 UTC**, **8.211 seconds** after the request; a separate AWS check also returned stopped with the earlier launch time unchanged. No guest command, transfer, installation, GPU check, inference or training ran. The corrected preflight therefore still needs a real host run. The hourly heartbeat remains paused; this was the requested immediate attempt, not a resumption of the schedule.
+
+The private session directory is Foundry `outputs/runtime-session-20260929-1253/`. See the [capacity-retry receipt](evidence/aws-runtime-bundle-2026-09-28/retry-2026-09-29-1254.json). Reuse the verified local artifacts when retrying the same host; no replacement capacity was created.
+
 ## 29 September scheduled retry: preflight script failure
 
 At **05:35:27 UTC**, the hourly retry requested a start of the same approved instance; AWS accepted it and recorded launch at **05:35:30 UTC**. The heartbeat was **paused** after that successful start. All 113 cached wheels and both transfer archives had been reverified locally; no new download occurred.

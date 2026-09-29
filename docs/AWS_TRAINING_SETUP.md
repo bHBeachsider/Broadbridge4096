@@ -1,5 +1,7 @@
 # AWS training setup and private staging
 
+**Latest attempt, 29 September 12:54 UTC:** the explicitly approved retry with corrected preflight was rejected for AWS capacity. The instance is stopped; no transfer or installation occurred. Reuse the verified wheelhouse and corrected private session scripts. The hourly retry remains paused. [Session evidence](AWS_RUNTIME_SESSION_2026-09-28.md).
+
 Prepared 28 September 2026; updated after the approved runtime retries on 29 September UTC. Task 3 delivers a reproducible **candidate** environment and exact staging procedure. The **113-wheel / 3.79 GB bundle is downloaded and verified on the PC**. The 05:35 UTC retry obtained capacity but failed preflight after the glibc output, before installation or GPU checks. A likely pipefail/SIGPIPE correction passed local regression checks; retries are paused pending review of the new failure. See [session results and shutdown evidence](AWS_RUNTIME_SESSION_2026-09-28.md) and [cost safeguards](EC2_COST_GUARDS.md). No inference, training, dataset transfer or production change occurred. The optional helper comparison stays deferred; future gated commands below are not automatically authorized by this document.
 
 ## Prepared inputs and remaining gates
