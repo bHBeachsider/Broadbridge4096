@@ -1,5 +1,7 @@
 # SLM preparation and fine-tuning work queue
 
+**Next packet prepared:** [pinned Qwen checkpoint and model-load check](QWEN_MODEL_LOAD_SESSION.md). The 15-file public inventory was refreshed without downloading weights. Offline tooling is tested; no new EC2 session, inference or training occurred. Live execution remains separately scoped.
+
 **Latest result, 29 September 20:03 UTC:** the approved A10G retry in
 `us-east-1b` succeeded. All 113 pinned wheels installed and matched; `pip check`,
 five synthetic GPU probes and **149 selected CPU tests** passed. The A10G and

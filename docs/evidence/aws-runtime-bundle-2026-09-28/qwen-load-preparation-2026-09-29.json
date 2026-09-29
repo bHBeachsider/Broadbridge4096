@@ -1,0 +1,67 @@
+{
+  "schema": "broadbridge.model_load_preparation/1",
+  "recorded_at": "2026-09-29T21:39:32.688827+00:00",
+  "status": "PREPARED_WAIT_MODEL_DOWNLOAD_AND_LOAD_DECISION",
+  "foundry_base_commit": "4100231f12baf78caf8304120a91c67402a870e8",
+  "domain_base_commit": "1595c2eff5f279036c3aaf6a63972decd02ff5b6",
+  "foundry_files": {
+    "scripts/model_checkpoint.py": "96b7e7cfa203240797544af216e746cef2eff37283c8c80afa400fdd73361bb8",
+    "tests/test_model_checkpoint.py": "88b888f644eecd038bbbab77ff7c51978bf95511cd1c157d7cd79c0c7662df39",
+    "docs/MODEL_CHECKPOINT.md": "efaab2582849fe5aee43dc9f152e471615f4e74dcb68b73a58f3e7c054928f50"
+  },
+  "runbook_sha256": "eff68f844b71b497eb8d25e63383b6d02d83ef0eb71c045c408b455517a802b0",
+  "base_inventory_sha256": "ae69d76c4b5b18ac823687ee0df2bbc45ba12c030f9147970e51f799a0107ee5",
+  "metadata_refresh_sha256": "24248236571629056a099854ca5cb066a2d967d540ec1e13d3ffb7f779401967",
+  "full_foundry_tests": {
+    "command": "python -m pytest -o addopts= --tb=short --junitxml=outputs/qwen-load-prep-20260929/test-results.xml",
+    "passed": 850,
+    "skipped": 3,
+    "failed": 0,
+    "errors": 0,
+    "warnings": 3,
+    "elapsed_seconds": 185.894,
+    "junit_sha256": "cc20679976835976c355788263a55dd14a1fef94756f42b575f4f546ea8226ef",
+    "runtime": "Existing Windows CPU Python 3.13.5 environment; not the installed GPU runtime"
+  },
+  "checkpoint_tests": {
+    "passed": 36,
+    "network_and_gpu_boundaries": "mocked; tiny fabricated checkpoint artifacts"
+  },
+  "syntax_checks": {
+    "bash": "Git Bash -n passed; not executed",
+    "powershell": "System.Management.Automation.Language.Parser passed; not executed"
+  },
+  "live_scope": {
+    "ec2_started": false,
+    "weights_downloaded": false,
+    "model_loaded": false,
+    "inference_calls": 0,
+    "training_steps": 0,
+    "database_or_r2_operations": false,
+    "production_changes": false
+  },
+  "proposed_session": {
+    "instance_id": "i-079b24e2b51ef7630",
+    "region": "us-east-1",
+    "profile": "g5-a10g",
+    "selected_payload_bytes": 16397438697,
+    "max_minutes": 90,
+    "guest_stop_minute": 80,
+    "independent_api_stop_minute": 85,
+    "force_by_minute": 87,
+    "final_stopped_check_minute": 90,
+    "recorded_compute_usd_per_hour": 1.212,
+    "estimated_max_instance_compute_usd": 1.818,
+    "executed": false
+  },
+  "limitations": [
+    "No actual model-load, VRAM-fit, inference-quality or training-readiness conclusion from mocked GPU tests.",
+    "Hugging Face metadata/retries add transfer overhead beyond selected artifact bytes.",
+    "Fresh source archives, controller receipt and boot ownership binding are required for a separately authorized execution.",
+    "Gate 0, scored baselines, reviewed data, QLoRA/checkpoint/resume and second-operator reproduction remain open."
+  ],
+  "warning_notes": [
+    "Existing Requests dependency-version warning in the local CPU environment.",
+    "Two SWIG deprecation warnings; the interpreter also reports swigvarlink on exit."
+  ]
+}

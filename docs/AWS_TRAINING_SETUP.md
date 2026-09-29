@@ -1,17 +1,24 @@
 # AWS training setup and private staging
 
+**Current next step, 29 September:** the retained A10G runtime passed installation,
+imports, five GPU probes and 149 selected CPU tests. All GPU hosts are stopped.
+The [checkpoint/model-load packet](QWEN_MODEL_LOAD_SESSION.md) now provides the
+exact 16.40 GB inventory, tested CLI, selected A10G/venv and bounded guest commands.
+Preparation is complete; model download/loading needs the separately scoped live
+decision described there. The dated L4 attempts below are historical.
+
 **29 September 16:47 UTC retry:** Brad authorized a new bounded attempt using whichever existing host was available. The replacement in `us-east-1c` and then the original in `us-east-1d` each returned `InsufficientInstanceCapacity`; neither started. Both were independently confirmed stopped with unchanged launch times. The verified wheelhouse, replacement Python prerequisites and partial upload are preserved. All 18 offline selection/resume tests passed. No guest command, new transfer, installation or GPU test ran. Retry automation remains paused. [Receipt](evidence/aws-runtime-bundle-2026-09-28/retry-pair-2026-09-29-1647.json).
 
-Prepared 28 September 2026; updated 29 September. Runtime preparation does not authorize the separate base download, model inference, accepted-data release or training. Historical attempts remain in [the original session record](AWS_RUNTIME_SESSION_2026-09-28.md); the active host record is the relocation report above.
+Prepared 28 September 2026; updated 29 September. Runtime preparation does not authorize the separate base download, model inference, accepted-data release or training. Historical attempts remain in [the original session record](AWS_RUNTIME_SESSION_2026-09-28.md); the current host result is [A10G validation](AWS_A10G_RUNTIME_SESSION_2026-09-29.md).
 
 ## Prepared inputs and remaining gates
 
 | Input | Prepared evidence | Still required |
 | --- | --- | --- |
-| Linux runtime | Foundry `infra/training/`: 113 wheels, exact hashes and 227 metadata dependency checks; PC bundle verified | Complete prefix-verified transfer, isolated Linux install, actual imports/kernels and selected CPU checks |
+| Linux runtime | Installed/verified on A10G: 113 matched packages, five GPU probes and 149 CPU tests passed | Recheck exact installed versions/profile on the next boot; model load and QLoRA remain separate |
 | Qwen base | [Pinned public inventory](evidence/aws-runtime-bundle-2026-09-28/qwen-base-inventory.json): `unsloth/Qwen3-8B` at `946bc9ac74a6c1f8cf012497c503a119b2fcf2eb`; 15 selected files; **16,397,438,697 bytes (15.271 GiB)** | Separate >1 GB download approval; downloaded-byte verification; no weights were acquired |
 | Dataset | Tested four-file private transfer with fabricated records; accepted release format already exists | Real independent acceptance, current rights/history, held-out families and exact manifest hash |
-| Host | Replacement `i-0439f5841d631d9f8`, g6.2xlarge, us-east-1c; Python 3.11 prerequisites installed and preflight passed; source retained stopped | Both hosts stopped. No runtime venv installation or GPU check yet; another bounded start needs explicit approval |
+| Host | Retained stopped A10G `i-079b24e2b51ef7630`, g5.2xlarge, us-east-1b; both L4 hosts preserved stopped | New bounded model-download/load decision; no restart performed by preparation |
 | Model experiment | Existing 20-step/1,800-second controller proposal, every-5-step checkpoints and private logs | Gate 0, scored baselines, real release and bounded run authorization remain open |
 
 Combined runtime and base artifact size is **20,190,189,703 bytes (18.804 GiB)** before dataset, source archives, temporary files or checkpoints. The runtime portion has been acquired on the PC; the base has not. Four weight shards individually exceed 1 GB and remain subject to separate approval. Keep >=64 GiB free as the provisional host gate; actual checkpoint/optimizer usage remains unmeasured. Replacement preflight measured 149,799,608,320 bytes free before transfer. Recheck after installation and before any weight/checkpoint staging.
@@ -55,7 +62,13 @@ try {
 
 This moves only `train.jsonl`, `val.jsonl`, `test.jsonl`, `manifest.json`, at most 64 MiB each. A conflict never overwrites an existing object. The manifest is published last. No live upload was rehearsed here; offline tests used a temporary local store and fabricated reviewer records.
 
-## 3. Later approved host session and source transfer
+## 3. Source staging and full runtime reproduction
+
+For the current checkpoint-only session, use the selective source archives
+below with the lifecycle controller in the model-load packet. **Skip the
+wheelhouse transfer and fresh installation:** the validated A10G environment
+already exists. The full-runtime instructions remain for a separately approved
+reproduction on a fresh environment; they are not steps to repeat now.
 
 Use [AWS_TRAINING_READINESS.md](AWS_TRAINING_READINESS.md) and Foundry `docs/SLM_SERVING_BRIEF.md` for approved bring-up and **tear-down even on failure**. Host is EC2, not ECS. Obtain its current IP with `describe-instances`; never hardcode it. Keep port 11434 closed. Do not start the box just to read these instructions.
 
@@ -69,15 +82,13 @@ if ($LASTEXITCODE -ne 0) { throw 'Domain archive failed' }
 tar -tf "$stage/foundry.tar"
 tar -tf "$stage/domain.tar"
 Get-FileHash "$stage/foundry.tar","$stage/domain.tar" -Algorithm SHA256
-$gpuAddress = aws ec2 describe-instances --region us-east-1 --instance-ids i-0439f5841d631d9f8 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
+$gpuAddress = aws ec2 describe-instances --region us-east-1 --instance-ids i-079b24e2b51ef7630 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
 $sshKey = 'C:\Users\bradu\Documents\ilyrium-autostudio\slm-foundry-key-v2.pem'
 ssh -i $sshKey "ec2-user@$gpuAddress" 'umask 077; mkdir -p ~/slm-training/inbox'
 scp -i $sshKey "$stage/foundry.tar" "$stage/domain.tar" "ec2-user@${gpuAddress}:slm-training/inbox/"
-# $wheelhouse is the later approved, already verified wheel directory from Foundry's README.
-scp -i $sshKey -r $wheelhouse "ec2-user@${gpuAddress}:slm-training/"
 ```
 
-Review the archive listings and sizes before transfer; stop on unexpected tracked data or credentials. On Linux, compare `sha256sum ~/slm-training/inbox/{foundry,domain}.tar` with the recorded PC hashes, then extract into **new empty** `~/slm-training/foundry` and `~/slm-training/domain` directories. Retain the two Git commit IDs in the packet because `git archive` does not create checkouts. Do not overwrite another operator's workspace. Follow Foundry `infra/training/README.md` for host facts, fresh venv, offline hash-enforced install, version/import checks and CPU tests. If Python 3.11/ensurepip, disk or driver is missing, stop and review that host change rather than running a floating bootstrap.
+Review the archive listings and sizes before transfer; stop on unexpected tracked data or credentials. On Linux, compare the two archive SHA-256 values with the recorded PC hashes, then extract into **new empty session-specific** Foundry and domain directories. Retain the two Git commit IDs in the packet because `git archive` does not create checkouts. Do not overwrite the prior validated snapshot or another operator's workspace. For a separately approved full runtime reproduction only, transfer the verified wheelhouse and follow Foundry `infra/training/README.md` for a fresh venv, offline hash-enforced install, version/import checks and CPU tests. For the checkpoint-only session, recheck and reuse `~/slm-training/venv-a10g-a23670f4d161`. If any prerequisite, disk or driver differs, stop and review that host change rather than running a floating bootstrap.
 
 ## 4. Later approved R2-to-EC2 release download
 
@@ -92,52 +103,20 @@ read -rsp 'R2 read-only access key ID: ' R2_ACCESS_KEY_ID; printf '\n'
 read -rsp 'R2 read-only secret: ' R2_SECRET_ACCESS_KEY; printf '\n'
 export R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY
 trap 'unset R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY' EXIT
-"$HOME/slm-training/venv-a23670f4d161/bin/python" scripts/training_transfer.py pull --release-id "$RELEASE_ID" --prefix training/broadbridge-oil-gas/releases --manifest-sha256 "$MANIFEST_SHA256" --destination "$DESTINATION" --execute
+"$HOME/slm-training/venv-a10g-a23670f4d161/bin/python" scripts/training_transfer.py pull --release-id "$RELEASE_ID" --prefix training/broadbridge-oil-gas/releases --manifest-sha256 "$MANIFEST_SHA256" --destination "$DESTINATION" --execute
 unset R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY
 ```
 
 The tool validates remote bytes into a private temporary directory before publishing the release. A corrupted download or an existing destination is rejected. It verifies release rows, provenance structure, split hashes and manifest identity; it cannot supply missing engineering acceptance or detect external revocations. Compare the resulting receipt with the PC plan. Recreate the controller request on this host because absolute config paths change its binding.
 
-## 5. Base checkpoint — inventory now, download later
+## 5. Base checkpoint and model-load check
 
-The metadata-only [inventory](evidence/aws-runtime-bundle-2026-09-28/qwen-base-inventory.json) distinguishes LFS SHA-256 from Git blob SHA-1 for small tracked files. Do not treat a Git object ID as a file SHA-256. The revision and four weight hashes are available, but downloaded weights have not been tested. Ollama's GGUF is not this trainable checkpoint.
-
-Only after approval of the **16,397,438,697-byte** base download, use the newly installed environment from the domain snapshot directory. Set `HF_HUB_CACHE` to a new private absolute directory and preserve that same environment variable for subsequent audits and controller runs. Run the download in a separate process with `HF_HUB_OFFLINE=0`; the runtime qualification commands use offline mode. Do not remove the revision or widen the allowlist on failure.
-
-```bash
-export HF_HUB_CACHE="$HOME/slm-training/hf-cache-qwen-946bc9ac74a6c1f8cf012497c503a119b2fcf2eb"
-HF_HUB_OFFLINE=0 "$HOME/slm-training/venv-a23670f4d161/bin/python" - <<'PY'
-import hashlib, json, os
-from pathlib import Path
-from huggingface_hub import snapshot_download, hf_hub_download
-m = json.loads(Path('docs/evidence/aws-runtime-bundle-2026-09-28/qwen-base-inventory.json').read_text())
-cache = Path(os.environ['HF_HUB_CACHE'])
-assert cache.is_absolute() and not cache.exists(), 'Choose a fresh private cache directory'
-assert sum(x['size_bytes'] for x in m['files']) == 16397438697
-assert m['repo_id'] == 'unsloth/Qwen3-8B' and m['revision'] == '946bc9ac74a6c1f8cf012497c503a119b2fcf2eb'
-root = Path(snapshot_download(repo_id=m['repo_id'], revision=m['revision'], cache_dir=cache,
-                  allow_patterns=[x['path'] for x in m['files']], max_workers=2, token=False))
-assert root.resolve().is_relative_to(cache.resolve())
-for item in m['files']:
-    path = root / item['path']
-    # Hub snapshots use links into the cache's blobs directory; reject links outside this private cache.
-    assert path.is_file() and path.resolve().is_relative_to(cache.resolve()) and path.stat().st_size == item['size_bytes'], item['path']
-    if item['hash_algorithm'] == 'sha256':
-        h = hashlib.sha256()
-    else:
-        assert item['hash_algorithm'] == 'git-blob-sha1'
-        h = hashlib.sha1(b'blob ' + str(item['size_bytes']).encode() + b'\0')
-    with path.open('rb') as stream:
-        for chunk in iter(lambda: stream.read(4 * 1024 * 1024), b''):
-            h.update(chunk)
-    assert h.hexdigest() == item['hash'], item['path']
-    cached = Path(hf_hub_download(m['repo_id'], item['path'], revision=m['revision'], cache_dir=cache, local_files_only=True, token=False))
-    assert cached.resolve() == path.resolve(), item['path']
-print(json.dumps({'files_verified': len(m['files']), 'bytes': m['total_bytes'], 'model_loaded': False}))
-PY
-```
-
-This future download command is not a hard network spend limiter: Hub retries/cache metadata can add overhead. Account for that in the approved cap, observe transfer size and stop on unexpected revision/size behavior. It verifies the final selected bytes and local-only cache resolution, and never loads the model. Incomplete files remain private and unqualified. Keep `model.base=unsloth/Qwen3-8B`, the same pinned revision and `HF_HUB_CACHE` for the controller; set `HF_HUB_OFFLINE=1` again after acquisition. The training worker inherits the selected cache. Use the returned snapshot's tokenizer for its CPU audit. Do not silently substitute a local path for the model ID or permit another download during training. No training command is introduced by this setup document.
+The inline Hub-download prototype is superseded by the tested Foundry
+`scripts/model_checkpoint.py`. Use [QWEN_MODEL_LOAD_SESSION.md](QWEN_MODEL_LOAD_SESSION.md)
+for exact commands, inventory hash, byte total, A10G/venv selection, deadlines,
+pass criteria and remaining authority. `plan`/`verify` are offline; `fetch` and
+`load-check` require explicit execution flags plus the separate recorded decision.
+Never use the older L4 paths or silently substitute a prequantized mirror.
 
 ## 6. Private run backup and stopping
 
@@ -158,5 +137,11 @@ Review the actual archive size; stop before transferring >1 GB unless that exact
 Stop the instance using the readiness runbook even if installation, transfer or training fails. A persistent failure is recorded with its private logs; do not retry under a fresh unbounded timer. Second-operator reproducibility requires repeating the reviewed setup and bounded smoke on the actual host, not merely reading this document.
 
 ## Offline validation
+
+The checkpoint preparation adds **36 offline tests**; the current full Foundry
+suite passed **850 tests, with 3 skipped**. Command syntax, inventory bindings
+and preparation-only scope are recorded in the
+[checkpoint preparation receipt](evidence/aws-runtime-bundle-2026-09-28/qwen-load-preparation-2026-09-29.json).
+The older preparation counts below remain historical.
 
 [Validation receipt](evidence/aws-runtime-bundle-2026-09-28/tests.json): Foundry full suite **781 passed, 3 skipped**; one further CLI round-trip test is included in the final **30-pass** focused bundle/transfer run. Broadbridge **410 passed, 104 skipped**, including 103 database tests without credentials and one optional reference adapter. Five PowerShell blocks and two embedded Python blocks parsed successfully without executing future operations. Independent review found no remaining actionable defects after an encoding correction. CPU tests use the existing environment, not the uninstalled candidate GPU stack. Remote CI is reported on the draft PRs.

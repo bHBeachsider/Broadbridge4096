@@ -1,0 +1,14 @@
+{
+  "schema": "broadbridge.base_metadata_refresh/1",
+  "checked_at": "2026-09-29T21:26:39.039380+00:00",
+  "source": "https://huggingface.co/api/models/unsloth/Qwen3-8B/tree/946bc9ac74a6c1f8cf012497c503a119b2fcf2eb?recursive=true&expand=false",
+  "repo_id": "unsloth/Qwen3-8B",
+  "revision": "946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+  "inventory_sha256": "ae69d76c4b5b18ac823687ee0df2bbc45ba12c030f9147970e51f799a0107ee5",
+  "selected_files_matched": 15,
+  "selected_payload_bytes": 16397438697,
+  "metadata_bytes_read": 2823,
+  "metadata_sha256": "95388f82d1aeca20642ae7994adcf914ba92e2156e892dfaf5c7a955618918b3",
+  "weights_downloaded": false,
+  "model_loaded": false
+}
