@@ -1,5 +1,19 @@
 # Approved runtime session: 28 September 2026
 
+## 29 September scheduled retry: preflight script failure
+
+At **05:35:27 UTC**, the hourly retry requested a start of the same approved instance; AWS accepted it and recorded launch at **05:35:30 UTC**. The heartbeat was **paused** after that successful start. All 113 cached wheels and both transfer archives had been reverified locally; no new download occurred.
+
+SSH trust and guest identity checks passed. The transient guest shutdown timer was active for **06:55:27 UTC**, with the independent local watchdog and absolute **07:05:27 UTC** deadline retained. Preflight printed Amazon Linux 2023 and glibc 2.34, then failed before reaching the GPU, Python or disk checks. No archive transfer, environment installation, inference, training or GPU qualification occurred.
+
+The likely cause is `ldd --version | head -n 1` under `set -euo pipefail`: an early-closing reader can cause SIGPIPE in the version producer. A controlled local Docker regression (existing image, no pull, network disabled) reproduced exit 141 with this pipeline; reading the complete version output exited 0 and reached the next check. **The actual remote exit code was not retained**, so this is an evidenced diagnosis, not confirmation of the remote code. A corrected preflight and a driver copy that retains the remote step/exit code are prepared privately. Both syntax checks passed. No second start was attempted.
+
+Private evidence is in Foundry `outputs/runtime-session-20260929-0533/`, preserving all earlier receipts. Normal shutdown remained in `stopping`; after rechecking the exact instance boot, the approved force-stop/guest-bypass fallback was requested at **05:39:41 UTC**. The controller confirmed **stopped at 05:41:47 UTC**, **380.033 seconds (6 minutes 20 seconds)** after the start request. An independent subsequent AWS check also returned stopped, and both controller/watchdog processes had exited. See the [retry receipt](evidence/aws-runtime-bundle-2026-09-28/retry-2026-09-29-0535.json).
+
+Automatic retries remain paused; report this new failure before requesting another paid session. The hardware and pinned runtime remain unqualified. This run reverified 113/113 wheels and two archives, passed two local controlled regression scenarios plus shell/Python syntax checks, and ran **zero GPU checks or on-host pytest tests**. No second paid start was attempted.
+
+## Earlier session history (superseded status)
+
 Session began on 28 September in New York / 29 September UTC. **The runtime bundle is downloaded and verified, but the candidate has not been installed or GPU-qualified.** AWS returned `InsufficientInstanceCapacity` when restarting the existing host after connection/preflight corrections, including the delayed retry. Final stopped state was confirmed at **04:14:42 UTC**, **25 minutes 41 seconds** after the original start request, inside the approved 90-minute window. See the [machine-readable receipt](evidence/aws-runtime-bundle-2026-09-28/session.json).
 
 ## Scope and prepared artifacts
@@ -42,12 +56,12 @@ Subsequent start requests were rejected by AWS capacity availability. Retries re
 - Both Bash scripts passed syntax checks and both Python operational files parsed. Small FP16/BF16, Triton, NF4 and xformers probes are prepared but **have not run on the GPU**.
 - Independent review identified shutdown deadline accounting, ownership and SSH-trust concerns. Cleanup calls were bounded against the remaining budget, boot ownership checked, host trust narrowed and retry phase budgets corrected. Cloud capacity and actual native runtime compatibility remain unresolved.
 
-## Next action
+## Earlier retry authorization (04:29 UTC)
 
 **29 September follow-up:** Brad approved retrying the existing L4 when capacity returns. The 113 cached wheels were re-verified without another download. A fresh bounded start attempt at **04:29:31 UTC** again returned `InsufficientInstanceCapacity`; stopped state was confirmed at **04:29:38 UTC**. No installation or GPU checks ran. See the [retry receipt](evidence/aws-runtime-bundle-2026-09-28/retry-2026-09-29.json).
 
-The thread heartbeat **Retry Broadbridge L4 runtime** is now active hourly. It makes one existing-host start attempt per run, keeps unchanged capacity failures quiet, and pauses after the first successful start or a new blocker. A successful start may execute only the approved runtime installation/checks with a fresh maximum 90-minute shutdown bound. It must preserve earlier evidence, reuse the verified bundle, refuse to take over another operator's running host and report actual qualification results. No replacement capacity, weights or training are authorized.
+The thread heartbeat **Retry Broadbridge L4 runtime** was activated hourly after that attempt. It makes one existing-host start attempt per run, keeps unchanged capacity failures quiet, and pauses after the first successful start or a new blocker. It is now paused following the 05:35 UTC successful start described above. A successful start could execute only the approved runtime installation/checks with a fresh maximum 90-minute shutdown bound, preserving earlier evidence, reusing the verified bundle, refusing to take over another operator's running host and reporting actual qualification results. No replacement capacity, weights or training were authorized.
 
-For the now-approved retry, verify the local wheelhouse, arm the shutdown guards, inspect Linux/Python 3.11/ensurepip/Python.h/gcc/driver/disk, install into a fresh isolated venv from the hash-enforced offline lock, then run the small synthetic GPU checks and selected Foundry CPU tests. Do not reuse an incomplete environment as qualified. Record and address any actual host prerequisite gap before broadening the installation.
+The approved retry procedure was to verify the local wheelhouse, arm the shutdown guards, inspect Linux/Python 3.11/ensurepip/Python.h/gcc/driver/disk, install into a fresh isolated venv from the hash-enforced offline lock, then run the small synthetic GPU checks and selected Foundry CPU tests. Do not reuse an incomplete environment as qualified. Record and address any actual host prerequisite gap before broadening the installation.
 
 The separate **16,397,438,697-byte Qwen checkpoint download**, accepted dataset, S0 results, QLoRA smoke/resume and domain fine-tuning remain gated. This session does not approve them. See [setup procedure](AWS_TRAINING_SETUP.md), [readiness and data gates](AWS_TRAINING_READINESS.md) and [cost-control review](EC2_COST_GUARDS.md).
