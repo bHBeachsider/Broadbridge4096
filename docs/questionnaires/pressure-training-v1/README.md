@@ -1,6 +1,6 @@
 # Bill's engineering training questionnaire
 
-Prepared 30 September 2026. This is an interactive **local draft**, with 16 questions in five categories and eight worked examples. It is a companion to the earlier engineering-discovery questionnaire, focused on shaping the first DOE pressure demonstration. It is not deployed to the capture app.
+Updated 30 September 2026. **Send Bill the [live questionnaire](https://broadbridge-capture.vercel.app/questionnaires/pressure-training-v1).** It has 16 questions in five categories and eight worked examples, focused on shaping the first DOE pressure demonstration. It uses the existing sign-in and saves versioned responses to the dedicated Broadbridge database. The files in this folder preserve the earlier **local draft**; the local-storage instructions below apply only to that draft.
 
 ## Open the draft
 
@@ -48,9 +48,9 @@ Nothing in this flow automatically admits material to a training batch. Same-fam
 
 ## Connection to the existing application
 
-Proposed authenticated route: `/questionnaires/pressure-training-v1` in the existing Broadbridge capture app. **That route is not implemented or live.** Publish it using the existing email allowlist and dedicated Broadbridge database, with versioned responses attributed to the signed-in reviewer. The current public-data score page records reviews of saved model answers; these open questions and reference-authoring comments need their own response contract rather than being mislabeled as model scores.
+The authenticated route `/questionnaires/pressure-training-v1` is live in the existing capture app. [Draft PR #26](https://github.com/bHBeachsider/Broadbridge4096/pull/26), commit `fe1c70e`, contains the deployed implementation and release evidence. It uses the existing email allowlist and dedicated Broadbridge database, with versioned responses attributed to the signed-in reviewer. Its contract is `broadbridge.training_questionnaire_response/1`, separate from the local draft export above and from model scores. The capture home page links to **Engineering training review**.
 
-Coordinate the category/question mappings with `codex/expert-discovery-capture` and its `docs/questionnaires/ENGINEERING_DISCOVERY_V1_DRAFT.md` before implementing persistence. The `discovery_links` values are proposed cross-references, not writes to that questionnaire. Keep actual cases on the existing `broadbridge.case_record/1` contract. Voice intake can later attach a reviewed transcript to these responses through the separate speech/interviewer workflow.
+The `discovery_links` values remain proposed cross-references to the separate engineering-discovery questionnaire, not writes to it. Actual cases retain the existing `broadbridge.case_record/1` contract. Voice intake can later attach a reviewed transcript through the separate speech/interviewer workflow. Do not regenerate or replace the deployed version's content without versioning it; the production packet is immutable and checksum-bound.
 
 ## Regenerate the text and content
 

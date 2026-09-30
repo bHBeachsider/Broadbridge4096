@@ -1,5 +1,7 @@
 # DOE pressure training package
 
+**30 September continuation:** [retained-cache training preparation](AWS_CACHED_TRAINING_PREPARATION.md) adds a generic hash-bound offline loading path in Foundry. It is locally tested, not GPU-qualified; the accepted release, training-capable host packet and execution decision remain outstanding. Bill can now use the [live questionnaire](https://broadbridge-capture.vercel.app/questionnaires/pressure-training-v1).
+
 30 September 2026 UTC. Purpose: show Bill a concrete teaching loop to obtain feedback and buy-in. This proposed engineering demonstration does not close Gate 0, replace S0-cases/S0-retrieval, accept diagram training or authorize a customer-facing model.
 
 ## Prepared files

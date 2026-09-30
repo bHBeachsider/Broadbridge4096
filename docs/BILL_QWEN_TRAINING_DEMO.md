@@ -43,7 +43,7 @@ The numerical tolerance is ±0.05 psi for these rounded educational answers; it 
 
 ## What to ask Bill
 
-An [interactive questionnaire draft](questionnaires/pressure-training-v1/README.md) now groups these topics with eight illustrated worked examples. The [complete question text](questionnaires/pressure-training-v1/QUESTIONS.md) is also available. The draft saves locally and exports responses; it is not yet an externally accessible questionnaire or a database submission.
+The [Engineering training questionnaire](https://broadbridge-capture.vercel.app/questionnaires/pressure-training-v1) is live on the existing capture site. It groups 16 questions into five categories with eight illustrated worked examples. Sign in with the approved email address; responses autosave to Broadbridge's database. Use **Submit feedback** when ready. The [complete question text](questionnaires/pressure-training-v1/QUESTIONS.md) and [retained local draft](questionnaires/pressure-training-v1/README.md) are also available. Feedback is separate from case sign-off, source rights and training approval.
 
 - Would checking pressure bases save time or catch meaningful errors in your work? If not, what specific task should replace it?
 - What information do experienced engineers always request that a junior engineer commonly misses?
@@ -57,6 +57,6 @@ After the meeting, capture priorities in **A · Your workflow / A8** and cases a
 
 All 36 candidates and eight probes share one DOE handbook family. The 24 calculation examples are variants of two recipes, not 24 independent cases. The comparison therefore measures behavior on the taught task; it cannot demonstrate generalization to new facilities or certify engineering quality. The previous pressure diagnostic set also loses independent-test eligibility if this family is trained. Independent source families and Bill's unseen cases are needed for those claims.
 
-**Current state:** local preparation and token checks complete; rights TBD, source-use decision and bounded execution approval outstanding. Nothing has been sent to Bill, run on AWS, published to the capture app or admitted to a training release by this preparation.
+**Current state:** local training-package preparation and token checks complete; rights TBD, source-use decision and bounded execution approval outstanding. The questionnaire is now published to the capture app. No email has been sent to Bill, no DOE training has run on AWS and no candidate has been admitted to a training release.
 
 Operator details: [DOE demo package runbook](DOE_TRAINING_DEMO_PACKAGE.md).
