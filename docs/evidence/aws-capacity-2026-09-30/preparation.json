@@ -1,0 +1,42 @@
+{
+  "schema": "broadbridge.capacity_preparation/1",
+  "execution_authorized": false,
+  "aws_mutations": 0,
+  "model_calls": 0,
+  "training_steps": 0,
+  "inventory": "inventory.json",
+  "policy": "../../../infra/gpu/fallback-policy.json",
+  "plan": "plan.json",
+  "offline_controller_tests": 35,
+  "focused_policy_and_shell_tests": 40,
+  "private_rehearsal": "outputs/gpu-capacity-prep-20260930",
+  "private_cli_disabled": true,
+  "original_session_preserved": true,
+  "artifacts": {
+    "session.py": "56891dde866ae0223870666aedff6b59d2ea4931388593ddfe5a77a06c733157",
+    "training_session_policy.py": "2862e42fa670fd7c3ccb76b9fc1b81aa2065163eb617d4de5700a6d0e5ece507",
+    "gpu_diagnostic.py": "bd0b94421bfa440a751ba683968a89248dfaba16b07da640466b29b4d3de769f",
+    "preflight.sh": "e13d81a58b702347059f3552989dccab022397c9275884d6e205d59fe998c500",
+    "test_session.py": "aa5cbe5510f4e8dc1b63f456c789143cb9b25a70897b3ee4ddebf2d2ade7f374",
+    "test_boundary.py": "93c7b1b77cba6087e9ffa19a103052ad4ae4c6006b229f6eb451d7f667c3f0b2"
+  },
+  "foundry_cpu_suite": {
+    "passed": 873,
+    "skipped": 12,
+    "warnings": 3,
+    "seconds": 255.91,
+    "command": "python -m pytest --tb=short",
+    "environment": "existing C:/Python313; HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1",
+    "skip_reasons": {
+      "pydexpi_not_installed": 9,
+      "DEXPI_C01_not_configured": 1,
+      "docling_core_not_installed": 1,
+      "disposable_local_postgres_not_enabled": 1
+    },
+    "warning_types": [
+      "RequestsDependencyWarning",
+      "SWIG DeprecationWarning (two during suite)"
+    ]
+  },
+  "foundry_commit": "ac00b3d"
+}

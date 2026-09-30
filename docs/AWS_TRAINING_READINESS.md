@@ -1,5 +1,7 @@
 # Qwen3-8B: AWS and dataset readiness
 
+**Capacity preparation, 30 September:** [reuse/fallback policy](AWS_GPU_REUSE_AND_FALLBACK.md) preserves the validated A10G and prepares four alternate placements. Fallback image capture remains pending; no new host or quota request. The corrected error boundary and offline controller rehearsal retain ownership, busy-process and shutdown guards. Dataset/baseline gates remain open.
+
 **Current status, 30 September 01:00 UTC:** pinned Qwen3-8B acquisition and NF4 GPU loading passed on the A10G. All 15 files (16.40 GB) verified; 252 NF4 modules, all parameters on CUDA, 5.83 GiB peak reserved memory. The host and both L4s are stopped; retries are paused. No inference or training ran. [Load result and remaining gates](QWEN_MODEL_LOAD_RESULT_2026-09-30.md). The dated entries below preserve earlier preparation and failures.
 
 **29 September 22:17 UTC:** the approved checkpoint session ended before any

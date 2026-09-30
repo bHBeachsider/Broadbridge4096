@@ -1,0 +1,46 @@
+{
+  "schema": "foundry.gpu_capacity_plan/1",
+  "execution_authorized": false,
+  "region": "us-east-1",
+  "recheck_inventory_under_lock": true,
+  "primary": {
+    "status": "prepared_reuse",
+    "instance_id": "i-079b24e2b51ef7630",
+    "instance_type": "g5.2xlarge",
+    "zone_id": "use1-az2",
+    "image_id": "ami-0a425c55dcc606687",
+    "vcpus": 8
+  },
+  "fallback": {
+    "status": "blocked_image",
+    "image_id": null,
+    "candidates": [
+      {
+        "instance_type": "g5.2xlarge",
+        "subnet_id": "subnet-033fb0054024b8868",
+        "zone_id": "use1-az1"
+      },
+      {
+        "instance_type": "g5.2xlarge",
+        "subnet_id": "subnet-0a8c0a366acb31db0",
+        "zone_id": "use1-az4"
+      },
+      {
+        "instance_type": "g5.2xlarge",
+        "subnet_id": "subnet-0e9d1094efb4febd3",
+        "zone_id": "use1-az5"
+      },
+      {
+        "instance_type": "g5.2xlarge",
+        "subnet_id": "subnet-05454ee2f956049da",
+        "zone_id": "use1-az6"
+      }
+    ]
+  },
+  "constraints": {
+    "one_owned_host": true,
+    "automatic_launch_retry": false,
+    "retain_original_deadline": true,
+    "require_gpu_idle_diagnostics": true
+  }
+}
