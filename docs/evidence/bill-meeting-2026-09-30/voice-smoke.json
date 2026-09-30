@@ -1,0 +1,54 @@
+{
+  "synthetic_only": true,
+  "not_engineering_validation": true,
+  "source_text": "We spend too much time checking pump data sheets against drawings. Last month the discharge pressure was listed as twelve bar in one document and ten bar in another. We did not know which revision was correct. I would like help finding these disagreements.",
+  "source_tts": {
+    "audio_seconds": 15.22,
+    "sample_rate": 24000,
+    "inference_seconds": 6.291
+  },
+  "transcript": {
+    "role": "participant",
+    "status": "transcript_draft",
+    "source_sha256": "1b6ca096dea555b4141bbad3da0b2db73c8c095c6a872ad242d0c2e764256a92",
+    "text": "We spend too much time checking pump data sheets against drawings. Last month the discharge pressure was listed as 12 bar in one document and 10 bar in another. We did not know which revision was correct. I would like help finding these disagreements.",
+    "segments": [
+      {
+        "start": 0.0,
+        "end": 4.04,
+        "text": " We spend too much time checking pump data sheets against drawings."
+      },
+      {
+        "start": 4.04,
+        "end": 10.36,
+        "text": " Last month the discharge pressure was listed as 12 bar in one document and 10 bar in another."
+      },
+      {
+        "start": 10.36,
+        "end": 12.84,
+        "text": " We did not know which revision was correct."
+      },
+      {
+        "start": 12.84,
+        "end": 15.0,
+        "text": " I would like help finding these disagreements."
+      }
+    ],
+    "audio_seconds": 15.22,
+    "inference_seconds": 2.065
+  },
+  "follow_up": {
+    "question": "What was known at the time regarding the revision history of the pump data sheets and drawings?",
+    "evidence_quote": "Last month the discharge pressure was listed as 12 bar in one document and 10 bar in another. We did not know which revision was correct.",
+    "role": "interviewer",
+    "status": "needs_review",
+    "model": "qwen3:1.7b",
+    "elapsed_seconds": 10.208
+  },
+  "follow_up_tts": {
+    "audio_seconds": 5.215,
+    "sample_rate": 24000,
+    "inference_seconds": 2.324
+  },
+  "wall_seconds": 24.915
+}

@@ -1,5 +1,7 @@
 # DOE pressure training package
 
+**Meeting continuation:** the [Bill runbook](BILL_MEETING_RUNBOOK.md) and [interactive reference walkthrough](demos/bill-pressure-walkthrough.html) are ready for screen sharing. `scripts/research/prepare_bill_meeting.py` verifies artifact hashes, pending rights/admission state, family consistency and answer isolation, then generates a review bundle and a non-authorizing execution request. This completes the meeting/review packaging, not the release-specific host payload. The accepted release and training-capable session integration remain open engineering work before bounded execution approval.
+
 **30 September continuation:** [retained-cache training preparation](AWS_CACHED_TRAINING_PREPARATION.md) adds a generic hash-bound offline loading path in Foundry. It is locally tested, not GPU-qualified; the accepted release, training-capable host packet and execution decision remain outstanding. Bill can now use the [live questionnaire](https://broadbridge-capture.vercel.app/questionnaires/pressure-training-v1).
 
 30 September 2026 UTC. Purpose: show Bill a concrete teaching loop to obtain feedback and buy-in. This proposed engineering demonstration does not close Gate 0, replace S0-cases/S0-retrieval, accept diagram training or authorize a customer-facing model.
@@ -38,7 +40,7 @@ No `.env`, database, R2, cloud API, model weights, inference or GPU is needed. U
 ```powershell
 $domain = 'C:\Users\bradu\Documents\Broadbridge4096\tmp\codex-broadbridge-ingestion-plan'
 $foundry = 'C:\Users\bradu\Documents\Broadbridge4096\tmp\slm-foundry-worktrees\codex-foundry-ingestion-plan'
-$python = 'C:\Python 313\python.exe'
+$python = 'C:\Python313\python.exe'
 $package = Join-Path $domain 'packs\oil-gas\outputs\pressure-demo-repeat'
 & $python "$domain\scripts\research\prepare_pressure_demo.py" `
   --out $package `

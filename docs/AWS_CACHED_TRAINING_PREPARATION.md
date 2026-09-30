@@ -2,6 +2,8 @@
 
 30 September 2026. **Preparation only; no EC2 start, inference or training.**
 
+Meeting follow-through: [Bill's screen-share runbook](BILL_MEETING_RUNBOOK.md) now ties the prepared candidates to a four-part interactive reference walkthrough, live feedback links and a truthful voice-capture status. The local review-bundle validator passed; its execution request leaves release/approval/host-packet fields empty. This does not complete the training-capable host integration in step 3 below.
+
 ## Current host status
 
 At 14:43 UTC (10:43 a.m. Eastern), read-only AWS queries confirmed:

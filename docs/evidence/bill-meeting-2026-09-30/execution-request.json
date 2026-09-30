@@ -1,0 +1,135 @@
+{
+  "schema": "broadbridge.pressure_demo_execution_request/1",
+  "status": "proposal_not_authorization",
+  "approved_by": null,
+  "approved_at": null,
+  "release_id": null,
+  "host_packet_sha256": null,
+  "execution_authorized": false,
+  "candidate_manifest": {
+    "bytes": 3327,
+    "sha256": "c0ca90476ba304034e2a22c68af99957fba273d272ee1c0c75ae93eabddee06f"
+  },
+  "candidate_artifacts": {
+    "train_candidates.jsonl": {
+      "sha256": "3d2a8eb3ad4eb91662fbd9864b0c2511d2def2ec8d9a18b6c617f82b48bbe935",
+      "bytes": 97358
+    },
+    "demo_prompts.jsonl": {
+      "sha256": "6b3fc887083e4f69b493e5394493f5258519fb0a134b6fada8777e5faa4f9496",
+      "bytes": 14154
+    },
+    "demo_answer_key.jsonl": {
+      "sha256": "ea8e5cb93e8999e8897b49372d6eab872e3345688b52beac8ca02b967211282b",
+      "bytes": 2709
+    },
+    "response.schema.json": {
+      "sha256": "624421f967170668521897c47b5fcf889f5d9e948cf79bcd02ac8e72a4882ef2",
+      "bytes": 1571
+    },
+    "proposed_config.json": {
+      "sha256": "ecca2d178e01c9f0e94434fd6d82efd598ef61e0f6f0a3503a654c192473ecc9",
+      "bytes": 998
+    },
+    "scorecard.md": {
+      "sha256": "347731e680f85b797ef40078671c65dffb3ab7b57085c2a6bd7ce82ef6e4febf",
+      "bytes": 750
+    }
+  },
+  "source": {
+    "source_id": "DOE-HDBK-1012-1-92",
+    "family_id": "DOE-HDBK-1012",
+    "sha256": "3c4ef4ad700cfd64444677404956ec2237bb5e24e31f7e591b1767526ec0b2c9",
+    "pdf_pages": [
+      35,
+      36,
+      37
+    ],
+    "raw_pdf_reverified": true,
+    "extraction_reverified": true,
+    "extraction_sha256": "0ae8da768e4fbc5427d5c4acbd4b2193dcf93308fffac6e8cb61fce26f0b8150",
+    "proposal_sha256": "632adea4db2c9f8ab16f8882bcdb3993aabc9a80e06ee144cca316b99e1f3fef"
+  },
+  "family_allocation": {
+    "status": "proposed_not_applied",
+    "from": "dev/testing_only",
+    "to": "train for a bounded demonstration",
+    "condition": "Record source-use decision and explicit family reallocation before release.",
+    "consequence": "pressure-diagnostic-v1 and all DOE-HDBK-1012 derivatives lose independent-test eligibility after training; preserve historical files."
+  },
+  "limits": {
+    "optimizer_steps": 20,
+    "training_wall_seconds": 1800,
+    "host_wall_seconds": 5400,
+    "guest_stop_minute": 80,
+    "api_stop_minute": 85,
+    "force_stop_by_minute": 87,
+    "verify_stopped_by_minute": 90,
+    "comparison_model_calls_max": 16,
+    "max_new_tokens_per_call": 384,
+    "comparison_phase_seconds_max": 900
+  },
+  "work_cutoff_minute": 78,
+  "base": "unsloth/Qwen3-8B",
+  "revision": "946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+  "host": {
+    "instance_id": "i-079b24e2b51ef7630",
+    "region": "us-east-1",
+    "profile": "g5-a10g"
+  },
+  "comparison": {
+    "template": "qwen-2.5 pinned Foundry ChatML for both",
+    "thinking": false,
+    "do_sample": false,
+    "max_new_tokens": 384,
+    "retrieval": "fixed identical evidence note supplied in each prompt; no document index",
+    "base": "same pinned NF4 checkpoint; adapter disabled/absent",
+    "adapter": "same checkpoint and quantization with the produced adapter",
+    "not_claimed": [
+      "independent accuracy improvement",
+      "S0-retrieval acceptance",
+      "Gate 0 closure"
+    ]
+  },
+  "independent_test_count": 0,
+  "success_evidence": [
+    "Actual 20 optimizer steps and finite loss",
+    "Verified adapter and intermediate checkpoint state",
+    "All eight base/adapter answer pairs including failures",
+    "Reviewer scores and critical errors",
+    "Final stopped-state evidence; no automatic rerun"
+  ],
+  "open_gates": [
+    {
+      "id": "source_use",
+      "owner": "Brad",
+      "status": "pending",
+      "required": "Recorded basis permitting internal training on the exact source pages; rights remain TBD."
+    },
+    {
+      "id": "family_allocation",
+      "owner": "Brad",
+      "status": "pending",
+      "required": "Approve whole DOE-HDBK-1012 family allocation to demonstration training; retire its independent-test eligibility."
+    },
+    {
+      "id": "release",
+      "owner": "Appointed reviewer and Brad",
+      "status": "pending",
+      "required": "Accept exact conversations through admission and create the immutable Foundry dataset release."
+    },
+    {
+      "id": "host_packet",
+      "owner": "Foundry engineering",
+      "status": "pending",
+      "required": "Integrate and rehearse the training-capable lifecycle payload against that release. The current host controller is load-only."
+    },
+    {
+      "id": "execution",
+      "owner": "Brad",
+      "status": "pending",
+      "required": "Approve the release/config/code/host-packet hashes and one fresh bounded A10G session."
+    }
+  ],
+  "notice": "Not accepted by the Foundry training or EC2 controller. No Bill signature is inferred."
+}

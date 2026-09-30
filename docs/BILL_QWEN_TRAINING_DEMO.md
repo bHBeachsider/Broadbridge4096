@@ -1,5 +1,7 @@
 # Bill's first Qwen training demonstration
 
+For the meeting, start with the [interactive local walkthrough](demos/bill-pressure-walkthrough.html) and [Meet/capture runbook](BILL_MEETING_RUNBOOK.md). These let Bill try the expected review behavior now and choose a valuable first task. The walkthrough is rule-based; the live public-data review page holds separate, actual saved model answers. No trained Qwen results are implied.
+
 Prepared 30 September 2026 UTC. **The training package exists; the model has not been trained on it.** No before/after answers or reviewer scores have been generated.
 
 Bill, the aim is to show the complete teaching loop on a small, understandable task, then get your judgment about where it would be useful. The first task is checking pressure references in engineering notes: psig versus psia, positive vacuum depression, and what to ask when information is missing.
