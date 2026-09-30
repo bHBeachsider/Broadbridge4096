@@ -48,6 +48,7 @@ export const rubrics:Record<ReviewItem["type"],string[]>={
 };
 export function safeReviewReturn(value:unknown):string{
   // Only this workflow's exact relative destinations survive magic-link sign-in.
+  if (value === "/questionnaires/pressure-training-v1") return value;
   return typeof value==="string"&&/^\/review\/[a-z0-9][a-z0-9-]{0,63}(?:\?question=[A-Za-z0-9][A-Za-z0-9_.-]{0,127}&response=[AB])?$/.test(value)?value:"/";
 }
 function csvCell(value:unknown){
