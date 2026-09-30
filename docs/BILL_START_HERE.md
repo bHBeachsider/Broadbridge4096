@@ -1,5 +1,7 @@
 # Bill: choose the priorities, then contribute a case
 
+**Engineering training review: [open the questionnaire](https://broadbridge-capture.vercel.app/questionnaires/pressure-training-v1).** The 16 questions are grouped by category and include illustrated pressure examples. Define useful tasks, correct the draft references, identify serious errors and suggest additional cases or source material. Responses autosave; use **Submit feedback** when ready. These responses shape the examples and scoring criteria; they do not sign a case or approve training rights.
+
 **Case study and workflow URL: [Broadbridge Case Capture](https://broadbridge-capture.vercel.app).**
 Sign in with your approved email address and use the emailed link. The production
 sign-in page was checked on 26 September 2026 (HTTP 200); no new sign-in email was
@@ -73,7 +75,4 @@ The existing scoring packet helps identify helper-model weaknesses; its sources
 stay evaluation-only. Your choice of important areas is separate from scoring
 that packet: a good answer to an irrelevant problem is not a useful curriculum.
 
-The scoring route is currently on a protected Preview. Brad's [operator access
-notes](PUBLIC_REVIEW_URL.md) explain the extra Vercel sign-in boundary. The case
-URL above is the production intake link you can use now; it is not a claim that
-production public-document scoring has been released.
+The [public-document scoring page](https://broadbridge-capture.vercel.app/review/public-v1), case capture and the engineering questionnaire are all on the production capture site. Use the same approved email sign-in. The page links do not expire; the emailed sign-in link works once within 24 hours of requesting it. No Vercel account or Preview access token is needed.
