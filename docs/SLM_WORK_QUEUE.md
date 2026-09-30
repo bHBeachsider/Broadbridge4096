@@ -1,5 +1,7 @@
 # SLM preparation and fine-tuning work queue
 
+**30 September dataset follow-up:** [first pressure review worksheet](FIRST_DATASET_REVIEW.md) now proposes fifteen questions/references (three per type), three locally checked arithmetic examples and dispositions for all nine extraction issues. One source family, no allocated split, no accepted examples. FQ-02/FQ-08 remain review gates and FQ-12 remains blocked on real acceptance. Hydrostatic numerical recipes and rounded fluid-column conversions are excluded from this first proposal. No AWS/model/database operation occurred.
+
 **Current status, 30 September 01:00 UTC:** pinned Qwen3-8B acquisition and NF4 GPU loading passed on the A10G. All 15 files (16.40 GB) verified; 252 NF4 modules, all parameters on CUDA, 5.83 GiB peak reserved memory. The host and both L4s are stopped; retries are paused. No inference or training ran. [Load result and remaining gates](QWEN_MODEL_LOAD_RESULT_2026-09-30.md). The dated entries below preserve earlier preparation and failures.
 
 **Checkpoint execution, 29 September 22:17 UTC:** no checkpoint was acquired.

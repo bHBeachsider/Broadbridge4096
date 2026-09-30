@@ -1,5 +1,7 @@
 # Qwen3-8B: AWS and dataset readiness
 
+**Dataset preparation, 30 September:** [first pressure review packet](FIRST_DATASET_REVIEW.md) contains fifteen authored draft questions across five types, three arithmetic checks and nine proposed exception dispositions. The extraction packet reproduced byte-for-byte. Rights, engineering acceptance, family allocation and signed-case/baseline gates remain open; zero examples admitted. Hydrostatic numerical recipes and unqualified fluid-column conversions are excluded. No AWS session or model call was made for this work.
+
 **Reusable session tooling, 30 September:** the [cache-reuse runbook](AWS_MODEL_REUSE_SESSION.md) now uses tracked generic Foundry controls and Broadbridge's host/model configuration. Preparation and packet checking are offline. The retained checkpoint is verified rather than fetched; ownership, busy-GPU and fixed shutdown controls remain. The tracked controller still needs its first approved live qualification, and independent second-operator reproduction remains open. This preparation starts no GPU session and does not change dataset or training gates.
 
 **Capacity preparation, 30 September:** [reuse/fallback policy](AWS_GPU_REUSE_AND_FALLBACK.md) preserves the validated A10G and prepares four alternate placements. Fallback image capture remains pending; no new host or quota request. The corrected error boundary and offline controller rehearsal retain ownership, busy-process and shutdown guards. Dataset/baseline gates remain open.
@@ -92,7 +94,7 @@ The report includes a rendered batch, input token IDs, labels, mask and length d
 
 | Input | Current disposition | Next action and owner |
 | --- | --- | --- |
-| DOE pressure packet, pages 35–37 | Prepared, not accepted | Brad records item-level rights/credits; appointed engineering reviewer resolves the 9 extraction exceptions and accepts equation/unit/method scope. Start with this narrow packet rather than another bulk acquisition. |
+| DOE pressure packet, pages 35–37 | Fifteen draft references and nine proposed dispositions prepared, not accepted | Review [the concrete worksheet](FIRST_DATASET_REVIEW.md). Brad records item-level rights/credits; appointed engineering reviewer accepts/corrects scope and references. Keep one family together; independent evaluation families still required. |
 | Five DOE leads / four new families | Held | Brad rights review; Bill or qualified reviewer selects useful tasks and references. Frozen public-v1 families and derivatives remain excluded from training. |
 | OpenMath sample | Quality/family hold | Independently adjudicate proposed families and solution correctness for any deliberately selected subset; never train the full sample merely because format checks pass. |
 | Signed expert cases | Current count unknown here | Export canonical `case_record/1`, validate/import, count Section-C coverage and inspect permissions/sign-off. `training` + `signed` is necessary but does not replace release review. Testing/reference-only cases never enter train. |
@@ -114,29 +116,17 @@ python -m src.ingestion.training audit --release-dir $release --config $config -
 Pop-Location
 ```
 
-`prepare` prints request bindings, not approval. Do not manufacture `approved_by`. Recreate the request after staging on AWS because absolute paths change the config hash. The 1,800-second training-process cap excludes separately budgeted host setup/download time. It is a proposal, not a spend authorization or a claim that the L4 can finish in that time.
+`prepare` prints request bindings, not approval. Do not manufacture `approved_by`. Recreate the request after staging on AWS because absolute paths change the config hash. The 1,800-second training-process cap excludes separately budgeted host setup time. It is a proposal, not a spend authorization or a claim that the A10G can finish in that time.
 
 ## Later AWS session — gated, not executed
 
-Record the exact two repository commits, dataset hash, base revision, config hash, runtime lock, output/backup location, duration/cost caps, operator and release authority before the session. Resolve the runtime and storage gaps above and retain private logs during qualification. No source data should be sent to an external helper as a fallback.
+Record the exact two repository commits, accepted dataset hash, base revision, config hash, runtime lock, output/backup location, duration/cost caps, operator and release authority before the session. Runtime installation and NF4 loading have passed. The remaining storage task is scoped transfer of an accepted release and preservation of run artifacts. No source data should be sent to an external helper as a fallback.
 
-Use the Foundry [serving brief](https://github.com/bHBeachsider/slm-foundry/blob/codex/aws-training-readiness/docs/SLM_SERVING_BRIEF.md) at `docs/SLM_SERVING_BRIEF.md` in the selected Foundry checkout. Approved-session bring-up/tear-down from that brief:
+The current training-readiness host is **A10G `i-079b24e2b51ef7630` in us-east-1b**, with `~/slm-training/venv-a10g-a23670f4d161` and the verified `hf-cache-qwen-946bc9ac74a6c1f8cf012497c503a119b2fcf2eb` under `~/slm-training`. Reuse these; do not repeat the superseded replacement-L4 startup/installation path. The [cache-reuse session runbook](AWS_MODEL_REUSE_SESSION.md) prepares and checks a fresh packet offline, preserving ownership, busy-process, pinned SSH identity and fixed shutdown guards. Its executable scope is **load verification only**, not inference or training. A training session must retain those host controls and separately bind the accepted release and bounded training authorization; do not repurpose an old load-only packet.
 
-```powershell
-# Future authorized session only; these commands were NOT run for readiness.
-aws ec2 start-instances --region us-east-1 --instance-ids i-0439f5841d631d9f8
-aws ec2 wait instance-running --region us-east-1 --instance-ids i-0439f5841d631d9f8
-aws ec2 wait instance-status-ok --region us-east-1 --instance-ids i-0439f5841d631d9f8
-$gpuAddress = aws ec2 describe-instances --region us-east-1 --instance-ids i-0439f5841d631d9f8 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
-ssh -i 'C:\Users\bradu\Documents\ilyrium-autostudio\slm-foundry-key-v2.pem' "ec2-user@$gpuAddress"
-# At the end of the authorized session, including failures:
-aws ec2 stop-instances --region us-east-1 --instance-ids i-0439f5841d631d9f8
-aws ec2 wait instance-stopped --region us-east-1 --instance-ids i-0439f5841d631d9f8
-```
+Training uses SSH. The historical [serving brief](https://github.com/bHBeachsider/slm-foundry/blob/codex/aws-training-readiness/docs/SLM_SERVING_BRIEF.md) describes Ollama on the original L4, not an established A10G endpoint. Keep port 11434 private, use local port 11435 only for an explicitly configured later serving tunnel, and resolve addresses from AWS. A busy or unidentified GPU process blocks preflight; do not unload a model or stop a service automatically. Do not install packages, change drivers or fetch the already verified weights under the next preparation task.
 
-Training uses SSH; the serving tunnel is needed only for model calls. Keep port 11434 private, use local port 11435 for later Ollama testing, and never pin a public IP. Recheck identity, GPU/disk capacity, runtime and actual hourly cost at session preflight. Stop if the host differs from the approved plan.
-
-On the host, first inspect `nvidia-smi`, `df -h`, and the presence of `~/slm`; provision only the separately approved runtime. Unload Ollama's model before training to free VRAM. Stage the selected Hugging Face weight revision and the accepted release with file hashes; downloads over 1 GB need the previously required explicit go. Run local/offline token checks again against that snapshot. Do not treat the installed Ollama GGUF as the base download.
+Stage only an independently accepted release with complete hashes in a separately authorized session. Run local/offline token checks again against the exact retained tokenizer snapshot. The installed Ollama GGUF is not the trainable checkpoint. Confirm all retained host states and current ownership before any start; the 30 September stopped-state receipt is historical, not a substitute for a new preflight.
 
 The bounded controller's **`run`** subcommand is the sole intended launch path, with the exact approved `foundry.training_authorization/1` bindings. Resume only a checkpoint inventoried by its failed-state receipt and under the same cumulative time budget. It must retain adapter weights, optimizer/scheduler state, RNG state and trainer state; adapter-only files are not resumable training checkpoints. Interrupted host locks require operator reconciliation, not blind deletion/retry.
 
@@ -144,14 +134,14 @@ Smoke success means 20 completed optimizer steps, finite recorded losses, no tru
 
 ## Review delivery
 
-Generic engine changes: [draft Foundry #21](https://github.com/bHBeachsider/slm-foundry/pull/21), commit `9e28862`, stacked on data-audit draft #15. This domain branch is stacked on data-preparation draft #19; the helper-comparison drafts remain separate. Independent read-only review found no actionable defects in the code, commands or evidence; real GPU execution remains unverified.
+Generic engine changes remain in [draft Foundry #21](https://github.com/bHBeachsider/slm-foundry/pull/21), now at `d3eab02`, stacked on data-audit draft #15. This domain branch is stacked on data-preparation draft #19; helper-comparison drafts remain separate. The earlier `9e28862` CPU review is historical. Runtime and model loading subsequently passed through the private controller; live qualification of the tracked controller and actual training/resume remain unverified.
 
 ## Next dispatch
 
-1. Resolve current signed-case/reviewer status and accept the narrow DOE/calculation scope; no optional helper comparison is required.
-2. Complete authenticated candidate acceptance/history binding where needed and freeze the first accepted release.
-3. Task 3 preparation delivered: [resolved candidate runtime and private staging](AWS_TRAINING_SETUP.md). Host capacity and Python prerequisites resolved on the replacement; [runtime transfer remains incomplete](AWS_RUNTIME_RELOCATION_2026-09-29.md). A tested resumable transfer is prepared. Installation/import/kernel checks remain open; another start needs an explicit bounded decision.
-4. Only after runtime, dataset and baseline gates are satisfied, authorize and perform the smoke run. No model inference, training or production changes occurred during runtime setup; the earlier approved database check was read-only against dev.
+1. Review [the pressure worksheet](FIRST_DATASET_REVIEW.md): select the useful task, accept/correct references and method scope, record rights and family allocation. No optional helper comparison is required.
+2. Resolve actual signed-case status with a canonical export or an explicitly production-scoped read-only check. Run/score S0-cases per eligible case, then the retrieval comparison when its prerequisites are met. Public question drafts do not close Gate 0.
+3. Complete authenticated candidate acceptance/history binding and freeze an accepted family-separated release; audit its exact token rendering and labels. Runtime and checkpoint loading already passed; preserve the A10G environment/cache. No new installation or model acquisition is needed.
+4. After data and baseline gates are satisfied, authorize the bounded smoke session and demonstrate training/checkpoint/resume. Preparation makes no AWS start, inference, training or production change; the earlier database check was read-only against dev.
 
 ## Follow-up: diagnostics, runtime candidates and current dev counts
 
@@ -172,7 +162,7 @@ Use the already prepared narrow pressure packet before collecting a larger corpu
 3. **Reviewer: questions and references.** Prepare or accept the intended questions/answers with units, assumptions, missing-evidence behavior and hard-fail criteria. Use signed cases for the case-derived evaluation set. Record reviewer identity and the exact packet hash; blank forms and fabricated fixtures are not approvals.
 4. **Operator: family allocation and release.** Keep handbook pages/derivatives in one family. Do not split pages or synthetic variants across training and held-out sets. Bind accepted examples and independent validation/test families with complete source history in the existing release flow, then run the exact-release CPU audit. The math sample stays on hold and diagram outputs remain excluded.
 
-Existing packet instructions and local artifact locations are in [SLM_PREPARATION_REHEARSAL.md](SLM_PREPARATION_REHEARSAL.md); reuse `REVIEW.md` and `review.csv` in `fq02-doe-pressure-2026-09-27`. This work package creates no new approvals, sends no reviewer invitation and does not change the capture application. Current production case/review status and scored baselines remain prerequisites, not assumed facts.
+Existing extraction instructions are in [SLM_PREPARATION_REHEARSAL.md](SLM_PREPARATION_REHEARSAL.md). The [30 September review proposal](FIRST_DATASET_REVIEW.md) reproduces the original extraction hash and adds concrete corrections/exclusions and fifteen draft references for acceptance. Use its `REVIEW.md` and blank `review.csv`; preserve the original evidence. This work package creates no approvals, sends no invitation and does not change the capture application. Production case/review status and scored baselines remain prerequisites, not assumed facts.
 
 ## Task 3: runtime bundle and staging delivered
 

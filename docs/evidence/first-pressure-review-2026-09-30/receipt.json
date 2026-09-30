@@ -1,0 +1,30 @@
+{
+  "schema": "broadbridge.first_dataset_review_receipt/1",
+  "source_sha256": "3c4ef4ad700cfd64444677404956ec2237bb5e24e31f7e591b1767526ec0b2c9",
+  "extraction_packet_sha256": "0ae8da768e4fbc5427d5c4acbd4b2193dcf93308fffac6e8cb61fce26f0b8150",
+  "questions": 15,
+  "question_types": 5,
+  "families": 1,
+  "exception_proposals": 9,
+  "model_calls": 0,
+  "training_examples_admitted": 0,
+  "gate_0_case_questions_added": 0,
+  "training_approved": false,
+  "files": [
+    {
+      "path": "proposal.json",
+      "bytes": 21610,
+      "sha256": "632adea4db2c9f8ab16f8882bcdb3993aabc9a80e06ee144cca316b99e1f3fef"
+    },
+    {
+      "path": "review.csv",
+      "bytes": 737,
+      "sha256": "f473ccde04988e3b2d7442e92105cb392f0276e9741f8d6d45883dc203ea20e0"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 15764,
+      "sha256": "9cea7bc4f8aa92c5bb1ec0234b1b74716f5f72477e610e7b64f177e90d3dbf5e"
+    }
+  ]
+}
