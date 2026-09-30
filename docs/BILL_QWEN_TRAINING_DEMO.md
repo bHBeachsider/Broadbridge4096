@@ -43,6 +43,8 @@ The numerical tolerance is ±0.05 psi for these rounded educational answers; it 
 
 ## What to ask Bill
 
+An [interactive questionnaire draft](questionnaires/pressure-training-v1/README.md) now groups these topics with eight illustrated worked examples. The [complete question text](questionnaires/pressure-training-v1/QUESTIONS.md) is also available. The draft saves locally and exports responses; it is not yet an externally accessible questionnaire or a database submission.
+
 - Would checking pressure bases save time or catch meaningful errors in your work? If not, what specific task should replace it?
 - What information do experienced engineers always request that a junior engineer commonly misses?
 - What is a convincing but dangerous wrong answer for that task?
