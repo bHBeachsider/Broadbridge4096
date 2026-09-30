@@ -2,6 +2,10 @@
 
 30 September 2026 UTC. Scope: offline preparation in Broadbridge4096; Foundry unchanged.
 
+**Subsequent decision from Brad:** scoring and the current 15-question pressure test set are approved for this exercise, assuming Bill agrees; source rights remain **TBD**. See the [frozen diagnostic set and decision](../packs/oil-gas/eval/pressure-diagnostic-v1/README.md) and [six-source register](../packs/oil-gas/manifests/evaluation_sources.json). This is Brad's recorded instruction, not actual Bill signoff. The original proposal below remains historical; no model scores, signed cases, rights clearance or training acceptance are implied. The entire pressure-handbook family is reserved to diagnostic dev/testing-only.
+
+**Brad's follow-up:** no new expert review or signed case is available. [Offline first-case preflight/rehearsal](FIRST_CASE_PREFLIGHT.md) proceeds while those inputs are pending; the pressure packet's acceptance status is unchanged.
+
 The next useful work is accepting a small, explicit engineering task and its references. The Qwen3-8B runtime and NF4 load already passed on the retained A10G. Another installation or weight download does not resolve the remaining data and baseline gates.
 
 ## Review material

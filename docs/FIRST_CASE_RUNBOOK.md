@@ -1,5 +1,7 @@
 # First signed case: export, brief and reviewer scorecard
 
+**30 September offline update:** [case preflight and mock rehearsal](FIRST_CASE_PREFLIGHT.md) checks reference coverage, signoff, family splits, prompt leaks and an optional pinned-tokenizer context estimate before import. Brad confirmed no new expert review/signed case yet. The commands below preserve the original L4/Ollama workflow; they do not imply that the validated A10G checkpoint is an Ollama service. Before any future live run, integrate the current ownership, pinned-host and fixed shutdown controls. The legacy PowerShell launcher has `finally` teardown but not the later 80/85/90-minute safeguards; its explicit mock path remains offline. No live session was run for this update.
+
 Owner: Brad / Broadbridge Oil & Gas. Technical acceptance: Bill Hurt, the named Broadbridge reviewer. Updated 26 September 2026.
 
 Bill enters as many cases as he chooses directly in [Broadbridge Case Capture](https://broadbridge-capture.vercel.app), without a call first, and signs off the written records. Brad exports **All records as JSON**. The page and its `broadbridge.case_record/1` export are the primary, canonical intake. The Interview Guide is a pre-read/call script; `case_from_form_fallback.py` is available for a reviewer who cannot use the page and emits the same contract. The dedicated Broadbridge Neon project stores case records and workflow answers. Originals/supporting documents use the approved private R2 storage and source-admission process; an evidence description in a case is not an attachment upload or rights grant. Preserve the old Claude export for migration reconciliation under the [cutover procedure](CAPTURE_APP.md). Domain tooling and restricted working snapshots belong to Broadbridge4096; the shared client stays in slm-foundry.
@@ -38,6 +40,8 @@ On later days, set `$Repo`, `$Foundry`, `$Pack`, `$Python` and `$ErrorActionPref
 Use `scripts/first_case.ps1` when signed cases arrive together. It imports the complete export once and checks every selected case before starting the existing box. `-CaseId` accepts a single ID, a quoted comma list, a PowerShell string array, or `all-signed`. `all-signed` selects signed cases only, including signed testing-only/reference-only cases; unsigned records are never selected automatically. No question set, document index or training host setup is needed.
 
 Before running live, Brad checks rights/storage, reviewer signoff, the selected cases' decision-time text and context length as described below. Every selected case must pass signoff, schema and prompt-leak preflight. Any importer rejection stops the batch, including a rejected family member outside the selection. An explicit bad/duplicate ID, an empty selection or a selected unsigned case also stops before AWS. The SSH key and current host key must already be trusted; first-time/changed-host-key verification remains a manual operator step. Port 11434 remains closed.
+
+First run the [offline export report](FIRST_CASE_PREFLIGHT.md) to inventory missing scoring inputs and context estimates. Its successful exit means a report was written, not that the cases or host are authorized. A local HF token count is not a verified live Ollama count.
 
 After setting the local variables in section 1, use **either this command or the manual sections 3–7**, not both:
 

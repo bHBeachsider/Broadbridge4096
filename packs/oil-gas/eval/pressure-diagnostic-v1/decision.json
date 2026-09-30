@@ -1,0 +1,27 @@
+{
+  "decision_id": "BRAD-PRESSURE-EVAL-2026-09-30",
+  "recorded_date_utc": "2026-09-30",
+  "authority": "Brad / Broadbridge",
+  "evidence_type": "explicit user instruction in this conversation",
+  "instruction_verbatim": "assume Bill signs off and agrees for this purpose. enter record sources. Rights are TBd. scorcing and test sets approved.",
+  "scope": "Current 15-question DOE pressure diagnostic set and its scoring criteria; source metadata recording",
+  "scoring_status": "approved_by_Brad_for_this_exercise",
+  "test_set_status": "approved_by_Brad_for_this_exercise",
+  "expert_agreement": {
+    "person": "Bill Hurt",
+    "status": "assumed_by_Brad_for_this_purpose",
+    "actual_signature": null,
+    "independent_review_evidence": null
+  },
+  "rights_status": "TBD",
+  "permission_status": "pending",
+  "training_approved": false,
+  "live_run_authorized": false,
+  "proposal_sha256": "632adea4db2c9f8ab16f8882bcdb3993aabc9a80e06ee144cca316b99e1f3fef",
+  "scope_exclusions": [
+    "No fabricated Bill signature or score",
+    "No new signed case_record/1",
+    "No approval of other source families, math answers or diagram training",
+    "No legal-rights decision, external processing, GPU start or training release"
+  ]
+}

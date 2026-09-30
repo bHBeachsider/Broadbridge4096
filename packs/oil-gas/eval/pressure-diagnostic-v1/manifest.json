@@ -1,0 +1,55 @@
+{
+  "schema": "broadbridge.diagnostic_evaluation_set/1",
+  "set_id": "pressure-diagnostic-v1",
+  "decision_id": "BRAD-PRESSURE-EVAL-2026-09-30",
+  "source_proposal_sha256": "632adea4db2c9f8ab16f8882bcdb3993aabc9a80e06ee144cca316b99e1f3fef",
+  "question_count": 15,
+  "question_types": 5,
+  "source_ids": [
+    "DOE-HDBK-1012-1-92"
+  ],
+  "family_allocation": {
+    "DOE-HDBK-1012": "dev"
+  },
+  "permitted_use": "testing_only",
+  "family_policy": "Reserve related volumes, versions and derivatives from training; diagnostic dev, not a blind locked test.",
+  "rights_status": "TBD",
+  "permission_status": "pending",
+  "training_approved": false,
+  "live_run_authorized": false,
+  "actual_model_runs": 0,
+  "actual_scores": 0,
+  "gate_0_case_questions_added": 0,
+  "scoring": {
+    "scale": {
+      "0": "incorrect or required answer missing",
+      "1": "needs correction",
+      "2": "correct and supported"
+    },
+    "critical_error_rule": "Any matched hard-fail criterion gives score 0 and critical_error=true; do not average it away.",
+    "reviewer_scores_present": false,
+    "engineering_review_basis": "assumed agreement per Brad, not verified Bill review"
+  },
+  "files": [
+    {
+      "path": "answer_key.jsonl",
+      "sha256": "be448aa4aa50460d462c8bb4eae94477da66ff8642f2a756fb8a4df6266261fe",
+      "bytes": 7316
+    },
+    {
+      "path": "decision.json",
+      "sha256": "33f44f598354e280cb3c6ae603a402e456647dff75c6059457aa17693061fb42",
+      "bytes": 1235
+    },
+    {
+      "path": "questions.jsonl",
+      "sha256": "3aa64a9d3034e3cd3818555f1845c6708f54d73bf25b55f0a57c3fc09078caf7",
+      "bytes": 6513
+    }
+  ],
+  "next_run_requires": [
+    "Recorded source-rights decision for intended processing",
+    "Pinned base/template/settings and bounded runtime authorization",
+    "Evidence supplied separately from answer key; measure actual model responses and score them"
+  ]
+}

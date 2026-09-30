@@ -1,5 +1,9 @@
 # SLM preparation and fine-tuning work queue
 
+**Subsequent approval, 30 September:** Brad approved the pressure diagnostic scoring/test set under assumed Bill agreement. [Frozen set and decision](../packs/oil-gas/eval/pressure-diagnostic-v1/README.md); [six registered source records](../packs/oil-gas/manifests/evaluation_sources.json). Rights remain TBD. This advances the current FQ-08 exercise's planning decision; no actual expert signature, model score, signed case or training release is claimed. Other source/method/diagram review holds remain unchanged.
+
+**30 September confirmed input status:** no new expert review/signed case, per Brad. FQ-09 now has [an offline preflight and three-case mock rehearsal](FIRST_CASE_PREFLIGHT.md); FQ-08/FQ-12 remain open. The preflight checks structural scoring coverage and context estimates but cannot close Gate 0 or authorize training. No repeated request for the same review status is needed until new material arrives.
+
 **30 September dataset follow-up:** [first pressure review worksheet](FIRST_DATASET_REVIEW.md) now proposes fifteen questions/references (three per type), three locally checked arithmetic examples and dispositions for all nine extraction issues. One source family, no allocated split, no accepted examples. FQ-02/FQ-08 remain review gates and FQ-12 remains blocked on real acceptance. Hydrostatic numerical recipes and rounded fluid-column conversions are excluded from this first proposal. No AWS/model/database operation occurred.
 
 **Current status, 30 September 01:00 UTC:** pinned Qwen3-8B acquisition and NF4 GPU loading passed on the A10G. All 15 files (16.40 GB) verified; 252 NF4 modules, all parameters on CUDA, 5.83 GiB peak reserved memory. The host and both L4s are stopped; retries are paused. No inference or training ran. [Load result and remaining gates](QWEN_MODEL_LOAD_RESULT_2026-09-30.md). The dated entries below preserve earlier preparation and failures.
