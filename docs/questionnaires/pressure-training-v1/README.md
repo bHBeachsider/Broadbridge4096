@@ -24,9 +24,9 @@ The complete text is in [QUESTIONS.md](QUESTIONS.md); [questionnaire.json](quest
 | Exceptions, sources and Norm | 3 | Find unusual cases, nominate material and focus expert involvement |
 | Your recommendation | 2 | Define acceptance criteria and capture issues the questions missed |
 
-The page asks for Bill's expectation before he optionally reveals the draft reference answer. He can mark an answer supported, needing correction, contradicted, insufficiently evidenced or outside his expertise. He can propose changes, flag a potentially serious error, nominate essential checks and exclude an unhelpful task. A first pass can be the priorities and two examples; all questions can be skipped. Suggested completion times are estimates, not measured interview durations.
+For each example, read the source notes and record the required answer before revealing the draft reference. Classify the reference, record corrections, flag potentially serious errors and identify essential checks. Use the task-selection field to include, revise or exclude a task. Suggested completion times are estimates, not measured interview durations.
 
-The hydrostatic-depth example deliberately tests the boundary of this small pressure recipe. Bill may recommend replacing it with a more useful petrochemical example. The comparison is intended to assess the teaching material, not to test Bill's knowledge.
+The hydrostatic-depth example tests the boundary of this pressure recipe. Assess its relevance and propose a replacement if another petrochemical task would be more useful.
 
 ## Saving and interpreting responses
 

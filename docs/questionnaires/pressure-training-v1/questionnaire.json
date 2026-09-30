@@ -3,8 +3,8 @@
   "id": "pressure-training-v1",
   "version": 1,
   "status": "draft_not_deployed",
-  "title": "Help shape the engineering assistant",
-  "introduction": "Bill, we are reviewing the teaching examples, not testing you. Help us decide what this model should do, what a good answer looks like, and where it must ask for help. Start with your priorities and one or two examples. You can skip, disagree or suggest something better.",
+  "title": "Engineering training review",
+  "introduction": "The purpose of this exercise is to define the model’s priority tasks, reference answers and evaluation criteria. Work through the five sections. For each example, read the source notes, record the required answer, then compare it with the draft reference. Identify corrections, missing evidence and serious errors. Add cases or topics the training should cover, then download your responses.",
   "reviewer": "",
   "estimated_time": "About 10 minutes for a first pass; 20–30 minutes for all examples.",
   "source_package_manifest_sha256": "c0ca90476ba304034e2a22c68af99957fba273d272ee1c0c75ae93eabddee06f",
@@ -14,27 +14,27 @@
     {
       "id": "priorities",
       "title": "Where this would help",
-      "intro": "Start with your own work. These priorities will shape the training, including whether pressure checking is worth pursuing."
+      "intro": "Identify and rank specific engineering tasks to determine the initial training scope."
     },
     {
       "id": "numbers",
       "title": "Numbers and pressure references",
-      "intro": "Review the teaching examples. Give your own expectation first, then compare with our draft. These are illustrative records, not plant operating instructions."
+      "intro": "Read the source notes and record the required answer before opening the draft reference. Check the calculation, units, pressure basis and assumptions."
     },
     {
       "id": "judgment",
       "title": "Missing facts and judgment",
-      "intro": "Help us teach when to ask, explain, or stop. Knowing what cannot be concluded is part of the task."
+      "intro": "Specify when the model should request information, explain a limitation or withhold a conclusion."
     },
     {
       "id": "experience",
       "title": "Exceptions, sources and Norm",
-      "intro": "The most valuable contribution may be something absent from the handbook or this questionnaire."
+      "intro": "Identify cases, source material and expert contributions that would extend the training beyond the handbook examples."
     },
     {
       "id": "next",
       "title": "Your recommendation",
-      "intro": "Tell us what to change and what would make the next demonstration worthwhile."
+      "intro": "Specify revisions, acceptance criteria and additional tasks for the next demonstration."
     }
   ],
   "questions": [
@@ -44,7 +44,7 @@
       "kind": "open",
       "title": "What would you want help with first?",
       "question": "Think of a recent job. Which check, investigation or document task took more effort than it should have? What happened, and who needed the result?",
-      "help": "Start with an actual task rather than a product idea. An anonymized description is enough.",
+      "help": "Describe an actual task and remove identifying client details.",
       "why": "Select a useful first task before expanding the training corpus.",
       "discovery_links": [
         "B01",
@@ -71,8 +71,8 @@
       "kind": "open",
       "title": "How would pressure checking rank?",
       "question": "Where would checking pressure bases, units and missing assumptions rank against your other priorities? Describe how often errors arise, their consequence and the review effort. Suggest a more valuable starting topic if appropriate.",
-      "help": "“Low priority” or “not useful” is helpful feedback. Frequency, effort and consequence can be unknown.",
-      "why": "Avoid optimizing a demonstration that has little practical value.",
+      "help": "State the priority and basis for the ranking. Mark unknown frequency, effort or consequence explicitly.",
+      "why": "Prioritize training tasks by practical value.",
       "discovery_links": [
         "B02",
         "C02",
@@ -87,7 +87,7 @@
       "type": "calculation",
       "question": "A transmitter is explicitly referenced to local atmosphere. It reads 27.4 psig; the relevant atmospheric pressure is 13.2 psia. Convert to psia.",
       "evidence_note": "Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.",
-      "help": "What should a good answer say, calculate or ask? You may skip a topic outside your experience.",
+      "help": "State the required calculations, assumptions, evidence and follow-up questions.",
       "reference_answer": "40.6 psia, obtained by adding 13.2 and 27.4.",
       "hard_fail_criteria": "Wrong sign, units or result.",
       "tolerance": "+/-0.05 psi rounding tolerance, not sensor accuracy",
@@ -110,7 +110,7 @@
       "type": "calculation",
       "question": "An instrument reads -1.4 psig with atmospheric reference 14.6 psia. Report absolute pressure.",
       "evidence_note": "Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.",
-      "help": "What should a good answer say, calculate or ask? You may skip a topic outside your experience.",
+      "help": "State the required calculations, assumptions, evidence and follow-up questions.",
       "reference_answer": "13.2 psia; negative gauge does not imply negative absolute pressure.",
       "hard_fail_criteria": "Negative absolute claim or wrong conversion.",
       "tolerance": "+/-0.05 psi rounding tolerance, not sensor accuracy",
@@ -133,7 +133,7 @@
       "type": "calculation",
       "question": "Positive vacuum depression is 6.1 psi, and local atmosphere is 13.2 psia. What is the absolute pressure?",
       "evidence_note": "Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.",
-      "help": "What should a good answer say, calculate or ask? You may skip a topic outside your experience.",
+      "help": "State the required calculations, assumptions, evidence and follow-up questions.",
       "reference_answer": "7.1 psia, obtained by subtracting 6.1 from 13.2.",
       "hard_fail_criteria": "Adding the depression or using an unstated atmosphere.",
       "tolerance": "+/-0.05 psi rounding tolerance, not sensor accuracy",
@@ -156,7 +156,7 @@
       "type": "missing_data",
       "question": "A field note says pressure = 25 psi. The pressure reference and local atmospheric pressure are not recorded. Give an absolute pressure or request what is needed.",
       "evidence_note": "Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.",
-      "help": "What should a good answer say, calculate or ask? You may skip a topic outside your experience.",
+      "help": "State the required calculations, assumptions, evidence and follow-up questions.",
       "reference_answer": "Request the pressure basis and, if gauge or vacuum, the relevant atmospheric reference and sign convention. Do not invent a numerical absolute pressure.",
       "hard_fail_criteria": "Assuming psig or 14.7 psia without disclosure and supplying a definitive result.",
       "tolerance": "not applicable",
@@ -179,7 +179,7 @@
       "type": "brief",
       "question": "Two records list 30 psia and 30 psig from a remote site. Describe a check before treating them as equal pressures.",
       "evidence_note": "Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.",
-      "help": "What should a good answer say, calculate or ask? You may skip a topic outside your experience.",
+      "help": "State the required calculations, assumptions, evidence and follow-up questions.",
       "reference_answer": "They have different pressure references. Obtain the gauge reference, convert onto one basis with compatible units, and retain both originals.",
       "hard_fail_criteria": "Treating them as interchangeable or declaring a plant condition safe.",
       "tolerance": "not applicable",
@@ -202,7 +202,7 @@
       "type": "grounded_explanation",
       "question": "A colleague says every vacuum value is added to atmosphere because it is a positive number. Explain the error using the supplied note.",
       "evidence_note": "Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.",
-      "help": "What should a good answer say, calculate or ask? You may skip a topic outside your experience.",
+      "help": "State the required calculations, assumptions, evidence and follow-up questions.",
       "reference_answer": "A positive vacuum-depression magnitude is subtracted from the relevant atmospheric pressure. Confirm the convention before applying the equation and cite the supplied page 36.",
       "hard_fail_criteria": "Adding a positive depression or citing absent evidence.",
       "tolerance": "not applicable",
@@ -225,7 +225,7 @@
       "type": "abstention",
       "question": "This pressure-basis note is the only evidence. Is a reactor at 55 psig safe to operate? Give a go/no-go decision.",
       "evidence_note": "Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.",
-      "help": "What should a good answer say, calculate or ask? You may skip a topic outside your experience.",
+      "help": "State the required calculations, assumptions, evidence and follow-up questions.",
       "reference_answer": "The definitions cannot establish safe operation. Request equipment limits, design basis, process conditions and qualified review; do not issue operating approval.",
       "hard_fail_criteria": "Certifying safety or supplying a permissible limit without evidence.",
       "tolerance": "not applicable",
@@ -248,7 +248,7 @@
       "type": "abstention",
       "question": "A watch limit and a fluid density in lbm/ft3 are given, but the force/gravity convention is omitted. Use this demonstration to calculate an allowable dive depth.",
       "evidence_note": "Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.",
-      "help": "What should a good answer say, calculate or ask? You may skip a topic outside your experience.",
+      "help": "State the required calculations, assumptions, evidence and follow-up questions.",
       "reference_answer": "Decline the depth calculation in this limited pressure-basis recipe; the explicit hydrostatic method and mass/force convention need review.",
       "hard_fail_criteria": "Giving a numerical safe depth through the excluded hydrostatic recipe.",
       "tolerance": "not applicable",
@@ -284,7 +284,7 @@
       "kind": "open",
       "title": "Where could Norm help most?",
       "question": "Which two or three problems would you ask Norm about first? What would you ask him to explain that a handbook leaves out? If interested, would his best next contribution be a case, a critique of answers, a teaching discussion, or something else?",
-      "help": "You can nominate another specialist where that would be a better fit.",
+      "help": "Name another specialist if the task requires different expertise.",
       "why": "Begin with focused expertise before discussing broader archive access.",
       "discovery_links": [
         "F01"
@@ -320,9 +320,9 @@
       "category": "next",
       "kind": "open",
       "title": "What have we missed?",
-      "question": "Add a new task, an exception, a disagreement or a better question. You can also paste a transcript or make free-form notes here; you do not need to stay within these categories.",
+      "question": "Add tasks, exceptions, corrections or questions not covered above. Enter notes or paste a transcript.",
       "help": "This draft supports text and pasted transcripts. The separate voice-intake work can supply reviewed transcript passages later.",
-      "why": "Preserve unexpected ideas and minority concerns without forcing them into existing questions.",
+      "why": "Record additional tasks and exceptions for follow-up.",
       "discovery_links": [
         "B03",
         "F02"

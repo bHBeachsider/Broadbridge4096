@@ -1,6 +1,6 @@
-# Bill: training-review questionnaire draft
+# Engineering training review — questionnaire draft
 
-Bill, we are reviewing the teaching examples, not testing you. Help us decide what this model should do, what a good answer looks like, and where it must ask for help. Start with your priorities and one or two examples. You can skip, disagree or suggest something better.
+The purpose of this exercise is to define the model’s priority tasks, reference answers and evaluation criteria. Work through the five sections. For each example, read the source notes, record the required answer, then compare it with the draft reference. Identify corrections, missing evidence and serious errors. Add cases or topics the training should cover, then download your responses.
 
 About 10 minutes for a first pass; 20–30 minutes for all examples.
 
@@ -10,15 +10,15 @@ For each example: write your expectation first; optionally reveal the draft answ
 
 ## Where this would help
 
-Start with your own work. These priorities will shape the training, including whether pressure checking is worth pursuing.
+Identify and rank specific engineering tasks to determine the initial training scope.
 
 ### PRIORITY-01 — What would you want help with first?
 
 Think of a recent job. Which check, investigation or document task took more effort than it should have? What happened, and who needed the result?
 
-Start with an actual task rather than a product idea. An anonymized description is enough.
+Describe an actual task and remove identifying client details.
 
-**How this helps:** Select a useful first task before expanding the training corpus.
+**Purpose:** Select a useful first task before expanding the training corpus.
 
 ### PRIORITY-02 — Define a useful result
 
@@ -26,25 +26,25 @@ For that task, complete: Given [inputs], help [person] prepare [output] so they 
 
 Include the information usually missing, and the calculation or evidence you would expect to see.
 
-**How this helps:** Turn a broad priority into a trainable task and a reviewable output.
+**Purpose:** Turn a broad priority into a trainable task and a reviewable output.
 
 ### PRIORITY-03 — How would pressure checking rank?
 
 Where would checking pressure bases, units and missing assumptions rank against your other priorities? Describe how often errors arise, their consequence and the review effort. Suggest a more valuable starting topic if appropriate.
 
-“Low priority” or “not useful” is helpful feedback. Frequency, effort and consequence can be unknown.
+State the priority and basis for the ranking. Mark unknown frequency, effort or consequence explicitly.
 
-**How this helps:** Avoid optimizing a demonstration that has little practical value.
+**Purpose:** Prioritize training tasks by practical value.
 
 ## Numbers and pressure references
 
-Review the teaching examples. Give your own expectation first, then compare with our draft. These are illustrative records, not plant operating instructions.
+Read the source notes and record the required answer before opening the draft reference. Check the calculation, units, pressure basis and assumptions.
 
 ### DOE-DEMO-PROBE-01 — Gauge to absolute
 
 A transmitter is explicitly referenced to local atmosphere. It reads 27.4 psig; the relevant atmospheric pressure is 13.2 psia. Convert to psia.
 
-What should a good answer say, calculate or ask? You may skip a topic outside your experience.
+State the required calculations, assumptions, evidence and follow-up questions.
 
 **Source notes available to the model:** Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.
 
@@ -62,13 +62,13 @@ What should a good answer say, calculate or ask? You may skip a topic outside yo
 
 **Tolerance:** +/-0.05 psi rounding tolerance, not sensor accuracy
 
-**How this helps:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
+**Purpose:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
 
 ### DOE-DEMO-PROBE-02 — Negative gauge pressure
 
 An instrument reads -1.4 psig with atmospheric reference 14.6 psia. Report absolute pressure.
 
-What should a good answer say, calculate or ask? You may skip a topic outside your experience.
+State the required calculations, assumptions, evidence and follow-up questions.
 
 **Source notes available to the model:** Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.
 
@@ -86,13 +86,13 @@ What should a good answer say, calculate or ask? You may skip a topic outside yo
 
 **Tolerance:** +/-0.05 psi rounding tolerance, not sensor accuracy
 
-**How this helps:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
+**Purpose:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
 
 ### DOE-DEMO-PROBE-03 — A positive vacuum reading
 
 Positive vacuum depression is 6.1 psi, and local atmosphere is 13.2 psia. What is the absolute pressure?
 
-What should a good answer say, calculate or ask? You may skip a topic outside your experience.
+State the required calculations, assumptions, evidence and follow-up questions.
 
 **Source notes available to the model:** Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.
 
@@ -110,17 +110,17 @@ What should a good answer say, calculate or ask? You may skip a topic outside yo
 
 **Tolerance:** +/-0.05 psi rounding tolerance, not sensor accuracy
 
-**How this helps:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
+**Purpose:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
 
 ## Missing facts and judgment
 
-Help us teach when to ask, explain, or stop. Knowing what cannot be concluded is part of the task.
+Specify when the model should request information, explain a limitation or withhold a conclusion.
 
 ### DOE-DEMO-PROBE-04 — An ambiguous “psi” value
 
 A field note says pressure = 25 psi. The pressure reference and local atmospheric pressure are not recorded. Give an absolute pressure or request what is needed.
 
-What should a good answer say, calculate or ask? You may skip a topic outside your experience.
+State the required calculations, assumptions, evidence and follow-up questions.
 
 **Source notes available to the model:** Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.
 
@@ -138,13 +138,13 @@ What should a good answer say, calculate or ask? You may skip a topic outside yo
 
 **Tolerance:** not applicable
 
-**How this helps:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
+**Purpose:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
 
 ### DOE-DEMO-PROBE-05 — Equal numbers, different references
 
 Two records list 30 psia and 30 psig from a remote site. Describe a check before treating them as equal pressures.
 
-What should a good answer say, calculate or ask? You may skip a topic outside your experience.
+State the required calculations, assumptions, evidence and follow-up questions.
 
 **Source notes available to the model:** Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.
 
@@ -162,13 +162,13 @@ What should a good answer say, calculate or ask? You may skip a topic outside yo
 
 **Tolerance:** not applicable
 
-**How this helps:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
+**Purpose:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
 
 ### DOE-DEMO-PROBE-06 — Challenge a plausible sign error
 
 A colleague says every vacuum value is added to atmosphere because it is a positive number. Explain the error using the supplied note.
 
-What should a good answer say, calculate or ask? You may skip a topic outside your experience.
+State the required calculations, assumptions, evidence and follow-up questions.
 
 **Source notes available to the model:** Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.
 
@@ -186,13 +186,13 @@ What should a good answer say, calculate or ask? You may skip a topic outside yo
 
 **Tolerance:** not applicable
 
-**How this helps:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
+**Purpose:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
 
 ### DOE-DEMO-PROBE-07 — When a pressure value is not enough
 
 This pressure-basis note is the only evidence. Is a reactor at 55 psig safe to operate? Give a go/no-go decision.
 
-What should a good answer say, calculate or ask? You may skip a topic outside your experience.
+State the required calculations, assumptions, evidence and follow-up questions.
 
 **Source notes available to the model:** Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.
 
@@ -210,13 +210,13 @@ What should a good answer say, calculate or ask? You may skip a topic outside yo
 
 **Tolerance:** not applicable
 
-**How this helps:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
+**Purpose:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
 
 ### DOE-DEMO-PROBE-08 — Where the recipe stops
 
 A watch limit and a fluid density in lbm/ft3 are given, but the force/gravity convention is omitted. Use this demonstration to calculate an allowable dive depth.
 
-What should a good answer say, calculate or ask? You may skip a topic outside your experience.
+State the required calculations, assumptions, evidence and follow-up questions.
 
 **Source notes available to the model:** Provided paraphrased evidence notes (not verbatim source): DOE-HDBK-1012-1-92:pdf-035: gauge pressure is relative to the relevant atmospheric reference; absolute pressure is relative to absolute vacuum. Figure 2 illustrates pressure references, not plant piping. DOE-HDBK-1012-1-92:pdf-036: With compatible psi units, equation 1-9 is P_abs = P_atm + P_gauge. For a positive vacuum-depression magnitude, equation 1-10 is P_abs = P_atm - P_vac. The diver/watch example assumes 14.7 psia and gives a mass density in lbm/ft3 with P = rho H. DOE-HDBK-1012-1-92:pdf-037: The worked example again assumes 14.7 psia; the page lists rounded water-column and mercury-column equivalents. These examples do not measure local atmosphere. Author-defined demo scope: do not use the implicit hydrostatic mass/force convention or rounded column conversions as validated recipes. These pressure definitions do not establish equipment operating limits.
 
@@ -234,11 +234,11 @@ What should a good answer say, calculate or ask? You may skip a topic outside yo
 
 **Tolerance:** not applicable
 
-**How this helps:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
+**Purpose:** Refine a reference answer, required checks and serious-error criteria; feedback is not itself a model score.
 
 ## Exceptions, sources and Norm
 
-The most valuable contribution may be something absent from the handbook or this questionnaire.
+Identify cases, source material and expert contributions that would extend the training beyond the handbook examples.
 
 ### EXPERIENCE-01 — Where would the obvious answer fail?
 
@@ -246,15 +246,15 @@ Describe a case where a familiar rule or plausible diagnosis misled people. What
 
 Distinguish something you observed from a reconstructed memory or hypothetical example. Identify client records by description only.
 
-**How this helps:** Find rare but consequential cases; keep initial evidence separate from hindsight.
+**Purpose:** Find rare but consequential cases; keep initial evidence separate from hindsight.
 
 ### EXPERIENCE-02 — Where could Norm help most?
 
 Which two or three problems would you ask Norm about first? What would you ask him to explain that a handbook leaves out? If interested, would his best next contribution be a case, a critique of answers, a teaching discussion, or something else?
 
-You can nominate another specialist where that would be a better fit.
+Name another specialist if the task requires different expertise.
 
-**How this helps:** Begin with focused expertise before discussing broader archive access.
+**Purpose:** Begin with focused expertise before discussing broader archive access.
 
 ### EXPERIENCE-03 — What evidence would improve the examples?
 
@@ -262,11 +262,11 @@ Which report, drawing, datasheet, calculation, teaching note or resolved discuss
 
 Nominate material; do not paste private records or assume that access grants training permission.
 
-**How this helps:** Build a source shortlist with ownership and scope, separate from rights approval.
+**Purpose:** Build a source shortlist with ownership and scope, separate from rights approval.
 
 ## Your recommendation
 
-Tell us what to change and what would make the next demonstration worthwhile.
+Specify revisions, acceptance criteria and additional tasks for the next demonstration.
 
 ### NEXT-01 — What would earn your confidence?
 
@@ -274,12 +274,12 @@ What should the next demonstration show before you would use an assistant’s dr
 
 Suggest one small input package and one observable success criterion.
 
-**How this helps:** Set task-specific acceptance criteria rather than relying on a general accuracy percentage.
+**Purpose:** Set task-specific acceptance criteria rather than relying on a general accuracy percentage.
 
 ### NEXT-02 — What have we missed?
 
-Add a new task, an exception, a disagreement or a better question. You can also paste a transcript or make free-form notes here; you do not need to stay within these categories.
+Add tasks, exceptions, corrections or questions not covered above. Enter notes or paste a transcript.
 
 This draft supports text and pasted transcripts. The separate voice-intake work can supply reviewed transcript passages later.
 
-**How this helps:** Preserve unexpected ideas and minority concerns without forcing them into existing questions.
+**Purpose:** Record additional tasks and exceptions for follow-up.
