@@ -1,0 +1,38 @@
+import { test,expect } from "@playwright/test";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { neon,neonConfig } from "@neondatabase/serverless";
+test("questionnaire sign-in, autosave, conflict, submit and export",async({page,browser})=>{
+  const connection=process.env.BROADBRIDGE_DATABASE_URL!, endpoint=process.env.CAPTURE_TEST_SQL_ENDPOINT!, outbox=process.env.CAPTURE_TEST_OUTBOX!, email=process.env.CAPTURE_TEST_EMAIL!;
+  if(process.env.CAPTURE_LOCAL_INGESTION_TEST!=="1"||new URL(connection).hostname!=="127.0.0.1"||!new URL(connection).pathname.startsWith("/broadbridge_test")||new URL(endpoint).hostname!=="127.0.0.1")throw new Error("Disposable local database required");
+  neonConfig.fetchEndpoint=()=>endpoint;const sql=neon(connection);
+  const path="/questionnaires/pressure-training-v1";
+  await page.goto(path);await expect(page.getByLabel("Email address",{exact:true})).toBeVisible();
+  await page.getByLabel("Email address",{exact:true}).fill(email);await page.getByRole("button",{name:"Email me a sign-in link"}).click();
+  await expect(page.getByRole("heading",{name:"Check your email."})).toBeVisible();
+  let link="";
+  await expect.poll(async()=>{try{link=(await readFile(outbox,"utf8")).trim().split("\n").map(s=>JSON.parse(s)).findLast(v=>v.email===email)?.url??"";return !!link;}catch{return false;}}).toBe(true);
+  await page.goto(link);await expect(page).toHaveURL(new RegExp(path+"$"));await expect(page.getByRole("heading",{name:"Engineering training review",exact:true})).toBeVisible();
+  const stale=await page.context().newPage();await stale.goto(path);
+  await page.locator('#PRIORITY-01-answer').fill('Synthetic test: pressure basis checks.');
+  await expect(page.getByRole('status')).toHaveText('Draft saved · revision 1');
+  await stale.locator('#PRIORITY-01-answer').fill('Stale draft must not overwrite.');await expect(stale.getByRole('status')).toContainText('changed in another tab');
+  const draftWait=stale.waitForEvent('download');await stale.getByRole('button',{name:'Download this draft'}).click();const draft=await draftWait;expect(JSON.parse(await readFile((await draft.path())!,'utf8')).unsaved_changes).toBe(true);await stale.close({runBeforeUnload:false});
+  await page.reload();await expect(page.locator('#PRIORITY-01-answer')).toHaveValue('Synthetic test: pressure basis checks.');
+  await page.getByRole('button',{name:'2. Numbers and pressure references',exact:true}).click();
+  await page.locator('article').first().getByText('Compare with our draft answer',{exact:true}).click();
+  await expect(page.getByText('1 of 16 questions have a response',{exact:true})).toBeVisible();
+  await page.locator('#DOE-DEMO-PROBE-01-verdict').selectOption('revise');await page.locator('#DOE-DEMO-PROBE-01-correction').fill('Synthetic test: state the reference.');
+  await expect(page.getByRole('status')).toContainText('Draft saved');
+  await page.getByRole('button',{name:'Submit feedback',exact:true}).click();await expect(page.getByRole('status')).toContainText('Feedback submitted');
+  const exported=await page.request.get(path+'/responses');expect(exported.status()).toBe(200);const result=await exported.json();
+  expect(result.authenticated_reviewer).toBe(email);expect(result.response.record.state).toBe('submitted');expect(result.response.record.training_approved).toBe(false);
+  const rows=await sql`SELECT reviewer,record FROM broadbridge.current_questionnaire_responses WHERE reviewer=${email}`;
+  expect(rows).toHaveLength(1);expect(rows[0].record).toEqual(result.response.record);
+  const anon=await browser.newContext();expect((await anon.request.get(new URL(path+'/responses',process.env.AUTH_URL).toString())).status()).toBe(401);await anon.close();
+  await page.screenshot({path:join(process.env.CAPTURE_TEST_RUN_ROOT!,'questionnaire-desktop.png'),fullPage:true});
+  await page.setViewportSize({width:390,height:844});await page.emulateMedia({colorScheme:'dark'});
+  for(let i=0;i<5;i++){await page.getByLabel('Choose a topic',{exact:true}).selectOption(String(i));expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);}
+  await page.screenshot({path:join(process.env.CAPTURE_TEST_RUN_ROOT!,'questionnaire-mobile.png'),fullPage:true});
+  await page.getByRole('link',{name:'Case capture',exact:true}).click();await expect(page.getByRole('link',{name:'Engineering training review',exact:true})).toHaveAttribute('href',path);
+});
