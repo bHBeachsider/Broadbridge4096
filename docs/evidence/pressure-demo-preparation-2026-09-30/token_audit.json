@@ -1,0 +1,65 @@
+{
+  "schema": "broadbridge.pressure_demo_token_audit/1",
+  "status": "offline_checks_passed_not_release",
+  "training_approved": false,
+  "execution_authorized": false,
+  "train": {
+    "count": 36,
+    "min": 473,
+    "max": 581,
+    "p50": 540,
+    "p95": 562,
+    "overlength_count": 0,
+    "truncation_count": 0
+  },
+  "supervised_tokens": 5415,
+  "total_tokens": 19231,
+  "demo_prompt_token_lengths": [
+    384,
+    371,
+    375,
+    379,
+    376,
+    372,
+    377,
+    382
+  ],
+  "demo_output_reserve": 384,
+  "tokenizer": {
+    "repo": "unsloth/Qwen3-8B",
+    "revision": "946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+    "files": [
+      {
+        "path": "config.json",
+        "sha256": "044d62050d8fad299daf9f88cc37ed1b4e44c4b0ee7410c14699b71ab5538241",
+        "bytes": 754
+      },
+      {
+        "path": "special_tokens_map.json",
+        "sha256": "b5acd1507cb3a3539e63369cb4a2b675a599cf13afe62282d371518288967797",
+        "bytes": 614
+      },
+      {
+        "path": "tokenizer.json",
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "bytes": 11422654
+      },
+      {
+        "path": "tokenizer_config.json",
+        "sha256": "5f95699c6cf42ee1e3ea6c468d6a1ad61fef4aadf5802b1b56fddbf68370a192",
+        "bytes": 10534
+      }
+    ],
+    "transformers": "5.9.0",
+    "tokenizers": "0.22.2",
+    "enable_thinking": false,
+    "add_generation_prompt": true,
+    "scope": "HF template estimate, not verified equivalence to the live Ollama template or its schema overhead"
+  },
+  "actual_template": "Foundry qwen-2.5 pinned ChatML, overriding native HF thinking template",
+  "train_renderer_sha256": "860b8fd45f189493a080d093d8b34b4d86b8c3c2014bd09cf01357dd7200bddc",
+  "python": "3.13.5",
+  "transformers": "5.9.0",
+  "scope": "Local CPU rendering only; does not validate installed AWS runtime or GPU training.",
+  "package_manifest_sha256": "c0ca90476ba304034e2a22c68af99957fba273d272ee1c0c75ae93eabddee06f"
+}
