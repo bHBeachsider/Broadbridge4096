@@ -42,7 +42,7 @@ python "$foundry\scripts\gpu_capacity_plan.py" --policy infra/gpu/fallback-polic
 
 Expected: primary `prepared_reuse`, fallback `blocked_image`, `execution_authorized: false`. This command reads files only. Before live execution, collect fresh inventory and recheck it while holding the session lock; this recorded snapshot is not current authorization or a capacity guarantee.
 
-The generic request boundary distinguishes capacity, fatal prerequisite and ambiguous errors without disclosing raw stderr. An offline-only copy of the private controller now consumes that boundary and considers stopping hosts a conflict. Its 35 diagnostic/controller/integration tests pass. Earlier receipts and the successful model-load controller are unchanged. The candidate CLI is deliberately disabled; there is no executable fresh session packet yet. Its test of the historical payload reads the original file, rather than copying a fetch payload that would conflict with the retained model cache.
+The generic request boundary distinguishes capacity, fatal prerequisite and ambiguous errors without disclosing raw stderr. The first private rehearsal passed 35 tests and kept its CLI disabled. It is now superseded by the tracked Foundry cache-reuse controller and [second-operator runbook](AWS_MODEL_REUSE_SESSION.md). Preparation/checking is offline; execution is explicit and requires a fresh decision. The new payload verifies existing files and never fetches or repairs the cache. Earlier private controllers, deadlines and successful-load receipts remain unchanged.
 
 ## Validation
 

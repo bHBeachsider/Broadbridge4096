@@ -1,0 +1,22 @@
+{
+  "schema": "foundry.model_load_reuse/1",
+  "region": "us-east-1",
+  "instance_id": "i-079b24e2b51ef7630",
+  "instance_type": "g5.2xlarge",
+  "zone": "us-east-1b",
+  "image_id": "ami-0a425c55dcc606687",
+  "retained_instance_ids": [
+    "i-079b24e2b51ef7630",
+    "i-0e5e1cbc7b1367566",
+    "i-0439f5841d631d9f8"
+  ],
+  "ssh_user": "ec2-user",
+  "profile": "g5-a10g",
+  "runtime_path": "slm-training/venv-a10g-a23670f4d161",
+  "cache_path": "slm-training/hf-cache-qwen-946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+  "model_type": "qwen3",
+  "inventory_sha256": "ae69d76c4b5b18ac823687ee0df2bbc45ba12c030f9147970e51f799a0107ee5",
+  "trusted_host_keys_sha256": "87ac13d4c985765a06143abde42274f5aae66eb76aee24e702c7b07bc835fb4e",
+  "model_bytes": 16397438697,
+  "model_files": 15
+}
