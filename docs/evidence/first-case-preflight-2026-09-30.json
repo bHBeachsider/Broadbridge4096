@@ -1,0 +1,61 @@
+{
+  "schema": "broadbridge.offline_validation/1",
+  "date_utc": "2026-09-30",
+  "scope": "First-case offline preflight plus existing mock batch and score aggregation",
+  "user_confirmed": "No new expert review or signed case available; proceed with preparation",
+  "tests": {
+    "command": "python -m pytest packs/oil-gas/tests/test_case_preflight.py packs/oil-gas/tests/test_case_batch.py packs/oil-gas/tests/test_first_case.py packs/oil-gas/tests/test_aggregate_scores.py -q --tb=short",
+    "passed": 106,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_seconds": 23.95,
+    "live_services_mocked": true
+  },
+  "preflight": {
+    "local_output": "packs/oil-gas/outputs/first-case-preflight-20260930-v2",
+    "input": "packs/oil-gas/tests/fixtures/three_cases_export.json",
+    "source_file_sha256": "66c76adc51ec9badc6e613a3d00aa1fb1697e4fc9e8740e284056a1d538a83b6",
+    "preflight_json_sha256": "2fe9a1fe8e87bb837846b6ccc58dc08c60b31186307d35f1535aad6a7a132388",
+    "preflight_markdown_sha256": "36fa12e802e7f00f480baa203ee1370cbbf08cabec8d7d13cc85f19d941ee2a5",
+    "fixture_export": true,
+    "tokenizer": "unsloth/Qwen3-8B",
+    "tokenizer_revision": "946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+    "verified_tokenizer_files": 4,
+    "local_transformers": "5.9.0",
+    "local_tokenizers": "0.22.2",
+    "context_limit_proposed": 4096,
+    "output_reserve_proposed": 1024,
+    "rendering_margin_proposed": 256,
+    "prompt_token_estimates": {"SYN-001": 340, "SYN-TRAIN-001": 340, "SYN-TRAIN-002": 340},
+    "signed_nonfixture_questions": 0,
+    "gate_0_verified": false,
+    "execution_authorized": false,
+    "superseded_output": "packs/oil-gas/outputs/first-case-preflight-20260930",
+    "superseded_reason": "Initial new-code counter counted an encoding dictionary's fields rather than token IDs. Preserved but excluded; v2 requests and validates flat token IDs with regression tests."
+  },
+  "mock_batch": {
+    "local_output": "packs/oil-gas/outputs/first-case-rehearsal-20260930",
+    "entrypoint": "scripts/first_case.ps1 -MockResponse packs/oil-gas/tests/fixtures/SYN-001.mock_brief.json",
+    "cases": 3,
+    "schema_valid_briefs": 3,
+    "scorecards": 3,
+    "reviewed": 0,
+    "unreviewed": 3,
+    "synthetic_importer_candidate_rows": 2,
+    "accepted_training_examples": 0,
+    "releases_created": 0,
+    "aggregation_structural_errors": 0
+  },
+  "model_calls": 0,
+  "aws_calls": 0,
+  "database_calls": 0,
+  "r2_calls": 0,
+  "credentials_read": false,
+  "packages_installed_or_upgraded": false,
+  "limitations": [
+    "HF template token counts do not verify live Ollama rendering/schema overhead or enforced server context/output settings.",
+    "Mock outputs are saved fixture replay; they establish neither engineering quality nor model performance.",
+    "Independent source/method/answer review, rights, real signed-case coverage, scored baselines and dataset acceptance remain open.",
+    "The historical first-case live launcher still needs integration with current fixed shutdown controls before future live use."
+  ]
+}

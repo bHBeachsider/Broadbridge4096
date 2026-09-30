@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "checks": [
+    "gauge conversion",
+    "vacuum sign",
+    "unknown atmosphere",
+    "unknown pressure basis",
+    "conversion cannot approve operation",
+    "negative absolute rejected",
+    "absolute zero is not missing",
+    "keyboard tabs",
+    "no fabricated training results",
+    "draft export preserves notes without permission",
+    "all four mobile panels fit",
+    "no browser errors",
+    "no external requests"
+  ],
+  "count": 13,
+  "scope": "Rule-based local walkthrough only; no model calls or training",
+  "errors": []
+}

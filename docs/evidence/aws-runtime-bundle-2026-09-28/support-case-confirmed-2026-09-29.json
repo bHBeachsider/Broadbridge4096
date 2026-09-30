@@ -1,0 +1,18 @@
+{
+  "schema": "broadbridge.aws_support_case_confirmation/1",
+  "recorded_at": "2026-09-29T18:10:17.941938+00:00",
+  "evidence": "Read-only signed-in AWS Support console case details and correspondence after user screenshot",
+  "case_number": "179070520900642",
+  "created_at": "2026-09-29T18:06:49.413Z",
+  "case_type": "Account",
+  "category": "Service Quotas, General",
+  "severity": "General question",
+  "status": "Unassigned",
+  "support_plan": "Basic Support",
+  "opening_correspondence_present": true,
+  "aws_reply_visible": false,
+  "engineer_assignment_observed": false,
+  "agent_submitted_duplicate": false,
+  "agent_changed_category": false,
+  "quota_or_compute_change_observed": false
+}

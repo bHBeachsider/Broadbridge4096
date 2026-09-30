@@ -1,0 +1,193 @@
+# Qwen3-8B: AWS and dataset readiness
+
+**Live status check, 30 September 14:43 UTC / 10:43 a.m. Eastern:** AWS DescribeInstances returned all three retained hosts stopped and no running/pending G or VT instance in us-east-1. The 15-minute retry remains paused. The earlier successful Qwen checkpoint/load result stands; no start request or model operation was made for this status check. The [live engineering questionnaire](https://broadbridge-capture.vercel.app/questionnaires/pressure-training-v1) now collects feedback. The next engine preparation binds training to the verified retained checkpoint, with no fallback download; see [cached-training preparation](AWS_CACHED_TRAINING_PREPARATION.md). Rights, dataset release and a fresh bounded execution decision remain open.
+
+**Bill demonstration preparation, 30 September:** [36 DOE candidate examples, eight comparison probes and bounded run proposal](DOE_TRAINING_DEMO_PACKAGE.md) are prepared offline. This is a proposed small mechanical/teaching demonstration; it does not close the domain acceptance gates below. Rights TBD and execution approval remain outstanding. The whole-family transition from dev to training is proposed, not silently applied; any future trained-family comparison is explicitly non-independent. [Bill's walkthrough](BILL_QWEN_TRAINING_DEMO.md).
+
+**Recorded approval, 30 September:** Brad approved the current pressure scoring/test set with Bill's agreement assumed for this purpose and rights **TBD**. [Decision and frozen diagnostic files](../packs/oil-gas/eval/pressure-diagnostic-v1/README.md) bind the fifteen references and record zero actual Bill signatures/model scores. [Six source records](../packs/oil-gas/manifests/evaluation_sources.json) are validated locally; no database write. The pressure family is dev/testing-only, not a training allocation. Rights and execution conditions remain open; this does not supply signed case coverage or change Gate 0.
+
+**Next offline step, 30 September:** Brad confirmed no new expert review or signed cases. [First-case preflight](FIRST_CASE_PREFLIGHT.md) now reports signoff/scoring gaps, five-type coverage, family holdouts and a pinned local-tokenizer context estimate. Three fixtures completed the existing mock brief/scorecard/aggregate workflow; none counts as real accepted data. No AWS, database or inference call. The older first-case live launcher still needs integration with current fixed shutdown controls before a future authorized baseline session.
+
+**Dataset preparation, 30 September:** [first pressure review packet](FIRST_DATASET_REVIEW.md) contains fifteen authored draft questions across five types, three arithmetic checks and nine proposed exception dispositions. The extraction packet reproduced byte-for-byte. Rights, engineering acceptance, family allocation and signed-case/baseline gates remain open; zero examples admitted. Hydrostatic numerical recipes and unqualified fluid-column conversions are excluded. No AWS session or model call was made for this work.
+
+**Reusable session tooling, 30 September:** the [cache-reuse runbook](AWS_MODEL_REUSE_SESSION.md) now uses tracked generic Foundry controls and Broadbridge's host/model configuration. Preparation and packet checking are offline. The retained checkpoint is verified rather than fetched; ownership, busy-GPU and fixed shutdown controls remain. The tracked controller still needs its first approved live qualification, and independent second-operator reproduction remains open. This preparation starts no GPU session and does not change dataset or training gates.
+
+**Capacity preparation, 30 September:** [reuse/fallback policy](AWS_GPU_REUSE_AND_FALLBACK.md) preserves the validated A10G and prepares four alternate placements. Fallback image capture remains pending; no new host or quota request. The corrected error boundary and offline controller rehearsal retain ownership, busy-process and shutdown guards. Dataset/baseline gates remain open.
+
+**Current status, 30 September 01:00 UTC:** pinned Qwen3-8B acquisition and NF4 GPU loading passed on the A10G. All 15 files (16.40 GB) verified; 252 NF4 modules, all parameters on CUDA, 5.83 GiB peak reserved memory. The host and both L4s are stopped; retries are paused. No inference or training ran. [Load result and remaining gates](QWEN_MODEL_LOAD_RESULT_2026-09-30.md). The dated entries below preserve earlier preparation and failures.
+
+**29 September 22:17 UTC:** the approved checkpoint session ended before any
+model download. Controller key-selection and startup-clock defects were fixed
+and 19 offline lifecycle tests passed; the corrected start was rejected for
+capacity. All three GPU hosts are stopped. The runtime qualification remains
+valid, but model load and training remain pending. See [the session record](QWEN_MODEL_LOAD_SESSION.md)
+and [the overall process diagram](SLM_PROCESS_FLOW.md).
+
+**Historical packet preparation, 29 September:** [pinned Qwen checkpoint and model-load check](QWEN_MODEL_LOAD_SESSION.md). The 15-file public inventory was refreshed without downloading weights. Offline tooling is tested; no new EC2 session, inference or training occurred. Live execution remains separately scoped.
+
+**Prior runtime result, 29 September 20:03 UTC:** the approved A10G retry in
+`us-east-1b` succeeded. All 113 pinned wheels installed and matched; `pip check`,
+five synthetic GPU probes and **149 selected CPU tests** passed. The A10G and
+both retained L4 hosts are independently confirmed stopped. Runtime installation
+and small-kernel checks are complete; Qwen weight staging/model load, accepted
+data/baselines, QLoRA smoke/resume and second-operator reproduction remain open.
+No model inference or training ran. [Session result](AWS_A10G_RUNTIME_SESSION_2026-09-29.md).
+Earlier dated entries below preserve the capacity/transfer history.
+
+**29 September 16:47 UTC retry:** Brad authorized a new bounded attempt using whichever existing host was available. The replacement in `us-east-1c` and then the original in `us-east-1d` each returned `InsufficientInstanceCapacity`; neither started. Both were independently confirmed stopped with unchanged launch times. The verified wheelhouse, replacement Python prerequisites and partial upload are preserved. All 18 offline selection/resume tests passed. No guest command, new transfer, installation or GPU test ran. Retry automation remains paused. [Receipt](evidence/aws-runtime-bundle-2026-09-28/retry-pair-2026-09-29-1647.json).
+
+28 September 2026. Owner: Brad / Broadbridge. **CPU preparation plus an explicitly approved read-only development-database check; no Broadbridge fine-tuning job has run in this work.** This is the active FQ-12/FQ-13 readiness runbook. The optional OpenRouter helper comparison is deferred. Its provider availability and terms do not block this path.
+
+## The model and the path
+
+The target is **`unsloth/Qwen3-8B` on an approved AWS EC2 GPU host** (A10G runtime checks now passed; both L4 hosts preserved), not ECS and not the larger Qwen helper accessed through OpenRouter. Ollama's installed `qwen3:8b` GGUF serves responses; it is not the trainable checkpoint. The pinned Hugging Face weights and CUDA/Unsloth/TRL stack are now verified on the A10G; accepted training data and subsequent run authorization remain separate. A LoRA adapter is then evaluated, merged and converted to GGUF for serving.
+
+The local tokenizer snapshot is pinned to `946bc9ac74a6c1f8cf012497c503a119b2fcf2eb`. The smoke configuration proposes that same base revision; the 30 September session also verified the corresponding 15-file weight snapshot and NF4 GPU load on AWS.
+
+The shortest approved path remains:
+
+1. Accept a narrow task, rights and reference answers; preserve held-out families.
+2. Score S0-cases on stock Qwen3-8B. Build S0-retrieval only after scored failures identify the need and about 20 documents are admitted. It must improve on S0-cases under the existing plan.
+3. Freeze an independently accepted dataset; audit its exact tokenizer rendering and assistant-only labels.
+4. Runtime installation and checkpoint loading have passed. Authorize the next bounded session and stage only its independently accepted data; verify/reuse the retained model cache.
+5. Run a 20-step QLoRA smoke test. Only after its operational checks pass, authorize the domain experiment and matched base/retrieval/adapter comparison.
+
+Steps 1–3 are not replaced by a helper-model contest. Offline host/configuration preparation can proceed now. Diagram training remains blocked on its separate branch.
+
+## Readiness verified locally
+
+| Item | Finding / remaining work |
+| --- | --- |
+| Generic Foundry controller | Already implements immutable release/config bindings, 40-character base revision, optimizer-step limit, cumulative wall-time limit, process cleanup and matched checkpoint resume. Earlier infrastructure-brief wording that these controls still need implementation is stale. |
+| Checkpoint cadence | Fixed a missing configuration pass-through: the installed CPU Transformers default is 500 steps, too sparse for an interrupted 20-step run. The proposed smoke uses every 5 steps, retaining 2 full checkpoints, evaluation batch 1 and logging every step. Real CUDA checkpoint creation/resume remains to be demonstrated. |
+| External domain pack | Existing absolute `--pack` loading is covered by offline tests. For a released dataset, use the bounded controller with the smoke config; it binds the immutable release paths instead of the pack's mutable `data/train.jsonl` paths. |
+| Local math snapshot | 1,200 raw records verified against the original receipt; 946 train / 128 val / 120 test candidates and 6 exclusions. All raw records: 3 over 2,048 tokens; original candidate splits: 0 overlength, 0 truncation. This is encoding evidence, not approval. |
+| Math quality / family status | 3 exact duplicate groups, 4 numeric-template groups, 1,196 proposed families, no detected cross-split family under these heuristics. Ten convenience checks: 7 consistent, 1 wrong, 1 ambiguous/inconsistent, 1 contradictory. Whole sample stays on quality/family hold. These checks are not an accuracy estimate. |
+| Release boundary | Fresh fabricated rehearsal again refused all 8 invalid acceptance/release scenarios. Fixture identities and approvals confer no real training authority. Authenticated synthetic acceptance still needs complete current rights/history and live integration. |
+| Real accepted release / Gate 0 | The approved read-only check reached dev, not production. Dev has 4 cases, 4 questions, 0 brief runs and 0 scorecards. Its two signed/training cases are SYN-prefixed hypothetical fixtures; one other signed case is testing-only. Production Bill submissions and Gate 0 coverage remain unknown. See the follow-up below. |
+| AWS host | A10G `i-079b24e2b51ef7630`, g5.2xlarge, us-east-1b, is stopped with the installed venv retained. Original and replacement L4 hosts also confirmed stopped. [Bounded validation result](AWS_A10G_RUNTIME_SESSION_2026-09-29.md). |
+| GPU runtime | Exact 113-wheel CUDA 12.6 bundle installed offline and version/hash verified on A10G. pip consistency, five synthetic GPU checks and 149 selected CPU tests passed. Unsloth 2026.9.12 / Transformers 5.5.0; no driver change. Qwen NF4 load passed on 30 September; QLoRA/resume and reproduction remain untested; no floating bootstrap. |
+| Artifact storage | Broadbridge intake already uses private R2. Do not automatically attach the older Ilyrium S3 profile or create another bucket. The [R2-to-EBS setup runbook](AWS_TRAINING_SETUP.md) and immutable transfer tool are prepared and rehearsed locally. Live prefix/token scope and exact transfer still need approval. An S3 instance profile is a requirement only if a separately approved S3 artifact path is selected. |
+| Training diagnostics | Implemented and tested with local CPU child processes: merged stdout/stderr, private per-attempt files, 4 MiB cap with continuous draining, byte/hash/truncation receipts, and rejection of changed/incomplete captures. Actual CUDA training logs and metrics remain unverified; the separate base-load memory/time result is now recorded. |
+
+Fresh aggregate receipts: [data/release/config verification](evidence/aws-readiness-2026-09-28/readiness.json) and [test results](evidence/aws-readiness-2026-09-28/tests.json). Foundry: **742 passed, 3 skipped**. Broadbridge pack/DB/research suite: **410 passed, 104 skipped** (103 DB integration tests without credentials and 1 optional reference-graph configuration). Existing Requests/SWIG warnings remain. Detailed data findings and limitations remain in [SLM_DATA_PREPARATION_RESULTS.md](SLM_DATA_PREPARATION_RESULTS.md).
+
+## Offline reproduction — no weights or model calls
+
+Run from PowerShell 7 with the existing CPU environment (Windows PowerShell 5.1 quoting was not validated). Substitute the two checkout paths on another machine; the local data/tokenizer paths are not committed. Choose a fresh `$out` each time. These commands intentionally use the held sample for software checks only.
+
+```powershell
+$domain = 'C:\Users\bradu\Documents\Broadbridge4096\tmp\codex-broadbridge-ingestion-plan'
+$foundry = 'C:\Users\bradu\Documents\Broadbridge4096\tmp\slm-foundry-worktrees\codex-foundry-ingestion-plan'
+$intake = 'C:\Users\bradu\Documents\Broadbridge4096\packs\oil-gas\data\public-start-2026-09-24'
+$tokenizer = 'C:\Users\bradu\Documents\Broadbridge4096\tmp\foundry-gate1\qwen-tokenizer'
+$out = Join-Path $domain 'packs\oil-gas\outputs\aws-readiness-repeat'
+$env:HF_HUB_OFFLINE = '1'
+$env:TRANSFORMERS_OFFLINE = '1'
+python "$domain\scripts\research\audit_openmath.py" --intake $intake --foundry $foundry --tokenizer $tokenizer --out "$out\math"
+python "$domain\scripts\research\rehearse_release_audit.py" --mock --foundry $foundry --out "$out\release"
+```
+
+To audit the smoke settings against the existing held sample, copy the config to the ignored output folder and bind only the original candidate paths. This does not create a release or authorization:
+
+```powershell
+python -c 'import pathlib,sys,yaml; d,i,o=map(pathlib.Path,sys.argv[1:]); c=yaml.safe_load((d/"packs/oil-gas/configs/train-smoke.yaml").read_text()); c["data"]={s:str(i/"candidates/math"/(s+".jsonl")) for s in ("train","val","test")}; o.mkdir(parents=True,exist_ok=True); (o/"HELD-SAMPLE-dry-run.yaml").write_text(yaml.safe_dump(c),encoding="utf-8")' $domain $intake $out
+python "$foundry\src\train.py" --config "$out\HELD-SAMPLE-dry-run.yaml" --dry-run --tokenizer-dir $tokenizer > "$out\HELD-SAMPLE-mask.json"
+if ($LASTEXITCODE -ne 0) { throw 'CPU audit failed; inspect the report' }
+```
+
+The report includes a rendered batch, input token IDs, labels, mask and length distribution. `ready` means mechanically encodable only. Keep full rendered content private/ignored. No `run` command belongs in this rehearsal.
+
+## What is needed to release a dataset
+
+| Input | Current disposition | Next action and owner |
+| --- | --- | --- |
+| DOE pressure packet, pages 35–37 | Fifteen draft references and nine proposed dispositions prepared, not accepted | Review [the concrete worksheet](FIRST_DATASET_REVIEW.md). Brad records item-level rights/credits; appointed engineering reviewer accepts/corrects scope and references. Keep one family together; independent evaluation families still required. |
+| Five DOE leads / four new families | Held | Brad rights review; Bill or qualified reviewer selects useful tasks and references. Frozen public-v1 families and derivatives remain excluded from training. |
+| OpenMath sample | Quality/family hold | Independently adjudicate proposed families and solution correctness for any deliberately selected subset; never train the full sample merely because format checks pass. |
+| Signed expert cases | Current count unknown here | Export canonical `case_record/1`, validate/import, count Section-C coverage and inspect permissions/sign-off. `training` + `signed` is necessary but does not replace release review. Testing/reference-only cases never enter train. |
+| Synthetic candidates | Pending real acceptance | Use accepted recipes/source families and independent review; numerical checks need accepted methods/tolerances. The helper contest is optional. No author self-acceptance or fabricated reviewer approval. |
+
+Gate 0 still needs recorded rights/storage, the named reviewer (Bill Hurt), and at least 30 signed case-derived questions across all five types with reference answers. Capture preferences/brainstorms are requirements evidence, not automatic training targets. Bill may nominate another competent reviewer for narrowly scoped engineering checks.
+
+A release must bind source revisions/rights, complete family history, train/val/locked-test allocation, independent technical decisions and a release approver. Freeze messages JSONL and manifests with the existing [release bridge](INGESTION_PIPELINE_RUNBOOK.md); do not hand-edit an approved JSONL file. Do not present mock releases as real releases.
+
+Once a **real accepted** release is available, the following is still CPU-only. `$release` must be its verified local directory, and `$run` a fresh sibling run directory outside it:
+
+```powershell
+$config = Join-Path $domain 'packs\oil-gas\configs\train-smoke.yaml'
+$revision = '946bc9ac74a6c1f8cf012497c503a119b2fcf2eb'
+# Set $release and $run to approved absolute paths before proceeding.
+Push-Location $foundry
+python -m src.ingestion.training prepare --release-dir $release --config $config --base-revision $revision --max-steps 20 --wall-time-seconds 1800 --run-dir $run
+python -m src.ingestion.training audit --release-dir $release --config $config --base-revision $revision --max-steps 20 --wall-time-seconds 1800 --run-dir $run --tokenizer-dir $tokenizer
+Pop-Location
+```
+
+`prepare` prints request bindings, not approval. Do not manufacture `approved_by`. Recreate the request after staging on AWS because absolute paths change the config hash. The 1,800-second training-process cap excludes separately budgeted host setup time. It is a proposal, not a spend authorization or a claim that the A10G can finish in that time.
+
+## Later AWS session — gated, not executed
+
+Record the exact two repository commits, accepted dataset hash, base revision, config hash, runtime lock, output/backup location, duration/cost caps, operator and release authority before the session. Runtime installation and NF4 loading have passed. The remaining storage task is scoped transfer of an accepted release and preservation of run artifacts. No source data should be sent to an external helper as a fallback.
+
+The current training-readiness host is **A10G `i-079b24e2b51ef7630` in us-east-1b**, with `~/slm-training/venv-a10g-a23670f4d161` and the verified `hf-cache-qwen-946bc9ac74a6c1f8cf012497c503a119b2fcf2eb` under `~/slm-training`. Reuse these; do not repeat the superseded replacement-L4 startup/installation path. The [cache-reuse session runbook](AWS_MODEL_REUSE_SESSION.md) prepares and checks a fresh packet offline, preserving ownership, busy-process, pinned SSH identity and fixed shutdown guards. Its executable scope is **load verification only**, not inference or training. A training session must retain those host controls and separately bind the accepted release and bounded training authorization; do not repurpose an old load-only packet.
+
+Training uses SSH. The historical [serving brief](https://github.com/bHBeachsider/slm-foundry/blob/codex/aws-training-readiness/docs/SLM_SERVING_BRIEF.md) describes Ollama on the original L4, not an established A10G endpoint. Keep port 11434 private, use local port 11435 only for an explicitly configured later serving tunnel, and resolve addresses from AWS. A busy or unidentified GPU process blocks preflight; do not unload a model or stop a service automatically. Do not install packages, change drivers or fetch the already verified weights under the next preparation task.
+
+Stage only an independently accepted release with complete hashes in a separately authorized session. Run local/offline token checks again against the exact retained tokenizer snapshot. The installed Ollama GGUF is not the trainable checkpoint. Confirm all retained host states and current ownership before any start; the 30 September stopped-state receipt is historical, not a substitute for a new preflight.
+
+The bounded controller's **`run`** subcommand is the sole intended launch path, with the exact approved `foundry.training_authorization/1` bindings. Resume only a checkpoint inventoried by its failed-state receipt and under the same cumulative time budget. It must retain adapter weights, optimizer/scheduler state, RNG state and trainer state; adapter-only files are not resumable training checkpoints. Interrupted host locks require operator reconciliation, not blind deletion/retry.
+
+Smoke success means 20 completed optimizer steps, finite recorded losses, no truncation/OOM, validated adapter files, a full intermediate checkpoint and demonstrated matched resume within the authorized budget. Record peak VRAM, elapsed training time, total host time/cost, package versions, failures and artifact hashes. A falling loss alone is not engineering improvement. After success, the domain experiment must beat the matched S0-retrieval baseline without new critical errors and be reproducible by a second operator before deployment.
+
+## Review delivery
+
+Generic engine changes remain in [draft Foundry #21](https://github.com/bHBeachsider/slm-foundry/pull/21), now at `d3eab02`, stacked on data-audit draft #15. This domain branch is stacked on data-preparation draft #19; helper-comparison drafts remain separate. The earlier `9e28862` CPU review is historical. Runtime and model loading subsequently passed through the private controller; live qualification of the tracked controller and actual training/resume remain unverified.
+
+## Next dispatch
+
+1. Review [the pressure worksheet](FIRST_DATASET_REVIEW.md): select the useful task, accept/correct references and method scope, record rights and family allocation. No optional helper comparison is required.
+2. Resolve actual signed-case status with a canonical export or an explicitly production-scoped read-only check. Run/score S0-cases per eligible case, then the retrieval comparison when its prerequisites are met. Public question drafts do not close Gate 0.
+3. Complete authenticated candidate acceptance/history binding and freeze an accepted family-separated release; audit its exact token rendering and labels. Runtime and checkpoint loading already passed; preserve the A10G environment/cache. No new installation or model acquisition is needed.
+4. After data and baseline gates are satisfied, authorize the bounded smoke session and demonstrate training/checkpoint/resume. Preparation makes no AWS start, inference, training or production change; the earlier database check was read-only against dev.
+
+## Follow-up: diagnostics, runtime candidates and current dev counts
+
+The generic implementation and candidate runtime metadata are in the continuing [Foundry draft #21](https://github.com/bHBeachsider/slm-foundry/pull/21), follow-up commit `b10d8542407dba375b5c154b5a65bd11530a5fc0`. [GPU_RUNTIME_PLAN.md](https://github.com/bHBeachsider/slm-foundry/blob/codex/aws-training-readiness/docs/GPU_RUNTIME_PLAN.md) records the dependency mismatch, candidate roots and qualification steps. No wheels, weights or runtime packages were downloaded or installed. That earlier checkpoint had only root candidates. The task 3 update below supersedes it with a resolved candidate; GPU qualification remains pending.
+
+Follow-up [test receipt](evidence/aws-readiness-followup-2026-09-28/tests.json): Foundry **752 passed, 3 skipped**; Broadbridge **410 passed, 104 skipped**; focused log/controller/rehearsal tests **34 passed**. Tests were offline and did not load database credentials. Independent review identified and verified the fix for log-finalization errors skipping final accounting; no remaining actionable findings. The earlier test receipt above remains the historical checkpoint-control result.
+
+The [read-only dev receipt](evidence/aws-readiness-followup-2026-09-28/dev-status.json) records 4 cases, 4 questions, 1 workflow, 9 sources, 4 source revisions, 1 candidate version, 1 recorded release, and zero brief runs/scorecards/model runs. Current source permissions are **3 pending and 1 revoked, none approved**. A historical approved candidate/release row does not establish current source eligibility. The case labeled `real_event` is signed but `testing_only`; an ID/type label alone does not independently verify its real-world origin. No case text, email addresses or credentials were included in the receipt.
+
+The root `.neon` configuration and supplied pooled URL select **dev**, not the production capture branch. This check therefore cannot answer whether Bill submitted a production case. It used a repeatable-read, READ ONLY transaction and rollback; no data was changed. The initial approval-review block on credential access was resolved by Brad's explicit permission. A connection attempt using startup options was rejected by the pooler; configuring read-only mode in the transaction succeeded. Production status still requires a production-scoped read-only connection or an exported canonical case file; do not silently substitute another project or URL.
+
+### First acceptance work package
+
+Use the already prepared narrow pressure packet before collecting a larger corpus:
+
+1. **Brad: rights decision.** Record the exact DOE-HDBK-1012/1-92 source hash and permission basis for selected pages 35–37, including contractor/figure credits. Current status stays pending until that decision exists.
+2. **Appointed engineering reviewer: evidence and method.** Review the existing packet's nine exceptions against the PDFium page renders; accept/correct the two equations and four conversion proposals. Separately accept/correct `absolute_pressure_ratio_v1`, its absolute-pressure/matching-unit scope and provisional tolerance. Reject unsupported power/gauge conversions; the code does not supply missing physics.
+3. **Reviewer: questions and references.** Prepare or accept the intended questions/answers with units, assumptions, missing-evidence behavior and hard-fail criteria. Use signed cases for the case-derived evaluation set. Record reviewer identity and the exact packet hash; blank forms and fabricated fixtures are not approvals.
+4. **Operator: family allocation and release.** Keep handbook pages/derivatives in one family. Do not split pages or synthetic variants across training and held-out sets. Bind accepted examples and independent validation/test families with complete source history in the existing release flow, then run the exact-release CPU audit. The math sample stays on hold and diagram outputs remain excluded.
+
+Existing extraction instructions are in [SLM_PREPARATION_REHEARSAL.md](SLM_PREPARATION_REHEARSAL.md). The [30 September review proposal](FIRST_DATASET_REVIEW.md) reproduces the original extraction hash and adds concrete corrections/exclusions and fifteen draft references for acceptance. Use its `REVIEW.md` and blank `review.csv`; preserve the original evidence. This work package creates no approvals, sends no invitation and does not change the capture application. Production case/review status and scored baselines remain prerequisites, not assumed facts.
+
+## Task 3: runtime bundle and staging delivered
+
+[Setup runbook](AWS_TRAINING_SETUP.md): the Linux candidate has 113 hashed wheels (3,792,751,006 bytes), independently checked metadata closure, explicit download authorization, offline installation commands and host gates. A fabricated four-file release passed a local private-store round trip; corruption, unsafe/intake prefixes, unexpected destinations and missing execution authority are rejected. No R2 credentials or cloud objects were accessed.
+
+Public metadata at the pinned Qwen revision identifies 15 required files totaling 16,397,438,697 bytes, including four weight shards. No weights or wheel set were downloaded. Total planned package/base bytes are 20,190,189,703 before data and checkpoints. The >1 GB download gate remains open. Installation, actual driver/kernel compatibility and second-operator reproduction are not proven by metadata resolution.
+
+## 29 September: A10G preparation and support case update
+
+The [A10G session plan](AWS_A10G_RUNTIME_SESSION_2026-09-29.md) is prepared with an explicit host profile and one-request launch policy. Offline verification: Foundry 813 passed / 3 skipped; final focused tests 62 passed; private launch/transfer checks 18 passed. All 113 cached wheels reverified. No A10G host has been created and no GPU checks or training ran. Both L4 hosts were reconfirmed stopped. [Preparation receipt](evidence/aws-runtime-bundle-2026-09-28/a10g-preparation-2026-09-29.json).
+
+AWS account case **179070520900642** is now confirmed **Unassigned**, category **Service Quotas, General**, with the approved report in correspondence. No AWS reply or engineer assignment is visible. This supersedes earlier wording that only an intake interaction existed, while preserving the earlier Technical-route rejection. [Case record](AWS_SUPPORT_CAPACITY_CASE_2026-09-29.md).
+
+## 29 September 19:13 UTC: A10G validation attempt
+
+The approved one-request A10G validation attempt was rejected with
+`InsufficientInstanceCapacity` for `g5.2xlarge` in `us-east-1a`. Independent
+inventory confirmed no created A10G instance and both L4 hosts still stopped.
+No GPU validation or installation ran. The session is closed; no automatic
+retry is active. [Result and receipt](AWS_A10G_RUNTIME_SESSION_2026-09-29.md).

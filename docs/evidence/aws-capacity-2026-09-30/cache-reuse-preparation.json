@@ -1,0 +1,57 @@
+{
+  "schema": "broadbridge.cache_reuse_preparation/1",
+  "recorded_at": "2026-09-30T02:08:31.632831+00:00",
+  "status": "OFFLINE_TESTED_LIVE_QUALIFICATION_PENDING",
+  "full_cpu_suite": {
+    "command": "python -m pytest --tb=short -ra",
+    "passed": 940,
+    "skipped": 12,
+    "warnings": 3,
+    "seconds": 192.67
+  },
+  "focused_session_policy_suite": {
+    "passed": 107
+  },
+  "packet_fixture_followup": {
+    "passed": 27
+  },
+  "skips": {
+    "optional_pydexpi": 9,
+    "optional_c01": 1,
+    "optional_docling": 1,
+    "opt_in_local_postgresql": 1
+  },
+  "checks": {
+    "generated_bash_scripts": 2,
+    "historical_packet_artifacts_unchanged": 11,
+    "domain_json": true,
+    "relative_links": true,
+    "whitespace": true,
+    "real_config_packet_prepared_and_checked": true
+  },
+  "activity": {
+    "aws_calls": 0,
+    "ssh_calls": 0,
+    "model_download_bytes": 0,
+    "model_load_calls": 0,
+    "inference_calls": 0,
+    "optimizer_steps": 0,
+    "database_or_r2_operations": 0
+  },
+  "foundry_files": {
+    "scripts/gpu_diagnostic.py": "1a731244ed3944f7fd219317f9b35ff40a5b999014d41f0b322b9ad84bf7cfe0",
+    "scripts/model_load_packet.py": "220e408edc4cbcdb0ecd8b6dd376c26a6f8e441750522ba5fb7ba408f642497e",
+    "scripts/model_load_session.py": "158eb9109d06706c280295f8db1f91349c57b81d265c3976969bf3eea6c045d8",
+    "tests/test_gpu_diagnostic.py": "4303c4aa4dcfeda045e4ac55cce118449200616cfd27c2d3f6f27f61534a2fd1",
+    "tests/test_gpu_preflight_guard.py": "b2525a253a846a51b5f0905facd8692e8e1b44fff0182eb22a2583b3d4aff094",
+    "tests/test_model_load_packet.py": "bb732680f5aa75ff7f752956ca4358996b3057a9f3ebc47db274c5f1f0080706",
+    "tests/test_model_load_session.py": "d86e5baf9481279f1eb07028f05b6674baf5400976607d48e2b7c9831acf8510"
+  },
+  "domain_config_sha256": "a33076f60297c7c8e3c5120f70a5f8cb3901a0a7f4113aa6231539cef54b47d4",
+  "limitations": [
+    "Tracked controller has not run on AWS.",
+    "No independent second-operator reproduction.",
+    "No dataset admission or training authority.",
+    "Original unexplained busy process remains unidentified; guard preserved."
+  ]
+}

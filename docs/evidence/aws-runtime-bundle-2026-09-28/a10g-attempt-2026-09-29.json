@@ -1,0 +1,38 @@
+{
+  "schema": "broadbridge.a10g_runtime_attempt/1",
+  "recorded_at": "2026-09-29T19:14:34.863465+00:00",
+  "user_authorization": "run the validation then. is it needed?",
+  "region": "us-east-1",
+  "instance_type": "g5.2xlarge",
+  "availability_zone": "us-east-1a",
+  "request_started_at": "2026-09-29T19:13:39.596667+00:00",
+  "absolute_deadline": "2026-09-29T20:43:39.596667+00:00",
+  "maximum_minutes": 90,
+  "aws_cli_launch_invocations": 1,
+  "aws_max_attempts": 1,
+  "aws_retry_mode": "standard",
+  "result": "InsufficientInstanceCapacity",
+  "result_at": "2026-09-29T19:13:44.881884+00:00",
+  "client_token_resource_count": 0,
+  "named_validation_resource_count": 0,
+  "existing_hosts": [
+    {
+      "id": "i-0439f5841d631d9f8",
+      "state": "stopped",
+      "boot": "2026-09-29T13:47:53+00:00"
+    },
+    {
+      "id": "i-0e5e1cbc7b1367566",
+      "state": "stopped",
+      "boot": "2026-09-29T05:35:30+00:00"
+    }
+  ],
+  "gpu_checks_run": 0,
+  "host_cpu_tests_run": 0,
+  "runtime_installed": false,
+  "model_loaded": false,
+  "training_steps": 0,
+  "new_resources_observed": false,
+  "cloudtrail_request_count_verified": false,
+  "status": "RUNTIME_BLOCKED_CAPACITY"
+}

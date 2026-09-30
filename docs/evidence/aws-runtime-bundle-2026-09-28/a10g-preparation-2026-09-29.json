@@ -1,0 +1,47 @@
+{
+  "schema": "broadbridge.runtime_profile_preparation/1",
+  "recorded_at": "2026-09-29T18:10:17.942778+00:00",
+  "profile": "g5-a10g",
+  "profile_sha256": "1daed16e0bd372fb8c8e6b07e7ae5164b18a635ed475dd57557d0f6dc1315255",
+  "wheels_manifest_sha256": "a23670f4d161c03466798f1a4bd548b5bf37c0d3740726aa6ac338533e8abdea",
+  "verified_wheel_count": 113,
+  "verified_wheel_bytes": 3792751006,
+  "full_foundry_suite": {
+    "passed": 813,
+    "skipped": 3,
+    "seconds": 275.4,
+    "note": "Collection preceded the added malformed-boolean profile case; final focused run covers it."
+  },
+  "final_focused_suite": {
+    "passed": 62
+  },
+  "private_launch_and_transfer_tests": {
+    "passed": 18
+  },
+  "syntax": {
+    "python_files": 5,
+    "bash_scripts": 4,
+    "line_endings": "LF"
+  },
+  "warnings": [
+    "Existing Requests dependency version warning",
+    "Existing SWIG deprecation warnings"
+  ],
+  "aws_mutations": false,
+  "gpu_checks_run": false,
+  "model_loaded": false,
+  "training_steps": 0,
+  "existing_hosts": [
+    {
+      "id": "i-0e5e1cbc7b1367566",
+      "state": "stopped",
+      "boot": "2026-09-29T05:35:30+00:00"
+    },
+    {
+      "id": "i-0439f5841d631d9f8",
+      "state": "stopped",
+      "boot": "2026-09-29T13:47:53+00:00"
+    }
+  ],
+  "execution_status": "PREPARED_NOT_EXECUTED"
+}

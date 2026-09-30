@@ -1,0 +1,30 @@
+{
+  "schema": "broadbridge.offline_validation/1",
+  "scope": "First pressure-basis review proposal and existing calculation admission safeguards",
+  "date_utc": "2026-09-30",
+  "command": "SLM_FOUNDRY_PATH=<local Foundry checkout> python -m pytest scripts/research/test_prepare_first_dataset_review.py scripts/research/test_prepare_doe_pressure_review.py packs/oil-gas/tests/test_synthetic_checks.py scripts/research/test_rehearse_calculations.py -q",
+  "python": "3.13",
+  "passed": 67,
+  "failed": 0,
+  "skipped": 0,
+  "warnings": ["Existing RequestsDependencyWarning from the calculation-admission rehearsal dependency stack"],
+  "elapsed_seconds": 1.51,
+  "extraction_packet_sha256": "0ae8da768e4fbc5427d5c4acbd4b2193dcf93308fffac6e8cb61fce26f0b8150",
+  "extraction_matches_previous_packet": true,
+  "page_images_visually_inspected": [35, 36, 37],
+  "artifact_hashes_and_sizes_verified": true,
+  "review_artifacts_lf_verified": true,
+  "model_calls": 0,
+  "training_examples_admitted": 0,
+  "gate_0_case_questions_added": 0,
+  "aws_calls": 0,
+  "database_calls": 0,
+  "r2_calls": 0,
+  "credential_files_read": 0,
+  "limitations": [
+    "Technical task, equations, assumptions, reference answers and tolerances await independent engineering acceptance.",
+    "Rights/credits and family allocation remain pending; one family cannot provide independent training and test samples.",
+    "Production signed-case status and scored baselines were not checked or run.",
+    "No GPU, inference, fine-tuning, source admission or release approval occurred."
+  ]
+}

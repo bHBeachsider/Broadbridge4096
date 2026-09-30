@@ -1,0 +1,27 @@
+# Proposed AWS smoke settings, NOT launch approval. No accepted dataset is bound.
+# Use Foundry ingestion.training prepare/audit to bind a reviewed immutable release.
+name: broadbridge-oil-gas-smoke
+model:
+  base: unsloth/Qwen3-8B
+  revision: 946bc9ac74a6c1f8cf012497c503a119b2fcf2eb
+  chat_template: qwen-2.5
+  max_seq_length: 2048
+  load_in_4bit: true
+lora: {r: 16, alpha: 16, dropout: 0.0}
+train:
+  epochs: 1
+  max_steps: 20
+  per_device_batch_size: 1
+  per_device_eval_batch_size: 1
+  grad_accum: 8
+  learning_rate: 0.0002
+  warmup_steps: 2
+  lr_scheduler: cosine
+  weight_decay: 0.01
+  seed: 3407
+  eval_steps: 5
+  save_steps: 5
+  save_total_limit: 2
+  logging_steps: 1
+data: {}  # Intentionally unusable until a release is selected by prepare/audit.
+output_dir: outputs/broadbridge-oil-gas-smoke

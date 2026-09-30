@@ -1,0 +1,19 @@
+{
+  "schema": "broadbridge.bill_meeting_validation/1",
+  "date": "2026-09-30",
+  "scope": "Meeting walkthrough, offline DOE review packaging and local synthetic voice rehearsal",
+  "python_regression": {"passed": 467, "skipped": 115, "seconds": 77.05, "integration_tests_enabled": false},
+  "focused_initial": {"pressure_and_meeting_tests_passed": 23},
+  "focused_after_link_and_source_page_fix": {"meeting_tests_passed": 14},
+  "browser": {"checks_passed": 13, "page_errors": 0, "external_requests": 0, "desktop_width": 1440, "mobile_width": 390},
+  "visual_inspection": ["desktop review panel", "source/pressure diagram panel", "mobile review panel"],
+  "voice": {"synthetic_only": true, "status": "passed", "in_process_seconds": 24.915, "network_internal": true, "new_downloads": false},
+  "voice_warning": "Existing ONNX read-only telemetry ID warning; telemetry disabled; inference succeeded",
+  "corrected_command_error": "Docker Compose run does not support --no-build; verified existing image and used --pull never without --build",
+  "production_deployment_observed": {"id": "dpl_4wwAnFNoVCj84KvWVrrSmKCTRjqg", "commit": "fe1c70e80ba0ec49b35eea54f12ba75e6bdcaae8", "status": "READY", "changed": false},
+  "doe_execution": {"model_calls": 0, "optimizer_steps": 0, "release_created": false, "authorized": false},
+  "aws_operations": 0,
+  "database_operations": 0,
+  "email_sent": false,
+  "outstanding": ["source-use decision", "whole-family allocation", "accepted immutable release", "release-specific training host integration and rehearsal", "bounded execution approval"]
+}

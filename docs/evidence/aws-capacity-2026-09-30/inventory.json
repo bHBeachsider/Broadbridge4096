@@ -1,0 +1,74 @@
+{
+  "schema": "foundry.gpu_inventory/1",
+  "observed_at": "2026-09-30T01:22:13.206025+00:00",
+  "region": "us-east-1",
+  "quota_vcpus": 8.0,
+  "instances": [
+    {
+      "instance_id": "i-0169c83c3cef9d621",
+      "instance_type": "g5.2xlarge",
+      "zone_id": "use1-az4",
+      "image_id": "ami-04ef6582604f56a4a",
+      "state": "stopped"
+    },
+    {
+      "instance_id": "i-0439f5841d631d9f8",
+      "instance_type": "g6.2xlarge",
+      "zone_id": "use1-az4",
+      "image_id": "ami-0a425c55dcc606687",
+      "state": "stopped"
+    },
+    {
+      "instance_id": "i-079b24e2b51ef7630",
+      "instance_type": "g5.2xlarge",
+      "zone_id": "use1-az2",
+      "image_id": "ami-0a425c55dcc606687",
+      "state": "stopped"
+    },
+    {
+      "instance_id": "i-0e5e1cbc7b1367566",
+      "instance_type": "g6.2xlarge",
+      "zone_id": "use1-az6",
+      "image_id": "ami-0d17cf0308b8d1589",
+      "state": "stopped"
+    }
+  ],
+  "subnets": [
+    {
+      "subnet_id": "subnet-0a8bdd16620fac7f5",
+      "vpc_id": "vpc-0e26cb9eccd409c35",
+      "zone_id": "use1-az2",
+      "state": "available"
+    },
+    {
+      "subnet_id": "subnet-0a8c0a366acb31db0",
+      "vpc_id": "vpc-0e26cb9eccd409c35",
+      "zone_id": "use1-az4",
+      "state": "available"
+    },
+    {
+      "subnet_id": "subnet-05454ee2f956049da",
+      "vpc_id": "vpc-0e26cb9eccd409c35",
+      "zone_id": "use1-az6",
+      "state": "available"
+    },
+    {
+      "subnet_id": "subnet-033fb0054024b8868",
+      "vpc_id": "vpc-0e26cb9eccd409c35",
+      "zone_id": "use1-az1",
+      "state": "available"
+    },
+    {
+      "subnet_id": "subnet-0e9d1094efb4febd3",
+      "vpc_id": "vpc-0e26cb9eccd409c35",
+      "zone_id": "use1-az5",
+      "state": "available"
+    },
+    {
+      "subnet_id": "subnet-04c141071ec5ed290",
+      "vpc_id": "vpc-0e26cb9eccd409c35",
+      "zone_id": "use1-az3",
+      "state": "available"
+    }
+  ]
+}

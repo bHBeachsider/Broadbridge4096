@@ -1,0 +1,101 @@
+{
+  "schema": "broadbridge.base_inventory/1",
+  "repo_id": "unsloth/Qwen3-8B",
+  "revision": "946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+  "checked_at": "2026-09-28",
+  "source": "https://huggingface.co/api/models/unsloth/Qwen3-8B/tree/946bc9ac74a6c1f8cf012497c503a119b2fcf2eb?recursive=true&expand=false",
+  "downloaded": false,
+  "files": [
+    {
+      "path": "added_tokens.json",
+      "size_bytes": 707,
+      "hash_algorithm": "git-blob-sha1",
+      "hash": "b54f9135e44c1e81047e8d05cb027af8bc039eed"
+    },
+    {
+      "path": "chat_template.jinja",
+      "size_bytes": 4761,
+      "hash_algorithm": "git-blob-sha1",
+      "hash": "e079919f9b4d02f48174e13460832412a131ea3d"
+    },
+    {
+      "path": "config.json",
+      "size_bytes": 754,
+      "hash_algorithm": "git-blob-sha1",
+      "hash": "49832b791a1648b5ee13bda1007df08367b50236"
+    },
+    {
+      "path": "configuration.json",
+      "size_bytes": 48,
+      "hash_algorithm": "git-blob-sha1",
+      "hash": "f9291c34499303a5103dea21c45e605bb20981bb"
+    },
+    {
+      "path": "generation_config.json",
+      "size_bytes": 237,
+      "hash_algorithm": "git-blob-sha1",
+      "hash": "ee3927bf194485dacaf1ce45a82559d8caa9770e"
+    },
+    {
+      "path": "merges.txt",
+      "size_bytes": 1671853,
+      "hash_algorithm": "git-blob-sha1",
+      "hash": "31349551d90c7606f325fe0f11bbb8bd5fa0d7c7"
+    },
+    {
+      "path": "model-00001-of-00004.safetensors",
+      "size_bytes": 4902257696,
+      "hash_algorithm": "sha256",
+      "hash": "c0dc64934ae0f730ddc80d99af44968d01a89e8454df07d762096ea1356446bc"
+    },
+    {
+      "path": "model-00002-of-00004.safetensors",
+      "size_bytes": 4915960368,
+      "hash_algorithm": "sha256",
+      "hash": "d58533b468c31caa0222540a8aefddea1d74dc6e1fee928da8556d3d85729d6e"
+    },
+    {
+      "path": "model-00003-of-00004.safetensors",
+      "size_bytes": 4983068496,
+      "hash_algorithm": "sha256",
+      "hash": "74927fec432e050365bf757bb30348f560a44394efac89f492680b7c910b64fd"
+    },
+    {
+      "path": "model-00004-of-00004.safetensors",
+      "size_bytes": 1580230264,
+      "hash_algorithm": "sha256",
+      "hash": "cb73f466fade5716702bda38d4e3b321c9358c39889e46fb9d613fb038bfcb2f"
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "size_bytes": 32878,
+      "hash_algorithm": "git-blob-sha1",
+      "hash": "10c7a17197289024c4b2801e53b9662e95f5ad83"
+    },
+    {
+      "path": "special_tokens_map.json",
+      "size_bytes": 614,
+      "hash_algorithm": "git-blob-sha1",
+      "hash": "9b8043f10c758210957b050c77f14d6282f33a52"
+    },
+    {
+      "path": "tokenizer.json",
+      "size_bytes": 11422654,
+      "hash_algorithm": "sha256",
+      "hash": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "size_bytes": 10534,
+      "hash_algorithm": "git-blob-sha1",
+      "hash": "d1ec9a059c60eb505a3032106532f118f2ed5cc6"
+    },
+    {
+      "path": "vocab.json",
+      "size_bytes": 2776833,
+      "hash_algorithm": "git-blob-sha1",
+      "hash": "4783fe10ac3adce15ac8f358ef5462739852c569"
+    }
+  ],
+  "total_bytes": 16397438697
+}

@@ -1,0 +1,118 @@
+{
+  "schema": "broadbridge.checkpoint_session_result/1",
+  "recorded_at": "2026-09-29T22:20:19.795116+00:00",
+  "status": "BLOCKED_CAPACITY_AFTER_CONTROLLER_FIXES",
+  "instance_id": "i-079b24e2b51ef7630",
+  "instance_type": "g5.2xlarge",
+  "region": "us-east-1",
+  "zone": "us-east-1b",
+  "foundry_commit": "e3b7e31dfe5ae0e54b58f2fdcca2ff4ee1c34d67",
+  "domain_commit": "f65fe0060cde809cc9d3dd4509b01e7d8f0fb744",
+  "model_repo": "unsloth/Qwen3-8B",
+  "model_revision": "946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+  "inventory_sha256": "ae69d76c4b5b18ac823687ee0df2bbc45ba12c030f9147970e51f799a0107ee5",
+  "approved_checkpoint_bytes": 16397438697,
+  "original_deadline_utc": "2026-09-29T23:31:49.313984+00:00",
+  "start_requests": 3,
+  "accepted_starts": 2,
+  "capacity_rejections": 1,
+  "attempts": [
+    {
+      "session_id": "qwen-load-session-20260929-2155",
+      "start_request_at": "2026-09-29T22:01:49.313992+00:00",
+      "attempt_requested_at": null,
+      "start_epoch": 1790719309.3139844,
+      "deadline_epoch": 1790724709.3139844,
+      "launch_time": "2026-09-29T22:01:50+00:00",
+      "error": "No exact pinned SSH host key matched",
+      "forced_stop_requested_at": "2026-09-29T22:09:41.176486+00:00",
+      "stopped_confirmed_at": "2026-09-29T22:10:49.235632+00:00",
+      "elapsed_seconds": 539.922,
+      "session_receipt_sha256": "7f1e2b7d1e938dd81bd2caf933eb64320d1be50a107f509df99a07056a5898d2",
+      "controller_sha256": "8dc819b689970f14e1a8ab7e9cff477bf0f6865474cca2211283e98a72a3ad3f",
+      "packet_sha256": "d41f9e7b8720a1decfbfc4a2fe6954486c5edaabed5688bfb49081334922e5c6"
+    },
+    {
+      "session_id": "qwen-load-session-20260929-2210",
+      "start_request_at": "2026-09-29T22:01:49.313992+00:00",
+      "attempt_requested_at": "2026-09-29T22:11:50.709039+00:00",
+      "start_epoch": 1790719309.3139844,
+      "deadline_epoch": 1790724709.3139844,
+      "launch_time": null,
+      "error": "Startup deadline reached",
+      "forced_stop_requested_at": "2026-09-29T22:15:02.110119+00:00",
+      "stopped_confirmed_at": "2026-09-29T22:16:07.020714+00:00",
+      "elapsed_seconds": 857.707,
+      "session_receipt_sha256": "2678014380597138451936c65cc4c47bceb3367da5c2d8e8633c8ffbebf2ec0d",
+      "controller_sha256": "98d2218cbad9a6af23d8ce48174a42cdb5f48d62478f3a513b39cde7f62fa0fa",
+      "packet_sha256": "7c1ac2eb6307bfb2bfd2ef41224cc4f8cf787b2325bc66c7449b01156bc17f99"
+    },
+    {
+      "session_id": "qwen-load-session-20260929-2218",
+      "start_request_at": "2026-09-29T22:01:49.313992+00:00",
+      "attempt_requested_at": "2026-09-29T22:17:22.343189+00:00",
+      "start_epoch": 1790719309.3139844,
+      "deadline_epoch": 1790724709.3139844,
+      "launch_time": null,
+      "error": "AWS operation failed: start-instances (InsufficientInstanceCapacity)",
+      "forced_stop_requested_at": null,
+      "stopped_confirmed_at": "2026-09-29T22:17:26.475216+00:00",
+      "elapsed_seconds": 937.161,
+      "session_receipt_sha256": "43d23f48e1688da233d2c94dec9b1641bcf4f1b67e54c102df77da9a454a246d",
+      "controller_sha256": "ac4eaa0fbf91bcdd38e066c2e0d0baaee9879ab3504d7098e99e8757bd26aa10",
+      "packet_sha256": "26a316fb132f55fd9a3127d42fdeca2980ba346bfef0dba01dc4ffe2397d7750"
+    }
+  ],
+  "controller_corrections": [
+    {
+      "issue": "Copied pre-launch/source-image SSH pins instead of actual keys captured during successful A10G validation.",
+      "fix": "Use the prior successful A10G known_hosts file; both current scanned keys matched exactly. No new/unverified keys were accepted."
+    },
+    {
+      "issue": "Restart startup timeout incorrectly used original session start; it rejected startup after the first ten minutes.",
+      "fix": "Use attempt epoch for startup/SSH readiness, capped by original payload cutoff. All model phase and shutdown deadlines remain tied to original first-start timestamp."
+    }
+  ],
+  "offline_controller_tests": {
+    "passed": 19,
+    "initial_tests_before_full_simulation": 13,
+    "first_pin_correction_tests": 15,
+    "coverage": [
+      "first-attempt full mocked lifecycle",
+      "late-restart full mocked lifecycle",
+      "payload failure and timeout cleanup",
+      "unchanged original deadline",
+      "wrong host/changed boot refusal",
+      "correct prior successful host-key source",
+      "receipt preservation",
+      "binary stdin"
+    ],
+    "aws_ssh_model_boundaries": "mocked",
+    "test_source_sha256": "9607aebd357264a74cfb8f690d820de41fef53560555dacc77e2ff88795a2a6f"
+  },
+  "scope_result": {
+    "source_archives_transferred": false,
+    "weights_downloaded_bytes": 0,
+    "model_loaded": false,
+    "inference_calls": 0,
+    "training_steps": 0,
+    "packages_changed": false,
+    "guest_shutdown_timer_armed": false,
+    "independent_api_watchdogs_armed": true,
+    "database_r2_operations": false,
+    "production_changes": false
+  },
+  "final_state": {
+    "all_three_hosts_stopped": true,
+    "a10g_last_boot": "2026-09-29T22:11:52+00:00",
+    "local_session_lock_present": false,
+    "owned_controllers_or_watchdogs_running": false,
+    "capacity_automation": "PAUSED"
+  },
+  "limitations": [
+    "The original plan said one start attempt; two controller corrections resulted in three requests within the unchanged 90-minute window. Both accepted starts were stopped before any guest transfer; the last request was rejected for capacity.",
+    "No actual checkpoint acquisition or model compatibility/VRAM result exists from this session.",
+    "Retained EBS continues to incur storage cost.",
+    "No further start is scheduled by this packet."
+  ]
+}

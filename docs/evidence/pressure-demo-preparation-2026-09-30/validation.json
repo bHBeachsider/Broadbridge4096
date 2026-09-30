@@ -1,0 +1,86 @@
+{
+  "schema": "broadbridge.pressure_demo_preparation_validation/1",
+  "date_utc": "2026-09-30",
+  "scope": "offline candidate package, no accepted release or GPU execution",
+  "training_approved": false,
+  "execution_authorized": false,
+  "actual_bill_signature": null,
+  "rights_status": "TBD",
+  "foundry": {
+    "command": "C:/Python313/python.exe -m pytest -o addopts= -q --tb=short --junitxml=outputs/pressure-demo-foundry-tests.xml",
+    "passed": 946,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 12,
+    "seconds": 179.431,
+    "warnings": "3 existing Requests/SWIG warnings"
+  },
+  "domain": {
+    "command": "C:/Python313/python.exe -m pytest -q --tb=short --junitxml=packs/oil-gas/outputs/pressure-demo-all-domain-tests.xml",
+    "passed": 453,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 115,
+    "seconds": 69.149
+  },
+  "focused_domain": {
+    "passed": 9
+  },
+  "foundry_dry_run": {
+    "status": "ready",
+    "scope": "CPU rendering only, not training approval",
+    "sha256": "ad11fc879695bb98c98cbaa16869eec96ab213c2304936feda4eb4fc762ae693"
+  },
+  "tdd": "Observed 8 missing-builder failures, then citation/schema failure; Foundry 6 expected missing-mode failures. Initial sandbox run also had temporary-directory permission errors; rerun with normal access resolved them.",
+  "artifacts": {
+    "demo_answer_key.jsonl": {
+      "bytes": 2709,
+      "sha256": "ea8e5cb93e8999e8897b49372d6eab872e3345688b52beac8ca02b967211282b"
+    },
+    "demo_prompts.jsonl": {
+      "bytes": 14154,
+      "sha256": "6b3fc887083e4f69b493e5394493f5258519fb0a134b6fada8777e5faa4f9496"
+    },
+    "manifest.json": {
+      "bytes": 3327,
+      "sha256": "c0ca90476ba304034e2a22c68af99957fba273d272ee1c0c75ae93eabddee06f"
+    },
+    "proposed_config.json": {
+      "bytes": 998,
+      "sha256": "ecca2d178e01c9f0e94434fd6d82efd598ef61e0f6f0a3503a654c192473ecc9"
+    },
+    "rendered_batch.json": {
+      "bytes": 16448,
+      "sha256": "77ff04f12622fa26cced545eedf8c1122da84032d47f421fc9c407f153910c35"
+    },
+    "response.schema.json": {
+      "bytes": 1571,
+      "sha256": "624421f967170668521897c47b5fcf889f5d9e948cf79bcd02ac8e72a4882ef2"
+    },
+    "scorecard.md": {
+      "bytes": 750,
+      "sha256": "347731e680f85b797ef40078671c65dffb3ab7b57085c2a6bd7ce82ef6e4febf"
+    },
+    "token_audit.json": {
+      "bytes": 1970,
+      "sha256": "67ed5d7f762831a4e441cd40bb02913c5fc45fee533091e5cb9b3d0d5e711144"
+    },
+    "train_candidates.jsonl": {
+      "bytes": 97358,
+      "sha256": "3d2a8eb3ad4eb91662fbd9864b0c2511d2def2ec8d9a18b6c617f82b48bbe935"
+    }
+  },
+  "operations": {
+    "aws_api_calls": 0,
+    "model_calls": 0,
+    "optimizer_steps": 0,
+    "database_calls": 0,
+    "r2_calls": 0,
+    "downloads": 0
+  },
+  "limitations": [
+    "No GPU training or live comparison",
+    "No independent engineering review or dataset release",
+    "Training-capable guarded host packet and offline-cache binding still required before execution"
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "schema": "broadbridge.runtime_validation/1",
+  "recorded_at": "2026-09-29T20:05:43.251076+00:00",
+  "status": "RUNTIME_CHECKS_PASSED_WAIT_MODEL_AND_DATA",
+  "authorization": "run the validation then; keep trying",
+  "session": {
+    "schema": "foundry.runtime_session/1",
+    "instance_id": "i-079b24e2b51ef7630",
+    "region": "us-east-1",
+    "foundry_commit": "395ab994220ab7398b63ca383b8dc465c61aae13",
+    "domain_commit": "47879aa5a763693433bab56f31d4c3a39cb7e5a5",
+    "manifest_sha256": "a23670f4d161c03466798f1a4bd548b5bf37c0d3740726aa6ac338533e8abdea",
+    "approved_wheel_bytes": 3792751006,
+    "maximum_minutes": 90,
+    "model_loaded": false,
+    "training_steps": 0,
+    "started": true,
+    "completed": true,
+    "start_request_at": "2026-09-29T19:13:39.596667+00:00",
+    "start_epoch": 1790709219.596667,
+    "deadline_epoch": 1790714619.596667,
+    "launch_time": "2026-09-29T19:20:33+00:00",
+    "image_id": "ami-0a425c55dcc606687",
+    "availability_zone": "us-east-1b",
+    "host_identity_check": "AWS API address, exact pre-existing PC-trusted keys, guest IMDSv2 instance-id",
+    "host_shutdown_guard_at": "2026-09-29T19:22:15.837798+00:00",
+    "prerequisite_install_at": "2026-09-29T19:24:06.354580+00:00",
+    "preflight_passed_at": "2026-09-29T19:24:07.539675+00:00",
+    "remaining_transfer_bytes": 3794097006,
+    "transfer_finished_at": "2026-09-29T19:57:02.013811+00:00",
+    "checks_finished_at": "2026-09-29T19:59:12.815874+00:00",
+    "forced_stop_requested_at": "2026-09-29T20:02:18.440171+00:00",
+    "stopped_confirmed_at": "2026-09-29T20:03:41.947458+00:00",
+    "elapsed_seconds": 3002.351
+  },
+  "independent_stopped_inventory": [
+    {
+      "id": "i-0439f5841d631d9f8",
+      "state": "stopped",
+      "type": "g6.2xlarge",
+      "boot": "2026-09-29T13:47:53+00:00",
+      "zone": "us-east-1c",
+      "volumes": [
+        "vol-02363edb189de9088"
+      ]
+    },
+    {
+      "id": "i-079b24e2b51ef7630",
+      "state": "stopped",
+      "type": "g5.2xlarge",
+      "boot": "2026-09-29T19:20:33+00:00",
+      "zone": "us-east-1b",
+      "volumes": [
+        "vol-09fff6b5c32ddfc09"
+      ]
+    },
+    {
+      "id": "i-0e5e1cbc7b1367566",
+      "state": "stopped",
+      "type": "g6.2xlarge",
+      "boot": "2026-09-29T05:35:30+00:00",
+      "zone": "us-east-1d",
+      "volumes": [
+        "vol-004a75488d413daf0"
+      ]
+    }
+  ],
+  "availability_zone_id": "use1-az2",
+  "runtime_venv": "~/slm-training/venv-a10g-a23670f4d161",
+  "operating_system": "Amazon Linux 2023.12.20260918",
+  "host_gate": {
+    "facts": {
+      "system": "Linux",
+      "machine": "x86_64",
+      "python": "3.11.16",
+      "glibc": "2.34",
+      "free_bytes": 134450118656,
+      "gpu_count": 1,
+      "gpu": "NVIDIA A10G",
+      "driver": "595.91.07",
+      "vram_mib": 23028,
+      "compute_capability": "8.6"
+    },
+    "unmet": [],
+    "gpu_qualified": false,
+    "profile_id": "g5-a10g",
+    "profile_sha256": "1daed16e0bd372fb8c8e6b07e7ae5164b18a635ed475dd57557d0f6dc1315255",
+    "wheels_manifest_sha256": "a23670f4d161c03466798f1a4bd548b5bf37c0d3740726aa6ac338533e8abdea"
+  },
+  "wheel_verification": {
+    "files": 113,
+    "bytes": 3792751006,
+    "installed_versions_matched": 113,
+    "pip_check": "passed"
+  },
+  "gpu_probe": {
+    "stage": "complete",
+    "gpu": "NVIDIA A10G",
+    "compute_capability": [
+      8,
+      6
+    ],
+    "checks": [
+      {
+        "check": "torch.float16_matmul",
+        "passed": true,
+        "seconds": 0.011,
+        "relative_l2": 0.00020647526253014803
+      },
+      {
+        "check": "torch.bfloat16_matmul",
+        "passed": true,
+        "seconds": 0.126,
+        "relative_l2": 0.0016482187202200294
+      },
+      {
+        "check": "triton_jit_vector_add",
+        "passed": true,
+        "seconds": 0.465
+      },
+      {
+        "check": "bitsandbytes_nf4_roundtrip",
+        "passed": true,
+        "seconds": 0.052,
+        "relative_l2": 0.09445319324731827
+      },
+      {
+        "check": "xformers_attention",
+        "passed": true,
+        "seconds": 0.004,
+        "max_absolute_error": 0.00047218799591064453
+      }
+    ],
+    "peak_allocated_bytes": 8656384,
+    "model_loaded": false,
+    "training_steps": 0
+  },
+  "cpu_tests": {
+    "passed": 149,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.89,
+    "files": [
+      "test_prepare.py",
+      "test_train.py",
+      "test_ingestion_training.py",
+      "test_training_bundle.py",
+      "test_training_transfer.py",
+      "test_runtime_profiles.py",
+      "test_training_session_policy.py"
+    ]
+  },
+  "private_launch_and_transfer_tests": {
+    "passed": 18,
+    "gpu_qualification": false
+  },
+  "private_evidence_sha256": {
+    "session.json": "17df892adff5637df795c8ace16a8a0aab3d8c5db1800a78bac97258d6a1fcba",
+    "preflight.log": "1c43eec1999c4570d2fbcab7f813a06062970315bceab3dc3920f1c45df5b84d",
+    "shutdown-guard.log": "d7daeb2eb6374a294f12ab8ab70def2f38d81c983bf288f565b0f5d09ccac1c7",
+    "installation.log": "447881e2ab7d4ac8abd01ad90f782c9aacaf455d6fc79ed725e175515d0fe7d6",
+    "gpu_probe.py": "2e9bfb9bea12350d786536d914ff7d7649b3e07404258d039dc0934216fd9164",
+    "install.sh": "419ac2d59518c89bae52090b390eee9064fbb3acbda91cf2f562bed57a105334",
+    "prerequisite-review.json": "0d6565513c6ef0835894ac64f3b8a685adca25d32f194733ba9489172a23db64",
+    "launch.py": "b718c7fa9346d28276326733cbde6f9e06f30dbc76db3995dc6436c67bc940d1",
+    "session.py": "310b3c99cc6a293cd4c332451e3e2e5c8e190c111420ae706bb979f289d595ac"
+  },
+  "archive_sha256": {
+    "foundry.tar": "e3bb6a067b9f858f287429fd1f1cc0741ce9f688c11a28ef625efa94dc6431be",
+    "wheels.tar": "97ac1305291884aaab705948755e93c4ce8ce56927bd9153dc4de6144bf2f514"
+  },
+  "warnings": [
+    "PyTorch Enum register_constant deprecation",
+    "Unsloth sets deprecated inline_inbuilt_nn_modules option"
+  ],
+  "qualification_scope": "One A10G boot: pinned installation, imports, five small synthetic GPU probes, selected CPU tests.",
+  "remaining_gates": [
+    "Pinned Qwen weights staging and model load",
+    "Accepted data release and baseline gates",
+    "QLoRA smoke, full checkpoint and matched resume",
+    "Second-operator reproduction"
+  ],
+  "model_downloaded": false,
+  "model_inference": false,
+  "training_steps": 0,
+  "database_or_r2_operations": false,
+  "production_changes": false,
+  "resources_retained": true,
+  "retry_automation": "PAUSED",
+  "cloudtrail_launch_request_count_independently_audited": false
+}

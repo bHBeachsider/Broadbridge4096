@@ -1,0 +1,60 @@
+{
+  "schema": "broadbridge.runtime_session_summary/1",
+  "status": "BLOCKED_AWS_CAPACITY",
+  "instance_id": "i-0e5e1cbc7b1367566",
+  "instance_type": "g6.2xlarge",
+  "region": "us-east-1",
+  "image_id": "ami-0d17cf0308b8d1589",
+  "approved_scope": "3.79 GB runtime download, isolated installation and small GPU checks; shutdown within 90 minutes",
+  "first_start_request_utc": "2026-09-29T03:49:01.497017+00:00",
+  "original_maximum_deadline_utc": "2026-09-29T05:19:01.497017+00:00",
+  "final_stopped_confirmation_utc": "2026-09-29T04:14:42.413074+00:00",
+  "whole_session_elapsed_seconds": 1540.916,
+  "deadline_reset_on_retry": false,
+  "actual_successful_starts": 2,
+  "final_start_error": "InsufficientInstanceCapacity",
+  "attempts": [
+    {"number": 1, "result": "Stopped before installation: console host fingerprints unavailable", "stopped_confirmed_utc": "2026-09-29T04:00:30.505073+00:00"},
+    {"number": 2, "result": "Guest identity and timer verified; Bash preflight rejected CRLF stdin", "stopped_confirmed_utc": "2026-09-29T04:07:02.810007+00:00"},
+    {"number": 3, "result": "Start rejected; original wrapper did not retain AWS error code", "stopped_confirmed_utc": "2026-09-29T04:08:11.388695+00:00"},
+    {"number": 4, "result": "Start rejected: InsufficientInstanceCapacity", "stopped_confirmed_utc": "2026-09-29T04:09:22.119382+00:00"},
+    {"number": 5, "result": "Delayed retry rejected: InsufficientInstanceCapacity", "stopped_confirmed_utc": "2026-09-29T04:14:42.413074+00:00"}
+  ],
+  "runtime_download": {
+    "files_verified": 113,
+    "bytes_verified": 3792751006,
+    "manifest_sha256": "a23670f4d161c03466798f1a4bd548b5bf37c0d3740726aa6ac338533e8abdea",
+    "source_commit": "4a9ccfc443efbd4e9b81bfc3536e08241e93b1d5",
+    "separate_verification_passed": true
+  },
+  "guards": {
+    "instance_initiated_shutdown_behavior": "stop",
+    "guest_timer_verified_active": true,
+    "guest_timer_scheduled_utc": "2026-09-29T05:09:02+00:00",
+    "independent_local_watchdog_prepared": true,
+    "graceful_stop_delayed": true,
+    "manual_force_stop_fallback_used": true,
+    "skip_os_shutdown_used_on_second_attempt": true,
+    "persistent_cloud_alarm_created": false,
+    "new_ecs_or_asg_resources": false
+  },
+  "host_identity": "AWS API-resolved address plus exact PC-trusted host keys and read-only IMDSv2 instance-id check; no AWS-signed SSH key binding claimed",
+  "runtime_transferred_to_host": false,
+  "runtime_installed": false,
+  "gpu_checks_run": false,
+  "gpu_qualified": false,
+  "model_weights_downloaded": false,
+  "model_loaded": false,
+  "training_steps": 0,
+  "database_or_r2_operations": false,
+  "production_changes": false,
+  "local_validation": {
+    "pytest_passed": 30,
+    "pytest_warning": "Existing Requests dependency warning",
+    "initial_pytest_attempt": "11 passed, 19 temp-fixture permission errors; rerun in fresh writable temp directory",
+    "mocked_cleanup_checks_passed": 5,
+    "binary_stdin_regression_passed": true,
+    "bash_syntax_checks_passed": 2,
+    "python_parse_checks_passed": 2
+  }
+}

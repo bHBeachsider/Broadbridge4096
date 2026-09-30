@@ -1,0 +1,97 @@
+{
+  "schema": "broadbridge.runtime_relocation/1",
+  "date_utc": "2026-09-29",
+  "status": "RUNTIME_BLOCKED_TRANSFER",
+  "source_instance": {
+    "id": "i-0e5e1cbc7b1367566",
+    "zone": "us-east-1d",
+    "final_state": "stopped",
+    "preserved": true
+  },
+  "replacement": {
+    "id": "i-0439f5841d631d9f8",
+    "zone": "us-east-1c",
+    "type": "g6.2xlarge",
+    "final_state": "stopped",
+    "encrypted_root_volume": "vol-02363edb189de9088",
+    "root_gib": 200
+  },
+  "private_image": "ami-0a425c55dcc606687",
+  "private_snapshot": "snap-0eff751f166d56c0f",
+  "retained_storage_has_cost": true,
+  "zone_attempts": [
+    {
+      "zone": "us-east-1a",
+      "result": "InsufficientInstanceCapacity"
+    },
+    {
+      "zone": "us-east-1b",
+      "result": "InsufficientInstanceCapacity"
+    },
+    {
+      "zone": "us-east-1c",
+      "result": "launched one replacement"
+    }
+  ],
+  "unattempted_zone": "us-east-1f",
+  "original_first_launch_request_utc": "2026-09-29T13:36:03.227864+00:00",
+  "absolute_shutdown_deadline_utc": "2026-09-29T15:06:03.227864+00:00",
+  "current_start_request_utc": "2026-09-29T13:47:51.187732+00:00",
+  "host_shutdown_guard_at": "2026-09-29T13:48:15.511977+00:00",
+  "forced_stop_requested_at": "2026-09-29T14:24:12.515124+00:00",
+  "stopped_confirmed_at": "2026-09-29T14:26:58.151885+00:00",
+  "total_session_elapsed_seconds": 3054.924,
+  "independent_stopped_check_utc": "2026-09-29T14:28:47+00:00",
+  "controller_and_watchdog_exited": true,
+  "automation_status": "PAUSED",
+  "prerequisites": {
+    "release": "2023.12.20260918",
+    "repository": "amazonlinux",
+    "gpgcheck": true,
+    "weak_dependencies": false,
+    "installed_packages": 7,
+    "planned_download": "16 MB",
+    "python": "3.11.16",
+    "python_headers": true,
+    "gcc": "11.5.0-5.amzn2023.0.5.x86_64 (already installed)",
+    "system_python_unchanged": "3.9.25",
+    "driver_unchanged": true
+  },
+  "host": {
+    "gpu": "NVIDIA L4",
+    "vram_mib": 23034,
+    "driver": "595.91.07",
+    "glibc": "2.34",
+    "pre_transfer_free_bytes": 149799608320,
+    "preflight_passed_at": "2026-09-29T13:51:04.842739+00:00"
+  },
+  "runtime_manifest_sha256": "a23670f4d161c03466798f1a4bd548b5bf37c0d3740726aa6ac338533e8abdea",
+  "cached_wheels_reverified": 113,
+  "cached_wheel_bytes": 3792751006,
+  "new_runtime_download_bytes": 0,
+  "transfer": {
+    "failure": "SCP per-command timeout",
+    "limit_seconds": 1800,
+    "failed_at": "2026-09-29T14:21:06.297673+00:00",
+    "last_observed_at": "2026-09-29T14:20:44.482650+00:00",
+    "last_observed_partial_bytes": 3523805184,
+    "archive_bytes": 3792842240,
+    "durable_prefix_verified": false
+  },
+  "runtime_installed": false,
+  "gpu_probes_run": 0,
+  "on_host_cpu_tests_run": 0,
+  "offline_launcher_tests_passed": 9,
+  "offline_resume_tests_passed": 9,
+  "resume_real_local_sftp_test": true,
+  "documentation_bash_blocks_parsed": 2,
+  "source_archive_commit": "4a9ccfc443efbd4e9b81bfc3536e08241e93b1d5",
+  "new_model_weights_downloaded": false,
+  "model_loaded": false,
+  "training_steps": 0,
+  "database_operations": false,
+  "r2_operations": false,
+  "production_changes": false,
+  "private_session_receipt_sha256": "87b8be39c2c49bc267ea347a82c70cee2dad376622b42423a79630a3d0c33c8c",
+  "next_action": "New explicit bounded-start approval; verify retained prefixes and resume missing bytes, then full hashes, isolated install and GPU/CPU checks. No automatic retry."
+}

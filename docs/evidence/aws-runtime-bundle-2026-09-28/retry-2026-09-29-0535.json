@@ -1,0 +1,64 @@
+{
+  "schema": "broadbridge.runtime_retry/1",
+  "instance_id": "i-0e5e1cbc7b1367566",
+  "region": "us-east-1",
+  "status": "BLOCKED_PREFLIGHT",
+  "start_request_utc": "2026-09-29T05:35:27.951084+00:00",
+  "launch_time": "2026-09-29T05:35:30+00:00",
+  "stopped_confirmed_utc": "2026-09-29T05:41:47.983685+00:00",
+  "elapsed_seconds": 380.033,
+  "successful_start": true,
+  "start_attempts": 1,
+  "manifest_sha256": "a23670f4d161c03466798f1a4bd548b5bf37c0d3740726aa6ac338533e8abdea",
+  "cached_wheel_files_reverified": 113,
+  "cached_wheel_bytes_reverified": 3792751006,
+  "archive_hashes_reverified": 2,
+  "new_download_bytes": 0,
+  "host_identity_verified": true,
+  "host_shutdown_guard_utc": "2026-09-29T05:35:50.666489+00:00",
+  "guest_stop_deadline_utc": "2026-09-29T06:55:27Z",
+  "absolute_deadline_utc": "2026-09-29T07:05:27.951132Z",
+  "shutdown_followup": {
+    "at": "2026-09-29T05:39:41.251620+00:00",
+    "initial_state": "stopping",
+    "launch_time_matches": true,
+    "action": "force_stop_skip_os_shutdown"
+  },
+  "independent_final_state": "stopped",
+  "remaining_controller_or_watchdog_processes": 0,
+  "error": "preflight failed; private log retained",
+  "remote_exit_code": null,
+  "observed_last_preflight_output": "ldd (GNU libc) 2.34",
+  "suspected_cause": "pipefail/SIGPIPE from ldd --version | head -n 1; inferred, remote exit code not retained",
+  "local_regression": {
+    "schema": "foundry.preflight_local_regression/1",
+    "checks": [
+      {
+        "check": "original",
+        "exit_code": 141,
+        "next_check_reached": false,
+        "passed": true
+      },
+      {
+        "check": "corrected",
+        "exit_code": 0,
+        "next_check_reached": true,
+        "passed": true
+      }
+    ],
+    "fixed_shell_syntax": "PASS",
+    "network": "none",
+    "image_pull": "never",
+    "scope": "Controlled two-write version producer demonstrates pipefail/SIGPIPE; actual remote exit code was not retained, so cause remains inferred."
+  },
+  "runtime_transferred": false,
+  "runtime_installed": false,
+  "gpu_checks_run": false,
+  "host_pytest_run": false,
+  "model_loaded": false,
+  "training_steps": 0,
+  "automation_id": "retry-broadbridge-l4-runtime",
+  "automation_status": "PAUSED",
+  "maximum_session_minutes": 90,
+  "replacement_capacity_authorized": false
+}
