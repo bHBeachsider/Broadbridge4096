@@ -1,5 +1,7 @@
 # Qwen checkpoint download and model-load session
 
+**Current status, 30 September 01:00 UTC:** pinned Qwen3-8B acquisition and NF4 GPU loading passed on the A10G. All 15 files (16.40 GB) verified; 252 NF4 modules, all parameters on CUDA, 5.83 GiB peak reserved memory. The host and both L4s are stopped; retries are paused. No inference or training ran. [Load result and remaining gates](QWEN_MODEL_LOAD_RESULT_2026-09-30.md). The dated entries below preserve earlier preparation and failures.
+
 **Execution update, 29 September 22:17 UTC: blocked before model acquisition.**
 Brad approved the checkpoint download and load check. The first start stopped
 after the controller selected older source-image SSH pins instead of the actual

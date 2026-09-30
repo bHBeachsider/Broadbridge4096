@@ -1,0 +1,131 @@
+{
+  "schema": "broadbridge.checkpoint_session_result/1",
+  "status": "CHECKPOINT_VERIFIED_MODEL_LOAD_PASSED",
+  "recorded_at": "2026-09-30T01:01:52.4473737Z",
+  "session_id": "qwen-load-session-20260930-guarded",
+  "instance_id": "i-079b24e2b51ef7630",
+  "instance_type": "g5.2xlarge",
+  "zone": "us-east-1b",
+  "region": "us-east-1",
+  "foundry_source_commit": "e3b7e31dfe5ae0e54b58f2fdcca2ff4ee1c34d67",
+  "domain_source_commit": "f65fe0060cde809cc9d3dd4509b01e7d8f0fb744",
+  "start_requests": 1,
+  "accepted_starts": 1,
+  "start_request_at": "2026-09-30T00:52:39.700535+00:00",
+  "deadline_epoch": 1790734959.700523,
+  "guest_guard_armed_at": "2026-09-30T00:53:10.195172+00:00",
+  "model_finished_at": "2026-09-30T00:56:13.892496+00:00",
+  "forced_stop_requested_at": "2026-09-30T00:59:18.256569+00:00",
+  "stopped_confirmed_at": "2026-09-30T01:00:30.723361+00:00",
+  "elapsed_seconds": 471.023,
+  "model": {
+    "repo_id": "unsloth/Qwen3-8B",
+    "revision": "946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+    "manifest_sha256": "ae69d76c4b5b18ac823687ee0df2bbc45ba12c030f9147970e51f799a0107ee5",
+    "files": 15,
+    "bytes": 16397438697,
+    "snapshot": "/home/ec2-user/slm-training/hf-cache-qwen-946bc9ac74a6c1f8cf012497c503a119b2fcf2eb/models--unsloth--Qwen3-8B/snapshots/946bc9ac74a6c1f8cf012497c503a119b2fcf2eb",
+    "model_loaded": true,
+    "model_type": "qwen3",
+    "nf4_modules": 252,
+    "cuda_only": true,
+    "profile_id": "g5-a10g",
+    "load_seconds": 4.178,
+    "peak_allocated_bytes": 6188362752,
+    "peak_reserved_bytes": 6259998720,
+    "inference_calls": 0,
+    "optimizer_steps": 0,
+    "adapter_created": false
+  },
+  "preflight_diagnostic": {
+    "schema": "broadbridge.gpu_process_diagnostic/1",
+    "occupancy": "idle",
+    "processes": [],
+    "pid_query": {
+      "returncode": 0,
+      "stdout": ""
+    },
+    "compute_query": {
+      "returncode": 0,
+      "stdout": ""
+    },
+    "gpu_query": {
+      "returncode": 0,
+      "stdout": "NVIDIA A10G, 595.91.07, 23028, 0\n"
+    },
+    "services": {
+      "returncode": 0,
+      "stdout": "MainPID=3696\nId=nvidia-persistenced.service\nActiveState=active\nSubState=running\nUnitFileState=enabled\n\nMainPID=2956\nId=ollama.service\nActiveState=active\nSubState=running\nUnitFileState=enabled\n"
+    },
+    "mutations": false,
+    "inference_calls": 0,
+    "model_download_bytes": 0
+  },
+  "offline_tests": {
+    "diagnostic_tests": 7,
+    "guard_tests": 7,
+    "controller_tests": 19,
+    "total_passed": 33,
+    "fail_closed_shell_checks": 2,
+    "shell_syntax": "passed",
+    "external_boundaries": "mocked",
+    "packet_sha256": "79abef3372903f1bcb9167123b7c5bce3a2e5c3eac4a3c15731b1ef31b51e1a5",
+    "controller_sha256": "ac4eaa0fbf91bcdd38e066c2e0d0baaee9879ab3504d7098e99e8757bd26aa10",
+    "preflight_sha256": "e13d81a58b702347059f3552989dccab022397c9275884d6e205d59fe998c500",
+    "diagnostic_sha256": "bd0b94421bfa440a751ba683968a89248dfaba16b07da640466b29b4d3de769f"
+  },
+  "final_state": {
+    "checked_at": "2026-09-30T01:01:52.4473737Z",
+    "hosts": [
+      {
+        "instance_id": "i-0439f5841d631d9f8",
+        "state": "stopped"
+      },
+      {
+        "instance_id": "i-079b24e2b51ef7630",
+        "state": "stopped"
+      },
+      {
+        "instance_id": "i-0e5e1cbc7b1367566",
+        "state": "stopped"
+      }
+    ],
+    "controllers": [],
+    "session_lock_present": false
+  },
+  "automation_status": "PAUSED",
+  "scope_result": {
+    "verified_checkpoint_bytes": 16397438697,
+    "model_loaded": true,
+    "inference_calls": 0,
+    "optimizer_steps": 0,
+    "adapter_created": false,
+    "runtime_packages_changed": false,
+    "drivers_changed": false,
+    "services_changed": false,
+    "gpu_processes_killed": 0,
+    "datasets_processed": false,
+    "database_r2_operations": false,
+    "production_changes": false
+  },
+  "artifacts": {
+    "session.py": "ac4eaa0fbf91bcdd38e066c2e0d0baaee9879ab3504d7098e99e8757bd26aa10",
+    "test_session.py": "9607aebd357264a74cfb8f690d820de41fef53560555dacc77e2ff88795a2a6f",
+    "gpu_diagnostic.py": "bd0b94421bfa440a751ba683968a89248dfaba16b07da640466b29b4d3de769f",
+    "test_gpu_diagnostic.py": "16d6a222717ec1fb15df2ecf478992525a3bf4e17b2496a2584fc71176989e23",
+    "test_preflight_guard.py": "1e94d2156ca47cbe00a779e0b03e732c88b95220326130d443112b2dc9158a61",
+    "preflight.sh": "e13d81a58b702347059f3552989dccab022397c9275884d6e205d59fe998c500",
+    "payload.sh": "258d57caf4d1a5196f1774f66d4329974fc8afe4612a4db3c254da64d06d35ed",
+    "packet.json": "79abef3372903f1bcb9167123b7c5bce3a2e5c3eac4a3c15731b1ef31b51e1a5",
+    "session.json": "9915b2d43fcc4ce75f28580bf409d3e153e50ed541f054deb18134b621896ca4",
+    "model-result.json": "28264a5a56683f339c05eeef609721859d570141f73f798b2a618e9ea4765bf0",
+    "offline-validation.json": "2e5018ca74c5b27292da102f48f6d8a104a7ab254fa4d641c6d0ef31a6aa8d19"
+  },
+  "limitations": [
+    "Peak VRAM is for loading the base model; it does not establish training/optimizer/context memory requirements.",
+    "The earlier busy GPU condition did not recur; its original process identity remains unknown. Busy and unknown states still block the model preflight.",
+    "No inference, adapter training, checkpoint/resume test, engineering evaluation or second-operator reproduction ran.",
+    "The verified model cache is retained on EBS; a future session must verify/reuse it rather than rerun fresh-cache fetch.",
+    "Recorded payload size is verified selected checkpoint bytes, not a measured network transfer total."
+  ]
+}

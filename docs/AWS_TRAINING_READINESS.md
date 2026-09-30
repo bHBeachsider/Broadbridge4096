@@ -1,5 +1,7 @@
 # Qwen3-8B: AWS and dataset readiness
 
+**Current status, 30 September 01:00 UTC:** pinned Qwen3-8B acquisition and NF4 GPU loading passed on the A10G. All 15 files (16.40 GB) verified; 252 NF4 modules, all parameters on CUDA, 5.83 GiB peak reserved memory. The host and both L4s are stopped; retries are paused. No inference or training ran. [Load result and remaining gates](QWEN_MODEL_LOAD_RESULT_2026-09-30.md). The dated entries below preserve earlier preparation and failures.
+
 **29 September 22:17 UTC:** the approved checkpoint session ended before any
 model download. Controller key-selection and startup-clock defects were fixed
 and 19 offline lifecycle tests passed; the corrected start was rejected for
@@ -7,9 +9,9 @@ capacity. All three GPU hosts are stopped. The runtime qualification remains
 valid, but model load and training remain pending. See [the session record](QWEN_MODEL_LOAD_SESSION.md)
 and [the overall process diagram](SLM_PROCESS_FLOW.md).
 
-**Next packet prepared:** [pinned Qwen checkpoint and model-load check](QWEN_MODEL_LOAD_SESSION.md). The 15-file public inventory was refreshed without downloading weights. Offline tooling is tested; no new EC2 session, inference or training occurred. Live execution remains separately scoped.
+**Historical packet preparation, 29 September:** [pinned Qwen checkpoint and model-load check](QWEN_MODEL_LOAD_SESSION.md). The 15-file public inventory was refreshed without downloading weights. Offline tooling is tested; no new EC2 session, inference or training occurred. Live execution remains separately scoped.
 
-**Latest result, 29 September 20:03 UTC:** the approved A10G retry in
+**Prior runtime result, 29 September 20:03 UTC:** the approved A10G retry in
 `us-east-1b` succeeded. All 113 pinned wheels installed and matched; `pip check`,
 five synthetic GPU probes and **149 selected CPU tests** passed. The A10G and
 both retained L4 hosts are independently confirmed stopped. Runtime installation
@@ -24,16 +26,16 @@ Earlier dated entries below preserve the capacity/transfer history.
 
 ## The model and the path
 
-The target is **`unsloth/Qwen3-8B` on an approved AWS EC2 GPU host** (A10G runtime checks now passed; both L4 hosts preserved), not ECS and not the larger Qwen helper accessed through OpenRouter. Ollama's installed `qwen3:8b` GGUF serves responses; it is not the trainable checkpoint. The later training session needs the pinned Hugging Face weights plus the CUDA/Unsloth/TRL stack. A LoRA adapter is then evaluated, merged and converted to GGUF for serving.
+The target is **`unsloth/Qwen3-8B` on an approved AWS EC2 GPU host** (A10G runtime checks now passed; both L4 hosts preserved), not ECS and not the larger Qwen helper accessed through OpenRouter. Ollama's installed `qwen3:8b` GGUF serves responses; it is not the trainable checkpoint. The pinned Hugging Face weights and CUDA/Unsloth/TRL stack are now verified on the A10G; accepted training data and subsequent run authorization remain separate. A LoRA adapter is then evaluated, merged and converted to GGUF for serving.
 
-The local tokenizer snapshot is pinned to `946bc9ac74a6c1f8cf012497c503a119b2fcf2eb`. The smoke configuration proposes that same base revision; this task verifies tokenizer files only, not availability or completeness of the corresponding weight snapshot on AWS.
+The local tokenizer snapshot is pinned to `946bc9ac74a6c1f8cf012497c503a119b2fcf2eb`. The smoke configuration proposes that same base revision; the 30 September session also verified the corresponding 15-file weight snapshot and NF4 GPU load on AWS.
 
 The shortest approved path remains:
 
 1. Accept a narrow task, rights and reference answers; preserve held-out families.
 2. Score S0-cases on stock Qwen3-8B. Build S0-retrieval only after scored failures identify the need and about 20 documents are admitted. It must improve on S0-cases under the existing plan.
 3. Freeze an independently accepted dataset; audit its exact tokenizer rendering and assistant-only labels.
-4. Authorize one bounded AWS host session, establish the runtime and stage the pinned weights/data.
+4. Runtime installation and checkpoint loading have passed. Authorize the next bounded session and stage only its independently accepted data; verify/reuse the retained model cache.
 5. Run a 20-step QLoRA smoke test. Only after its operational checks pass, authorize the domain experiment and matched base/retrieval/adapter comparison.
 
 Steps 1–3 are not replaced by a helper-model contest. Offline host/configuration preparation can proceed now. Diagram training remains blocked on its separate branch.
@@ -50,9 +52,9 @@ Steps 1–3 are not replaced by a helper-model contest. Offline host/configurati
 | Release boundary | Fresh fabricated rehearsal again refused all 8 invalid acceptance/release scenarios. Fixture identities and approvals confer no real training authority. Authenticated synthetic acceptance still needs complete current rights/history and live integration. |
 | Real accepted release / Gate 0 | The approved read-only check reached dev, not production. Dev has 4 cases, 4 questions, 0 brief runs and 0 scorecards. Its two signed/training cases are SYN-prefixed hypothetical fixtures; one other signed case is testing-only. Production Bill submissions and Gate 0 coverage remain unknown. See the follow-up below. |
 | AWS host | A10G `i-079b24e2b51ef7630`, g5.2xlarge, us-east-1b, is stopped with the installed venv retained. Original and replacement L4 hosts also confirmed stopped. [Bounded validation result](AWS_A10G_RUNTIME_SESSION_2026-09-29.md). |
-| GPU runtime | Exact 113-wheel CUDA 12.6 bundle installed offline and version/hash verified on A10G. pip consistency, five synthetic GPU checks and 149 selected CPU tests passed. Unsloth 2026.9.12 / Transformers 5.5.0; no driver change. Qwen load, QLoRA/resume and reproduction remain untested; no floating bootstrap. |
+| GPU runtime | Exact 113-wheel CUDA 12.6 bundle installed offline and version/hash verified on A10G. pip consistency, five synthetic GPU checks and 149 selected CPU tests passed. Unsloth 2026.9.12 / Transformers 5.5.0; no driver change. Qwen NF4 load passed on 30 September; QLoRA/resume and reproduction remain untested; no floating bootstrap. |
 | Artifact storage | Broadbridge intake already uses private R2. Do not automatically attach the older Ilyrium S3 profile or create another bucket. The [R2-to-EBS setup runbook](AWS_TRAINING_SETUP.md) and immutable transfer tool are prepared and rehearsed locally. Live prefix/token scope and exact transfer still need approval. An S3 instance profile is a requirement only if a separately approved S3 artifact path is selected. |
-| Training diagnostics | Implemented and tested with local CPU child processes: merged stdout/stderr, private per-attempt files, 4 MiB cap with continuous draining, byte/hash/truncation receipts, and rejection of changed/incomplete captures. Actual CUDA logs and metrics remain unverified. |
+| Training diagnostics | Implemented and tested with local CPU child processes: merged stdout/stderr, private per-attempt files, 4 MiB cap with continuous draining, byte/hash/truncation receipts, and rejection of changed/incomplete captures. Actual CUDA training logs and metrics remain unverified; the separate base-load memory/time result is now recorded. |
 
 Fresh aggregate receipts: [data/release/config verification](evidence/aws-readiness-2026-09-28/readiness.json) and [test results](evidence/aws-readiness-2026-09-28/tests.json). Foundry: **742 passed, 3 skipped**. Broadbridge pack/DB/research suite: **410 passed, 104 skipped** (103 DB integration tests without credentials and 1 optional reference-graph configuration). Existing Requests/SWIG warnings remain. Detailed data findings and limitations remain in [SLM_DATA_PREPARATION_RESULTS.md](SLM_DATA_PREPARATION_RESULTS.md).
 

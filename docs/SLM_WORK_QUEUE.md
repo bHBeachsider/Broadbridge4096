@@ -1,14 +1,16 @@
 # SLM preparation and fine-tuning work queue
 
+**Current status, 30 September 01:00 UTC:** pinned Qwen3-8B acquisition and NF4 GPU loading passed on the A10G. All 15 files (16.40 GB) verified; 252 NF4 modules, all parameters on CUDA, 5.83 GiB peak reserved memory. The host and both L4s are stopped; retries are paused. No inference or training ran. [Load result and remaining gates](QWEN_MODEL_LOAD_RESULT_2026-09-30.md). The dated entries below preserve earlier preparation and failures.
+
 **Checkpoint execution, 29 September 22:17 UTC:** no checkpoint was acquired.
 Two controller defects were corrected and 19 offline tests passed; AWS then
 rejected the corrected start for insufficient capacity. All hosts are stopped.
 FQ-13 still waits for actual model loading and accepted data/baselines. See
 [the exact result](QWEN_MODEL_LOAD_SESSION.md) and [the process diagram](SLM_PROCESS_FLOW.md).
 
-**Next packet prepared:** [pinned Qwen checkpoint and model-load check](QWEN_MODEL_LOAD_SESSION.md). The 15-file public inventory was refreshed without downloading weights. Offline tooling is tested; no new EC2 session, inference or training occurred. Live execution remains separately scoped.
+**Historical packet preparation, 29 September:** [pinned Qwen checkpoint and model-load check](QWEN_MODEL_LOAD_SESSION.md). The 15-file public inventory was refreshed without downloading weights. Offline tooling is tested; no new EC2 session, inference or training occurred. Live execution remains separately scoped.
 
-**Latest result, 29 September 20:03 UTC:** the approved A10G retry in
+**Prior runtime result, 29 September 20:03 UTC:** the approved A10G retry in
 `us-east-1b` succeeded. All 113 pinned wheels installed and matched; `pip check`,
 five synthetic GPU probes and **149 selected CPU tests** passed. The A10G and
 both retained L4 hosts are independently confirmed stopped. Runtime installation
@@ -17,7 +19,7 @@ data/baselines, QLoRA smoke/resume and second-operator reproduction remain open.
 No model inference or training ran. [Session result](AWS_A10G_RUNTIME_SESSION_2026-09-29.md).
 Earlier dated entries below preserve the capacity/transfer history.
 
-Updated 29 September 2026. Owner: Brad / Broadbridge Oil & Gas.
+Updated 30 September 2026 UTC. Owner: Brad / Broadbridge Oil & Gas.
 
 This is the ordered work backlog requested while the discovery questionnaire is being developed. It does not submit training jobs or start a background scheduler. Execute one implementation lane; keep GPU, live generation and production gates explicit. The editable [queue CSV](SLM_WORK_QUEUE.csv) is the task register; update both views together.
 
@@ -45,12 +47,12 @@ FQ-01 through FQ-06 prepare software, extraction evidence and reviewable inputs 
 | FQ-10 | Build and compare S0-retrieval | WAIT_SCORED_BASELINE | On-box index and comparable scored briefs; beat S0-cases before training is considered |
 | FQ-11 | Run the bounded synthetic candidate pilot (SD-05) | WAIT_REVIEW_AND_RUN | Up to 100 pending candidates, proposed 20/type and <=10/family; independent dispositions for every attempt |
 | FQ-12 | Freeze the reviewed dataset (SD-06) | WAIT_ACCEPTED_DATA | Immutable messages JSONL release/hash; lineage, family splits, assistant-target token audit and exclusions |
-| FQ-13 | Host readiness and bounded QLoRA smoke test | RUNTIME_CHECKS_PASSED_WAIT_MODEL_AND_DATA | A10G installation/imports and all five small GPU probes passed; 149 CPU tests passed on the pinned venv. All three hosts stopped by 20:03 UTC, within the original deadline. [Validation evidence](AWS_A10G_RUNTIME_SESSION_2026-09-29.md). Weights/model load, accepted release/baselines, QLoRA smoke/resume and reproduction remain open. |
+| FQ-13 | Host readiness and bounded QLoRA smoke test | MODEL_LOAD_PASSED_WAIT_DATA_AND_SMOKE | Pinned A10G runtime and Qwen3-8B NF4 load passed; 15 files/16.40 GB verified, 252 NF4 modules, all parameters on CUDA, 5.83 GiB peak reserved. [Load evidence](QWEN_MODEL_LOAD_RESULT_2026-09-30.md). All hosts stopped. Accepted release/scored baselines, QLoRA smoke/resume and reproduction remain open. |
 | FQ-14 | Train and compare the first domain adapter (SD-07) | WAIT_SMOKE_RESULT | Base/retrieval/adapter comparison: per-type scores, critical errors, grounding, abstention, latency and regressions |
 | FQ-15 | Reproduce and release the accepted adapter | WAIT_ACCEPTANCE | Second-operator reproduction; hash-keyed deploy_pack.sh GGUF release and rollback record |
 | FQ-16 | Specialist expansion and advanced training | POST_V0 | Separate proposals for specialist families, simulator examples, preference data/RL and native vision/audio |
 
-State meanings: **RUNTIME_CHECKS_PASSED_WAIT_MODEL_AND_DATA** = exact A10G environment passed installation/imports/small-kernel and selected CPU checks; model/data/baseline/smoke/reproduction gates stay open; **RUNTIME_BLOCKED_TRANSFER** = host prerequisites passed, runtime upload incomplete and candidate not installed/tested; no automatic retry; **DEFERRED_OPTIONAL** = parked and not a prerequisite for the main SLM; **RUNTIME_BLOCKED_PREFLIGHT** = runtime bundle verified, host started but preflight failed before installation/GPU checks, retries paused; **RUNTIME_BLOCKED_CAPACITY** = runtime setup approved and download verified, existing-host capacity prevents completing installation/GPU checks; **PREPARED_WAIT_GPU_GATE** = offline preparation delivered, live prerequisites unresolved; **READY_OFFLINE** = queued preparation can proceed without a live model; **PREPARED_WAIT_REVIEW** = software/extraction deliverable exists but the applicable human decisions remain open; **WAIT_…** = the named input/decision is outstanding; **POST_V0** = outside the initial adapter release. Ready is not running or complete. Conditional work may be prepared out of row order when its recorded dependencies are satisfied; numbering is dispatch priority, not a mandatory finish-to-start schedule.
+State meanings: **MODEL_LOAD_PASSED_WAIT_DATA_AND_SMOKE** = verified checkpoint and NF4 load passed; accepted data/scored baselines, QLoRA smoke/resume and reproduction remain open; **RUNTIME_CHECKS_PASSED_WAIT_MODEL_AND_DATA** = exact A10G environment passed installation/imports/small-kernel and selected CPU checks; model/data/baseline/smoke/reproduction gates stay open; **RUNTIME_BLOCKED_TRANSFER** = host prerequisites passed, runtime upload incomplete and candidate not installed/tested; no automatic retry; **DEFERRED_OPTIONAL** = parked and not a prerequisite for the main SLM; **RUNTIME_BLOCKED_PREFLIGHT** = runtime bundle verified, host started but preflight failed before installation/GPU checks, retries paused; **RUNTIME_BLOCKED_CAPACITY** = runtime setup approved and download verified, existing-host capacity prevents completing installation/GPU checks; **PREPARED_WAIT_GPU_GATE** = offline preparation delivered, live prerequisites unresolved; **READY_OFFLINE** = queued preparation can proceed without a live model; **PREPARED_WAIT_REVIEW** = software/extraction deliverable exists but the applicable human decisions remain open; **WAIT_…** = the named input/decision is outstanding; **POST_V0** = outside the initial adapter release. Ready is not running or complete. Conditional work may be prepared out of row order when its recorded dependencies are satisfied; numbering is dispatch priority, not a mandatory finish-to-start schedule.
 
 The intended first real synthetic pilot includes all five question types; calculation examples also depend on independent acceptance of FQ-01's method. A non-calculation pilot may proceed with recorded missing coverage rather than invented numerical verification. FQ-12 describes the synthetic-inclusive release; an independently approved expert-only release may be prepared for the later matched comparison without pretending the synthetic pilot ran.
 
@@ -90,7 +92,7 @@ For later adapter comparison, do not compare stock Ollama's default template wit
 
 1. Review the FQ-01 method/tolerance and FQ-02 evidence packet. No training approval is implied by their software checks.
 2. Review FQ-03's rights/credits and technical task selection; adjudicate FQ-04's family/answer quality findings. Original samples and splits remain unchanged.
-3. Next dispatch: [FQ-12/FQ-13 AWS and dataset readiness](AWS_TRAINING_READINESS.md). A10G runtime-only validation passed and all GPU hosts are stopped. Prepare the separate pinned-weight/model-load session and its cost/transfer plan; no further start or model download is implied. Accept the narrow DOE/calculation packet and freeze a real release, while resolving signed-case and scored-baseline gates. The prior database count check reached dev only; production case status remains unverified. FQ-07 stays deferred; diagram recovery remains separate.
+3. Next dispatch: [FQ-12/FQ-13 AWS and dataset readiness](AWS_TRAINING_READINESS.md). A10G runtime and pinned Qwen NF4 load passed; all GPU hosts are stopped. Verify/reuse the retained cache for a separately bounded next session; no further start is implied. Accept the narrow DOE/calculation packet and freeze a real release, while resolving signed-case and scored-baseline gates. The prior database count check reached dev only; production case status remains unverified. FQ-07 stays deferred; diagram recovery remains separate.
 4. Bill or another appointed reviewer chooses useful tasks and verifies the real source/method/candidate packets. Brad records rights, live processing budgets and release decisions independently.
 
 Original work packages and acceptance criteria remain in the [synthetic-data plan](superpowers/plans/2026-09-26-synthetic-expert-data.md), [expert workflow](SYNTHETIC_EXPERT_WORKFLOW.md) and [ingestion release runbook](INGESTION_PIPELINE_RUNBOOK.md). This queue organizes them; it does not mark unperformed work accepted.
